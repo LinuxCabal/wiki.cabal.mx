@@ -1,0 +1,22 @@
+= Instalación =
+
+Python 2 viene ya instalado en casi todas las distribuciones de GNU/Linux.  Sin embargo, las distribuciones suelen tener paquetes adicionales que empiezan su nombre con python- y son para la documentación, módulos adicionales, enlaces (bindings) a librerías en otros lenguajes.
+
+= Uso =
+
+Para ejecutar el interpretador escribe en una terminal:
+
+ python
+
+Para ejecutar el ambiente gráfico, escribe en una terminal:
+
+ idle
+
+= Ver también =
+* [[Python 3]]
+* [[PythonCabal]]
+
+= Tutoriales =
+* [http://wiki.python.org/moin/SpanishLanguage Links to Python information in Spanish], en python.org.
+
+[[Categoría: PythonCabal ]]
