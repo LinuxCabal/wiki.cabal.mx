@@ -1,0 +1,16 @@
+== Instalar ==
+En Debian Squeeze instala el paquete '''python3-yaml'''.
+
+En Ubuntu Linux no existe el paquete.
+
+En Fedora, solo corre el siguiente comando:
+<source lang="bash">
+ su -c 'yum install python3-PyYAML'
+</source>
+
+[[Categoría:HowTos]]
+
+== Version ==
+La versión actual del módulo es 3.09 y soporta la especificación 1.1 de YAML.
+
+[[Categoría:HowTos]]
