@@ -1,0 +1,239 @@
+== Introducción ==
+Este documento delimita las funciones de [http://www.linuxcabal.org/ LinuxCabal, A.C.] en la sociedad y brinda ejemplos prácticos de la forma en que puede apoyar a [[wikipedia:es:Asociación_civil|asociaciones civiles]], escuelas, gobierno, público en general y otras organizaciones. Además, muestra el plan de sustentabilidad de [http://www.linuxcabal.org/ LinuxCabal, A.C.]
+
+== ¿Qué es LinuxCabal, A.C.? ==
+[http://www.linuxcabal.org/ LinuxCabal, A.C.] es una [[wikipedia:es:Asociación_civil|asociación civil]]; sin fines de lucro; dedicada a promover y enseñar el uso de [[wikipedia:es:FOSS|FOSS]] (Free and Open Source Software; [[wikipedia:es:Software_libre|Software Libre]] y de [[wikipedia:es:Código_abierto|Código Abierto]]) en organizaciones como: industria, educación, gobierno y el público en general.
+
+=== Historia ===
+[http://www.linuxcabal.org/ LinuxCabal, A.C.] nació en [[wikipedia:es:San_Francisco_(California)|San Francisco, California]]; en 1996. Desde entonces, tuvo gran éxito en el, muy conocido, [[wikipedia:es:Silicon_Valley|Silicon Valley]]; sirviendo como sede de la Comunidad del [[wikipedia:es:FOSS|FOSS]]; en la que se encuentran expertos y entusiastas en tecnología.
+
+En el 2005, [http://www.linuxcabal.org/ LinuxCabal, A.C.], cambió su ubicación a [[wikipedia:es:Guadalajara_(Jalisco)|Guadalajara, Jalisco]], [[wikipedia:es:México|México]]; en donde inicia actividades de promoción del [[wikipedia:es:FOSS|FOSS]] en universidades, gobierno, medios de comunicación y la comunidad en general.
+
+== ¿Qué hace LinuxCabal, A.C.? ==
+=== Actualidad ===
+[http://www.linuxcabal.org/ LinuxCabal, A.C.] promueve el [[wikipedia:es:FOSS|FOSS]] con una amplia variedad de actividades, tales como:
+
+==== Festivales de Instalación ====
+Todos los sábados abre sus puertas para que, el público en general, pueda acercarse a la Comunidad, para conocer e instalar [[wikipedia:es:FOSS|FOSS]]; socializar, aprender y enseñar en el proceso.
+
+==== Conferencias, Congresos y Capacitación ====
+Ha contribuido con la organización de mesas redondas, debates, presentaciones y talleres en algunas de las más importantes universidades del país, como: UNAM, U de G, ITESO, UVM, entre otras. De igual forma, realiza los capítulos locales de congresos internacionales como el [[wikipedia:es:FLISOL|FLISoL]] (Festival Latinoamericano de Instalación de Software Libre) y el [[wikipedia:es:Software_Freedom_Day|Software Freedom Day]] (Día de la Libertad del Software) en Guadalajara.
+
+Ofrece cursos acerca del uso y configuración de [[wikipedia:es:FOSS|FOSS]]; a cualquier tipo de institución educativa o sin fines de lucro; por una mínima cuota de recuperación. Colabora con la iniciativa privada y algunas [[wikipedia:es:Asociación_civil|asociaciones civiles]]. Ha apoyado al Gobierno de Jalisco, en la Secretaría de Salud y en la Secretaría de Finanzas; así como a el Hospital Civil de Guadalajara y el Hospital Regional de La Barca.
+
+Todos los sábados, [http://www.linuxcabal.org/ LinuxCabal, A.C.], realiza presentaciones y talleres en sus instalaciones; abiertas y sin costo alguno al público en general. Los martes, brinda asistencia a un grupo especializado en desarrollo y aprendizaje del lenguaje de programación [[wikipedia:es:PHP|PHP]]; modelo replicado con un grupo de desarrollo en el lenguaje de programación [[wikipedia:es:Python|Python]]. Los grupos de [[PHPCabal]] y [[PythonCabal]] tienen un lugar especial en [http://wiki.cabal.mx|nuestra wiki].
+
+==== Entrevistas de Radio y Periódico ====
+Por un lado, [http://www.linuxcabal.org/ LinuxCabal, A.C.], ha sido invitado, en múltiples ocasiones, a participar en medios de comunicación como: Mural, Informador, Gaceta U de G, Guadalajara Reporter y demás medios impresos; como reconocimiento a sus esfuerzos de promoción del [[wikipedia:es:FOSS|FOSS]] desde 1996.
+
+Por el otro, representantes de [http://www.linuxcabal.org/ LinuxCabal, A.C.], han participado en entrevistas de radio en Radio RMX, Radio Juventud y Radio U de G; para promover el [[wikipedia:es:FOSS|FOSS]] y sus beneficios en México.
+
+==== Infraestructura ====
+Las instalaciones de [http://www.linuxcabal.org/ LinuxCabal, A.C.] están ubicadas en Calle 14 #2184-A, Colonia Ferrocarril, C.P. 44440; Guadalajara, Jalisco, México. Es una bodega con una superficie de 13 m x 15 m y cuenta con 3 pisos.
+
+En su interior hay mesas, sillas, cañones, audio, switches, routers, monitores, herramientas y los elementos básicos para las presentaciones y talleres. Para complementar, cuenta con servidores y estaciones de trabajo; así como computadoras portátiles; disponibles para el uso de los asistentes. Además provee a los asistentes servicios de Internet gratis.
+
+==== Distribuciones de Software ====
+[http://www.linuxcabal.org/ LinuxCabal, A.C.], tiene un repositorio de [[wikipedia:es:FOSS|FOSS]] que almacena: distribuciones de [[wikipedia:es:GNU/Linux|GNU & Linux]], revistas técnicas libres, libros técnicos libres, películas libres, etc ... También ofrece, sin costo, copias del [[wikipedia:es:FOSS|FOSS]] en CD o DVD.
+
+Cabe aclarar que todo el contenido de los repositorios es redistribuido legalmente gracias a sus licencias públicas. En ninguna manera soportamos y/o promovemos la práctica de la piratería.
+
+==== Desarrollo ====
+[http://www.linuxcabal.org/ LinuxCabal, A.C.], provee, a grupos de programadores, facilidades confortables para que se reúnan y trabajen con y para el [[wikipedia:es:|FOSS]]. Actualmente, nos reunimos, los martes, en un [[PHPCabal|grupo de programación]] en [[wikipedia:es:PHP|PHP]].
+
+==== Asistencia Técnica ====
+Los asistentes a [http://www.linuxcabal.org/ LinuxCabal, A.C.]; en sintonía con la filosofía general del FOSS, prestan ayuda, sin costo alguno, a personas que acudan a las reuniones periódicas.
+
+Además, [http://www.linuxcabal.org/ LinuxCabal, A.C.], cuenta con canales de comunicación informáticos como nuestras [[wikipedia:es:Lista_de_correo|listas de correo]] y el teléfono, los cuales permiten la comunicación fuera de las reuniones regulares.
+
+=== Objetivos ===
+A continuación se delimitan algunos ejemplos de proyectos que [http://linuxcabal.org LinuxCabal, A.C.] estaría en condiciones de realizar con deducibilidad fiscal y donadores.
+
+==== Ampliación de la Infraestructura ====
+Con la infraestructura necesaria, [http://linuxcabal.org/ LinuxCabal, A.C.], pudiera ofrecer sus instalaciones para proveer una amplia gama de servicios como: talleres, cursos, demostraciones, [[wikipedia:es:Email|servicios de correo]] y [[wikipedia:es:Servicio_de_alojamiento_de_Internet|hospedaje a páginas web]], etc. 
+
+También, pudiera prestar sus instalaciones a grupos especializados en desarrollo o investigación relacionada con [[wikipedia:es:FOSS|FOSS]]. Además, pudiera trabajar en proyectos colaborativos, como la traducción de documentación y demás.
+
+==== Servicios Gratuitos para ONGs ====
+Con la infraestructura necesaria y, el apoyo del gobierno y la iniciativa privada, [http://linuxcabal.org/ LinuxCabal, A.C.], tiene la posibilidad para ofrecer, a las ONGs de Jalisco, servicios web sin costo alguno, ya que, cuenta con el voluntariado y los conocimientos necesarios para mantener este tipo de servicios de la manera más eficiente y productiva; reduciéndole costos al gobierno y a las ONGs mientras aumentan su potencial de impacto social positivo.
+
+==== Certificación en FOSS ====
+[http://linuxcabal.org/ LinuxCabal, A.C.] puede ser un centro de certificación en [[wikipedia:es:FOSS|FOSS]] para la comunidad; por medio de asistencia y capacitación a profesionales y entusiastas. Puede ayudar a obtener su certificación con instituciones reconocidas internacionalmente.
+
+==== Capacitación a Consultores ====
+Actualmente, [http://linuxcabal.org/ LinuxCabal, A.C.], brinda asesoría de alto nivel, sin costo, a todos los interesados en ofrecer servicios de consultoría; incluyendo: manejo de clientes, definición de costos del servicio, profesionalismo y valores; con especial atención a cultivar una buena filosofía de trabajo.
+
+Una vez que, [http://linuxcabal.org/ LinuxCabal, A.C.], pueda otorgar recibos deducibles, incrementara sus esfuerzos en alcanzar a nuevos grupos, organizaciones e instituciones.
+
+==== Traducción de Documentación Técnica al Español Mexicano ====
+[http://linuxcabal.org/ LinuxCabal, A.C.], por medio de la traducción de manuales, guías y otros recursos documentales; del Inglés al Español, logra que, personas interesadas puedan aprender de materiales en su propio idioma.
+
+==== Ampliación en la Distribución de FOSS ====
+[http://linuxcabal.org/ LinuxCabal, A.C.], detectó que, los espejos de repositorios [[wikipedia:es:FOSS|FOSS]] locales no son suficientes para la demanda de los usuarios nacionales. Por ello, busca proveer de un repositorio local para el uso de la comunidad en general. El acceso a estas copias legales de herramientas y recursos [[wikipedia:es:FOSS|FOSS]] estarán abiertos al público en general; sin costo alguno.
+
+==== Programa de Promoción y Difusión de FOSS ====
+Al contar con los recursos, parte de los esfuerzos de [http://linuxcabal.org/ LinuxCabal, A.C.] serán enfocados a la difusión y promoción del [[wikipedia:es:FOSS|FOSS]] mediante campañas en medios, visitas programadas a escuelas y universidades, demostraciones en expos y eventos de la iniciativa privada, asociaciones y organizaciones de todo tipo.
+
+==== Programa de Capacitación en Colaboración con otras ONGs ====
+[http://linuxcabal.org/ LinuxCabal, A.C.]. y su equipo de expertos informáticos colaboraría para hacer sinergia con otras organizaciones y multiplicar los beneficios.
+
+[http://linuxcabal.org/ LinuxCabal, A.C.] está dispuesta a participar en programas en los que participen el gobierno, las ONGs y la iniciativa privada para jugar su rol y hacer más viables los proyectos de las demás instituciones y viceversa.
+
+== Ejemplos prácticos ==
+Todos estos ejemplos forman parte de los proyectos a corto, mediano y largo plazo de [http://linuxcabal.org/ LinuxCabal, A.C.]; los cuales dependen del soporte de donadores y voluntarios.
+
+Los ejemplos serán escritos como supuestos.
+
+# [http://linuxcabal.org/ LinuxCabal, A.C.], en colaboración con la [http://www.amba.org.mx/ Asociación Mexicana de Bancos de Alimentos, A.C.], capacitó a una comunidad de 20 personas en el uso de [[wikipedia:es:FOSS|FOSS]]; en 2 etapas: conocimiento básico e intermedio. [http://linuxcabal.org/ LinuxCabal, A.C.] pidió una cuota de recuperación de $200.00 por persona; por etapa; misma que, la [http://www.amba.org.mx/ AMBA], pidió a [http://www.walmartmexico.com.mx/ Wallmart]. Las 20 personas, además, retribuyen capacitando a otros grupos en nivel básico e intermedio; regresando un poco de lo que obtienen a su misma comunidad.
+
+# Una institución sin fines de lucro necesita correos y hospedaje para su página web, por ello, se acercaron a [http://linuxcabal.org/ LinuxCabal, A.C.]; al corroborar que son una A.C. afiliada al [http://ijas.gob.mx/ IJAS], otorga las 20 cuentas de correo que necesitaban y les ofrecen el espacio suficiente en sus servidores para publicar su página web. [http://linuxcabal.org/ LinuxCabal, A.C.] se encarga de los trámites técnicos sin costo alguno y ayuda, al beneficiario, a registrar su dominio en http://nic.mx/ y se encarga de informarle los requisitos económicos del trámite.
+
+# Varias instituciones quieren migrar al uso de [[wikipedia:es:FOSS|FOSS]]; por diversos motivos. Sin embargo, tienen la incertidumbre, ya que, no saben si, su modelo de trabajo, podrá adaptarse en sistemas [[wikipedia:es:FOSS|FOSS]]. [http://linuxcabal.org/ LinuxCabal, A.C.], como parte de la difusión, realiza demostraciones; por un periodo de tiempo, para verificar la factibilidad de su uso; llevando a cabo la migración.
+
+# [http://linuxcabal.org/ LinuxCabal, A.C.], tras promover su programa de infraestructura con [http://hp.com/mx/ HP], [http://www.cisco.com/web/MX/ Cisco] e [http://www.ibm.com/mx/es/ IBM], éstos deciden apoyarle en la adquisición de el hardware necesario para un laboratorio; en el cual se imparten cursos y demostraciones de [[wikipedia:es:FOSS|FOSS]] a los usuarios en general; en las instalaciones de [http://linuxcabal.org/ LinuxCabal, A.C.] Tras la donación del hardware, el gobierno del estado decide apoyar a [http://linuxcabal.org/ LinuxCabal, A.C.] con el costo de una línea de Internet dedicada OC3; la cual sirve para darle servicios web gratuitos a todas las ONGs del Jalisco.
+
+# [http://linuxcabal.org/ LinuxCabal, A.C.], gracias a que cuenta con un repositorio de [[wikipedia:es:FOSS|FOSS]] propio, emprende un programa de capacitación en escuelas rurales, para el cual, requiere de PCs y de un sistema operativo [[wikipedia:es:FOSS|FOSS]]. Tras un acuerdo de colaboración, [[wikipedia:es:FOSS|FOSS]] y [http://hp.com/mx/ HP] proveen el [[wikipedia:es:FOSS|FOSS]] y el equipo a comunidades que no tienen los medios para realizarlo.
+
+# Una [[wikipedia:es:Pequeña_y_mediana_empresa|PyMe]] con 4 estaciones de trabajo decide que, instalar Microsoft Office es demasiado caro. En una reunión en [http://linuxcabal.org/ LinuxCabal, A.C.] descubren [http://www.libreoffice.org/ LibreOffice] y deciden instalarlo en sus estaciones de trabajo; ahorrandose miles de pesos.
+
+# En la Escuela Preparatoria #7 quieren utilizar el programa [http://www.gnucash.org/ GNUCash] para enseñar contabilidad a sus estudiantes. Gracias al programa de traducción de documentación de [http://linuxcabal.org/ LinuxCabal, A.C.], ellos cuentan con la documentación en español para entender el programa y sus conceptos.
+
+# [http://www.ibm.com/mx/es/ IBM] acaba de donarle 10 equipos de cómputo al [http://www.lospinos.org/ Albergue Los Pinos, A.C.]; para el uso de sus beneficiarios. Al cotizar con un técnico para ver cuanto cuesta instalar y configurar una red, les resulta caro pagar, aproximadamente, $50,000.00 pesos de mano de obra para hacer la instalación y, así mismo, acuden a [http://linuxcabal.org/ LinuxCabal, A.C.]; quienes, por una cuota de recuperación del 10% del costo, la llevan acabo.
+
+# [http://linuxcabal.org/ LinuxCabal, A.C.], de manera regular, hace presentaciones en la [http://www.canieti.org/ CANIETI] sobre los diferentes beneficios del [[wikipedia:es:FOSS|FOSS]] y los modelos de negocio del mismo. Gracias a ésto, a estas empresas, surge el interés y empiezan a colaborar con [http://linuxcabal.org/ LinuxCabal, A.C.]. En sus instalaciones, se llevan acabo demostraciones y pruebas de implementación sobre tecnologías [[wikipedia:es:FOSS|FOSS]]; las cuales se aplican directamente a los proyectos de las empresas afiliadas a la [http://www.canieti.org/ CANIETI] y, esto, los impulsa a hacer desarrollos seguros y de bajo costo.
+
+# [http://linuxcabal.org/ LinuxCabal, A.C.] apoya, al [http://iteso.mx ITESO] y a la [http://udg.mx U de G], para formar grupos de usuarios de [[wikipedia:es:GNU/Linux|GNU & Linux]], lo cual le brinda, a los estudiantes, las herramientas necesarias para implementar las tecnologías de [[wikipedia:es:FOSS|FOSS]] en sus diferentes proyectos.
+
+# La Secretaría de [http://www.jalisco.gob.mx/wps/portal/sriaVialidad/ Vialidad y Transporte] pretende implementar un sistema de control que localizará a los camiones urbanos de la ciudad en tiempo real. [http://linuxcabal.org/ LinuxCabal, A.C.], al darse cuenta de esto, propone el uso de tecnología [[wikipedia:es:FOSS|FOSS]], lo cual ahorra mucho dinero en desarrollo; además de garantizar el buen servicio; en tiempo y forma, de los camiones. Además, un grupo de voluntarios en [http://linuxcabal.org/ LinuxCabal, A.C.], se dedica a integrar este sistema con [http://maps.google.com/ Google Maps]; lo cual permite que, la gente, tenga acceso a la localización de los camiones urbanos en tiempo real y sin costo alguno.
+
+# Un grupo de voluntarios de [http://linuxcabal.org/ LinuxCabal, A.C.] deciden marcar, en [http://maps.google.com/ Google Maps], todos los baches de la ciudad. Hacen convocatoria y, la ciudadanía, participa en marcarlos. Luego, les entregan, ésto, a las autoridades correspondientes; las cuales agradecen la participación de la comunidad y les facilita el trabajo de localización.
+
+== Auto-suficiencia ==
+A continuación, se delimita cómo [http://linuxcabal.org/ LinuxCabal, A.C.], puede ser una institución económicamente auto-suficiente, en base a dos opciones:
+
+=== Cuotas de Recuperación ===
+Adoptando, hasta cierto punto, la manera en la que la [http://amba.org.mx/ Asociación Mexicana de Bancos de Alimentos, A.C.] trabaja, [http://linuxcabal.org/ LinuxCabal, A.C.] pretende pedir una cuota de recuperación por los servicios que preste; no mayor al 25% del valor comercial de los mismos. Éstos servicios serían ofrecidos a ONGs y al público en general.
+
+Los servicios son los ya, antes mencionados, talleres, cursos, presentaciones, consultas y demás.
+
+No se prestarían, en ninguna forma, servicios a empresas y/o instituciones de educación o gobierno en las que, la naturaleza del proyecto, sea comercial y desinteresada de la filosofía del [[wikipedia:es:FOSS|FOSS]].
+
+Dicho esto, [http://linuxcabal.org/ LinuxCabal, A.C.], puede colaborar con la iniciativa privada, las instituciones de educación y de gobierno en proyectos colaborativos que beneficien a la comunidad en general y se apeguen a la filosofía del [[wikipedia:es:FOSS|FOSS]].
+
+=== Donativos ===
+Una vez lograda la deducibilidad, se considera prioritario solicitar donativos, de manera regular a las instituciones que, actualmente apoyan al [[wikipedia:es:FOSS|FOSS]] de manera global, como Cisco, HP, IBM, Intel, Axtel, etc. Además, vincular a la iniciativa privada local en el proyecto de [http://linuxcabal.org/ LinuxCabal, A.C.]
+
+== Voluntariado ==
+[http://linuxcabal.org/ LinuxCabal, A.C.]; es parte de este movimiento y se muestra como la embajada del [[wikipedia:es:FOSS|FOSS]] en Jalisco. Aprovecha el interés, ya existente, de los colaboradores locales y lo enfoca a los proyectos en curso. Éstos colaboradores, se han acercado gracias al interés mundial que existe por los proyectos [[wikipedia:es:FOSS|FOSS]], en cuya base se encuentra promover la socialización, aprendizaje y colaboración de los individuos para formar comunidades dinámicas, propositivas e innovadoras; de las cuales los proyectos se alimentan para crecer como comunidad.
+
+Entre el voluntariado, con el que actualmente cuenta [http://linuxcabal.org/ LinuxCabal, A.C.]; se encuentran administradores de sistemas, programadores e ingenieros en redes; así como expertos en sociología, comunicación y otras disciplinas.
+
+Cabe señalar que continuamente nuevas personas se unen a [http://linuxcabal.org/ LinuxCabal, A.C.]; gracias a la promoción que ésta institución lleva acabo, y, también, gracias al uso que sus miembros hacen con recursos de comunicación web; que han ampliado, en gran medida, su colaboración a distancia.
+
+== Conclusión ==
+[http://linuxcabal.org/ LinuxCabal, A.C.] es una institución que trae beneficios escenciales a la comunidad; incluyendo a la inciativa privada, [[wikipedia:es:Pyme|PyMEs]], instituciones de educación, organizaciones sin fines de lucro, gobierno y público en general.
+
+Las maneras en las que, [http://linuxcabal.org/ LinuxCabal, A.C.]., puede colaborar son muchas y, el beneficio, se comparte con el mundo.
+
+El [[wikipedia:es:FOSS|FOSS]] permite, a los mexicanos, estar en igualdad de condiciones con los paises de primer mundo.
+
+Los objetivos y metas de [http://linuxcabal.org/ LinuxCabal, A.C.] no son competitivos sino colaborativos; buscan colaborar con todo tipo de organizaciones para lograr un mejor mundo tecnológico.
+
+[http://linuxcabal.org/ LinuxCabal, A.C.] es la embajada del [[wikipedia:es:FOSS|FOSS]] en México y pretende llevar el beneficio del uso del [[wikipedia:es:FOSS|FOSS]] a todo el mundo; en un espíritu de colaboración y servicio a la comunidad.
+
+== Contacto ==
+=== Dirección ===
+
+<pre>
+LinuxCabal, A.C.
+Calle 14 #2184-A
+Ferrocarril, 44440
+Guadalajara, Jalisco, México
+</pre>
+
+[http://maps.google.com/maps/place?cid=8309270057972670233 Mapa (Google Maps)]
+
+=== Página web ===
+[http://www.linuxcabal.org/ http://www.linuxcabal.org/]
+
+=== Teléfonos ===
+LinuxCabal, A.C.: +52 (33) 3145-2638
+
+=== Móvil ===
+Richard Couture: +52 (33) 3377-7505
+
+=== Email ===
+LinuxCabal, A.C.: <lcoginfo@linuxcabal.org>
+
+== Glosario==
+
+;Aplicaciones
+: Herramientas informáticas diseñadas para cubrir la necesidad de un usuario, como herramientas de oficina, navegadores web, reproductores de música, video, entre otros.
+
+;Distribución GNU & Linux
+: Refiere a un tipo de sistema operativo GNU & Linux, existen alrededor de 500 tipos en el mercado.
+
+;Documentación
+: Manuales y guías, con instrucciones detalladas para el uso de un programa computacional.
+
+;FLISOL
+: Festival Latinoamericano de Software Libre.
+
+;FOSS
+: Free and Open Source Software o Software Libre y de Fuente Abierta, se caracteriza por utilizar un modelo de negocios fundamentado, en la consideración, de que el software es un servicio, no un producto.
+
+;GNU & Linux
+: Sistema Operativo FOSS.
+
+;GNU Cash
+: Es un programa FOSS que implementa reglas de registro de información financiera en un sistema de cuenta financiero, en el cual, cada evento o transacción es registrado en al menos dos diferentes cuentas.
+
+;Google Maps
+: Servicio gratuito de mapas que ofrece Google, incluye avenidas, calles, colonias e imágenes de las principales ciudades de México y el mundo.
+
+;Hardware
+: Parte física de una computadora o servidor, incluye monitores, tarjetas, teclados, ratón, entre otros.
+
+;Línea de Internet dedicada OC3
+: Es una linea de red con una velocidad de transmisión superior a los 155.52 Mbit/s, a través de fibra óptica. Dependiendo del sistema, OC-3 es también conocido como STS-3 (nivel eléctrico) y STM-1 (SDH).
+
+;OpenOffice.org
+: Proyecto FOSS que mantiene, una suit de herramientas para oficina, que incluye: procesador de texto, hoja de cálculo, procesador de presentaciones, administrador&nbsp; de bases de datos, entre otros elementos.
+
+;PHP
+: Lenguaje de programación para el desarrollo de aplicaciones web.
+
+;Programas computacionales
+: Conjunto de instrucciones que una vez ejecutadas realizarán una o varias tareas en una computadora.
+
+;Python
+: Lenguaje de programación utilizado para el desarrollo de aplicaciones web, productos de software y sistemas operativos.
+
+;Repositorio
+: Sistema de información accesible por Internet que contiene todas las herramientas y aplicaciones que contiene una distribución GNU & Linux, es gratuito y de libre acceso.
+
+;Sistema operativo
+: Conjunto de herramientas y aplicaciones encargadas de las operaciones internas de una computadora o servidor.
+
+;Software Freedom Day
+: Es el día mundial de celebración del Software Libre.
+
+;Software
+: Programas de computadora como sistemas operativos, y aplicaciones.
+
+;Tiempo Real
+: Término utilizado para hacer referencia a sistemas informáticos, que se actualizan prácticamente al instante, para tener control de sus elementos.
+
+== Créditos==
+Los créditos están odenados por órden alfabético.
+
+=== Colaboradores ===
+
+* Carlos Alberto González Álvarez <betology@gmail.com>
+* Esteban Enael Contreras Vázquez <quetzalzun@gmail.com>
+* Renich Bon Ćirić <renich@woralelandia.com>
+* Richard Raymond Couture <rrc@linuxcabal.org>
+* Roberto Noé Villegas Fernández <ville1ero@gmail.com>
+* Muchos otros que no se apuntaron para el crédito.
+
+[[Categoría: Proyectos]]
