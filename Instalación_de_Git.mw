@@ -1,0 +1,40 @@
+== Instalación ==
+
+=== Fedora ===
+Instala el paquete: '''git-all'''.
+
+=== Ubuntu y Debian ===
+En Ubuntu Linux, instala el paquete: '''git-core'''.
+
+En Debian instala el paquete '''git'''.
+
+=== Windows ===
+En Windows XP/Vista/7 instala '''msysgit''' descargando el instalador de [http://code.google.com/p/msysgit su sitio] -> ''Featured'' -> ''Downloads'' ->  ''Git-w.x.y-z-previewYYYYMMDD.exe''.
+
+[[Categoría:HowTos]]
+
+= Personalizar =
+Asigna tu nombre y cuenta de correo, para que se muestren en las bitácoras.  En GNU/Linux en una terminal:
+
+ git config --global user.name "Juan Pérez"
+ git config --global user.email jperez@dominio.com
+
+En Windows, usa el menú '''Edit -> Options''' de ''msysgit'', ajusta los campos '''User Name''' y '''Email''' debajo de '''Global (All repositories)'''
+
+= Verificar =
+En linux comprueba que está instalado tecleando en una terminal:
+
+ git
+
+En Windows haz '''clic derecho en cualquier carpeta''' y deberán aparecer en el menú de contexto opciones como ''Git Init Here, Git GUI,  Git Bash''.
+
+= Ver también =
+* [[Introducción a Git]]
+* [[Trucos de Git]]
+
+= Más información =
+
+Para información más detallada que lo que se menciona aquí, lee [http://progit.org/book/ch1-4.html Installing Git] en los apartados ''Installing on Linux, Installing on Mac, Installing on Windows'', según sea el caso, y también [http://progit.org/book/ch1-5.html First-Time Git Setup].
+
+[[Categoría:HowTos]]
+[[Category:Git]]
