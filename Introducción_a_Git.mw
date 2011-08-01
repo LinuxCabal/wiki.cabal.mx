@@ -1,0 +1,48 @@
+{{Borrador}}
+Éste curso es un obra en proceso, por ello estará cambiando continuamente.
+
+== Compatibilidad ==
+Éste [[:Category:HowTo|HowTo]] funcionará en:
+* [http://fedoraproject.org/ Fedora] 15+ 
+* [http://mandriva.com/ Mandriva] 2010.2+
+
+
+== Básicos de Git ==
+
+=== Comando ===
+introducción corta al comando.
+
+==== Sinopsis ====
+git <comando> [-a | --parámetroA] [opciones] [--parametroB <newbase>]
+
+==== Ejercicios ====
+
+1. instrucciones del paso 1
+<syntaxhighlight lang="bash">
+
+git <comando> opcion1
+
+</syntaxhighlight>
+
+2. instrucciones del paso 1
+<syntaxhighlight lang="bash">
+
+git <comando> opcion1
+
+</syntaxhighlight>
+
+==== Referencias ====
+* Referencia 1
+* Referencia 2
+
+
+== Flujo de trabajo ==
+...
+
+
+== Avanzado ==
+...
+
+
+[[Categoría:HowTos]]
+[[Categoría:Git]]
