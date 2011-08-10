@@ -1,0 +1,51 @@
+== Compartir tu repositorio en la red local ==
+
+Si tus repositorios Git están en /home/usuario/proyectos, por ejemplo /home/usuario/proyectos/Biblio-Cabal y 
+/home/usuario/proyectos/tutoriales, ejecuta este comando:
+
+  git daemon --base-path=/home/usuario/proyectos/ --export-all
+
+Los demás podrán copiar tus repositorios así, suponiendo que la dirección de tu PC es 192.168.1.105:
+
+  git clone git://192.168.1.105/Biblio-Cabal
+  git clone git://192.168.1.105/tutoriales
+
+Nota: si usas un cortafuegos, asegúrate de que permita usar el puerto predeterminado 9418.
+
+Referencia: http://ozmm.org/posts/when_github_goes_down.html
+
+== Descarga un repositorio remoto a un repositorio local ==
+
+1. Crea un repositorio local vacío:
+
+      cd Biblio-Cabal
+      git init
+
+2. Agrega el repositorio público como una rama remota:
+
+      git remote add bibliocabal http://pydev.linuxcabal.org/git/Biblio-Cabal.git
+
+3. Aplica los cambios a tu repositorio local:
+
+      git pull bibliocabal
+
+== Como borrar branches remotas ==
+
+Para borrar una branch remota, es necesario hacer un push vacío:
+
+  git push origin :branch_a_borrar
+
+Si la branch no quiere ser borrada, intenta:
+
+  git push origin HEAD:branch_a_borrar
+  git push origin :branch_a_borrar
+
+== Otras recetas ==
+En la categoría [https://git.wiki.kernel.org/index.php/Category:GitDocumentation GitDocumentation] del wiki en kernel.org, en especial los artículos [https://git.wiki.kernel.org/index.php/QuickStart QuickStart] y [https://git.wiki.kernel.org/index.php/GitTips GitTips].
+
+== Ver también ==
+*[[Instalación de Git]]
+*[[Introducción a Git]]
+
+[[Categoría:HowTos]]
+[[Category:Git]]
