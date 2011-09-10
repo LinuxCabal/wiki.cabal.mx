@@ -1,0 +1,43 @@
+== Descripción ==
+Quality assurance y merges de la aplicación. Releases oficiales.
+
+== Equipos de Desarrollo ==
+
+=== Administración ===
+Sección desde la cual, el admin o admins, podrá(n) realizar las tareas
+administrativas.
+
+Responsables: [[ Usuario:steven | Steven ]] y [[ Usuario:perla | Perla ]]
+
+=== Autenticacion ===
+Incluye la autentificación, registro y utilerías de los usuarios; así
+como de el sistema de permisos y roles (ACL) de la aplicación.
+
+Responsables: [[ Usuario:rodolfo | Rodolfo ]], [[ Usuario:perla | Perla ]], [[ Usuario:steven | Steven ]] y [[ Usuario:Arksega | Sergio ]]
+
+=== Documentación ===
+Documentación para usuarios; así como documentación técnica de la
+aplicación. Screencasts, howtos, manuales, etc.
+
+Responsables: [[ Usuario:perla | Perla ]], [[ Usuario:Renich | Renich ]], [[ Usuario:Quetzalzun | Esteban ]] y Juan
+
+=== Interfaz ===
+HTML5, CSS3 y Javascript 100% validados y correctos. Es la parte
+visual de la aplicación y debe ser atractiva.
+
+Responsables: [[Usuario:Betology | Beto]] y [[ Usuario:Arksega | Sergio ]]
+
+=== Master ===
+Quality assurance y merges de la aplicación. Releases oficiales.
+
+Responsables: [[ Usuario:Renich | Renich ]] y [[ Usuario:Quetzalzun | Esteban ]]
+
+=== Movimientos ===
+Control de las operaciones realizadas en la aplicación. Donaciones,
+inventario, status de clientes, reportes,  etc.
+
+Responsables: [[ Usuario:jacsalomon | Jacobo ]], Iván y [[ Usuario:Renich | Renich ]]
+
+== Responsables Master ==
+* [[ Usuario:Quetzalzun | Esteban ]]
+* [[ Usuario:Renich | Renich ]]
