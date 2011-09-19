@@ -1,0 +1,44 @@
+== Descripción ==
+Control de las operaciones realizadas en la aplicación.
+
+== Secciones ==
+
+=== Adquirir ===
+El procedimiento de adquirir productos; mismos que se substraerán del inventario. 
+
+* La interfaz mostrará una imagen del producto, con su descripción y su precio. 
+* Los productos deben agregarse haciéndoles click.
+** Si haces click varias veces en un producto, se agrega varias veces.
+** Contarán con un ícono de menos (-) para reducir el número de productos agregados.
+* Habrá una sección de "pedido", en donde se mostrarán los totales de tus pedidos. También, el total y un botón de "ordenar".
+
+[[Media:garcon_layout_de_selector_de_productos.jpg]]
+
+=== Donar ===
+El procedimiento de hacer donaciones por los productos adquiridos.
+
+== Casos de uso ==
+
+=== Adquisición de un producto ===
+# El usuario hace login.
+# El usuario entra a adquirir productos.
+# El usuario selecciona qué productos quiere.
+# Al usuario se le muestra, por producto, un valor sugerido de cada producto adquirido; con un sub-total.
+# El usuario decide qué cantidad donar por cada uno.
+# El usuario acepta.
+# El usuario obtiene lo adquirido.
+
+=== Donaciones ===
+# El usuario hace login.
+# El usuario adquirió varios productos.
+# El usuario se dirije a la sección de donaciones.
+# Al usuario se le muestran los productos adquiridos y la donación sugerida por cada uno.
+# El usuario decide si redondéa su cuenta.
+# El usuario acepta.
+# El usuario cubre el monto de su donación.
+
+
+== Responsables ==
+* [[ Usuario:jacsalomon | Jacobo ]]
+* Iván
+* [[ Usuario:Renich | Renich ]]
