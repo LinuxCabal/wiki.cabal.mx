@@ -1,0 +1,12 @@
+== Descripción ==
+Incluye la autentificación, registro y utilerías de los usuarios; así como de el sistema de permisos y roles (ACL) de la aplicación.
+
+==Todo list==
+===Hacer refactorización de proyecto===
+* Reemplazar las variables e instancias que contengan "cliente" por "usuario".
+
+== Responsables ==
+* [[ Usuario:perla | Perla ]]
+* [[ Usuario:rodolfo | Rodolfo ]]
+* [[ Usuario:steven | Steven ]]
+* [[ Usuario:Arksega | Sergio ]]
