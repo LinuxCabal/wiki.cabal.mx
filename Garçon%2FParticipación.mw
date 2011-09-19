@@ -1,0 +1,16 @@
+Para participar, hay que seguir algunos lineamientos. Hemos leido algunos artículos chidos en la red y los hemos implementado.
+
+== Cherokee ==
+Aún cuando nos gusta mucho [[wikipedia:Apache_HTTP_Server | Apache]] y proveemos un .htaccess para él; el desarrollo lo estamos haciendo sobre [[wikipedia:Cherokee_(Webserver) | Cherokee]]. 
+
+La configuración para [[wikipedia:Zend Framework | Zend Framework]] en Cherokee es muy fácil; solo tienes que usar el wizard adecuado. Busca en la página de cherokee más información al respecto. Por parte de nosotros; generaremos un [[:Category:HowTos | HowTo]] de configuración predilecta pronto.
+
+== Repositorio ==
+Primero, es importante que mandes tu nombre de usuario a GitHub para que podamos autorizarte los push. El repositorio se encuentra en: [http://github.com/PHPCabal/Garcon Github.com/PHPCabal/Garcon] y, tu pull, debe ser al master; a través de [[wikipedia:SSH | SSH]]; o, sea:
+
+<pre>git clone git@github.com:PHPCabal/Garcon.git garcon</pre>
+
+Hecho ésto, tendrás una copia de garcón.
+
+== Links ==
+* http://nvie.com/posts/a-successful-git-branching-model/
