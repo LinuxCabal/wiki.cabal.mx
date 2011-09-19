@@ -1,0 +1,56 @@
+== Descripción ==
+Sección desde la cual, el admin o admins, podrán realizar las tareas administrativas.
+
+== Secciones ==
+
+=== Usuarios ===
+Manejo de usuarios.
+
+==== Acciones ====
+* CRUD
+* Status de usuario:
+** Pre-registrado
+** Activado
+** Amonestado
+** Expulsado
+** Expirado
+
+=== Productos ===
+Manejo de productos y su existencia.
+
+==== Acciones ====
+* CRUD
+
+=== Reportes ===
+Generación dinámica de reportes. 
+
+Los reportes deben ser generables mediante vistas de la DB.
+
+==== Acciones ====
+* CRUD
+* Predefinidos:
+** Consumo promedio por mes: por producto
+** Consumo promedio por mes: por usuario
+** Balance general de usuarios
+** Balance general de productos
+** Top 10 consumidores
+** Top 10 donadores
+** Top 10 deudores
+
+=== Comunicación ===
+Envío de mensajes automatizados o manuales; implementando el uso de plantillas; tomando en cuenta la periodicidad de los mensajes.
+
+==== Acciones ====
+* Enviar un mensaje manualmente.
+** Esperando posible respuesta
+** Mera notificación
+* CRUD de notificaciones
+** Recibos por donación
+*** deducible
+*** no deducible
+** Notificación de balance
+** Notificación por cambio de estado
+
+== Responsables ==
+* [[ Usuario:perla | Perla ]]
+* [[ Usuario:steven | Steven ]]
