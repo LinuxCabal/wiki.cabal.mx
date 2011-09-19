@@ -1,0 +1,54 @@
+GitHub hospeda repositorios públicos de Git y permite coordinar los aportes de múltiples programadores.
+
+== Primera vez ==
+# Crea tu cuenta en: http://github.com
+# Copia tu llave pública para que GitHub acepte tus cambios http://help.github.com/linux-key-setup/
+
+
+== Colabora en un proyecto existente ==
+# Crea tu repositorio público con una copia del proyecto
+## Teclea en ''Search GitHub'' el nombre del proyecto que quieres encontrar, por ejemplo PythonCabal o Biblio-Cabal.
+## Haz clic en el nombre del proyecto en la lista de resultados.
+## Haz clic en el botón '''Fork''' para crear un repositorio público en tu cuenta.
+## Anota la URL de tipo SSH de tu nuevo repositorio público.
+# Crea un repositorio local de tu repositorio público
+## Clona tu repositorio público a un repositorio local.
+##:<pre>git clone git@github.com:jperez/Biblio-Cabal.git</pre>
+## Entra a tu repositorio local nuevo:
+##:<pre>cd Biblio-Cabal</pre>
+## Trabaja en tu repositorio local y registra los cambios
+## Sube tus cambios del repositorio local a tu repositorio público:
+##:<pre>git push origin master</pre>
+# Agrega los repositorios públicos de otros colaboradores
+## Entra a tu respositorio local en tu PC:
+##:<pre>cd Biblio-Cabal</pre>
+## Agrega cada repositorio deseado como una rama remota:
+##:<pre>git remote add clopez http://github.com/clopez/Biblio-Cabal.git</pre>
+##:<pre>git remote add lglez http://github.com/lglez/Biblio-Cabal.git</pre>
+## Descarga el historial de cada repositorio:
+##:<pre>git fetch clopez</pre>
+##:<pre>git fetch lglez</pre>
+## Lista los cambios de la rama master remota de uno:
+##:<pre>git log clopez/master</pre>
+## Si quieres aplicar los nuevos cambios de uno de ellos a tu repositorio local:
+##:<pre>git pull clopez master</pre>
+
+== Comparte un proyecto personal ==
+# Crea tu repositorio público
+## Haz clic en el botón ''Dashboard'' en Github
+## Haz clic en el botón ''New Repository''
+## Teclea el nombre del repositorio, por ejemplo miProyecto, y una descripción
+## Haz clic en Accept.
+## Toma nota de la URL que usarás para conectar
+# Comparte el repositorio local en tu directorio público
+## Entra a tu repositorio local en tu PC:
+##:<pre>cd miProyecto</pre>
+## Agrega una rama remota llamada origin que refiere al repositorio vacío:
+##:<pre>git remote add origin git@github.com:jperez/miProyecto.git</pre>
+## Empuja tu rama master al repositorio público:
+##:<pre>git push origin master</pre>
+
+== Ver también ==
+*[[Introducción a Git]]
+
+[[Categoría:HowTos]]
