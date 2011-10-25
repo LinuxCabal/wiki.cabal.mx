@@ -1,0 +1,49 @@
+== Descripción ==
+Documentación para usuarios; así como documentación técnica de la aplicación. Screencasts, howtos, manuales, etc.
+
+== Flujo ==
+Éstos son los pasos a seguir para poder desarrollar Garçon. Es necesario leer algo de documentación primero; la cual es anotada en cada sub-sección del tema.
+
+Primero que nada, es clonar el proyecto. Para ésto, hay que pedir que se nos agregue al equipo de desarrollo y, así, colaborar los cambios directamente. El repo se encuentra acá: http://github.com/PHPCabal/Garcon
+
+=== Git ===
+Es muy importante seguir los pasos descritos por el artículo: [[ Garçon/Documentación/Sincronizar_el_repo_y_sus_branches | Sincronizar el repo y sus branches ]]
+
+También, para entender el flujo de trabajo, es necesario leer: http://nvie.com/posts/a-successful-git-branching-model/
+
+=== Desarrollo ===
+El desarrollo, como ya leiste, se hace por secciones/controladores. Cada controlador tiene su branch y debemos limitar el desarrollo del mismo a su propia branch; integrando los cambios que afecten a más de un branch en sus respectivos branches.
+
+Por ejemplo, si tienes un cambio que afecta a dos controladores, haces commit de la parte concerniente al primer controlador en el mismo y, luego, llevas tus cambios a el branch correspondiente al siguiente controlador. Así, mantenemos enfocado el proyecto.
+
+==== Ejemplo ====
+
+Jacobo hizo la parte concerniente al ACL (access control lists) de la aplicación. Jacobo afectó el controlador 'Autentificación' y al menú; el cual pertenece a 'Interfaz'.
+
+Jacobo hace commit de los cambios del controlador de Autentificación en la branch 'Autentificación'. Luego, hace checkout a 'Interfaz' y realiza un commit ahí con los cambios al menú.
+
+=== Comunicación ===
+Es muy importante comunicarnos adecuadamente. Cada duda, interacción o cambio debiera ser comunicado a través de nuestra lista de correo; [mailto:phpcabal@googlegroups.com phpcabal@googlegroups.com].
+
+=== Documentación ===
+Lo seguido a una modificación es la documentación. Hay dos tipos de documentación: técnica y para usuarios.
+
+==== Técnica ====
+La documentación técnica se basa en lo denominado por [http://www.phpdoc.org/ phpDocumentor]. Se trata de documentar los Controladores (clases) y las acciones (métodos) para poder generar, posteriormente, documentación técnica.
+
+Ésta es útil para mapear la funcionalidad de la aplicación y para ayudar a nuevos tecnólogos a incurrir en la misma.
+
+Los tags mandatorios son:
+* <descripción corta>
+* <Descripción larga>
+* @author
+* @version
+
+La documentación técnica, al momento, tiene la más baja prioridad.
+
+==== Usuarios ====
+La documentación para usuarios meramente documenta la funcionalidad y el cómo usar la aplicación. Ésta debiera ser introducida en la WikiCabal; bajo la sección de [[Garçon/Documentación | Documentación]].
+
+== Responsables ==
+* [[ Usuario:Quetzalzun | Esteban ]]
+* [[ Usuario:Renich | Renich ]]
