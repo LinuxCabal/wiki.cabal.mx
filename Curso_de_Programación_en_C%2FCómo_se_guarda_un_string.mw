@@ -1,0 +1,17 @@
+__NOTOC__
+* [[:#Cómo se guarda un string | Cómo se guarda un string]]
+** [[:#Explicación | Explicación]]
+
+== Cómo se guarda un string ==
+
+<table cellspacing="3" cellpadding="3" border="1">
+  <tr>
+    <td>U</td><td>n</td><td>a</td><td> </td><td>c</td><td>a</td><td>d</td><td>e</td><td>n</td><td>a</td><td> </td><td>d</td><td>e</td><td>  </td><td>c</td><td>a</td><td>r</td><td>a</td><td>c</td><td>t</td><td>e</td><td>r</td><td>e</td><td>s</td><td>  </td><td>(</td><td>S</td><td>t</td><td>r</td><td>i</td><td>n</td><td>g</td><td>)</td><td> </td><td>e</td><td>n</td><td> </td><td>m</td><td>e</td><td>m</td><td>o</td><td>r</td><td>i</td><td>a</td><td>\0</td><td> </td><td> </td><td> </td><td> </td><td> </td>
+  </tr>
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
