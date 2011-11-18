@@ -1,0 +1,115 @@
+__NOTOC__
+* [[:#S23.sh | S23.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S23.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+
+area[11]=23
+area[13]=37
+area[51]=UFOs
+
+#  No es necesario que los miembros de un areglo son consecutivos
+#  o contiguos.
+
+# Algunos elementos de la matriz se puede dejar sin inicializar.
+# Vacíos en la matriz están permitidos.
+# De hecho, las matrices con datos escasos ("matrices dispersas")
+# son útiles en una hoja de cálculo de procesamiento.
+
+
+echo -n "area[11] = "
+echo ${area[11]}    #  { llaves } son mandatorios.
+
+echo -n "area[13] = "
+echo ${area[13]}
+
+echo "Contenidos del area[51] son ${area[51]}."
+
+# Elementos de una matriz sin inicialización imprimen nada (null).
+echo -n "area[43] = "
+echo ${area[43]}
+echo "(area[43] sin inicialización )"
+
+echo
+
+# La suma de dos elementos de un areglo asignado a un tercer elemento
+area[5]=`expr ${area[11]} + ${area[13]}`
+echo "area[5] = area[11] + area[13]"
+echo -n "area[5] = "
+echo ${area[5]}
+
+area[6]=`expr ${area[11]} + ${area[51]}`
+echo "area[6] = area[11] + area[51]"
+echo -n "area[6] = "
+echo ${area[6]}
+# Este falla porque no se permite a sumar un intero con una cadena.
+
+echo; echo; echo
+# -----------------------------------------------------------------
+# Otro areglo, "area2".
+# Otra manera de asignar valores a elementos de un areglo...
+# nombre_de_areglo=( Valor1 Valor2 Valor3 ... )
+
+area2=( cero uno dos tres cuatro )
+
+echo -n "area2[0] = "
+echo ${area2[0]}
+# Recuerda que el primer elemento se llama [0] no [1]).
+
+echo -n "area2[1] = "
+echo ${area2[1]}    # [1] es el segundo elemento del areglo.
+# -----------------------------------------------------------------
+
+echo; echo; echo
+
+# -----------------------------------------------
+# Otro areglo, "area3".
+# Otra manera de asignar valores a elementos de un areglo...
+# nombre_de_areglo=([Index_de_Elemneto]=XXX [Index_de_Elemento]=YYY ...)
+
+area3=([17]=diecisiete [24]=veinte-cuatro)
+
+echo -n "area3[17] = "
+echo ${area3[17]}
+
+echo -n "area3[24] = "
+echo ${area3[24]}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [root@Pridd BashClase]# ./S23.sh 
+ area[11] = 23
+ area[13] = 37
+ Contenidos del area[51] son UFOs.
+ area[43] = 
+ (area[43] sin inicialización )
+ 
+ area[5] = area[11] + area[13]
+ area[5] = 60
+ expr: non-integer argument
+ area[6] = area[11] + area[51]
+ area[6] = 
+ 
+ 
+ 
+ area2[0] = cero
+ area2[1] = uno
+ 
+ 
+ 
+ area3[17] = diecisiete
+ area3[24] = veinte-cuatro
+ [root@Pridd BashClase]# 
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
