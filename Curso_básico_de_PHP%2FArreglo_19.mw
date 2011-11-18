@@ -1,0 +1,91 @@
+__NOTOC__
+* [[:#Arreglo19 | Arreglo 19]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo19 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+
+      /* print_r()
+       *(PHP 4, PHP 5)
+       * print_r --  Imprime información legible para humanos sobre una variable
+       * Descripción
+       * bool print_r ( mixed expresion [, bool devolver] )
+       *
+       * Nota: El parámetro devolver fue agregado en PHP 4.3.0 
+       * print_r() despliega información sobre una variable en una forma que es
+       * apta para su lectura por humanos. Si se le entrega una variable tipo
+       * string, integer o float, el valor mismo será impreso. Si se le entrega
+       * un array, los valores serán presentados en un formato que muestra las
+       * claves y los elementos. Una notación parecida es usada para variables
+       * tipo object. print_r(), var_dump() y var_export() mostrarán también
+       * propiedades protegidas y privadas de objetos con PHP 5. 
+       * Recuerde que print_r() desplazará el apuntador de la matriz al final.
+       * Use reset() para llevarlo de vuelta al comienzo. 
+       */
+
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      echo( "<p class=\"SubTitleFont\">
+               \$CiudadInfo con print_r()
+             </p>
+             <p class=\"LargeTextFont\">" );
+      print_r( $CiudadInfo );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+               \$Cornucopia con print_r()
+             </p>
+             <p class=\"LargeTextFont\">" );
+      print_r( $Cornucopia );
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array19.php Ejecutar el código de Arreglo 19]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array19.phps Descargar el código de Arreglo 19]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
