@@ -7,8 +7,7 @@ __NOTOC__
 == Código para ver los operadores de cálculos aritméticos ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<!DOCTYPE HTML>
-<html lang="es-MX">
+<html>
   <head>
     <title>
       Curso PHP - Operadores de c&aacute;lculos aritm&eacute;ticos
