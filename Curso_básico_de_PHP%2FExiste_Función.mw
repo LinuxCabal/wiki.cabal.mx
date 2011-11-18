@@ -1,0 +1,120 @@
+__NOTOC__
+* [[:#ExisteFunción | Existe Función]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== ExisteFunción ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /* function_exists()
+       * (PHP 3 >= 3.0.7, PHP 4, PHP 5)
+       * function_exists --  Devolver TRUE si la función dada ha sido definida 
+       * Descripción
+       * bool function_exists ( string nombre_funcion )
+       * 
+       * Chequea la lista de funciones definidas, tanto incorporadas
+       * (internas) como definidas por el usuario, en busca de nombre_funcion.
+       * Devuelve TRUE si todo se llevó a cabo correctamente, FALSE en caso de
+       * fallo. 
+       * 
+       * Note que un nombre de función puede existir incluso si la función
+       * misma es inutilizable debido a la configuración o las opciones de
+       * compilación (por ejemplo puede ocurrir con las funciones image).
+       * También note que function_exists() devolverá FALSE para las
+       * construcciones, tales como include_once() y echo(). 
+       */
+
+      /* empty()
+       * (PHP 3, PHP 4, PHP 5)
+       * empty -- Determinar si una variable está vacía
+       * Descripción
+       * bool empty ( mixed var )
+       * 
+       * Determinar si una variable es considerada vacía. 
+       * Lista de parámetros
+       * var
+       * Variable a verificar 
+       * Nota: empty() sólo chequea variables ya que cualquier otra cosa
+       * producirá un error de intérprete. En otras palabras, lo siguiente no
+       * funcionará: empty(trim($name)). 
+       * empty() es el opuesto de (boolean) var, con la excepción de que no se
+       * genera una advertencia cuando la variable no está definida. 
+       * Valores retornados
+       * Devuelve FALSE si var tiene un valor no vacío y diferente de cero. 
+       * Las siguientes expresiones son consideradas como vacías: 
+       * 
+       * "" (una cadena vacía)
+       * 0 (0 como un entero)
+       * "0" (0 como una cadena)
+       * NULL
+       * FALSE
+       * array() (una matriz vacía)
+       * var $var; (una variable declarada, pero sin un valor en una clase)
+       * 
+       * Registro de cambios
+       * 
+       * Versión
+       * Descripción
+       * A partir de PHP 5, los objetos sin propiedades no son considerados
+       * vacíos. 
+       * A partir de PHP 4, el valor tipo cadena "0" es considerado vacío. 
+       */
+
+      function TagWrap( $Etiqueta, $txt, $func = "" )
+      {
+        if( ! empty( $txt ) && function_exists( $func ) )
+          $txt = $func( $txt );
+        return "<$Etiqueta>$txt</$Etiqueta>\n";
+      }
+
+      function Underline( $txt )
+      {
+        return "<span style=\"text-decoration:underline;\">$txt</span>";
+      }
+
+      print( "<p class=\"SubTitleFont\">" .
+                TagWrap( 'strong', "Con la etiqueta STRONG" ) .
+               "<br />" . 
+                TagWrap( 'em', "Con las etiquetas EMPHASIZE y subrayar",
+                 "Underline" ) .
+               "<br />" .
+                TagWrap( 'em', 'A dentro de comillas con la etiqueta EMPHASIZE',
+                  create_function( '$txt', 'return "&quot;$txt&quot;";' ) ) .
+             "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/ExisteFunct.php Ejecutar el código para ver la función function_exists]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/ExisteFunct.phps Descargar el código que muestra la función function_exists]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
