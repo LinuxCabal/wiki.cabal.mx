@@ -1,0 +1,62 @@
+__NOTOC__
+* [[:#DeclaraciónDeFunción2 | Cómo declarar una función 2]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== DeclaraciónDeFunción2 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      function EscribeGrandeConBR( $Texto, $Color = "#000000"  )
+      {
+         print( "<p style=\"font:28pt helvetica; color:$Color;\">
+                   $Texto
+                   <br />
+                 </p>" );
+      }
+      print( "<p class=\"TitleFont\">
+                Declaración de Función 2
+              </p>" );
+
+      $Linea = "Esta es la línea en mi variable \$Linea<br />";
+
+      EscribeGrandeConBR( "Esta es una línea", "#FF0000" );
+      EscribeGrandeConBR( "Esta es una otra línea" ); 
+      EscribeGrandeConBR( $Linea, "#00FF00" );
+
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/DeclaracionDeFuncion2.php Ejecutar el código para ver como declarar una función 2]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/DeclaracionDeFuncion2.phps Descargar el código para ver como declarar una función 2]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
