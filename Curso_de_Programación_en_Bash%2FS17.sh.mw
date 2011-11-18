@@ -1,0 +1,32 @@
+__NOTOC__
+* [[:#S17.sh | S17.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S17.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+MiNombre=`grep "^${USER}:" /etc/passwd | cut -d: -f5`
+[ -z "$MiNombre" ] &&
+  echo "El campo GCOS no está escrito para el usuario $USER en /etc/passwd" ||
+  echo $MiNombre
+
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd BashClase]$ ./S17.sh 
+ Richard Couture
+ [rrc@Pridd BashClase]$ grep ^rrc /etc/passwd
+ rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+  ^  ^  ^   ^         ^             ^        ^
+  1  2  3   4         5             6        7
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
