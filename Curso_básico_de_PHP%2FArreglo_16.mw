@@ -1,0 +1,114 @@
+__NOTOC__
+* [[:#Arreglo16 | Arreglo 16]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo16 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /* 
+       * reset()
+       * (PHP 3, PHP 4, PHP 5)
+       * reset --  Fija el puntero interno de una matriz a su primer elemento 
+       * Descripción
+       * mixed reset ( array &matriz )
+       *
+       * reset() rebobina el puntero interno de la matriz a su primer
+       * elemento. Y regresa el valor de ese elemento, o FALSE si la matriz
+       * está vacía.
+       */
+
+      /* 
+       * key()
+       * (PHP 3, PHP 4, PHP 5)
+       * key -- Obtiene una clave de una matriz asociativa
+       * Descripción
+       * mixed key ( array &key )
+       *
+       * key() devuelve el elemento índice de la posición actual en la matriz. 
+       */
+
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+
+      function EscribeKeysYValores( $CiudadAreglo )
+      {
+        reset( $CiudadAreglo );
+        $ValorActual = current( $CiudadAreglo );
+        $LlaveActual = key( $CiudadAreglo );
+
+        if( $ValorActual )
+          print( "Key: $LlaveActual; Valor: $ValorActual<br />" );
+        else
+          print( "Nada a imprimir<br />" );
+
+        while( next( $CiudadAreglo ) )
+        {
+          $ValorActual = current( $CiudadAreglo );
+          $LlaveActual = key( $CiudadAreglo );
+
+          print( "Key: $LlaveActual; Valor: $ValorActual<br />" );
+        }
+      }
+     
+      print( "<p class=\"SubTitleFont\">
+                \$CiudadInfo con reset(), key() y next()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeKeysYValores( $CiudadInfo );
+
+      print(   "<br />
+                Existe un pequenia \"GOTCHA\":
+                <br />
+                la función next() regresa 'FALSE' cuando no es mas arreglo,
+                <br />
+                otro vez el regresa el valor del elemento ...
+                <br />
+                Si el valor es 'NULL' ...
+              </p>" );
+
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array16.php Ejecutar el código de Arreglo 16]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array16.phps Descargar el código de Arreglo 16]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
