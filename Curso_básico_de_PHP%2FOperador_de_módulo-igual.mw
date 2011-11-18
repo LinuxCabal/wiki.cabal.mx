@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Operador de MóduloIgual | Operador de MóduloIgual]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Operador de MóduloIgual ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operador de M&oacute;duloIgual
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      print( "<p>
+                Operador de M&oacute;nduloIgual
+              </p>" );
+      $x = 4;
+      print( "<p>" . $x . "<br />" );
+      $x = $x % 4;
+      print(    $x . "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      $x %= 4;
+      print(    $x . "</p>");
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/ModuloIgual.php Ejecutar el código para ver el operador de MóduloIgual]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/ModuloIgual.phps Descargar el código para ver el operador de MóduloIgual]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
