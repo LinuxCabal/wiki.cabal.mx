@@ -1,0 +1,75 @@
+__NOTOC__
+* [[:#StrPos | StrPos]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== StrPos ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+
+      /* strrpos()
+       * (PHP 3, PHP 4, PHP 5)
+       * strrpos --  Encuentra la posición de la última aparición de un
+       * caracter en una cadena 
+       * Descripción
+       * int strrpos ( string cadena, string caracter [, int desplazamiento] )
+       *
+       * Devuele la posición numérica de la última aparición de caracter en la
+       * cadena. Nótese que en PHP 4 el caracter sólo puede ser un caracter
+       * único. Si se pasa una cadena como caracter, sólo se utilizará el
+       * primer caracter de la misma. 
+       * Si no se encuentra el caracter, devuelve FALSE. 
+       * Los valores devueltos para "caracter encontrado en la posicion 0" y
+       * "caracter no encontrado" pueden confundirse con facilidad. A
+       * continuación se muestra como detectar esa diferencia: 
+       */
+
+      $NumCuenta = "mz00Julio66326";
+
+      print( "<p class=\"SubTitleFont\">
+                Usando strpos()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      if( strpos( $NumCuenta, "Julio" ) === 4 )
+        print( "Tiempo a renovar su cuenta<br />" );
+      else
+        print( "Su cuenta está en orden<br />" );
+      print( "</p>" );
+    ?>
+     require_once( "incPie.php" );
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Strpos.php Ejecutar el código de StrPos]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Strpos.phps Descargar el código de StrPos]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
