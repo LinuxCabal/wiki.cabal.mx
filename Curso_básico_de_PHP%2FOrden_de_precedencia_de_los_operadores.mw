@@ -1,5 +1,6 @@
 __NOTOC__
 * [[:#Orden de Precedencia de los Operadores | Orden de Precedencia de los Operadores]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
 ** [[:#Explicación | Explicación]]
 ** [[:#Ejecutarlo | Ejecutarlo]]
 ** [[:#Descargarlo | Descargarlo]]
@@ -7,10 +8,15 @@ __NOTOC__
 == Orden de Precedencia de los Operadores ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<!DOCTYPE HTML>
-<html lang="es-MX">
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl"     href="FixAnotherMSIEBug.xsl"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
   <head>
-    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;
+                      charset=UTF-8" />
+    <meta http-equiv="expires" content="-1" />
     <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta name="keywords" content="linux cabal, linuxcabal,
                  open source, free software, F/OSS, FOSS, GNU,
@@ -82,8 +88,8 @@ __NOTOC__
               </p>
               <p>
                 <a href=\"http://validator.w3.org/check?uri=referer\"><img
-                   src=\"images/valid-html5.jpg\"
-                   alt=\"Valid HTML 5\" height=\"31\"
+                   src=\"images/valid-xhtml10.png\"
+                   alt=\"Valid XHTML 1.0 Strict\" height=\"31\"
                    width=\"88\" />
                 </a>
               </p>" );
@@ -94,6 +100,9 @@ __NOTOC__
 </syntaxhighlight>
 
 === Explicación ===
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
 
 === Ejecutarlo ===
 [http://www.linuxcabal.org/PHPClase/PrecedenciaDeOperadores.php Ejecutar el código para ver el orden de precedencia de los operadores]
