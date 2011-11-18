@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#S19.sh | S19.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S19.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+agrega_usuario()
+{
+  USUARIO=$a;   PWD=$b;   GCOS=$c
+  echo "Agregando el Usuario $USUARIO ..."
+  echo "useradd -c $GCOS $USUARIO"
+  echo "passwd $USUARIO $PWD"
+  echo; echo
+}
+
+### Inicio del script... Uso: ./S18 NuevosUsuarios
+while read a b c
+  do
+    agrega_usuario
+done < $1
+### Fin del script...
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd BashClase]$ ./S19.sh NuevosUsuarios 
+ Agregando el Usuario Hector ...
+ useradd -c "Hector Garcia Martinez" Hector
+ passwd Hector HectorPass
+ 
+ 
+ Agregando el Usuario Roberto ...
+ useradd -c "Roberto Gonzalez Espinoza" Roberto
+ passwd Roberto RobPass
+ 
+ 
+ Agregando el Usuario Ronaldo ...
+ useradd -c "Ronaldo Sanchez Orozco" Ronaldo
+ passwd Ronaldo RonPass
+ 
+ 
+ [rrc@Pridd BashClase]$ cat NuevosUsuarios
+ Hector HectorPass "Hector Garcia Martinez"
+ Roberto RobPass "Roberto Gonzalez Espinoza"
+ Ronaldo RonPass "Ronaldo Sanchez Orozco"
+ [rrc@Pridd BashClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
