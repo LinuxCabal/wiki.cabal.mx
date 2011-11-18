@@ -1,0 +1,80 @@
+__NOTOC__
+* [[:#StrStr | StrStr]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== StrStr ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+
+      /*strstr()
+       *(PHP 3, PHP 4, PHP 5)
+       * strstr -- Encuentra la primera aparición de una cadena
+       * Descripción
+       * string strstr ( string pajar, string aguja )
+       *
+       * Devuelve toda la cadena pajar desde la primera aparición de aguja
+       * hasta el final. 
+       * Si no se encuentra la aguja, devuelve FALSE. 
+       * Si aguja no es una cadena, se convierte a entero y se aplica como el
+       * valor ordinal de un caracter. 
+       * Nota: Esta función distingue entre mayúsculas y minúsculas, por lo que
+       * si no se desea esta distinción, debe emplearse la función stristr(). 
+       */
+      
+      $NumCuenta1 = "pAB772";
+      $NumCuenta2 = "pAC797";
+
+      print( "<p class=\"SubTitleFont\">
+                Usando strstr()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      if( strstr( $NumCuenta1, "AB" ) )
+        print( "Gracias, Es el tiempo para renovar su cuenta" );
+      else
+        print( "Gracias, Su cuenta está en orden" );
+      print( "</p>
+              <p class=\"LargeTextFont\">" );
+      if( strstr( $NumCuenta2, "AB" ) )
+        print( "Gracias, Es el tiempo para renovar su cuenta" );
+      else
+        print( "Gracias, su cuente está en orden" );
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?> 
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Strstr.php Ejecutar el código de StrStr]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Strstr.phps Descargar el código de StrStr]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
