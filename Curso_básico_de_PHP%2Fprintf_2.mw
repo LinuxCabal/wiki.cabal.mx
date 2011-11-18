@@ -1,0 +1,62 @@
+__NOTOC__
+* [[:#printf2 | printf 2]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== printf2 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $Producto1 = "Silla verde";
+      $Producto2 = "Lampara de laton";
+      $Producto3 = "Mesa cuadrada";
+         
+      $Precio1 = 222.4;
+      $Precio2 = 4;
+      $Precio3 = 80.6;
+
+      print( "  <pre>" );
+      printf(    "   %-15s%23s\n", "Nombre", "Precio" );
+      printf(    "%'-43s\n", "" );
+
+      for( $i = 1; $i < 4; $i++ )
+        printf( " %-20s%20.2f\n", ${"Producto{$i}"}, ${"Precio{$i}"} );
+
+      print( "  </pre>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Printf2.php Ejecutar el código de printf 2]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Printf2.phps Descargar el código de printf 2]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
