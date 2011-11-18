@@ -1,0 +1,121 @@
+__NOTOC__
+* [[:#Arreglo13 | Arreglo 13]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo13 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /*
+       * foreach()
+       *
+       * PHP 4 (PHP3 no) incluye una construccion foreach, tal como perl y 
+       * algunos otros lenguajes. Esto simplemente da un modo facil de iterar 
+       * sobre matrices. foreach funciona solamente con matrices y devolvera un
+       * error si se intenta utilizar con otro tipo de datos o variables no
+       * inicializadas. Hay dos sintaxis; la segunda es una extension menor, 
+       * pero util de la primera: 
+       *
+       * foreach(expresion_array as $value) sentencia
+       * foreach(expresion_array as $key => $value) sentencia
+       *
+       * La primera forma recorre el array dado por expresion_array. En cada 
+       * iteracion, el valor del elemento actual se asigna a $value y el 
+       * puntero interno del array se avanza en una unidad (asi en el siguiente
+       * paso, se estara mirando el elemento siguiente). 
+       * La segunda manera hace lo mismo, salvo que la clave del elemento 
+       * actual sera asignada a la variable $key en cada iteracion. 
+       * Nota: Cuando foreach comienza su primera ejecucion, el puntero interno
+       *       a la matriz se reinicia automaticamente al primer elemento de la
+       *       matriz. Esto significa que no se necesita llamar a reset() antes
+       *       de un bucle foreach.
+       * Nota: Hay que tener en cuenta queforeach trabaja con una copia de la 
+       *       matriz especificada y no la lista en si, por ello el puntero de
+       *       la lista no es modificado como en la funcion each(), y los 
+       *       cambios en el elemento de la matriz retornado no afectan a la
+       *       matriz original. De todas maneras el puntero interno a la matriz
+       *       original avanza al procesar la matriz. suponiendo que bucle
+       *       foreach se ejecuta hasta el final, el puntero interno a la
+       *       matriz estar/aacute; al final de la matriz. 
+       * Nota: foreach no soporta la caracteristica de suprimir mensajes de
+       *       error con '@'
+       */
+     
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+ 
+
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano',
+                                             'Naranja' => 'Naranja' ) );
+
+
+      function EscribeTodo( $CiudadAreglo )
+      {
+        foreach( $CiudadAreglo as $NombreValor )
+          print( "$NombreValor<br />" );
+      }
+ 
+      print( "<p class=\"SubTitleFont\">
+                \$CiudadInfo 1 dimensión con foreach()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodo( $CiudadInfo );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia - La primera de 2 dimensiones con foreach()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodo( $Cornucopia );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia{'Fruta'} la segunda dimensión con foreach()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodo( $Cornucopia{'Fruta'} );
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array13.php Ejecutar el código de Arreglo 13]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array13.phps Descargar el código de Arreglo 13]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
