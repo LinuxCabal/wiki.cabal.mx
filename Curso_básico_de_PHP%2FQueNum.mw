@@ -1,0 +1,100 @@
+__NOTOC__
+* [[:#QueNum | QueNum]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== QueNum ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+
+      /* rand()
+       * (PHP 3, PHP 4, PHP 5)
+       * rand -- Generar un entero aleatorio
+       * Descripción
+       * int rand ( [int min, int max] )
+       *
+       * Si es llamada sin los argumentos opcionales min, max, rand() devuelve
+       * un entero pseudo-aleatorio entre 0 y RAND_MAX. Si desea un número
+       * aleatorio entre 5 y 15 (inclusive), por ejemplo, use rand (5, 15). 
+       */
+
+      $Mensaje = "Bienvenido a la máquina de conjetura!
+                  <br />";
+      if( ! isset( $_POST{'Conjetura'} ) )
+      {
+        $Mensaje .= "Dime que número entre de 0 y 100 estoy pensando";
+        $Num = rand( 0, 100 );
+      }
+      elseif( $_POST{'Conjetura'} > $_POST{'Num'} )
+        $Mensaje .= "Demasiado grande! introduzca un número menor";
+      elseif( $_POST{'Conjetura'} < $_POST{'Num'} )
+        $Mensaje .= "Demasiado pequeño, introduzca un número mayor";
+      else
+      {
+        $Mensaje .= "Bueno!
+                     <br />
+                     Dime que otro número entre de 0 y 100 estoy pensando";
+        $Num = rand( 0, 100 );
+        $Mensaje .= "<object type=\"audio/x-wav\" data=\"images/tada.wav\"
+                             width=\"200\" height=\"20\">
+                             <param name=\"src\" value=\"images/tada.wav\" />
+                             <param name=\"autoplay\" value=\"true\" />
+                             <param name=\"autoStart\" value=\"1\" />
+                             alt : <a href=\"images/tada.wav\">Tada</a>
+                     </object>";
+      }
+
+      if( !isset( $Num ) )
+        $Num = $_POST{'Num'};
+        
+      print( "<p class=\"SubTitleFont Azul\">
+                $Mensaje
+              </p>
+                <form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\">
+                  <p class=\"LargeTextFont\">
+                    Coloque su conjetura aquí:
+                    <input type=\"text\" name=\"Conjetura\" maxlength=\"3\" />
+                    <input type=\"hidden\" name=\"Num\" value=\"{$Num}\" />
+                  </p>
+                  <p class=\"LargeTextFont\">
+                    <input type = \"submit\" value = \"Prueba\" />
+                  </p>
+                </form>" );
+       require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/QueNum.php Ejecutar el código de QueNum]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/QueNum.phps Descargar el código de QueNum]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
