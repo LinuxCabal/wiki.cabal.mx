@@ -1,0 +1,68 @@
+__NOTOC__
+* [[:#S20.sh | S20.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S20.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+factorial()
+{
+  if [ "$1" -gt "1" ]; then
+    i=`expr $1 - 1`
+    j=`factorial $i`
+    k=`expr $1 \* $j`
+    echo $k
+  else
+    echo 1
+  fi
+}
+
+while : ;do
+    echo -n "Quieres el factorial para que "
+    echo -n "número en el rango 1 - 20 "
+    echo -n  "( 0 para salir ): "
+    read x
+    [ $x -gt 20 ] && 
+    {
+      echo -e "¡Ingreso inválido! \a"
+      echo "$x está fuera del rango 1 - 20"
+      continue
+    }
+    [ $x -eq 0 ] && break
+      factorial $x
+done                      
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd BashClase]$ ./S20.sh 
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 2
+ 2
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 3
+ 6
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 4
+ 24
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 5
+ 120
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 6
+ 720
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 7
+ 5040
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 8
+ 40320
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 9
+ 362880
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 10
+ 3628800
+ Quieres el factorial para que número en el rango 1 - 20 ( 0 para salir ): 0
+ [rrc@Pridd BashClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
