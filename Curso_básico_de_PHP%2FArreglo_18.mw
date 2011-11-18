@@ -1,0 +1,116 @@
+__NOTOC__
+* [[:#Arreglo18 | Arreglo 18]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo18 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+
+      /* array_walk
+       *(PHP 3 >= 3.0.3, PHP 4, PHP 5)
+       * array_walk --  Aplica una función del usuario a cada elemento de
+       * una matriz. 
+       * Descripción
+       * int array_walk ( array &matriz, string func [, mixed datosvarios] )
+       *
+       * Devuelve TRUE si todo se llevó a cabo correctamente, FALSE en caso
+       * de fallo. 
+       * Aplica la función llamada func a cada elemento de la matriz. La
+       * función func recibirá el valor de la matriz como primer parámetro y
+       * la clave como segundo. Si se proporciona el parámetro datosvarios
+       * será pasado como tercer parámetro a la función de usuario. 
+       * Si func necesita más de dos o 3 argumentos, dependiendo de
+       * datosvarios, se generará un aviso cada vez que array_walk() llama a
+       * func. Estos avisos pueden suprimirse si se pone @ antes de la llamada
+       * a array_walk(), o usando la función error_reporting(). 
+       * Nota: Si func precisa trabajar con los valores reales de la matriz,
+       * especifique que el valor del primer parámetro de func debe pasarse por
+       * referencia. Desde ese instante, los cambios realizados sobre dichos
+       * elementos también serán realizados en la propia matriz. 
+       * Nota: El pasar la clave y los datos de usuario a func fue una
+       * característica añadida en PHP 4.0.0 
+       * array_walk() no es afectado por el apuntador interno del parámetro
+       * matriz. array_walk() avanzará por toda la matriz sin importar la
+       * posición del apuntador. Para reinicializar el apuntador, use reset().
+       * en PHP 3, array_walk() reinicializa el apuntador. 
+       * No se debe cambiar la matriz desde la llamada a la función,
+       * ej. agregar/borrar elementos, vaciar elementos, etc. si la matriz que
+       * está siendo usada por array_walk() cambia, el comportamiento de esta
+       * función será indefinido e impredecible.
+       */
+
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+ 
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      function EscribeMedidas( $Arreglo, $ArregloKeyNoVoyUsar )
+      {
+        print( "La medida de $Arreglo es " . strlen( $Arreglo ) . "<br />" );
+      }
+ 
+      print( "<p class=\"SubTitleFont\">
+                \$CiudadInfo con array_walk()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      array_walk( $CiudadInfo, 'EscribeMedidas' );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia con array_walk()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      array_walk( $Cornucopia, 'EscribeMedidas' );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia{'Fruta'} con array_walk()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      array_walk( $Cornucopia{'Fruta'}, 'EscribeMedidas' );
+      print( "</p>" );
+      require_once( "incPie.php" );
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array18.php Ejecutar el código de Arreglo 18]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array18.phps Descargar el código de Arreglo 18]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
