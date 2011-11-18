@@ -1,0 +1,38 @@
+__NOTOC__
+* [[:#Tipos de Datos | Tipos de Datos]]
+** [[:#Explicación | Explicación]]
+
+== Tipos de Datos ==
+
+<table cellpadding="1" cellspacing="12">
+  <tr>
+    <th>K&R Original</th><th>ANSI</th><th>C90</th>
+  </tr>
+  <tr style=text-align:center;>
+    <td>int</td><td>signed</td><td>_Bool</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>long</td><td>void</td><td>_Complex</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>short</td><td>&nbsp;</td><td>_Imaginary</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>unsigned</td><td>&nbsp;</td><td>&nbsp;</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>char</td><td>&nbsp;</td><td>&nbsp;</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>float</td><td>&nbsp;</td><td>&nbsp;</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>double</td><td>&nbsp;</td><td>&nbsp;</td>
+  </tr>
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
