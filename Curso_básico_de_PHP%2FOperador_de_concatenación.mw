@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#Operador de Concatenación | Operador de Concatenación]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Operador de Concatenación ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operador de Concatenaci&oacute;n
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+       print( "<p>" . "Operador de Concatenación" );
+       print(   " Hola" . " mundo" );
+       echo(  "</p>" );
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Concatenacion.php Ejecutar el código para ver el operador de concatenaci&oacute;n]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Concatenacion.phps Descargar el código para ver el operador de concatenaci&oacute;n]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
