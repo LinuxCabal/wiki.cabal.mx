@@ -1,0 +1,66 @@
+__NOTOC__
+* [[:#StrToLower | StrToLower]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== StrToLower ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+
+      /* strtolower()
+       * (PHP 3, PHP 4, PHP 5)
+       * strtolower -- Pasa a minúsculas una cadena
+       * Descripción
+       * string strtolower ( string cadena )
+       *
+       * Devuelve la cadena con todas sus letras en minúsculas. 
+       * Nótese que las letras son definidas por la localización actual
+       * (el "locale" actual). Esto quiere decir que, por ejemplo, en el
+       * locale por defecto ("C"), los caracteres como la Ñ no serán
+       * convertidos. 
+       */
+
+      $NumCuenta = "mz02AbCÁéóñÑ";
+      print( "<p class=\"SubTitleFont\">
+                Usando strtolower()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      print( strtolower( $NumCuenta ) . "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Strtolower.php Ejecutar el código de StrToLower]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Strtolower.phps Descargar el código de StrToLower]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
