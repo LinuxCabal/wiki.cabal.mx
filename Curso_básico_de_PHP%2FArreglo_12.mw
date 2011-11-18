@@ -1,0 +1,76 @@
+__NOTOC__
+* [[:#Arreglo12 | Arreglo 12]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo12 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+  
+      function CiudadParaNum ( $IndexNum, $CiudadAreglo )
+      {
+        if( isset( $CiudadAreglo{$IndexNum} ) )
+        {
+          $LaCiudad = $CiudadAreglo{$IndexNum};
+          $ElPais = $CiudadAreglo{$LaCiudad};
+          print( "$LaCiudad se encuentra en $ElPais<br />" );
+        }
+      }
+      print( "<p class=\"SubTitleFont\">
+                \$CiudadInfo\" tiene " . count( $CiudadInfo ) . "Elemento(s) 
+                </p>
+                <p class=\"LargeTextFont\">");
+
+      CiudadParaNum( 0, $CiudadInfo );
+      CiudadParaNum( 1, $CiudadInfo );
+      CiudadParaNum( 2, $CiudadInfo );
+      CiudadParaNum( 3, $CiudadInfo );
+
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array12.php Ejecutar el código de Arreglo 12]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array12.phps Descargar el código de Arreglo 12]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
