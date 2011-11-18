@@ -1,0 +1,65 @@
+__NOTOC__
+* [[:#StrToUpper | StrToUpper]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== StrToUpper ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+
+     /* strtoupper()
+       * (PHP 3, PHP 4, PHP 5)
+       * strtoupper -- Pasa a mayúsculas una cadena
+       * Descripción
+       * string strtoupper ( string cadena )
+       *
+       * Devuelve la cadena con todas sus letras en mayúsculas. 
+       * Nótese que las letras son definidas por el locale actual. Esto
+       * quiere decir que, por ejemplo, en el locale por defecto ("C"),
+       * los caracteres como la ñ no serán convertidos. 
+       */
+
+      $NumCuenta = "mz02AbCañÑÉ";
+      print( "<p class=\"SubTitleFont\">
+                Usando strtoupper()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      print( strtoupper( $NumCuenta ) . "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Strtoupper.php Ejecutar el código de StrToUpper]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Strtoupper.phps Descargar el código de StrToUpper]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
