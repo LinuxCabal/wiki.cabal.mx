@@ -1,0 +1,57 @@
+__NOTOC__
+* [[:#Secuencias de Escape | Secuencias de Escape]]
+** [[:#Explicación | Explicación]]
+
+== Secuencias de Escape ==
+
+<table cellpadding="1" cellspacing="12">
+  <tr>
+    <th>Secuencia</th><th>Significa</th>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\a</nowiki></td><td>Alerta</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\b</nowiki></td><td>Backspace</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\f</nowiki></td><td>Form Feed</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\n</nowiki></td><td>Línea Nueva</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\r</nowiki></td><td>Carrige Return</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\t</nowiki></td><td>Tab Horizontal</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\v</nowiki></td><td>Tab Vertical</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\'</nowiki></td><td>'</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\"</nowiki></td><td>"</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\?</nowiki></td><td>?</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\\</nowiki></td><td>\</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\Ooo</nowiki></td><td>Valor Octal</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td><nowiki>\xhh</nowiki></td><td>Valor Hexadecimal</td>
+  </tr>
+
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
