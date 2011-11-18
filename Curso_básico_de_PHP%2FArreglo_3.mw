@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#Arreglo3 | Arreglo 3]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo3 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      echo( "<p class=\"SubTitleFont\">
+               Puedes asignar llaves a los elementos de tus arreglos
+             </p>
+             <p class=\"LargeTextFont\">" );
+
+      $Frutas = array( 10 => 'Manzana', 12 => 'Platano', 3 => 'Naranja' );
+      $Frutas += array( 'Rojo'=>'Manzana', 'Amarillo' => 'Platano', 
+                        'Naranja' => 'Naranja' );
+
+      echo( "  Elemento 10: {$Frutas{'10'}}<br />" );
+      echo( "  Elemento 12: {$Frutas{'12'}}<br />" );
+      echo( "  Elemento 3: {$Frutas{'3'}}<br />" );
+      echo  "  Elemento Rojo: " . $Frutas{'Rojo'} . "<br />";
+      echo  "  Elemento Amarillo: " . $Frutas{'Amarillo'} . "<br />";
+      echo  "  Elemento Naranja: " . $Frutas{'Naranja'} . "<br />";
+      echo( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array3.php Ejecutar el código de Arreglo 3]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array3.phps Descargar el código de Arreglo 3]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
