@@ -1,0 +1,132 @@
+__NOTOC__
+* [[:#Arreglo15 | Arreglo 15]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo15 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /*
+       * end()
+       * (PHP 3, PHP 4, PHP 5)
+       * end --  Mueve el puntero interno de una tabla al último elemento 
+       * Descripción
+       * mixed end ( array &matriz )
+       *
+       * end() avanza el puntero interno de la matriz al último elemento,
+       * y regresa su valor. 
+       */
+
+       /*
+        * prev()
+        * (PHP 3, PHP 4, PHP 5)
+        * prev -- Rebobina el puntero interno de una matriz
+        * Descripción
+        * mixed prev ( array &matriz )
+        *
+        * Devuelve el elemento de la matriz que está en la posición anterior
+        * a la que apuntaba previamente el puntero interno, o FALSE si no hay
+        * más elementos. 
+        *
+        * Aviso
+        * Si la matriz contiene elementos vacíos, esta función también
+        * devolverá FALSE para dichos elementos. Para recorrer adecuadamente
+        * una matriz que puede contener elementos vacíos, vea la función
+        * each(). 
+        *
+        * prev() se comporta igual que next(), excepto que rebobina el
+        * puntero interno una posición en lugar de avanzarlo. 
+        */
+
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+  
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      function EscribeTodoConPrev( $ElArreglo )
+      {
+        $Actual = end( $ElArreglo );
+        if( $Actual )
+          print( "$Actual<br />" );
+        else
+          print( "Nada a imprimir<br />" );
+
+        while( $Actual = prev( $ElArreglo ) )
+          print( "$Actual<br />" );
+      }
+
+      print( "<p class=\"SubTitleFont\">
+                \$CiudadInfo 1 dimensión con end() y prev()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodoConPrev( $CiudadInfo );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia - Primera de 2 dimensiones con end() y prev()
+                <br />
+                con 
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodoConPrev( $Cornucopia );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia{'Fruta'} - Segunda dimensión con end() y prev()
+              <p class=\"LargeTextFont\">" );
+      EscribeTodoConPrev( $Cornucopia{'Fruta'} );
+  
+      print(   "<br />
+                Existe un pequenia \"GOTCHA\":
+                <br />
+                la función prev() regresa 'FALSE' cuando no es mas arreglo,
+                <br />
+                otro vez el regresa el valor del elemento ... 
+                <br />
+                Si el valor es 'NULL' ...
+              </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array15.php Ejecutar el código de Arreglo 15]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array15.phps Descargar el código de Arreglo 15]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
