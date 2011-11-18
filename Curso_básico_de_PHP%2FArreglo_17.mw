@@ -1,0 +1,103 @@
+__NOTOC__
+* [[:#Arreglo17 | Arreglo 17]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo17 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      function EscribeKeysYValoresConEach( $CiudadArreglo )
+      {
+        reset( $CiudadArreglo );
+
+        while( $ArregloCell = each( $CiudadArreglo ) )
+        {
+          print( "\$ArregloCell{'0'}: {$ArregloCell{'0'}}<br />" );
+          print( "\$ArregloCell{'1'}: {$ArregloCell{'1'}}<br />" );
+          print( "\$ArregloCell{'key'}: " . $ArregloCell{'key'} . "<br />" );
+          print( "\$ArregloCell{'value'}: " . $ArregloCell{'value'} . "<br />" );
+
+          $ValorActual = $ArregloCell{'value'};
+          $LlaveActual = $ArregloCell{'key'};
+
+          print( "<br />Key: $LlaveActual; Valor: $ValorActual" );
+
+          $ValorActual = $ArregloCell{'1'};
+          $LlaveActual = $ArregloCell{'0'};
+
+          print( "<br />Key: $LlaveActual; Valor: $ValorActual<br /><br />" );
+        }
+      }
+ 
+      print( "<p class=\"SubTitleFont\">
+                \$CiudadInfo con each()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeKeysYValoresConEach( $CiudadInfo );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia con each()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeKeysYValoresConEach( $Cornucopia );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia{'Fruta'} con each()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeKeysYValoresConEach( $Cornucopia{'Fruta'} );
+
+      echo(    'No tiene el "GOTCHA" con each()' );
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array17.php Ejecutar el código de Arreglo 17]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array17.phps Descargar el código de Arreglo 17]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
