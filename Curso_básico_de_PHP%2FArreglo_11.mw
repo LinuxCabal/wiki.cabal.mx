@@ -1,0 +1,124 @@
+__NOTOC__
+* [[:#Arreglo11 | Arreglo 11]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo11 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /* unset()
+       *
+       * (PHP 3, PHP 4, PHP 5)
+       * unset -- Remover una variable dada
+       *
+       * Descripcion:
+       * void unset ( mixed var [, mixed var [, mixed ...]] )
+       *
+       * unset() destruye las variables especificadas. Note que en PHP 3, 
+       * unset() siempre devolvera TRUE (en realidad, el valor entero 1). En 
+       * PHP 4, sin embargo, unset() no es una funcion verdadera: es una 
+       * sentencia. Como tal, no devuelve valor alguno, e intentar tomar el 
+       * valor de unset() resulta en un error de interprete. 
+       * Nota: Es posible remover incluso propiedades de objetos visibles en el
+       * contexto actual. 
+       * El comportamiento de unset() al interior de una funcion puede variar 
+       * dependiendo del tipo de variable que intenta destruir. 
+       * Si se aplica unset() sobre una variable global al interior de una 
+       * funcion, solo la variable local es destruida. La variable en el 
+       * entorno de la llamada retendra el mismo valor que antes que que se 
+       * llamara unset(). 
+       * Nota: Puesto que esto es una construccion del lenguaje y no una 
+       * funcion, no puede ser llamado usando funciones variables
+       * Vea tambien isset(), empty(), y array_splice(). 
+       */
+
+      $MiArreglo{0} = 'Quiero';
+      $MiArreglo{1} = 'No Quiero';
+      $MiArreglo{2} = 'Quiero también';
+
+      $VarNormal = "Contenidos";
+
+      echo( "<p class=\"SubTitleFont\">
+               \$MiArreglo tiene " . count( $MiArreglo ) . " elemento(s)
+             </p>
+             <p class=\"LargeTextFont\">
+               \$MiArreglo{'0'} = {$MiArreglo{'0'}}
+               <br />
+               \$MiArreglo{'1'} = {$MiArreglo{'1'}}
+               <br />
+               \$MiArreglo{'2'} = {$MiArreglo{'2'}}
+             </p>
+             <p class=\"SubTitleFont\">
+               Usa unset() y después
+               <br />" );
+
+      unset( $MiArreglo{'1'} );
+      unset( $VarNormal );
+
+      echo(   "\$MiArreglo tiene " . count( $MiArreglo ) . " elemento(s)
+             </p>
+             <p class=\"LargeTextFont\">
+               \$MiArreglo{'0'} = {$MiArreglo{'0'}}
+               <br />" );
+      if( isset( $MiArreglo{'1'} ) )
+      {
+        echo( "\$MiArreglo{'1'} = {$MiArreglo{'1'}}
+               <br />" );
+      }
+      else
+      {
+        echo( "\$MiArreglo{'1'} No existe y/o es NULL
+             <br />" );
+      }
+      print(  "\$MiArreglo{'2'} = {$MiArreglo{'2'}}
+             </p>
+             <p class=\"LargeTextFont\">" );
+
+      if( isset( $VarNormal ) )
+      {
+        echo( "\$VarNormal = $VarNormal" );
+      }
+      else
+      {
+        echo( "\$VarNormal No existe y/o es NULL" );
+      }
+
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array11.php Ejecutar el código de Arreglo 11]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array11.phps Descargar el código de Arreglo 11]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
