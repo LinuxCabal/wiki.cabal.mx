@@ -1,0 +1,64 @@
+__NOTOC__
+* [[:#Heredoc | Heredoc]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Heredoc ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $Texto = "¿Cómo te llama?";
+
+      echo( "<p class=\"SubTitleFont\">
+               Usando HereDoc, formas, \$_POST y \$_SERVER{'PHP_SELF'}
+             </p>" );
+      if( $_POST{'Nombre'} )
+        echo( "<p class=\"LargeTextFont\">
+                 Me dijiste que te llama {$_POST{'Nombre'}}
+               </p>" );
+      echo <<<UnaFormaPuroHTML
+      <form method="post" action="{$_SERVER{'PHP_SELF'}}">
+        <p>
+          <input type="text" name="Nombre" size="40"
+                 maxlength="10" value="$Texto"  />
+          <input type="submit" name="Submit" value="Aplicar" />
+        </p>
+      </form>
+UnaFormaPuroHTML;
+//No debe tener espacio despues el inicio y antes el final "UnaFormaPuroHTML"
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/HereDoc.php Ejecutar el código de HereDoc]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/HereDoc.phps Descargar el código de Heredoc]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
