@@ -1,0 +1,130 @@
+__NOTOC__
+* [[:#Examinamos los tipos de variables en PHP | Examinamos los tipos de variables en PHP]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Examinamos los tipos de variables en PHP ==
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso de PHP - Examinamos los tipos de variables en PHP
+    </title>
+  </head>
+  <body>
+    <?php
+      /* gettype
+       * (PHP 3, PHP 4, PHP 5)
+       * gettype -- Obtener el tipo de una variable
+       * Descripción
+       * string gettype ( mixed var )
+       * 
+       * Devuelve el tipo de la variable PHP var. 
+       * 
+       * Aviso
+       * Nunca use gettype() para probar si una variable es de cierto tipo,
+       * ya que la cadena devuelta puede ser sujeta a cambios en versiones
+       * futuras. Asimismo, es lenta, ya que involucra la comparación de
+       * cadenas. 
+       * En su lugar, usa las funciones is_*. 
+       * 
+       * Valores retornados
+       * Los valores posible de la cadena devuelta son: 
+       * "boolean" (a partir de PHP 4)
+       * "integer"
+       * "double" (por razones históricas, "double" se devuelve en caso de
+       * un valor tipo float, y no "float")
+       * "string"
+       * "array"
+       * "object"
+       * "resource" (a partir de PHP 4)
+       * "NULL" (a partir de PHP 4)
+       * "user function" (sólo PHP 3, valor obsoleto)
+       * "unknown type" 
+       * Para PHP 4, debería usar function_exists() y method_exists() para
+       * reemplazar el antiguo uso de gettype() sobre una función.
+       */ 
+
+      $Examen;          // Decleración sin asignación
+      echo( '<p>' );
+      echo(    gettype( $Examen ) );     # NULL
+      echo(   '<br />' );
+
+      $Examen = 10;
+      echo(    gettype( $Examen ) );     // INTEGER
+      echo(   '<br />' );
+
+      $Examen = "Diez";
+      echo(    gettype( $Examen ) );     // STRING
+      echo(   '<br />' );
+
+      $Examen = 10.0;
+      echo(    gettype( $Examen ) );     # DOUBLE
+      echo(   '<br />' );
+
+      $Examen = true;
+      echo(    gettype( $Examen ) );     # BOOLEAN
+      echo( '</p>' );
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+El propósito de éste programa es conocer los diferentes tipos de variables que se pueden declarar en PHP.
+
+Las primeras líneas de código fuente son iguales que en el ejemplo anterior, [http://wiki.cabal.mx/wiki/CursoBásicoDePHP/HolaWeb Hola Web], que van desde la línea 1 hasta la línea 7, por lo cual, si tienes alguna duda dirígete a éste.
+
+En la línea 8 iniciamos una sección de php con la etiqueta <code><?php</code>.
+
+En la línea 9 se declara una variable con el nombre <code>$Examen</code> seguido de <code>;</code> y el comentario <code>// Declaración sin asignación</code>.
+Recordemos que cada instrucción de php debe terminar con <code>;</code> (punto y coma). Cuando declaramos una variable sin asignar una valor, como podemos ver aquí, la variable es de tipo null (nulo).
+
+Enseguida en la línea 10, como argumento de la directiva <code>echo</code> se usa la etiqueta <code><nowiki><p></nowiki></code> para indicar el inicio de un párrafo.
+
+En la línea 11, como argumento de la directiva <code>echo</code> se usa la función <code>gettype( $Examen )</code>, la cual, tiene como argumento la variable <code>$Examen</code>. Su función es determinar el tipo de la variable <code>$Examen</code> que, al momento es NULL. Al final de la línea está el comentario <code># NULL</code>. Como se muestra en ésta instrucción, podemos usar cualquier función de php que regresa información, como argumento para los directivos <code>print</code> o <code>echo</code>.
+
+En la línea 12, como argumento de la directiva <code>echo</code>, se usa la etiqueta <code><nowiki><br /></nowiki></code>  para indicar un salto de línea. 
+
+En la línea 14 se re-declara la variable <code>$Examen</code> con el valor de 10 sin comillas, para indicar que es de tipo integer (entero). Si le pones el valor 10 adentro de comillas, se realizará como una variable de tipo string (cadena de caracteres).
+
+En la línea 15, como argumento de la directiva <code>echo</code> se usa la función <code>gettype( $Examen )</code>, la cual tiene como argumento la variable <code>$Examen</code>. Su función es determinar el tipo de la variable <code>$Examen</code> que es integer. Al final de la línea está el comentario <code>// INTEGER</code>.
+
+En la línea 16, como argumento de la directiva <code>echo</code> se usa la etiqueta <code><nowiki><br /></nowiki></code> que indica un salto de línea.
+
+En la línea 18 se re-declara la variable <code>$Examen</code> con el valor de Diez adentro de comillas, para indicar que es de tipo string. Es obligatorio poner cadenas adentro de comillas.
+
+En la línea 19, como argumento de la directiva <code>echo</code> se usa la función <code>gettype( $Examen )</code>, la cual tiene como argumento la variable <code>$Examen</code>. Su función es determinar el tipo de la variable <code>$Examen</code> que es string. Al final de la línea está el comentario <code>// STRING</code>.
+
+En la línea 20, como argumento de la directiva <code>echo</code> se usa la etiqueta <code><nowiki><br /></nowiki></code> que indica un salto de línea.
+
+En la línea 22 se re-declara la variable <code>$Examen</code> con el valor de 10.0 que es de tipo double (doble). Cualquier número con una parte decimal, como 10.0 o -34.7 es un double en php.
+
+En la línea 23, como argumento de la directiva <code>echo</code> se usa la función <code>gettype( $Examen )</code>, la cual tiene como argumento la variable <code>$Examen</code>. Su función es determinar el tipo de la variable <code>$Examen</code> que es double. Al final de la línea está el comentario <code># DOUBLE</code>.
+
+En la línea 24, como argumento de la directiva <code>echo</code> se usa la etiqueta <code><nowiki><br /></nowiki></code> que indica un salto de línea.
+
+En la línea 26 se re-declara la variable <code>$Examen</code> con el valor de true sin comillas para indicar que es de tipo boolean (booleano). Los valores true, TRUE, false y FALSE, sin comillas, son valores especiales de tipo boolean.  Si le pones el valor true, TRUE, false o FALSE adentro de comillas, se realizará como una variable de tipo string.
+
+En la línea 27, como argumento de la directiva <code>echo</code> se usa la función <code>gettype( $Examen )</code>, la cual tiene como argumento la variable <code>$Examen</code>. Su función es determinar el tipo de la variable <code>$Examen</code> que es boolean. Al final de la línea está el comentario <code># BOOLEAN</code>.
+
+En la línea 28, como argumento de la directiva <code>echo</code> se usa la etiqueta <code><nowiki></p></nowiki></code> que indica el final del párrafo que se inició en la línea 10.
+
+En la línea 29 se cierra, con la etiqueta <code><nowiki>?></nowiki></code>, el código de PHP y regresamos a HTML.
+
+Las líneas 30 y 31 son etiquetas de HTML y forman la estructura básica de una página HTML, las cuales fueron explicadas en el programa básico ‘Hola Web’.
+
+Otra vez, te solicito observar la indentación de las diferentes partes. No solamente indentamos en el nivel de directivas y etiquetas, también indentamos en el nivel de instrucciones del servidor Web, que pide al navegador de los clientes, escribir algunas cosas en sus pantallas.
+
+== Texto de titular ==
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/ExaminarVariables.php Ejecutar el código para examinar los tipos de variables]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/ExaminarVariables.phps Descargar el código para examinar los tipos de variables]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]
