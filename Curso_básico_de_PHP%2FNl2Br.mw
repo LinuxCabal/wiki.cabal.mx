@@ -1,0 +1,73 @@
+__NOTOC__
+* [[:#Nl2Br | Nl2Br]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Nl2Br ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+
+      /* nl2br()
+       * (PHP 3, PHP 4, PHP 5)
+       * nl2br -- Inserta saltos de línea de HTML antes de cada salto de línea
+       * de la cadena
+       * Descripción
+       * string nl2br ( string cadena )
+       *
+       * Devuelve la cadena con '<br />' insertados antes de cada nueva línea. 
+       * Nota: A partir de PHP 4.0.5, nl2br() respeta los estándares de XHTML.
+       * Todas las versiones anteriores de PHP a la 4.0.5 devolverán cadena
+       * con '<br>' antes de cada nueva línea, en vez de '<br />'
+       */
+
+      $Texto = "Muchos palabras\n";
+      $Texto .= "Mas palabras\n";
+      $Texto .= "Muchos mas palabras\n";
+
+      print( "<p class=\"SubTitleFont\">
+                Sin nl2br()
+              </p>
+              <p class=\"LargeTextFont\">
+                $Texto
+              </p>
+              <p class=\"SubTitleFont\">
+                Con nl2br()
+              </p>
+              <p class=\"LargeTextFont\">" .  nl2br( $Texto ) . "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Nl2br.php Ejecutar el código de Nl2Br]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Nl2br.phps Descargar el código de Nl2Br]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
