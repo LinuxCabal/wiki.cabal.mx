@@ -1,0 +1,35 @@
+__NOTOC__
+* [[:#S16.sh | S16.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S16.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+echo -n "¿Cómo te llamas? [ `whoami` ] "
+read MiNombre
+if [ -z "$MiNombre" ]; then
+  MiNombre=$( whoami )
+fi
+
+echo "Te llamas $MiNombre, ¿Verdad?"
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd BashClase]$ ./S16.sh 
+ ¿Cómo te llamas? [ rrc ] 
+ Te llamas rrc, ¿Verdad?
+ [rrc@Pridd BashClase]$ ./S16.sh 
+ ¿Cómo te llamas? [ rrc ] OtraNombre
+ Te llamas OtraNombre, ¿Verdad?
+ [rrc@Pridd BashClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
