@@ -1,0 +1,65 @@
+__NOTOC__
+* [[:#InputForm | InputForm]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== InputForm ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "incCabeza.php" );
+?>  
+  <body>
+    <form action = "EscribeDatos.php" method = "post" >
+      <p class="LargeTextFont">
+        Nombre: <br />
+        <input type="text" name="Usuario" maxlength="75" />
+      </p>
+      <p class="LargeTextFont">
+        Dirección: <br />
+        <textarea name = "Dirección" rows="5" cols="40" disabled="disabled"></textarea>
+      </p>
+      <p class="LargeTextFont">
+        <input type = "submit" value = "Pone Entrada!" />
+        <input type = "reset" value = "Reset" />
+      </p>
+    </form>
+    <p class="LargeTextFont">
+      Se usa esta forma con el archivo EscribeDatos.php para mostrar
+      los resultados
+    <br />
+      ¡Debemos examinar EscribeDatos.php!
+    </p>
+    <?php
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/InputForm.php Ejecutar el código de InputForm]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/InputForm.phps Descargar el código de InputForm]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
