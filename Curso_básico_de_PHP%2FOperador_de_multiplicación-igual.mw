@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Operador de MultiplicaciónIgual | Operador de MultiplicaciónIgual]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Operador de MultiplicaciónIgual ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operador de Multiplicaci&oacute;nIgual
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      print( "<p>
+                Operador de Multiplicaci&oacute;nIgual
+              </p>" );
+      $x = 4;
+      print( "<p>" . $x . "<br />" );
+      $x = $x * 4;
+      print(    $x . "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      $x *= 4;
+      print(    $x . "</p>");
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/MultiplicacionIgual.php Ejecutar el código para ver el operador de Multiplicaci&oacute;nIgual]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/MultiplicacionIgual.phps Descargar el código para ver el operador de Multiplicaci&oacute;nIgual]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
