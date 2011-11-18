@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#Operadores de pre y post decrementación | Operadores de pre y post decrementación]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Operadores de pre y post decrementación ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operadores de pre y post decrementaci&oacute;n
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      print( "<p>
+                Operadores de pre y post decrementac&oacute;n
+              </p>" );
+
+      $x = 4;
+      print( "<p>" . $x . "<br />" );
+      $x = $x - 1;
+      print(    $x . "<br />" );
+      print(   "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      $x -= 1;
+      print(    $x . "<br />" );
+      print(   "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      print(    $x-- . "<br />" );
+      print(    $x . "<br />" );
+      print(   "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      print(    --$x . "<br />" );
+      print(    $x .
+             "</p>");
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/PrePostDecrementacion.php Ejecutar el código de los operadores de pre y post decrementación]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/PrePostDecrementacion.phps Descargar el código de los operadores de pre y post decrementación]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
