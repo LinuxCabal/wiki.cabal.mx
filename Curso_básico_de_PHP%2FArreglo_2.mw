@@ -1,0 +1,90 @@
+__NOTOC__
+* [[:#Arreglo2 | Arreglo 2]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo2 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /* array()
+       * (PHP 3, PHP 4, PHP 5)
+       * array --  Crear una matriz 
+       * Descripción
+       * array array ( mixed ... )
+       * 
+       * Devuelve una matriz con los parámetros que se le pasan. A dichos
+       * parámetros se les puede dar un índice usando el operador =>. Lea la
+       * sección sobre los tipos de matrices para más información sobre
+       * matrices. 
+       * Nota: array() es una construcción del lenguaje que se utiliza para
+       * representar matrices literales, no una función regular. 
+       * La forma "índice => valor" separada por comas, define índices y
+       * valores. el índice puede ser de tipo cadena o numérico. Cuando el
+       * índice es omitido, se genera automáticamente un índice numérico,
+       * empezando en cero. Si el índice es un entero, el siguiente índice
+       * generado será igual al índice con número mayor + 1. Note que cuando
+       * se definen dos índices idénticos, el último sobre escribe al primero. 
+       * Tener una coma después del último elemento de la matriz, aunque
+       * inusual, es sintácticamente valido. 
+       */ 
+
+      echo( "<p class=\"SubTitleFont\">
+               Puedes asignar valores directamente
+             </p>" );
+  
+      $MiArreglo{'1'} = "Primer Elemento";
+
+      echo( "<p class=\"LargeTextFont\">
+               Elemento 1: {$MiArreglo{'1'}}
+             </p>
+             <p class=\"SubTitleFont\">
+               o puedes usar para la función array()
+             </p>" );
+
+      $MiArreglo = array( 'Manzanas', 'Naranjas' );
+
+      echo( "<p class=\"LargeTextFont\">
+               Elemento 1: {$MiArreglo{'0'}}
+               <br />
+               Elemento 2: {$MiArreglo{'1'}}
+             </p>
+             <p class=\"SubTitleFont\">
+               Mira que el valor de Elemento 1 se cambió<br />
+             </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array2.php Ejecutar el código de Arreglo 2]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array2.phps Descargar el código de Arreglo 2]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
