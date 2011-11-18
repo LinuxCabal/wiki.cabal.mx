@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#Concatenación con cálculo aritmético | Concatenación con cálculo aritmético]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Concatenación con cálculo aritmético ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operador de Concatenaci&oacute;n con c&aacute;lculo aritm&eacute;tico
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      print( "<p>
+                Operador de concatenaci&oacute;n con c&aacute;lculo aritm&eacute;tico
+              </p>" );
+      $Centimetros = 212;
+      print( "<p>
+                El valor es " . ( $Centimetros / 100 ) . " metros
+              </p>");
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/ConcatenacionConCalculoAritmetico.php Ejecutar el código para ver el operador de concatenaci&oacute;n con c&aacute;lculo aritm&eacute;tico]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/ConcatenacionConCalculoAritmetico.phps Descargar el código para ver el operador de concatenaci&oacute;n con c&aacute;lculo aritm&eacute;tico]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
