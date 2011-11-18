@@ -1,0 +1,70 @@
+__NOTOC__
+* [[:#SubStr | SubStr]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== SubStr ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+
+      /* substr()
+       *(PHP 3, PHP 4, PHP 5)
+       * substr -- Devuelve parte de una cadena
+       * Descripción
+       * string substr ( string cadena, int comienzo [, int longitud] )
+       *
+       * substr() devuelve la porción de cadena especificada por los parámetros
+       * comienzo y longitud. 
+       * Si comienzo es positivo o 0, la cadena devuelta comenzará en dicho
+       * carácter de cadena (los caracteres empiezan a contarse en cero).
+       * Por ejemplo, en la cadena 'abcdef', el carácter en la posición 0 es
+       * 'a', el carácter en la posición 2 es 'c', y así sucesivamente. 
+       */
+ 
+      $Texto = "Scallywag";
+
+      print( "<p class=\"SubTitleFont\">
+                Usando substr()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      print( substr( $Texto, 6 ) . "<br />" );
+      print( substr( $Texto, 6, 2 ) . "<br />" );
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Substr.php Ejecutar el código de SubStr]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Substr.phps Descargar el código de SubStr]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
