@@ -1,0 +1,355 @@
+== Introducción ==
+
+Bienvenido(a) al curso básico en PHP de PHPCabal! En éste, haremos lo posible por instruirte en las artes del [[PHP]] y que, pronto, estarás escribiendo páginas web dinámicas y participando en los proyectos de [[PHPCabal]].
+
+Por lo pronto, las clases de [[PHP]] son impartidas por Richard Couture. Éstas están basadas en su clase de [[PHP]]: http://linuxcabal.org/PHPClase/; las cuales podrás encontrar, también en [[Clase_PHP]].
+
+Estos archivos y ejemplos son explicados por Richard mismo y son impartidas todos los Martes; a partir de las 19:00 hrs en punto. La clase de principiantes dura 30 min. Los archivos de la [[Clase_PHP]], se pueden descargar y renombrar de archivo.phps a archivo.php para que puedan correr e ilustrar el ejemplo.
+
+Si quieres venir al curso, te recomendamos instalar [[PHP]] antes de venir y traer tu laptop/pc. Si no puedes, acá te ayudamos.
+
+Escribe a la lista de correo y publica tus dudas, código y demás!
+
+
+== Instalación ==
+
+[[PHP]] está disponible en casi todas las distribuciones e GNU & Linux, MacOSX y Windows. En esta página, describiremos como instalar un LAMP (Linux, Apache, MySQL, PHP) o un MAMP (Mac OSX, Apache, MySQL, [[PHP]]) o un WAMP (Windows, Apache, MySQL, [[PHP]]).
+
+Para más detalles sobre cada distribución o sistema operativo, consulta la documentación correspondiente en cada uno de éstos.
+
+En [[LinuxCabal]] y, por tanto, en [[PHPCabal]], soportamos: [http://fedoraproject.org/ Fedora] y [http://mandrivalinux.com/ Mandriva]. Si deseas venir con un sistema operativo o distribución diferente a los soportados, adelante. El único requisito es que puedas correr un "Hello, world!" en tu ambiente de desarrollo. Ésto quiere decir que debes ocuparte de tu instalación y configuración por tu cuenta.
+
+=== GNU & Linux ===
+
+==== Fedora 14 o > ====
+
+<source lang="bash">
+ su -c 'yum install @web-server @mysql-database'
+ su -c 'service httpd start'
+</source>
+
+==== Mandriva 2010 o > ====
+
+<source lang="bash">
+ su -c 'urpmi apache-mod_php apache apache-mpm-worker MySQL MySQL-client'
+ su -c 'service httpd start'
+</source>
+
+==== Ubuntu 10.04 o > ====
+
+<source lang="bash">
+ sudo aptitude install apache2 php5 libapache2-mod-php5 mysql-server php5-mysqli
+ sudo /etc/init.d/httpd start
+</source>
+
+==== Debian 5.04 o >  ====
+
+Como usuario root, ejecutar el siguiente comando para instalar apache, php5 y sus dependencias:
+
+<source lang="bash">
+ aptitude install apache2 php5 libapache2-mod-php5 mysql-server php5-mysql
+</source>
+
+Este comando instalara los siguientes paquetes:
+
+apache2 apache2-mpm-prefork apache2-utils apache2.2-common libapache2-mod-php5 libapr1 libaprutil1 libdbd-mysql-perl libdbi-perl libhtml-template-perl libnet-daemon-perl libplrpc-perl libpq5 libterm-readkey-perl mysql-client-5.0 mysql-server mysql-server-5.0 php5 php5-common php5-mysql
+
+En Debian, la configuración por defecto, configura el servidor web [[Apache]] y el servidor de base de datos [[MySQL]] para que inicien después de instalarlo y para que se ejecuten al inicializar el sistema.
+
+Para detener la ejecucion de los servidores:
+
+<source lang="bash">
+ /etc/init.d/apache2 stop
+ /etc/init.d/mysql stop
+</source>
+
+Para inicializar los servidores:
+
+<source lang="bash">
+ /etc/init.d/apache2 start
+ /etc/init.d/mysql start
+</source>
+
+
+=== Mac OSX ===
+
+Ve a: http://www.apachefriends.org/en/xampp-macosx.html y descárgalo.
+
+==== Instalación ====
+
+Encenderlo desde la consola de administración de xampp. Hay que desactivar/apagar skype.
+
+
+=== Windows ===
+
+Ir a: http://www.apachefriends.org/en/xampp-windows.html y descárgalo
+
+==== Instalación ====
+
+Encenderlo desde la consola de administración de xampp. Hay que desactivar/apagar skype.
+
+
+== Configuración ==
+
+Para un ambiente de desarrollo sano, hay que habilitar las opciones de reporte de errores. También, en GNU & Linux, es importante configurar un ambiente de trabajo local; para evitar trabajar como root todo el tiempo.
+
+A continuación, explicaremos cómo hacer todo esto.
+
+=== Mostrar errores ===
+
+Ésto es muy útil en un ambiente de desarrollo. Dicho ésto, es considerado inseguro si se va a configurar, de esta manera, en producción.
+
+==== Ubicación de php.ini ====
+
+Para hacer que PHP muestre los errores de ejecución, solo hay que cambiar el archivo php.ini. Éste, en GNU & Linux, está, generalmente, en: 
+
+===== Fedora =====
+<source lang="bash">
+ /etc/php.ini
+</source>
+
+===== Mandriva =====
+<source lang="bash">
+ /etc/php.ini
+</source>
+
+===== Ubuntu =====
+<source lang="bash">
+ /etc/php5/apache2/php.ini
+</source>
+
+===== Debian =====
+
+<source lang="bash">
+ /etc/php5/apache2/php.ini
+</source>
+
+===== Windows =====
+
+En Windows; si instalaste XAMPP, con las configuraciones que te da por defecto; el directorio de instalación de XAMPP debería de estar en C:\xampp\php\php.ini. Si instalaste la version lite de XAMPP, con las configuraciones que te da por defecto; deberia de estar en C:\xampplite\php\php.ini
+
+===== Mac =====
+
+En Mac; si instalaste XAMPP, debería estar en /Applications/XAMPP/etc/php.ini
+
+==== Cambios ====
+
+Lo que tienes que cambiar es lo siguiente:
+
+<source lang="ini">
+ error_reporting = E_ALL | E_STRICT
+ display_errors = On
+ display_startup_errors = On
+</source>
+
+Estas variables, en Fedora y en XAMPP para Windows, se encuentran de la línea 513 en adelante. Con ésto, ya podrás ver tus errores de inicio.
+
+=== Configuración para desarrollo local (httpd ó apache) ===
+
+Ahora configuraremos un ambiente de trabajo más práctico; pero más inseguro y no estandard. Ver la nota sobre ésto al final.
+
+Ok, dicho esto, aquí va como configurar un directorio raiz o document root en nuestro directorio de usuario. Se presentan 2 maneras: Configurando VirtualHosts y Activando mod_user.
+
+==== Fedora ====
+
+===== Configurando VirtualHosts =====
+
+Primero, hacerse root e ir a /etc/httpd/conf y editar el archivo httpd.conf
+
+<source lang="bash">
+ su -
+ cd /etc/httpd/conf
+ gedit httpd.conf
+</source>
+
+Ir hasta el final e incluir el directorio de vhosts que vamos a crear
+
+<source lang="apache">
+ Include vhosts.d/*.conf
+</source>
+
+Guardar los cambios y crear el directorio vhosts.d en /etc/httpd
+
+<source lang="bash">
+ mkdir /etc/httpd/vhosts.d
+</source>
+
+Crear la configuración default (para respetar la configuración actual de Fedora)
+
+<source lang="bash">
+ cd /etc/httpd/vhosts.d
+ gedit 00-default.conf
+</source>
+
+Incluir la siguiente configuración:
+
+<source lang="apache">
+  NameVirtualHost *:80
+
+  <VirtualHost *:80>
+      DocumentRoot /var/www/html
+      ServerName localhost.localdomain
+      ServerAlias localhost
+  </VirtualHost>
+
+  <Directory "/home/*/Public/html">
+      AllowOverride FileInfo AuthConfig Limit
+      Options MultiViews All
+  </Directory>
+</source>
+
+Crear nuestra configuración inicial
+
+<source lang="bash">
+ gedit 01-phpcabal.conf
+</source>
+
+Incluir la siguientes líneas de configuración. Por favor, substituye USUARIO por tu nombre de usuario:
+
+<source lang="apache">
+  <VirtualHost *:80>
+      DocumentRoot /home/USUARIO/Public/PHPCabal
+      ServerName phpcabal.local
+      ServerAlias phpcabal
+  </VirtualHost>
+</source>
+
+Guardar los cambios y restaurar los contextos SELinux a todo el directorio
+
+<source lang="bash">
+ restorecon -r /etc/httpd
+</source>
+
+Crear el directorio raíz en tu cuenta de usuario
+
+<source lang="bash">
+ mkdir /home/USUARIO/Public/PHPCabal
+</source>
+
+Dar permisos de listado al directorio de usuario pertinente
+
+<source lang="bash">
+ chmod 701 /home/USUARIO
+</source>
+
+Dar permisos a apache en SELinux
+
+<source lang="bash">
+  setsebool httpd_enable_homedirs true
+</source>
+
+Cambiar el contexto de SELinux; de manera persistente; en el directorio raiz del usuario
+
+<source lang="bash">
+ semanage fcontext -a -t httpd_user_content_t /home/USUARIO/Public/PHPCabal
+</source>
+
+Restaurar contextos SELinux
+
+<source lang="bash">
+ restorecon -v /home/USUARIO/Public/PHPCabal
+</source>
+
+===== Activando mod_user =====
+
+Esta opción es más sencilla y funcina para desarrollo simple. Es mejor recomendada la anterior pero, ésta, es más sencilla.
+
+Primero, hacerse root e ir a /etc/httpd/conf y editar el archivo httpd.conf
+
+<source lang="bash">
+ su -
+ cd /etc/httpd/conf
+ gedit httpd.conf
+</source>
+
+Ir a la sección de mod_user y activarlo para tu usuario (línea 346)
+
+<source lang="apache">
+ <IfModule mod_userdir.c>
+     #
+     # UserDir is disabled by default since it can confirm the presence
+     # of a username on the system (depending on home directory
+     # permissions).
+     #
+     UserDir disabled
+     UserDir enabled USUARIO # permitir solo a tu usuario en particular
+ 
+     #
+     # To enable requests to /~user/ to serve the user's public_html
+     # directory, remove the "UserDir disabled" line above, and uncomment
+     # the following line instead:
+     # 
+     UserDir Public/html
+
+ </IfModule>
+</source>
+
+Crear el directorio raíz en tu cuenta de usuario
+
+<source lang="bash">
+ mkdir /home/USUARIO/Public/html
+</source>
+
+Dar permisos de listado al directorio de usuario pertinente
+
+<source lang="bash">
+ chmod 701 /home/USUARIO
+</source>
+
+Dar permisos a apache en SELinux
+
+<source lang="bash">
+  setsebool httpd_enable_homedirs true
+</source>
+
+Cambiar el contexto de SELinux; de manera persistente; en el directorio raiz del usuario
+
+<source lang="bash">
+ semanage fcontext -a -t httpd_user_content_t /home/USUARIO/Public/html
+</source>
+
+Restaurar contextos SELinux
+
+<source lang="bash">
+ restorecon -v /home/USUARIO/Public/html
+</source>
+
+{{Nota | Es muy importante seguir los estandares. El directorio estandard para servir páginas web debe ser /srv/www. Por una razón u otra, las distribuciones favorecen /var/www y, en éste, poner los directorios raiz. En Fedora y mandriva, se utiliza /var/www/html como directorio raiz default. Estos datos son provistos por el Filesystem Hierarchy Standard (FHS).}}
+
+{{Advertencia | Es inseguro servir páginas web en los directorios de usuario (/home/*), ya que, para poder hacerlo, es necesario que apache pueda, por lo menos, listar los directorios de usuario (permiso o+x o 001 para el mundo). Esto es un potencial hoyo en seguridad y no debería hacerse así en ambientes de producción.}}
+
+== Recursos ==
+
+=== Básicos de Programación ===
+
+* http://es.wikipedia.org/wiki/Programación
+* http://es.wikipedia.org/wiki/Programación_procedural
+* http://es.wikipedia.org/wiki/Variables
+* http://es.wikipedia.org/wiki/Vector_(informática)
+* http://es.wikipedia.org/wiki/Función_(programación)
+
+=== Básicos de PHP ===
+
+* http://www.linuxcabal.org/PHPClase/
+* http://docs.php.net/manual/es/
+* http://es.wikipedia.org/wiki/Php
+* http://es.wikibooks.org/wiki/Programación_en_PHP
+
+=== OOP & Design Patterns ===
+
+* http://www.php.net/manual/en/language.oop5.php
+* http://en.wikipedia.org/wiki/Design_pattern_(computer_science)
+* http://en.wikipedia.org/wiki/Object-oriented_programming
+* http://mahomedalidp.blogspot.com/2010/03/referencia-de-oop-en-uml.html
+
+=== Cómo usar git y github ===
+
+* https://git.wiki.kernel.org/
+* http://gitref.org/
+* http://help.github.com/
+* http://progit.org/book
+* http://hgitnit.com
+
+[[Categoría:PHP]]
+[[Categoría:PHPCabal]]
+[[Categoría:HowTos]]
