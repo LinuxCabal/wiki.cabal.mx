@@ -1,0 +1,95 @@
+__NOTOC__
+* [[:#Código para ver los operadores de cálculos aritméticos | Código para ver los operadores de cálculos aritméticos]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Código para ver los operadores de cálculos aritméticos ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operadores de c&aacute;lculos aritm&eacute;ticos
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      echo(  "<p>
+                Operadores de c&aacute;lculos aritm&eacute;ticos
+              </p>
+              <p>" );
+      print(    10 + 3 );                // Operador de adición
+      print(   "<br />" );
+      print(    10 - 3 );                // Operador de subtracción
+      print(   "<br />" );
+      print(    10 / 3 );                // Operador de división
+      print(   "<br />" );
+      print(    10 * 3 );                // Operador de multiplicación
+      print(   "<br />" );
+      print(    10 % 3 );                // Operador de modulo
+      echo(  "</p>");
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+El propósito de este programa, es conocer cómo podemos realizar operaciones de aritmética basico usando PHP.
+
+Las primeras líneas de código fuente son iguales que en el ejemplo: [http://wiki.cabal.mx/wiki/CursoBásicoDePHP/HolaWeb Hola Web], que van desde la línea 1 hasta la línea 7 donde agregamos un estilo a nuestra etiqueta <code><nowiki><body></nowiki></code> para poner un imagen como el fondo de nuestra página con el etiqueta  <code><nowiki>style="background-image:url('images/logoBG.jpg');</nowiki></code>, por lo cual, si tienes alguna duda dirígete a éste.
+
+En la línea 8, iniciamos una sección de php con la etiqueta <code><nowiki><?php</nowiki></code>.
+
+En las líneas 9 a la 12, vemos una directiva de <code>echo</code> que abarca 4 líneas, lo que demuestra que no todas las líneas de código, que queremos que aparezca en el navegador, necesita comenzar con una directiva de <code>echo</code> o <code>print</code>. Una directiva de <code>echo</code> o <code>print</code> pueden abarcar cientos de líneas de código. Como podemos ver en la línea 9, el texto se inicia con un paréntesis, opcional, que abre y continua con unas comillas dobles, obligatorias, estos dos simbolos se cerrarán al final de la línea 12 con otras comillas dobles, obligatorias y paréntesis que cierra, opcional, que significan el final de la cadena que se está utilizado como argumento de la directiva de <code>echo</code>. No olvidamos a terminar la directiva de <code>echo</code> con un &quot;;&quot; (punto y coma).
+
+El resultado de la directiva <code>echo</code>, que abarca de la línea 9 a la línea 12, es colocar el título de la página: <code>&quot;Operadores de cálculos aritméticos&quot;</code> en el primer párrafo. Nótese aquí que el acento en la palabra <code>cálculo</code> es generada por el código html usando un <code>&</code> y seguido de la letra que se acentúa, en este caso, la letra <code>a</code> seguida de la palabra <code>acute</code> y termina con un <code>;</code> (punto y coma). El acento en la letra <code>e</code> de la palabra <code>aritméticos</code> se genera con el código html usando un <code>&</code> y seguido de la letra que se acentúa, en este caso la letra <code>e</code>", seguida de la palabra <code>acute</code> y termina con un <code>;</code> (punto y coma). Vamos a ver, en las siguientes lecciones, como podemos meter letras acentuadas directamente en el código y que se muestren al usuario correctamente, sin la necesidad de tener que hacerlo en la forma mostrada en la linea 10.
+
+Recuerde que el paréntesis que abre y el que cierra son opcionales tanto en las directivas <code>echo</code> y <code>print</code> y son simplemente una forma de estilo. Las comillas de apertura y las de cierre, simples o dobles, son lo que realmente indican el comienzo y el final de una cadena que se usa como argumento a las directivas <code>echo</code> y <code>print</code> que puede abarcar varias líneas.
+
+Otra cosa que hay que recordar es, que los múltiples "espacios blancos" consecutivos (espacio, tabulación y caracteres de nueva línea) serán interpretado por el navegador simplemente como un espacio. Esto nos permite utilizar libremente el sangrado para hacer nuestro código mas legible, sin afectar el resultado en la pantalla de los usuarios.
+
+En la línea 13 pasamos como un argumento de la directiva <code>print</code>, la operación aritmética de adición, <code>10 + 3</code>, encerrada entre paréntesis opcionales de apertura y de cierre, sin comillas de apertura ni de cierre y termina con el obligatorio <code>;</code> (punto y coma). La falta de comillas, tanto de apertura como de cerrado, en las directivas <code>print</code> y <code>echo</code>, hace notar que el argumento no es necesariamente una cadena de texto y es posible que se resuelva, como es el caso de nuestra operación aritmética de <code>10 + 3</code>. En este caso queremos enviar el resultado, <code>13</code>, al usuario, no los caracteres <code>10 + 3</code> por lo que omitimos las comillas abiertas y cerradas.
+
+Para finalizar la línea 13, hay un comentario final <code>//Operador de adición</code>.
+
+En la línea 14, como argumento de la directiva <code>print</code>, usamos código html para mostrar una nueva línea , <code><nowiki>"<br />"</nowiki></code>.
+
+En la línea 15, nuestra siguiente operación aritmética, sustracción, <code>10 - 3</code>, encerrada entre paréntesis opcionales de apertura y de cierre, sin comillas de apertura ni de cierre y termina con el obligatorio <code>;</code> (punto y coma). Al igual que con el ejemplo anterior de la línea 13, se desea enviar, a el usuario, el resultado de la operación aritmética, <code>7</code>, es por eso que una vez más se omite las comillas de apertura y de cierre, en torno al argumento <code>10-3</code>.
+
+Para finalizar la línea 15, hay un comentario final <code>//Operador de subtracción</code>.
+
+En la línea 16, como argumento de la directiva <code>print</code>, usamos código HTML para mostrar una nueva línea, <code><nowiki>"<br />"</nowiki></code>.
+
+En la línea 17, nuestra siguiente operación aritmética, la división, <code>10 / 3</code>, encerrada entre paréntesis opcionales de apertura y de cierre, sin comillas de apertura ni de cierre y termina con el obligatorio <code>;</code> (punto y coma).  Al igual que con el ejemplo anterior de la línea 13, se desea enviar, a el usuario, el resultado de la operación aritmética, <code>3.3333333333333</code>, es por eso que una vez más se omite las comillas de apertura y de cierre, en torno al argumento <code>10 / 3</code>. Tenga en cuenta que el resultado de dividir dos números enteros, 10 y 3, nos da un resultado que es un double sin que tengamos que hacer una conversión de tipos, como es el caso de otros lenguajes de programación como C y C++.
+
+Para finalizar la línea 17, hay un comentario final <code>//Operador de división</code>.
+
+En la línea 18, como argumento de la directiva <code>print</code>, usamos código HTML para mostrar una nueva línea, <code><nowiki>"<br />"</nowiki></code>.
+
+En la línea 19, nuestra siguiente operación aritmética, la multiplicación, <code>10 * 3</code>, encerrada entre paréntesis opcionales de apertura y de cierre, sin comillas de apertura ni de cierre y termina con el obligatorio <code>;</code> (punto y coma). Al igual que con el ejemplo anterior de la línea 13, se desea enviar, a el usuario, el resultado de la operación aritmética, <code>30</code>, es por eso que una vez más se omite las comillas de apertura y de cierre, en torno al argumento <code>10 * 3</code>.
+
+Para finalizar la línea 19, hay un comentario final <code>//Operador de multiplicación</code>.
+
+En la línea 20, como argumento de la directiva <code>print</code>, usamos código HTML para mostrar una nueva línea, <code><nowiki>"<br />"</nowiki></code>.
+
+En la línea 21, nuestra siguiente operación aritmética, el módulo, <code>10 % 3</code>, encerrada entre paréntesis opcionales de apertura y de cierre, sin comillas de apertura ni de cierre y termina con el obligatorio <code>;</code> (punto y coma). Al igual que con el ejemplo anterior de la línea 13, se desea enviar, a el usuario, el resultado de la operación aritmética, <code>1</code>, es por eso que una vez más se omite las comillas de apertura y de cierre, en torno al argumento <code>10 % 3</code>. La operación aritmética módulo, encuentra el resto de la división de un número entre otro.
+
+Para finalizar la línea 21, hay un comentario final <code>// Operador de modulo</code>. 
+
+En la línea 22 se cierra el párrafo con la etiqueta <code><nowiki></p></nowiki></code>  que se abrió en la línea 12.
+
+En la línea 23 se cierra el código de PHP con la etiqueta <code><nowiki>?></nowiki></code> y regresamos a HTML.
+
+Las líneas 24 y 25 son etiquetas de HTML y forman la estructura básica de una página HTML que fueron explicadas en el programa básico ‘Hola Web’.
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadoresAritmeticos.php Ejecutar el código para ver los operadores de c&aacute;lculos aritm&eacute;ticos]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadoresAritmeticos.phps Descargar el código para ver los operadores de cálculos aritméticos]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
