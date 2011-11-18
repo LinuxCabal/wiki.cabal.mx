@@ -1,0 +1,69 @@
+__NOTOC__
+* [[:#EscribeDatos | EscribeDatos]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== EscribeDatos ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+      print( "<p class=\"SubTitleFont\">
+               Se usa este archivo para mostrar
+               <br />
+               los datos escritos en
+               <br />
+               <a href=\"InputForm.php\">InputForm.php</a>
+             </p>
+
+             <p class=\"LargeTextFont\">
+                Bienvenido <strong>{$_POST{'Usuario'}}</strong>
+                Tu direcci&oacute;n es:
+             </p>
+             <p>
+               <strong>
+                 <br />
+                 {$_POST{'Dirección'}}
+               </strong>
+             </p>" );
+
+      print( "<p class=\"SubTitleFont\">
+              ¡Tal ves es una buena lugar usar nl2br!
+              <br />
+              ¡Qué piensen ustedes?
+             </p>" );
+      require_once( "incPie.php" );
+    ?> 
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/EscribeDatos.php Ejecutar el código de EscribeDatos]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/EscribeDatos.phps Descargar el código de EscribeDatos]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
