@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#Comillas | Uso de Comillas]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Comillas ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Uso de comillas en PHP
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      $Str = "Mi String";
+      $Preg1 = "Cual es $Str<br />";
+      $Preg2 = 'Cual es $Str<br />';
+
+      echo( "<p>" );
+      echo     $Preg1;
+      echo     $Preg2;
+      echo( "</p>" );
+    ?>
+  </body>
+</html>
+
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Quote.php Ejecutar el código para ver cómo sirve comillas]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Quote.phps Descargar el código que muestra cómo sirve comillas]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]
