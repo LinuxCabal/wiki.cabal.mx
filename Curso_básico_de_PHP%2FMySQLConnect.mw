@@ -1,0 +1,153 @@
+__NOTOC__
+* [[:#MySQLConnect | MySQLConnect]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== MySQLConnect ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+      /* mysql_connect()
+       * (PHP 3, PHP 4, PHP 5)
+       * mysql_connect -- Abre una conexión a un servidor MySQL
+       *  Descripción
+       * int mysql_connect ( [cadena hostname [, cadena usuario
+       *                     [, cadena password [, bool new_link
+       *                     [, int client_flags]]]]] )
+       *
+       * Devuelve: Un identificador de enlace positivo si tiene exito,
+       * o falso si error. 
+       * mysql_connect()establece una conexión a un servidor MySQL. Todos los
+       * argumentos son opcionales, y si no hay, se asumen los valores por
+       * defecto ('localhost', usuario propietario del proceso del servidor,
+       * password vacío). 
+       * El hostname puede incluir tambien un número de puerto .
+       * ej. "hostname:puerto" o un camino al socket
+       * ej. ":/camino/al/socket" para localhost. 
+       * Nota: Siempre que específicque "localhost" o "localhost:port" como
+       * servidor, la libreria cliente de MySQL evitará esto y tratará de
+       * conectarse a socket local (nombrado pipe en Windows). Si quiere usar
+       * TCP/IP, use "127.0.0.1" en vez de "localhost". Si las librerias
+       * cliente de MySQL intentan conectarse a un socket local equivocado,
+       * debe fijar la trayectoria como mysql.default_host en el archivo de
+       * configuración PHP y dejar el campo del servidor en blanco. 
+       * Soporte para ":puerto" fue añadido en PHP 3.0B4. 
+       * Soporte para ":/camino/al/socket" fue añadido en PHP 3.0.10. 
+       * Puede suprimir el mensaje de error en caso de falla anteponiendo
+       * una @ al nombre de la función. 
+       * Si se hace una segunda llamada a mysql_connect() con los mismos
+       * argumentos, no se abrirá nuevo enlace, en lugar de eso, se regresa el
+       * identificador de enlace ya abierto. El parámetro new_link modifica
+       * este comportamiento y hace que mysql_connect() siempre abrir un nuevo
+       * enlace, aún si mysql_connect() había sido llamado antes con los mismos
+       * parámetros. El pará client_flags puede ser una combinación de las
+       * constantes: MYSQL_CLIENT_COMPRESS, MYSQL_CLIENT_IGNORE_SPACE o
+       * MYSQL_CLIENT_INTERACTIVE. 
+       * Nota: El parámetro new_link estuvo disponible en PHP 4.2.0 
+       * El parámetro client_flags estuvo disponible en PHP 4.3.0 
+       * El enlace al servidor sera cerrado tan pronto como la ejecución del
+       * script finalice, a menos que se cierre antes explícitamente llamando
+       * a mysql_close(). 
+       */
+
+      /* mysql_select_db()
+       * (PHP 3, PHP 4, PHP 5)
+       * mysql_select_db -- Selecciona un base de datos MySQL
+       * Descripción
+       * int mysql_select_db ( cadena base_de_datos
+       *                       [, int identificador_de_enlace] )
+       *
+       * Devuelve TRUE si todo se llevó a cabo correctamente, FALSE en
+       * caso de fallo. 
+       * mysql_select_db() establece la base activa que estará asociada con
+       * el identificador de enlace específicado. Si no se específica un
+       * identificador de enlace, se asume el último enlace abierto. Si no
+       * hay ningún enlace abierto, la función intentará establecer un enlace
+       * como si se llamara a mysql_connect(). 
+       * Toda llamada posterior a mysql_query() utilizará la base activada. 
+       */
+
+      /* mysql_close
+       * (PHP 3, PHP 4, PHP 5)
+       * mysql_close -- cierra el enlace con MySQL
+       * Descripción
+       * int mysql_close ( [int identificador_de_enlace] )
+       *
+       * Devuelve TRUE si todo se llevó a cabo correctamente, FALSE en caso
+       * de fallo. 
+       * mysql_close() cierra el enlace con la base MySQL que esta asociada
+       * con el identificador de enlace específicado. Si no se específica el
+       * identificador de enlace, se asume por defecto el último enlace. 
+       * Nota: Normalmente no es necesario ya que la aperturas no-persistentes
+       * son cerradas automaticamente al final de la ejecución del script.
+       * Vea también liberar recursos. 
+       * mysql_close() no cerrará los enlaces persistentes generados con
+       * mysql_pconnect(). 
+       */
+
+      echo( "<p class=\"SubTitleFont\">
+               Uso de mysql_connect(), mysql_select_db() y mysql_close()
+             </p>
+             <p class=\"LargeTextFont\">" );
+      if( $conn = mysql_connect( "localhost", "clase", "PassWord" ) )
+        echo( "\$conn = $conn
+               <br />" );
+      else
+      {
+        echo( "No puede conectarse
+             </p>" );
+        require_once( "incPie.php" );
+        exit( 1 );
+      }
+
+      if( mysql_select_db( "MyTest1", $conn ) )
+        echo( "mysql_select_db() sirve
+               <br />" );
+      else
+      {
+        echo( "mysql_select_db() NO sirve
+             </p>" );
+        mysql_close( $conn );
+        require_once( "incPie.php" );
+        exit( 1 );
+      }
+      echo( "</p>" );
+      mysql_close( $conn );
+      require_once( "incPie.php" );
+      exit( 0 );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/MySQLConnect.php Ejecutar el código de MySQLConnect]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/MySQLConnect.phps Descargar el código de MySQLConnect]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
