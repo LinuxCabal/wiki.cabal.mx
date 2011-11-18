@@ -1,0 +1,58 @@
+__NOTOC__
+* [[:#S25.sh | S25.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S25.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+echo "Mira todos los programas en /usr/bin que actualmente son scripts de Bash:"
+grep -l "shell script" /usr/bin/*
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd BashClase]$ ./S25.sh 
+ Mira todos los programas en /usr/bin que actualmente son scripts de Bash:
+ /usr/bin/autom4te
+ /usr/bin/ccmake
+ /usr/bin/ccp
+ /usr/bin/cmake
+ /usr/bin/code2color
+ /usr/bin/cpack
+ /usr/bin/ctest
+ /usr/bin/dialog
+ /usr/bin/gettext.sh
+ /usr/bin/gzexe
+ /usr/bin/kdesvn-build
+ /usr/bin/kdialog
+ /usr/bin/kdm
+ /usr/bin/koi8rxterm
+ /usr/bin/kreadconfig
+ /usr/bin/kwriteconfig
+ /usr/bin/libtool
+ /usr/bin/mailstat
+ /usr/bin/maketestzone
+ /usr/bin/neqn
+ /usr/bin/pamstretch-gen
+ /usr/bin/rsnapshot
+ /usr/bin/sa-check_spamd
+ /usr/bin/shar
+ /usr/bin/shell-quote
+ /usr/bin/soundconverter
+ /usr/bin/tzselect
+ /usr/bin/uxterm
+ /usr/bin/viewurl-lynx.sh
+ /usr/bin/viewurl-ncftp.sh
+ /usr/bin/viewurl-w3m.sh
+ /usr/bin/zenity
+ [rrc@Pridd BashClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
