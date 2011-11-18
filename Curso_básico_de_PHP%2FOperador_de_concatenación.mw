@@ -7,8 +7,7 @@ __NOTOC__
 == Operador de Concatenación ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<!DOCTYPE HTML>
-<html lang="es-MX">
+<html>
   <head>
     <title>
       Curso PHP - Operador de Concatenaci&oacute;n
@@ -16,14 +15,9 @@ __NOTOC__
   </head>
   <body style="background-image:url('images/logoBG.jpg');">
     <?php
-       print( "<p>"    . "Operador de Concatenación" );
+       print( "<p>" . "Operador de Concatenación" );
        print(   " Hola" . " mundo" );
        echo(  "</p>" );
-       print( "<p>
-                 Otra Manera a concatenar
-               </p>" );
-       $Saludo = "Hola ";
-       print( "<p>{$Saludo}Web</p>" );
     ?>
   </body>
 </html>
