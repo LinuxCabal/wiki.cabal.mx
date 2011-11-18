@@ -1,0 +1,79 @@
+__NOTOC__
+* [[:#Explode | Explode]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Explode ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /* explode()
+       * (PHP 3, PHP 4, PHP 5)
+       * explode -- Divide una cadena por otra
+       * Descripción
+       * array explode ( string separador, string cadena [, int limite] )
+       *
+       * Devuelve una matriz de cadenas, cada una de las cuales es una
+       * subcadena de cadena formada mediante su división en las fronteras 
+       * marcadas por la cadena separador. Si se especifica limite, la matriz
+       * devuelta contendrá un máximo de limite elementos con el
+       * último conteniendo el resto de la cadena. 
+       * Si separador es una cadena vacía (""), explode() devuelve un valor
+       * igual a FALSE. If separador contiene un valor que no está
+       * presente en cadena, la función explode() devuelve una matriz que
+       *  contiene la cadena. 
+       * Si el parámetro limite es negativo, se devuelven todos los valores
+       * salvo el último limite. Este comportamiento se incluyó en la
+       * versión de PHP 5.1.0. 
+       * Aunque la función implode() por razones históricas puede aceptar sus
+       * parámetros en cualquier orden, no sucede lo mismo con la
+       * función explode(). Por tanto, se debe asegurar que el argumento
+       * separador se indique antes que el argumento cadena. 
+       */
+
+      $Fecha = "2005-07-13";
+      $Fecha_Array = explode( "-", $Fecha );
+
+      print( "<p class=\"LargeTextFont\">
+                \$Fecha_Array{'0'}: {$Fecha_Array{'0'}}
+                <br />
+                \$Fecha_Array{'1'}: {$Fecha_Array{'1'}}
+                <br />
+                \$Fecha_Array{'2'}: {$Fecha_Array{'2'}}
+              </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Explode.php Ejecutar el código de Explode]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Explode.phps Descargar el código de Explode]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
