@@ -1,0 +1,59 @@
+__NOTOC__
+* [[:#Operadores de pre y post incrementacón | Operadores de pre y post incrementacón]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Operadores de pre y post incrementacón ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operadores de pre y post incrementac&oacute;n
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      print( "<p>
+                Operadores de pre y post incrementac&oacute;n
+              </p>" );
+      $x = 4;
+      print( "<p>" . $x . "<br />" );
+      $x = $x + 1;
+      print(    $x . "<br />" );
+      print(   "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      $x += 1;
+      print(    $x . "<br />" );
+      print(   "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      print(    $x++ . "<br />" );
+      print(    $x . "<br />" );
+      print(   "<br />" );
+
+      $x = 4;
+      print(    $x . "<br />" );
+      print(    ++$x . "<br />" );
+      print(    $x . "</p>");
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/PrePostIncrementacion.php Ejecutar el código para ver los operadores de pre y post incrementación]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/PrePostIncrementacion.phps Descargar el código para ver los operadores de pre y post incrementación]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
