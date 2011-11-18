@@ -1,0 +1,149 @@
+__NOTOC__
+* [[:#Arreglo14 | Arreglo 14]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo14 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /*
+       * current()
+       *
+       * (PHP 3, PHP 4, PHP 5)
+       * current -- Devuelve el elemento actual de una matriz
+       *
+       * Descripcion
+       * mixed current ( array &matriz )
+       *
+       * Cada matriz tiene un puntero interno al elemento "actual", que se
+       * inicializa al primer elemento insertado en la misma. 
+       * La funcion current() simplemente devuelve el elemento de la tabla al
+       * que apunta el puntero interno. No mueve el puntero de ninguna manera.
+       * Si el puntero interno apunta fuera del final de la lista de elementos,
+       * current() devuelve FALSE. 
+       *
+       * Aviso:
+       *   Si la matriz contiene elementos vacios (0 o "", la cadena vacia)
+       *   esta funcion devolvera FALSE tambien para dichos elementos. Esto
+       *   hace imposible determinar si se esta realmente al final de la lista
+       *   en tales matrices usando current(). Para recorrer adecuadamente una
+       *   matriz que pueda contener elementos vacios, utilice la funcion 
+       *   each(). 
+       *
+       *
+       * next()
+       *
+       * (PHP 3, PHP 4, PHP 5)
+       * next --  Avanza el puntero interno de una matriz 
+       *
+       * Descripcion:
+       * mixed next ( array &matriz )
+       *
+       * Devuelve el elemento de la matriz que ocupa el lugar siguiente al 
+       * apuntado por el puntero interno, o FALSE si no hay mas elementos. 
+       * next() se comporta como current(), con una diferencia. Avanza el 
+       * puntero interno de la matriz en una posicion antes de devolver el 
+       * elemento. Eso significa que devuelve el siguiente elemento de la 
+       * matriz y que avanza el puntero interno en uno. Si al avanzar se pasa 
+       * del final de la lista de elementos, next() devuelve FALSE. 
+       *
+       * Aviso:
+       *   Si la matriz contiene elementos vacios, esta funcion tambien 
+       *   devolvera FALSE para dichos elementos. Para recorrer adecuadamente 
+       *   una matriz que pueda contener elementos vacios, vea la funcion 
+       *   each().
+       *
+       * Vea tambien: end(), key(), next(), prev() y reset().
+       */
+
+      $CiudadInfo = array();
+      $CiudadInfo{'0'} = 'Caracas';
+      $CiudadInfo{'Caracas'} = 'Venezuela';
+      $CiudadInfo{'1'} = 'Guadalajara';
+      $CiudadInfo{'Guadalajara'} = 'Mexico';
+      $CiudadInfo{'2'} = 'Paris';
+      $CiudadInfo{'Paris'} = 'Francia';
+      $CiudadInfo{'3'} = 'Tokyo';
+      $CiudadInfo{'Tokyo'} = 'Japon';
+  
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      function EscribeTodoConNext( $ElArreglo )
+      {
+        $Actual = current( $ElArreglo );
+        if( $Actual )
+          print( "$Actual<br />" );
+        else
+          print( "Nada a imprimir<br />" );
+
+        while( $Actual = next( $ElArreglo ) )
+          print( "$Actual<br />" );
+      }
+
+      print( "<p class=\"SubTitleFont\">
+                \$CiudadInfo 1 dimensión con current() y next()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodoConNext( $CiudadInfo );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia - Primera de 2 dimensiones con current() y next()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodoConNext( $Cornucopia );
+      print( "</p>
+              <p class=\"SubTitleFont\">
+                \$Cornucopia{'Fruta'} - Segunda dimensión con current() y next()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      EscribeTodoConNext( $Cornucopia{'Fruta'} );
+  
+      print(   "<br />
+                Existe un pequenia \"GOTCHA\":
+                <br />
+                la función next() regresa 'FALSE' cuando no es mas arreglo,
+                <br />
+                otro vez el regresa el valor del elemento ... 
+                <br />
+                Si el valor es 'NULL' ...
+              </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array14.php Ejecutar el código de Arreglo 14]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array14.phps Descargar el código de Arreglo 14]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
