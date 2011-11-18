@@ -1,0 +1,71 @@
+__NOTOC__
+* [[:#PasePorReferencia | Pase Por Referencia]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== PasePorReferencia ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      function Mas10( $Num )
+      {
+        return ( $Num += 10 );
+      }
+
+      $NumOrig = 100;
+      $i = 0;
+
+      print( "<p class=\"TitleFont\" style=\"font-weight:bold; color:#000099;
+                         text-decoration:underline;\">
+                Pase por valor
+              </p>
+              <p class=\"SubTitleFont\" style=\"color:#000000;\">" );
+      while( $i++ < 5 )
+        print(  Mas10( $NumOrig ) . "<br />" );
+      print( "</p>
+
+              <p class=\"TitleFont\" style=\"font-weight:bold; color:#000099;
+                         text-decoration:underline;\">
+                Pase por referencia
+              </p>
+              <p class=\"SubTitleFont\" style=\"color:#000000;\">" );
+      while( $i++ < 11 )
+        print(  Mas10( &$NumOrig ) . "<br />" );
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/PasePorRef.php Ejecutar el código para ver el paso de un variable por referencia]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/PasePorRef.phps Descargar el código para ver como pasar un variable por referencia]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
