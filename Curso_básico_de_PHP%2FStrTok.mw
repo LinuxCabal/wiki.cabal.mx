@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#StrTok | StrTok]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== StrTok ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $Examen = "http://www.deja.com/qs.xp?";
+      $Examen .= "DP=dnquery.xp&5T=M5&DBS=2&QRY=Desarollo+php";
+      $Delims = "?&";
+      print( "<p class=\"SubTitleFOnt\">
+                Usando strtok()
+              </p>
+              <p class=\"LargeTextFont\">" );
+      $Palabra = strtok( $Examen, $Delims );
+      while( is_string( $Palabra ) )
+      {
+        if( $Palabra )
+          print( "$Palabra<br />" );
+        $Palabra = strtok( $Delims );
+      }
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Strtok.php Ejecutar el código de StrTok]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Strtok.phps Descargar el código de StrTok]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
