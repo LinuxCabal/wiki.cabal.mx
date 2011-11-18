@@ -1,0 +1,107 @@
+__NOTOC__
+* [[:#Arreglo10 | Arreglo 10]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo10 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /*
+       * isset()
+       *
+       * (PHP 3, PHP 4, PHP 5)
+       *
+       * isset -- Determinar si una variable ( No una valor ) esta definida
+       *
+       * Descripcion
+       * bool isset ( mixed var [, mixed var [, ...]] )
+       *
+       * Devuelve TRUE si var existe; FALSE de lo contrario. 
+       * Si una variable ha sido removida con unset(), ya no estara definida. 
+       * isset() devolvera FALSE si prueba una variable que ha sido definida
+       * como NULL. Tambien note que un byte NULL ("\0") no es equivalente a la 
+       * constante NULL de PHP. 
+       * Advertencia: isset() solo trabaja con variables, ya que pasar cualquier
+       * otra cosa resultara en un error de interprete. Para chequear si se han 
+       * definido constantes, use la funcion defined(). 
+       * Nota: Puesto que esto es una construccion del lenguaje y no una 
+       * funcion, no puede ser llamado usando funciones variables
+       */
+
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      $VarNormal = "Contenidos";
+
+      echo( "<p class=\"SubTitleFont\">
+               Con isset()
+             </p>
+             <p class=\"LargeTextFont\">" );
+
+      if( isset( $Cornucopia{'Fruta'} ) )
+        echo( "\$Cornucopia{'Fruta'} existe y no es NULL
+               <br />" );
+      else
+        echo( "\$Cornucopia{'Fruta'} no existe y/o es NULL 
+               <br />" );
+
+      if( isset( $Cornucopia{'Fruta'}{'Rojo'} ) )
+          echo( "\$Cornucopia{'Fruta'}{'Rojo'} existe y no es NULL
+               <br />" );
+      else
+        echo( "\$Cornucopia{'Fruta'}{'Rojo'} no existe y/o es NULL
+               <br />" );
+
+      if( isset( $Cornucopia{'Fruta'}{'Platano'} ) )
+        echo( "\$Cornucopia{'Fruta'}{'Platano'} existe y no es NULL
+               <br />" );
+      else
+        echo( "\$Cornucopia{'Fruta'}{'Platano'} no existe y/o es NULL
+               <br />" );
+
+      if( isset( $VarNormal ) )
+        echo( "\$VarNormal existe y no es NULL
+               <br />" );
+      else
+        echo( "\$VarNormal no existe y/o es NULL" );
+
+      echo( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array10.php Ejecutar el código de Arreglo 10]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array10.phps Descargar el código de Arreglo 10]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
