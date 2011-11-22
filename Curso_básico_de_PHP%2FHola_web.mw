@@ -1,0 +1,95 @@
+__NOTOC__
+* [[:#Escribimos Hola Web | Escribimos Hola Web]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Escribimos Hola Web ==
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso de PHP - Hola Web
+    </title>
+  </head>
+  <body>
+    <?php
+      /* echo
+       * (PHP 3, PHP 4, PHP 5)
+       * echo -- Muestra una o más cadenas
+       * Descripción
+       * void echo ( string arg1 [, string ...] )
+       *
+       * Muestra todos sus parámetros por la salida definida. 
+       * echo() no es realmente una función (es una sentencia del lenguaje) de
+       * modo que no se requiere el uso de los paréntesis. De hecho, si se
+       * indica más de un parámetro, no se pueden incluir los paréntesis.
+       */
+
+      /* print
+       * (PHP 3, PHP 4, PHP 5)
+       * print -- Muestra una cadena
+       * Descripción
+       * int print ( string cadena )
+       * 
+       * Muestra el valor de cadena por la salida definida. Siempre devuelve
+       * el valor 1. 
+       * print() no es realmente una función (es una sentencia del lenguaje)
+       * de modo que no se requiere el uso de los paréntesis. 
+       */
+
+      print( "<p>&iexcl;Hola Web! con print</p>" ); // Esto es un comentario
+      /* Esto
+       * es un
+       * comentario de multi líneas
+       */
+      echo( "<p>&iexcl;Hola Web! con echo</p>" );   # Esto es un comentario
+    ?>    
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+Los números son solo para identificar las líneas en nuestra explicación y NO son parte del código fuente actual de nuestra página Web, la cual se inicia en la línea 1, columna 1 con la etiqueta <code><nowiki><html></nowiki></code> y  termina en la línea 17 con la etiqueta <code><nowiki></html></nowiki></code>. Este ejemplo es muy sencillo y vamos a ver más tarde qué podemos agregarle al código para personalizar la página. Lo que ahora tenemos es lo mínimo que debemos hacer.
+
+Abrimos la etiqueta <code><nowiki><head></nowiki></code> (cabeza) en la línea 2 y la cerramos en la línea 6 con <code><nowiki></head></nowiki></code> en donde podemos poner muchas cosas como meta tags, título, etc... Ahora vamos a abrir solamente <code><nowiki><title></nowiki></code> (titulo) en la línea 3 y la cerramos con <code><nowiki></title></nowiki></code> en la línea 5. El <code><nowiki><title></nowiki></code> se usa para poner, en nuestro caso, las palabras <code>Curso de PHP - Hola Web</code> en el titulo del navegador del usuario.
+
+Vamos a abrir la etiqueta <code><nowiki><body></nowiki></code> (cuerpo) en la línea 7, en donde vamos a poner toda la información que queremos comunicar al usuario. Al final, en la línea 16, vamos a cerrarla con la etiqueta <code><nowiki></body></nowiki></code>.
+
+Abrimos en la línea 8 una etiqueta <code><nowiki><?php</nowiki></code>, la cual significa que todo lo que sigue, hasta la etiqueta <code><nowiki>?></nowiki></code> en la línea 15, es código [[wikipedia:PHP|PHP]] y no código [[wikipedia:HTML|HTML]].
+
+Cuando se utiliza el modulo de php en el servidor Web, los directivos <code>print</code> y <code>echo</code> se usan para mandar las instrucciones al navegador del cliente. No se usan para escribir directamente en pantalla. Entonces en línea 9, ordenamos con <code>print</code> que el servidor Web envíe al navegador del cliente, las instrucciones para mostrar el mensaje <code>¡Hola Web! con print</code> en un solo párrafo indicado por las etiquetas <code><nowiki><p></nowiki></code> y <code><nowiki></p></nowiki></code>
+
+Los directivos <code>print</code> y <code>echo</code> se pueden usar con o sin paréntesis y como todos los instrucciones en php; se terminan con un <code>;</code> (Punto y Coma). 
+
+Los <code><nowiki>//</nowiki></code> después del <code>;</code> indican que lo que sigue adelante, no se considera como código, sino, como comentario al estilo de C++ que se termina con el fin de la línea.
+
+Desde la línea 10 y hasta la línea 13, podemos ver un comentario de multi-línea que inicia con <code><nowiki>/*</nowiki></code> en linea 10 y termina con <code><nowiki>*/</nowiki></code> en línea 13. 
+
+En la línea 14 ordenamos, con el operador <code>echo</code>, que el servidor Web envié al navegador del cliente, las instrucciones para mostrar el mensaje <code>¡Hola Web! con echo</code> en un solo párrafo indicado por las etiquetas <code><nowiki><p></nowiki></code> y <code><nowiki></p></nowiki></code>. 
+
+El <code>#</code> después del <code>;</code> indica que lo que sigue adelante, no se considera como código, sino, como comentario al estilo de Bash que se termina con el fin de la línea.
+
+Cuando ejecutamos éste código debemos ver 2 mensajes en 2 párrafos. Si mandamos el código fuente de la página no debemos ver las instrucciones de php ni los comentarios.
+
+Observa la indentación de las diferentes partes. Con la indentación, podemos ver rápidamente, qué código es relevante a qué parte. Sin indentación, el código es muy difícil de leer y corregir.
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/HolaWeb.php Ejecutar el código de &quot;HolaWeb&quot;]
+
+=== Descargarlo ===
+<p>
+  El archivo que vas a descargar tiene la extensión .phps que es una extensión especial que nos permite ver 
+  y descargar código PHP que normalmente no está disponible a descargar o ver.
+</p>
+<p>
+  Para usarlo, debes renombrar el archivo descargado y remplazar la extensión .phps con la extensión 
+  .php que permite ver el resultado de los comandos de PHP de manera nativa, a diferencia de la extensión 
+  .phps que no lo permite.
+</p>
+
+[http://www.linuxcabal.org/PHPClase/HolaWeb.phps Descargar el código de &quot;HolaWeb&quot;]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]
