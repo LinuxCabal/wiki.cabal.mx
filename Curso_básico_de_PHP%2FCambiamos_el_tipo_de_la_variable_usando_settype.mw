@@ -1,0 +1,139 @@
+__NOTOC__
+* [[:#Cambiamos el tipo de la variable usando settype | Cambiamos el tipo de la variable usando settype]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Cambiamos el tipo de la variable usando settype ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Cambiar el tipo de la variable con settype
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      /* settype()
+       * (PHP 3, PHP 4, PHP 5)
+       * settype -- Definir el tipo de una variable
+       * Descripción
+       * bool settype ( mixed &var, string tipo )
+       * 
+       * Definir el tipo de la variable var a tipo. 
+       * Los posibles valores de tipo son: 
+       * "boolean" (o, desde PHP 4.2.0, "bool") 
+       * "integer" (o, desde PHP 4.2.0, "int") 
+       * "float" (únicamente posible desde PHP 4.2.0, para versiones
+       * anteriores use la variante obsoleta "double") 
+       * "string" 
+       * "array" 
+       * "object" 
+       * "null" (desde PHP 4.2.0) 
+       * Devuelve TRUE si todo se llevó a cabo correctamente,
+       * FALSE en caso de fallo. 
+       */
+
+      $MiVar = 3.14;
+ 
+      print( "<p style='font:14pt helvetica;'>" );
+      print(    gettype( $MiVar ) );   // Double
+      print(   " es $MiVar<br />" );   // 3.14  
+
+      settype( $MiVar, "string" );
+      print(    gettype( $MiVar ) );   // String
+      print(   " es $MiVar<br />" );   // 3.14  
+
+      settype( $MiVar, "integer" );
+      print(    gettype( $MiVar ) );   // Integer
+      print(   " es $MiVar<br />" );   // 3
+
+      settype( $MiVar, "double" );
+      print(    gettype( $MiVar ) );   // Double
+      print(   " es $MiVar<br />" );   // 3.0
+
+      settype( $MiVar, "boolean" );
+      print(    gettype( $MiVar ) );   // Boolean
+      print(   " es $MiVar<br />" );         // 1
+
+      settype( $MiVar, "double" );
+      print(    gettype( $MiVar ) );   // Double
+      print(   " es $MiVar" );   // 1.0
+
+      print( "</p>" );
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+El propósito de éste programa es conocer cómo podemos cambiar los tipos de las variables y cómo sus valores son afectados.
+
+Las primeras líneas de código fuente son iguales que en el ejemplo: [http://wiki.cabal.mx/wiki/CursoBásicoDePHP/HolaWeb Hola Web], que van desde la línea 1 hasta la línea 7 donde agregamos un estilo a nuestra etiqueta <code><nowiki><body></nowiki></code> para poner un imagen como el fondo de nuestra página con el etiqueta  <code><nowiki>style="background-image:url('images/logoBG.jpg');</nowiki></code>, por lo cual, si tienes alguna duda dirígete a éste.
+
+En la línea 8 iniciamos una sección de php con la etiqueta <code><?php</code>.
+
+En la línea 9 se declara una variable con el nombre <code>$MiVar</code> y le asignamos el valor <code>3.14</code> que resulta en una variable de tipo double (doble).
+
+Enseguida en la línea 11, como argumento de la directiva <code>print</code> se usa la etiqueta <code><nowiki><p style='font:14pt helvetica;'></nowiki></code>. Un estilo declarado de esta manera, como el estilo declarado en línea 7, se llama &quot;inline style&quot; que en éste caso se usa  para indicar el inicio de un párrafo usando la fuente helvetica en 14 puntos. Vamos a ver en el futuro como poner los estilos en un archivo de &quot;css&quot; como se recomienda en la versión CSS 3.
+
+En la línea 12, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiVar )</code>, la cual tiene como argumento la variable <code>$MiVar</code>. Su función es determinar el tipo de la variable <code>$MiVar</code> que al momento es double (doble). Al final de la línea está el comentario <code>// Double</code>.
+
+En la línea 13, como argumento de la directiva <code>print</code> está la cadena <code> es $MiVar<nowiki><br /></nowiki></code> que junto con la línea 12 van a escribir &quot;double es 3.14&quot; (sin comillas) con un salto de línea nuevo al final, indicado por la etiqueta <code><nowiki><br /></nowiki></code>. Nota que <code>$MiVar</code> se diferencia por su valor, que al momento es el número 3.14. Cuando usamos variables adentro de comillas dobles con <code>print</code> o <code>echo</code> obtenemos el valor de la variable.
+
+En la línea 15, como argumento de la función <code>settype</code>, pasamos los argumentos <code>$MiVar, "string"</code> para convertir el tipo de la variable <code>$MiVar</code> a string (cadena de caracteres).
+
+Enseguida en la línea 16, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiVar )</code>, la cual tiene como argumento la variable <code>$MiVar</code>. Su función es determinar el tipo de la variable <code>$MiVar</code> que, al momento es string. Al final de la línea está el comentario <code>// String</code>.
+
+En la línea 17, como argumento de la directiva <code>print</code> está la cadena <code> es $MiVar<nowiki><br /></nowiki></code> que junto con la línea 16 van a escribir &quot;string es 3.14&quot; (sin comillas) con un salto de línea nuevo al final indicado por la etiqueta <code><nowiki><br /></nowiki></code>.
+
+¿Cual es la diferencia? ¡<code>$MiVar</code>, aquí en la sección de &quot;string&quot;, parece igual que en la sección de &quot;double&quot;! ¡Actualmente son totalmente diferentes! <code>$MiVar</code> en la sección &quot;double&quot; es un número con partes decimales, y en la sección de &quot;string&quot; $MiVar es una colección de 3 numerales y un signo de puntuación con valores ASCII, que se usa para representar el concepto del número escrito en la sección de &quote;double&quote; Podemos realizar operaciones aritméticas con dobles y enteros. Para realizar operaciones aritméticas con strings, el interprete PHP va a promover automáticamente y de forma temporal, el string a double o entero para realizar la operación y después, va a regresar la variable a su tipo original.
+
+En la línea 19, como argumento de la función <code>settype</code>, pasamos los argumentos <code>$MiVar, "integer"</code> para convertir el tipo de la variable <code>$MiVar</code> a integer (entero).
+
+Enseguida en la línea 20, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiVar )</code>, la cual tiene como argumento la variable <code>$MiVar</code>. Su función es determinar el tipo de la variable <code>$MiVar</code> que al momento es integer. Al final de la línea está el comentario <code>// Integer</code>.
+
+En la línea 21, como argumento de la directiva <code>print</code> está la cadena <code> es $MiVar<nowiki><br /></nowiki></code> que junto con la línea 20 van a escribir &quot;integer es 3&quot; (sin comillas) con un salto de línea nueva al final indicado por la etiqueta <code><nowiki><br /></nowiki></code>. Nota que perdimos las partes decimales, ésto se llama &quot;perdida de precisión&quot; ¿Piensas que podemos recuperarlas si convertimos la variable <code>$MiVar</code> a double otra ves? Vamos a ver.
+
+En la línea 23, como argumento de la función <code>settype</code> pasamos los argumentos <code>$MiVar, "double"</code> para convertir el tipo de la variable <code>$MiVar</code> a double.
+
+Enseguida en la línea 24, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiVar )</code>, la cual tiene como argumento la variable <code>$MiVar</code>. Su función es determinar el tipo de la variable <code>$MiVar</code> que al momento es double. Al final de la línea está el comentario <code>// Double</code>.
+
+En la línea 25, como argumento de la directiva <code>print</code> está la cadena <code> es $MiVar<nowiki><br /></nowiki></code> que junto con la línea 24 van a escribir &quot;double es 3&quot; (sin comillas) con un salto de línea nueva al final indicado por la etiqueta <code><nowiki><br /></nowiki></code>.
+
+Parece confuso cuando se dice &quot;double es 3&quot; con 3 sin partes decimales. Debe decir &quot;double es 3.0&quot; pero por alguna razón PHP no muestra partes decimales si son 0 (cero). 
+
+Cuando covertimos de integer a double no fue posible a recuperar las partes decimales que perdimos en la conversión inicial a integer.
+
+En la línea 27, como argumento de la función <code>settype</code>, pasamos los argumentos <code>$MiVar, "boolean"</code> para convertir el tipo de la variable <code>$MiVar</code> a boolean (booleano).
+
+Enseguida en la línea 28, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiVar )</code>, la cual tiene como argumento la variable <code>$MiVar</code>. Su función es determinar el tipo de la variable <code>$MiVar</code> que al momento es boolean. Al final de la línea está el comentario <code>// Boolean</code>.
+
+En la línea 29, como argumento de la directiva <code>print</code> está la cadena <code> es $MiVar</code> que junto con la línea 28 van a escribir &quot;boolean es 1&quot; (sin comillas) con un fin de párrafo indicado al final por la etiqueta <code><nowiki></p></nowiki></code> que se pasa como argumento de la directiva <code>print</code> en línea 30.
+
+En PHP como en C, TRUE (verdad) es cualquier valor que NO es 0 o NULL que son FALSE (falso).
+
+En la línea 31 se cierra el código de PHP con la etiqueta <code>?></code> y regresamos a HTML.
+
+Las líneas 32 y 33 son etiquetas de HTML y forman la estructura básica de una página HTML que fueron explicadas en el programa básico ‘Hola Web’.
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/SetType.php Ejecutar el código para cambiar el tipo de la variable usando &quot;settype&quot;]
+
+=== Descargarlo ===
+<p>
+El archivo que vas a descargar tiene la extensión .phps que es una extensión especial que nos permite ver y descargar código PHP que normalmente no está disponible a descargar o ver.
+</p>
+<p>
+  Para usarlo, debes renombrar el archivo descargado y reemplazar la extensión .phps con la extensión 
+  .php que permite ver el resultado de los comandos de PHP de una manera nativa, a diferencia de la extensión 
+  .phps que no lo permite.
+</p>
+
+[http://www.linuxcabal.org/PHPClase/SetType.phps Descargar el código para cambiar el tipo de la variable usando &quot;settype&quot;]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
