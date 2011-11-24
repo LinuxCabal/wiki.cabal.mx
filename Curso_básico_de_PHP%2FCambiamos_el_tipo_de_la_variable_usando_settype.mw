@@ -7,9 +7,7 @@ __NOTOC__
 == Cambiamos el tipo de la variable usando settype ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-
-<!DOCTYPE HTML>
-<html lang="es-MX">
+<html>
   <head>
     <title>
       Curso PHP - Cambiar el tipo de la variable con settype
