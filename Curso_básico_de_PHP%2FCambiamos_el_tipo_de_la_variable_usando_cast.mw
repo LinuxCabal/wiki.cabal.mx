@@ -1,0 +1,126 @@
+__NOTOC__
+* [[:#Cambiamos el tipo de la variable usando cast | Cambiamos el tipo de la variable usando cast]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Cambiamos el tipo de la variable usando cast ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Cambiar el tipo de la variable usando cast
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      $MiVar = 3.14;
+
+      print( "<p style=\"font:14pt helvetica;\">" );
+      $MiOtraVar = (double) $MiVar;
+      print(    gettype( $MiOtraVar ) );          // Double
+      print(   " es $MiOtraVar<br />" );          // 3.14
+
+      $MiOtraVar = (string) $MiVar;
+      print(    gettype( $MiOtraVar ) );          // String
+      print(   " es $MiOtraVar<br />" );          // 3.14  
+
+      $MiOtraVar = (integer) $MiVar;
+      print(    gettype( $MiOtraVar ) );          // Integer
+      print(   " es $MiOtraVar<br />" );          // 3
+
+      $MiOtraVar = (double) $MiVar;
+      print(    gettype( $MiOtraVar ) );          // Double
+      print(   " es $MiOtraVar<br />" );          // 3.14
+
+      $MiOtraVar = (boolean) $MiVar;
+      print(    gettype( $MiOtraVar ) );          // Boolean
+      print(   " es $MiOtraVar<br />" );          // 1
+
+      print(   '<br />' );
+      print(   "Tipo de la variable original: " );
+      print(    gettype( $MiVar ) . "<br />" );   // Double
+      print(   "El valor de la variable original: $MiVar
+              </p>" );
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+El propósito de este programa, es conocer cómo podemos cambiar los tipos de las variables de forma temporal usando cast.
+
+Las primeras líneas de código fuente son iguales que en el ejemplo: [http://wiki.cabal.mx/wiki/CursoBásicoDePHP/HolaWeb Hola Web], que van desde la línea 1 hasta la línea 7 donde agregamos un estilo a nuestra etiqueta <code><nowiki><body></nowiki></code> para poner un imagen como el fondo de nuestra página con el etiqueta  <code><nowiki>style="background-image:url('images/logoBG.jpg');</nowiki></code>, por lo cual, si tienes alguna duda dirígete a éste.
+
+En la línea 8, iniciamos una sección de php con la etiqueta <?php.
+
+En línea 9, asignamos el valor 3.14 a la variable <code>$MiVar</code>.
+
+En línea 11, como argumento de la directiva <code>print</code> se usa la etiqueta<code><nowiki><p style=\"font:14pt Helvetica;\"></nowiki></code> para indicar el inicio de un párrafo usando la fuente Helvetica en 14 puntos. Pusimos <code>font:14pt Helvetica;</code> entre comillas dobles, escapadas, para enviar las comillas, literalmente, como parte de los argumentos de la etiqueta <code><p style=</code>. 
+
+En línea 12, asignamos el valor <code>(double) $MiVar</code> a la variable <code>$MiOtraVar</code>. El codigo <code>(double)</code> se llama &quot;cast&quot; (conversión temporal de tipos), esto significa que, al asignar el valor de <code>$MiVar</code> a <code>$MiOtraVar</code> la estamos convirtiendo a tipo <code>double</code> (doble). <code>$MiVar</code> seguirá con su valor y tipo original, por otro lado, <code>$MiOtraVar</code> tendrá el valor de <code>$MiVar</code> pero de tipo <code>double</code> , que en este caso es el mismo que el original.
+
+En la línea 13, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiOtraVar )</code> con argumento la variable <code>$MiOtraVar</code>. Al final de la línea está el comentario <code>//Double</code>.
+
+En la línea 14, la cadena <code> es $MiOtraVar<nowiki><br /></nowiki></code> está como argumento de la directiva <code>print</code>,  que junto con la línea 13  escriben &quot;double es 3.14&quot; (sin comillas), con un salto de línea nuevo al final, indicado por la etiqueta <code><nowiki><br /></nowiki></code>. Observa que <code>$MiVar</code> se diferencia por su valor, que al momento es el número 3.14.
+
+En línea 16 asignamos el valor <code>(string) $MiVar</code> a la variable <code>$MiOtraVar</code>. El codigo <code>(string)</code>, (un otro cast), significa que al asignar el valor de <code>$MiVar</code> a <code>$MiOtraVar</code> la estamos convirtiendo a tipo <code>string</code>. <code>$MiVar</code> seguirá con su valor y tipo original y <code>$MiOtraVar</code> tendrá el valor de <code>$MiVar</code> en tipo <code>string</code>.
+
+En la línea 17, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiOtraVar )</code>, que tiene como argumento la variable <code>$MiOtraVar</code>. Al final de la línea está el comentario <code>//String</code>.
+
+En la línea 18, como argumento de la directiva <code>print</code>, está la cadena <code> es $MiOtraVar<nowiki><br /></nowiki></code> que junto con la línea 17 escriben &quot;string es 3.14&quot; (sin comillas), con un salto de línea nuevo al final indicado por la etiqueta <code><nowiki><br /></nowiki></code>. Nota que <code>$MiVar</code> se diferencia por su valor, que al momento es la cadena de caráctares &quot;3.14&quot; (sin comillas).
+
+Como explicamos en el programa [http://wiki.cabal.mx/wiki/CursoBásicoDePHP/SetType SetType], <code>(double) $MiVar</code> es un número con partes decimales, mientras que "string", <code>(string) $MiVar</code> es una colección de 3 numerales y un signo de puntuación con valores ASCII, útil para representar el concepto del número escrito. Para realizar operaciones aritméticas con strings, el interprete PHP va a promover automáticamente y de forma temporal usando un cast, el string a double o entero para realizar la operación sin cambiar al final su tipo original.
+
+En línea 20, asignamos el valor <code>(integer) $MiVar</code> a la variable <code>$MiOtraVar</code>. El codigo <code>(integer)</code>, (otro cast), significa que al asignar el valor de <code>$MiVar</code> a <code>$MiOtraVar</code> la estamos convirtiendo a tipo <code>integer</code> (entero). <code>$MiVar</code> seguirá con su valor y tipo original y <code>$MiOtraVar</code> tendrá el valor de <code>$MiVar</code> pero de tipo <code>integer</code> (entero).
+
+En la línea 21, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiOtraVar )</code>, que tiene como argumento la variable <code>$MiOtraVar</code>. Al final de la línea está el comentario <code>//Integer</code>.
+
+En la línea 22, como argumento de la directiva <code>print</code> está la cadena <code> es $MiOtraVar<nowiki><br /></nowiki></code> que junto con la línea 21 van a escribir &quot;integer es 3&quot; (sin comillas) con un salto de línea nuevo al final, indicado por la etiqueta <code><nowiki><br /></nowiki></code>. Nota que <code>$MiVar</code> se diferencia por su valor, que al momento es el número 3.
+
+Como explicamos en el programa [http://wiki.cabal.mx/wiki/CursoBásicoDePHP/SetType SetType], la pérdida de las partes decimales se llama "perdida de precisión" ¿Piensas que podemos recuperarlas si reasignamos <code>(double) $MiVar</code> a <code>$MiOtroVar</code>? Vamos a ver.
+
+En línea 24, asignamos otra vez el valor <code>(double) $MiVar</code>,  a la variable <code>$MiOtraVar</code>. <code>$MiVar</code> seguirá con su valor y tipo original, y <code>$MiOtraVar</code> tendrá el valor de <code>$MiVar</code> de tipo <code>double</code>.
+
+En la línea 25, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiOtraVar )</code>, la cual tiene como argumento la variable <code>$MiOtraVar</code>. Al final de la línea está el comentario <code>//Double</code>.
+
+En la línea 26, como argumento de la directiva <code>print</code> está la cadena <code> es $MiOtraVar<nowiki><br /></nowiki></code> que junto con la línea 25 van a escribir &quot;double es 3.14&quot; (sin comillas) con un salto de línea nuevo al final, indicado por la etiqueta <code><nowiki><br /></nowiki></code>. Nota que <code>$MiVar</code> se diferencia por su valor, que al momento es el número 3.14.
+
+Aquí podemos ver, por cierto, que un cast es temporal y que no cambió el valor o tipo de la variable original. Con un cast podemos recuperar la precisión que perdimos en la sección &quot;integer&quot;. Esta es muy diferente del resultado de cambiar el tipo de la variable con settype() que es un cambio permanente.
+
+En línea 28, asignamos el valor <code>(boolen) $MiVar</code> a la variable <code>$MiOtraVar</code>. <code>$MiVar</code> seguirá con su valor y tipo original, por otro lado, <code>$MiOtraVar</code> tendrá el valor de <code>$MiVar</code> pero de tipo <code>boolean</code> (booleano).
+
+En la línea 29, como argumento de la directiva <code>print</code> se usa la función <code>gettype( $MiOtraVar )</code>, la cual tiene como argumento la variable <code>$MiOtraVar</code>. Al final de la línea está el comentario <code>//Boolean</code>.
+
+En la línea 30, como argumento de la directiva <code>print</code> está la cadena <code> es $MiOtraVar<nowiki><br /></nowiki></code> que junto con la línea 29 van a escribir &quot;boolean es 1&quot; (sin comillas) con un salto de línea nuevo al final, indicado por la etiqueta <code><nowiki><br /></nowiki></code>. Nota que <code>$MiVar</code> se diferencia por su valor, que al momento es el número 1, que significa en PHP un valor boolean de TRUE (verdad).
+
+Finalmente, después de un salto de línea en la línea 32 se escribe, en la línea 33, la frase <code>Tipo de la variable original: </code> y en la línea 34 como argumento de la directiva <code>print</code> se usa la función <code>gettype($MiVar)</code> para ver que ninguna de los operaciones anteriores de cast cambian el tipo de la variable original, <code>$MiVar</code>, que se inició como <code>double</code> en la línea 9.
+
+En la línea 35 se escribe la valor al fin del programa para ver que ninguna de los operaciones de cast se cambió la valor de <code>$MiVar</code>, 3.14, que se asignó en línea 9.
+
+En la línea 36 se cierra el párrafo con la etiqueta <code><nowiki></p></nowiki></code>  que se abro en la línea 11.
+
+En la línea 37 se cierra el código de PHP con la etiqueta <code><nowiki>?></nowiki></code> y regresamos a HTML.
+
+Las líneas 38 y 39 son etiquetas de HTML y forman la estructura básica de una página HTML que fueron explicadas en el programa básico ‘Hola Web’.
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Cast.php Ejecutar el código para cambiar el tipo de la variable usando &quot;cast&quot;]
+
+=== Descargarlo ===
+<p>
+  El archivo que vas a descargar tiene la extensión .phps que es una extensión especial que nos permite ver 
+  y descargar código PHP que normalmente no está disponible a descargar o ver.
+</p>
+<p>
+  Para usarlo, debes renombrar el archivo descargado y remplazar la extensión .phps con la extensión 
+  .php que permite ver el resultado de los comandos de PHP de manera nativa, a diferencia de la extensión 
+  .phps que no lo permite.
+  </p>
+[http://www.linuxcabal.org/PHPClase/Cast.phps Descargar el código para cambiar el tipo de la variable usando &quot;cast&quot;]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
