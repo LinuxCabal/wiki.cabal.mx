@@ -1,0 +1,97 @@
+__NOTOC__
+* [[:#Operadores de comparación | Operadores de comparación]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Operadores de comparación ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl"     href="FixAnotherMSIEBug.xsl"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="application/xhtml+xml;
+                      charset=UTF-8" />
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta name="keywords" content="linux cabal, linuxcabal,
+                 open source, free software, F/OSS, FOSS, GNU,
+                 GNU/Linux, Linux, GNU &amp; Linux, Free and Open Source
+                 Software, Free y Open Source Software" />
+    <title>
+      Curso PHP - Operadores De Comparición
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      print( "<p>
+                Operadores de Comparación
+              </p>" );
+
+      $Examen = 4;
+
+      print( "<p>
+                |"  . ( $Examen == 4 )    .
+               "|<br />
+                |"  . ( $Examen == '4' )  .
+               "|<br />
+                |"  . ( $Examen === '4' ) .
+               "|<br />
+                |"  . ( $Examen != 4 )    .
+               "|<br />
+                |"  . ( $Examen != '4' )  .
+               "|<br />
+                |"  . ( $Examen !== 4 )    .
+               "|<br />
+                |"  . ( $Examen !== '4' )  .
+               "|<br />
+                |"  . ( $Examen > 4 )     .
+               "|<br />
+                |"  . ( $Examen > '4' )   .
+               "|<br />
+                |"  . ( $Examen < 4 )     .
+               "|<br />
+                |"  . ( $Examen < '4' )   .
+               "|<br />
+                |"  . ( $Examen >= 4 )    .
+               "|<br />
+                |"  . ( $Examen >= '4' )  .
+               "|<br />
+                |"  . ( $Examen <= 4 )    .
+               "|<br />
+                |"  . ( $Examen <= '4' )  .
+               "|
+              </p>
+              <p>
+                <a href=\"http://validator.w3.org/check?uri=referer\"><img
+                   src=\"images/valid-xhtml10.png\"
+                   alt=\"Valid XHTML 1.0 Strict\" height=\"31\"
+                   width=\"88\" />
+                </a>
+              </p>" ); 
+    ?>  
+  </body>
+</html>
+
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadoresDeComparacion.php Ejecutar el código de los operadores de comparaci&oacute;n]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadoresDeComparacion.phps Descargar el código de los operadores de comparaci&oacute;n]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
