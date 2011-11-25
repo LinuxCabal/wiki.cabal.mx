@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Operador de MásIgual | Operador de MásIgual]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Operador de MásIgual ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<html>
+  <head>
+    <title>
+      Curso PHP - Operador de M&aacute;sIgual
+    </title>
+  </head>
+  <body style="background-image:url('images/logoBG.jpg');">
+    <?php
+      print( "<p>
+                Operador de M&aacute;sIgual
+              </p>" );
+      $x = 4;
+      print( "<p>" . $x . '<br />' );
+      $x = $x + 4;
+      print(    $x . "<br />" );
+
+      $x = 4;
+      print(    $x . '<br />' );
+      $x += 4;
+      print(    $x . "</p>");
+    ?>
+  </body>
+</html>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/MasIgual.php Ejecutar el código para ver el operador de M&aacute;sIgual]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/MasIgual.phps Descargar el código para ver el operador de M&aacute;sIgual]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
