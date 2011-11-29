@@ -1,0 +1,72 @@
+__NOTOC__
+* [[:#Constantes | Constantes]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Constantes ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      define( "NOMBRE", "Rasmus Lerdorf" );
+
+      print( "<p class=\"TitleFont\">
+                Constantes
+              </p>
+              <p class=\"TitleFont\">
+                El autor de PHP es
+                <br />
+                <span style=\"text-decoration:underline; font-size:36pt;\">" .
+                  NOMBRE .
+               "</span>
+                <br />
+                quien es un programador Danés
+                <br />
+                con la ciudadanía Canadiense
+                <br />
+                quien nació en Qeqertarsuaq, Greenland
+                <br />
+                el 22 de Noviembre, 1968
+              </p>
+              <p style=\"font:18pt helvetica; text-align:center;\">
+                El nombre de este archivo es " . __FILE__ . "<br />
+                La l&iacute;nea en el archivo: " . __LINE__ . "<br />
+                La versi&oacute;n de PHP: " . PHP_VERSION . "<br />
+                La valor de FALSE: |" . FALSE . "|<br />
+                La valor de TRUE: |" . TRUE . "|
+              </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Constantes.php Ejecutar el código para ver como sirve los constantes]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Constantes.phps Descargar el código para ver como sirve los contantes]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
