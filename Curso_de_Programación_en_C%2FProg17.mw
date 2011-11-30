@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#Prog17 | Prog17]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog17 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog17.c -- Más flags */
+
+#include <stdio.h>
+
+int main( void )
+{
+  printf( "%x %X %#x %#X\n", 31, 31, 31, 31 );
+  printf( "**%d**% d**% d**\n", 42, 42, -42 );
+  printf( "**%5d**%5.3d**%05d**%05.3d**\n", 6, 6, 6, 6 );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog17 Prog17.c
+ Prog17.c: In function ‘main’:
+ Prog17.c:9: warning: '0' flag ignored with precision and ‘%d’ gnu_printf format
+ [rrc@Pridd CClase]$ ./Prog17
+ 1f 1F 0x1f 0X1F
+ **42** 42**-42**
+ **    6**  006**00006**  006**
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
