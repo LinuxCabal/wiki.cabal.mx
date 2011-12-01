@@ -1,0 +1,80 @@
+__NOTOC__
+* [[:#RegresaHTMLdentroPHP | Regresa a HTML adentro de PHP]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== RegresaHTMLdentroPHP ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $EscribePrecios = TRUE;
+      print(   "<p class=\"TitleFont\">
+                  Como regresar a HTTP adentro de PHP
+                  <br />
+                  <br />
+                </p>" );
+
+      if( $EscribePrecios )
+      {
+        ?>
+        <table border="1" style="margin:auto;">
+          <tr>
+            <td colspan = "3">
+              Precios en Dólares ahora
+            </td>
+          </tr>
+          <tr>
+            <td>
+              14
+            </td>
+            <td>
+              32
+            </td>
+            <td>
+              71
+            </td>
+          </tr>
+        </table>
+        <?php
+      }
+      else
+      {
+        print( "<p>No precios ahora<br /></p>" );
+      }
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/RegresaHTMLdentroPHP.php Ejecutar el código para ver como a regresar a HTML adentro de PHP]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/RegresaHTMLdentroPHP.phps Descargar el código para ver como a regresar a HTML adentro de PHP]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
