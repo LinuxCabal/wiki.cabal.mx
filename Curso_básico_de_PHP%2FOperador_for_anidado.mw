@@ -1,0 +1,63 @@
+__NOTOC__
+* [[:#OperadorForAnidada | El operador for anidada]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== OperadorForAnidada ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      print(  <p class=\"TitleFont\">
+                El Operador for anidada
+              </p>
+              <table cellpadding=\"0\" cellspacing=\"5\" width=\"75%\"
+                     border=\"1\" style=\"margin:auto;\">" );
+      for( $y = 1; $y <= 12; $y++ )
+      {
+        print( "<tr>" );
+        for( $x = 1; $x <= 12; $x++ )
+        {
+          print( "<td>" );
+          print( $x * $y );
+          print( "</td>" );
+        }
+        print( "</tr>" );
+      }
+      print( "</table>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorForAnidada.php Ejecutar el código para ver como sirve el operador for anidada]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorForAnidada.phps Descargar el código para ver como sirve el operador for anidada]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
