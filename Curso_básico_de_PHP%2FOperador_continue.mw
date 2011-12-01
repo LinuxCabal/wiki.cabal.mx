@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#OperadorContinue | El operador continue]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== OperadorContinue ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $Num = -4;
+
+      print(   "<p class=\"TitleFont\">
+                  El Operador continue
+                </p>
+                <p class=\"SubTitleFont\">" );
+      for( ; $Num <= 12; $Num++ )
+      {
+        if( $Num == 0 )
+        {
+          print( "Ilegal dividir por 0, Siguiente<br />" );
+          continue;
+        }
+        print(   "100 / $Num = " . ( 100 / $Num ) . "<br />" );
+      }
+      print(   "</p>" );
+      require_once( "incPie.php" );
+    ?> 
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorContinue.php Ejecutar el código para ver como sirve el operador continue]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorContinue.phps Descargar el código para ver como sirve el operador continue]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
