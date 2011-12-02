@@ -1,0 +1,79 @@
+__NOTOC__
+* [[:#ÁmbitoDeLasVariables | Ámbito de las variables]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== ÁmbitoDeLasVariables ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+
+      $VarExternal = "Esta es \$VarExternal";
+
+      function VarDentroFunct()
+      {
+        global $VarExternal;  // Si cambias internal, vas a cambiarle globalmente
+        $VarInternal = "Esta es \$VarInternal";
+
+        print( "<p class=\"TitleFont\" style=\"font-weight:bold; color:#0000AA;\">
+                  Adentro de la función
+                </p>
+                <p class=\"SubTitleFont\">
+                  Interior: \$VarInternal = $VarInternal
+                  <br />
+                  Interior: \$VarExternal = $VarExternal
+                </p>" );
+
+                  $VarInternal .= " Cambiado en la función";
+                  $VarExternal .= " Cambiado en la función";
+      }
+
+      VarDentroFunct();
+
+      global $VarInternal;         #No Sirve
+
+      print( "<p class=\"TitleFont\" style=\"font-weight:bold; color:#0000AA;\">
+                Afuera de la función
+              </p>
+              <p class=\"SubTitleFont\">
+                Exterior: \$VarExternal = $VarExternal
+                <br />
+                Exterior: \$VarInternal = $VarInternal
+              </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/VarDentroFunct.php Ejecutar el código para ver el ámbito_de_las_variables]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/VarDentroFunct.phps Descargar el código que muestra el ámbito_de_las_variables]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
