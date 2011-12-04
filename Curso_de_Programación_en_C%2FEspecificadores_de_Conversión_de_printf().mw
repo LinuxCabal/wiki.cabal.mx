@@ -1,0 +1,69 @@
+__NOTOC__
+* [[:#Especificadores de Conversión de printf()| Especificadores de Conversión de printf()]]
+** [[:#Explicación | Explicación]]
+
+== Especificadores de Conversión de printf()==
+
+<table cellspacing="12">
+  <tr style="text-align:center;">
+    <th>Especificador<br />de Conversión</th><th>Valor<br />Resultante</th>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%a</td><td>float, digitos en hex y p-notation</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%A</td><td>float, digitos en HEX y p-notation</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%c</td><td>unsigned char</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%d</td><td>signed int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%e</td><td>float e-notación (minúscula a.b.c.d.e y f.)</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%E</td><td>float e-notación (mayúscula A.B.C.D.E y F)</td>
+  </tr>
+  <tr style="text-align:center;">
+     <td>%f</td><td>float decimal-notación</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%g</td><td>Utilice %f o %e, dependiendo del valor.<br />El estilo %e se utiliza si el exponente es menor que -4<br />o mayor o igual a la precisión.</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%G</td><td>Utilice %f o %E, dependiendo del valor.<br />El estilo %E se utiliza si el exponente es menor que -4<br />o mayor o igual a la precisión.</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%i</td><td>signed int (mismo que %d)</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%o</td><td>unsigned octal int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%p</td><td>pointer</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%s</td><td>cadena de chars</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%u</td><td>unsigned int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%x</td><td>unsigned hex int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%X</td><td>unsigned HEX int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%%</td><td>'%'</td>
+  </tr>
+</table>
+
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
