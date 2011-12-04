@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog16 | Prog16]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog16 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog16.c -- Algunos combinaciones de float */
+
+#include <stdio.h>
+
+int main( void )
+{
+  const double COSTO = 3852.99;  // const-style constant
+
+  printf( "*%f*\n", COSTO );
+  printf( "*%e*\n", COSTO );
+  printf( "*%4.2f*\n", COSTO );
+  printf( "*%3.1f*\n", COSTO );
+  printf( "*%10.3f*\n", COSTO );
+  printf( "*123456789012345*\n" );
+  printf( "*%10.3e*\n", COSTO );
+  printf( "*%-10.3e*\n", COSTO );
+  printf( "*%+4.2f*\n", COSTO );
+  printf( "*%010.2f*\n", COSTO );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog16 Prog16.c
+ [rrc@Pridd CClase]$ ./Prog16
+ *3852.990000*
+ *3.852990e+03*
+ *3852.99*
+ *3853.0*
+ *  3852.990*
+ *123456789012345*
+ * 3.853e+03*
+ *3.853e+03 *
+ *+3852.99*
+ *0003852.99*
+ [rrc@Pridd CClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
