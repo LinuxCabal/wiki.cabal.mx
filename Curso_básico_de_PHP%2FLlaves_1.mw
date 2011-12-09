@@ -1,0 +1,85 @@
+__NOTOC__
+* [[:#Llaves1 | Llaves 1]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Llaves1 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      $Sport1 = 'Volley';
+      $Sport2 = 'Basket';
+      $Sport3 = 'Fut';
+      define( BASE, "Base" );
+
+      $Malo1  = "No sirve $Sport1ball";
+      $Sirve1 = "Sirve " . $Sport1 . "ball";
+      $Bueno1 = "Mejor {$Sport1}ball";
+      $Malo2  = "No sirve $Sport2ball";
+      $Sirve2 = "Sirve " . $Sport2 . "ball";
+      $Bueno2 = "Mejor {$Sport2}ball";
+      $Malo3  = "No sirve $Sport3ball";
+      $Sirve3 = "Sirve " . $Sport3 . "ball";
+      $Bueno3 = "Mejor {$Sport3}ball";
+      $Malo4  = "No Sirve {BASE}ball";
+      $Bueno4 = "Sirve " . BASE . "ball";
+
+      echo( "<p class=\"SubTitleFont\">" );
+      echo (  "$Malo1
+               <br />
+               $Sirve1
+               <br />
+               $Bueno1
+               <br />
+               $Malo2
+               <br />
+               $Sirve2
+               <br />
+               $Bueno2
+               <br />
+               $Malo3
+               <br />
+               $Sirve3
+               <br />
+               $Bueno3
+               <br />
+               $Malo4
+               <br />
+               $Bueno4
+             </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Braces1.php Ejecutar el código de Llaves 1]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Braces1.phps Descargar el código de Llaves 1]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
