@@ -1,0 +1,126 @@
+__NOTOC__
+* [[:#printf1 | printf 1]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== printf1 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /* printf()
+       * (PHP 3, PHP 4, PHP 5)
+       * printf -- Imprimir una cadena con formato
+       * Descripción
+       * int printf ( string formato [, mixed args [, mixed ...]] )
+       *
+       * Produce una salida de acuerdo con el formato, 
+       * Devuelve la longitud de la cadena impresa.
+       *
+       * La cadena de formato se compone de cero o más directivas: caracteres
+       * ordinarios (excluyendo %) que son copiados directamente en el
+       * resultado, y unas especificaciones de conversión, cada una de las
+       * cuales produce una búsqueda por su propio parámetro. Esto se aplica
+       * tanto en sprintf() como en printf(). 
+       * Cada especificación de conversión consiste de un
+       * signo de porcentaje (%), seguido por uno o más de los siguientes
+       * elementos, en orden: 
+       * Un indicador de signo opcional que obliga a que se use un determinado
+       * signo (- o +) en un número. De forma predeterminada, sólo el
+       * signo - es usado en un número si éste es negativo. Este indicador
+       * obliga a los números positivos a que tengan también el
+       * signo + adjunto, comportamiento que se agregó en PHP 4.3.0. 
+       * Un indicador de relleno opcional, que dice qué caracter será usado
+       * para adaptar el resultado al tamaño de cadena apropiado. Este puede
+       * ser un caracter de espacio, o un 0 (caracter cero). El comportamiento
+       * predeterminado es rellenar con espacios. Un caracter de relleno
+       * alternativo puede especificarse al colocar una comilla sencilla (') al
+       * comienzo. Vea los ejemplos más adelante. 
+       * Un indicador de alineamiento opcional que dice si el resultado debe
+       * alinearse a la izquierda o a la derecha. El comportamiento
+       * predeterminado es alinear a la derecha; un caracter - en este lugar
+       * hace que la alineación sea a la izquierda. 
+       * Un número opcional, un indicador de ancho que dice cuántos caracteres
+       * (como mínimo) debe producir la conversión. 
+       * Un indicador de precisión opcional que dice cuántos dígitos decimales
+       * deben mostrarse para los números de punto flotante. Cuando se usa este
+       * indicador con una cadena, actúa como un punto de corte, indicando un
+       * límite máximo de caracteres para la cadena. 
+       * Un indicador de tipo que especifica el tipo bajo el que deben tratarse
+       * los datos del argumento. Los posibles tipos son: 
+       * 
+       * % - un caracter de porcentaje literal. No requiere argumento. 
+       * b - el argumento es tratado como un entero, presentado
+       * como un número binario. 
+       * c - el argumento es tratado como un entero, y presentado
+       * como el caracter con ese valor ASCII. 
+       * d - el argumento es tratado como un entero, y presentado
+       * como un número decimal (con signo). 
+       * e - el argumento es tratado como notación científica (p.ej. 1.2e+2). 
+       * u - el argumento es tratado como un entero, y presentado
+       * como un número decimal sin signo. 
+       * f - el argumento es tratado como un flotante, y presentado
+       * como un número de punto flotante (teniendo en cuenta la localidad). 
+       * F - el argumento es tratado como un flotante, y presentado
+       * como un número de punto flotante (no tiene en cuenta la localidad).
+       * Disponible desde PHP 4.3.10 y PHP 5.0.3. 
+       * o - el argumento es tratado como un entero, y presentado
+       * como un número octal. 
+       * s - el argumento es tratado y presentado como una cadena. 
+       * x - el argumento es tratado como un entero y presentado
+       * como un número hexadecimal (con letras minúsculas). 
+       * X - el argumento es tratado como un entero y presentado
+       * como un número hexadecimal (con letras mayúsculas). 
+       */
+ 
+      $num = 543;
+
+      print( "<p><pre>" );
+      printf(  "Decimal: %d<br />", $num );
+      printf(  "Decimal: %6d<br />", $num );
+      printf(  "Decimal: %'06d<br />", $num );
+      printf(  "Binario: %b<br />", $num );
+      printf(  "Doble: %f<br />", $num );
+      printf(  "Octal: %o<br />", $num );
+      printf(  "String: %s<br />", $num );
+      printf(  "Hex (Minuscula): %x<br />", $num );
+      printf(  "Hex (Mayuscula): %X<br /><br />", $num );
+      printf(  "5.3377 rondeado es: %.2f\n", 5.3377 );
+      printf(  "Decimal: %d<br />", $num );  # $num no se cambió
+      print( "</p></pre>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Printf1.php Ejecutar el código de printf 1]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Printf1.phps Descargar el código de printf 1]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
