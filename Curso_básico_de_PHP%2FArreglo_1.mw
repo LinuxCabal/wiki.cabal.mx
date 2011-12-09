@@ -1,0 +1,70 @@
+__NOTOC__
+* [[:#Arreglo1 | Arreglo 1]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo1 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      //Arreglos en PHP son Asociativos, no son arreglos de vectores
+
+      $EnCualEstado{'Guadalajara'} = 'Jalisco';
+
+      $Estado1 = $EnCualEstado{'Guadalajara'};
+      $Estado2 = $EnCualEstado{0};
+
+      print( "<p class=\"LargeTextFont\">
+                Dereferenciar por \"key/pair\" o Asociación: $Estado1
+                <br />
+                Dereferenciar por vector: $Estado2
+                <br />
+                <br />
+                Si quieres simular vectores puedes usar &quot;key/pair&quot; 
+                con numerales
+              </p>" );
+
+              $MiArreglo{'0'} = "Mi Arreglo numero 0<br />";
+              $MiArreglo{'1'} = "Mi Arreglo numero 1<br />";
+
+      echo(  "<p class=\"LargeTextFont\">
+                Arreglo 0 es: {$MiArreglo{'0'}}
+                Arreglo 1 es: {$MiArreglo{'1'}}
+              </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza. ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array1.php Ejecutar el código de Arreglo 1]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array1.phps Descargar el código de Arreglo 1]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
