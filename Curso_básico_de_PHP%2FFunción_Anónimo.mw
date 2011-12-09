@@ -1,0 +1,67 @@
+__NOTOC__
+* [[:#FunciónAnónimo | FunciónAnónimo]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== FunciónAnónimo ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /* create_function()
+       * (PHP 4 >= 4.0.1, PHP 5)
+       * create_function -- Crear una función anónima (estilo-lambda)
+       * Descripción
+       * string create_function ( string args, string codigo )
+       * 
+       * Crea una función anónima con los parámetros pasados, y devuelve un
+       * nombre único para ella. Por lo general los args serán pasados como
+       * una cadena delimitada por comillas sencillas, y esto es recomendable
+       * también para el codigo. La razón para usar cadenas entre comillas
+       * sencillas es evitar que los nombres de variables sean interpretados,
+       * de otro modo, si usa comillas dobles será necesario escapar los
+       * nombres de variables, p.ej. \$una_var. 
+       *Es posible usar esta función para (por ejemplo) crear una función a
+       * partir de información recogida en tiempo de ejecución: 
+       */
+
+      $MiAnonFunción = create_function( "\$a, \$b", "return \$a + \$b;" );
+
+      print( "<p class=\"TitleFont\">
+                \$MiAnonFunción se regresa: " .  $MiAnonFunción( 9, 30 ) .
+             "</p>"  );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/AnonFunct.php Ejecutar el código para ver un anonymous function]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/AnonFunct.phps Descargar el código que muestra un anonymous function]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
