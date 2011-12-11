@@ -1,0 +1,21 @@
+__NOTOC__
+* [[:#Short cómo char | Short cómo char]]
+** [[:#Explicación | Explicación]]
+
+== Short cómo char ==
+
+<table cellspacing="3" cellpadding="3" border="1">
+  <tr>
+    <td colspan="4" style="text-align:center;">Short 336<td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td>
+  </tr>
+    <td colspan="20">&nbsp;</td>
+  <tr>
+    <td colspan="12" style="text-align:center;">Char 0x50 = P</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td>
+  </tr>
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
