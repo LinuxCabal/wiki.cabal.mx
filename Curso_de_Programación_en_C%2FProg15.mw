@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Prog15 | Ancho de campo]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog15 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog15.c -- Ancho de campo */
+
+#include <stdio.h>
+
+#define PAGINAS 931
+
+int main( void )
+{
+  printf( "*%d*\n", PAGINAS );
+  printf( "*%2d*\n", PAGINAS );
+  printf( "*%10d*\n", PAGINAS );
+  printf( "*123456789012345*\n" );
+  printf( "*%-10d*\n", PAGINAS );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog15 Prog15.c
+ [rrc@Pridd CClase]$ ./Prog15
+ *931*
+ *931*
+ *       931*
+ *123456789012345*
+ *931       *
+ [rrc@Pridd CClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
