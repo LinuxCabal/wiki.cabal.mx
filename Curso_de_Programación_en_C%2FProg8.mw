@@ -1,0 +1,49 @@
+__NOTOC__
+* [[:#Prog8 | Más especificadores de conversión de printf()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog8 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* prog8.c -- Más especificadores de conversión de printf() */
+
+#include <stdio.h>
+
+int main( void )
+{
+  unsigned int NoSigno = 3000000000; /* 32-bit int    */
+  short fin = 200;              /* 16-bit short  */
+  long grande = 65537;
+  long long MuyGrande = 12345678908642ll;
+
+  printf( "NoSigno = %u pero no %d\n", NoSigno, NoSigno );
+  printf( "fin = %hd y también %d\n", fin, fin );
+  printf( "grande = %ld pero no %hd\n", grande, grande );
+  printf( "MuyGrande = %lld pero no %ld\n", MuyGrande, MuyGrande );
+
+  return 0;
+}
+
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -o Prog8 -Wall -O2 Prog8.c 
+ Prog8.c: In function ‘main’:
+ Prog8.c:7: warning: this decimal constant is unsigned only in ISO C90
+ Prog8.c:14: warning: format ‘%hd’ expects type ‘int’, but argument 3 has type ‘long int’
+ Prog8.c:15: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘long long int’
+ [rrc@Pridd CClase]$ ./Prog8
+ NoSigno = 3000000000 pero no -1294967296
+ fin = 200 y también 200
+ grande = 65537 pero no 1
+ MuyGrande = 12345678908642 pero no 1942899938
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
