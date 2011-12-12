@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#Prog9 | floats, doubles y  print()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog9 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/*  Prog9.c -- floats, doubles y  print() */
+
+#include <stdio.h>
+
+int main( void )
+{
+  float Float = 32000.0;
+  double Double = 2.14e9;
+  long double LongDouble = 5.32e-5;
+
+  printf( "%f puede escribirse cómo %e\n", Float, Float );
+  printf( "%f puede escribirse cómo %e\n", Double, Double );
+  printf( "%Lf puede escribirse cómo %Le\n", LongDouble, LongDouble );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog9 Prog9.c
+ [rrc@Pridd CClase]$ ./Prog9
+ 32000.000000 puede escribirse cómo 3.200000e+04
+ 2140000000.000000 puede escribirse cómo 2.140000e+09
+ 0.000053 puede escribirse cómo 5.320000e-05
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
