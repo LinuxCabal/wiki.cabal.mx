@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#Prog11 | Algunas secuencias de escape]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog11 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog11.c -- Algunas secuencias de escape */
+
+#include <stdio.h>
+
+int main( void )
+{
+  float salario;
+
+  printf( "Introduzca su sueldo mensual deseado: " );
+  printf( " $ _______\b\b\b\b\b\b\b" );
+
+  scanf( "%f", &salario );
+
+  printf( "\n\t$%.2f al mes es $%.2f al año.", salario, salario * 12.0 );
+  printf( "\rWow!\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog11 Prog11.c
+ [rrc@Pridd CClase]$ ./Prog11
+ Introduzca su sueldo mensual deseado:  $ 12000.00
+ 
+ Wow!    $12000.00 al mes es $144000.00 al año.
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
