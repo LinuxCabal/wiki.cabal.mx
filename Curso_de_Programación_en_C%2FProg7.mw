@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog7 | El int maximo del sistema 32-bits]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog7 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog7.c -- El int maximo del sistema 32-bits */
+
+#include <stdio.h>
+
+int main( void )
+{
+  /* Maximos de 32 bits */
+
+  int i = 2147483647;
+  unsigned int j = 4294967295;
+
+  /* Otro tipos
+   * long int LInt;
+   * long LInt2;
+   * short int SInt;
+   * short SInt2;
+   * unsigned UInt2;
+   * unsigned long ULongInt;
+   * unsigned short UShortInt;
+   * long long LongLongInt;
+   * char Letra;
+   * unsigned char ULetra;
+   */
+
+  printf( "%d %d %d\n", i, i+1, i+2 );
+  printf( "%u %u %u\n", j, j+1, j+2 );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -o Prog7 -Wall -O2 Prog7.c 
+ Prog7.c: In function ‘main’:
+ Prog7.c:8: warning: this decimal constant is unsigned only in ISO C90
+ [rrc@Pridd CClase]$ ./Prog7
+ 2147483647 -2147483648 -2147483647
+ 4294967295 0 1
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
