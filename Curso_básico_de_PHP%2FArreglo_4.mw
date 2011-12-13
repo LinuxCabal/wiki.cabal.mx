@@ -1,0 +1,121 @@
+__NOTOC__
+* [[:#Arreglo4 | Arreglo 4]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo4 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /*
+       * range()
+       * (PHP 3 >= 3.0.8, PHP 4, PHP 5)
+       * range --  Crea una matriz que contiene un rango de elementos 
+       * Descripción
+       * array range ( mixed bajo, mixed alto [, number paso] )
+       * 
+       * rango() devuelve una matriz de elementos desde bajo hasta        
+       * alto, ambos inclusive. Si bajo > alto, la secuencia será 
+       * del mayor al menor. Nuevo parámetro: El parámetro opcional
+       * paso fue añadido en 5.0.0. 
+       * Si un valor paso es dado, éste será usado como el incremento entre
+       * elementos en la secuencia. paso debería ser definido como un
+       * número positivo. Si no se especifica, paso tendrá un valor
+       * predeterminado de 1. 
+       * 
+       * Nota: Antes de PHP 4.1.0, range() sólo generaba matrices de
+       * enteros incrementales. El soporte para secuencias de caracteres y
+       * matrices en decremento fue añadido en 4.1.0. Los valores de
+       * secuencia de caracteres esán limitados a una longitud de uno. Si
+       * una longitud superior a uno es ingresada, solo se usa el primer
+       * caracter. 
+       * 
+       * Atención
+       * En versiones de PHP desde 4.1.0 hasta 4.3.2, range() considera
+       * las cadenas numéricas como cadenas y no enteros. En su lugar,
+       * ellas serán usadas para secuencias de caracteres.
+       * Por ejemplo, "4242" es tratado como "4". 
+       */
+
+      /*
+       * (PHP 3, PHP 4, PHP 5)
+       * list() --  Asigna variables como si fueran una matriz 
+       * Descripción
+       * void list ( mixed varname, mixed ... )
+       * 
+       * Como array(), esta no es realmente una función, sino una
+       * construcción del lenguaje. list() se usa para asignar una lista de
+       * variables en una sola operación. 
+       * Nota: list() solo funciona con matrices numéricas y asume que el
+       * índice numérico empieza en 0. 
+       * 
+       * Aviso
+       * list() asigna los valores comenzando por el parámetro más a la
+       * derecha. Si está usando variables independientes, no tiene que
+       * preocuparse acerca de esto. Pero si está usando matrices con
+       * índices usualmente se esperaría tener el orden de los índices en
+       * la matriz en la misma forma que se se escribió en la función
+       * list() de izquierda a derecha; lo cuál no ocurrirá, son asignados
+       * en orden inverso. 
+       */
+
+      echo( "<p class=\"SubTitleFont\">" );
+      echo( "  Puedes crear un arreglo con un función que regresa un arreglo
+             </p>
+             <p class=\"LargeTextFont\">" );
+
+      $MiAreglo = range( 1, 5 );
+
+      echo( "  \$MiArreglo{'0'}: {$MiArreglo{'0'}}<br />" );
+      echo( "  \$MiArreglo{'1'}: {$MiArreglo{'1'}}<br />" );
+      echo( "  \$MiArreglo{'2'}: {$MiArreglo{'2'}}<br />" );
+      echo( "  \$MiArreglo{'3'}: {$MiArreglo{'3'}}<br />" );
+      echo( "  \$MiArreglo{'4'}: {$MiArreglo{'4'}}
+             </p>
+             <p class=\"SubTitleFont\">
+               y puedes dereferenciar tu arreglo con list()
+             </p>" );
+
+      list( $Elemento1, $Elemento2, $OtroElemento ) = $MiArreglo;
+
+      echo( "<p class=\"LargeTextFont\">" );
+      echo( "  \$Elemento1: $Elemento1<br />" );
+      echo( "  \$Elemento2: $Elemento2<br />" );
+      echo( "  \$OtroElemento: $OtroElemento<br />" );
+      echo( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array4.php Ejecutar el código de Arreglo 4]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array4.phps Descargar el código de Arreglo 4]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
