@@ -1,0 +1,128 @@
+__NOTOC__
+* [[:#Arreglo8 | Arreglo 8]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo8 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /*
+       * (PHP 3, PHP 4, PHP 5)
+       * count -- Cuenta los elementos de una matriz o propiedades de un objeto 
+       * Descripción
+       * int count ( mixed var [, int mode] )
+       * 
+       * Devuelve el número de elementos en var, que típicamente es un array,
+       * porque cualquier otra cosa diferente de un objeto tendría sólo un
+       * elemento. 
+       * Para objetos, si tiene SPL, enlazarlo a count() implementando la
+       * interface Countable. La interface tiene exactamente un método,
+       * count(), el cual regresa el mismo valor que regresarí la función
+       * count(). 
+       * Si var no es una matriz o un objeto, que tenga implementado la
+       * interface Countable, se regresará 1. Hay una excepción, si var es
+       * NULL, se regresará 0. 
+       * Nota: El parámetro opcional mode está disponible desde PHP 4.2.0. 
+       * Si el parámetro opcional mode es iniciado a COUNT_RECURSIVE (o 1),
+       * count() contará recursivamente la matriz. Esto es útil particularmente
+       * para contar todos los elementos de una matriz multidimensional. El
+       * valor por defecto para mode es 0. count() no detecta recursión
+       * infinita. 
+       *
+       * Atención
+       * count() puede regresar 0 para una variable que no ha sido inicializada,
+       * pero también regresa 0 para una variable que ha sido inicializada con
+       * una matriz vacía. Use isset() para probar si la variable ha sido
+       * definida. 
+       */
+
+      /*
+       * (PHP 3, PHP 4, PHP 5)
+       * sizeof() -- Alias of count()
+       */
+
+      $MiArreglo = range( 1, 5 );
+
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      $OtroArreglo{'0'}{'0'} = 'Elemento 0, 0';
+      $OtroArreglo{'0'}{'Palabra'} = 'Elemento 0, Palabra';
+      $OtroArreglo{'0'}{'1'} = 'Elemento 0, 1';
+
+      echo( "<p class=\"SubTitleFont\">
+               Con count()
+             </p>
+             <p class=\"LargeTextFont\">" );
+      echo(   '$MiArreglo tiene '   . count( $MiArreglo )
+                                    . ' elemento(s)
+               <br />' );
+      echo(   '$Cornucopia tiene ' . count( $Cornucopia )
+                                   . ' elemento(s)
+               <br />' );
+      echo(   "\$Cornucopia{'Fruta'} tiene " . count( $Cornucopia{'Fruta'} ) 
+                                             . ' elemento(s)
+               <br />' );
+      echo(   '$OtroArreglo tiene ' . count( $OtroArreglo )
+                                    . ' elemento(s)
+               <br />' );
+      echo(   '$OtroArreglo{\'0\'} tiene ' .  count( $OtroArreglo{'0'} ) 
+                                          . ' elemento(s)
+             </p>' );
+      echo( "<p class=\"SubTitleFont\">
+               Con sizeof()
+             </p>
+             <p class=\"LargeTextFont\">" );
+      echo(   '$MiArreglo tiene '   . sizeof( $MiArreglo )
+                                    . ' elemento(s)
+               <br />' );
+      echo(   '$Cornucopia tiene ' . sizeof( $Cornucopia )
+                                   . ' elemento(s)
+               <br />' );
+      echo(   "\$Cornucopia{'Fruta'} tiene " . sizeof( $Cornucopia{'Fruta'} ) 
+                                             . ' elemento(s)
+               <br />' );
+      echo(   '$OtroArreglo tiene ' . sizeof( $OtroArreglo )
+                                    . ' elemento(s)
+               <br />' );
+      echo(   '$OtroArreglo{\'0\'} tiene ' . sizeof( $OtroArreglo{'0'} ) 
+                                           . ' elemento(s)
+             </p>" );
+      require_once( "incPie.php" );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array8.php Ejecutar el código de Arreglo 8]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array8.phps Descargar el código de Arreglo 8]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
