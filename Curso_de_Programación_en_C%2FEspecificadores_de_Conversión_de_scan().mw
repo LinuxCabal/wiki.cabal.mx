@@ -1,0 +1,48 @@
+__NOTOC__
+* [[:#Especificadores de Conversión de scanf()| Especificadores de Conversión de scanf()]]
+** [[:#Explicación | Explicación]]
+
+== Especificadores de Conversión de scanf()==
+
+<table cellspacing="12">
+  <tr style="text-align:center;">
+    <th>Especificador<br />de Conversión</th><th>Valor<br />Resultante</th>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%c</td><td>Interprete la entrada como un carácter</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%d</td><td>Interprete la entrada como un número entero decimal con signo</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%e, %f, %g, %a</td><td>Interprete la entrada como un número de punto flotante</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%E, %F, %G, %A</td><td>Interprete la entrada como un número de punto flotante</td>
+  </tr>
+  <tr style="text-align:center;">
+     <td>%i</td><td>Interprete la entrada como un número entero decimal con signo</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%o</td><td>Interprete la entrada como un número entero octal con signo</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%p</td><td>Interprete la entrada como una dirección (pointer)</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%s</td><td>Interprete la entrada como una cadena<br /> Entrada comienza con el primer carácter no espacio blanco<br /> e incluye todo hasta el siguiente carácter de espacio en blanco</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%u</td><td>Interpretar la entrada como un entero decimal sin signo</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%x, %X</td><td>Interpretar la entrada como un entero hexadecimal con signo</td>
+  </tr>
+</table>
+
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
