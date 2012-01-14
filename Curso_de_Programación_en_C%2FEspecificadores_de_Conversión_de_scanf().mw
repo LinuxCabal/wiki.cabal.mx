@@ -1,0 +1,48 @@
+__NOTOC__
+* [[:#Especificadores de Conversión de scanf()| Especificadores de Conversión de scanf()]]
+** [[:#Explicación | Explicación]]
+
+== Especificadores de Conversión de scanf()==
+
+<table cellspacing="12">
+  <tr style="text-align:center;">
+    <th>Especificador<br />de Conversión</th><th>Valor<br />Resultante</th>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%c</td><td>Interpretar la entrada como un char<td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%d</td><td>Interpretar la entrada como un signed int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%e, %f, %g, %a</td><td>Interpretar la entrada como un float</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%E, %F, %G, %A</td><td>Interpretar la entrada como un float</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%i</td><td>Interpretar la entrada como un signed int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%o</td><td>Interpretar la entrada como un signed octal int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%p</td><td>Interpretar la entrada como un pointer</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%s</td><td>Interpretar la entrada como un string<br />La entrada comienza con el primer espacio NO en blanco<br />e incluye todo hasta el siguiente espacio en blanco.</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%u</td><td>Interpretar la entrada como un unsigned int</td>
+  </tr>
+  <tr style="text-align:center;">
+    <td>%x, %X</td><td>Interpretar la entrada como un signed int hexadecimal</td>
+  </tr>
+</table>
+
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
