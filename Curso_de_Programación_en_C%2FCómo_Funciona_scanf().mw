@@ -1,0 +1,25 @@
+__NOTOC__
+* [[:#Cómo funciona scanf() | Cómo funciona scanf()]]
+
+== Cómo funciona scanf() ==
+
+Si usamos scanf() con el especificador de formato %d para leer un signed int, la función scanf() inicia a leer un caracter a la vez. El se salta sobre los primeros caracteres de espacio blanco como espacio, tabulador y línea nueva, hasta el punto que encuentra un caracter NO de espacio blanco. Le dijimos a esperar a un número entero, un '+' (más) o un '-' (menos), con el especificador  de formato %d o %i, y si el encuentra uno de los caracteres, el va guardarle y leer el siguiente caracter hasta el punto que el encuentra un caracter que no es un dígito. Cuando el tiene un caracter que no es un dígito, el sabe que el es al fin del número y el regresa el caracter non-dígito en el input buffer. Este significa que la siguiente vez que el programa lee el input buffer, el va iniciar con el caracter rechazado aquí. Finalmente, scanf() calcula el valor del dígito que leyó y lo asigna a la variable especificada.
+
+Si usamos un modificador de caracter de formato para limitar el ancho de la entrada con cualquier espesificador de formato, scanf() se termina a leer a la posición espicificada o al primer caracter de espacio blanco. Si el está buscando a un número, el termina al primer caracter non-numerico. Con floats y con doubles, el acepta el primer punto que el encuentra.  
+
+Si scanf() esta buscando a un número, y si el primer caracter que el encuentra es un caracter non-numerico y no de espacio blanco, el se quita y el regresa este caracter en el input buffer. El no asigna un valor a la variable especificada. La siguiente ves que el programa lee el input buffer, el va obtener el caracter rechazado. El estandar de ANSI C declara que scanf() termina a la primer falla.
+
+Usando scanf() con otros especificares de formato de números sirven de manera parecida, con el excepción que tal ves puede aceptar más caracteres como validos.
+
+If you use an %s specifier, any character other than whitespace is acceptable, so scanf() skips whitespace to the first non-whitespace character and then saves up non-whitespace characters until hitting whitespace again. This means that %s results in scanf() reading a single word—that is, a string with no whitespace in it. If you use a field width, scanf() stops at the end of the field or at the first whitespace. You can't use the field width to make scanf() read more than one word for one %s specifier. A final point: When scanf() places the string in the designated array, it adds the terminating '\0' to make the array contents a C string.
+
+If you use a %c specifier, all input characters are fair game. If the next input character is a space or a newline, a space or a newline is assigned to the indicated variable; whitespace is not skipped.
+
+Actually, scanf() is not the most commonly used input function in C. It is featured here because of its versatility (it can read all the different data types), but C has several other input functions, such as getchar() and gets(), that are better suited for specific tasks, such as reading single characters or reading strings containing spaces. We will cover some of these functions in Chapter 7, "C Control Statements: Branching and Jumps," Chapter 11, "Character Strings and String Functions," and Chapter 13, "File Input/Output." In the meantime, if you need an integer or decimal fraction or a character or a string, you can use scanf().
+Regular Characters in the Format String
+
+The scanf() function does enable you to place ordinary characters in the format string. Ordinary characters other than the space character must be matched exactly by the input string. For example, suppose you accidentally place a comma between two specifiers:
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
