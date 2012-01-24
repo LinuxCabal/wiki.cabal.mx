@@ -1,0 +1,77 @@
+__NOTOC__
+* [[:#SubStr_Replace | SubStr_Replace]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== SubStr_Replace ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+
+      /* substr_replace()
+       * (PHP 4, PHP 5)
+       * substr_replace -- Sustituye texto en una parte de una cadena
+       * Descripción
+       * string substr_replace ( mixed cadena, string cadena_sustituta,
+       * int comienzo [, int longitud] )
+       *
+       * substr_replace() sustituye la parte de cadena delimitada por los
+       * parámetros comienzo y (opcionalmente) longitud por la cadena dada en
+       * cadena_sustituta. Si cadena es una matriz, entonces el resultado
+       * también será una matriz. 
+       * Si comienzo es positivo, la sustitución comenzará en dicha posición
+       * dentro de la cadena. 
+       * Si comienzo es negativo, la sustitución comenzará en dicha posición
+       * pero contando desde el final de cadena. 
+       * Si se especifica el largo y es positivo, representa el largo de la
+       * porción de cadena a sustituir. Si es negativo, representa el número de
+       * caracteres desde el final de cadena en los que se deja de sustituir.
+       * Si no se especifica, valdrá por defecto strlen(cadena); es decir, que
+       * acabará la sustitución al final de cadena.
+       */
+
+      $NumCuenta = "mz01xyz";
+      $NumCuenta = substr_replace( $NumCuenta, "02AñÁbé", 2, 2 );
+      print( "<p class=\"ŚubTitleFont\">
+                Usando substr_replace()
+              </p>
+              <p class=\"LargeTextFont\">
+                Tu NumCuenta nueva es $NumCuenta<br />
+              </p>" );
+    require_once( "incPie.php" );
+  ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Substr_replace.php Ejecutar el código de SubStr_Replace]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Substr_replace.phps Descargar el código de SubStr_Replace]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
