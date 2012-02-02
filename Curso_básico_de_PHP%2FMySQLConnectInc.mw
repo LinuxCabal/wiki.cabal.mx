@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#MySQLConnectInc | MySQLConnectInc]]
+** [[:#Explicación | Explicación]]
+** [[:#Descargarlo | Descargarlo]]
+
+== MySQLConnectInc ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+   <?php
+      echo( "<p class=\"LargeTextFont\">" );
+      if( $conn = mysql_connect( "localhost", "clase", "PassWord" ) )
+        echo( "\$conn = $conn
+               <br />" );
+      else
+      {
+        echo( "No puede conectarse
+             </p>" );
+        require_once( "incPie.php" );
+        exit( 1 );
+      }
+
+      if( mysql_select_db( "MyTest1", $conn ) )
+        echo( "mysql_select_db() sirvió
+               <br />" );
+      else
+      {
+        echo( "mysql_select_db() NO sirvió
+             </p>" );
+        mysql_close( $conn );
+
+        require_once( "incPie.php" );
+        exit( 1 );
+      }
+      echo( "</p>" );
+    ?>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/MySQLConnect.inc.txt Descargar el código de MySQLConnect.inc]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
