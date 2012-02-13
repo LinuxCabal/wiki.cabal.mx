@@ -1,0 +1,79 @@
+__NOTOC__
+* [[:#S26.sh | S26.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S26.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+echo "Con -="
+X=4
+while [ "$X" -gt "0" ]
+  do
+    echo $X
+    ((X-=1))
+done
+echo
+
+echo "Con --"
+X=4
+while [ "$X" -gt "0" ]
+  do
+    echo $X
+    ((X--))
+done
+echo
+
+echo "Con ++"
+X=0
+while [ "$X" -lt "4" ]
+  do
+    echo $X
+    ((X++))
+done
+echo
+
+echo "Con +="
+X=0
+while [ "$X" -lt "4" ]
+  do
+    echo $X
+    ((X+=1))
+done
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd BashClase]$ ./S26.sh 
+ Con -=
+ 4
+ 3
+ 2
+ 1
+ 
+ Con --
+ 4
+ 3
+ 2
+ 1
+ 
+ Con ++
+ 0
+ 1
+ 2
+ 3
+ 
+ Con +=
+ 0
+ 1
+ 2
+ 3
+ 
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
