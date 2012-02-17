@@ -1,0 +1,117 @@
+__NOTOC__
+* [[:#Prog38 | Operadores Comparación]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog38 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  printf( "Operadores de Comparación\n\n" ); 
+
+  int Examen = 4;
+
+  if( Examen == 4 )
+    printf( "Examen == 4 por true\n" );
+  else
+    printf( "Examen != 4 por false\n" );
+
+  if( Examen == '4' )
+    printf( "Examen == \'4\'por true\n\n" );
+  else
+    printf( "Examen != \'4\' por false\n\n" );
+
+  if( Examen != 4 )
+    printf( "Examen != 4 por true\n" );
+  else
+    printf( "Examen == %i por false\n", Examen );
+
+  if( Examen != '4' )
+    printf( "Examen != \'4\' por true\n\n" );
+  else
+    printf( "Examen == %i por false\n\n", Examen );
+
+  if( Examen > 4 )
+    printf( "Examen > 4 Por True\n" );
+  else
+    printf( "Examen NO ES > 4 por false\n" );
+
+  if( Examen > '4' )
+    printf( "Examen > \'4\' Por True\n\n" );
+  else
+    printf( "Examen NO ES > \'4\' por false\n\n" );
+
+  if( Examen < 4 )
+    printf( "Examen < 4 Por True\n" );
+  else
+    printf( "Examen NO ES < 4 por false\n" );
+
+  if( Examen < '4' )
+    printf( "Examen < \'4\' Por True\n\n" );
+  else
+    printf( "Examen NO ES < \'4\' por false\n\n" );
+
+  if( Examen >= 4 )
+    printf( "Examen >= 4 Por True\n" );
+  else
+    printf( "Examen NO ES >= 4 por false\n" );
+
+  if( Examen >= '4' )
+    printf( "Examen >= \'4\' Por True\n\n" );
+  else
+    printf( "Examen NO ES >= \'4\' por false\n\n" );
+
+  if( Examen <= 4 )
+    printf( "Examen <= 4 Por True\n" );
+  else
+    printf( "Examen NO ES <= 4 por false\n" );
+
+  if( Examen <= '4' )
+    printf( "Examen <= \'4\' Por True\n\n" );
+  else
+    printf( "Examen NO ES <= \'4\' por false\n\n" );
+
+  printf( "El número 4 = %i pero el numeral \'4\' = %i\n\n", 4, '4' );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog38 Prog38.c 
+ [rrc@Pridd CClase]$ ./Prog38
+
+ Operadores de Comparación
+ 
+ Examen == 4 por true
+ Examen != '4' por false
+ 
+ Examen == 4 por false
+ Examen != '4' por true
+ 
+ Examen NO ES > 4 por false
+ Examen NO ES > '4' por false
+ 
+ Examen NO ES < 4 por false
+ Examen < '4' Por True
+ 
+ Examen >= 4 Por True
+ Examen NO ES >= '4' por false
+ 
+ Examen <= 4 Por True
+ Examen <= '4' Por True
+ 
+ El número 4 = 4 pero el numeral '4' = 52
+ 
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
