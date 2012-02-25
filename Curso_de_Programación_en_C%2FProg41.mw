@@ -1,0 +1,69 @@
+__NOTOC__
+* [[:#Prog41 | Orden de Precedencia de los Operadores]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog41 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  puts( "\n\tOrden de Precedencia de operadores\n" );
+  puts( "\t()");
+  puts( "\t++, --, sizeof, (cast)" );
+  puts( "\t/, *, %" );
+  puts( "\t+, -" );
+  puts( "\t<, <=, >=, >" );
+  puts( "\t==, !=" );
+  puts( "\t&&" );
+  puts( "\t||" );
+  puts( "\t+=, -=, /=, *=, %=" );
+  puts( "\t=\n" );
+
+  printf( "\t4 + 5 * 2 = %d\n", 4 + 5 * 2 );
+
+  printf( "\t( 4 + 5 ) * 2 = %d\n\n", ( 4 + 5 ) * 2 );
+
+  printf( "\t1 && 1 || 0 && 0 = %d\n", 1 && 1 || 0 && 0 );
+
+  printf( "\t1 && ( 1 || 0 ) && 0 = %d\n\n", 1 && ( 1 || 0 ) && 0 );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog41 Prog41.c
+ Prog41.c: In function ‘main’:
+ Prog41.c:23: warning: suggest parentheses around ‘&&’ within ‘||’
+ [rrc@Pridd CClase]$ ./Prog41
+ 
+        Orden de Precedencia de operadores
+ 
+        ()
+        ++, --, sizeof, (cast)
+        /, *, %
+        +, -
+        <, <=, >=, >
+        ==, !=
+        &&
+        ||
+        +=, -=, /=, *=, %=
+        =
+ 
+        4 + 5 * 2 = 14
+        ( 4 + 5 ) * 2 = 18
+ 
+        1 && 1 || 0 && 0 = 1
+        1 && ( 1 || 0 ) && 0 = 0
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
