@@ -1,0 +1,50 @@
+__NOTOC__
+* [[:#Prog40 | Operador de cast]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog40 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  float PI = 3.141592;
+
+  char Siete = '7';
+  puts( "\n\tEl operador cast\n" );
+
+  printf( "\tPI como intero sin cast = %i\n", PI );
+  printf( "\tPI como intero con cast = %i\n", (int)PI );
+
+  printf( "\tSiete como char = %c\n", Siete );
+  printf( "\tSiete como int con cast = %i\n", (int)Siete );
+  printf( "\tSiete como float con cast = %f\n", (float)Siete );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog40 Prog40.c
+ Prog40.c: In function ‘main’:
+ Prog40.c:12: warning: format ‘%i’ expects type ‘int’, but argument 2 has type ‘double’
+ [rrc@Pridd CClase]$ ./Prog40 
+ 
+        El operador cast
+ 
+        PI como intero sin cast = 0
+        PI como intero con cast = 3
+        Siete como char = 7
+        Siete como int con cast = 55
+        Siete como float con cast = 55.000000
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
