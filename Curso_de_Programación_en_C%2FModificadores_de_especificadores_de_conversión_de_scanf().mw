@@ -1,0 +1,33 @@
+__NOTOC__
+* [[:#Modificadores de especificadores de conversión de scanf() | Modificadores de especificadores de conversión de scanf()]]
+** [[:#Explicación | Explicación]]
+
+== Modificadores de especificadores de conversión de scanf() ==
+
+<table cellspacing="20">
+  <tr>
+    <th>Modificador de<br />Conversión</th><th>Significa</th>
+  </tr>
+  <tr>
+    <td style="text-align:center;">*</td>
+    <td>Suprimir la asignación.<br />Ejemplo: "%*d"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">Digito(s)</td><td>Ancho máximo de campo.<br />La entrada se detiene cuando la anchura máxima del campo es alcanzado<br />o cuando el primer espacio en blanco se encuentra, lo que ocurra primero.<br />Ejemplo: "%10s"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">hh</td><td>Lee un entero como signed char o unsigned char.<br />Ejemplo: "%hhd" o "%hhu"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">ll</td><td>Lee un entero como long long o unsigned long long.<br />Ejemplo: "%lld" o "%llu"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">h, l o L</td><td>"%hd" y "%hi" Indican que el valor se almacenará en un short int<br /> "%ho", "%hx" y "%hu" indican que el valor se almacenará en un unsigned short int<br />"%ld" y "%li" indican que el valor se almacenará en un long.<br />"%lo", "%lx", y "%lu" indican que el valor se almacenará en un unsigned long.<br />"%le", "%lf" y "%lg" indican que se almacenará el valor de tipo double.<br />El uso de L en lugar de l con e, f y g indica que se almacenará el valor de tipo long double.<br />En ausencia de estos modificadores, d, i, o y x indican tipo int y e, f y g indican tipo float.</td>
+  </tr>
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
