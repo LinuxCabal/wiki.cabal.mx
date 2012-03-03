@@ -1,0 +1,71 @@
+__NOTOC__
+* [[:#Prog50 | Uso de funciones para probar caracteres]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog50 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <ctype.h>
+#include <stdbool.h>
+
+#define STOP '|'
+
+int main( void )
+{
+  char c,
+       prev;
+
+  long n_chars = 0L;
+
+  int n_lineas = 0,
+      n_palabras = 0,
+      p_lineas = 0;
+
+  bool inpalabra = false;
+
+  printf( "Introduzca el texto para analizar (| para terminar):\n" );
+  prev = '\n';            // Para conocer líneas completos
+  while( ( c = getchar() ) != STOP )
+  {
+    n_chars++;
+    if( c == '\n' )
+      n_lineas++;
+    if( !isspace(c) && !inpalabra )
+    {
+      inpalabra = true;
+      n_palabras++;
+    }
+    if( isspace( c ) && inpalabra )
+      inpalabra = false;
+    prev = c;
+  }
+
+  if( prev != '\n' )
+    p_lineas = 1;
+  printf( "characters = %ld, palabras = %d, líneas = %d, ",
+           n_chars, n_palabras, n_lineas);
+  printf( "líneas parciales = %d\n", p_lineas );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog50 Prog50.c 
+ [rrc@Pridd CClase]$ ./Prog50
+ Introduzca el texto para analizar (| para terminar):
+ LinuxCabal fue fundado en San Francisco, California en 1996,
+ y desde 2005 reside en Guadalajara
+ |
+ characters = 98, palabras = 15, líneas = 2, líneas parciales = 0
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
