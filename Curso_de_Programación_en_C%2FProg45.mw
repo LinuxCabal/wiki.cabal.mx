@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog45 | El operador for]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog45 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+int main( void )
+{
+  const int NUMERO = 22;
+  int count;
+
+  for( count = 1; count <= NUMERO; count++ )
+    printf( "El valor de count es: %i\n", count );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog45 Prog45.c
+ [rrc@Pridd CClase]$ ./Prog45
+ El valor de count es: 1
+ El valor de count es: 2
+ El valor de count es: 3
+ El valor de count es: 4
+ El valor de count es: 5
+ El valor de count es: 6
+ El valor de count es: 7
+ El valor de count es: 8
+ El valor de count es: 9
+ El valor de count es: 10
+ El valor de count es: 11
+ El valor de count es: 12
+ El valor de count es: 13
+ El valor de count es: 14
+ El valor de count es: 15
+ El valor de count es: 16
+ El valor de count es: 17
+ El valor de count es: 18
+ El valor de count es: 19
+ El valor de count es: 20
+ El valor de count es: 21
+ El valor de count es: 22
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
