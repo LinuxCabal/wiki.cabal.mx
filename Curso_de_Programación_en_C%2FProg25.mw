@@ -1,0 +1,52 @@
+__NOTOC__
+* [[:#Prog25 | Prog25]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog25 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog25.c - Ancho y presición variable */
+
+#include <stdio.h>
+
+int main( void )
+{
+  unsigned ancho,
+           precision;
+
+  int      numero = 256;
+
+  double   peso = 242.5;
+
+  printf( "Cual es el ancho?\n" );
+  scanf( "%d", &ancho );
+  printf( "El número es :%*d:\n", ancho, numero );
+  printf( "Ingresa un ancho y un precisión:\n" );
+  scanf( "%d %d", &ancho, &precision );
+  printf( "Peso = %*.*f\n", ancho, precision, peso );
+  printf( "Listo!\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog25 Prog25.c
+ [rrc@Pridd CClase]$ ./Prog25
+ Cual es el ancho?
+ 10
+ El número es :       256:
+ Ingresa un ancho y un precisión:
+ 5 5
+ Peso = 242.50000
+ Listo!
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
