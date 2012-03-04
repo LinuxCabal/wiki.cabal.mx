@@ -1,0 +1,72 @@
+__NOTOC__
+* [[:#Prog37 | Operadores de PRE y POST Decremento]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog37 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+
+  printf( "Operadores de Pre y Post Decremento\n" );
+
+
+  int x = 4;
+  printf ( "x = %i\n", x );
+
+  x = x - 1;
+  printf ( "x = %i\n", x );
+ 
+
+  x = 4;
+  printf ( "x = %i\n", x );
+
+  x -= 1;
+  printf ( "x = %i\n\n", x );
+
+  x = 4;
+  printf ( "x = %i\n", x );
+  printf ( "x-- = %i\n", x-- );
+  printf ( "x después del operación = %i\n\n", x );
+
+  x = 4;
+  printf ( "x = %i\n", x );
+  printf ( "--x = %i\n", --x );
+  printf ( "x después del operación = %i\n\n", x );
+
+  printf( "Listo.\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog37 Prog37.c
+ [rrc@Pridd CClase]$ ./Prog37
+ Operadores de Pre y Post Decremento
+ x = 4
+ x = 3
+ x = 4
+ x = 3
+ 
+ x = 4
+ x-- = 4
+ x después del operación = 3
+ 
+ x = 4
+ --x = 3
+ x después del operación = 3
+ 
+ Listo.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
