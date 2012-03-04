@@ -1,0 +1,51 @@
+__NOTOC__
+* [[:#Prog32 | Operador de Menos Igual]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog32 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+
+  printf( "Operador de Menos Igual\n" );
+
+  int x = 4;
+  printf ( "x = %i\n", x );
+
+  x = x - 4;
+  printf ( "x = %i\n", x );
+ 
+
+  x = 4;
+  printf ( "x = %i\n", x );
+
+  x -= 4;
+  printf ( "x = %i\n", x );
+
+  printf( "Listo.\n" );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog32 Prog32.c
+ [rrc@Pridd CClase]$ ./Prog32
+ Operador de Menos Igual
+ x = 4
+ x = 0
+ x = 4
+ x = 0
+ Listo.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
