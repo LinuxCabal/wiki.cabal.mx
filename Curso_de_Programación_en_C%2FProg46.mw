@@ -1,0 +1,86 @@
+__NOTOC__
+* [[:#Prog46 | Más del operador for]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog46 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  char ch;
+
+  for ( ch = 'A'; ch <= 'Z'; ch++ )
+    printf( "El valor ASCII para \'%c\' es %d decimal y %x hexadecimal\n"
+            "                    \'%c\' es %d decimal y %x hexadecimal.\n",
+                                    ch, ch, ch, ch + 32, ch + 32, ch + 32 );
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog46 Prog46.c 
+ [rrc@Pridd CClase]$ ./Prog46
+ El valor ASCII para 'A' es 65 decimal y 41 hexadecimal
+                     'a' es 97 decimal y 61 hexadecimal.
+ El valor ASCII para 'B' es 66 decimal y 42 hexadecimal
+                     'b' es 98 decimal y 62 hexadecimal.
+ El valor ASCII para 'C' es 67 decimal y 43 hexadecimal
+                     'c' es 99 decimal y 63 hexadecimal.
+ El valor ASCII para 'D' es 68 decimal y 44 hexadecimal
+                     'd' es 100 decimal y 64 hexadecimal.
+ El valor ASCII para 'E' es 69 decimal y 45 hexadecimal
+                     'e' es 101 decimal y 65 hexadecimal.
+ El valor ASCII para 'F' es 70 decimal y 46 hexadecimal
+                     'f' es 102 decimal y 66 hexadecimal.
+ El valor ASCII para 'G' es 71 decimal y 47 hexadecimal
+                     'g' es 103 decimal y 67 hexadecimal. 
+ El valor ASCII para 'H' es 72 decimal y 48 hexadecimal
+                     'h' es 104 decimal y 68 hexadecimal.
+ El valor ASCII para 'I' es 73 decimal y 49 hexadecimal
+                     'i' es 105 decimal y 69 hexadecimal.
+ El valor ASCII para 'J' es 74 decimal y 4a hexadecimal
+                     'j' es 106 decimal y 6a hexadecimal.
+ El valor ASCII para 'K' es 75 decimal y 4b hexadecimal
+                     'k' es 107 decimal y 6b hexadecimal.
+ El valor ASCII para 'L' es 76 decimal y 4c hexadecimal
+                     'l' es 108 decimal y 6c hexadecimal.
+ El valor ASCII para 'M' es 77 decimal y 4d hexadecimal
+                     'm' es 109 decimal y 6d hexadecimal.
+ El valor ASCII para 'N' es 78 decimal y 4e hexadecimal
+                     'n' es 110 decimal y 6e hexadecimal.
+ El valor ASCII para 'O' es 79 decimal y 4f hexadecimal
+                     'o' es 111 decimal y 6f hexadecimal.
+ El valor ASCII para 'P' es 80 decimal y 50 hexadecimal
+                     'p' es 112 decimal y 70 hexadecimal.
+ El valor ASCII para 'Q' es 81 decimal y 51 hexadecimal
+                     'q' es 113 decimal y 71 hexadecimal.
+ El valor ASCII para 'R' es 82 decimal y 52 hexadecimal
+                     'r' es 114 decimal y 72 hexadecimal.
+ El valor ASCII para 'S' es 83 decimal y 53 hexadecimal
+                     's' es 115 decimal y 73 hexadecimal.
+ El valor ASCII para 'T' es 84 decimal y 54 hexadecimal
+                     't' es 116 decimal y 74 hexadecimal.
+ El valor ASCII para 'U' es 85 decimal y 55 hexadecimal
+                     'u' es 117 decimal y 75 hexadecimal.
+ El valor ASCII para 'V' es 86 decimal y 56 hexadecimal
+                     'v' es 118 decimal y 76 hexadecimal.
+ El valor ASCII para 'W' es 87 decimal y 57 hexadecimal
+                     'w' es 119 decimal y 77 hexadecimal.
+ El valor ASCII para 'X' es 88 decimal y 58 hexadecimal
+                     'x' es 120 decimal y 78 hexadecimal.
+ El valor ASCII para 'Y' es 89 decimal y 59 hexadecimal
+                     'y' es 121 decimal y 79 hexadecimal.
+ El valor ASCII para 'Z' es 90 decimal y 5a hexadecimal
+                     'z' es 122 decimal y 7a hexadecimal.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
