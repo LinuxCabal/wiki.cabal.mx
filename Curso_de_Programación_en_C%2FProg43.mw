@@ -1,0 +1,58 @@
+__NOTOC__
+* [[:#Prog43 | El Operador Modulo]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog43 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define SEC_PER_MIN 60
+
+int main( void )
+{
+  int sec,
+      min,
+      restante;
+
+  puts( "¡Convertir segundos en minutos y segundos!\n" );
+  printf( "Introduzca el número de segundos (<=0 para terminar): " );
+  scanf( "%d", &sec );
+
+  while( sec > 0 )
+  {
+    min = sec / SEC_PER_MIN;
+    restante = sec % SEC_PER_MIN; // número de segundos restante
+    printf( "%d segundos es %d minutos y %d segundos.\n",
+                                           sec, min, restante );
+    printf( "Introduzca otro número de segundos (<=0 to quit): " );
+    scanf( "%d", &sec );
+  }
+
+  printf( "¡Listo!\n" );
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog43 Prog43.c
+ [rrc@Pridd CClase]$ ./Prog43
+ ¡Convertir segundos en minutos y segundos!
+ 
+ Introduzca el número de segundos (<=0 para terminar): 69
+ 69 segundos es 1 minutos y 9 segundos.
+ Introduzca otro número de segundos (<=0 to quit): 97
+ 97 segundos es 1 minutos y 37 segundos.
+ Introduzca otro número de segundos (<=0 to quit): 466
+ 466 segundos es 7 minutos y 46 segundos.
+ Introduzca otro número de segundos (<=0 to quit): 0
+ ¡Listo!
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
