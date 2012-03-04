@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Prog14 | El operador const]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog14 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog14.c -- El operador const */
+
+#include <stdio.h>
+
+int main( void )
+{
+  int   costo    = 3100,
+        numero   = 5;
+
+  const float PI = 3.141593;
+  float espresso = 13.5;
+
+  printf( "Los %d CEOs bebieron %f tasas de espresso.\n",
+                                         numero, espresso);
+  printf( "El valor de PI es %f.\n", PI );
+  printf( "%c%d\n", '$', 2 * costo );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog14 Prog14.c
+ [rrc@Pridd CClase]$ ./Prog14
+ Los 5 CEOs bebieron 13.500000 tasas de espresso.
+ El valor de PI es 3.141593.
+ $6200
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
