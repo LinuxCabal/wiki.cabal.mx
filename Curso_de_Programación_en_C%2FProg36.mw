@@ -1,0 +1,72 @@
+__NOTOC__
+* [[:#Prog36 | Operadores de PRE y POST Incremento]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog36 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+
+  printf( "Operadores de Pre y Post Incremento\n" );
+
+
+  int x = 4;
+  printf ( "x = %i\n", x );
+
+  x = x + 1;
+  printf ( "x = %i\n", x );
+ 
+
+  x = 4;
+  printf ( "x = %i\n", x );
+
+  x += 1;
+  printf ( "x = %i\n\n", x );
+
+  x = 4;
+  printf ( "x = %i\n", x );
+  printf ( "x++ = %i\n", x++ );
+  printf ( "x después del operación = %i\n\n", x );
+
+  x = 4;
+  printf ( "x = %i\n", x );
+  printf ( "++x = %i\n", ++x );
+  printf ( "x después del operación = %i\n\n", x );
+
+  printf( "Listo.\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog36 Prog36.c
+ [rrc@Pridd CClase]$ ./Prog36
+ Operadores de Pre y Post Incremento
+ x = 4
+ x = 5
+ x = 4
+ x = 5
+ 
+ x = 4
+ x++ = 4
+ x después del operación = 5
+ 
+ x = 4
+ ++x = 5
+ x después del operación = 5
+ 
+ Listo.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
