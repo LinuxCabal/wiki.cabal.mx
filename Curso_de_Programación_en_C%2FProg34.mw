@@ -1,0 +1,51 @@
+__NOTOC__
+* [[:#Prog34 | Operador de División Igual]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog34 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+
+  printf( "Operador de División Igual\n" );
+
+  int x = 4;
+  printf ( "x = %i\n", x );
+
+  x = x / 4;
+  printf ( "x = %i\n", x );
+ 
+
+  x = 4;
+  printf ( "x = %i\n", x );
+
+  x /= 4;
+  printf ( "x = %i\n", x );
+
+  printf( "Listo.\n" );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog34 Prog34.c
+ [rrc@Pridd CClase]$ ./Prog34
+ Operador de División Igual
+ x = 4
+ x = 1
+ x = 4
+ x = 1
+ Listo.
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
