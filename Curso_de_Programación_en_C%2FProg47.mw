@@ -1,0 +1,91 @@
+__NOTOC__
+* [[:#Prog47 | For con srand() y rand()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog47 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int main( void )
+{
+
+  int MiNum,
+      num    = 0;
+
+  srand( time( NULL ) );
+  MiNum  = rand() % 4000;
+
+  for( puts( "En que número estoy pensando? " ); num != MiNum ;  )
+  {
+    scanf( "%d", &num );
+    if( num > MiNum )
+    {
+      puts( "Demasiado Grande" );
+      puts( "En que número estoy pensando? " );
+    }
+    else if ( num < MiNum )
+    {
+      puts( "Demasiado pequeña" );
+      puts( "En que número estoy pensando? " );
+    }
+    else
+      puts( "Si, Es el\n" );
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ ./Prog47
+ En que número estoy pensando? 
+ 2700
+ Demasiado pequeña
+ En que número estoy pensando? 
+ 3500
+ Demasiado Grande
+ En que número estoy pensando? 
+ 3000
+ Demasiado pequeña
+ En que número estoy pensando? 
+ 3250
+ Demasiado Grande
+ En que número estoy pensando? 
+ 3125
+ Demasiado pequeña
+ En que número estoy pensando? 
+ 3200
+ Demasiado Grande
+ En que número estoy pensando? 
+ 3150
+ Demasiado pequeña
+ En que número estoy pensando? 
+ 3175
+ Demasiado Grande
+ En que número estoy pensando? 
+ 3160
+ Demasiado Grande
+ En que número estoy pensando? 
+ 3155
+ Demasiado Grande
+ En que número estoy pensando? 
+ 3152
+ Demasiado pequeña
+ En que número estoy pensando? 
+ 3153
+ Demasiado pequeña
+ En que número estoy pensando? 
+ 3154
+ Si, Es el
+  
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
