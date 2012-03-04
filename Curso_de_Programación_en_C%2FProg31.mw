@@ -1,0 +1,53 @@
+__NOTOC__
+* [[:#Prog31 | Operador de Más Igual]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog31 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+
+  printf( "Operador de Más Igual\n" );
+
+  int x = 4;
+  printf ( "x = %i\n", x );
+
+  x = x + 4;
+  printf ( "x = %i\n", x );
+ 
+
+  x = 4;
+  printf ( "x = %i\n", x );
+
+  x += 4;
+  printf ( "x = %i\n", x );
+
+  printf( "Listo.\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog31 Prog31.c
+ [rrc@Pridd CClase]$ ./Prog31
+ Operador de Más Igual
+ x = 4
+ x = 8
+ x = 4
+ x = 8
+ Listo.
+ 
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
