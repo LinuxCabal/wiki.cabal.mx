@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Prog23 | Prog23]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog23 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+// Prog23.c -- cuando usar & en scanf()
+
+#include <stdio.h>
+
+int main( void )
+{
+  int edad;
+  float valor;
+  char mascota[30];
+
+  printf( "Escribe su edad, valor y mascota favorita.\n" );
+  scanf( "%d %f", &edad, &valor ); // use the & here
+  scanf( "%s", mascota );              // no & for char array
+  printf( "su edad: %d\nsu valor: $%.2f\nsu mascota favorita: %s\n",
+                                              edad, valor, mascota );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog23 Prog23.c
+ [rrc@Pridd CClase]$ ./Prog23
+ Escribe su edad, valor y mascota favorita.
+ 60 -14000 habalí
+ su edad: 60
+ su valor: $-14000.00
+ su mascota favorita: habalí
+ [rrc@Pridd CClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
