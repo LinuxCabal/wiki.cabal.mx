@@ -1,0 +1,50 @@
+__NOTOC__
+* [[:#Prog44 | Tipo _Bool]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog44 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  long num;
+  long sum = 0L;
+  _Bool ingreso_es_valido;
+
+  printf( "Introduzca un entero para agregar: " );
+  printf( "(q para terminar ): " );
+  ingreso_es_valido = ( scanf( "%ld", &num ) == 1 );
+
+  while( ingreso_es_valido )
+  {
+    sum = sum + num;
+    printf( "Introduzca otro entero para agregar, (q para terminar): " );
+    ingreso_es_valido = ( scanf( "%ld", &num ) == 1 );
+  }
+  printf( "Los enteros suman a %ld.\n", sum );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog44 Prog44.c
+ [rrc@Pridd CClase]$ ./Prog44
+ Introduzca un entero para agregar: (q para terminar): 10
+ Introduzca otro entero para agregar, (q para terminar): 20
+ Introduzca otro entero para agregar, (q para terminar): 30
+ Introduzca otro entero para agregar, (q para terminar): 40
+ Introduzca otro entero para agregar, (q para terminar): q
+ Los enteros suman a 100.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
