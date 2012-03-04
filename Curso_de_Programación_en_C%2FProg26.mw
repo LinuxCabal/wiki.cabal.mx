@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#Prog26 | Prog26]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog26 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog26.c -- convertir el número de zapato a pulgadas */
+
+#include <stdio.h>
+
+#define ADJUSTAR 7.64
+#define ESCALA   0.325
+
+int main( void )
+{
+  double zapato,
+         pie;
+
+  zapato = 9.0;
+  pie = ESCALA * zapato + ADJUSTAR;
+  printf( "Tamaño del zapapto de hombres    pie    largo\n" );
+  printf( "%36.1f %8.2f pulgadas\n", zapato, pie );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog26 Prog26.c
+ [rrc@Pridd CClase]$ ./Prog26
+ Tamaño del zapapto de hombres    pie    largo
+                                  9.0    10.56 pulgadas
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
