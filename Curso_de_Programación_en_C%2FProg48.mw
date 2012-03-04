@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Prog48 | Más if con getchar() y putchar()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog48 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#define SPACE ' '
+
+int main( void )
+{
+  char ch;
+
+  while( ( ch = getchar() ) != '\n' ) 
+  {
+    if ( ch == SPACE )
+      putchar( ch );
+    else if( ch >= 'A' && ch <= 'Z' ) 
+      putchar( ch + 32 );
+    else if( ch >= 'a' && ch <= 'z' )
+      putchar( ch - 32 );
+    else
+      putchar( ch );
+  }
+  putchar( ch );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog48 Prog48.c 
+ [rrc@Pridd CClase]$ ./Prog48
+ AbCd 1234 !"#
+ aBcD 1234 !"#
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
