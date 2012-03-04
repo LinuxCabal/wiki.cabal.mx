@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#Prog42 | El Operadore sizeof]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog42 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+int main( void )
+{
+  int n = 0;
+  size_t TamanoDeInt;
+
+  puts( "\n\tEl operador sizeof()\n" );
+  TamanoDeInt = sizeof(int);
+  printf( "\tn = %d, n tiene %zd bytes; Todos los ints tienen %zd bytes.\n\n",
+                                                   n, sizeof n, TamanoDeInt );
+
+    return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog42 Prog42.c
+ [rrc@Pridd CClase]$ ./Prog42
+ 
+        El operador sizeof()
+ 
+        n = 0, n tiene 4 bytes; Todos los ints tienen 4 bytes.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
