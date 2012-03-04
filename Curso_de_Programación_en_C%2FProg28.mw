@@ -1,0 +1,41 @@
+__NOTOC__
+* [[:#Prog28 | Prog28]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog28 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog28.c -- El operador de asignación */
+
+#include <stdio.h>
+
+int main( void )
+{
+  int Juan,
+      Carla,
+      Tomas;
+
+  Juan = Carla = Tomas = 68;
+
+  printf( "                  Juan   Carla    Tomas\n" );
+  printf( "Resultados de la competición: %4d %8d %8d\n", Juan, Carla, Tomas );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -O2 -Wall -o Prog28 Prog28.c
+ [rrc@Pridd CClase]$ ./Prog28
+                                Juan     Carla   Tomas
+ Resultados de la competición:    68        68     68
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
