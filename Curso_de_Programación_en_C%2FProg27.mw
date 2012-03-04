@@ -1,0 +1,66 @@
+__NOTOC__
+* [[:#Prog27 | Prog27]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog27 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog27.c -- calcular medidas de varios tamaños de zapatos */
+
+#include <stdio.h>
+
+#define ADJUSTAR 7.64
+#define ESCALA 0.325
+
+int main( void )
+{
+  double zapato,
+         pie;
+
+  printf( "Tamaño del zapapto de hombres    pie         largo\n" );
+  zapato = 3.0;
+
+  while( zapato < 18.5 )      /* inicia el while loop */
+  {                           /* inicia de bloque de codigo */
+    pie = ESCALA * zapato + ADJUSTAR;
+    printf( "%36.1f %8.2f pulgadas\n", zapato, pie );
+    zapato = zapato + 1.0;
+  }                        /* fin de bloque de código    */
+
+  printf( "listo.\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog27 Prog27.c
+ [rrc@Pridd CClase]$ ./Prog27
+ Tamaño del zapapto de hombres    pie         largo
+                                  3.0     8.62 pulgadas
+                                  4.0     8.94 pulgadas
+                                  5.0     9.27 pulgadas
+                                  6.0     9.59 pulgadas
+                                  7.0     9.91 pulgadas
+                                  8.0    10.24 pulgadas
+                                  9.0    10.56 pulgadas
+                                 10.0    10.89 pulgadas
+                                 11.0    11.21 pulgadas
+                                 12.0    11.54 pulgadas
+                                 13.0    11.87 pulgadas
+                                 14.0    12.19 pulgadas
+                                 15.0    12.52 pulgadas
+                                 16.0    12.84 pulgadas
+                                 17.0    13.16 pulgadas
+                                 18.0    13.49 pulgadas
+ listo.
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
