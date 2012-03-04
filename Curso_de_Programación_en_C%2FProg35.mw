@@ -1,0 +1,51 @@
+__NOTOC__
+* [[:#Prog35 | Operador de Modulo Igual]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog35 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+
+  printf( "Operador de Modulo Igual\n" );
+
+  int x = 11;
+  printf ( "x = %i\n", x );
+
+  x = x % 3;
+  printf ( "x = %i\n", x );
+ 
+
+  x = 11;
+  printf ( "x = %i\n", x );
+
+  x %= 3;
+  printf ( "x = %i\n", x );
+
+  printf( "Listo.\n" );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog35 Prog35.c
+ [rrc@Pridd CClase]$ ./Prog35
+ Operador de Modulo Igual
+ x = 11
+ x = 2
+ x = 11
+ x = 2
+ Listo.
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
