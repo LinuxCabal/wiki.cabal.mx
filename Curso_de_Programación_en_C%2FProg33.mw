@@ -1,0 +1,51 @@
+__NOTOC__
+* [[:#Prog33 | Operador de Multiplicación Igual]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog33 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+
+  printf( "Operador de Multiplicación Igual\n" );
+
+  int x = 4;
+  printf ( "x = %i\n", x );
+
+  x = x * 4;
+  printf ( "x = %i\n", x );
+ 
+
+  x = 4;
+  printf ( "x = %i\n", x );
+
+  x *= 4;
+  printf ( "x = %i\n", x );
+
+  printf( "Listo.\n" );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog33 Prog33.c
+ [rrc@Pridd CClase]$ ./Prog33
+ Operador de Multiplicación Igual
+ x = 4
+ x = 16
+ x = 4
+ x = 16
+ Listo.
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
