@@ -1,0 +1,59 @@
+__NOTOC__
+* [[:#Prog53 | EL Operador continue ]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog53 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  int Num = -4;
+
+  for( ; Num <= 12; )
+  {
+    if( Num == 0 )
+    {
+      puts( "Ilegal dividir por 0, continuamos" );
+      Num++;
+      continue;
+    }
+    printf( "100 / %d = %f\n", Num++,  (float)100 / (float)Num );
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog53 Prog53.c
+ Prog53.c: In function ‘main’:
+ Prog53.c:15: warning: operation on ‘Num’ may be undefined
+ [rrc@Pridd CClase]$ ./Prog53 
+ 100 / -4 = -25.000000
+ 100 / -3 = -33.333333
+ 100 / -2 = -50.000000
+ 100 / -1 = -100.000000
+ Ilegal dividir por 0, continuamos
+ 100 / 1 = 100.000000
+ 100 / 2 = 50.000000
+ 100 / 3 = 33.333333
+ 100 / 4 = 25.000000
+ 100 / 5 = 20.000000
+ 100 / 6 = 16.666667
+ 100 / 7 = 14.285714
+ 100 / 8 = 12.500000
+ 100 / 9 = 11.111111
+ 100 / 10 = 10.000000
+ 100 / 11 = 9.090909
+ 100 / 12 = 8.333333
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
