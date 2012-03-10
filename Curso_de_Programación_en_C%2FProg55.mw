@@ -1,0 +1,38 @@
+__NOTOC__
+* [[:#Prog55 | EL Operador do while]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog55 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  unsigned int counter = 5;
+  unsigned long factorial = 1;
+
+  do
+  {
+    factorial *= counter--;
+  } while( counter > 0 );
+
+  printf( "%lu\n", factorial );
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog55 Prog55.c
+ [rrc@Pridd CClase]$ ./Prog55 
+ 120
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
