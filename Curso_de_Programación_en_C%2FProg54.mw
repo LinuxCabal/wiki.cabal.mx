@@ -1,0 +1,86 @@
+__NOTOC__
+* [[:#Prog54 | EL Operador switch ]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog54 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <ctype.h>
+
+int main( void )
+{
+  char ch;
+
+  puts( "Dame una letra alfabética" );
+  puts( "y te da un nombre de un animal que inicia con el" );
+  printf( "entra \'#\' para terminar " );
+
+  while( ( ch = getchar() ) != '#' )
+  {
+    if( '\n' == ch )
+      continue;
+    if( islower( ch ) )
+      switch (ch)
+      {
+        case 'a' :
+              puts( "argali, una oveja salvaje de Asia" );
+              break;
+        case 'b' :
+              puts( "babirusa, un cerdo salvaje de Malayo" );
+              break;
+        case 'c' :
+              puts( "coati, un mamífero parecido a un mapache" );
+              break;
+        case 'd' :
+              puts( "desman, animal acuático, parecido a un topo" );
+              break;
+        case 'e' :
+              puts( "echidna, el oso hormiguero espinoso" );
+              break;
+        case 'f' :
+              puts( "fisher, una marta pardusca" );
+              break;
+        default :
+              puts( "¡No se!" );
+      }
+    else
+      puts( "Solo conozco letras minúsculas");
+    while( getchar() != '\n' );
+    printf( "Por favor dame una otra letra o \'#\' para terminar " );
+  }
+  puts("Au revoir!");
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog54 Prog54.c
+ [rrc@Pridd CClase]$ ./Prog54
+ Dame una letra alfabética
+ y te da un nombre de un animal que inicia con el
+ entra '#' para terminar a
+ argali, una oveja salvaje de Asia
+ Por favor dame una otra letra o '#' para terminar J
+ Solo conozco letras minúsculas
+ Por favor dame una otra letra o '#' para terminar 4
+ Solo conozco letras minúsculas
+ Por favor dame una otra letra o '#' para terminar d
+ desman, animal acuático, parecido a un topo
+ Por favor dame una otra letra o '#' para terminar e
+ echidna, el oso hormiguero espinoso
+ Por favor dame una otra letra o '#' para terminar n
+ ¡No se!
+ Por favor dame una otra letra o '#' para terminar #
+ Au revoir!
+  
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
