@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog51 | EL operador Ternary]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog51 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define COBERTURA 66   // Metros cuadrados por lata de pintura 
+
+int main( void )
+{
+  int m2;
+  int latas;
+
+  printf( "Cuantos metros cuadrados quieres pintar: " );
+  while( scanf( "%d", &m2 ) == 1 )
+  {
+    latas = m2 / COBERTURA;
+    latas += ( ( m2 % COBERTURA ) == 0  ) ? 0 : 1;
+    printf( "Necesitas %d %s de pintura.\n", latas,
+            latas == 1 ? "lata" : "latas" );
+    printf( "Introduzca un nuevo valor (q to quit): " );
+  }
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog51 Prog51.c
+ [rrc@Pridd CClase]$ ./Prog51 
+ Cuantos metros cuadrados quieres pintar: 30
+ Necesitas 1 lata de pintura.
+ Introduzca un nuevo valor (q to quit): 66
+ Necesitas 1 lata de pintura.
+ Introduzca un nuevo valor (q to quit): 67
+ Necesitas 2 latas de pintura.
+ Introduzca un nuevo valor (q to quit): 99
+ Necesitas 2 latas de pintura.
+ Introduzca un nuevo valor (q to quit): 300
+ Necesitas 5 latas de pintura.
+ Introduzca un nuevo valor (q to quit): q
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
