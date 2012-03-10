@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Prog52 | EL Operador break ]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog52 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  int Num = -4;
+
+  for( ; Num <= 12; )
+  {
+    if( Num == 0 )
+    {
+      puts( "Ilegal dividir por 0, No puedo continuar" );
+      break;
+    }
+    printf( "100 / %d = %f\n", Num++,  (float)100 / (float)Num );
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog52 Prog52.c
+ Prog52.c: In function ‘main’:
+ Prog52.c:14: warning: operation on ‘Num’ may be undefined
+ [rrc@Pridd CClase]$ ./Prog52
+ 100 / -4 = -25.000000
+ 100 / -3 = -33.333333
+ 100 / -2 = -50.000000
+ 100 / -1 = -100.000000
+ Ilegal dividir por 0, No puedo continuar
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
