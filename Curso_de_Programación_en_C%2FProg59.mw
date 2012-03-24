@@ -1,0 +1,48 @@
+__NOTOC__
+* [[:#Prog59 | Arreglos1]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog59 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#define MESES 12
+
+int main( void )
+{
+  int dias[MESES] = {31,28,31,30,31,30,31,31,30,31,30,31};
+  int index;
+
+  for( index = 0; index < MESES; index++ )
+    printf( "Mes %d tiene %2d días.\n", index + 1, dias[index]);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc[rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog59 Prog59.c 
+ [rrc@Pridd CClase]$ ./Prog59 
+ Mes 1 tiene 31 días.
+ Mes 2 tiene 28 días.
+ Mes 3 tiene 31 días.
+ Mes 4 tiene 30 días.
+ Mes 5 tiene 31 días.
+ Mes 6 tiene 30 días.
+ Mes 7 tiene 31 días.
+ Mes 8 tiene 31 días.
+ Mes 9 tiene 30 días.
+ Mes 10 tiene 31 días.
+ Mes 11 tiene 30 días.
+ Mes 12 tiene 31 días.
+ [rrc@Pridd CClase]$
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
