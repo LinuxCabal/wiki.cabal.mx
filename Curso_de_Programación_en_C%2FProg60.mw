@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Prog60 | Arreglos2]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog60 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#define TAMANO 4
+
+int main( void )
+{
+  int algunos_datos[TAMANO] = {1492, 1066},
+      i;
+
+  printf( "\n%2s%21s\n-----------------------\n", "i", "algunos_datos[i]" );
+  for( i = 0; i < TAMANO; i++ )
+    printf( "%2d%14d\n", i, algunos_datos[i]);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -oProg60 Prog60.c 
+ [rrc@Pridd CClase]$ ./Prog60
+ 
+ i     algunos_datos[i]
+ ----------------------
+ 0          1492
+ 1          1066
+ 2             0
+ 3             0
+ [rrc@Pridd CClase]$ vi Prog60.c
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
