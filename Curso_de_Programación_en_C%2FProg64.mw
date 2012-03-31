@@ -1,0 +1,49 @@
+__NOTOC__
+* [[:#Prog64 | Arreglos con Punteros]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog64 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define MESES 12
+
+int main( void )
+{
+  int dias[MESES] = {31,28,31,30,31,30,31,31,30,31,30,31},
+      index;
+
+  for( index = 0; index < MESES; index++ )
+    printf( "Mes %2d tiene %d días.\n", index +1,
+               *(dias + index));   // mismo que dias[index]
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog64 Prog64.c 
+ [rrc@Pridd CClase]$ ./Prog64
+ Mes  1 tiene 31 días.
+ Mes  2 tiene 28 días.
+ Mes  3 tiene 31 días.
+ Mes  4 tiene 30 días.
+ Mes  5 tiene 31 días.
+ Mes  6 tiene 30 días.
+ Mes  7 tiene 31 días.
+ Mes  8 tiene 31 días.
+ Mes  9 tiene 30 días.
+ Mes 10 tiene 31 días.
+ Mes 11 tiene 30 días.
+ Mes 12 tiene 31 días.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
