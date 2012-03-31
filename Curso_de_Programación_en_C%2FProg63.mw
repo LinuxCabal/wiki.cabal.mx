@@ -1,0 +1,49 @@
+__NOTOC__
+* [[:#Prog63 | Adición con Punteros]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog63 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define TAMANO 4
+
+int main( void )
+{
+  short    fechas[TAMANO],
+           index;
+  short  * pti;
+  double   cuentas[TAMANO];
+  double * ptf;
+
+  pti = fechas;    // assign address of array to pointer
+  ptf = cuentas;
+  printf( "%23s %10s\n", "short", "double" );
+  for( index = 0; index < TAMANO; index ++ )
+    printf( "Puntero + %d: %10p %10p\n",
+                index, pti + index, ptf + index );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog63 Prog63.c 
+ [rrc@Pridd CClase]$ ./Prog63 
+                   short     double
+ Puntero + 0: 0xbf8a3678 0xbf8a3658
+ Puntero + 1: 0xbf8a367a 0xbf8a3660
+ Puntero + 2: 0xbf8a367c 0xbf8a3668
+ Puntero + 3: 0xbf8a367e 0xbf8a3670
+ [rrc@Pridd CClase]$ 
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
