@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog67 | Variables locales]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog67 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+void mikado( int );
+
+int main( void )
+{
+  int pooh = 2, bah = 5;
+
+  printf( "En main(), pooh = %d y &pooh = %p\n",
+                                          pooh, &pooh);
+  printf( "En main(), bah = %d y &bah = %p\n",
+                                            bah, &bah);
+  mikado( pooh );
+
+  return 0;
+}
+
+void mikado( int bah )
+{
+  int pooh = 10;
+
+  printf( "En mikado(), pooh = %d and &pooh = %p\n",
+                                          pooh, &pooh);
+  printf( "En mikado(), bah = %d and &bah = %p\n",
+                                            bah, &bah);
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog67 Prog67.c
+ [rrc@Pridd CClase]$ ./Prog67
+ En main(), pooh = 2 y &pooh = 0xbfd809bc
+ En main(), bah = 5 y &bah = 0xbfd809b8
+ En mikado(), pooh = 10 and &pooh = 0xbfd8098c
+ En mikado(), bah = 2 and &bah = 0xbfd809a0
+ [rrc@Pridd CClase]$ vi Prog67.c 
+ [rrc@Pridd CClase]$ cat Prog67.c 
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
