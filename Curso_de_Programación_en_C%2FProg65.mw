@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog65 | Más Arreglos]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog65 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define TAMANO 10
+
+int sum( int ar[], int n );
+
+int main( void )
+{
+  int canicas[TAMANO] = {20,10,5,39,4,16,19,26,31,20};
+  long solucion;
+
+  solucion = sum(canicas, TAMANO);
+  printf( "El número total de conicas es %ld.\n", solucion );
+  printf( "El tamaño de canicas es %zd bytes.\n", sizeof canicas );
+
+  return 0;
+}
+
+int sum( int ar[], int n )
+{
+  int i;
+  int total = 0;
+
+  for( i = 0; i < n; i++ )
+    total += ar[i];
+  printf( "El tamaño de ar es %zd bytes.\n", sizeof ar);
+
+  return total;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog65 Prog65.c 
+ [rrc@Pridd CClase]$ ./Prog65
+ El tamaño de ar es 4 bytes.
+ El número total de canicas es 190.
+ El tamaño de canicas es 40 bytes.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
