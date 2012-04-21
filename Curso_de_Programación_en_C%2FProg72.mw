@@ -1,0 +1,94 @@
+__NOTOC__
+* [[:#Prog72 | operaciónes con pointers]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog72 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main(void)
+{
+  int urn[5] = {100,200,300,400,500};
+  int * ptr1,
+      * ptr2, 
+      * ptr3;
+
+  ptr1 = urn;
+  ptr2 = &urn[2];
+
+  printf( "Valor de pointer, Pointer dereferenciado, Dirección de pointer\n");
+  printf( "ptr1 = %p,          *ptr1 =%d,             &ptr1 = %p\n",
+           ptr1,               *ptr1,                 &ptr1 );
+
+  // Adición con pointers
+  ptr3 = ptr1 + 4;
+  printf( "\nAdición de int a un pointer:\n" );
+  printf( "ptr1 + 4 = %p, *(ptr1 + 3) = %d\n",
+           ptr1 + 4,      *(ptr1 + 3) );
+
+  ptr1++;            // incrementar un pointer
+  printf( "\nValores después de ptr1++:\n" );
+  printf( "ptr1 = %p, *ptr1 =%d, &ptr1 = %p\n",
+           ptr1,      *ptr1,     &ptr1);
+
+  ptr2--;            // decrementar un pointer
+  printf( "\nValores después de --ptr2:\n" );
+  printf( "ptr2 = %p, *ptr2 = %d, &ptr2 = %p\n",
+           ptr2,      *ptr2,      &ptr2);
+
+  --ptr1;            // restorar valor original
+  ++ptr2;            // restorar valor original
+
+  printf( "\nPointers regresados a sus valores originales:\n" );
+  printf( "ptr1 = %p, ptr2 = %p\n", ptr1, ptr2 );
+
+                      // un pointer menos otra pointer
+  printf( "\nUn pointer menos otro pointer:\n" );
+  printf( "ptr2 = %p, ptr1 = %p, ptr2 - ptr1 = %d\n",
+           ptr2,      ptr1,      ptr2 - ptr1);
+
+                      // un pointer menos un intero
+  printf( "\nUn pointer menos un intero:\n");
+  printf( "ptr3 = %p, ptr3 - 2 = %p\n",
+           ptr3,  ptr3 - 2);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog72 Prog72.c
+ [rrc@Pridd CClase]$ ./Prog72
+ Valor de pointer,   Pointer dereferenciado, Dirección de pointer
+ ptr1 = 0xbfb2da84,     *ptr1 =100,             &ptr1 = 0xbfb2da9c
+ 
+ Adición de int a un pointer:
+ ptr1 + 4 = 0xbfb2da94, *(ptr1 + 3) = 400
+ 
+ Valores después de ptr1++:
+ ptr1 = 0xbfb2da88, *ptr1 =200, &ptr1 = 0xbfb2da9c
+ 
+ Valores después de --ptr2:
+ ptr2 = 0xbfb2da88, *ptr2 = 200, &ptr2 = 0xbfb2da98
+ 
+ Pointers regresados a sus valores originales:
+ ptr1 = 0xbfb2da84, ptr2 = 0xbfb2da8c
+ 
+ Un pointer menos otro pointer:
+ ptr2 = 0xbfb2da8c, ptr1 = 0xbfb2da84, ptr2 - ptr1 = 2
+ 
+ Un pointer menos un intero:
+ ptr3 = 0xbfb2da94, ptr3 - 2 = 0xbfb2da8c
+ [rrc@Pridd CClase]$ 
+ 
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
