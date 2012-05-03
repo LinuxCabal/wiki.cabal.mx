@@ -1,0 +1,51 @@
+__NOTOC__
+* [[:#Prog74 | Pointers en Arreglos MultiDimensionales]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog74 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main(void)
+{
+  int zippo[4][2] = { {2,4}, {6,8}, {1,3}, {5, 7} };
+
+  printf("   zippo = %p,    zippo + 1 = %p\n",
+             zippo,         zippo + 1);
+  printf("zippo[0] = %p, zippo[0] + 1 = %p\n",
+          zippo[0],      zippo[0] + 1);
+  printf("  *zippo = %p,   *zippo + 1 = %p\n",
+            *zippo,        *zippo + 1);
+  printf("zippo[0][0] = %d\n", zippo[0][0]);
+  printf("  *zippo[0] = %d\n", *zippo[0]);
+  printf("    **zippo = %d\n", **zippo);
+  printf("      zippo[2][1] = %d\n", zippo[2][1]);
+  printf("*(*(zippo+2) + 1) = %d\n", *(*(zippo+2) + 1));
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -o Prog74 Prog74.c
+ [rrc@Pridd CClase]$ ./Prog74
+    zippo = 0xbfbcfcc0,    zippo + 1 = 0xbfbcfcc8
+ zippo[0] = 0xbfbcfcc0, zippo[0] + 1 = 0xbfbcfcc4
+   *zippo = 0xbfbcfcc0,   *zippo + 1 = 0xbfbcfcc4
+ zippo[0][0] = 2
+   *zippo[0] = 2
+     **zippo = 2
+       zippo[2][1] = 3
+ *(*(zippo+2) + 1) = 3
+ [rrc@Pridd CClase]$ 
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
