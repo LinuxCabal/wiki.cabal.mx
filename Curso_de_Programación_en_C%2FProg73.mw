@@ -1,0 +1,63 @@
+__NOTOC__
+* [[:#Prog73 | pointers en funciones]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog73 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define TAMANO 5
+
+void Muestra_Arreglo(const double ar[], int n);
+void Mult_Arreglo(double ar[], int n, double mult);
+
+int main(void)
+{
+  double dip[TAMANO] = {20.0, 17.66, 8.2, 15.3, 22.22};
+
+  printf( "El arreglo original dip:\n");
+  Muestra_Arreglo(dip, TAMANO);
+  Mult_Arreglo(dip, TAMANO, 2.5);
+  printf( "El arreglo dip después de Mult_Arreglo():\n");
+  Muestra_Arreglo(dip, TAMANO);
+
+  return 0;
+}
+
+void Muestra_Arreglo(const double ar[], int n)
+{
+  int i;
+
+  for( i = 0; i < n; i++ )
+    printf( "%8.3f ", ar[i] );
+  putchar( '\n' );
+}
+
+void Mult_Arreglo(double ar[], int n, double mult)
+{
+  int i;
+
+  for( i = 0; i < n; i++ )
+    ar[i] *= mult;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog73 Prog73.c
+ [rrc@Pridd CClase]$ ./Prog73
+ El arreglo original dip:
+   20.000   17.660    8.200   15.300   22.220 
+ El arreglo dip después de Mult_Arreglo():
+   50.000   44.150   20.500   38.250   55.550 
+ [rrc@Pridd CClase]$ cat Prog73.c
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
