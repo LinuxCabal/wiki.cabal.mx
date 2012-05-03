@@ -1,0 +1,97 @@
+__NOTOC__
+* [[:#Prog76 | Funciones con Arreglos MultiDimensionales]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog76 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define FILAS 3
+#define COLS 4
+
+void sum_filas( int ar[][COLS], int filas );
+void sum_cols( int [][COLS], int );
+int  sum2d( int (*ar)[COLS], int filas );
+
+int main( void )
+{
+  int junk[FILAS][COLS] = {
+                            {2,4,6,8},
+                            {3,5,7,9},
+                            {12,10,8,6}
+                          };
+
+  sum_filas( junk, FILAS );
+  sum_cols( junk, FILAS );
+  printf( "Sum de todos los elementos = %d\n", sum2d( junk, FILAS ) );
+
+  return 0;
+}
+
+void sum_filas( int ar[][COLS], int filas )
+{
+  int c,
+      r,
+      tot;
+
+  for( r = 0; r < filas; r++ )
+  {
+    tot = 0;
+    for( c = 0; c < COLS; c++ )
+      tot += ar[r][c];
+    printf( "fila %d: sum = %d\n", r, tot );
+  }
+}
+
+void sum_cols( int ar[][COLS], int filas )
+{
+  int c,
+      r,
+      tot;
+
+  for( c = 0; c < COLS; c++ )
+  {
+    tot = 0;
+    for( r = 0; r < filas; r++ )
+      tot += ar[r][c];
+    printf( "col %d: sum = %d\n", c, tot );
+  }
+}
+
+int sum2d( int ar[][COLS], int filas )
+{
+  int c,
+      r,
+      tot = 0;
+
+  for( r = 0; r < filas; r++ )
+    for( c = 0; c < COLS; c++ )
+      tot += ar[r][c];
+
+  return tot;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd ~]$ gcc -Wall -o Prog76 Prog76.c
+ [rrc@Pridd ~]$ ./Prog76
+ fila 0: sum = 20
+ fila 1: sum = 24
+ fila 2: sum = 36
+ col 0: sum = 17
+ col 1: sum = 19
+ col 2: sum = 21
+ col 3: sum = 23
+ Sum de todos los elementos = 80
+ [rrc@Pridd ~]$ 
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
