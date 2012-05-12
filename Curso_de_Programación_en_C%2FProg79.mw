@@ -1,0 +1,96 @@
+__NOTOC__
+* [[:#Prog79 | Strings]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog79 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define MSG "Debe tener muchos talentos. Me dicen algunos."
+#define LIM  5
+#define LINEATAMANO 81        // tamaño maximumo + 1
+
+int main(void)
+{
+  char nombre[LINEATAMANO],
+       talentos[LINEATAMANO];
+
+  const char m1[40] = "Limitarte a una sola línea.",
+             m2[]   = "Si no puedes pensar en nada, falsificarlo.",
+             *m3    = "\nSuficiente acerca de mí - ¿cuál es tu nombre?",
+
+             *mital[LIM] = {
+                             "Adición de números rápidamente",
+                             "Multiplicación exactamente", 
+                             "Esconder datos",
+                             "Siguiendo instrucciones con precisión",
+                             "Comprensión del lenguaje C"
+                           };
+  int i;
+
+  printf( "¡Hola! Soy clyde, la computadora."
+          " Tengo muchos talentos.\n" );
+  printf( "Déjeme decirle algunos de ellos.\n" );
+  puts( "¿Qué era ellos? Ah, sí, aquí está una lista parcial." );
+  for( i = 0; i < LIM; i++ )
+    puts( mital[i] );
+  puts( m3 );
+  gets( nombre );
+  printf( "Entonces, %s, %s\n", nombre, MSG );
+  printf( "%s\n%s\n", m1, m2 );
+  gets( talentos );
+  puts( "Vamos a ver si tengo esa lista:" );
+  puts( talentos );
+  printf( "Gracias por la información, %s.\n", nombre );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog79 Prog79.c
+ /home/rrc/tmp/cc6XATeK.o: In function `main':
+ Prog79.c:(.text+0x1a0): warning: the `gets' function is dangerous and should not be used.
+ [rrc@Pridd CClase]$ ./Prog79
+ ¡Hola! Soy clyde, la computadora. Tengo muchos talentos.
+ Déjeme decirle algunos de ellos.
+ ¿Qué era ellos? Ah, sí, aquí está una lista parcial.
+ Adición de números rápidamente
+ Multiplicación exactamente
+ Esconder datos
+ Siguiendo instrucciones con precisión
+ Comprensión del lenguaje C
+ 
+ Suficiente acerca de mí - ¿cuál es tu nombre?
+ Richard
+ Entonces, Richard, Debe tener muchos talentos. Me dicen algunos.
+ Limitarte a una sola línea.
+ Si no puedes pensar en nada, falsificarlo.
+ Yo puedo Ondular mi nariz
+ Vamos a ver si tengo esa lista:
+ Yo puedo Ondular mi nariz
+ Gracias por la información, Richard.
+ 
+
+ === Explicación ===
+ 
+ gets() es una función peligrosa porque gets() no tiene ninguna manera de
+ saber cuánto puede escribir, y por ello, escribirá siempre en memoria,
+ todos los caracteres que introduzcamos. De todas formas no debemos darlo
+ todo por perdido, tenemos una excelente función, muy parecida fgets(),
+ aunque tiene más parámetros:
+    El primer parámetro de fgets() es dónde vamos a almacenar lo leído.
+    El segundo parámetro es cuántos caracteres leeremos como máximo
+       (incluyendo el terminador de cadena). Y si hemos definido un valor
+       máximo para la cadena, podemos utilizar éste.
+    El tercero es de dónde lo leemos, y si queremos hacerlo desde teclado,
+       usaremos stdin
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
