@@ -1,0 +1,31 @@
+__NOTOC__
+* [[:#Prog80 | Recordatorio]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog80 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  printf( "%s, %p, %c\n", "Estamos", "Nosotros", *"adventureros de computación");
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [[rrc@llawyr CClase]$ ./Prog80
+ Estamos, 0x4005f8, a
+ rrc@llawyr CClase]$ ./Prog80
+ Estamos, 0x4005f8, a
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
