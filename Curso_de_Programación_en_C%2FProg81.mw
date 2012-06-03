@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#Prog81 | Más pointers con strings]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog81 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  const char * mensaje = "No seas tonto";
+  const char * copia;
+
+  copia = mensaje;
+
+  printf( "%s\n", copia );
+
+  printf( "mensaje = %s; &mensaje = %p; valor = %p\n",
+                                        mensaje, &mensaje, mensaje );
+
+  printf( "copia = %s; &copia = %p; valor = %p\n", copia, &copia, copia );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog81 Prog81.c
+ [rrc@llawyr CClase]$ ./Prog81
+ No seas tonto
+ mensaje = No seas tonto; &mensaje = 0x7fff383590f8; valor = 0x400660
+ copia = No seas tonto; &copia = 0x7fff383590f0; valor = 0x400660
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
