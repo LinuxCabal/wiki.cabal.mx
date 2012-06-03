@@ -1,0 +1,41 @@
+__NOTOC__
+* [[:#Prog83 | scanf() con tamaños en char de formato]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog83 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  char nombre1[11],
+       nombre2[11];
+
+  int cuenta;
+
+  printf( "Escribe dos nombres por favor: " );
+
+  cuenta = scanf( "%5s %10s", nombre1, nombre2 );
+
+  printf("Leí los %d nombres %s y %s.\n", cuenta, nombre1, nombre2);
+
+  return 0;
+
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ ./Prog83
+ Escribe dos nombres por favor: Richard Raymond
+ Leí los 2 nombres Richa y rd.
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
