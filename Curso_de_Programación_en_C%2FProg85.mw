@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#Prog85 | No es un string]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog85 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  char NoEs[] = "Solo para inicializarme con un NULL",
+       Letra  = 'A';
+
+  int  i;
+
+  for( i = 0; i < 4; i++ )
+    NoEs[i] = Letra + i;
+
+  puts( NoEs ); // "NoEs" no es un string!
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog85 Prog85.c
+ [rrc@llawyr CClase]$ ./Prog85
+ ABCD para inicializarme con un NULL
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
