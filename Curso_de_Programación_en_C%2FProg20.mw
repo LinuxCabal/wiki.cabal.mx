@@ -1,0 +1,50 @@
+__NOTOC__
+* [[:#Prog20 | Prog20]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog20 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog20.c -- Conversiones interesantes con floats */
+
+#include <stdio.h>
+
+int main( void )
+{
+  float  n1 = 3.0;
+  double n2 = 3.0;
+  long   n3 = 2000000000,
+         n4 = 1234567890;
+
+  printf( "Con conversiones naturales: %f %lf    %ld %ld\n", n1, n2, n3, n4 );
+  printf( "Con %%.1e:                   %.1e  %.1e     %.1e    %.1e\n",
+                                                             n1, n2, n3, n4 );
+  printf( "Con %%ld:                    %ld        %ld  %ld          %ld\n",
+                                                             n1, n2, n3, n4 );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog20 Prog20.c
+ Prog20.c: In function ‘main’:
+ Prog20.c:14: warning: format ‘%.1e’ expects type ‘double’, but argument 4 has type ‘long int’
+ Prog20.c:14: warning: format ‘%.1e’ expects type ‘double’, but argument 5 has type ‘long int’
+ Prog20.c:16: warning: format ‘%ld’ expects type ‘long int’, but argument 2 has type ‘double’
+ Prog20.c:16: warning: format ‘%ld’ expects type ‘long int’, but argument 3 has type ‘double’
+ [rrc@Pridd CClase]$ ./Prog20
+ Con conversiones naturales: 3.000000 3.000000    2000000000 1234567890
+ Con %.1e:                   3.0e+00  3.0e+00     3.1e+46    6.6e-316
+ Con %ld:                    0        1074266112  0          1074266112
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
