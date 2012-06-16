@@ -1,0 +1,38 @@
+El módulo o módulos que debemos seleccionar depende de la tarjeta madre en la cual se va a conectar.
+
+Los módulos de memoria y los chips de memoria que van en el módulo pueden estar organizados en varias formas.  Aquí se explican los parámetros que suelen usarse en las especificaciones de los módulos.
+
+===Módulo:===
+La tarjeta madre se comunica con el módulo, no con los chips.
+;capacidad del módulo: es igual a densidad del rank x número de ranks
+;rank: es una cantidad de chips de memoria que se accesan a la vez.  En un módulo con dos ranks, se suele tener un rank en cada lado del módulo (los chips en un lado son un rank, y los del otro lado otro rank).  Sin embargo hay módulos que tienen chips en ambos lados y tienen un solo rank.
+;densidad del rank: es la capacidad en MB o GB del rank
+
+Usar la [http://www.kingston.com/us/memory/valueram/valueram_decoder referencia de valores] para memorias ValueRAM de Kingston, para determinar el número de ranks. Usar la segunda figura, la primera es para módulos muy recientes que salen en 2012.  Por ejemplo los parámetros para el módulo KVR1333D3S8S9/2G:
+
+       un rank
+      (single)
+          |    SO-DIM
+          |   /
+          |  /
+ KVR1333D3S8S9/2G
+        \/ |  \
+      DDR3 |   \
+           |    \
+           |    latencia CAS
+          x8
+         chip
+         DRAM
+
+===Chips:===
+Es como si la memoria fuera una tira compuesta de renglones con un ancho. Los chips en un módulo son todos del mismo tipo.  Si se accesan dos chips a la vez, se suma su ancho.
+;profundidad (depth): es la cantidad de "renglones" que pueden seleccionarse
+;ancho: pueden ser x4 (4 bits) o x8 (8 bits) que el chip permite leer o escribir a la vez en cada "renglón"
+;banco (bank): un grupo de chips que se accesa a la vez.
+
+===Ejemplo:===
+*Módulo de 2GB = 256M x 64-Bit x 1 rank.  2GB es la densidad del rank = 256M renglones x 8 bytes
+*8 chips de 256M x 8-bit. 256M es la produndidad, 8-bit es el ancho, que dan 256MByte.  Se accesan 8 chips a la vez, accesando así 64 bits simultaneamente.
+
+
+[[Categoría: HowTos]]
