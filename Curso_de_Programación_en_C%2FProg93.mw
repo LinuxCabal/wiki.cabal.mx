@@ -1,0 +1,49 @@
+__NOTOC__
+* [[:#Prog93 | Más strcpy]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog93 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>    /* declares strcpy() */
+
+#define PALABRAS  "burro"
+#define TAMANO 50
+
+int main( void )
+{
+  const char * orig = PALABRAS;
+  char copia[TAMANO] = "Debe ser muy bueno si quieres un regalo.";
+  char * ps;
+
+  puts(orig);
+  puts(copia);
+
+  ps = strcpy(copia + 9, orig);
+
+  puts(copia);
+  puts(ps);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog93 Prog93.c
+ [rrc@llawyr CClase]$ ./Prog93
+ burro
+ Debe ser muy bueno si quieres un regalo.
+ Debe ser burro
+ burro
+ [rrc@llawyr CClase]$ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
