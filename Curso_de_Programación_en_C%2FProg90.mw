@@ -1,0 +1,55 @@
+__NOTOC__
+* [[:#Prog90 | Más strcmp()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog90 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>
+
+int main( void )
+{
+  printf( "strcmp( \"A\", \"A\" ) es %d\n",
+           strcmp( "A", "A" ) );
+
+  printf( "strcmp( \"A\", \"B\" ) es %d\n",
+           strcmp( "A", "B" ) );
+
+  printf( "strcmp( \"B\", \"A\" ) es %d\n",
+           strcmp( "B", "A" ) );
+
+  printf( "strcmp( \"C\", \"A\" ) es %d\n",
+           strcmp( "C", "A" ) );
+
+  printf( "strcmp( \"Z\", \"a\") es %d\n",
+           strcmp( "Z" , "a" ) );
+
+  printf( "strcmp( \"manzana\", \"manzana\" ) es %d\n",
+           strcmp( "manzana", "manzana" ) );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog90 Prog90.c
+ [rrc@llawyr CClase]$ ./Prog90
+ strcmp( "A", "A" ) es 0
+ strcmp( "A", "B" ) es -1
+ strcmp( "B", "A" ) es 1
+ strcmp( "C", "A" ) es 1
+ strcmp( "Z", "a") es -1
+ strcmp( "apples", "apple" ) es 0
+ [rrc@llawyr CClase]$ 
+ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
