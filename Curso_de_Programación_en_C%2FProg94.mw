@@ -1,0 +1,85 @@
+__NOTOC__
+* [[:#Prog94 | strncpy]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog94 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>
+
+#define TAMANO 40
+#define TAMANODESTINO 7
+#define LIM 5
+
+int main( void )
+{
+  char qwords[LIM][TAMANO];
+  char temp[TAMANO];
+  int i = 0;
+
+  printf("Escribe %d palabras que se inician con la letra c:\n", LIM );
+
+  while( i < LIM )
+  {
+    fgets( temp, TAMANO - 2, stdin );
+
+    if( *temp != 'c' )
+    {
+      if( strlen( temp ) < TAMANO - 2 )
+        *(temp + strlen( temp ) - 1 ) = '\0';
+
+      printf( "%s no se inicia con la letra c!\n", temp);
+    }
+    else
+    {
+      if( strlen( temp ) < TAMANO - 2 )
+        *(temp + strlen( temp ) - 1 ) = '\0';
+
+      strncpy(qwords[i], temp, TAMANODESTINO - 1 );
+
+// No olvidas que es su responsibilidad asegurar que
+// strncpy se termina con un NULL
+      *(qwords[i] + TAMANODESTINO - 1) = '\0';
+
+      i++;
+    }
+  }
+  puts( "\nAquí está la lista de palabras aceptadas:" );
+
+  for( i = 0; i < LIM; i++ )
+    puts( qwords[i] );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog94 Prog94.c
+ [rrc@llawyr CClase]$ ./Prog94
+ Escribe 5 palabras que se inician con la letra c:
+ cuarto
+ calidad
+ dar
+ dar no se inicia con la letra c!
+ corre
+ corto
+ cuadrado
+ 
+ Aquí está la lista de palabras aceptadas:
+ cuarto
+ calida
+ corre
+ corto
+ cuadra
+ [rrc@llawyr CClase]$
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
