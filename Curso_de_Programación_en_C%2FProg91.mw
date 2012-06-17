@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#Prog91| strncmp()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog91 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>
+
+#define TAMONODELISTA 5
+
+int main( void )
+{
+  const char * lista[TAMONODELISTA] =
+  {
+    "astronomy", "astounding",
+    "astrophysics", "ostracize",
+    "asterism"
+  };
+
+  int count = 0,
+      i;
+
+  for( i = 0; i < TAMONODELISTA; i++ )
+    if( !strncmp( lista[i], "astro", 5 ) )
+//    if( !strncmp( *(lista + i ), "astro", 5 ) )
+    {
+      printf( "Descubrí: %s\n", lista[i] );
+      count++;
+    }
+
+  printf( "La lista tiene %d palabras inicando"
+          " con astro.\n", count);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog91 Prog91.c
+ [rrc@llawyr CClase]$ ./Prog91
+ Descubrí: astronomy
+ Descubrí: astrophysics
+ La lista tiene 2 palabras inicando con astro.
+ [rrc@llawyr CClase]$ cat Prog91.c
+  
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
