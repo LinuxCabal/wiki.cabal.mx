@@ -1,0 +1,63 @@
+__NOTOC__
+* [[:#Prog86 | putchar()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog86 ==
+
+<syntaxhighlight lang="c"  line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+void put1(const char *);
+int put2(const char *);
+
+int main(void)
+{
+  put1( "Si tuviera todo el tiempo" );
+  put1( " en el mundo,\n" );
+  printf( "yo contaría %d caracteres.\n",
+           put2( "Tanto para fantasiosas delirios." ) );
+  puts( "|--------|---------|---------|---------|" );
+  puts( "1        10        20        30        40" );
+
+  return 0;
+}
+
+void put1( const char * string )
+{
+  while( *string )
+    putchar(*string++);
+}
+
+int put2( const char * string )
+{
+  int count = 0;
+
+  while (*string)
+  {
+    putchar(*string++);
+    count++;
+  }
+  putchar('\n');
+
+  return(count);
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog86 Prog86.c
+ [rrc@llawyr CClase]$ ./Prog86
+ Si tuviera todo el tiempo en el mundo,
+ Tanto para fantasiosas delirios.
+ yo contaría 32 caracteres.
+ |--------|---------|---------|---------|
+ 1        10        20        30        40
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
