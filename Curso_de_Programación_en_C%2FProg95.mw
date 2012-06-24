@@ -1,0 +1,66 @@
+__NOTOC__
+* [[:#Prog95 | sprintf()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog95 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define MAX 20
+
+int main( void )
+{
+  char Nombre[MAX],
+       Apellido[MAX],
+       Compuesto[2 * MAX + 10];
+
+  int Numero;
+
+  printf( "¿Cual es su nombre? " );
+  scanf( "%19s", Nombre );
+  while( getchar() != '\n' );
+
+  printf( "¿Cual es su apellido? " );
+  scanf( "%19s", Apellido );
+  while( getchar() != '\n' );
+
+  printf( "¿Cual es su numero de suerte? " );
+  scanf("%d", &Numero);
+  while( getchar() != '\n' );
+
+  sprintf( Compuesto, "El número de la suerte de %s %s es %d.\n",
+                                 Nombre, Apellido, Numero);
+
+  puts( Compuesto );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog95 Prog95.c
+ [rrc@llawyr CClase]$ ./Prog95
+ ¿Cual es su nombre? Richard
+ ¿Cual es su apellido? Couture
+ ¿Cual es su numero de suerte? 13
+ El número de la suerte de Richard Couture es 13.
+ 
+ [rrc@llawyr CClase]$ ./Prog95 
+ ¿Cual es su nombre? Richard y caul es tu nombre
+ ¿Cual es su apellido? Couture y cual es tu apellido
+ ¿Cual es su numero de suerte? 13 y cual es tu numero favorito
+ El número de la suerte de Richard Couture es 13.
+ 
+ [rrc@llawyr CClase]$
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
