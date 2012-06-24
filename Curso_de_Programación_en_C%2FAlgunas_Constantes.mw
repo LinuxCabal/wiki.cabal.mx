@@ -1,0 +1,93 @@
+__NOTOC__
+* [[:#Algunas Constantes | Algunas Constantes]]
+** [[:#Explicación | Explicación]]
+
+== Algunas Constantes ==
+
+<table cellpadding="1" cellspacing="12">
+  <tr>
+    <th>Constante Symbolico</th><th>Significa</th>
+  </tr>
+  <tr>
+    <td>CHAR_BIT</td><td>Número de bits en un char</td>
+  </tr>
+  <tr>
+    <td>CHAR_MAX</td><td>Valor máximo de un char</td>
+  </tr>
+  <tr>
+    <td>CHAR_MIN</td><td>Valor mínimo de un char</td>
+  </tr>
+  <tr>
+    <td>SCHAR_MAX</td><td>Valor máximo de un signed char</td>
+  </tr>
+  <tr>
+    <td>SCHAR_MIN</td><td>Valor mínimo de un signed char</td>
+  </tr>
+  <tr>
+    <td>UCHAR_MAX</td><td>Valor máximo de un unsigned char</td>
+  </tr>
+  <tr>
+    <td>SHRT_MAX</td><td>Valor máximo de un short</td>
+  </tr>
+  <tr>
+    <td>SHRT_MIN</td><td>Valor mínimo de un short</td>
+  </tr>
+  <tr>
+    <td>USHRT_MAX</td><td>Valor máximo de un unsigned short</td>
+  </tr>
+  <tr>
+    <td>INT_MAX</td><td>Valor máximo de un int</td>
+  </tr>
+  <tr>
+    <td>INT_MIN</td><td>Valor mínimo de un int</td>
+  </tr>
+  <tr>
+    <td>UINT_MAX</td><td>Valor máximo de un unsigned int</td>
+  </tr>
+  <tr>
+    <td>LONG_MAX</td><td>Valor máximo de un long</td>
+  </tr>
+  <tr>
+    <td>LONG_MIN</td><td>Valor mínimo de un long</td>
+  </tr>
+  <tr>
+    <td>ULONG_MAX</td><td>Valor máximo de un unsigned long</td>
+  </tr>
+  <tr>
+    <td>LLONG_MAX</td><td>Valor máximo de un long long</td>
+  </tr>
+  <tr>
+    <td>LLONG_MIN</td><td>Valor mínimo de un long long</td>
+  </tr>
+  <tr>
+    <td>ULLONG_MAX</td><td>Valor máximo de un unsigned long long</td>
+  </tr>
+  <tr>
+    <td>FLT_MANT_DIG</td><td>Número de dígitos en la mantisa de un float</td>
+  </tr>
+  <tr>
+    <td>FLT_DIG</td><td>Mínimo número de dígitos significativos de un float</td>
+  </tr>
+  <tr>
+    <td>FLT_MIN_10_EXP</td><td>Mínimo exponente de base 10 de un float con dígitos significativos completos</td>
+  </tr>
+  <tr>
+    <td>FLT_MAX_10_EXP</td><td>Máximo exponente de base 10 de un float</td>
+  </tr>
+  <tr>
+    <td>FLT_MIN</td><td>Valor mínimo de un float positivo con precisión completo</td>
+  </tr>
+  <tr>
+    <td>FLT_MAX</td><td>Valor máximo de un float positivo</td>
+  </tr>
+  <tr>
+    <td>FLT_EPSILON</td><td>La diferencia dentro 1.00 y el valor mínimo de float más de 1.00</td>
+  </tr>
+
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
