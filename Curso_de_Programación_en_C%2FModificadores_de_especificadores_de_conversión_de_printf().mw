@@ -1,0 +1,72 @@
+__NOTOC__
+* [[:#Modificadores de especificadores de conversión de printf() |Modificadores de especificadores de conversión de printf()]]
+** [[:#Explicación | Explicación]]
+
+== Modificadores de especificadores de conversión de printf() ==
+
+<table cellspacing="20">
+  <tr>
+    <th>Flag o Modificador</th><th>Significa</th>
+  </tr>
+  <tr>
+    <td style="text-align:center;">-</td>
+    <td>El elemento está alineado a la izquierda;<br />es decir, se imprime a la izquierda del campo.<br />Ejemplo: "%-20s"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">+</td><td>Los valores con signo se visualizan con un signo más, si es positivo,<br />y con un signo menos, si es negativo.<br />Ejempĺo: "%+6.2f"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">espacio</td><td>Los valores con signo se visualizan con un espacio inicial (pero ninguna señal) si es positivo<br />y con un signo menos si es negativo. Un flag + tiene precedencia sobre un espacio<br />Ejemplo: 
+"% 6.2f"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">#</td><td>Use un método alternativo para la especificación de conversión.<br />Produce un 0 inicial para el "%o" y un 0x o 0X inicial para el "%x" o "%X", respectivamente.<br />Para todas las formas de float, # garantías de que un carácter de punto decimal se imprime,<br />incluso si no hay digitos que siguen.<br />Para "%g" y "%G", se evita ceros a la derecha de ser eliminados.<br />Ejemplos: "%#o", "%#8.0f", y "%+#10.3E"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">0</td><td>Para las formas numéricas, rellenar el ancho del campo con ceros a la izquierda en vez de con espacios.<br />Este flag se ignora si un - flag está presente o si se especifica una precisión de un entero.<br />Ejemplos: %010d" y "%08.3f"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">digitos</td><td>Ancho minimo del campo. Un campo más amplio se utiliza si el número impreso o cadena no entra en el campo.<br />Ejemplos: %10d"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">.digitos</td><td>Precisión para "%e", "%E" y "%f" significa el número de dígitos a imprimir a la derecha del punto decimal.<br />Para "%g" y "%G" significa el maximo de dígitos.<br />Para "%s" significa el máximo número de caracteres a imprimir.<br />Para conversiones de enteros, significa el número mínimo de dígitos que aparece. Se usa cualquier número de '0' a la izquierda de el valor para llenar el campo<br />El uso de un punto sin número implica .0, "%.f" es el mismo que "%.0f"<br />Ejemplos: %5.2f"</td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">h</td><td>Usa con modificadores para indicar short int o short unsigned int<br />Ejemplos: "%hu", "%hx", y "%6.4hd"
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">hh</td><td>Usa con modificadores para indicar signed char o unsigned char<br />Ejemplos: "%hhu", "%hhx", y "%6.4hhd"
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">j</td><td>Usa con modificadores de enteros para indicar intmax_t or uintmax_t valores.<br />Ejemplos: "%jd" y "%8jX"
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">l</td><td>Usa con modificadores de enteros para indicar long o unsigned long int.<br />Ejemplos: "%ld" y "%8lu"
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">ll</td><td>Usa con modificadores de enteros para indicar long long o unsigned long long int.<br />Ejemplos: "%lld" y "%8llu"
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">L</td><td>Usa con modificadores de float para indicar long double o unsigned long long int.<br />Ejemplos: "%Lf" y "%10.4Le"
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">t</td><td>Usa con modificadores de ints para indicar ptrdiff_t value que es la diferencia de dos pointers<br />Ejemplos: "%td" y "%12ti"
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align:center;">z</td><td>Usa con modificadores de ints para indicar size_t value que se usa con sizeof<br />Ejemplos: "%zd" y "%12zx"
+    </td>
+  </tr>
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
