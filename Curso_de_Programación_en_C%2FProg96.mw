@@ -1,0 +1,89 @@
+__NOTOC__
+* [[:#Prog96 | Ordenar Ingreso]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog96 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>
+
+#define SIZE 81
+#define LIM 20
+#define HALT ""
+
+void stsrt( char *strings[], int num );
+
+int main( void )
+{
+  char Entrada[LIM][SIZE];
+  char *ptstr[LIM];    
+  int ct = 0;         
+  int k;             
+
+  printf( "Escribe hasta %d líneas y yo los ordeno.\n",LIM );
+  printf( "Presiona la tecla de Enter solo en una línea para terminar.\n" );
+
+  while( ct < LIM && gets( Entrada[ct] ) != NULL
+                  && Entrada[ct][0] != '\0')
+  {
+    ptstr[ct] = Entrada[ct];
+    ct++;
+  }
+  stsrt( ptstr, ct );
+  puts( "\nAquí es la lista ordenada:\n" );
+  for( k = 0; k < ct; k++ )
+    puts( ptstr[k] );
+
+  return 0;
+}
+
+/* string-pointer-sorting function */
+void stsrt(char *strings[], int num )
+{
+  char *temp;
+  int ParteSuperior, Buscar;
+
+  for( ParteSuperior = 0; ParteSuperior < num-1; ParteSuperior++ )
+    for( Buscar = ParteSuperior + 1; Buscar < num; Buscar++ )
+      if( strcmp( strings[ParteSuperior], strings[Buscar] ) > 0 )
+      {
+        temp = strings[ParteSuperior];
+        strings[ParteSuperior] = strings[Buscar];
+        strings[Buscar] = temp;
+      }
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog96 Prog96.c
+ [rrc@llawyr CClase]$ ./Prog96
+ Escribe hasta 20 líneas y yo los ordeno.
+ Presiona la tecla de Enter solo en una línea para terminar.
+ Línea 1
+ Línea 2
+ Línea 8
+ Linea 3 
+ Línea 20
+ Línea 9
+ 
+ 
+ Aquí es la lista ordenada:
+ 
+ Linea 3
+ Línea 1
+ Línea 2
+ Línea 20
+ Línea 8
+ Línea 9
+ [rrc@llawyr CClase]$ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
