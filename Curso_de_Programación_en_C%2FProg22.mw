@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#Prog22 | Prog22]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog22 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog22.c –– Escribe cadenas largas */
+
+#include <stdio.h>
+
+int main( void )
+{
+  printf( "Esta es una manera de escribir " );
+  printf( "una cadena larga.\n" );
+  printf( "Esta es otra manera de escribir \
+una cadena larga.\n" );
+  printf( "Mira la nueva manera de escribir "
+          "una cadena larga.\n ");      /* ANSI C */
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog22 Prog22.c
+ [rrc@Pridd CClase]$ ./Prog22
+ Esta es una manera de escribir una cadena larga.
+ Esta es otra manera de escribir una cadena larga.
+ Mira la nueva manera de escribir una cadena larga.
+ [rrc@Pridd CClase]$ 
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
