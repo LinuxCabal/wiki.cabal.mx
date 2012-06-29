@@ -1,0 +1,71 @@
+__NOTOC__
+* [[:#Prog97 | toupper y ispunct]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog97 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+#define LIMIT 80
+
+void ToUpper( char * );
+int PunctCount( const char * );
+
+int main( void )
+{
+  char Linea[LIMIT];
+
+  puts( "Ingresa una línea de texto por favor:");
+  fgets( Linea, 79, stdin );
+  ToUpper( Linea );
+  puts( Linea );
+  printf( "Esta línea tiene %d caracteres de puntuación.\n",
+             PunctCount( Linea ) );
+ return 0;
+}
+
+void ToUpper( char * str )
+{
+  while( *str )
+  {
+    *str = toupper( *str );
+    str++;
+  }
+}
+
+int PunctCount( const char * str )
+{
+  int ct = 0;
+
+  while (*str)
+  {
+    if( ispunct( *str ) )
+      ct++;
+    str++;
+  }
+  return ct;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog97 Prog97.c
+ [rrc@llawyr CClase]$ ./Prog97
+ Ingresa una línea de texto por favor:
+ ¡Tu línea de texto! 
+ ¡TU LíNEA DE TEXTO!
+ 
+ Esta línea tiene 1 caracteres de puntuación.
+ [rrc@llawyr CClase]$ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
