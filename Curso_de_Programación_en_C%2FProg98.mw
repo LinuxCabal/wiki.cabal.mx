@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#Prog98 | Argumentos]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog98 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( int argc, char *argv[] )
+{
+  int count;
+
+  printf( "El comando tuvo %d argumentos:\n", argc - 1 );
+  for( count = 0; count < argc; count++ )
+    printf( "%d: %s\n", count, argv[count] );
+  printf("\n");
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog98 Prog98.c
+ [rrc@llawyr CClase]$ ./Prog98 Uno Dos "y Tres"
+ El comando tuvo 3 argumentos:
+ 0: ./Prog98
+ 1: Uno
+ 2: Dos
+ 3: y Tres
+ 
+ [rrc@llawyr CClase]$ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
