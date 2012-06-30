@@ -1,0 +1,65 @@
+__NOTOC__
+* [[:#Prog99 | atoi()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog99 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main( int argc, char **argv )
+{
+  int i,
+      Veces;
+
+  if( argc < 2 || ( Veces = atoi(argv[1] ) ) < 1 )
+    printf( "\n\tUsage: %s n\n\t\tn = Número positivo > 0\n\n", argv[0] );
+  else
+    for( i = 0; i < Veces; i++ )
+      puts( "Parece Bien!" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog99 Prog99.c
+ [rrc@llawyr CClase]$ ./Prog99
+ 
+ 	Usage: ./Prog99 n
+ 		n = Número positivo > 0
+ 
+ [rrc@llawyr CClase]$ ./Prog99 0
+ 
+ 	Usage: ./Prog99 n
+ 		n = Número positivo > 0
+ 
+ [rrc@llawyr CClase]$ ./Prog99 -4
+ 
+ 	Usage: ./Prog99 n
+ 		n = Número positivo > 0
+ 
+ [rrc@llawyr CClase]$ ./Prog99 rt
+ 
+ 	Usage: ./Prog99 n
+ 		n = Número positivo > 0
+ 
+ [rrc@llawyr CClase]$ ./Prog99 6
+ Parece Bien!
+ Parece Bien!
+ Parece Bien!
+ Parece Bien!
+ Parece Bien!
+ Parece Bien!
+ [rrc@llawyr CClase]$ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
