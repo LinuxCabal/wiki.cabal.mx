@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#Prog104 | register variables]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog104 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  register char Saludo[] = "Hola";
+  register int Numero = 25;
+
+//  printf( "No podemos obtener una dirección de un register variable %s",
+//                                                       Saludo );
+  printf( "%d es una register variable\n", Numero );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog104 Prog104.c
+Prog104.c: In function ‘main’:
+Prog104.c:8:3: error: address of register variable ‘Saludo’ requested
+[rrc@llawyr CClase]$ 
+</pre> 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
