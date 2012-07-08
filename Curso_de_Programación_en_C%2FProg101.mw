@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#Prog101 | scope]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog101 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  int x = 30;
+
+  printf("x a fuera del bloque: %d\n", x);
+
+  {
+    int x = 77;  /* new x, hides first x */
+    printf("x a dentro del bloque: %d\n", x);
+  }
+
+  printf("x a fuera del bloque: %d\n", x);
+
+  while (x++ < 33)
+  {
+    int x = 100;
+    x++;
+    printf("x a dentro del while loop: %d\n", x);
+  }
+
+  printf("x a fuera del bloque: %d\n", x);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog101 Prog101.c
+[rrc@llawyr CClase]$ ./Prog101
+x a fuera del bloque: 30
+x a dentro del bloque: 77
+x a fuera del bloque: 30
+x a dentro del while loop: 101
+x a dentro del while loop: 101
+x a dentro del while loop: 101
+x a fuera del bloque: 34
+[rrc@llawyr CClase]$ 
+</pre>
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
