@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog103 | extern variables]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog103 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int respuesta = 0;
+
+void critic(void);
+
+int main(void)
+{
+  extern int respuesta;  /* redeclaración opcional */
+
+  printf( "Cuantos libras tiene un firkin de mantequilla? " );
+
+  scanf( "%d", &respuesta );
+
+  while( respuesta != 56 )
+    critic();
+
+  printf( "Correcto!\n" );
+
+  return 0;
+}
+
+void critic( void )
+{
+  printf( "No, Reintenta: " );
+  scanf( "%d", &respuesta );
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog103 Prog103.c
+[rrc@llawyr CClase]$ ./Prog103
+Cuantos libras tiene un firkin de mantequilla? 34
+No, Reintenta: 45
+No, Reintenta: 56
+Correcto!
+[rrc@llawyr CClase]$ 
+</pre>
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
