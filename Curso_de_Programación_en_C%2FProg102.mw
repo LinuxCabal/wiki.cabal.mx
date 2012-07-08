@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#Prog102 | static variables]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog102 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+#include <stdio.h>
+
+void IntenteSeQuedan( void );
+
+int main(void)
+{
+  int Contador;
+
+  for( Contador = 1; Contador <= 3; Contador++ )
+  {
+    printf( "Aquí viene la iteración %d:\n", Contador );
+    IntenteSeQuedan();
+  }
+
+  return 0;
+}
+
+void IntenteSeQuedan( void )
+{
+  int decolorarse = 1;
+  static int quedese = 1;
+
+  printf( "decolorarse = %d y quedese = %d\n",
+                           decolorarse++, quedese++ );
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog102 Prog102.c
+[rrc@llawyr CClase]$ ./Prog102
+Aquí viene la iteración 1:
+decolorarse = 1 y quedese = 1
+Aquí viene la iteración 2:
+decolorarse = 1 y quedese = 2
+Aquí viene la iteración 3:
+decolorarse = 1 y quedese = 3
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
