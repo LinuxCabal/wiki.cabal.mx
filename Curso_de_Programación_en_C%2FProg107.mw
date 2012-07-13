@@ -1,0 +1,93 @@
+__NOTOC__
+* [[:#Prog107 | Mejor random]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog107 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+//Archivo Prog107a.c
+static unsigned long int Siguiente = 1;  /* La semilla  */
+
+int rand1( void )
+{
+  Siguiente = Siguiente * 1103515245 + 12345;
+
+  return (unsigned int) (Siguiente/65536) % 32768;
+}
+
+void srand1(unsigned int Semilla)
+{
+  Siguiente = Semilla;
+}
+
+// Archivo Prog107b.c
+#include <stdio.h>
+
+extern void srand1( unsigned int x );
+extern int rand1( void );
+
+int main( void )
+{
+  int Contar;
+  unsigned Semilla;
+
+  printf( "Ingressa una semilla (entero positivo): " );
+
+  while( scanf( "%u", &Semilla ) == 1 )
+  {
+    srand1( Semilla );
+
+    for( Contar = 0; Contar < 5; Contar++ )
+      printf( "%hd\n", rand1() );
+
+    printf("Ingressa una semilla (entero positivo o q a terminar): ");
+  }
+
+  printf( "Listo\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog107 Prog107a.c Prog107b.c 
+[rrc@llawyr CClase]$ ./Prog107
+Ingressa una semilla (entero positivo): 4
+1817
+24166
+10491
+3711
+15407
+Ingressa una semilla (entero positivo o q a terminar): 4
+1817
+24166
+10491
+3711
+15407
+Ingressa una semilla (entero positivo o q a terminar): 7
+19564
+9806
+10868
+22674
+32531
+Ingressa una semilla (entero positivo o q a terminar): 3
+17747
+7107
+10365
+8312
+20622
+Ingressa una semilla (entero positivo o q a terminar): q
+Listo
+[rrc@llawyr CClase]$ 
+
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
