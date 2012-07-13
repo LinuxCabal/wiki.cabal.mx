@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#Prog106 | random]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog106 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+//Archivo Prog106a.c
+
+static unsigned long int Siguiente = 1;  /* La semilla  */
+
+int rand0( void )
+{
+  Siguiente = Siguiente * 1103515245 + 12345;
+
+  return (unsigned int) (Siguiente/65536) % 32768;
+}
+
+// Archivo Prog106b.c
+
+#include <stdio.h>
+
+extern int rand0( void );
+
+int main(void)
+{
+  int count;
+
+  for( count = 0; count < 5; count++ )
+    printf("%hd\n", rand0() );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog106 Prog106a.c Prog106b.c 
+[rrc@llawyr CClase]$ ./Prog106
+16838
+5758
+10113
+17515
+31051
+[rrc@llawyr CClase]$ ./Prog106
+16838
+5758
+10113
+17515
+31051
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
