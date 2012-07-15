@@ -1,0 +1,168 @@
+__NOTOC__
+* [[:#Prog108 | Tirar los Dados]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog108 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+// Archivo Prog108.h
+extern int ContarLosTiros;
+int Tira_n_Dados(int, int );
+
+// Archivo Prog108a.c
+#include <stdio.h>
+#include <stdlib.h>              /* Prototipo para srand()        */
+#include <time.h>                /* Prototipo para time()         */
+#include <string.h>              /* Prototipo para strlen()       */
+#include "Prog108.h"             /* Prototipo para roll_n_Dados()
+                                    y para ContarLosTiros       */
+
+int main(void)
+{
+  int Dados,
+      Lados = 0,
+      NumCharsLeidos,
+      NumValidosChars,
+      Tira,
+      i;
+
+  char NumSTR[10];
+
+  srand( (unsigned int)time( 0 ) ); /* random semilla      */
+  printf( "Ingreso el número de lados de los dados, 0 para terminar: " );
+
+  while( fgets( NumSTR, 9, stdin ) )
+  {
+    NumValidosChars = 0;
+    NumCharsLeidos = strlen( NumSTR );
+
+    if( NumSTR[0] == '0' )
+      break;
+
+    if( *(NumSTR + NumCharsLeidos - 1) != '\n' )
+    {
+      puts( "Entrada ¡INVALIDA!" );
+      while( getchar() != '\n' );
+      printf( "Ingreso el número de lados de los dados, 0 para terminar: " );
+      continue;
+    }
+    else
+      *(NumSTR + NumCharsLeidos - 1) = '\0';
+
+    for( i = 0; i < NumCharsLeidos -1; i++ )
+      if( ( *(NumSTR + i ) >= '0' && *(NumSTR + i ) <= '9' ) )
+        NumValidosChars++;
+
+    if( NumCharsLeidos == 1 || NumValidosChars != NumCharsLeidos - 1 )
+    {
+      puts( "Entrada ¡INVALIDA!" );
+      printf( "Ingreso el número de lados de los dados, 0 para terminar: " );
+      continue;
+    }
+    Lados = atoi( NumSTR );
+
+    printf( "¿Cuantos dados? " );
+    fgets( NumSTR, 9, stdin );
+    NumValidosChars = 0;
+    NumCharsLeidos = strlen( NumSTR );
+
+    if( *(NumSTR + NumCharsLeidos - 1) != '\n' )
+    {
+      puts( "Entrada ¡INVALIDA! por returno" );
+      while( getchar() != '\n' );
+      printf( "Ingreso el número de lados de los dados, 0 para terminar: " );
+      continue;
+    }
+    else
+      *(NumSTR + NumCharsLeidos - 1) = '\0';
+
+    for( i = 0; i < NumCharsLeidos -1; i++ )
+      if( ( *(NumSTR + i ) >= '0' && *(NumSTR + i ) <= '9' ) )
+        NumValidosChars++;
+
+    if( NumCharsLeidos == 1 || NumValidosChars != NumCharsLeidos - 1 )
+    {
+      puts( "\nEntrada ¡INVALIDA!" );
+      printf( "Ingreso el número de lados de los dados, 0 para terminar: " );
+      continue;
+    }
+
+    Dados = atoi( NumSTR );
+    if( Dados < 1 )
+    {
+      puts( "\nNúmero de dados ¡INVALIDA!" );
+      printf( "Ingreso el número de lados de los dados, 0 para terminar: " );
+      continue;
+    }
+
+    Tira = Tira_n_Dados( Dados, Lados );
+    printf( "Tiraste %d usando %d dados de %d lados.\n", Tira, Dados, Lados );
+    printf( "Ingreso el número de lados de los dados, 0 para terminar: " );
+  }
+  printf( "La función rollem() se usó %d veces.\n", ContarLosTiros );
+  puts( "¡Buen suerte!\n" );
+
+  return 0;
+}
+
+// Archivo Prog108b.c
+#include "Prog108.h"
+#include <stdio.h>
+#include <stdlib.h>             /* Prototipo para rand()   */
+
+int ContarLosTiros  = 0;
+
+static int rollem( int Lados )
+{
+    int Tira;
+
+    Tira = rand() % Lados + 1;
+    ++ContarLosTiros;             /* contar usos de función */
+    return Tira;
+}
+
+int Tira_n_Dados( int Dados, int Lados )
+{
+  int d;
+  int total = 0;
+
+  for( d = 0; d < Dados; d++ )
+    total += rollem( Lados );
+
+  return total;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog108 Prog108a.c Prog108b.c 
+[rrc@llawyr CClase]$ ./Prog108
+Ingreso el número de lados de los dados, 0 para terminar: 6
+Cuantos dados? 2
+Tiraste 5 usando 2 dados de 6 lados.
+Ingreso el número de lados de los dados, 0 para terminar: 6
+Cuantos dados? 2
+Tiraste 9 usando 2 dados de 6 lados.
+Ingreso el número de lados de los dados, 0 para terminar: 6
+Cuantos dados? 2
+Tiraste 3 usando 2 dados de 6 lados.
+Ingreso el número de lados de los dados, 0 para terminar: 6
+Cuantos dados? 2
+Tiraste 6 usando 2 dados de 6 lados.
+Ingreso el número de lados de los dados, 0 para terminar: 6
+Cuantos dados? 2
+Tiraste 12 usando 2 dados de 6 lados.
+Ingreso el número de lados de los dados, 0 para terminar: 0
+La función rollem() se usó 10 veces.
+¡Buen suerte!
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
