@@ -1,0 +1,81 @@
+__NOTOC__
+* [[:#Prog62 | Arreglos4 - MultiDimensional]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog62 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define MESES 12    // number of mess in a ano
+#define ANOS   5    // number of anos of data
+
+int main( void )
+{
+  // init Lluvia para 2000 - 2004
+  const float lluvia[ANOS][MESES] =
+  {
+    {4.3,4.3,4.3,3.0,2.0,1.2,0.2,0.2,0.4,2.4,3.5,6.6},
+    {8.5,8.2,1.2,1.6,2.4,0.0,5.2,0.9,0.3,0.9,1.4,7.3},
+    {9.1,8.5,6.7,4.3,2.1,0.8,0.2,0.2,1.1,2.3,6.1,8.4},
+    {7.2,9.9,8.4,3.3,1.2,0.8,0.4,0.0,0.6,1.7,4.3,6.2},
+    {7.6,5.6,3.8,2.8,3.8,0.2,0.0,0.0,0.0,1.3,2.6,5.2}
+  };
+
+  int   ano,
+        mes;
+  float subtot,
+        total;
+
+  puts( " AÑO     LLUVIA  (pulgadas)" );
+  for ( ano = 0, total = 0; ano < ANOS; ano++ )
+  {
+    for (mes = 0, subtot = 0; mes < MESES; mes++)
+      subtot += lluvia[ano][mes];
+    printf( "%5d %15.1f\n", 2000 + ano, subtot );
+    total += subtot; 
+  }
+  printf( "\nEl promedio es %.1f pulgadas.\n\n", total/ANOS );
+  printf( "Promedios Mensuales:\n\n" );
+  printf( " Ene  Feb  Mar  Abr  May  Jun  Jul  Ago  Sep  Oct "
+          " Nov  Dec\n" );
+
+  for( mes = 0; mes < MESES; mes++ )
+  {
+    for( ano = 0, subtot =0; ano < ANOS; ano++ )
+      subtot += lluvia[ano][mes];
+    printf( "%4.1f ", subtot/ANOS );
+  }
+  puts( "" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+    
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -oProg62 Prog62.c 
+ [rrc@Pridd CClase]$ ./Prog62 
+  AÑO     LLUVIA  (pulgadas)
+  2000            32.4
+  2001            37.9
+  2002            49.8
+  2003            44.0
+  2004            32.9
+ 
+ El promedio es 39.4 pulgadas.
+ 
+ Promedios Mensuales:
+ 
+  Ene  Feb  Mar  Abr  May  Jun  Jul  Ago  Sep  Oct  Nov  Dec
+  7.3  7.3  4.9  3.0  2.3  0.6  1.2  0.3  0.5  1.7  3.6  6.7 
+ [rrc@Pridd CClase]$ 
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
