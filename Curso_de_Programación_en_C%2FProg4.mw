@@ -1,0 +1,54 @@
+__NOTOC__
+* [[:#Prog4 | Asignación de resultados aritméticos]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog4 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/*  Prog4.c -- Asignación de resultados aritméticos */
+
+#include <stdio.h>
+
+int main( void )
+{
+  int n  = 5,
+      n2 = n * n,
+      n3 = n2 * n; /* decleración y asignación de resultados de multiplicación */
+
+  printf( "n = %d, n cuadrado = %d, n cubo = %d\n", n, n2, n3 );
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog4 Prog4.c
+ [rrc@Pridd CClase]$ ./Prog4
+ n = 5, n cuadrado = 25, n cubo = 125
+
+=== Explicación ===
+
+
+<code>int n  = 5,</code><br>
+En este ejemplo vemos como luego de la funcion principal '''main''' se declara una variable de tipo entero a la cual se le asigna el valor 5.
+
+
+<code>n2 = n * n,</code><br>
+Inmediatamente despues se declara '''n2''' y se le asigna el valor de '''n al cuadrado''' que como la variable '''n''' al momento de efectuar la asignacion es 5, en '''n2''' queda asignado el valor 25.
+
+
+<code>n3 = n2 * n;</code><br>
+Aqui asignamos a la variable '''n3''' el valor de '''n2 * n''' que como '''n2''' contiene 25 y '''n''' contiene 5, el valor asignado a esta tercer variable seria 125.
+
+ 
+<code>printf( "n = %d, n cuadrado = %d, n cubo = %d\n", n, n2, n3 );</code><br>
+En esta ultima linea podemos ver como se imprime en pantalla los valores contenidos en ''', n, n2, n3''' respectivamente, asignados previamente por medio de un calculo aritmetico.
+
+
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
