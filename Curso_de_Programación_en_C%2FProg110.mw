@@ -1,0 +1,60 @@
+__NOTOC__
+* [[:#Prog110 | Usando archivos con fopen(), fclose(), getc() y putc()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog110 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h> // exit() prototipo
+
+int main(int argc, char *argv[])
+{
+  int ch;
+
+  FILE *fp;
+
+  long count = 0;
+
+  if( argc != 2 )
+  {
+    printf( "Usado: %s NombreDeArchivo\n", argv[0] );
+    exit( 1 );
+  }
+
+  if( ( fp = fopen(argv[1], "r" ) ) == NULL )
+  {
+    printf( "No puedo abrir %s\n", argv[1] );
+    exit( 1 );
+  }
+
+  while( ( ch = getc( fp ) ) != EOF )
+  {
+   putc( ch,stdout );
+   count++;
+  }
+
+  fclose( fp );
+
+  printf( "El archivo %s tiene %ld caracteres\n", argv[1], count );
+
+  return 0; 
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog110 Prog110.c
+[rrc@llawyr CClase]$ ./Prog110 Prog110.txt
+Línea de characteres
+El archivo Prog110.txt tiene 22 caracteres
+[rrc@llawyr CClase]$
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
