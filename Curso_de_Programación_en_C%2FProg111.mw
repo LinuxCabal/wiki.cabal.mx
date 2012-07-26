@@ -1,0 +1,75 @@
+__NOTOC__
+* [[:#Prog111 | fprintf(), stderr, strncpy() y srtcat()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog111 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+#include <stdlib.h>    // prototipo de exit()
+#include <string.h>    // prototipo de strcpy() y strcat()
+
+#define LEN 40
+
+int main( int argc, char *argv[] )
+{
+  FILE  *IngresoArchivo,
+        *SaliddaArchivo;
+
+  int ch,
+      Contar = 0;
+
+  char ArchivoNombre[LEN];
+
+  if (argc < 2)
+  {
+     fprintf( stderr, "Usado: %s ArchivoNombre\n", argv[0] );
+     exit(1);
+  }
+
+  if( ( IngresoArchivo = fopen( argv[1], "r" ) ) == NULL )
+  {
+    fprintf( stderr, "No puedo abrir el archivo \"%s\"\n",
+                      argv[1]);
+    exit(2);
+  }
+
+  strncpy( ArchivoNombre, argv[1], LEN - 5 );
+  ArchivoNombre[LEN - 5] = '\0';
+  strcat( ArchivoNombre,".red" );
+
+  if( ( SaliddaArchivo = fopen( ArchivoNombre, "w" ) ) == NULL )
+  {
+    fprintf( stderr, "No puedo crear el archivo de salida.\n" );
+    exit(3);
+  }
+
+  while( ( ch = getc( IngresoArchivo ) ) != EOF )
+    if( !( Contar++ %3 ) )
+      putc( ch, SaliddaArchivo );
+
+  if( fclose( IngresoArchivo ) != 0 || fclose( SaliddaArchivo ) != 0 )
+    fprintf( stderr, "Error: No puedo cerrar los archivos\n" );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog111 Prog111.c
+[rrc@llawyr CClase]$ cat Prog111.infile
+So even Eddy came oven ready.
+
+[rrc@llawyr CClase]$ ./Prog111 Prog111.infile
+[rrc@llawyr CClase]$ cat Prog111.infile.red 
+Send money
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
