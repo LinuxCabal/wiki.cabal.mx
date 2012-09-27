@@ -1,0 +1,91 @@
+__NOTOC__
+* [[:#Prog116 | fread() y fwrite()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog116 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define TAMANOAR 1000
+
+int main( void )
+{
+  double Numeros[TAMANOAR],
+         Valor;
+
+  const char * Archivo = "Numeros.dat";
+
+  int i;
+
+  long pos;
+
+  FILE *ioArchivo;
+
+  // Crear un grupo de valores de dobles
+  for( i = 0; i < TAMANOAR; i++ )
+    Numeros[i] = 100.0 * i + 1.0 / (i + 1);
+
+  if( ( ioArchivo = fopen( Archivo, "wb" ) ) == NULL )
+  {
+    fprintf( stderr, "No puedo abrir el archivo de salida: %s.\n", Archivo );
+    exit(1);
+  }
+  // write array in binary format to Archivo
+  fwrite( Numeros, sizeof (double), TAMANOAR, ioArchivo );
+  fclose( ioArchivo );
+
+  if( ( ioArchivo = fopen( Archivo, "rb" ) ) == NULL )
+  {
+    fprintf( stderr, "No puedo abrir %s para acceso random.\n", Archivo );
+    exit( 1 );
+  }
+  // read selected items from Archivo
+  printf( "Ingresa un index en el rango 0-%d: ", TAMANOAR - 1 );
+  scanf( "%d", &i );
+  while( i >= 0 && i < TAMANOAR )
+  {
+    pos = (long)i * sizeof( double ); // calcular el offset
+    fseek( ioArchivo, pos, SEEK_SET );
+    fread( &Valor, sizeof( double ), 1, ioArchivo );
+    printf( "El Valor allá es %f.\n", Valor );
+    printf( "Siguiente index (a fuera del rango para terminar): ");
+    scanf( "%d", &i );
+  }
+  fclose( ioArchivo );
+  puts( "\n¡Adios!\n" );
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog116 Prog116.c
+[rrc@llawyr CClase]$ ./Prog116
+Ingresa un index en el rango 0-999: 40
+El Valor allá es 4000.024390.
+Siguiente index (a fuera del rango para terminar): 21 
+El Valor allá es 2100.045455.
+Siguiente index (a fuera del rango para terminar): 66
+El Valor allá es 6600.014925.
+Siguiente index (a fuera del rango para terminar): 99
+El Valor allá es 9900.010000.
+Siguiente index (a fuera del rango para terminar): 345
+El Valor allá es 34500.002890.
+Siguiente index (a fuera del rango para terminar): 999
+El Valor allá es 99900.001000.
+Siguiente index (a fuera del rango para terminar): 2345
+
+¡Adios!
+
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
