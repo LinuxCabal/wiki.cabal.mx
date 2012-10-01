@@ -1,0 +1,120 @@
+__NOTOC__
+* [[:#Prog123 | uniones]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog123 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+#include <string.h>
+
+union Fechas {
+  char FechaCorta[6];
+  char FechaMediana[11];
+  char FechaLarga[21];
+} FechaPrueba;
+
+union Canasta {
+  int    GuardaInt;
+  double GuardaDoble;
+  char   GuardaChar;
+} Prueba;
+
+int main( void )
+{
+  strcpy( FechaPrueba.FechaCorta, "29/09" );
+
+  printf( "\nCon FechaPruebaFechaCorta = \"29/09\"\n"
+          "Corta: |%s|\tMediana: |%s|\tLarga: |%s|\n", FechaPrueba.FechaCorta,
+                                                       FechaPrueba.FechaMediana,
+                                                       FechaPrueba.FechaLarga );
+
+  strcpy( FechaPrueba.FechaMediana, "29-09-2012" );
+
+  printf( "\nCon FechaPruebaFechaMediana = \"29-09-2012\"\n"
+          "Corta: |%s|\tMediana: |%s|\tLarga: |%s|\n", FechaPrueba.FechaCorta,
+                                                       FechaPrueba.FechaMediana,
+                                                       FechaPrueba.FechaLarga );
+
+  strcpy( FechaPrueba.FechaLarga, "29/09/2012 15:25:36" );
+
+  printf( "\nCon FechaPruebaFechaLarga = \"29/09/2012 15:25:36\"\n"
+          "Corta: |%s|\tMediana: |%s|\tLarga: |%s|\n", FechaPrueba.FechaCorta,
+                                                       FechaPrueba.FechaMediana,
+                                                       FechaPrueba.FechaLarga );
+  Prueba.GuardaInt = 123;
+
+  printf( "\nCon Prueba.GuardaInt = 123\n"
+          "PGint: |%d|\tPGD: |%f|\tPGC: |%c|\n", Prueba.GuardaInt,
+                                                 Prueba.GuardaDoble,
+                                                 Prueba.GuardaChar );
+
+  Prueba.GuardaDoble = 123.321;
+
+  printf( "\nCon Prueba.GuardaDoble = 123.321\n"
+          "PGint: |%d|\tPGD: |%f|\tPGC: |%c|\n", Prueba.GuardaInt,
+                                                 Prueba.GuardaDoble,
+                                                 Prueba.GuardaChar );
+
+  Prueba.GuardaChar = 'R';
+
+  printf( "\nCon Prueba.GuardaChar = 'R'\n"
+          "PGint: |%d|\tPGD: |%f|\tPGC: |%c|\n", Prueba.GuardaInt,
+                                                 Prueba.GuardaDoble,
+                                                 Prueba.GuardaChar );
+
+  Prueba.GuardaDoble = 'R';
+
+  printf( "\nCon Prueba.GuardaDoble = 'R'\n"
+          "PGint: |%d|\tPGD: |%f|\tPGC: |%c|\n", Prueba.GuardaInt,
+                                                 Prueba.GuardaDoble,
+                                                 Prueba.GuardaChar );
+
+  Prueba.GuardaInt = 'R';
+
+  printf( "\nCon Prueba.GuardaInt = 'R'\n"
+          "PGint: |%d|\tPGD: |%f|\tPGC: |%c|\n", Prueba.GuardaInt,
+                                                 Prueba.GuardaDoble,
+                                                 Prueba.GuardaChar );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[root@lclabws CClase]# gcc -Wall -o Prog123 Prog123.c
+[root@lclabws CClase]# ./Prog123
+
+Con FechaPruebaFechaCorta = "29/09"
+Corta: |29/09|	Mediana: |29/09|	Larga: |29/09|
+
+Con FechaPruebaFechaMediana = "29-09-2012"
+Corta: |29-09-2012|	Mediana: |29-09-2012|	Larga: |29-09-2012|
+
+Con FechaPruebaFechaLarga = "29/09/2012 15:25:36"
+Corta: |29/09/2012 15:25:36|	Mediana: |29/09/2012 15:25:36|	Larga: |29/09/2012 15:25:36|
+
+Con Prueba.GuardaInt = 123
+PGint: |123|	PGD: |0.000000|	PGC: |{|
+
+Con Prueba.GuardaDoble = 123.321
+PGint: |-790273982|	PGD: |123.321000|	PGC: |B|
+
+Con Prueba.GuardaChar = 'R'
+PGint: |-790273966|	PGD: |345.321000|	PGC: |R|
+
+Con Prueba.GuardaDoble = 'R'
+PGint: |0|	PGD: |82.000000|	PGC: ||
+
+Con Prueba.GuardaInt = 'R'
+PGint: |82|	PGD: |82.000000|	PGC: |R|
+[root@lclabws CClase]# 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
