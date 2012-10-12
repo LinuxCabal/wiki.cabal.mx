@@ -1,0 +1,79 @@
+__NOTOC__
+* [[:#Más Orden de Precedencia | Más Orden de Precedencia]]
+** [[:#Explicación | Explicación]]
+
+== Más Orden de Precedencia ==
+
+<table border="1" cellspacing="2" celpadding="2" style="text-align:center; background:#cccccc;">
+  <tr style="font-size:16pt;">
+    <th> Operador </th>
+  </tr>
+
+  <tr><td><span style="font-weight:bold;">(</span> expr <span style="font-weight:bold;">)</span></td>
+  </tr>
+
+  <tr>
+    <td>!&nbsp;&nbsp;&nbsp;++&nbsp;&nbsp;--&nbsp;&nbsp;(cast)&nbsp;&nbsp;sizeof<br />Bitwise operador: ~<br />Unary operadores:&nbsp;&nbsp;+&nbsp;&nbsp;-&nbsp;&nbsp;*&nbsp;&nbsp;&amp;</td>
+  </tr>
+
+
+  <tr>
+    <td>*&nbsp;&nbsp;/&nbsp;&nbsp;%</td>
+  </tr>
+
+  <tr>
+    <td>+&nbsp;&nbsp;-</td>
+  </tr>
+
+  <tr>
+    <td>Bitwise operadores: &lt;&lt;&nbsp;&nbsp;&gt;&gt;</td>
+  </tr>
+
+  <tr>
+    <td>&lt;&nbsp;&nbsp;&lt;=&nbsp;&nbsp;&gt;&nbsp;&nbsp;&gt;=</td>
+  </tr>
+
+  <tr>
+    <td>==&nbsp;&nbsp;!=</td>
+  </tr>
+
+  <tr>
+    <td>Bitwise operador:&nbsp;&nbsp;&amp;</td>
+  </tr>
+
+  <tr>
+    <td>Bitwise operador:&nbsp;&nbsp;^</td>
+  </tr>
+
+  <tr>
+    <td>Bitwise operador:&nbsp;&nbsp;|</td>
+  </tr>
+
+  <tr>
+    <td>&amp;&amp;</td>
+  </tr>
+
+  <tr>
+    <td>||</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;&nbsp;expr ? expr_verdad : expr_falso&nbsp;&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;&nbsp;+=&nbsp;&nbsp;-=&nbsp;&nbsp;*=&nbsp;&nbsp;/=&nbsp;&nbsp;%=&nbsp;&nbsp;=&nbsp;&nbsp;<br />&nbsp;&nbsp;Bitwise operadores: &lt;&lt;=&nbsp;&nbsp;&amp;=&nbsp;&nbsp;^=&nbsp;&nbsp;|=&nbsp;&nbsp;&gt;&gt;=&nbsp;&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>,</td>
+  </tr>
+
+</table>
+
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
