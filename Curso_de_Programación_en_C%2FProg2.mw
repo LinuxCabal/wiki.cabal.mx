@@ -1,0 +1,57 @@
+__NOTOC__
+* [[:#Prog2 | Convertir 2 fathoms a pies]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog2 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog2.c -- Convertir 2 fathoms a pies */
+
+#include <stdio.h>
+
+int main( void )
+{
+  int fathoms = 2,
+      feet    = 6 * fathoms;
+
+  printf( "Son %d pies en %d fathoms!\n", feet, fathoms );
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog2 Prog2.c
+ [rrc@Pridd CClase]$ ./Prog2
+ Son 12 pies en 2 fathoms!
+
+=== Explicación ===
+
+<code>/* Prog2.c -- Convertir 2 fathoms a pies */</code><br>
+Esta primer linea es un comentario, la cual se inicia con " '''/*''' " y se indica fin del comentario con " '''*/''' "
+
+<code>#include <stdio.h></code><br>
+esta linea incluye la biblioteca estándar de entrada/salida.
+     
+
+<code>int main( void )</code><br>
+indica la funcion principal del programa.
+    
+<code>int fathoms = 2,</code><br>
+declara un entero '''int''' llamado '''fathoms''' al cual se le asigna el valor '''2'''.
+
+<code>feet    = 6 * fathoms;</code><br>
+con el caracter de asignacion " '''=''' " hacemos '''feet''' igual a 6 multiplicado por la variable '''fathoms'''.
+     
+
+<code>printf( "Son %d pies en %d fathoms!\n", feet, fathoms );</code><br>
+dentro de la cadena de caracteres que se imprimira en pantalla, entre las comillas hay dos caracteres de formato para que muestre la variable como numeros enteros " %d " (tambien podria ponerse " %i " que indica lo mismo) los cuales al momento de ser impresos en pantalla seran reemplazados por las variables feet y fathoms en el mismo orden respectivamente.
+
+
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
