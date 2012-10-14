@@ -1,0 +1,246 @@
+__NOTOC__
+* [[:#Prog126 | Operadores de Bit Fiddling]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog126 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  /* Bit Fiddling
+   *
+   * Bitwise logical operadores, unary operadores
+   * ~, &,  |   y  ^
+   *    &=, |=  y  ^=
+   * >>, >>=, << y <<=
+   *
+   */
+
+  unsigned int i,
+	       Num;
+
+  puts( "\nOnes Complement o Bitwise negación o Not operador \"~\"" );
+  for( Num = 4294967295; Num > 4294967284; Num-- )
+    printf( "\t~%u o ~%x = %u o %x\n", Num, Num, ~Num, ~Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+
+  puts( "\nBitwise AND \"&\"" );
+  for( Num = 0xffff; Num > 0xfff4; Num-- )
+    printf( "\t(65535 & %d) o (ffff & %x) = %u o %x\n",
+		                Num, Num, 0xffff & Num, 0xffff & Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+  puts( "Puedes usar el operador \"&=\" también" );
+  Num = 0xffff;
+  Num &= 0xfff5;
+  printf( "Num &= 0xfff5 nos da %x\n", Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+
+  puts( "\nBitwise OR \"|\"" );
+  for( Num = 0; Num < 11; Num++ )
+    printf( "\t(0 | %d) o (0000 | %x) = %u o %x\n",
+		                Num, Num, 0 | Num, 0 | Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+  puts( "Puedes usar el operador \"|=\" también" );
+  Num = 0;
+  Num |= 5;
+  printf( "Num |= 5 nos da %x\n", Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+
+  puts( "\nBitwise XOR \"^\"" );
+  for( Num = 65535; Num > 65524; Num-- )
+    printf( "\t(65535 ^ %d) o (ffff ^ %x) = %u o %x\n",
+		                Num, Num, 65535 ^ Num, 65535 ^ Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+  puts( "Puedes usar el operador \"^=\" también" );
+  Num = 65535;
+  Num ^= 65528;
+  printf( "Num ^= 65528 nos da %x\n", Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+
+  puts( "Existe el shift al ezquierda operador \"<<\"" );
+  Num = 0xffffffff;
+  printf( "\t(Num << 1) Nos da %x y después Num = %x\n", (Num << 1), Num );
+  printf( "\t(Num << 2) Nos da %x y después Num = %x\n", (Num << 2), Num );
+  printf( "\t(Num << 3) Nos da %x y después Num = %x\n", (Num << 3), Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+  puts( "Puedes usar el operador \"<<=\" también" );
+  Num = 0xffffffff;
+  for( i = 1; i < 9; i++ )
+  {
+    Num <<= i;
+    printf( "\tDespués de (Num <<= %d), "
+            "Num se cambio a %08x en manera permanente\n", i, Num );
+  }
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+
+  puts( "Existe el shift a la derecha operador \">>\"" );
+  Num = 0xffffffff;
+  printf( "\t(Num >> 1) Nos da %x y después Num = %x\n", (Num >> 1), Num );
+  printf( "\t(Num >> 2) Nos da %x y después Num = %x\n", (Num >> 2), Num );
+  printf( "\t(Num >> 3) Nos da %x y después Num = %x\n", (Num >> 3), Num );
+  puts( "\nPresión <Enter> para continuar" );
+  while( ( Num = getchar() ) != '\n' );
+    ;
+  puts( "Puedes usar el operador \">>=\" también" );
+  Num = 0xffffffff;
+  for( i = 1; i < 9; i++ )
+  {
+    Num >>= i;
+    printf( "\tDespués de (Num >>= %d), "
+            "Num se cambio a %08x en manera permanente\n", i, Num );
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@AbelLap CClase]$ gcc -Wall -o Prog126 Prog126.c 
+[rrc@AbelLap CClase]$ ./Prog126
+
+Ones Complement o Bitwise negación o Not operador "~"
+	~4294967295 o ~ffffffff = 0 o 0
+	~4294967294 o ~fffffffe = 1 o 1
+	~4294967293 o ~fffffffd = 2 o 2
+	~4294967292 o ~fffffffc = 3 o 3
+	~4294967291 o ~fffffffb = 4 o 4
+	~4294967290 o ~fffffffa = 5 o 5
+	~4294967289 o ~fffffff9 = 6 o 6
+	~4294967288 o ~fffffff8 = 7 o 7
+	~4294967287 o ~fffffff7 = 8 o 8
+	~4294967286 o ~fffffff6 = 9 o 9
+	~4294967285 o ~fffffff5 = 10 o a
+
+Presión <Enter> para continuar
+
+
+Bitwise AND "&"
+	(65535 & 65535) o (ffff & ffff) = 65535 o ffff
+	(65535 & 65534) o (ffff & fffe) = 65534 o fffe
+	(65535 & 65533) o (ffff & fffd) = 65533 o fffd
+	(65535 & 65532) o (ffff & fffc) = 65532 o fffc
+	(65535 & 65531) o (ffff & fffb) = 65531 o fffb
+	(65535 & 65530) o (ffff & fffa) = 65530 o fffa
+	(65535 & 65529) o (ffff & fff9) = 65529 o fff9
+	(65535 & 65528) o (ffff & fff8) = 65528 o fff8
+	(65535 & 65527) o (ffff & fff7) = 65527 o fff7
+	(65535 & 65526) o (ffff & fff6) = 65526 o fff6
+	(65535 & 65525) o (ffff & fff5) = 65525 o fff5
+
+Presión <Enter> para continuar
+
+Puedes usar el operador "&=" también
+Num &= 0xfff5 nos da fff5
+
+Presión <Enter> para continuar
+
+
+Bitwise OR "|"
+	(0 | 0) o (0000 | 0) = 0 o 0
+	(0 | 1) o (0000 | 1) = 1 o 1
+	(0 | 2) o (0000 | 2) = 2 o 2
+	(0 | 3) o (0000 | 3) = 3 o 3
+	(0 | 4) o (0000 | 4) = 4 o 4
+	(0 | 5) o (0000 | 5) = 5 o 5
+	(0 | 6) o (0000 | 6) = 6 o 6
+	(0 | 7) o (0000 | 7) = 7 o 7
+	(0 | 8) o (0000 | 8) = 8 o 8
+	(0 | 9) o (0000 | 9) = 9 o 9
+	(0 | 10) o (0000 | a) = 10 o a
+
+Presión <Enter> para continuar
+
+Puedes usar el operador "|=" también
+Num |= 5 nos da 5
+
+Presión <Enter> para continuar
+
+
+Bitwise XOR "^"
+	(65535 ^ 65535) o (ffff ^ ffff) = 0 o 0
+	(65535 ^ 65534) o (ffff ^ fffe) = 1 o 1
+	(65535 ^ 65533) o (ffff ^ fffd) = 2 o 2
+	(65535 ^ 65532) o (ffff ^ fffc) = 3 o 3
+	(65535 ^ 65531) o (ffff ^ fffb) = 4 o 4
+	(65535 ^ 65530) o (ffff ^ fffa) = 5 o 5
+	(65535 ^ 65529) o (ffff ^ fff9) = 6 o 6
+	(65535 ^ 65528) o (ffff ^ fff8) = 7 o 7
+	(65535 ^ 65527) o (ffff ^ fff7) = 8 o 8
+	(65535 ^ 65526) o (ffff ^ fff6) = 9 o 9
+	(65535 ^ 65525) o (ffff ^ fff5) = 10 o a
+
+Presión <Enter> para continuar
+
+Puedes usar el operador "^=" también
+Num ^= 65528 nos da 7
+
+Presión <Enter> para continuar
+
+Existe el shift al ezquierda operador "<<"
+	(Num << 1) Nos da fffffffe y después Num = ffffffff
+	(Num << 2) Nos da fffffffc y después Num = ffffffff
+	(Num << 3) Nos da fffffff8 y después Num = ffffffff
+
+
+Presión <Enter> para continuar
+
+Puedes usar el operador "<<=" también
+        Después de (Num <<= 1), Num se cambio a fffffffe en manera permanente
+        Después de (Num <<= 2), Num se cambio a fffffff8 en manera permanente
+        Después de (Num <<= 3), Num se cambio a ffffffc0 en manera permanente
+        Después de (Num <<= 4), Num se cambio a fffffc00 en manera permanente
+        Después de (Num <<= 5), Num se cambio a ffff8000 en manera permanente
+        Después de (Num <<= 6), Num se cambio a ffe00000 en manera permanente
+        Después de (Num <<= 7), Num se cambio a f0000000 en manera permanente
+        Después de (Num <<= 8), Num se cambio a 00000000 en manera permanente
+
+Presión <Enter> para continuar
+
+Existe el shift a la derecha operador ">>"
+        (Num >> 1) Nos da 7fffffff y después Num = ffffffff
+        (Num >> 2) Nos da 3fffffff y después Num = ffffffff
+        (Num >> 3) Nos da 1fffffff y después Num = ffffffff
+
+Presión <Enter> para continuar
+
+Puedes usar el operador ">>=" también
+        Después de (Num >>= 1), Num se cambio a 7fffffff en manera permanente
+        Después de (Num >>= 2), Num se cambio a 1fffffff en manera permanente
+        Después de (Num >>= 3), Num se cambio a 03ffffff en manera permanente
+        Después de (Num >>= 4), Num se cambio a 003fffff en manera permanente
+        Después de (Num >>= 5), Num se cambio a 0001ffff en manera permanente
+        Después de (Num >>= 6), Num se cambio a 000007ff en manera permanente
+        Después de (Num >>= 7), Num se cambio a 0000000f en manera permanente
+        Después de (Num >>= 8), Num se cambio a 00000000 en manera permanente
+
+[rrc@AbelLap CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
