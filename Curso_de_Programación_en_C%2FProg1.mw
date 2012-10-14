@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Prog1 | main(), #include, comentarios, variables, int, printf() y return]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog1 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )                     /* Un programa simple         */
+{
+  int num;                        /* definir una variable
+                                      llamada num                */
+  num = 1;                        /* asignar una valor a num    */
+
+  printf( "Soy una computadora " ); /* uso de la función printf() */
+  printf( "simple.\n" );
+  printf( "Mi número favorito es %d porque el es el primero.\n", num );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog1 Prog1.c
+ [rrc@Pridd CClase]$ ./Prog1
+ Soy una computadora simple.
+ Mi número favorito es 1 porque el es el primero.
+
+=== Explicación ===
+
+La primera línea del programa, <code>#include <stdio.h></code> le dice al compilador, que debe incluir la biblioteca estándar de entrada y salida. Esta biblioteca es necesaria, porque es la que posee información acerca de la rutina de salida printf que se utiliza posteriormente en el programa.
+
+La línea 2, no tiene contenido, es solamente una línea en blanco, es usada para mejorar la legibilidad del programa. El compilador de C, ignora completamente todos los espacios en blanco, incluyendo todos los espacios, los saltos de línea y las tabulaciones que se encuentran fuera de una cadena literal.
+
+La línea 3 tiene la función principal del programa: <code>int main (void)</code>.Esta función retorna un entero y no recibe parametros '''(void)'''. Además, se incluye una línea de comentarios delimitados por /* */ usados para aumentar la legibilidad de un programa, el compilador ignora lo que está dentro de /* */.
+
+En la línea 4 se abren las llaves de la funcion principal <code> { </code>, esto indica el inicio de la funcion. En la línea 5 se realiza la declaracion de una variable: <code> int num; </code>. Para hacer la declaración de una variable se especifica el tipo de dato, en este caso un entero (palabra reservada <code>int </code>), seguido por un identificador válido: <code> num </code> y se finaliza la sentencia con: <code>;</code>.Además se vuelven a escribir comentarios entre /* */. 
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
