@@ -1,0 +1,65 @@
+__NOTOC__
+* [[:#Prog5 | floats y scanf()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog5 ==
+
+<syntaxhighlight lang="c"  line="GESHI_FANCY_LINE_NUMBERS">
+
+/*  Prog5.c -- floats y scanf() */
+
+#include <stdio.h>
+
+int main( void )
+{
+  float peso;
+
+  printf( "¿Vale usted su peso en rhodium?\n" );
+  printf( "Vamos a ver.\n" );
+  printf( "Ingrese su peso en libras: " );
+
+  /* Obtener peso del usuario                         */
+  scanf( "%f", &peso );
+
+  /* Si rhodium vale $770 la onza                     */
+  /* 14.5833 para convertir libras avd. al onzas troy */
+
+  printf( "Su peso en rhodium vale $%.2f.\n", (770.0 * peso * 14.5833) );
+  printf( "Si el valor de rhodium baja,\n" );
+  printf( "come más para mantener su valor.\n" );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog5 Prog5.c
+ [rrc@Pridd CClase]$ ./Prog5
+ ¿Vale usted su peso en rhodium?
+ Vamos a ver.
+ Ingrese su peso en libras: 160
+ Su peso en rhodium vale $1796662.56.
+ Si el valor de rhodium baja,
+ come más para mantener su valor.
+
+=== Explicación ===
+linea 1
+Esta linea incluye la biblioteca stándar de entrada/salida.
+
+linea 2
+indica la función principal del programa.
+
+linea 7
+Declaramos la variable peso del tipo Float
+
+linea 14
+Con la función scanf leemos los datos de entradas, el "%f" indica el tipo de dato que esta espera y el &peso es la dirección de la variable en memoria.
+
+Nota: scanf no guarda directamente en la variable. por eso se usa el '&' para indicar la direccion.
+ 
+linea 19 el %.2f indica con cuantos decimales (.2) el tipo de dato float (f). 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
