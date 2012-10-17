@@ -1,0 +1,86 @@
+__NOTOC__
+* [[:#Borrar los Certificados de un Cliente | Borrar los Certificados de un Cliente ]]
+** [[:#Explicación | Explicación]]
+
+== Borrar los Certificados de un Cliente ==
+<pre>
+[root@Charon 2.0]# ./revoke-full AlexBarrago
+Using configuration from /usr/share/openvpn/easy-rsa/2.0/openssl.cnf
+Revoking Certificate 01.
+Data Base Updated
+Using configuration from /usr/share/openvpn/easy-rsa/2.0/openssl.cnf
+AlexBarrago.crt: C = MX, ST = Jalisco, L = Guadalajara, O = LinuxCabal A.C., OU = Tutorial, CN = AlexBarrago, name = rrc, emailAddress = rrc@LinuxCabal.org
+error 23 at 0 depth lookup:certificate revoked
+[root@Charon 2.0]# 
+</pre>
+<pre>
+[root@Charon 2.0]# ls -al keys
+total 84
+drwxr-xr-x 2 root root 4096 2012-10-17 17:47 ./
+drwxr-xr-x 3 root root 4096 2012-10-17 16:03 ../
+-rw-r--r-- 1 root root 4238 2012-10-17 16:57 00.pem
+-rw-r--r-- 1 root root 4094 2012-10-17 17:20 01.pem
+-rw-r--r-- 1 root root 4094 2012-10-17 17:20 AlexBarrago.crt
+-rw------- 1 root root  916 2012-10-17 17:20 AlexBarrago.key
+-rw-r--r-- 1 root root 1452 2012-10-17 16:35 ca.crt
+-rw------- 1 root root  916 2012-10-17 16:35 ca.key
+-rw-r--r-- 1 root root 4238 2012-10-17 16:57 charon.linuxcabal.org.crt
+-rw------- 1 root root  912 2012-10-17 16:57 charon.linuxcabal.org.key
+-rw-r--r-- 1 root root  597 2012-10-17 17:47 crl.pem
+-rw-r--r-- 1 root root  245 2012-10-17 16:05 dh1024.pem
+-rw-r--r-- 1 root root  313 2012-10-17 17:47 index.txt
+-rw-r--r-- 1 root root   21 2012-10-17 17:47 index.txt.attr
+-rw-r--r-- 1 root root   21 2012-10-17 17:20 index.txt.attr.old
+-rw-r--r-- 1 root root  300 2012-10-17 17:20 index.txt.old
+-rw-r--r-- 1 root root 2049 2012-10-17 17:47 revoke-test.pem
+-rw-r--r-- 1 root root    3 2012-10-17 17:20 serial
+-rw-r--r-- 1 root root    3 2012-10-17 16:57 serial.old
+[root@Charon 2.0]# 
+</pre>
+<pre>
+[root@Charon 2.0]# cat keys/index.txt
+V	131017215727Z		00	unknown	/C=MX/ST=Jalisco/L=Guadalajara/O=LinuxCabal A.C./OU=Tutorial/CN=charon.linuxcabal.org/name=rrc/emailAddress=rrc@LinuxCabal.org
+R	131017222045Z	121017224717Z	01	unknown	/C=MX/ST=Jalisco/L=Guadalajara/O=LinuxCabal A.C./OU=Tutorial/CN=AlexBarrago/name=rrc/emailAddress=rrc@LinuxCabal.org
+[root@Charon 2.0]# 
+</pre>
+<pre>
+[root@Charon 2.0]# cat keys/crl.pem
+-----BEGIN X509 CRL-----
+MIIBjzCB+TANBgkqhkiG9w0BAQQFADCBszELMAkGA1UEBhMCTVgxEDAOBgNVBAgT
+B0phbGlzY28xFDASBgNVBAcTC0d1YWRhbGFqYXJhMRgwFgYDVQQKEw9MaW51eENh
+YmFsIEEuQy4xETAPBgNVBAsTCFR1dG9yaWFsMR4wHAYDVQQDExVjaGFyb24ubGlu
+dXhjYWJhbC5vcmcxDDAKBgNVBCkTA3JyYzEhMB8GCSqGSIb3DQEJARYScnJjQExp
+bnV4Q2FiYWwub3JnFw0xMjEwMTcyMjQ3MTdaFw0xMjExMTYyMjQ3MTdaMBQwEgIB
+ARcNMTIxMDE3MjI0NzE3WjANBgkqhkiG9w0BAQQFAAOBgQCOX4SLgtdxdj5XCiiG
+Mzak5gM9zKETwCt7mIZdrKm/u8UDFA855+jDtfPAO/ouuVCWUKT99bSYqHHG4KEJ
+1MBLXSZQ4Rp7hGZ3y09UiNZctX26Q69DIrTClPkkXfBy/ppN+N7btdqLhZsGTkk8
+3SxmMVZ7numb1VzkjghcrDRbSg==
+-----END X509 CRL-----
+[root@Charon 2.0]# 
+</pre>
+<pre>
+[root@Charon 2.0]# ./list-crl 
+Certificate Revocation List (CRL):
+        Version 1 (0x0)
+        Signature Algorithm: md5WithRSAEncryption
+        Issuer: /C=MX/ST=Jalisco/L=Guadalajara/O=LinuxCabal A.C./OU=Tutorial/CN=charon.linuxcabal.org/name=rrc/emailAddress=rrc@LinuxCabal.org
+        Last Update: Oct 17 22:47:17 2012 GMT
+        Next Update: Nov 16 22:47:17 2012 GMT
+Revoked Certificates:
+    Serial Number: 01
+        Revocation Date: Oct 17 22:47:17 2012 GMT
+    Signature Algorithm: md5WithRSAEncryption
+        8e:5f:84:8b:82:d7:71:76:3e:57:0a:28:86:33:36:a4:e6:03:
+        3d:cc:a1:13:c0:2b:7b:98:86:5d:ac:a9:bf:bb:c5:03:14:0f:
+        39:e7:e8:c3:b5:f3:c0:3b:fa:2e:b9:50:96:50:a4:fd:f5:b4:
+        98:a8:71:c6:e0:a1:09:d4:c0:4b:5d:26:50:e1:1a:7b:84:66:
+        77:cb:4f:54:88:d6:5c:b5:7d:ba:43:af:43:22:b4:c2:94:f9:
+        24:5d:f0:72:fe:9a:4d:f8:de:db:b5:da:8b:85:9b:06:4e:49:
+        3c:dd:2c:66:31:56:7b:9e:e9:9b:d5:5c:e4:8e:08:5c:ac:34:
+        5b:4a
+[root@Charon 2.0]# 
+</pre>
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
