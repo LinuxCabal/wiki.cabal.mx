@@ -13,7 +13,7 @@ Las referencias son a Digitalife en Guadalajara, Jalisco y los precios se consul
 * Combo teclado y mouse inalambrico
 
 = Selección =
-La tarjeta madre se escogió por el tamaño reducido mini-ITX, por el chipset det consumo bajo que permite la operación sin un ventilador, y porque [http://kmuto.jp/debian/hcl/Intel/D425KT existen drivers] para los dispositivos. Requiere un conector de 24 contactos para alimentación y fuente de poder que cumpla el estándar TFX12V o SFX12V.
+La tarjeta madre se escogió por el tamaño reducido mini-ITX y por el chipset det consumo bajo, que permite la operación sin un ventilador. Requiere un conector de 24 contactos para alimentación y fuente de poder que cumpla el estándar TFX12V o SFX12V.
 
 == Memoria ==
 La tarjeta de memoria debe ser [http://en.wikipedia.org/wiki/SODIMM SODIMM] de 204 contactos.  La organización de los módulos de memoria en la tarjeta de memoria debe ser compatible con lo que espera la tarjeta madre.  Para saber esto, es necesario consultar la especificación de la [http://www.intel.com/support/motherboards/desktop/d425kt/sb/CS-031614.htm tarjeta madre] y la de la tarjeta de memoria.  Por favor consulta [[Cómo escoger un módulo de memoria]] para conocer los conceptos básicos que son necesarios.
@@ -199,8 +199,7 @@ Podemos usar un llavero USB con un disco vivo de una distribución de GNU/Linux,
 
 = Actualizar el BIOS =
 Es opcional, los pasos son:
-#Descargar el archivo de BIOS de la página de soporte del fabricante de la tarjeta madre.  En la [http://www.intel.com/content/www/us/en/support/boards-and-kits/desktop-boards/intel-desktop-boards-with-intel-atom-processors/intel-desktop-board-d425kt.html página de soporte para la tarjeta madre D425KT], clic en ''BIOS Update'' para ir a [https://downloadcenter.intel.com/download/23053/BIOS-Update-MWPNT10N-86A- BIOS Update].  Ahí buscar la liga a [https://downloadmirror.intel.com/23053/eng/MW_0132_ReleaseNotes.pdf Release Notes].
-#Grabar en un llavero USB que tenga sistema de archivos FAT.
+#Descargar el archivo de BIOS de la página de soporte del fabricante de la tarjeta madre, grabar en un llavero USB que tenga sistema de archivos FAT.
 #Arrancar la tarjeta madre y presionar '''F7''' para que entre a la ventana de actualizar BIOS.
 #Navegar hasta seleccionar el archivo del BIOS y se acepta.
 
