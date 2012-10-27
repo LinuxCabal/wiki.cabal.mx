@@ -1,0 +1,130 @@
+__NOTOC__
+* [[:# Instalar el cliente en GNU y Linux | Instalar el cliente en GNU y Linux]]
+** [[:#Explicación | Explicación]]
+==  Instalar el cliente en GNU y Linux ==
+
+<pre>
+[rrc@AbelLap ~]$ su -
+Password: 
+[root@AbelLap ~]# urpmi openvpn
+To satisfy dependencies, the following packages are going to be installed:
+  Package                        Version      Release       Arch    
+(medium "Core Release (distrib1)")
+  lib64pkcs11-helper1            1.09         2.mga2        x86_64  
+  libobjc3                       4.6.3        2.mga2        x86_64  
+  openvpn                        2.2.2        5.mga2        x86_64  
+  perl-Authen-PAM                0.160.0      4.mga2        x86_64  
+2.1MB of additional disk space will be used.
+688KB of packages will be retrieved.
+Proceed with the installation of the 4 packages? (Y/n) y
+
+
+    $MIRRORLIST: media/core/release/openvpn-2.2.2-5.mga2.x86_64.rpm
+    $MIRRORLIST: media/core/release/libobjc3-4.6.3-2.mga2.x86_64.rpm           
+    $MIRRORLIST: media/core/release/perl-Authen-PAM-0.160.0-4.mga2.x86_64.rpm  
+    $MIRRORLIST: media/core/release/lib64pkcs11-helper1-1.09-2.mga2.x86_64.rpm 
+installing openvpn-2.2.2-5.mga2.x86_64.rpm libobjc3-4.6.3-2.mga2.x86_64.rpm perl-Authen-PAM-0.160.0-4.mga2.x86_64.rpm lib64pkcs11-helper1-1.09-2.mga2.x86_64.rpm from /var/cache/urpmi/rpms
+Preparing...                     #############################################
+      1/4: lib64pkcs11-helper1   #############################################
+      2/4: perl-Authen-PAM       #############################################
+      3/4: libobjc3              #############################################
+      4/4: openvpn               #############################################
+[root@AbelLap ~]# 
+</pre>
+<pre>
+[root@AbelLap ~]# cd /etc/openvpn/
+[root@AbelLap openvpn]# ls -al
+total 16
+drwxr-xr-x   2 root root  4096 Apr 27 22:20 ./
+drwxr-xr-x 131 root adm  12288 Oct 26 15:11 ../
+</pre>
+<pre>
+[root@AbelLap openvpn]# scp rrc@192.168.51.136:rrc-openvpn-config.tar .
+Warning: Permanently added '192.168.51.136' (RSA) to the list of known hosts.
+rrc@192.168.51.136's password: 
+rrc-openvpn-config.tar                        100% 1410KB   1.4MB/s   00:01    
+</pre>
+<pre>
+[root@AbelLap openvpn]# tar xvf rrc-openvpn-config.tar 
+ca.crt
+openvpn-2.2.2-install.exe
+rrc.crt
+rrc.key
+rrc.ovpn
+</pre>
+<pre>
+[root@AbelLap openvpn]# mv rrc.ovpn rrc.conf
+</pre>
+<pre>
+[root@AbelLap openvpn]# ls -al
+total 2844
+drwxr-xr-x   2 root root    4096 Oct 26 15:24 ./
+drwxr-xr-x 131 root adm    12288 Oct 26 15:11 ../
+-rw-r--r--   1 root root    1452 Oct 26 12:39 ca.crt
+-rw-r--r--   1 root root 1426552 Oct 26 12:40 openvpn-2.2.2-install.exe
+-rw-r--r--   1 root root    4106 Oct 26 12:39 rrc.crt
+-rw-------   1 root root     916 Oct 26 12:39 rrc.key
+-rw-------   1 root root 1443840 Oct 26 15:24 rrc-openvpn-config.tar
+-rw-r--r--   1 root root     191 Oct 26 12:50 rrc.conf
+[root@AbelLap openvpn]# 
+</pre>
+<pre>
+[root@AbelLap openvpn]# systemctl restart openvpn@rrc.service
+</pre>
+<pre>
+[rrc@AbelLap ~]$ /sbin/ifconfig
+eth0      Link encap:Ethernet  HWaddr 78:E7:D1:DC:B9:A2  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+          Interrupt:46 Base address:0x4000 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          inet addr:10.8.0.6  P-t-P:10.8.0.5  Mask:255.255.255.255
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+wlan0     Link encap:Ethernet  HWaddr 70:F1:A1:6D:8B:F6  
+          inet addr:192.168.51.160  Bcast:192.168.51.255  Mask:255.255.255.0
+          inet6 addr: 2002:bda2:69b1:0:72f1:a1ff:fe6d:8bf6/64 Scope:Global
+          inet6 addr: fe80::72f1:a1ff:fe6d:8bf6/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:5801 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:5316 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:1971975 (1.8 MiB)  TX bytes:773604 (755.4 KiB)
+</pre>
+<pre>
+[root@AbelLap ~]# ip route show
+default via 192.168.51.1 dev wlan0  metric 35 
+10.8.0.1 via 10.8.0.5 dev tun0 
+10.8.0.5 dev tun0  proto kernel  scope link  src 10.8.0.6 
+192.168.51.0/24 via 192.168.51.160 dev wlan0  scope link 
+192.168.51.0/24 dev wlan0  proto kernel  scope link  src 192.168.51.160  metric 35 
+[root@AbelLap ~]# 
+</pre>
+<pre>
+[rrc@AbelLap ~]$ ssh rrc@10.8.0.1
+Warning: Permanently added '10.8.0.1' (RSA) to the list of known hosts.
+rrc@10.8.0.1's password: 
+Last login: Fri Oct 26 15:52:54 2012 from 192.168.51.160
+[rrc@localhost ~]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
