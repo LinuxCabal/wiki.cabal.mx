@@ -1,0 +1,157 @@
+__NOTOC__
+* [[:#Prog127 | Bitwise AND para evaluar bits]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog127 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main( void )
+{
+  unsigned char Mascara,
+                Semaforos;
+
+  char Buf[7];
+
+  int  i,
+       Prueba;
+
+  puts( "\nEl bitwise AND esta usado a veces a ver" );
+  puts( "si algunas bits en un entero están prendidos o pagados\n" );
+  printf( "Dame un número positivo entre 0 y 255: " );
+  while( fgets( Buf, 5, stdin ) && Buf[0] != '\n' )
+  {
+    if( *(Buf + strlen( Buf ) -1 ) != '\n' )
+    {
+      fputs( "La línea que entraste es demaciado largo.\nSolo 3 chars MAX",
+                                                                     stderr );
+      exit(1);
+    }
+    *(Buf + strlen( Buf ) -1 ) = '\0';
+
+    for( i = 0; i < strlen( Buf ); i++ )
+    {
+      if( Buf[i] < '0' || Buf[i] > '9' )
+      {
+        fputs( "Caracteres ilegales en su ingreso\n", stderr );
+        exit(1);
+      }
+    }
+
+    Prueba = atoi( Buf);
+    if( Prueba > 255 )
+    {
+      fputs( "Su entrada está fuera del rango especificado\n", stderr );
+      exit(1);
+    }
+
+    Semaforos = Prueba;
+
+    for( i = 1; i <= 8; i++ )
+    {
+      if( i == 1 )
+        Mascara = 0x01;
+      else
+        Mascara <<= 1;
+      Semaforos & Mascara ?
+        printf( "Bit No. %d en %d está prendida    1\n", i -1, Semaforos ) :
+        printf( "Bit No. %d en %d no está prendida 0\n", i -1, Semaforos );
+    }
+    printf( "\nDame un número positivo entre 0 y 255"
+            " (<Enter> para terminar): " );
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+
+El bitwise AND esta usado a veces a ver
+si algunas bits en un entero están prendidos o pagados
+
+Dame un número positivo entre 0 y 255: 1
+Bit No. 0 en 1 está prendida    1
+Bit No. 1 en 1 no está prendida 0
+Bit No. 2 en 1 no está prendida 0
+Bit No. 3 en 1 no está prendida 0
+Bit No. 4 en 1 no está prendida 0
+Bit No. 5 en 1 no está prendida 0
+Bit No. 6 en 1 no está prendida 0
+Bit No. 7 en 1 no está prendida 0
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 2
+Bit No. 0 en 2 no está prendida 0
+Bit No. 1 en 2 está prendida    1
+Bit No. 2 en 2 no está prendida 0
+Bit No. 3 en 2 no está prendida 0
+Bit No. 4 en 2 no está prendida 0
+Bit No. 5 en 2 no está prendida 0
+Bit No. 6 en 2 no está prendida 0
+Bit No. 7 en 2 no está prendida 0
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 3
+Bit No. 0 en 3 está prendida    1
+Bit No. 1 en 3 está prendida    1
+Bit No. 2 en 3 no está prendida 0
+Bit No. 3 en 3 no está prendida 0
+Bit No. 4 en 3 no está prendida 0
+Bit No. 5 en 3 no está prendida 0
+Bit No. 6 en 3 no está prendida 0
+Bit No. 7 en 3 no está prendida 0
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 4
+Bit No. 0 en 4 no está prendida 0
+Bit No. 1 en 4 no está prendida 0
+Bit No. 2 en 4 está prendida    1
+Bit No. 3 en 4 no está prendida 0
+Bit No. 4 en 4 no está prendida 0
+Bit No. 5 en 4 no está prendida 0
+Bit No. 6 en 4 no está prendida 0
+Bit No. 7 en 4 no está prendida 0
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 7
+Bit No. 0 en 7 está prendida    1
+Bit No. 1 en 7 está prendida    1
+Bit No. 2 en 7 está prendida    1
+Bit No. 3 en 7 no está prendida 0
+Bit No. 4 en 7 no está prendida 0
+Bit No. 5 en 7 no está prendida 0
+Bit No. 6 en 7 no está prendida 0
+Bit No. 7 en 7 no está prendida 0
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 57
+Bit No. 0 en 57 está prendida    1
+Bit No. 1 en 57 no está prendida 0
+Bit No. 2 en 57 no está prendida 0
+Bit No. 3 en 57 está prendida    1
+Bit No. 4 en 57 está prendida    1
+Bit No. 5 en 57 está prendida    1
+Bit No. 6 en 57 no está prendida 0
+Bit No. 7 en 57 no está prendida 0
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 255
+Bit No. 0 en 255 está prendida    1
+Bit No. 1 en 255 está prendida    1
+Bit No. 2 en 255 está prendida    1
+Bit No. 3 en 255 está prendida    1
+Bit No. 4 en 255 está prendida    1
+Bit No. 5 en 255 está prendida    1
+Bit No. 6 en 255 está prendida    1
+Bit No. 7 en 255 está prendida    1
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 256
+Su entrada está fuera del rango especificado
+
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
