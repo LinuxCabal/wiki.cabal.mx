@@ -1,0 +1,160 @@
+__NOTOC__
+* [[:#Prog128 | Bitwise OR para prender bits]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog128 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main( void )
+{
+  unsigned char Mascara   = 0x00,
+                Semaforos;
+
+  char Buf[7];
+
+  int  i,
+       Prueba;
+
+  puts( "\nEl bitwise OR esta usado a veces a" );
+  puts( "prender algunas bits en un entero\n" );
+  printf( "Dame un número positivo entre 0 y 255: " );
+  while( fgets( Buf, 5, stdin ) && Buf[0] != '\n' )
+  {
+    if( *(Buf + strlen( Buf ) -1 ) != '\n' )
+    {
+      fputs( "La línea que entraste es demaciado largo.\nSolo 3 chars MAX",
+                                                                     stderr );
+      exit(1);
+    }
+    *(Buf + strlen( Buf ) -1 ) = '\0';
+
+    for( i = 0; i < strlen( Buf ); i++ )
+    {
+      if( Buf[i] < '0' || Buf[i] > '9' )
+      {
+        fputs( "Caracteres ilegales en su ingreso\n", stderr );
+        exit(1);
+      }
+    }
+
+    Prueba = atoi( Buf);
+    if( Prueba > 255 )
+    {
+      fputs( "Su entrada está fuera del rango especificado\n", stderr );
+      exit(1);
+    }
+
+    for( i = 1; i <= 8; i++ )
+    {
+      if( i == 1 )
+        Mascara = 0x01;
+      else
+        Mascara <<= 1;
+
+      Semaforos = Prueba;
+      Semaforos |= Mascara;
+      printf( "Su número %d se cambia a %d cuando bit %d está prendida\n",
+                                                  Prueba, Semaforos, i -1 );
+    }
+    printf( "\nDame un número positivo entre 0 y 255"
+            " (<Enter> para terminar): " );
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@AbelLap CClase]$ gcc -Wall -o Prog128 Prog128.c
+[rrc@AbelLap CClase]$ ./Prog128
+
+El bitwise OR esta usado a veces a
+prender algunas bits en un entero
+
+Dame un número positivo entre 0 y 255: 0
+Su número 0 se cambia a 1 cuando bit 0 está prendida
+Su número 0 se cambia a 2 cuando bit 1 está prendida
+Su número 0 se cambia a 4 cuando bit 2 está prendida
+Su número 0 se cambia a 8 cuando bit 3 está prendida
+Su número 0 se cambia a 16 cuando bit 4 está prendida
+Su número 0 se cambia a 32 cuando bit 5 está prendida
+Su número 0 se cambia a 64 cuando bit 6 está prendida
+Su número 0 se cambia a 128 cuando bit 7 está prendida
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 1
+Su número 1 se cambia a 1 cuando bit 0 está prendida
+Su número 1 se cambia a 3 cuando bit 1 está prendida
+Su número 1 se cambia a 5 cuando bit 2 está prendida
+Su número 1 se cambia a 9 cuando bit 3 está prendida
+Su número 1 se cambia a 17 cuando bit 4 está prendida
+Su número 1 se cambia a 33 cuando bit 5 está prendida
+Su número 1 se cambia a 65 cuando bit 6 está prendida
+Su número 1 se cambia a 129 cuando bit 7 está prendida
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 2
+Su número 2 se cambia a 3 cuando bit 0 está prendida
+Su número 2 se cambia a 2 cuando bit 1 está prendida
+Su número 2 se cambia a 6 cuando bit 2 está prendida
+Su número 2 se cambia a 10 cuando bit 3 está prendida
+Su número 2 se cambia a 18 cuando bit 4 está prendida
+Su número 2 se cambia a 34 cuando bit 5 está prendida
+Su número 2 se cambia a 66 cuando bit 6 está prendida
+Su número 2 se cambia a 130 cuando bit 7 está prendida
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 3
+Su número 3 se cambia a 3 cuando bit 0 está prendida
+Su número 3 se cambia a 3 cuando bit 1 está prendida
+Su número 3 se cambia a 7 cuando bit 2 está prendida
+Su número 3 se cambia a 11 cuando bit 3 está prendida
+Su número 3 se cambia a 19 cuando bit 4 está prendida
+Su número 3 se cambia a 35 cuando bit 5 está prendida
+Su número 3 se cambia a 67 cuando bit 6 está prendida
+Su número 3 se cambia a 131 cuando bit 7 está prendida
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 8
+Su número 8 se cambia a 9 cuando bit 0 está prendida
+Su número 8 se cambia a 10 cuando bit 1 está prendida
+Su número 8 se cambia a 12 cuando bit 2 está prendida
+Su número 8 se cambia a 8 cuando bit 3 está prendida
+Su número 8 se cambia a 24 cuando bit 4 está prendida
+Su número 8 se cambia a 40 cuando bit 5 está prendida
+Su número 8 se cambia a 72 cuando bit 6 está prendida
+Su número 8 se cambia a 136 cuando bit 7 está prendida
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 16
+Su número 16 se cambia a 17 cuando bit 0 está prendida
+Su número 16 se cambia a 18 cuando bit 1 está prendida
+Su número 16 se cambia a 20 cuando bit 2 está prendida
+Su número 16 se cambia a 24 cuando bit 3 está prendida
+Su número 16 se cambia a 16 cuando bit 4 está prendida
+Su número 16 se cambia a 48 cuando bit 5 está prendida
+Su número 16 se cambia a 80 cuando bit 6 está prendida
+Su número 16 se cambia a 144 cuando bit 7 está prendida
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 32
+Su número 32 se cambia a 33 cuando bit 0 está prendida
+Su número 32 se cambia a 34 cuando bit 1 está prendida
+Su número 32 se cambia a 36 cuando bit 2 está prendida
+Su número 32 se cambia a 40 cuando bit 3 está prendida
+Su número 32 se cambia a 48 cuando bit 4 está prendida
+Su número 32 se cambia a 32 cuando bit 5 está prendida
+Su número 32 se cambia a 96 cuando bit 6 está prendida
+Su número 32 se cambia a 160 cuando bit 7 está prendida
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 358
+Su entrada está fuera del rango especificado
+[rrc@AbelLap CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
