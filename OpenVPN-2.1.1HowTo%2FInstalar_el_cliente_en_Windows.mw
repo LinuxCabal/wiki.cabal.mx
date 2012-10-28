@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:# Instalar el cliente en Windows | Instalar el cliente en Windows]]
+** [[:#Explicación | Explicación]]
+==  Instalar el cliente en Windows ==
+
+<pre>
+Guarda el paquete de configuración ( rrc-openvpn-config.tar ),
+que te envió el admin de red, en la carpeta del administrador
+</pre>
+<pre>
+Abra el paquete
+</pre>
+<pre>
+Vas a ver los archivos: ca.crt, dh1024.pem, TuNombre.cert, TuNombre.key y
+el instalador openvpn-x.x.x.exe que puedes lancear
+Después de muchos Siguiente Siguiente Siguiente Next Finalizar
+vas a descubrir iconos para lancear el servicio.
+Antes de lancear el servicio,
+Copia los archivos que te envió el administrador en la carpeta
+C:/Program Files/openvpn/config
+que está vacío.
+</pre>
+<pre>
+Ahorra puedes lancear el cliente, COMO ADMINISTRADOR
+y ya
+</pre>
+<pre>
+Abra un terminal CMD
+para verificarlo con
+ipconfig
+que debe mostrarte info de un enlace virtual que se llama TAP
+y
+route PRINT 
+que debe mostrarte rutas nuevas sobre del enlace TAP
+</pre>
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
