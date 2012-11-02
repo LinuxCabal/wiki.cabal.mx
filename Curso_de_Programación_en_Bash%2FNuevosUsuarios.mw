@@ -1,0 +1,26 @@
+__NOTOC__
+* [[:#NuevosUsuarios | NuevosUsuarios]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== NuevosUsuarios ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+[rrc@pwyr BashClase]$ cat NuevosUsuarios 
+Hector HectorPass "Hector Garcia Martinez"
+Roberto RobPass "Roberto Gonzalez Espinoza"
+Ronaldo RonPass "Ronaldo Sanchez Orozco"
+[rrc@pwyr BashClase]$ 
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+=== Explicación ===
+<pre>
+El archivo NuevosUsuarios se usa por script S19.sh
+</pre>
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
