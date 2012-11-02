@@ -1,0 +1,335 @@
+__NOTOC__
+* [[:#S28.sh | S28.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S28.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+echo -n "Removing temp files ..."
+find /var/www/html/linuxcabal.org -name "*~" -exec rm {} \;
+echo " Done"
+echo -n "Changing ownership of new files ..."
+find /var/www/html/linuxcabal.org -exec chown rrc.webmin {} \;
+chown -R apache /var/www/html/linuxcabal.org/TianguisCabalMaint
+chown -R apache /var/www/html/linuxcabal.org/apoyosTEAM/apoyosTEAMMaint
+chown -R phpdev.phpdev /var/www/html/linuxcabal.org/PHPDev
+chown -R pydev.pydev /var/www/html/linuxcabal.org/PYDev
+chown -R pydev.pydev /var/www/html/linuxcabal.org/PythonCabal*
+echo " Done"
+echo -n "Changing perms on directories ..."
+find /var/www/html/linuxcabal.org -type d -exec chmod 2775 {} \;
+echo " Done"
+echo -n "Changing perms on files ..."
+find /var/www/html/linuxcabal.org -type f -exec chmod 664 {} \;
+echo " Done"
+#echo "Synchronizing DigiFac"
+#rsync -ave ssh  rrc@www.imat.com:/var/www/digifac /var/www/
+#echo " Done"
+echo "Synchronizing PythonCabal PythonCabal.php PYDev PHPDev TianguisCabalMaint apoyosTEAMMaint"
+rsync -ave ssh  rrc@www.imat.com:/var/www/html/linuxcabal.org/PythonCabal.php rrc@www.imat.com:/var/www/html/linuxcabal.org/PythonCabal rrc@www.imat.com:/var/www/html/linuxcabal.org/PYDev rrc@www.imat.com:/var/www/html/linuxcabal.org/PHPDev rrc@www.imat.com:/var/www/html/linuxcabal.org/TianguisCabalMaint rrc@www.imat.com:/var/www/html/linuxcabal.org/apoyosTEAM/apoyosTEAMMaint /var/www/html/linuxcabal.org
+echo " Done"
+#echo "Synchronizing PythonCabal"
+#rsync -ave ssh  rrc@www.imat.com:/var/www/html/linuxcabal.org/PythonCabal /var/www/html/linuxcabal.org
+#echo " Done"
+#echo "Synchronizing PYDev"
+#rsync -ave ssh  rrc@www.imat.com:/var/www/html/linuxcabal.org/PYDev /var/www/html/linuxcabal.org
+#echo " Done"
+#echo "Synchronizing PHPDev"
+#rsync -ave ssh  rrc@www.imat.com:/var/www/html/linuxcabal.org/PHPDev /var/www/html/linuxcabal.org
+#echo " Done"
+# scp rrc@imat.com:/var/www/html/linuxcabal.org/TianguisCabalOnLine.tar.bz /var/www/html/linuxcabal.org
+#echo "Synchronizing TianguisCabalMaint"
+#rsync -ave ssh rrc@www.imat.com:/var/www/html/linuxcabal.org/TianguisCabalMaint /var/www/html/linuxcabal.org
+#echo " Done"
+#echo "Synchronizing apoyosTEAMMaint"
+#rsync -ave ssh rrc@www.imat.com:/var/www/html/linuxcabal.org/apoyosTEAM/apoyosTEAMMaint /var/www/html/linuxcabal.org/apoyosTEAM
+#echo " Done"
+while [ ! -z $1 ]; do
+  echo
+  echo "               Processing LC ORG to ${1}"
+  echo
+  if ( [ $1 = "www" ] ); then
+    rsync --delete --exclude TianguisCabalOnLine.tar.bz --exclude TianguisCabalMaint --exclude PHPDev --exclude PHPCabal --exclude PHPCabal.php --exclude PYDev --exclude PythonCabal --exclude PythonCabal.php -ave ssh /var/www/html/linuxcabal.org rrc@${1}:/var/www/html
+  else
+    rsync --delete --exclude .ssh -ave ssh /var/www/html/linuxcabal.org rrc@${1}:/var/www/html
+  fi
+  shift
+done
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[root@pwyr linuxcabal.org]# bash ~rrc/BashClase/S28.sh 
+Removing temp files ... Done
+Changing ownership of new files ... Done
+Changing perms on directories ... Done
+Changing perms on files ... Done
+Synchronizing PythonCabal PythonCabal.php PYDev PHPDev TianguisCabalMaint apoyosTEAMMaint
+
+                           Bienvenido a www.imat.com
+                            Welcome to www.imat.com
+                        Soyez bienvenus a  www.imat.com
+                      Herzlich willkommen auf www.imat.com
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+                   WARNUNG: Wir ueberwachen diese Verbindung
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+                         Missbrauch wird nicht geduldet
+
+rrc@www.imat.com's password: 
+X11 forwarding request failed on channel 0
+receiving incremental file list
+PHPDev/
+PHPDev/.gnome2/
+PHPDev/.mozilla/
+PHPDev/.ssh/
+PHPDev/git/
+PHPDev/git/FileManagerCabal.git/
+PHPDev/git/FileManagerCabal.git/branches/
+PHPDev/git/FileManagerCabal.git/hooks/
+PHPDev/git/FileManagerCabal.git/info/
+PHPDev/git/FileManagerCabal.git/objects/
+PHPDev/git/FileManagerCabal.git/objects/info/
+PHPDev/git/FileManagerCabal.git/objects/pack/
+PHPDev/git/FileManagerCabal.git/refs/
+PHPDev/git/FileManagerCabal.git/refs/heads/
+PHPDev/git/FileManagerCabal.git/refs/tags/
+PHPDev/git/TianguisCabal/
+PHPDev/git/TianguisCabal/.git/
+PHPDev/git/TianguisCabal/.old/
+PHPDev/git/TianguisCabal/application/
+PHPDev/git/TianguisCabal/documentation/
+PHPDev/git/TianguisCabal/lib/
+PHPDev/git/TianguisCabal/public/
+PHPDev/git/TianguisCabal/scripts/
+PHPDev/git/TianguisCabal/sessions/
+PHPDev/git/TianguisCabal/tests/
+PHPDev/git/TianguisCabal/tmp/
+PHPDev/htdocs.git/
+PHPDev/htdocs.git/branches/
+PHPDev/htdocs.git/hooks/
+PHPDev/htdocs.git/info/
+PHPDev/htdocs.git/objects/
+PHPDev/htdocs.git/objects/01/
+PHPDev/htdocs.git/objects/08/
+PHPDev/htdocs.git/objects/09/
+PHPDev/htdocs.git/objects/0f/
+PHPDev/htdocs.git/objects/47/
+PHPDev/htdocs.git/objects/4a/
+PHPDev/htdocs.git/objects/63/
+PHPDev/htdocs.git/objects/70/
+PHPDev/htdocs.git/objects/74/
+PHPDev/htdocs.git/objects/7a/
+PHPDev/htdocs.git/objects/7b/
+PHPDev/htdocs.git/objects/7d/
+PHPDev/htdocs.git/objects/87/
+PHPDev/htdocs.git/objects/8a/
+PHPDev/htdocs.git/objects/c9/
+PHPDev/htdocs.git/objects/de/
+PHPDev/htdocs.git/objects/e2/
+PHPDev/htdocs.git/objects/e6/
+PHPDev/htdocs.git/objects/ea/
+PHPDev/htdocs.git/objects/ee/
+PHPDev/htdocs.git/objects/f6/
+PHPDev/htdocs.git/objects/info/
+PHPDev/htdocs.git/objects/pack/
+PHPDev/htdocs.git/refs/
+PHPDev/htdocs.git/refs/heads/
+PHPDev/htdocs.git/refs/tags/
+PHPDev/htdocs/
+PHPDev/htdocs/.wsScripts/
+PHPDev/htdocs/.wsScripts/post/
+PHPDev/htdocs/.wsScripts/pre/
+PHPDev/htdocs/css/
+PHPDev/htdocs/images/
+PHPDev/htdocs/js/
+PHPDev/tmp/
+PYDev/
+PYDev/.ssh/
+PYDev/biblio/
+PYDev/htdocs/
+PYDev/htdocs/git/
+PYDev/htdocs/git/Biblio-Cabal.git/
+PYDev/htdocs/git/Biblio-Cabal.git/branches/
+PYDev/htdocs/git/Biblio-Cabal.git/hooks/
+PYDev/htdocs/git/Biblio-Cabal.git/info/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/01/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/03/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/0a/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/0c/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/0d/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/0e/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/10/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/11/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/13/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/14/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/15/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/19/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/1b/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/1e/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/20/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/25/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/27/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/28/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/29/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/2a/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/2b/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/2c/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/2d/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/32/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/33/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/34/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/37/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/38/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/39/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/3d/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/3f/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/42/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/45/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/46/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/47/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/48/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/49/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/4c/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/4d/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/4f/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/51/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/52/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/54/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/55/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/56/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/57/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/59/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/5b/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/5d/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/5e/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/61/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/62/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/63/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/64/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/65/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/66/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/69/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/6d/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/6e/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/70/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/71/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/75/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/76/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/78/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/7e/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/7f/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/80/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/82/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/84/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/86/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/87/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/88/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/89/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/8b/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/8c/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/8d/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/8e/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/90/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/91/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/96/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/99/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/9a/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/9b/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/9f/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/a1/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/a2/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/a5/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/a7/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/aa/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ac/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ad/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/b1/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/b7/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/b9/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ba/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/bb/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/bc/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/bd/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/be/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/bf/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/c0/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/c1/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/c2/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/c3/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/c4/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/c6/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/c8/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ca/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/cb/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/cd/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ce/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/d1/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/d2/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/d3/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/d5/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/d7/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/d8/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/db/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/dd/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/de/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/df/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/e4/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/e8/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ea/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ed/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/f3/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/f4/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/fc/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/ff/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/info/
+PYDev/htdocs/git/Biblio-Cabal.git/objects/pack/
+PYDev/htdocs/git/Biblio-Cabal.git/refs/
+PYDev/htdocs/git/Biblio-Cabal.git/refs/heads/
+PYDev/htdocs/git/Biblio-Cabal.git/refs/tags/
+PYDev/htdocs/images/
+PYDev/tmp/
+PythonCabal/
+PythonCabal/images/
+PythonCabal/pyramid/
+PythonCabal/pyramid/ui/
+PythonCabal/pyramid/ui/.svn/
+PythonCabal/pyramid/ui/.svn/prop-base/
+PythonCabal/pyramid/ui/.svn/props/
+PythonCabal/pyramid/ui/.svn/text-base/
+PythonCabal/pyramid/ui/.svn/tmp/
+PythonCabal/pyramid/ui/.svn/tmp/prop-base/
+PythonCabal/pyramid/ui/.svn/tmp/props/
+PythonCabal/pyramid/ui/.svn/tmp/text-base/
+PythonCabal/pyramid/ui/tut/
+PythonCabal/pyramid/ui/tut/.svn/
+PythonCabal/pyramid/ui/tut/.svn/prop-base/
+PythonCabal/pyramid/ui/tut/.svn/props/
+PythonCabal/pyramid/ui/tut/.svn/text-base/
+PythonCabal/pyramid/ui/tut/.svn/tmp/
+PythonCabal/pyramid/ui/tut/.svn/tmp/prop-base/
+PythonCabal/pyramid/ui/tut/.svn/tmp/props/
+PythonCabal/pyramid/ui/tut/.svn/tmp/text-base/
+PythonCabal/ui/
+PythonCabal/ui/lc/
+
+sent 2384 bytes  received 22507 bytes  1605.87 bytes/sec
+total size is 249083574  speedup is 10006.97
+ Done
+</pre>
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
