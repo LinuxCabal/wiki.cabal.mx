@@ -1,0 +1,97 @@
+__NOTOC__
+* [[:# Verificar el Servicio | Verificar el Servicio ]]
+** [[:#Explicación | Explicación]]
+
+== Verificar el Servicio ==
+<pre>
+[root@charon openvpn]# ls -al
+total 52
+drwxr-xr-x   2 root root  4096 2012-10-26 11:22 ./
+drwxr-xr-x 129 root root 12288 2012-10-26 10:36 ../
+-rw-r--r--   1 root root  1452 2012-10-26 11:04 ca.crt
+-rw-r--r--   1 root root  4238 2012-10-26 11:04 charon.linuxcabal.org.crt
+-rw-------   1 root root   912 2012-10-26 11:04 charon.linuxcabal.org.key
+-rw-r--r--   1 root root   597 2012-10-26 11:04 crl.pem
+-rw-r--r--   1 root root   245 2012-10-26 11:04 dh1024.pem
+-rw-------   1 root root     0 2012-10-26 11:28 ipp.txt
+-rw-------   1 root root  1548 2012-10-26 11:18 openvpn.log
+-rw-------   1 root root   232 2012-10-26 11:29 openvpn-status.log
+-rwxr-xr-x   1 root root   435 2012-10-26 11:22 server.conf*
+</pre>
+<pre>
+[root@charon openvpn]# cat openvpn.log 
+Fri Oct 26 11:18:20 2012 OpenVPN 2.1.1 i586-mandriva-linux-gnu [SSL] [LZO2] [EPOLL] [PKCS11] built on Apr  8 2010
+Fri Oct 26 11:18:20 2012 IMPORTANT: OpenVPN's default port number is now 1194, based on an official port number assignment by IANA.  OpenVPN 2.0-beta16 and earlier used 5000 as the default port.
+Fri Oct 26 11:18:20 2012 NOTE: OpenVPN 2.1 requires '--script-security 2' or higher to call user-defined scripts or executables
+Fri Oct 26 11:18:20 2012 Diffie-Hellman initialized with 1024 bit key
+Fri Oct 26 11:18:20 2012 TLS-Auth MTU parms [ L:1542 D:138 EF:38 EB:0 ET:0 EL:0 ]
+Fri Oct 26 11:18:20 2012 ROUTE default_gateway=192.168.51.1
+Fri Oct 26 11:18:20 2012 TUN/TAP device tun0 opened
+Fri Oct 26 11:18:20 2012 TUN/TAP TX queue length set to 100
+Fri Oct 26 11:18:20 2012 /sbin/ifconfig tun0 10.8.0.1 pointopoint 10.8.0.2 mtu 1500
+Fri Oct 26 11:18:20 2012 /sbin/route add -net 10.8.0.0 netmask 255.255.255.0 gw 10.8.0.2
+Fri Oct 26 11:18:21 2012 Data Channel MTU parms [ L:1542 D:1450 EF:42 EB:135 ET:0 EL:0 AF:3/1 ]
+Fri Oct 26 11:18:21 2012 GID set to openvpn
+Fri Oct 26 11:18:21 2012 UID set to openvpn
+Fri Oct 26 11:18:21 2012 Socket Buffers: R=[112640->131072] S=[112640->131072]
+Fri Oct 26 11:18:21 2012 UDPv4 link local (bound): 192.168.51.136:1194
+Fri Oct 26 11:18:21 2012 UDPv4 link remote: [undef]
+Fri Oct 26 11:18:21 2012 MULTI: multi_init called, r=256 v=256
+Fri Oct 26 11:18:21 2012 IFCONFIG POOL: base=10.8.0.4 size=62
+Fri Oct 26 11:18:21 2012 IFCONFIG POOL LIST
+Fri Oct 26 11:18:21 2012 Initialization Sequence Completed
+</pre>
+<pre>
+[root@charon openvpn]# cat openvpn-status.log 
+OpenVPN CLIENT LIST
+Updated,Fri Oct 26 11:33:31 2012
+Common Name,Real Address,Bytes Received,Bytes Sent,Connected Since
+ROUTING TABLE
+Virtual Address,Common Name,Real Address,Last Ref
+GLOBAL STATS
+Max bcast/mcast queue length,0
+END
+</pre>
+<pre>
+[root@charon openvpn]# ifconfig
+eth0      Link encap:Ethernet  HWaddr 00:04:76:2A:02:12  
+          inet addr:192.168.51.136  Bcast:192.168.51.255  Mask:255.255.255.0
+          inet6 addr: 2002:bda2:69b1:0:204:76ff:fe2a:212/64 Scope:Global
+          inet6 addr: fe80::204:76ff:fe2a:212/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:3852 errors:0 dropped:0 overruns:1 frame:0
+          TX packets:1623 errors:0 dropped:0 overruns:0 carrier:1
+          collisions:0 txqueuelen:1000 
+          RX bytes:650042 (634.8 KiB)  TX bytes:220353 (215.1 KiB)
+          Interrupt:5 Base address:0xe000 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:4 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:4 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:240 (240.0 b)  TX bytes:240 (240.0 b)
+
+tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          inet addr:10.8.0.1  P-t-P:10.8.0.2  Mask:255.255.255.255
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+</pre>
+<pre>
+[root@charon openvpn]# ip route show
+10.8.0.2 dev tun0  proto kernel  scope link  src 10.8.0.1 
+192.168.51.0/24 dev eth0  proto kernel  scope link  src 192.168.51.136  metric 10 
+10.8.0.0/24 via 10.8.0.2 dev tun0 
+127.0.0.0/8 dev lo  scope link 
+default via 192.168.51.1 dev eth0  metric 10 
+</pre>
+
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
