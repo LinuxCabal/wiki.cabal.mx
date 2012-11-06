@@ -1,0 +1,155 @@
+__NOTOC__
+* [[:#Preparar easy-rsa | Preparar easy-rsa]]
+** [[:#Explicación | Explicación]]
+
+== Preparar easy-rsa ==
+<pre>
+[root@charon ~]# cd /usr/share/openvpn/easy-rsa/2.0/
+[root@charon 2.0]# ls -al
+total 124
+drwxr-xr-x 2 root root  4096 2012-10-17 14:43 ./
+drwxr-xr-x 5 root root  4096 2012-10-17 14:43 ../
+-rwxr-xr-x 1 root root   121 2009-10-01 13:02 build-ca*
+-rwxr-xr-x 1 root root   354 2009-10-01 13:02 build-dh*
+-rwxr-xr-x 1 root root   190 2009-10-01 13:02 build-inter*
+-rwxr-xr-x 1 root root   165 2009-10-01 13:02 build-key*
+-rwxr-xr-x 1 root root   159 2009-10-01 13:02 build-key-pass*
+-rwxr-xr-x 1 root root   251 2009-10-01 13:02 build-key-pkcs12*
+-rwxr-xr-x 1 root root   270 2009-10-01 13:02 build-key-server*
+-rwxr-xr-x 1 root root   215 2009-10-01 13:02 build-req*
+-rwxr-xr-x 1 root root   160 2009-10-01 13:02 build-req-pass*
+-rwxr-xr-x 1 root root   430 2009-10-01 13:02 clean-all*
+-rwxr-xr-x 1 root root  1459 2009-10-01 13:02 inherit-inter*
+-rwxr-xr-x 1 root root   297 2009-10-01 13:02 list-crl*
+-rw-r--r-- 1 root root   389 2009-10-01 13:02 Makefile
+-rwxr-xr-x 1 root root  7768 2009-10-01 13:02 openssl-0.9.6.cnf*
+-rwxr-xr-x 1 root root  8328 2009-10-01 13:02 openssl.cnf*
+-rwxr-xr-x 1 root root 12504 2009-10-01 13:02 pkitool*
+-rw-r--r-- 1 root root  9281 2009-10-01 13:02 README
+-rwxr-xr-x 1 root root   920 2009-10-01 13:02 revoke-full*
+-rwxr-xr-x 1 root root   180 2009-10-01 13:02 sign-req*
+-rwxr-xr-x 1 root root  1678 2009-10-01 13:02 vars*
+-rwxr-xr-x 1 root root   190 2009-10-01 13:02 whichopensslcnf*
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# vi vars
+# This variable should point to
+# the top level of the easy-rsa
+# tree.
+export EASY_RSA="`pwd`"
+
+#
+# This variable should point to
+# the requested executables
+#
+export OPENSSL="openssl"
+export PKCS11TOOL="pkcs11-tool"
+export GREP="grep"
+
+# This variable should point to
+# the openssl.cnf file included
+# with easy-rsa.
+export KEY_CONFIG=`$EASY_RSA/whichopensslcnf $EASY_RSA`
+
+# Edit this variable to point to
+# your soon-to-be-created key
+# directory.
+#
+# WARNING: clean-all will do
+# a rm -rf on this directory
+# so make sure you define
+# it correctly!
+export KEY_DIR="$EASY_RSA/keys"
+
+# Issue rm -rf warning
+echo NOTE: If you run ./clean-all, I will be doing a rm -rf on $KEY_DIR
+
+# PKCS11 fixes
+export PKCS11_MODULE_PATH="dummy"
+export PKCS11_PIN="dummy"
+
+# Increase this to 2048 if you
+# are paranoid.  This will slow
+# down TLS negotiation performance
+# as well as the one-time DH parms
+# generation process.
+export KEY_SIZE=1024
+
+# In how many days should the root CA key expire?
+export CA_EXPIRE=3650
+
+# In how many days should certificates expire?
+export KEY_EXPIRE=365
+
+# These are the default values for fields
+# which will be placed in the certificate.
+# Don't leave any of these fields blank.
+export KEY_COUNTRY="MX"
+export KEY_PROVINCE="Jalisco"
+export KEY_CITY="Guadalajara"
+export KEY_ORG="LinuxCabal AC"
+export KEY_EMAIL="rrc@LinuxCabal.org"
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# mkdir keys
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo 00 > keys/serial
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# touch keys/index.txt
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# . ./vars
+NOTE: If you run ./clean-all, I will be doing a rm -rf on /usr/share/openvpn/easy-rsa/2.0/keys
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $KEY_SIZE
+1024
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $CA_EXPIRE
+3650
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $KEY_EXPIRE
+365
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $KEY_COUNTRY
+MX
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $KEY_PROVINCE
+Jalisco
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $KEY_CITY
+Guadalajara
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $KEY_ORG
+LinuxCabal A.C.
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# echo $KEY_EMAIL
+rrc@LinuxCabal.org
+[root@charon 2.0]# 
+</pre>
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
