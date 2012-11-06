@@ -1,0 +1,71 @@
+__NOTOC__
+* [[:# Enviar Rutas Globalmente |Enviar Rutas Globalmente ]]
+** [[:#Explicación | Explicación]]
+== Enviar Rutas Globalmente  ==
+
+<pre>
+[rrc@AbelLap OpenVPN]$ ssh rrc@192.168.51.136
+rrc@192.168.51.136's password: 
+Last login: Fri Oct 26 17:54:33 2012 from 192.168.51.160
+[rrc@charon ~]$ su -
+Password: 
+[root@charon ~]# cd /etc/openvpn
+[root@charon openvpn]# vi server.conf 
+local 192.168.51.136
+proto udp
+dev tun
+ca ca.crt
+cert charon.linuxcabal.org.crt
+key charon.linuxcabal.org.key  # This file should be kept secret
+crl-verify crl.pem
+dh dh1024.pem
+
+## Para system-D
+script-security 2
+
+server 10.8.0.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+# duplicate-cn
+keepalive 10 120
+comp-lzo
+max-clients 10
+user openvpn
+group openvpn
+persist-key
+persist-tun
+status openvpn-status.log
+log         openvpn.log
+log-append  openvpn.log
+verb 3
+mute 20
+### Para enviar una ruta global a todos los clientes de VPN
+push "route 172.16.51.0 255.255.255.0"
+</pre>
+<pre>
+[root@charon openvpn]# service openvpn restart
+Shutting down openvpn:                                          [  OK  ]
+Starting openvpn:                                               [  OK  ]
+</pre>
+<pre>
+[root@AbelLap init.d]# systemctl restart openvpn@rrc.service
+</pre>
+<pre>
+[root@AbelLap init.d]# ip route show
+8.0.1 via 10.8.0.5 dev tun0 
+10.8.0.5 dev tun0  proto kernel  scope link  src 10.8.0.6 
+172.16.51.0/24 via 10.8.0.5 dev tun0 
+192.168.51.0/24 via 192.168.51.160 dev wlan0  scope link 
+192.168.51.0/24 dev wlan0  proto kernel  scope link  src 192.168.51.160  metric 35 
+</pre>
+<pre>
+[rrc@charon ~]$ ssh rrc@172.16.51.1
+Warning: Permanently added '172.16.51.1' (RSA) to the list of known hosts.
+rrc@172.16.51.1's password: 
+Last login: Fri Oct 26 18:11:17 2012 from 192.168.51.160
+[rrc@charon ~]$ 
+</pre>
+
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
