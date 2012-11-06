@@ -1,0 +1,97 @@
+__NOTOC__
+* [[:#Crear el CA | Crear el CA]]
+** [[:#Explicación | Explicación]]
+
+== Crear el CA ==
+<pre>
+[root@charon 2.0]# ./build-ca
+Generating a 1024 bit RSA private key
+.......++++++
+...................................................++++++
+writing new private key to 'ca.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [MX]:
+State or Province Name (full name) [Jalisco]:
+Locality Name (eg, city) [Guadalajara]:
+Organization Name (eg, company) [LinuxCabal A.C.]:
+Organizational Unit Name (eg, section) []:Tutorial
+Common Name (eg, your name or your server's hostname) [LinuxCabal A.C. CA]:charon.linuxcabal.org
+Name []:rrc
+Email Address [rrc@LinuxCabal.org]:
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# ls -al keys
+total 24
+drwxr-xr-x 2 root root 4096 2012-10-17 16:30 ./
+drwxr-xr-x 3 root root 4096 2012-10-17 16:03 ../
+-rw-r--r-- 1 root root 1452 2012-10-17 16:30 ca.crt
+-rw------- 1 root root  916 2012-10-17 16:30 ca.key
+-rw-r--r-- 1 root root  245 2012-10-17 16:05 dh1024.pem
+-rw-r--r-- 1 root root    0 2012-10-17 15:27 index.txt
+-rw-r--r-- 1 root root    3 2012-10-17 15:25 serial
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# cat keys/serial 
+00
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# cat keys/ca.key 
+-----BEGIN PRIVATE KEY-----
+MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAK/LvjVRYIoEdUms
+L+TYEnnDuBi/yEWoEkPe+TdXjKN3RFLY50tNN2xCNE8oT4/cpFOvhYT84ZlwVMg0
+i8PUzXdKY08drihd2CLDLm/ZFf/Yj2NXlICy0bW9vhS6LLS8nZ6e082AF1Ciyhwz
+rwDyb3RKndKNyZ9bMMeD4fHzMXrtAgMBAAECgYAwtETtZq9VbajFEYRvZYGw5I2j
+pbapvcfZr/Ph5kqbm1Z9kYR7M1hwkOMHL0bjt6B7Yvyd/KXQKfQDR7OVPObzeO46
+97K3fc86jdJFt3SS23eYEHjnDrDVh7UFdieDbefVbirff6+3X9qNeH3M8M8BaR+V
+LK5jYAksRkP6ceGFwQJBAOUTsMZnGJLWeKVkqvUPYD7r74p5AvERGelAwaoPpkYw
+QugUbND2m6L+/SxT78ArSE2ShNpCN/1ngVJNGYS2ud0CQQDEdPgG+QUKvTGGWcHS
+KHUMTSEYFm+tbDxXoglZgBwMYg9dziTwDT/MWKixcfjsR0VEPtUCDcTPZ4FyVfBN
+tpxRAkAVJotE1lIDhL/g7XmHZOMLDDeyvleSMHUG/06iSA2fH2eeC/y8EnjuRMLV
+a+6P/K8RUnzntgN7ZyoekjXP9hsVAkAIbrDas8OYo2hFyQJ9v8jOX10lSIlAm123
+sTfPhKUvjuHz9840E42Ceue6vhaeJaz+cef4r5icAmhW/QNUgpsRAkEAhcNo2Bx7
+CTaLAk/h0oTIMkkYkxSe8Ra3tTVERGbQs164lpVoW06l0Mw8acesf2W+wRJjHhsK
+2VJPcYxTo7gSJA==
+-----END PRIVATE KEY-----
+[root@charon 2.0]# 
+</pre>
+<pre>
+[root@charon 2.0]# cat keys/ca.crt 
+-----BEGIN CERTIFICATE-----
+MIIEBDCCA22gAwIBAgIJAK+PUoIaCLVNMA0GCSqGSIb3DQEBBQUAMIGzMQswCQYD
+VQQGEwJNWDEQMA4GA1UECBMHSmFsaXNjbzEUMBIGA1UEBxMLR3VhZGFsYWphcmEx
+GDAWBgNVBAoTD0xpbnV4Q2FiYWwgQS5DLjERMA8GA1UECxMIVHV0b3JpYWwxHjAc
+BgNVBAMTFWNoYXJvbi5saW51eGNhYmFsLm9yZzEMMAoGA1UEKRMDcnJjMSEwHwYJ
+KoZIhvcNAQkBFhJycmNATGludXhDYWJhbC5vcmcwHhcNMTIxMDE3MjEzNTU0WhcN
+MjIxMDE1MjEzNTU0WjCBszELMAkGA1UEBhMCTVgxEDAOBgNVBAgTB0phbGlzY28x
+FDASBgNVBAcTC0d1YWRhbGFqYXJhMRgwFgYDVQQKEw9MaW51eENhYmFsIEEuQy4x
+ETAPBgNVBAsTCFR1dG9yaWFsMR4wHAYDVQQDExVjaGFyb24ubGludXhjYWJhbC5v
+cmcxDDAKBgNVBCkTA3JyYzEhMB8GCSqGSIb3DQEJARYScnJjQExpbnV4Q2FiYWwu
+b3JnMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCvy741UWCKBHVJrC/k2BJ5
+w7gYv8hFqBJD3vk3V4yjd0RS2OdLTTdsQjRPKE+P3KRTr4WE/OGZcFTINIvD1M13
+SmNPHa4oXdgiwy5v2RX/2I9jV5SAstG1vb4Uuiy0vJ2entPNgBdQosocM68A8m90
+Sp3SjcmfWzDHg+Hx8zF67QIDAQABo4IBHDCCARgwHQYDVR0OBBYEFG5Pxfu7VJnz
+fECgLjX6UyTbcGP0MIHoBgNVHSMEgeAwgd2AFG5Pxfu7VJnzfECgLjX6UyTbcGP0
+oYG5pIG2MIGzMQswCQYDVQQGEwJNWDEQMA4GA1UECBMHSmFsaXNjbzEUMBIGA1UE
+BxMLR3VhZGFsYWphcmExGDAWBgNVBAoTD0xpbnV4Q2FiYWwgQS5DLjERMA8GA1UE
+CxMIVHV0b3JpYWwxHjAcBgNVBAMTFWNoYXJvbi5saW51eGNhYmFsLm9yZzEMMAoG
+A1UEKRMDcnJjMSEwHwYJKoZIhvcNAQkBFhJycmNATGludXhDYWJhbC5vcmeCCQCv
+j1KCGgi1TTAMBgNVHRMEBTADAQH/MA0GCSqGSIb3DQEBBQUAA4GBACduwBY82ZmF
+zOGzEhn+og4aiJ22wKS3xcIC3njeky0kHjnzLfqA5MdtCG0cE9cdnbYKvHVUFcuy
+bblz8UkGiMCuyqEQaFEp7On1PzfDkADBT9JozDEuJZkUXryz2Dr8UhQqvq8c7z1y
+WVTYMrsQmnjUgS2jWO5ZWQkek7OLtSsj
+-----END CERTIFICATE-----
+[root@charon 2.0]# 
+</pre>
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
