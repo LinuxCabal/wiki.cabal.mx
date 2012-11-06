@@ -1,0 +1,58 @@
+__NOTOC__
+* [[:# Copiar Archivos y Escribir la Configuración del Servicio | Copiar Archivos y Escribir la Configuración del Servicio ]]
+** [[:#Explicación | Explicación]]
+
+== Copiar Archivos y Escribir la Configuración del Servicio ==
+<pre>
+[root@charon 2.0]# cp keys/ca.crt keys/charon.linuxcabal.org.* keys/crl.pem keys/dh1024.pem /etc/openvpn/
+[root@charon 2.0]# cd /etc/openvpn
+[root@charon openvpn]# ls -al
+total 40
+drwxr-xr-x   2 root root  4096 2012-10-26 11:04 ./
+drwxr-xr-x 129 root root 12288 2012-10-26 10:36 ../
+-rw-r--r--   1 root root  1452 2012-10-26 11:04 ca.crt
+-rw-r--r--   1 root root  4238 2012-10-26 11:04 charon.linuxcabal.org.crt
+-rw-------   1 root root   912 2012-10-26 11:04 charon.linuxcabal.org.key
+-rw-r--r--   1 root root   597 2012-10-26 11:04 crl.pem
+-rw-r--r--   1 root root   245 2012-10-26 11:04 dh1024.pem
+</pre>
+<pre>
+[root@charon openvpn]# vi server.conf
+local 192.168.51.136
+proto udp
+dev tun
+ca ca.crt
+cert charon.linuxcabal.org.crt
+key charon.linuxcabal.org.key  # This file should be kept secret
+crl-verify crl.pem
+dh dh1024.pem
+
+## Para system-D  
+script-security 2
+
+server 10.8.0.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+# duplicate-cn
+keepalive 10 120
+comp-lzo
+max-clients 10
+user openvpn
+group openvpn
+persist-key
+persist-tun
+status openvpn-status.log
+log         openvpn.log
+log-append  openvpn.log
+verb 3
+mute 21
+</pre>
+<pre>
+[root@charon openvpn]# service openvpn restart
+Shutting down openvpn:                                          [  OK  ]
+Starting openvpn:                                               [  OK  ]
+</pre>
+
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
