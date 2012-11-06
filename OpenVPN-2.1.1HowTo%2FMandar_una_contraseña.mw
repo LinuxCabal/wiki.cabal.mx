@@ -1,0 +1,129 @@
+__NOTOC__
+* [[:#Mandar una contraseña | Mandar una contraseña]]
+** [[:#Explicación | Explicación]]
+
+== Mandar una contraseña ==
+<pre>
+[root@charon openvpn]# vi server.conf 
+local 192.168.51.136
+proto udp
+dev tun
+ca ca.crt
+cert charon.linuxcabal.org.crt
+key charon.linuxcabal.org.key  # This file should be kept secret
+crl-verify crl.pem
+dh dh1024.pem
+
+## Para system-D
+script-security 2
+server 10.8.0.0 255.255.255.0
+ifconfig-pool-persist ipp.txt
+# duplicate-cn
+keepalive 10 120
+comp-lzo
+max-clients 10
+user openvpn
+group openvpn
+persist-key
+persist-tun
+status openvpn-status.log
+log         openvpn.log
+log-append  openvpn.log
+verb 3
+mute 20
+### Para enviar una ruta global a todos los clientes de VPN
+push "route 172.16.51.0 255.255.255.0"
+
+### Para enviar direcciones fijas a cada cliente
+client-config-dir ccd
+
+## Para mandar una contraseña
+plugin /usr/lib/openvpn/openvpn-auth-pam.so system-auth
+</pre>
+<pre>
+[root@charon openvpn]# service openvpn restart
+Shutting down openvpn:                                     [  OK  ]
+Starting openvpn:                                          [  OK  ]
+</pre>
+<pre>
+[root@pwyr openvpn]# vi rrc.conf 
+client
+dev tun
+proto udp
+remote 192.168.51.136 1194
+persist-key
+persist-tun
+route-delay 5
+ping-restart 10
+ping 60
+persist-tun
+comp-lzo
+comp-noadapt
+verb 3
+ca ca.crt
+cert rrc.crt
+key rrc.key
+ns-cert-type server
+status openvpn-status.log
+log         openvpn.log
+log-append  openvpn.log
+verb 3
+mute 20
+
+## Para system-D
+script-security 2
+
+## Para mandar una contraseña
+auth-user-pass
+</pre>
+<pre>
+[root@pwyr openvpn]# cd /etc/init.d/
+[root@pwyr init.d]# ./openvpn restart
+Shutting down openvpn:                                     [  OK  ]
+Starting openvpn: Enter Auth Username:rrc
+Enter Auth Password:
+                                                           [  OK  ]
+</pre>
+<pre>                                                       
+[root@pwyr init.d]# ifconfig
+eth0      Link encap:Ethernet  HWaddr 14:DA:E9:AD:66:01  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+          Interrupt:44 
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:16436  Metric:1
+          RX packets:31 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:31 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:1944 (1.8 KiB)  TX bytes:1944 (1.8 KiB)
+
+tun0      Link encap:UNSPEC  HWaddr 00-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  
+          inet addr:10.8.0.249  P-t-P:10.8.0.250  Mask:255.255.255.255
+          UP POINTOPOINT RUNNING NOARP MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:100 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+wlan0     Link encap:Ethernet  HWaddr 74:2F:68:56:4A:CC  
+          inet addr:192.168.51.194  Bcast:192.168.51.255  Mask:255.255.255.0
+          inet6 addr: 2002:bda2:69b1:0:762f:68ff:fe56:4acc/64 Scope:Global
+          inet6 addr: fe80::762f:68ff:fe56:4acc/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:379183 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:199956 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:528554704 (504.0 MiB)  TX bytes:20360274 (19.4 MiB)
+
+[root@pwyr init.d]#
+</pre>
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
