@@ -1,0 +1,121 @@
+__NOTOC__
+* [[:# Preparar Paquetes para los Clientes | Preparar Paquetes para los Clientes]]
+** [[:#Explicación | Explicación]]
+==  Preparar Paquetes para los Clientes ==
+# [http://www.LinuxCabal.org/images/openvpn.net.png Obtener el Cliente Software para Windows en openvpn.net]
+<pre>
+[root@charon ~]# cd /usr/share/openvpn/easy-rsa/2.0/
+[root@charon 2.0]# mkdir -p Clients/rrc
+</pre>
+<pre>
+[root@charon 2.0]# . ./vars
+NOTE: If you run ./clean-all, I will be doing a rm -rf on /usr/share/openvpn/easy-rsa/2.0/keys
+</pre>
+<pre>
+[root@charon 2.0]# ./build-key rrc
+Generating a 1024 bit RSA private key
+........++++++
+..............................................++++++
+writing new private key to 'rrc.key'
+-----
+You are about to be asked to enter information that will be incorporated
+into your certificate request.
+What you are about to enter is what is called a Distinguished Name or a DN.
+There are quite a few fields but you can leave some blank
+For some fields there will be a default value,
+If you enter '.', the field will be left blank.
+-----
+Country Name (2 letter code) [MX]:
+State or Province Name (full name) [Jalisco]:
+Locality Name (eg, city) [Guadalajara]:
+Organization Name (eg, company) [LinuxCabal A.C.]:
+Organizational Unit Name (eg, section) []:Tutorial
+Common Name (eg, your name or your server's hostname) [rrc]:
+Name []:Richard Couture
+Email Address [rrc@LinuxCabal.org]:
+
+Please enter the following 'extra' attributes
+to be sent with your certificate request
+A challenge password []:
+An optional company name []:
+Using configuration from /usr/share/openvpn/easy-rsa/2.0/openssl.cnf
+Check that the request matches the signature
+Signature ok
+The Subject's Distinguished Name is as follows
+countryName           :PRINTABLE:'MX'
+stateOrProvinceName   :PRINTABLE:'Jalisco'
+localityName          :PRINTABLE:'Guadalajara'
+organizationName      :PRINTABLE:'LinuxCabal A.C.'
+organizationalUnitName:PRINTABLE:'Tutorial'
+commonName            :PRINTABLE:'rrc'
+name                  :PRINTABLE:'Richard Couture'
+emailAddress          :IA5STRING:'rrc@LinuxCabal.org'
+Certificate is to be certified until Oct 26 17:38:33 2013 GMT (365 days)
+Sign the certificate? [y/n]:y
+
+
+1 out of 1 certificate requests certified, commit? [y/n]y
+Write out database with 1 new entries
+Data Base Updated
+</pre>
+<pre>
+[root@charon 2.0]# rm keys/rrc.csr 
+rm: remove regular file `keys/rrc.csr'? y
+</pre>
+<pre>
+[root@charon 2.0]# cp keys/ca.crt keys/rrc.* Clients/rrc/
+</pre>
+<pre>
+[root@charon 2.0]# cp /home/rrc/openvpn-2.2.2-install.exe Clients/rrc
+</pre>
+<pre>
+[root@charon 2.0]# vi keys/rrc.opvn
+client
+dev tun
+proto udp
+remote 192.168.51.136 1194
+persist-key
+persist-tun
+route-delay 5
+ping-restart 10
+ping 60
+comp-lzo
+comp-noadapt
+verb 3
+ca ca.crt
+cert rrc.crt
+key rrc.key
+ns-cert-type server
+status openvpn-status.log
+log         openvpn.log
+log-append  openvpn.log
+verb 3
+mute 20
+
+## Para system-D
+script-security 2
+</pre>
+<pre>
+[root@charon 2.0]# cd Clients/rrc/
+[root@charon rrc]# ls -al
+total 1428
+drwxr-xr-x 2 root root    4096 2012-10-26 12:50 ./
+drwxr-xr-x 3 root root    4096 2012-10-26 12:01 ../
+-rw-r--r-- 1 root root    1452 2012-10-26 12:39 ca.crt
+-rw-r--r-- 1 root root 1426552 2012-10-26 12:40 openvpn-2.2.2-install.exe
+-rw-r--r-- 1 root root    4106 2012-10-26 12:39 rrc.crt
+-rw------- 1 root root     916 2012-10-26 12:39 rrc.key
+-rw-r--r-- 1 root root     191 2012-10-26 12:50 rrc.ovpn
+</pre>
+<pre>
+[root@charon rrc]# tar cvf ../rrc-openvpn-config.tar *
+ca.crt
+openvpn-2.2.2-install.exe
+rrc.crt
+rrc.key
+rrc.ovpn
+</pre>
+
+=== Explicación ===
+
+[[Category:OpenVPN-2.1.1HowTo]]
