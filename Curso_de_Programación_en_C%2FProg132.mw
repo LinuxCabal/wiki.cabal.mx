@@ -1,0 +1,106 @@
+__NOTOC__
+* [[:#Prog132 | Macros con DEFINE]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog132 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define SQUARE(X) X*X
+#define CUADRADO(X) (X)*(X)
+#define CUAD(x)  ((x)*(x))
+#define PR(X)   printf("El resultado es %d.\n", X)
+
+int main(void)
+{
+  int x = 4;
+  int z;
+
+  printf("x = %d\n", x);
+
+  z = SQUARE(x);
+  printf("Evaluando SQUARE(x): ");
+  PR(z);
+
+  z = SQUARE(2);
+  printf("Evaluando SQUARE(2): ");
+  PR(z);
+
+  printf("Evaluando SQUARE(x+2): ");
+  PR(SQUARE(x+2));
+
+  printf("Evaluando CUADRADO(x+2): ");
+  PR(CUADRADO(x+2));
+
+  printf("Evaluando 100/SQUARE(2): ");
+  PR(100/SQUARE(2));
+
+  printf("Evaluando 100/CUAD(2): ");
+  PR(100/CUAD(2));
+
+  printf("Evaluando CUAD(x+2): ");
+  PR(CUAD(x+2));
+
+  printf("x is %d.\n", x);
+  printf("Evaluando SQUARE(++x): ");
+
+  PR(SQUARE(++x));
+  printf("Después de incrementar, x is %x.\n", x);
+
+  x = 4;
+
+  printf("x is %d.\n", x);
+  printf("Evaluando CUADRADO(++x): ");
+
+  PR(CUADRADO(++x));
+  printf("Después de incrementar, x is %x.\n", x);
+
+  x = 4;
+
+  printf("x is %d.\n", x);
+  printf("Evaluando CUAD(++x): ");
+
+  PR(CUAD(++x));
+  printf("Después de incrementar, x is %x.\n", x);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@pwyr CClase]$ gcc -Wall -O2 -o Prog132 Prog132.c
+Prog132.c: In function ‘main’:
+Prog132.c:41:3: warning: operation on ‘x’ may be undefined [-Wsequence-point]
+Prog132.c:49:3: warning: operation on ‘x’ may be undefined [-Wsequence-point]
+Prog132.c:57:3: warning: operation on ‘x’ may be undefined [-Wsequence-point]
+[rrc@pwyr CClase]$ ./Prog132
+x = 4
+Evaluando SQUARE(x): El resultado es 16.
+Evaluando SQUARE(2): El resultado es 4.
+Evaluando SQUARE(x+2): El resultado es 14.
+Evaluando CUADRADO(x+2): El resultado es 36.
+Evaluando 100/SQUARE(2): El resultado es 100.
+Evaluando 100/CUAD(2): El resultado es 25.
+Evaluando CUAD(x+2): El resultado es 36.
+x is 4.
+Evaluando SQUARE(++x): El resultado es 36.
+Después de incrementar, x is 6.
+x is 4.
+Evaluando CUADRADO(++x): El resultado es 36.
+Después de incrementar, x is 6.
+x is 4.
+Evaluando CUAD(++x): El resultado es 36.
+Después de incrementar, x is 6.
+[rrc@pwyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
