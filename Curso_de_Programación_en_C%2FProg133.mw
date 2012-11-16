@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#Prog133 | Incluir el argumento del macro en una cadena]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog133 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define PSQR(x) printf("El cuadrado de " #x " is %d.\n",((x)*(x)))
+
+int main(void)
+{
+  int y = 5;
+
+  PSQR(y);
+  PSQR(2 + 4);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@pwyr CClase]$ gcc -Wall -O2 -o Prog133 Prog133.c
+[rrc@pwyr CClase]$ ./Prog133
+El cuadrado de y is 25.
+El cuadrado de 2 + 4 is 36.
+[rrc@pwyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
