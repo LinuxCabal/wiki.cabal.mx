@@ -1,0 +1,59 @@
+__NOTOC__
+* [[:#Prog136 | ifndef]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog136 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+// Contenidos de  Prog136.h
+
+#ifndef NOMBRES_H_
+
+#define NOMBRES_H_
+#define SLEN 32
+
+struct nombres_st
+{
+  char nombre[SLEN];
+  char apellido[SLEN];
+};
+
+typedef struct nombres_st nombres;
+
+void obten_nombres( nombres * );
+void muestra_nombres( const nombres * );
+
+#endif
+
+// Contenidos de Prog136.c
+
+#include <stdio.h>
+#include "Prog136.h"
+#include "Prog136.h"   // WHOOPS
+
+int main( void )
+{
+  nombres ganador = { "Omar", "Rodriguez" };
+
+  printf( "El ganador es %s %s.\n", ganador.nombre, ganador.apellido );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@pwyr CClase]$ gcc -Wall -o Prog136 Prog136.c
+[rrc@pwyr CClase]$ ./Prog136
+El ganador es Omar Rodriguez.
+[rrc@pwyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
