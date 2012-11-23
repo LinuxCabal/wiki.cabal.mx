@@ -1,0 +1,51 @@
+__NOTOC__
+* [[:#Prog137 | Identificadores predefinidos]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog137 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+
+void Porque_yo( void );
+
+int main( void )
+{
+  printf( "Este archivo se llama \"%s\"\n", __FILE__ );
+  printf( "La fecha es %s\n", __DATE__ );
+  printf( "Las horas son %s\n", __TIME__ );
+  printf( "Está codigo es en línea %d\n", __LINE__ );
+  printf( "Estamos en la función \"%s\"\n", __func__ );
+
+  Porque_yo();
+
+  return 0;
+}
+
+void Porque_yo( void )
+{
+  printf( "Estamos en la función \"%s\"\n", __func__ );
+  printf( "Está codigo es en línea %d\n", __LINE__ );
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@pwyr CClase]$ gcc -Wall -o Prog137 Prog137.c
+[rrc@pwyr CClase]$ ./Prog137
+Este archivo se llama "Prog137.c"
+La fecha es Nov 23 2012
+Las horas son 06:19:49
+Está codigo es en línea 11
+Estamos en la función "main"
+Estamos en la función "Porque_yo"
+Está codigo es en línea 22
+[rrc@pwyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
