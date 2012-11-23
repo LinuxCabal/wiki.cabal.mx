@@ -1,0 +1,37 @@
+__NOTOC__
+* [[:#Prog134 | El glue preprocesador operador]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog134 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+
+#define XNAME(n) x ## n
+#define PRINT_XN(n) printf("x" #n " = %d\n", x ## n);
+
+int main(void)
+{
+  int XNAME(1) = 14;  // se transforma en int x1 = 14;
+  int XNAME(2) = 20;  // se transforma en int x2 = 20;
+  PRINT_XN(1);        // se transforma en printf("x1 = %d\n", x1);
+  PRINT_XN(2);        // se transforma en printf("x2 = %d\n", x2);
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@pwyr CClase]$ gcc -Wall -o Prog134 Prog134.c
+[rrc@pwyr CClase]$ ./Prog134
+x1 = 14
+x2 = 20
+[rrc@pwyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
