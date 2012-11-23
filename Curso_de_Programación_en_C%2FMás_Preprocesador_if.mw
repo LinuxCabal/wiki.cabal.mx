@@ -1,0 +1,35 @@
+__NOTOC__
+* [[:#Más Preprocesador if | Más preprocesador if]]
+** [[:#Explicación | Explicación]]
+
+== Más Preprocesador if ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#if SYS == 1
+  #include "ibmpc.h"
+#elif SYS == 2
+  #include "vax.h"
+#elif SYS == 3
+  #include "mac.h"
+#else
+  #include "general.h"
+#endif
+
+#if defined (IBMPC)
+  #include "ibmpc.h"
+#elif defined (VAX)
+  #include "vax.h"
+#elif defined (MAC)
+  #include "mac.h"
+#else
+  #include "general.h"
+#endif
+
+</syntaxhighlight>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
