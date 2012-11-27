@@ -1,0 +1,9 @@
+{{Borrador}}
+
+El proyecto Python Koans es una herramienta para aprender tanto Python como el concepto de pruebas unitarias y Test-Driven Development.
+
+Descarga el archivo .zip o gzip de [https://github.com/gregmalcolm/python_koans Python Koans] en github.com.  Si ya sabes usar git, o quieres aprender a usarlo, puedes crear un fork y/o clonarlo para llevar un control de los cambios que vas haciendo.
+
+El proyecto acepta correcciones y mejoras por parte de los usuarios.  Ver [[Cómo contribuir a los Koans de Python]].
+
+[[Category: HowTos]]
