@@ -1,0 +1,70 @@
+__NOTOC__
+* [[:#Prog10 | Imprimir tamaños de tipos de variables]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog10 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/*  Prog10.c -- Imprimir tamaños de tipos de variables */
+
+#include <stdio.h>
+
+int main( void )
+{
+  /* c99 nos da el %zd especificador de conversión para los tamaños */
+
+  printf( "En un sistema de 32 bits:\n" );
+  printf( "Tipo char tiene un tamaño de %u bytes.\n", sizeof(char) );
+  printf( "Tipo char tiene un tamaño de %zd bytes.\n", sizeof(char) );
+  printf( "Tipo short tiene un tamaño de %u bytes.\n", sizeof(short) );
+  printf( "Tipo short tiene un tamaño de %zd bytes.\n", sizeof(short) );
+  printf( "Tipo int tiene un tamaño de %u bytes.\n", sizeof(int) );
+  printf( "Tipo int tiene un tamaño de %zd bytes.\n", sizeof(int) );
+  printf( "Tipo long tiene un tamaño de %u bytes.\n", sizeof(long) );
+  printf( "Tipo long tiene un tamaño de %zd bytes.\n", sizeof(long) );
+  printf( "Tipo long long tiene un tamaño de %u bytes.\n", sizeof(long long) );
+  printf( "Tipo long long tiene un tamaño de %zd bytes.\n", sizeof(long long) );
+  printf( "Tipo float tiene un tamaño de %u bytes.\n", sizeof(float) );
+  printf( "Tipo float tiene un tamaño de %u bytes.\n", sizeof(float) );
+  printf( "Tipo double tiene un tamaño de %u bytes.\n", sizeof(double) );
+  printf( "Tipo double tiene un tamaño de %zd bytes.\n", sizeof(double) );
+  printf( "Tipo long double tiene un tamaño de %u bytes.\n",
+                                        sizeof(long double) );
+  printf( "Tipo long double tiene un tamaño de %zd bytes.\n",
+                                         sizeof(long double) );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog10 Prog10.c
+ [rrc@Pridd CClase]$ ./Prog10
+ En un sistema de 32 bits:
+ Tipo char tiene un tamaño de 1 bytes.
+ Tipo char tiene un tamaño de 1 bytes.
+ Tipo short tiene un tamaño de 2 bytes.
+ Tipo short tiene un tamaño de 2 bytes.
+ Tipo int tiene un tamaño de 4 bytes.
+ Tipo int tiene un tamaño de 4 bytes.
+ Tipo long tiene un tamaño de 4 bytes.
+ Tipo long tiene un tamaño de 4 bytes.
+ Tipo long long tiene un tamaño de 8 bytes.
+ Tipo long long tiene un tamaño de 8 bytes.
+ Tipo float tiene un tamaño de 4 bytes.
+ Tipo float tiene un tamaño de 4 bytes.
+ Tipo double tiene un tamaño de 8 bytes.
+ Tipo double tiene un tamaño de 8 bytes.
+ Tipo long double tiene un tamaño de 12 bytes.
+ Tipo long double tiene un tamaño de 12 bytes.
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+[https://wiki.cabal.mx/wiki/Archivo:Variables_c.jpg Tabla de variables en ANSI C]
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
