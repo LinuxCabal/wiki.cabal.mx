@@ -1,0 +1,45 @@
+__NOTOC__
+* [[:#Prog6 | Escribe 1020 en decimal, octal, and hex con printf()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog6 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog6.c -- Escribe 1020 en decimal, octal, and hex */
+
+#include <stdio.h>
+
+int main( void )
+{
+  int x = 1020;
+
+  printf( "dec = %d; octal = %o; hex = %x; HEX = %X\n", x, x, x, x );
+  printf( "dec = %d; octal = %#o; hex = %#x; HEX = %#X\n", x, x, x, x );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -o Prog6 -Wall -O2 Prog6.c 
+ [rrc@Pridd CClase]$ ./Prog6
+ dec = 1020; octal = 1774; hex = 3fc; HEX = 3FC
+ dec = 1020; octal = 01774; hex = 0x3fc; HEX = 0X3FC
+
+=== Explicación ===
+
+<p>Linea 7:<br>
+Se declara la variable "int" llamada "x" y se le asigna el valor 1020<br></p>
+
+<p>Linea 9 y 10:<br>
+Con los caracteres de conversion se muestra los valores en notacion decimal con signo "%d", octal "%o", y hexadecimal "%h" respectivamente.
+el "#" es un modificador de los caracteres de conversion que permite mostrar el "0" a la derecha del numero octal o hexadecimal al  momento de ser impresos en pantalla.
+</p>
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
