@@ -1,0 +1,64 @@
+__NOTOC__
+* [[:#Prog3 | Crear una función propia]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog3 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog3.c -- Crear una función propia */
+
+#include <stdio.h>
+
+void mesero( void );  /* Prototipo de la función mesero() */
+      
+int main( void )
+{ 
+  printf( "Voy a convocar al mesero.\n" );
+  mesero();
+  printf( "Si. Trae algunos DVDs grabables y té.\n" );
+  return 0;
+}
+
+void mesero( void )            /* Definición de la función mesero() */
+{
+  printf( "¿Me llamó, señor?\n" );
+} 
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog3 Prog3.c
+ [rrc@Pridd CClase]$ ./Prog3
+ Voy a convocar al mesero.
+ ¿Me llamó, señor?
+ Si. Trae algunos DVDs grabables y té.
+
+=== Explicación ===
+
+En este ejemplo vemos como crear una función hecha por nosotros, para luego ser llamada en el transcurso del programa las veces que sean necesarias.
+
+
+<code>void mesero( void );  /* Prototipo de la función mesero() */</code><br>
+Primero antes que nada se deben declarar todas las funciones que deseamos crear. En la linea de arriba vemos declarado el prototipo de la funcion '''mesero''' la cual no va a regresar ningun valor '''" void "''' y no se le van a enviar argumentos '''" (void) "'''.
+
+
+<code>mesero();</code><br>
+En esta linea estamos llamando a la funcion '''mesero'''
+
+
+Luego de finalizar la funcion principal '''main''' con el cierre de las llaves '''}''' se definen todas las funciones previamente declaradas al principio del programa de la siguiente forma:
+
+<pre>void mesero( void )            /* Definición de la función mesero() */
+{
+  printf( "¿Me llamó, señor?\n" );
+}</pre><br>
+
+Note que es importante que tanto cuando se define la función o sea llamada en el programa, sea usada tal cual se declaró en el prototipo al inicio del programa, ya que de no ser así no se va a poder compilar. Por ejemplo, si se declaró que no se va a enviar ningún argumento '''" (void) "''', y se le enviara argumento al momento de ser llamada la función, definitivamente va a tirar un error el compilador.
+
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
