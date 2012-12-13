@@ -1,0 +1,31 @@
+Aquí resumimos los pasos principales a seguir si quieres contribuir a este proyecto.
+
+= Requerimientos =
+*Cuenta en [[GitHub]]
+*[[Python 3]] y [[Instalación de Git|git]] instalados en tu computadora
+
+= Ruta crítica =
+#Haz un ''fork'' de [https://github.com/gregmalcolm/python_koans Python Koans] en github.com
+#Clona tu fork a tu computadora.
+#Encuentra una mejora que quieras hacer (Ver más abajo).
+#Crea una rama en tu repositorio git.
+#Haz los cambios que sean requeridos para la correción o mejora que intentas hacer, y pruébalos.
+#Haz uno o más commits.  Incluye en cada commit una cantidad de cambios que pueda ser entendida por quien los va a revisar.  Si son demasiados cambios, divide en varios commits.
+#Empuja tus commits a tu repositorio en github.
+#Crea una ''Pull request'' al repositorio original para que tus cambios sean aceptados.
+
+= Cómo encontrar mejoras para hacer =
+Busca en la [https://github.com/gregmalcolm/python_koans/issues lista de problemas pendientes] del proyecto.  Los problemas pendientes todavía sin solución son opciones en las que podrías aportar algo.
+
+Si  no hay problemas pendientes, o sea todos están ya solucionados, examina los problemas ya solucionados ¿Qué es lo que ha hecho falta en el pasado? ¿Qué han aportado los usuarios al proyecto?
+
+== Ejemplo ==
+En este proyecto el usuario [https://github.com/gregmalcolm/python_koans/pull/28 Ymbirtt] tuvo una idea, probablemente al realizar los Koans: en los ejercicios para los operadores de conjuntos de Python, notó que podrían ser más claros si se cambiaban los conjuntos usados.  Su [https://github.com/gregmalcolm/python_koans/pull/28 propuesta de mejora] fue aceptada por el líder del proyecto, no solo eso, le pidió  que también hiciera esos mismos cambios para la versión de Python 3.
+
+= Ver también =
+*[[Python Koans]]
+
+= Enlaces Externos =
+*[https://github.com/gregmalcolm/python_koans Repositorio de Python Koans] en github.com
+
+[[Category: HowTos]]
