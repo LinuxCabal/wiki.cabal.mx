@@ -1,0 +1,163 @@
+{{Borrador}}
+
+Python puede usarse para implementar servidores, clientes y aplicaciones de web.
+
+= La librería estándar =
+La líbrería estándar de Python include los módulos ''http.server'', ''http.client'' y ''cgi''. En las siguientes secciones se muestran ejemplos mínimos del uso de estos módulos.  Todos los ejemplos se encuentran en el repositorio [https://github.com/ppaez/python-in-the-web python-in-the-web] en github.
+
+== Servidor ==
+Un servidor HTTP mínimo puede hacerse con el módulo <code>http.server</code> así:
+<source lang="Python">
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+
+PORT = 1234
+server_address = ('localhost', PORT)
+
+Handler = SimpleHTTPRequestHandler
+
+httpd = HTTPServer(server_address, Handler)
+
+print("servidor en puerto", PORT)
+httpd.serve_forever()
+</source>
+
+Se corre así:
+ $ python3 servidor.py
+ servidor en puerto 1234
+
+El servidor genera un listado de los archivos en la carpeta actual.  Si existe un archivo ''index.html'' en la carpeta actual, se va a mostrar su contenido en lugar del listado de archivos.  Podemos comprobarlo ejecutando:
+ $ echo Página principal > index.html
+Ahora al visitar o cargar de nuevo <code>localhost:1234</code> veremos ''Página principal''
+
+El programa despliega un renglón en la consola por cada petición HTTP que atiende.  En el ejemplo abajo el primer renglón es cuando se escribió <code>localhost:1234</code> en el navegador.  Los dos siguientes renglones son porque se escribió <code>localhost:1234/noexiste</code> en el navegador:
+ 127.0.0.1 - - [29/Sep/2012 17:35:34] "GET / HTTP/1.1" 200 -
+ 127.0.0.1 - - [29/Sep/2012 17:36:06] code 404, message File not found
+ 127.0.0.1 - - [29/Sep/2012 17:36:06] "GET /noexiste HTTP/1.1" 404 -
+
+== Common Gateway Interface ==
+Es posible implementar tanto un servidor que ejecuta CGI como scripts CGI. Para un servidor CGI solo tenemos que remplazar el Handler ''SimpleHTTPRequestHandler'' por ''CGIHTTPRequestHandler'' en el ejemplo anterior:
+<source lang="Python">
+from http.server import HTTPServer, CGIHTTPRequestHandler
+
+PORT = 1234
+server_address = ('localhost', PORT)
+
+Handler = CGIHTTPRequestHandler
+
+httpd = HTTPServer(server_address, Handler)
+
+print("servidor con CGI en puerto", PORT)
+httpd.serve_forever()
+</source>
+
+Se corre así:
+ $ python3 server_cgi.py
+   servidor con CGI en puerto 1234
+Este servidor mostrará los documentos en la carpeta actual como el servidor anterior, pero además ejecutará un archivo *.py o *.pyw que sea ejecutable y esté en alguna de las carpetas ''cgi-bin/'' o ''htbin/'' dentro del directorio actual.  Estas carpetas predeterminadas se pueden cambiar modificando la lista <code>http.server.cgi_directories</code>.
+
+Un script CGI mínimo sería:
+<source lang="Python">
+#!/usr/bin/env python
+
+import cgitb
+cgitb.enable()
+
+print("Content-Type: text/plain;charset=utf-8")
+print()
+
+print("¡Hola Mundo!")
+</source>
+Los comandos <code>import cgitb</code> y <code>cgitb.enable()</code> son para que el script emita mensajes de depuración en caso de que algo falle, en lugar de que no envíe ninguna salida.
+
+Si al script CGI lo llamamos ''hola.py'' en la carpeta ''cgi-bin/'', y lo hacemos ejecutable con <code>chmod u+x cgi-bin/hola.py</code>, se puede navegar a la ruta <code>localhost:1234/cgi-bin/hola.py</code> para obtener <code>¡Hola Mundo!</code> como resultado.
+
+Estas son algunas de las líneas que envía a la consola el servidor con CGI para diferentes casos:
+ 127.0.0.1 - - [01/Oct/2012 20:44:24] "GET / HTTP/1.1" 200 -
+ 127.0.0.1 - - [01/Oct/2012 20:45:10] "GET /cgi-bin/hola.py HTTP/1.1" 200 -
+ 127.0.0.1 - - [01/Oct/2012 20:44:47] code 403, message CGI script is not a plain file ('/cgi-bin/')
+ 127.0.0.1 - - [01/Oct/2012 20:44:47] "GET /cgi-bin/ HTTP/1.1" 403 -
+ 127.0.0.1 - - [01/Oct/2012 20:44:59] code 404, message No such CGI script ('/cgi-bin/noexiste')
+ 127.0.0.1 - - [01/Oct/2012 20:44:59] "GET /cgi-bin/noexiste HTTP/1.1" 404 -
+ 127.0.0.1 - - [01/Oct/2012 20:56:20] code 403, message CGI script is not executable ('/cgi-bin/noejecutable')
+ 127.0.0.1 - - [01/Oct/2012 20:57:18] "GET /cgi-bin/nopy HTTP/1.1" 200 -
+ Traceback (most recent call last):
+   File "/home/pp/lib/python3.3/http/server.py", line 1128, in run_cgi
+     os.execve(scriptfile, args, env)
+ OSError: [Errno 8] Exec format error: '/home/pp/Desktop/cgi-bin/nopy'
+ 127.0.0.1 - - [01/Oct/2012 20:57:18] CGI script exit status 0x7f00
+
+== Cliente ==
+El módulo <code>urllib</code> permite manejar peticiones HTTP.  Este ejemplo lee el contenido de la URL proporcionada como parámetro en la línea de comando:
+ import sys
+ import urllib.request
+ 
+ f = urllib.request.urlopen( sys.argv[1] )
+ data = f.read()
+ print( data.decode('utf-8') )
+Los datos que se reciben son bytes, por eso es necesario decodificar para obtener una cadena.  Un ejemplo del uso:
+ $ python3 get_url.py http://python.org/
+Hay más ejemplos del uso de <code>urllib</code> en uno de los HowTos mencionados al final.
+
+== Aplicación ==
+Una aplicación puede estar formada por varios scripts CGI en Python.  Se pueden localizar en diferentes carpetas, como ''blog/'', ''wiki/'', ''contacto/'', etc.  En caso de usar algo como server_cgi.py basado en el módulo http.server, se podrían agregar esas carpetas a <code>http.server.cgi_directories</code>.
+
+En el siguiente ejemplo extendemos la funcionalidad del servidor básico CGI para que ejecute automáticamente ''index.py'' si se encuentra en alguna de las carpetas designadas para CGI, y agregamos un par de rutas para que sean CGI.
+
+<source lang="Python">
+import BaseHTTPServer, SimpleHTTPServer, CGIHTTPServer
+import os
+
+def send_head(self):
+    """Version of send_head that finds index.py in CGI directories."""
+    path = self.path
+    # separate the query
+    i = path.find( '?' )
+    if i >= 0:
+        query = path[ i: ]
+        path = path[ : i ]
+    else:
+        query = ''
+    if os.path.isdir( '.' + path ):  # os.getcwd() ?
+        # check if index.py exists
+        pathindexpy = os.path.join( path, 'index.py' )
+        if os.path.exists( '.' + pathindexpy ):
+            path = pathindexpy + query
+            self.path = path
+    if self.is_cgi():
+        return self.run_cgi()
+    else:
+        return SimpleHTTPServer.SimpleHTTPRequestHandler.send_head(self)
+
+PORT = 1234
+server_address = ('localhost', PORT)
+
+Handler = CGIHTTPServer.CGIHTTPRequestHandler
+
+# overwrite the existing send_head() method
+Handler.send_head = send_head
+
+# add paths to the cgi directories
+Handler.cgi_directories.append( '/contacto' )
+Handler.cgi_directories.append( '/wiki' )
+Handler.cgi_directories.append( '/blog' )
+
+httpd = BaseHTTPServer.HTTPServer( ( server_address, Handler )
+
+print("servidor con CGI en puerto", PORT)
+httpd.serve_forever()
+</source>
+
+Otra opción es que la aplicación sea un solo script CGI e implementar un mecanismo para definir ''rutas'' y asociar una función o controlador a cada ruta.  Ese mecanismo deberá separar la primera parte de la URL para identificarla como una ruta y entonces invocar la función o controlador que atenderá esa petición.  Igualmente se puede implementar un mecanismo de plantillas para estandarizar o facilitar el diseño de las páginas que se generarán.
+
+= Frameworks =
+Una opción muy popular es utilizar un framework que ofrezca las características que se requieran.  Existen ''full-stack frameworks'' y ''basic frameworks''.
+
+
+= Enlaces externos =
+*[http://docs.python.org/py3k/howto/webservers.html#ingredients-for-websites How to Use Python in the web]
+*[http://docs.python.org/py3k/howto/urllib2.html How to Fetch Internet Resources Using The urllib Package]
+*[http://wiki.python.org/moin/WebFrameworks Web Frameworks for Python]
+
+[[Category:HowTos]]
+[[Category:Python]]
+[[Category:PythonCabal]]
