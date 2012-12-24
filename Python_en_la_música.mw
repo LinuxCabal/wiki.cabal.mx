@@ -1,0 +1,17 @@
+{{Borrador}}
+Hay aplicaciones musicales implementadas en Python, aplicaciones implementadas en otros lenguajes que además soportan Python, y herramientas para programar en Python.  Existen dos grandes áreas, la de audio (formas de onda) y la de MIDI (secuencias de notas).
+
+Hay una recopilación de los proyectos ya existentes en el wiki de Python. Se puede empezar por ahí a aprender según el área de interés.  En este artículo tendremos algunos ejemplos básicos que se sugieran en la comunidad de [[PythonCabal]].
+
+= Audio =
+
+
+= MIDI =
+
+= Recursos externos =
+*[http://wiki.python.org/moin/PythonInMusic Python in music], en el wiki de [http://python.org python.org]
+*Repositorio [https://github.com/ppaez/python-in-music python-in-music] en github.com
+
+[[Category: HowTos]]
+[[Category:Python]]
+[[Category:PythonCabal]]
