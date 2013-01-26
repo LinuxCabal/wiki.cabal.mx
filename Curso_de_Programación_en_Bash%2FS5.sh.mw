@@ -1,0 +1,38 @@
+__NOTOC__
+* [[:#S5.sh | S5.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S5.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+X=-3
+if [ $X -lt 0 ]        #then debe ser en linea nueva
+  then
+    echo "\$X = $X es menor que cero"
+fi
+
+if [ "$X" -gt "0" ]; then   #; sirve para then también
+  echo "\$X = $X es mayor que cero"
+else
+  echo "\$X = $X es menor que cero"
+fi
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ bash S5.sh 
+$X = -3 es menor que cero
+$X = -3 es menor que cero
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
