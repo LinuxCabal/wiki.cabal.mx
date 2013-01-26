@@ -1,0 +1,37 @@
+__NOTOC__
+* [[:#S4.sh | S4.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S4.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+X=5
+echo "Una \" se escribe \\\""
+echo "Un \\  se escribe \\\\"
+echo "Un \` se escribe \\\`"
+echo "Un \$ se escribe \\\$"
+echo -ne "Si quieres escribir \"El valor de \$X es $X,\"\nescribe \\\"El valor de \\\$X es \$X,\\\"\\\n\n"
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ bash S4.sh 
+Una " se escribe \"
+Un \  se escribe \\
+Un ` se escribe \`
+Un $ se escribe \$
+Si quieres escribir "El valor de $X es 5,"
+escribe \"El valor de \$X es $X,\"\n
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
