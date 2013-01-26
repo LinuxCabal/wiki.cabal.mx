@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#S1.sh | S1.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S1.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+# Esto es un comentario!    
+echo "Hola      Mundo"       # Esto es un comentario también!
+echo "Hola Mundo"
+echo "Hola * Mundo"
+echo Hola * Mundo            # Sirve como ls
+echo Hola      Mundo
+echo "Hola    Mundo"            Mundo
+echo "Hola \"*\" Mundo"
+echo "\`hola\` Mundo"        #Backtick no es comilla
+echo -n 'hola' Mundo         #Sin linea nueva
+echo -ne 'hola' Mundo \\a \\n\\n\\n   #Sin linea nueva
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ bash S1.sh 
+Hola      Mundo
+Hola Mundo
+Hola * Mundo
+Hola FindBashScripts LibComun NuevosUsusrios S10.sh S11.sh S12.sh S13.sh S14.sh S15.sh S16.sh S17.sh S18.sh S19.sh S1.sh S20.sh S21.sh S2.sh S3.sh S4.sh S5b.sh S5.sh S6.sh S7.sh S8.sh S9.sh Saludos Mundo
+Hola Mundo
+Hola    Mundo Mundo
+Hola "*" Mundo
+`hola` Mundo
+hola Mundohola Mundo
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
