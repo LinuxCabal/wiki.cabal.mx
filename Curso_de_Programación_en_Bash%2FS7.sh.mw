@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#S7.sh | S7.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S7.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+X=-3
+
+[ $X -le 0 ] &&  echo "\$X = $X que es menor que o igual a cero"
+
+[ "$X" -ge "0" ] &&                 \
+  echo "\$X = $X que es mayor que o igual a cero"
+
+X=0
+[ "$X" = "0" ] && echo "\$X = $X que es la cadena \"0\""
+
+X=Hola
+[ "$X" = "Hola" ] && echo "\$X = $X que es la cadena \"Hola\""
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ bash S7.sh
+$X = -3 que es menor que o igual a cero
+$X = 0 que es la cadena "0"
+$X = Hola que es la cadena "Hola"
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
