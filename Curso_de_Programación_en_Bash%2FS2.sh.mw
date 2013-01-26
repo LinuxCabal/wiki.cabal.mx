@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#S2.sh | S2.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S2.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+MI_MENSAJE="Hola Mundo"     #No espacios permitida
+MI_MENSAJE_CORTO=Hola;      MI_NUM=1;                      MI_PI=3.142
+MI_OTRO_PI="3.142";         MI_MESCLA=123abc
+MIComando=`which less`
+echo $MI_MENSAJE;           echo $MI_MENSAJE_CORTO;        read I
+echo $MI_NUM;               echo $MI_PI;                   read I
+echo $MI_OTRO_PI;           echo $MI_MESCLA;               read I
+echo $MIComando;                                           read I
+y=`expr $MI_NUM + 1`;       echo $y;                       read I
+y=`expr $MI_MENSAJE + 1`;   echo $y;                       read I
+y=`expr $MI_PI + 1`;        echo $y;                       read I
+echo $I; echo `expr $I + 3`
+y=`expr $MI_MESCLA + 1`;    echo $y 
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ bash S2.sh 
+Hola Mundo
+Hola
+
+1
+3.142
+
+3.142
+123abc
+
+/usr/bin/less
+
+2
+
+expr: syntax error
+
+
+expr: non-integer argument
+
+
+
+3
+expr: non-integer argument
+
+[rrc@Pridd BashClase]$
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
