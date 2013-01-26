@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#S6.sh | S6.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S6.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+X=4
+
+if [ $X -lt 0 ]
+  then
+    echo "\$X = $X que es menor que cero"
+  elif [ "$X" -eq "4" ]; then
+    echo "\$X es igual a 4"
+  else
+    echo "\$X = $X que no es menor que cero"
+fi
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ bash S6.sh 
+$X es igual a 4
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
