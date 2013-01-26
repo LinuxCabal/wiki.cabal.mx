@@ -1,0 +1,96 @@
+__NOTOC__
+* [[:#S9.sh | S9.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S9.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+for i in 1 2 3 4 5
+  do echo "Rotación ... número $i"
+done
+
+echo "Presiona la <Entrada> para continuar a Parte 2"
+read I
+
+for i in {1..5}; do echo "Rotación ... número $i"; done
+
+echo "Presiona la <Entrada> para continuar a Parte 3"
+read I
+
+for i in hola 1 \* 2 adios; do echo "\$i es $i"; done
+
+echo "Presiona la <Entrada> para continuar a Parte 4"
+read I
+#Mira sin escapar el asterisco
+
+for i in hola 1 * 2 adios; do echo "\$i es $i"; done
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ ./S9.sh 
+Rotación ... número 1
+Rotación ... número 2
+Rotación ... número 3
+Rotación ... número 4
+Rotación ... número 5
+
+Presiona la <Entrada> para continuar a Parte 2
+Rotación ... número 1
+Rotación ... número 2
+Rotación ... número 3
+Rotación ... número 4
+Rotación ... número 5
+Presiona la <Entrada> para continuar a Parte 3
+
+$i es hola
+$i es 1
+$i es *
+$i es 2
+$i es adios
+Presiona la <Entrada> para continuar a Parte 4
+
+$i es hola
+$i es 1
+$i es FindBashScripts
+$i es LibComun
+$i es NuevosUsusrios
+$i es Richard_file
+$i es S10.sh
+$i es S11.sh
+$i es S12.sh
+$i es S13.sh
+$i es S14.sh
+$i es S15.sh
+$i es S16.sh
+$i es S17.sh
+$i es S18.sh
+$i es S19.sh
+$i es S1.sh
+$i es S20.sh
+$i es S21.sh
+$i es S22.sh
+$i es S2.sh
+$i es S3.sh
+$i es S4.sh
+$i es S5.sh
+$i es S6.sh
+$i es S7.sh
+$i es S8.sh
+$i es S9.sh
+$i es Saludos
+$i es 2
+$i es adios
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
