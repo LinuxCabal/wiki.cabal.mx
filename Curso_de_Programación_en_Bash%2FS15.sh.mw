@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#S15.sh | S15.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S15.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+Viejo_IFS="$IFS"
+IFS=:
+
+echo "Escribe 3 palabras seperadas por el caracter \":\" por favor:"
+
+read x y z
+
+IFS=$Viejo_IFS
+
+echo -e "x es: $x\ny es: $y\nz es: $z"
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ ./S15.sh 
+Escribe 3 palabras seperadas por el caracter ":" por favor:
+Palab1:Y también Palab2:Finalmente Palab3  
+x es: Palab1
+y es: Y también Palab2
+z es: Finalmente Palab3
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
