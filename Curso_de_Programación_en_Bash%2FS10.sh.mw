@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#S10.sh | S10.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S10.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+ENTRADA=algun
+while [ "$ENTRADA" != "AdioS" ]
+  do
+    echo -n "Escribe algo por favor (AdioS para quitar) "
+    read ENTRADA
+    echo "Escribiste: $ENTRADA"
+done
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ ./S10.sh 
+Escribe algo por favor (AdioS para quitar) Hola
+Escribiste: Hola
+Escribe algo por favor (AdioS para quitar) Algo
+Escribiste: Algo
+Escribe algo por favor (AdioS para quitar) Más de una palabra
+Escribiste: Más de una palabra
+Escribe algo por favor (AdioS para quitar) Adios
+Escribiste: Adios
+Escribe algo por favor (AdioS para quitar) ADIOS
+Escribiste: ADIOS
+Escribe algo por favor (AdioS para quitar) AdioS
+Escribiste: AdioS
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
