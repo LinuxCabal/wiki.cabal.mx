@@ -1,0 +1,48 @@
+__NOTOC__
+* [[:#S8.sh | S8.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S8.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+X=Adios
+[ "$X" != "Hola" ] &&   \
+  echo "\$X = $X que no es la cadena \"Hola\""
+
+[ -n "$X" ] && echo "\$X = $X que tiene longitud"
+
+X=/bin/bash
+[ -f "$X" ] && echo "$X es un archivo existente y real" ||
+  echo "$X no existe en este sistema"
+
+[ -x "$X" ] && echo "$X es un archivo ejecutable"
+
+X=S7.sh
+[ "$X" -nt "/etc/passwd" ] &&  \
+  echo "$X está más nuevo que /etc/passwd" 
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ ./S8.sh 
+$X = Adios que no es la cadena "Hola"
+$X = Adios que tiene longitud
+/bin/bash es un archivo existente y real
+/bin/bash es un archivo ejecutable
+S7.sh está más nuevo que /etc/passwd
+[rrc@Pridd BashClase]$ ls -al /etc/passwd S7.sh
+-rw-r--r-- 1 root root 1959 2011-11-16 11:07 /etc/passwd
+-rwxr-x--- 1 rrc  rrc   308 2011-11-16 17:37 S7.sh*
+[rrc@Pridd BashClase]$
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
