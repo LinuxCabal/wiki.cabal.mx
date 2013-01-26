@@ -1,0 +1,66 @@
+__NOTOC__
+* [[:#S3.sh | S3.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S3.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+echo -n "Como te llamas? "
+read USUARIO_NOMBRE
+echo "Hola $USUARIO_NOMBRE"
+#echo "Me voy a crear un archivo que se llama $USUARIO_NOMBRE_Archivo"
+echo "Me voy a crear un archivo que se llama ${USUARIO_NOMBRE}_Archivo"
+#touch $USUARIO_NOMBRE_Archivo
+touch "${USUARIO_NOMBRE}_Archivo"
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ bash S3.sh 
+Como te llamas? Richard
+Hola Richard
+Me voy a crear un archivo que se llama Richard_Archivo
+[rrc@Pridd BashClase]$ ls -al
+total 2328
+-rw-r-----  1 rrc rrc     308 2011-09-01 07:49 S6.sh
+-rw-r-----  1 rrc rrc     200 2011-09-01 07:49 S5b.sh
+-rw-r-----  1 rrc rrc     242 2011-09-01 07:49 S4.sh
+-rw-r-----  1 rrc rrc     130 2011-09-01 07:49 S20.sh
+-rw-r-----  1 rrc rrc     425 2011-09-01 07:49 S1.sh
+-rw-r-----  1 rrc rrc     504 2011-09-01 07:49 S19.sh
+-rw-r-----  1 rrc rrc     168 2011-09-01 07:49 S14.sh
+-rwx------  1 rrc rrc     394 2011-09-01 07:49 S13.sh*
+-rw-r-----  1 rrc rrc      34 2011-09-01 07:49 Saludos
+-rw-r-----  1 rrc rrc     197 2011-09-01 07:49 S9.sh
+-rw-r-----  1 rrc rrc     345 2011-09-01 07:49 S8.sh
+-rw-r-----  1 rrc rrc     406 2011-09-01 07:49 S21.sh
+-rw-r-----  1 rrc rrc     263 2011-09-01 07:49 S10.sh
+-rw-r-----  1 rrc rrc     128 2011-09-01 07:49 NuevosUsusrios
+-rw-r-----  1 rrc rrc     187 2011-09-08 11:27 S16.sh
+-rw-r-----  1 rrc rrc     160 2011-09-08 11:30 S15.sh
+-rw-r-----  1 rrc rrc     173 2011-09-08 11:44 FindBashScripts
+-rw-r-----  1 rrc rrc     730 2011-10-26 10:52 S2.sh
+-rw-r-----  1 rrc rrc     251 2011-10-26 11:02 S3.sh
+-rw-r-----  1 rrc rrc     254 2011-10-26 11:17 S5.sh
+-rw-r-----  1 rrc rrc     390 2011-10-26 11:37 S7.sh
+-rw-r-----  1 rrc rrc     388 2011-11-03 10:03 S11.sh
+-rw-r-----  1 rrc rrc     422 2011-11-03 10:19 S12.sh
+-rw-r-----  1 rrc rrc      61 2011-11-03 11:03 S17.sh
+-rw-r-----  1 rrc rrc     311 2011-11-03 11:16 S18.sh
+-rw-r-----  1 rrc rrc     245 2011-11-03 11:49 LibComun
+drwxr-x--x 75 rrc rrc    4096 2011-11-16 16:22 ../
+-rw-------  1 rrc rrc       0 2011-11-16 16:22 Richard_Archivo
+drwxr-x---  2 rrc rrc    4096 2011-11-16 16:22 ./
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
