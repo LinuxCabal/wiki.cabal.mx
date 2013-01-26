@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#S14.sh | S14.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S14.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+# Ejecútale con derechos de root si tu sistema tiene mucha seguridad
+# Prueba con:		./S14.sh   bash$     /etc/passwd
+# Prueba con:		./S14.sh   TuNombre$ /etc/passwd
+# Prueba con:		./S14.sh   ^bash     /etc/passwd
+# Prueba con:		./S14.sh   ^TuNombre /etc/passwd
+
+/bin/grep -i $1 $2 > /dev/null 2>&1
+[ $? -eq 0 ] && 
+  echo "$1 es a dentro de $2" || 
+  echo "$1 no es a dentro de $2"
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ ./S14.sh   bash$     /etc/passwd
+bash$ es a dentro de /etc/passwd
+[rrc@Pridd BashClase]$ ./S14.sh   rrc$ /etc/passwd
+rrc$ no es a dentro de /etc/passwd
+[rrc@Pridd BashClase]$ ./S14.sh   ^bash     /etc/passwd
+^bash no es a dentro de /etc/passwd
+[rrc@Pridd BashClase]$ ./S14.sh   ^rrc /etc/passwd
+^rrc es a dentro de /etc/passwd
+[rrc@Pridd BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
