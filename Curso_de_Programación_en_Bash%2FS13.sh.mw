@@ -1,0 +1,53 @@
+__NOTOC__
+* [[:#S13.sh | S13.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S13.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+echo "Me ejecutaste con \$# = $# parámetros"
+echo "Me llamo \$0 = $0"
+echo "Mi primer parámetro es \$1 = $1"
+echo "Mi segundo parámetro es \$2 = $2"
+echo "Mi décimo parámetro es \$10 = $10"
+echo "Todos mis parámetros son \$@ = $@"
+echo "Todos mis parámetros son \$* = $*"
+echo "Mi PID es \$\$ = $$"
+
+X=1
+while [ "$#" -gt "0" ]; do
+    echo "\$${X} es $1"
+#    X=`expr $X + 1`
+    ((X++))
+    shift
+done              
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[root@lclabws ~]# bash S13.sh Param1 Param2 "El Param 3" Parm4
+Me ejecutaste con $# = 4 parámetros
+Me llamo $0 = ./S13.sh
+Mi primer parámetro es $1 = Param1
+Mi segundo parámetro es $2 = Param2
+Mi décimo parámetro es $10 = Param10
+Todos mis parámetros son $@ = Param1 Param2 El Param 3 Parm4
+Todos mis parámetros son $* = Param1 Param2 El Param 3 Parm4
+Mi PID es $$ = 3065
+$1 es Param1
+$2 es Param2
+$3 es El Param 3
+$4 es Parm4
+[rrc@Pridd BashClase]$
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
