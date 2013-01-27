@@ -1,0 +1,49 @@
+__NOTOC__
+* [[:#S11.sh | S11.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S11.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+while read f
+  do
+    case $f in
+      hello)
+        echo $f: El Lenguaje es Inglés
+      ;;
+      bonjour)
+        echo $f: El Lenguaje es Francés
+      ;;
+      *)
+        echo $f: El Lenguaje no está conocido
+      ;;
+    esac
+  done < Saludos
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Pridd BashClase]$ cat Saludos
+hello
+gday
+bonjour
+guten tag
+Nyet
+[rrc@Pridd BashClase]$ ./S11.sh 
+hello: El Lenguaje es Inglés
+gday: El Lenguaje no está conocido
+bonjour: El Lenguaje es Francés
+guten tag: El Lenguaje no está conocido
+Nyet: El Lenguaje no está conocido
+[rrc@Pridd BashClase]$ 
+</pre>
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
