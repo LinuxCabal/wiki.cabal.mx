@@ -1,0 +1,63 @@
+__NOTOC__
+* [[:#S18.sh | S18.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S18.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+for i in {5..10};do
+  echo $i
+done
+
+echo "Presiona <Entrada> para continuar"
+read I
+
+for i in $( seq 100 5 200 )
+ do
+   echo $i
+done
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd BashClase]$ ./S18.sh 
+ 5
+ 6
+ 7
+ 8
+ 9
+ 10
+ Presiona <Entrada> para continuar
+
+ 100
+ 105
+ 110
+ 115
+ 120
+ 125
+ 130
+ 135
+ 140
+ 145
+ 150
+ 155
+ 160
+ 165
+ 170
+ 175
+ 180
+ 185
+ 190
+ 195
+ 200
+ [rrc@Pridd BashClase]$
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
