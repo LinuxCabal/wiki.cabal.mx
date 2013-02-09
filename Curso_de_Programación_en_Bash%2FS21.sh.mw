@@ -1,0 +1,91 @@
+__NOTOC__
+* [[:#S21.sh | S21.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S21.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+
+. ./LibComun
+
+for i in {1..6}; do touch ${i}.Ztv; done
+
+echo "Mira la lista de archivos que inician con números 1, 2, 3, 4, 5 y 6"
+echo "que se creo con nuestro for"
+
+ls -al [1-6]*
+
+read I 
+
+echo
+echo "El STD_MSG declarado en LibComun es"
+echo "$STD_MSG"
+echo
+echo "Vamos cambiar el extensión de los archivos recienes creados a .bak"
+echo "usando un función en el lib LibComun"
+echo
+
+read I
+
+rename .Ztv .bak
+echo "Mira la lista de archivos ahorra después de cambiar sus nombres:"
+
+ls -al [1-6]*
+echo
+echo "Los continidos de LibComun son:"
+cat LibComun
+
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd BashClase]$ ./S21.sh 
+ Mira la lista de archivos que inician con números 1, 2, 3, 4, 5 y 6
+ que se creo con nuestro for
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 1.Ztv
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 2.Ztv
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 3.Ztv
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 4.Ztv
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 5.Ztv
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 6.Ztv
+ 
+ El STD_MSG declarado en LibComun es
+ Listo a cambiar los nombres de algunos achivos
+ 
+ Vamos cambiar el extensión de los archivos recienes creados a .bak
+ usando un función en el lib LibComun
+ 
+ Mira la lista de archivos ahorra después de cambiar sus nombres:
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 1.bak
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 2.bak
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 3.bak
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 4.bak
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 5.bak
+ -rw------- 1 rrc rrc 0 2011-11-16 20:47 6.bak 
+ 
+ Los continidos de LibComun son:
+ # LibComun
+ # # Nota no "#!/bin/sh"
+ #
+ STD_MSG="Listo a cambiar los nombres de algunos achivos"
+ rename()
+ { # Uso de función:   rename .txt .bak 
+   FROM=$1
+   TO=$2
+ 
+   for i in *$FROM
+     do
+       j=`basename $i $FROM`
+       mv $i ${j}$TO
+   done
+ }
+ [rrc@Pridd BashClase]$
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
