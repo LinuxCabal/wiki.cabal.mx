@@ -1,0 +1,131 @@
+__NOTOC__
+* [[:#S27.sh | S27.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S27.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+Fecha=`date +"%Y%m%d"`
+X=0
+
+while( [ -f ${1}-${Fecha}-${X}.tar.xz ] )
+do
+  ((X++))
+done
+
+tar acvf  ${1}-${Fecha}-${X}.tar.xz ${1}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@pwyr ~]$ bash cd ..
+[rrc@pwyr ~]$ bash BashClase/S27.sh BashClase
+BashClase/
+BashClase/S10.sh
+BashClase/S6.sh
+BashClase/Saludos
+BashClase/S14.sh
+BashClase/S17.sh
+BashClase/S12.sh
+BashClase/S2.sh
+BashClase/S21.sh
+BashClase/S24.sh
+BashClase/LibComun
+BashClase/S23.sh
+BashClase/S4.sh
+BashClase/S11.sh
+BashClase/S19.sh
+BashClase/S7.sh
+BashClase/S8.sh
+BashClase/S13.sh
+BashClase/S9.sh
+BashClase/S20.sh
+BashClase/S5.sh
+BashClase/S1.sh
+BashClase/S18.sh
+BashClase/S25.sh
+BashClase/S26.sh
+BashClase/NuevosUsuarios
+BashClase/S3.sh
+BashClase/S16.sh
+BashClase/S22.sh
+BashClase/S15.sh
+[rrc@pwyr ~]$ ls -al Bash*.xz
+-rw------- 1 rrc rrc 4460 Nov  2 14:54 BashClase20121102-0.tar.xz
+[rrc@pwyr ~]$ ./SaveIt BashClase
+BashClase/
+BashClase/S10.sh
+BashClase/S6.sh
+BashClase/Saludos
+BashClase/S14.sh
+BashClase/S17.sh
+BashClase/S12.sh
+BashClase/S2.sh
+BashClase/S21.sh
+BashClase/S24.sh
+BashClase/LibComun
+BashClase/S23.sh
+BashClase/S4.sh
+BashClase/S11.sh
+BashClase/S19.sh
+BashClase/S7.sh
+BashClase/S8.sh
+BashClase/S13.sh
+BashClase/S9.sh
+BashClase/S20.sh
+BashClase/S5.sh
+BashClase/S1.sh
+BashClase/S18.sh
+BashClase/S25.sh
+BashClase/S26.sh
+BashClase/NuevosUsuarios
+BashClase/S3.sh
+BashClase/S16.sh
+BashClase/S22.sh
+BashClase/S15.sh
+[rrc@pwyr ~]$ ls -al Bash*.xz
+-rw------- 1 rrc rrc 4460 Nov  2 14:54 BashClase20121102-0.tar.xz
+-rw------- 1 rrc rrc 4460 Nov  2 14:55 BashClase20121102-1.tar.xz
+[rrc@pwyr ~]$ ./SaveIt BashClase
+BashClase/
+BashClase/S10.sh
+BashClase/S6.sh
+BashClase/Saludos
+BashClase/S14.sh
+BashClase/S17.sh
+BashClase/S12.sh
+BashClase/S2.sh
+BashClase/S21.sh
+BashClase/S24.sh
+BashClase/LibComun
+BashClase/S23.sh
+BashClase/S4.sh
+BashClase/S11.sh
+BashClase/S19.sh
+BashClase/S7.sh
+BashClase/S8.sh
+BashClase/S13.sh
+BashClase/S9.sh
+BashClase/S20.sh
+BashClase/S5.sh
+BashClase/S1.sh
+BashClase/S18.sh
+BashClase/S25.sh
+BashClase/S26.sh
+BashClase/NuevosUsuarios
+BashClase/S3.sh
+BashClase/S16.sh
+BashClase/S22.sh
+BashClase/S15.sh
+[rrc@pwyr ~]$ ls -al Bash*.xz
+-rw------- 1 rrc rrc 4460 Nov  2 14:54 BashClase20121102-0.tar.xz
+-rw------- 1 rrc rrc 4460 Nov  2 14:55 BashClase20121102-1.tar.xz
+-rw------- 1 rrc rrc 4460 Nov  2 14:55 BashClase20121102-2.tar.xz
+</pre>
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
