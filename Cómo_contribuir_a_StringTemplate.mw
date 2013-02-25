@@ -1,0 +1,261 @@
+[http://www.stringtemplate.org/ StringTemplate] es un motor de plantillas que mantiene la separación entre vista y modelo en el patrón de diseño MVC.  Fue concebido por Terence Parr y originalmente fue desarrollado en Java.  La versión actual es 4.  Marq Kole implementó la versión 3 de StringTemplate en Python 2, Benjamin Niemann actualizó esa implementación a la versión 3.1 de StringTemplate.
+
+En la sesión de [[PythonCabal]] del 26 de enero de 2013 se mostraron los pasos para modificar la implementación de StringTemplate 3.1 que corre en  Python 2 para correr en Python 3.  Se hizo solamente una prueba muy elemental.  La implementación de StringTemplate en Python no tiene pruebas unitarias.
+
+En los pasos siguientes se utilizará la versión 3.3 del interpretador de Python.  Si tu sistema operativo no lo tiene, tienes que instalar Python 3.3 primero.  En el caso de GNU/Linux, si tu distribución no cuenta con un paquete '.rpm' o '.deb' de Python 3.3 ya compilado, lee cómo [[Compilar Python]] a partir del código fuente.
+
+= Pasos =
+Versión resumida:
+# Crear un entorno virtual con Python 3.3
+# Antlr
+## Descargar
+## Convertir a Python 3 con ''2to3''
+## Aplicar parche ''antlr-python3.patch''
+## Prueba básica
+# StringTemplate 3
+## Descargar
+## Convertir a Python 3 con ''2to3''
+## Aplicar parche ''st-python3.patch''
+## Prueba básica
+
+La secuencia de comandos:
+* Entorno virtual con Python 3.3
+ mkdir test-st
+ cd test-st
+ virtualenv -p python3.3 env3.3
+* Antlr
+ wget http://www.antlr2.org/download/antlr-2.7.7.tar.gz
+ tar xf antlr-2.7.7.tar.gz
+ cd antlr-2.7.7
+ cd lib/python
+ 2to3 -w -n antlr/
+ patch -p1 -i antlr-python3.patch
+ env3.3/python setup.py
+ cd ../../..
+ python -c 'import antlr'
+* StringTemplate
+ wget http://pypi.python.org/packages/source/s/stringtemplate3/stringtemplate3-3.1.tar.gz
+ tar xf stringtemplate3-3.1.tar.gz
+ cd stringtemplate3-3.1/
+ 2to3 -w -n stringtemplate3/
+ patch -p1 -i st-python3.patch
+ env3.3/python setup.py
+ cd ..
+ python -c 'import StringTemplate3'
+
+= Parches =
+* antlr-python3.patch
+ diff -Naur -x '*pyc' antlr-2.7.7-ori/lib/python/antlr/antlr.py antlr-2.7.7/lib/python/antlr/antlr.py
+ --- antlr-2.7.7-ori/lib/python/antlr/antlr.py	2006-11-01 15:37:17.000000000 -0600
+ +++ antlr-2.7.7/lib/python/antlr/antlr.py	2013-01-18 03:47:45.000000000 -0600
+ @@ -4,11 +4,11 @@
+  ## get sys module
+  import sys
+  
+ -version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#version = sys.version.split()[0]
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  
+  ###xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx###
+  ###                     global symbols                             ###
+
+* st-python3.patch
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/ActionEvaluator.py stringtemplate3-3.1/stringtemplate3/language/ActionEvaluator.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/ActionEvaluator.py	2013-01-26 15:21:21.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/ActionEvaluator.py	2013-01-18 03:50:20.000000000 -0600
+ @@ -3,11 +3,11 @@
+  import sys
+  import antlr
+  
+ -version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#version = sys.version.split()[0]
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  from stringtemplate3.language.CatIterator import CatList
+  from stringtemplate3.language.StringTemplateAST import StringTemplateAST
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/ActionLexer.py stringtemplate3-3.1/stringtemplate3/language/ActionLexer.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/ActionLexer.py	2013-01-26 15:21:23.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/ActionLexer.py	2013-01-18 03:50:44.000000000 -0600
+ @@ -4,10 +4,10 @@
+  import antlr
+  
+  version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  from stringtemplate3.language.StringTemplateToken import StringTemplateToken
+  import stringtemplate3
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/ActionParser.py stringtemplate3-3.1/stringtemplate3/language/ActionParser.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/ActionParser.py	2013-01-26 15:21:27.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/ActionParser.py	2013-01-18 03:51:07.000000000 -0600
+ @@ -3,11 +3,11 @@
+  import sys
+  import antlr
+  
+ -version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#version = sys.version.split()[0]
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  from stringtemplate3.language.StringTemplateToken import StringTemplateToken
+  import stringtemplate3
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/AngleBracketTemplateLexer.py stringtemplate3-3.1/stringtemplate3/language/AngleBracketTemplateLexer.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/AngleBracketTemplateLexer.py	2013-01-26 15:21:29.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/AngleBracketTemplateLexer.py	2013-01-18 03:51:34.000000000 -0600
+ @@ -3,11 +3,11 @@
+  import sys
+  import antlr
+  
+ -version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#version = sys.version.split()[0]
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  import stringtemplate3
+  import stringtemplate3.language.TemplateParser
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/DefaultTemplateLexer.py stringtemplate3-3.1/stringtemplate3/language/DefaultTemplateLexer.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/DefaultTemplateLexer.py	2013-01-26 15:21:33.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/DefaultTemplateLexer.py	2013-01-18 03:52:18.000000000 -0600
+ @@ -4,10 +4,10 @@
+  import antlr
+  
+  version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  import stringtemplate3
+  from stringtemplate3.language.ChunkToken import ChunkToken
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/GroupLexer.py stringtemplate3-3.1/stringtemplate3/language/GroupLexer.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/GroupLexer.py	2013-01-26 15:21:35.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/GroupLexer.py	2013-01-18 03:52:40.000000000 -0600
+ @@ -4,10 +4,10 @@
+  import antlr
+  
+  version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  from .ASTExpr import *
+  import stringtemplate3
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/GroupParser.py stringtemplate3-3.1/stringtemplate3/language/GroupParser.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/GroupParser.py	2013-01-26 15:21:36.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/GroupParser.py	2013-01-18 03:53:00.000000000 -0600
+ @@ -4,10 +4,10 @@
+  import antlr
+  
+  version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  from .ASTExpr import *
+  import stringtemplate3
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/InterfaceLexer.py stringtemplate3-3.1/stringtemplate3/language/InterfaceLexer.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/InterfaceLexer.py	2013-01-26 15:21:37.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/InterfaceLexer.py	2013-01-18 03:53:26.000000000 -0600
+ @@ -3,11 +3,11 @@
+  import sys
+  import antlr
+  
+ -version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#version = sys.version.split()[0]
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  #
+  # [The "BSD licence"]
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/InterfaceParser.py stringtemplate3-3.1/stringtemplate3/language/InterfaceParser.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/InterfaceParser.py	2013-01-26 15:21:37.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/InterfaceParser.py	2013-01-18 03:54:00.000000000 -0600
+ @@ -3,11 +3,11 @@
+  import sys
+  import antlr
+  
+ -version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#version = sys.version.split()[0]
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  #
+  # [The "BSD licence"]
+ diff -Naur -x '*pyc' stringtemplate3-3.1-ori/stringtemplate3/language/TemplateParser.py stringtemplate3-3.1/stringtemplate3/language/TemplateParser.py
+ --- stringtemplate3-3.1-ori/stringtemplate3/language/TemplateParser.py	2013-01-26 15:21:38.000000000 -0600
+ +++ stringtemplate3-3.1/stringtemplate3/language/TemplateParser.py	2013-01-18 03:51:56.000000000 -0600
+ @@ -4,10 +4,10 @@
+  import antlr
+  
+  version = sys.version.split()[0]
+ -if version < '2.2.1':
+ -    False = 0
+ -if version < '2.3':
+ -    True = not False
+ +#if version < '2.2.1':
+ +#    False = 0
+ +#if version < '2.3':
+ +#    True = not False
+  ### header action >>> 
+  import stringtemplate3
+  from stringtemplate3.language.ChunkToken import ChunkToken
+
+[[Category: HowTos]]
