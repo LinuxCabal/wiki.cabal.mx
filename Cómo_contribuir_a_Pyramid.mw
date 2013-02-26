@@ -1,0 +1,75 @@
+[http://docs.pylonsproject.org/projects/pyramid/en/1.4-branch/ Pyramid] es un framework para aplicaciones web muy flexible.  Contribuir a este proyecto es una forma de aprender Python, de colaborar con otras personas, y aprender sobre desarrollo de aplicaciones para web.
+
+Pyramid soporta Python 3.  Los pasos descritos más abajo están enfocados a Python 3 para así ayudar a encontrar y corregir errores en esta versión del intepretador de Python.
+
+Si tu sistema operativo no tiene Python 3.3, tienes que instalarlo primero. En el caso de GNU/Linux, si tu distribución no cuenta con un paquete '.rpm' o '.deb' de Python 3.3 ya compilado, lee cómo [[Compilar Python]] a partir del código fuente.  Si prefieres, puedes también probar con Python 3.2 que muchas distribuciones sí tienen en sus repositorios.
+
+= Pasos =
+==Resumidos==
+# Crea una carpeta de trabajo, donde estarán el ambiente virtual de Python 3.3, el código fuente de Pyramid, y la aplicación de demo.
+# Crea un ambiente virtual de Python 3.3
+# Clona el repositorio git de Pyramid a tu computadora
+# Instala Pyramid en el ambiente virtual, en ''modo de desarrollo''
+# Corre las pruebas unitarias de Pyramid
+# Crea un directorio para la aplicación de demo
+# Verifica que pyramid se puede importar
+# Crea el archivo de la aplicación
+# Corre y prueba la aplicación
+
+==La secuencia de comandos==
+ mkdir hack-pyramid
+ cd hack-pyramid
+ 
+ virtualenv -p python3.3 env3.3
+ . env3.3/bin/activate
+ 
+ git clone git://github.com/Pylons/pyramid.git
+ 
+ cd pyramid
+ python setup.py dev
+ python setup.py test
+ 
+ cd ..
+ mkdir app
+ cd app
+ 
+ python -c 'import pyramid'
+ 
+ gedit miapp.py &
+ python miapp.py
+
+== Notas ==
+*Si tienes errores en alguno de los pasos y no encuentas la solución, escribe a la lista del grupo [https://groups.google.com/forum/#!forum/pythoncabal Python Cabal].  Incluye en el mensaje el comando y el texto del mensaje de error.
+
+*Si tuviste algún error en uno de los comandos, y encontraste la solución, agrega un apartado en la sección ''Troubleshooting'' más abajo, donde menciones el problema y su solución.
+
+*Si el comando <code>git clone</code> que se muestra arriba te da un error, debido a que tu conexión a internet tiene bloqueado el puerto para git, cambia la URL del comando así:
+ git clone https://github.com/Pylons/pyramid.git
+
+*Si ya tienes cuenta en github y vas a enviar cambios para que se incorporen en el repositorio oficial de Pyramid, crea un fork de ''pylons/pyramid'' en tu cuenta en github y agrega el siguiente ''remote'':
+ git remote add myfork git@github.com:'''<tu-cuenta>'''/pyramid.git
+
+*El texto para el archivo ''miapp.py'' se toma de [http://docs.pylonsproject.org/projects/pyramid/en/latest/ The Pyramid Web Application Development Framework], debajo de donde dice ''Here is one of the simplest Pyramid applications you can make:''.
+
+*Para probar la aplicación ''miapp.py'', visita con el navegador las direcciones:
+** ''localhost:8080/hello/world''
+** ''localhost:8080''/hello/John''
+
+=Troubleshooting=
+
+==Errores con versiones de virtualenv < 1.8==
+Para corregir ésto:
+
+<source lang='bash'>
+    virtualenv -p python3.3 env3.3
+    . env3.3/bin/activate
+    pip install virtualenv
+    cd pyramid
+    python setup.py dev
+    python setup.py test
+</source>
+
+=Qué sigue=
+Puedes empezar a hacer el [http://docs.pylonsproject.org/projects/pyramid/en/latest/#tutorials tutorial del wiki con SQL Alchemy].
+
+[[Category: HowTos]]
