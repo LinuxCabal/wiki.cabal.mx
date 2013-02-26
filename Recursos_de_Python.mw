@@ -1,0 +1,28 @@
+{{Borrador}}
+
+
+
+= Básico =
+* [http://www.youtube.com/watch?v=u1sVfGEBKWQ What makes Python so AWESOME], por Raymond Hettinger, EuroPython 2011, 1 hora 13 minutos. 20 de Julio de 2011.
+
+= Avanzado =
+* [http://tech.blog.aknin.name/category/my-projects/pythons-innards/ Python’s Innards] por Yaniv Aknin
+
+= Grafos =
+*[http://greenteapress.com/complexity/html/thinkcomplexity003.html#toc13 Representing Graphs], en el libro [http://greenteapress.com/complexity/ Think Complexity], por Allen B. Downey.  Sergio propuso implementar el ejercicio 2 como una práctica de Test Driven Development.
+*[https://github.com/LinuxCabal/Grafo-TDD Grafo-TDD], la práctica de TDD usando el ejercicio del libro anterior, publicado en Github.
+*[http://www.python.org/doc/essays/graphs/ Python Patterns - Implementing Graphs], por Guido van Rossum, actualizado el 4 de Diciembre de 2000.
+*[http://technicae.cogitat.io/2008/12/state-of-graphs-in-python.html The state of graphs in Python], por Duncan McGrero, 8 de Diciembre de 2008.
+
+= Patrones de diseño =
+*[http://www.youtube.com/watch?v=Er5K_nR5lDQ&feature=player_detailpage#t=958s Python Design Patterns 1], por Brandon Rhodes, presentación 2 de Julio de 2012 en PyOhio. 45 minutos. (Empieza a los 16 minutos, porque se repite el comienzo).
+*[http://www.oodesign.com/ Design Patterns], enumera y define los patrones a los que hace referencia Brandon en su presentación.
+
+= Web =
+*[http://www.youtube.com/watch?v=bWk0P7w2aZg Scrapping with Python], por Feihong Hsu en ChiPy, 14 de febrero de 2013.  [http://www.slideshare.net/megafeihong/scraping-from-the-web-an-overview-that-does-not-contain-too-much-cussing 34 láminas] en slideshare.
+
+= Ver también =
+*[[PythonCabal]]
+
+[[Category: Python]]
+[[Category: PythonCabal]]
