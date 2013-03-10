@@ -1,0 +1,50 @@
+__NOTOC__
+* [[:#Prog84 | Más Pointers con strings]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog84 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define DEF "Soy una cadena #define."
+
+int main( void )
+{
+  char         str1[80] = "Un arreglo se inicializó en mí.";
+  const char * str2     = "Un pointer se inicializó en mí.";
+
+  puts( "Soy un argumento a puts()." );
+
+  puts(DEF);
+
+  puts(str1);
+
+  puts(str2);
+
+  puts(&str1[5]);
+
+  puts(str2+4);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ ./Prog84
+ Soy un argumento a puts().
+ Soy una cadena #define.
+ Un arreglo se inicializó en mí.
+ Un pointer se inicializó en mí.
+ reglo se inicializó en mí.
+ ointer se inicializó en mí.
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
