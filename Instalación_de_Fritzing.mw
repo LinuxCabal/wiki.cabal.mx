@@ -1,0 +1,37 @@
+Varias distribuciones de GNU/Linux incluyen el paquete ''fritzing'', pero con una versión antigua del programa.  Esa versión antigua no funciona con la versión más actualizada de QT 4: Al correr el programa, termina con ''segmentation fault''.  Se recomienda mejor instalar Fritzing desde el código fuente de la versión más reciente.
+
+Fritzing requiere de un compilador para C++ y además usa las siguientes librerías:
+*QT 4
+*SQL para sqlite de QT4
+*[http://www.boost.org/ Boost] (una librería para C++)
+*[http://quazip.sourceforge.net/ QuaZIP] (una librería para C++)
+*zip
+En GNU/Linux se necesitan los paquetes ''-dev'' (Debian/Ubuntu) o ''-devel'' (Fedora) para cada una de las librerías mencionadas.  Estos paquetes incluyen los archivos ''.h'' necesarios para compilar y hacen que se instalen las liberías si no lo están.
+
+= Debian Wheezy y Ubuntu =
+La secuencia de comandos:
+ apt-get install libqt4-dev libqt4-sql-sqlite libquazip0-dev libzip-dev libboost-dev build-essential
+ wget http://fritzing.org/download/0.7.12b/source-tarball/fritzing-0.7.12b.source.tar.bz2
+ tar xf fritzing-0.7.12b.source.tar.bz2
+ cd fritzing-0.7.12b.source
+ qmake
+ make
+ make install
+A partir de este punto, se puede ya correr Fritzing desde el lanzador de Unity, o en xfce se puede agregar una lanzador en el panel.  Antes del <code>make install</code>, se puede ejecutar <code>./Fritzing</code> para probar que el programa corre.
+
+El paquete ''libquazip0'' no está disponible en Debian Wheezy pero sí en Debian Unstable.  Para instalar este paquete, hay que agregar la siguiente línea en ''/etc/apt/sources.conf'':
+ deb http://ftp.debian.org/debian unstable main
+Después correr:
+ apt-get update
+ apt-get install -t unstable libquazip0-dev
+Una vez instalado libquazip-dev, remover o deshabilitar la línea que se agregó en ''sources.conf''.
+
+= Fedora =
+
+= OpenSuse =
+
+= Ver también =
+*[[Introducción a Arduino]]
+
+[[Category: ArduinoCabal]]
+[[Category: HowTos]]
