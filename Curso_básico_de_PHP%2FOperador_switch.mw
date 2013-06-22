@@ -1,0 +1,71 @@
+__NOTOC__
+* [[:#OperadorSwitch | El operador switch]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== OperadorSwitch ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza5.inc" )
+?>
+  <body>
+    <?php
+      $Resultado = "Me Gusta";
+      print( "<p class=\"TitleFont\">
+                El Operador switch
+              </p>" );
+
+      switch( $Resultado )
+      {
+        case "Me Gusta":
+          print( "<p class=\"TitleFont\">
+                    A mi <span style=\"text-decoration:blink;
+                                            font-weight:bold;\"> me gusta
+                    </span> mucho PHP
+                  </p>" );
+          break;
+        case "No Me Gusta":
+          print( "<p class=\"TitleFont\">
+                    A mi <span style=\"text-decoration:italic;
+                                       font-weight:bold;\">$Resultado
+                    </span> mucho PHP
+                  </p>" );
+          break;
+        default:
+          print( "<p class=\"TtleFont\">
+                    No se si a mi me gusta PHP
+                  </p>" );
+
+      }
+      require_once( "incPie.php" );
+    ?>
+
+
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorSwitch.php Ejecutar el código para ver como sirve el operador switch]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorSwitch.phps Descargar el código para ver como sirve el operador switch]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
