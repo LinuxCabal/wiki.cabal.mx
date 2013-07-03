@@ -1,0 +1,60 @@
+__NOTOC__
+* [[:#OperadorFor | El operador for]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== OperadorFor ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.php" );
+?>
+  <body>
+    <?php
+      print( "<p class=\"TitleFont\">
+                El Operador for
+              </p>" );
+
+      print( "<p class=\"SubTitleFont\" style=\"font-weight:bold;\">" );
+      for( $Num = 1; $Num <= 12; $Num++ )
+        print( "$Num * 2 = " . ( $Num * 2 ) . "<br />" );
+      print( "</p>
+              <p class=\"SubTitleFont\">  
+                <object type=\"audio/x-wav\" data=\"images/tada.wav\"
+                        width=\"250\" height=\"75\">
+                        alt : <a href=\"images/tada.wav\">Tada</a>
+                </object>
+              </p>" );
+    require_once( "incPie.php" );
+    ?>         
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorFor.php Ejecutar el código para ver como sirve el operador for]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/OperadorFor.phps Descargar el código para ver como sirve el operador for]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
