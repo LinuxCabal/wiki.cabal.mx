@@ -1,0 +1,25 @@
+Instrucciones y recomendaciones para grabar y subir a YouTube.com un screencast para un tutorial.
+
+Se listan las herramientas que debes tener, los pasos a nivel general, y los comandos específicos que se usan en cada paso.  En caso de que encuentres algún problema, por favor agrega la solución en la sección ''Soluciones a problemas''.
+
+= Herramientas =
+* ''mplayer'' se usa para controlar la cámara integrada o USB, si se desea mostrar al presentador (En Debian y Ubuntu el paquete se llama igual que el programa.
+* ''ffmpeg'' se usa para grabar la pantalla completa.
+
+= Pasos =
+# Enciende la cámara y muestra al presentador en la esquina inferior derecha, sin marco (Ver comando más abajo).
+# Empieza a grabar toda la pantalla, incluyendo la imagen del presentador.
+# Da tu presentación, demostración o tutorial
+# Termina la grabación
+# Sube a YouTube.com
+
+= Comandos =
+Comando de mplayer.  La cámara da una resolución de 640 x 480 pixeles, escalamos a una cuarte parte para que use solamente una pequeña parte de la pantalla y deje libre el resto:
+ nohup mplayer -x 160 -y 120 -ontop -noborder -stop-xscreensaver tv:// &
+Comando para ffmpeg (En Ubuntu, usar ''avconv'').  En este ejemplo la resolución en la laptop es 1366 x 768, corresponde a ''wxga'', se toman 5 cuadros por segundo.  El formato de salida ''webm'' es aceptado en YouTube y es muy eficiente en la compresión:
+ ffmpeg -f alsa -i pulse -f x11grab -s wxga -r 5 -i :0.0 nombre-del-tutorial.webm
+
+= Soluciones a problemas =
+Agrega aquí tips si los encontraste.
+
+[[Category: HowTos]]
