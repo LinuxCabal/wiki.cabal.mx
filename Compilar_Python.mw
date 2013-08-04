@@ -1,0 +1,52 @@
+Instrucciones y trucos para poder compilar e instalar Python 2 y 3 desde el código fuente en diversas distribuciones.
+----
+= Requisitos =
+Se requieren algunos paquetes, en Ubuntu o Debian:
+ sudo apt-get install build-essential python-dev zlib1g-dev libreadline-dev \
+                      uuid-dev libssl-dev libsqlite3-dev tk-dev libncurses-dev \
+                      libgdbm-dev libbz2-dev liblzma-dev
+En Centos/Fedora:
+ yum install openssl-devel bzip2-devel expat-devel gdbm-devel readline-devel sqlite-devel
+
+= Pasos =
+Primero consigue el archivo comprimido con el código fuente de la versión más reciente (ver secciones más abajo).  La versión actual y las anteriores se encuentran en http://python.org/download/releases
+
+Una vez conseguido el archivo comprimido del código fuente, hay que descomprimirlo y entrar a la carpeta que se crea:
+
+ tar xfz Python-3.3.2.tar.bz2
+ cd Python-3.3.2
+
+Se siguen los tres pasos usuales:
+ ./configure -prefix=$HOME
+ make
+ make install
+
+La opción '' -prefix=$HOME'' se usa para instalar en la carpeta de usuario.  Si no se usa, el comando ''make install'' debe ejecutarse como usuario root.
+
+Antes de instalar también se pueden correr las pruebas así:
+
+ make test
+
+= Obtener código fuente =
+== Python 3.3 ==
+
+Descargar el archivo ''Python-3.3.2.tar.bz2'' ( 13'xxx,xxx bytes) de la página http://www.python.org/download/releases/3.3.2/.  Se Puede usar wget así:
+ wget http://www.python.org/ftp/python/3.3.2/Python-3.3.2.tar.bz2
+
+== Python 2.5 ==
+Descargar el archivo ''Python-2.5.4.tar.bz2'' (9'821,313 bytes) de la página http://www.python.org/download/releases/2.5.4/.  Se Puede usar wget así:
+ wget http://www.python.org/ftp/python/2.5.4/Python-2.5.4.tar.bz2
+
+No utilizar el código fuente del repositorio mercurial, porque Python 2.5 usaba subversion y los archivos tienen ''$Revision$'' en lugar de ''$Revision nnnn$'', donde nnnn es la revisión que subversion inserta al hacer un checkout.  Se presenta este [http://bugs.python.org/issue11421 problema conocido].
+
+= Ver también =
+* [[Python 3]]
+* [[Python 2]]
+
+= Enlaces externos =
+*[http://askubuntu.com/questions/21547/what-are-the-packages-libraries-i-should-install-before-compiling-python-from-so What are the packages/libraries I should install before compiling Python from source?], en askubuntu.com.
+*[http://code.google.com/p/bungeni-portal/wiki/InstallingBungeni SSL support for Python 2.5]
+*[http://www.unixmen.com/howto-install-python-3-x-in-ubuntu-debian-fedora-centos/ Howto install Python 3.x in Ubuntu, Debian, Fedora & Centos] por pirat9
+
+
+[[Category: PythonCabal]] [[Category: HowTos]]
