@@ -1,0 +1,49 @@
+= Instalación =
+
+== GNU/Linux ==
+Muchas distribuciones traen ya instalado Python 2, y además ofrecen Python 3 en sus repositorios de paquetes de software.  Instala el paquete de Python 3, y opcionalmente el editor ''idle''.  Para instalar debes hacerlo como usuario root.  En distribuciones derivadas de Debian, como Ubuntu el comando en una terminal es:
+
+ apt-get install python3 idle3
+
+En distribuciones derivadas de Redhat como Fedora y Mandriva el comando es:
+
+ yum python3 python-tools
+
+o
+
+ urpmi python3 idle3
+
+== Windows ==
+Descarga el instalador (13 MB) en el enlace ''Windows Installer'' debajo de ''Quick Links (3.1.2)'' en http://python.org.  Córrelo aceptando todas las preguntas, tarda menos de un minuto en instalar.  Incluye el ambiente gráfico IDLE y el toolkit TK.
+
+= Uso =
+== GNU/Linux ==
+Para ejecutar el ambiente interactivo de consola, escribe en una terminal:
+
+ python3
+
+Salir con:
+
+  Ctl-D
+
+Para ejecutar el ambiente gráfico, escribe en una terminal:
+
+ idle3
+
+O busca en el menú de aplicaciones del escritorio.  Por ejemplo, en Ubuntu es:  ''Aplicaciones -> Programación -> IDLE3''.
+
+== Windows ==
+*''Editar archivos'':  Haz clic derecho en un archivo .py y selecciona '''Editar con IDLE'''.  Para ejecutar ese archivo presiona '''F5'''.
+
+*''Ambiente interactivo'':  En el escritorio haz clic en '''Inicio -> Programas -> Python 3''',  y selecciona '''Python (Command line)''' o '''IDLE (Python GUI)'''.  Para salir del ambiente de comandos:  <pre>Ctl-Z y retorno</pre>.
+
+= Ver también =
+* [[Compilar Python]]
+* [[Python 2]]
+* [[Trucos de Python]]
+
+= Tutoriales =
+*[http://docs.python.org/py3k/tutorial/index.html Tutorial oficial], por Guido van Rossum
+*[http://diveintopython3.org/ Dive into Python 3], por Mark Pilgrim
+
+[[Categoría: PythonCabal ]]
