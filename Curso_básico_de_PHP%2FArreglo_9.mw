@@ -1,0 +1,100 @@
+__NOTOC__
+* [[:#Arreglo9 | Arreglo 9]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== Arreglo9 ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>
+  <body>
+    <?php
+      /*
+       * in_array()
+       *
+       * (PHP 4, PHP 5)
+       *
+       * in_array -- Revisa si un valor ( no un llave ) existe en una matriz
+       *
+       * Descripcion:
+       * bool in_array ( mixed aguja, array pajar [, bool strict] )
+       * Busca la aguja en el pajar, y devuelve TRUE si se encuentra y FALSE 
+       * en caso contrario. 
+       * Si el tercer parametro strict es definido en TRUE entonces la funcion 
+       * in_array() tambien revisara los tipos de la aguja en el pajar. 
+       * Nota: Si needle es una cadena, la comparacion es hecha de una forma 
+       * sensible a mayusculas y minusculas. 
+       * Nota: En PHP antes de 4.2.0. needle no le era permitido ser una matriz.
+       *
+       * Vea tambien array_search(), array_key_exists(), y isset().
+       */
+
+      $Cornucopia = array( 'Fruta' => array( 'Rojo' => 'Manzana', 
+                                             'Amarillo' => 'Platano', 
+                                             'Naranja' => 'Naranja' ) );
+
+      echo( "<p class=\"SubTitleFont\">
+               Con in_array()
+             </p>
+             <p class=\"LargeTextFont\">" );
+      if( in_array( 'Platano', $Cornucopia ) )            #Primera Dimensión
+        echo( "Platano es un elemento de \$Cornucopia<br />" );
+      else
+        echo( "Platano no es un elemento de \$Cornucopia<br />" );
+
+      if( in_array( 'Platano', $Cornucopia{'Fruta'} ) )   #Segunda Dimensión
+        echo( "Platano es un valor en un key/pair en \$Cornucopia{'Fruta'}<br />" );
+      else
+        echo( "Platano no es un valor en un key/pair en \$Cornucopia{'Fruta'}<br />" );
+
+      if( in_array( 'Fruta', $Cornucopia ) )           #Primera Dimensión
+        echo( "Fruta es un valor en un key/pair en \$Cornucopia<br />" );
+      else
+        echo( "Fruta no es un valor en un key/pair en \$Cornucopia<br />" );
+
+      if( in_array( 'Rojo', $Cornucopia ) )               #Primera Dimensión
+        echo( "Rojo es un valor en un key/pair en \$Cornucopia<br />" );
+      else
+        echo( "Rojo no es un valor en un key/pair en \$Cornucopia<br />" );
+
+      if( in_array( 'Rojo', $Cornucopia{'Fruta'} ) )      #Segunda Dimensión
+        echo( "Rojo es un valor en un key/pair en \$Cornucopia{'Fruta'}<br />" );
+      else
+        echo( "Rojo no es un valor en un key/pair en \$Cornucopia{'Fruta'}<br />" );
+      print( "</p>" );
+      require_once( "incPie.php" );
+    ?>
+
+
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/Array9.php Ejecutar el código de Arreglo 9]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/Array9.phps Descargar el código de Arreglo 9]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
