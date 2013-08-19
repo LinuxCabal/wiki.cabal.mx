@@ -1,0 +1,11 @@
+Para instalar Debian con Xfce4 de 64 bits:
+ qemu-system-x86_64 -hda virtual-disk.qemu -m 512 -enable-kvm -cdrom debian-testing-amd64-xfce-CD-1.iso -boot d
+
+Para arrancar Debian una vez instalado:
+ qemu-system-x86_64 -hda virtual-disk.qemu -m 512 -enable-kvm
+
+
+= Enlaces externos =
+* [http://warpedtimes.wordpress.com/2010/01/06/hardware-accelerated-virtualization-with-qemu-and-kvm/ Hardware Accelerated Virtualization with QEMU and KVM]
+
+[[Category: HowTos]]
