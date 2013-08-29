@@ -1,0 +1,12 @@
+Se recomienda tener las particiones encriptadas en las computadoras portátiles, ya que son robadas con facilidad.  Con las particiones encriptadas la información no está accesible.
+
+= Partición de usuario =
+En Debian el instalador ofrece la opción usar LVM y encriptación, y pide teclear la contraseña (passphrase).  Cuando el sistema ya instalado arranca, va a pedir la contraseña y abrirá y montará las particiones encriptadas.
+
+= Llavero o disco externo USB =
+
+
+= Enlaces externos =
+* [http://www.debianuserforums.org/viewtopic.php?f=9&t=408/url Encrypting an external hard drive on Debian (Squeeze)]
+
+[[Category: HowTos]]
