@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#MySQLClaseConnect.inc.php | MySQLClaseConnect.inc.php]]
+** [[:#Explicación | Explicación]]
+** [[:#Descargarlo | Descargarlo]]
+
+== MySQLClaseConnect.inc.php ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+
+<?php
+  require_once( "/etc/ClasePHP.inc.php" );
+
+  $Conn = mysqli_init();
+  mysqli_options($Conn, MYSQLI_INIT_COMMAND, "SET AUTOCOMMIT=1");
+  mysqli_options($Conn, MYSQLI_OPT_CONNECT_TIMEOUT, 5);
+  mysqli_real_connect( $Conn, 'localhost', $Clase, $AccessType,
+                         'MyTest1', MYSQLI_CLIENT_SSL );
+
+  if( mysqli_connect_errno() )
+  {
+    mysqli_close( $Conn );
+    echo( "Connect Falla - Terminando!<br />" );
+    exit(1);
+  }
+?>
+</syntaxhighlight>
+
+=== Explicación ===
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/MySQLClaseConnect.inc.phps Descargar el código de  MySQLClaseConnect.inc.php]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
