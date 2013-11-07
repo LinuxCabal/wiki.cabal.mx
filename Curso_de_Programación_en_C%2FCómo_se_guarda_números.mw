@@ -1,0 +1,83 @@
+__NOTOC__
+* [[:#Cómo se guardan números | Cómo se guardan números]]
+** [[:#Explicación | Explicación]]
+
+== Cómo se guardan números ==
+
+'''int'''
+<table cellspacing="3" cellpadding="3" border="1">
+  <tr>
+    <td colspan="8">
+      0 en MSB = +, 1 en MSB = -
+    </td>
+  </tr>
+  <tr>
+    <td>&#177;</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td>
+  </tr>
+</table>
+
+
+'''unsigned int'''
+<table cellspacing="3" cellpadding="3" border="1">
+  <tr>
+    <td colspan="8">
+     Todos los bits se usan por valor
+    </td>
+  </tr>
+  <tr>
+    <td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td><td>0/1</td>
+  </tr>
+</table>
+
+
+'''float/double'''
+<table cellspacing="3" cellpadding="3" border="1">
+  <tr>
+    <td colspan="3">
+      Más o menos
+    </td>
+    <td colspan="9">
+      fracción
+    </td>
+    <td colspan="3">
+      exponente
+    </td>
+  </tr>
+  <tr>
+    <td colspan="3">
+      &#177;
+    </td>
+    <td colspan="9">
+      .314159
+    </td>
+    <td colspan="3">
+      1 (x10<sup>1</sup>)
+    </td>
+  </tr>
+
+</table>
+
+=== Explicación ===
+'''int''':
+<p>''El espacio asignado para esta variable se divide en dos:''</p>
+<ul>
+<li>1- El bit mas significativo indica signo positivo si es 0 y negativo si es 1.</li>
+<li>2- Los 7 bits restantes indican el valor.</li>
+</ul>
+
+'''unsigned int''':
+<p>''Todos los bits se usan para indicar el valor por lo tanto solo se pueden guardar valores positivos.''</p>
+
+
+'''float/double''':
+
+<p>''El espacio asignado para esta variable se divide en tres:''</p>
+<ul>
+<li>1- El bit mas significativo indica signo positivo si es 0 y negativo si es 1.</li>
+<li>2- Indican el valor de la variable.</li>
+<li>3- indica el exponente de la variable.</li>
+</ul>
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
