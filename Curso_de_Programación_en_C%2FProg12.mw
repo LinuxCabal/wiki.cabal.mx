@@ -1,0 +1,65 @@
+__NOTOC__
+* [[:#Prog12 | constantes, strlen() y arreglos]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog12 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog12.c -- constantes, strlen() y arreglos */
+
+#include <stdio.h>
+#include <string.h>      /* para strlen() prototipo */
+
+#define DENSIDAD 62.4    /* densidad de humanos en libras por pie cubico */
+
+int main( void )
+{
+  float peso,
+        volumen;
+
+  int   letras,
+        tamano;
+
+  char  nombre[40];    /* nombre es un arreglo de 40 carácteres */
+
+  printf( "\n¡Hola! ¿Cómo te llamas? " );
+  scanf( "%s", nombre );
+
+  printf( "\n%s, ¿Cual es tu peso en libras? ", nombre );
+  scanf( "%f", &peso );
+
+  tamano = sizeof nombre;
+  letras = strlen( nombre );
+  volumen = peso / DENSIDAD;
+
+  printf( "\nEntonces, %s, tu volumen es %05.2f libras por pie cubico.\n",
+                                                         nombre, volumen );
+  printf( "También, tu nombre tiene %d letras,", letras );
+  printf( " y tenemos %d bytes para guardarle.\n\n", tamano );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog12 Prog12.c
+ [rrc@Pridd CClase]$ ./Prog12
+  
+ ¡Hola! ¿Cómo te llamas? Richard
+  
+ Richard, ¿Cual es tu peso en libras? 165
+  
+ Entonces, Richard, tu volumen es 2.64 libras por pie cubico.
+ También, tu nombre tiene 7 letras, y tenemos 40 bytes para guardarle.
+  
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
