@@ -1,0 +1,106 @@
+__NOTOC__
+* [[:#MySQLRetrieveByArray | MySQLRetrieveByArray]]
+** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
+** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
+** [[:#Contenidos de MySQLClaseConnect.inc.php | MySQLClaseConnect.inc.php]]
+** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== MySQLRetrieveByArray ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  require_once( "Cabeza.inc" );
+?>  
+  <body>
+    <?php
+
+      /* mysqli_fetch_array()
+       * (PHP 3, PHP 4, PHP 5)
+       * mysqli_fetch_array --  Extrae la fila de resultado como una matriz
+       * asociativa, una matriz numérica o ambas 
+       * Descripción
+       * array mysqli_fetch_array ( int id_resultado [, int tipo_de_resultado] )
+       *
+       * Devuelve una matriz que corresponde a la sentencia extraida, o falso
+       * si no quedan más filas. 
+       * mysqli_fetch_array() es una versión extendida de mysqli_fetch_row().
+       * Además de guardar los datos en el índice numérico de la matriz, guarda
+       * también los datos en los índices asociativos, usando el nombre de
+       * campo como clave. 
+       * Si dos o más columnas del resultado tienen el mismo nombre de campo,
+       * la última columna toma la prioridad. Para acceder a la(s) otra(s)
+       * columna(s) con el mismo nombre, se debe escificar el indice numerico
+       * o definir un alias para la columna. En columnas con alias, usted no
+       * puede acceder al contenido con el nombre original de la columna
+       * (usando 'field' en este ejemplo) 
+       * Ejemplo 1. Consulta con campos repetidos usando alias
+       * SELECT table1.field AS foo, table2.field AS bar FROM table1, table2
+       *
+       * La función mysqli_fetch_array() no es significativemente mas lenta que
+       * mysqli_fetch_row(), sin embargo tiene un valor añadido importante. 
+       * El segundo argumento opcional tipo_de_resultado en mysqli_fetch_array()
+       * es una constante y puede tomar los siguientes valores: MYSQL_ASSOC,
+       * MYSQL_NUM, y MYSQL_BOTH. Esta caraterística fue agregada en PHP 3.0.7.
+       * MYSQL_BOTH 
+       * Usando MYSQL_BOTH, usted obtendrá una matrix con índices asociativos y
+       * numéricos. Usando MYSQL_ASSOC, usted solo tendrá índices asociativos
+       * (tal como funciona mysql_fetch_assoc()), usando MYSQL_NUM, solo
+       * obtendrá los índices numéricos (tal como si fuera mysqli_fetch_row()). 
+       * Nota: Los nombres de campos retornados por esta función diferencian
+       * entre mayusculas y minusculas. 
+       */
+      
+      echo( "<p class=\"SubTitleFont\">
+               Uso de mysqli_fetch_array()
+             </p>" );
+
+      require_once( "MySQLClaseConnect.inc.php");
+
+      $Query = "select * from TestTable";
+
+      $Resultado = mysqli_query( $Conn, $Query ) or die( mysqli_error() );
+
+      echo( "<p class=\"LargeTextFont\">" );
+      while( $NewArray = mysqli_fetch_array( $Resultado ) )
+      {
+        echo( "El ID es {$NewArray{'id'}} y los contenidos
+               son {$NewArray{'TestField'}}<br />" );
+      }
+      echo( "</p>" );
+
+      mysqli_close( $Conn );
+      require_once( "incPie.php" );
+      exit( 0 );
+    ?>
+</syntaxhighlight>
+
+=== Contenidos de FixAnotherMSIEBug.xsl ===
+[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+
+=== Contenidos de Cabeza.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+
+=== Contenidos de incPie.php ===
+[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+
+=== Contenidos de MySQLClaseConnect.inc.php ===
+[http://www.linuxcabal.org/PHPClase/MySQLClaseConnect.inc.phps Ver los contenidos de MySQLClaseConnect.inc.php]
+
+=== Contenidos de org.css ===
+[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/MySQLRetrieveByArray.php Ejecutar el código de MySQLRetrieveByArray]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/MySQLRetrieveByArray.phps Descargar el código de MySQLRetrieveByArray]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
