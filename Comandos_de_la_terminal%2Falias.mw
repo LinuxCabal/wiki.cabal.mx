@@ -1,0 +1,103 @@
+__NOTOC__
+* [[:#alias | alias]]
+
+== alias ==
+
+<syntaxhighlight lang="bash">
+
+bash built-in command
+alias [-p] [name[=value] ...]
+
+[rrc@pridd ~]$ alias
+alias cd..='cd ..'
+alias cp='cp -i'
+alias d='ls'
+alias df='df -h -x supermount'
+alias du='du -h'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+alias grep='grep --color'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -l'
+alias ls='ls -F --color=auto'
+alias lsd='ls -d */'
+alias mc='. /usr/lib64/mc/mc-wrapper.sh'
+alias md='mkdir'
+alias mv='mv -i'
+alias p='cd -'
+alias rd='rmdir'
+alias rm='rm -i'
+alias s='cd ..'
+
+[rrc@pridd ~]$ alias -p
+alias cd..='cd ..'
+alias cp='cp -i'
+alias d='ls'
+alias df='df -h -x supermount'
+alias du='du -h'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+alias grep='grep --color'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -l'
+alias ls='ls -F --color=auto'
+alias lsd='ls -d */'
+alias mc='. /usr/lib64/mc/mc-wrapper.sh'
+alias md='mkdir'
+alias mv='mv -i'
+alias p='cd -'
+alias rd='rmdir'
+alias rm='rm -i'
+alias s='cd ..'
+
+[rrc@pridd Presentaciones]$ alias ll
+alias ll='ls -l'
+
+alias MyLS='ls -altrh'
+
+[rrc@pridd Presentaciones]$ alias
+alias MyLS='ls -altrh'
+alias cd..='cd ..'
+alias cp='cp -i'
+alias d='ls'
+alias df='df -h -x supermount'
+alias du='du -h'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+alias grep='grep --color'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -l'
+alias ls='ls -F --color=auto'
+alias lsd='ls -d */'
+alias mc='. /usr/lib64/mc/mc-wrapper.sh'
+alias md='mkdir'
+alias mv='mv -i'
+alias p='cd -'
+alias rd='rmdir'
+alias rm='rm -i'
+alias s='cd ..'
+
+[rrc@pridd Presentaciones]$ MyLS
+total 56K
+drwxr-x---  2 rrc rrc 4.0K Mar  8  2009 InstallMandriva/
+drwxr-x---  2 rrc rrc 4.0K Mar  8  2009 PPPoE/
+drwxr-x---  2 rrc rrc 4.0K Mar  8  2009 DHCP/
+drwxr-x---  3 rrc rrc 4.0K Mar  8  2009 Bash/
+drwxr-xr-x  2 rrc rrc 4.0K Apr 21  2009 Asterisk/
+drwxr-xr-x  2 rrc rrc 4.0K Oct 26  2009 Squid/
+drwxrwxr-x  2 rrc rrc 4.0K Oct 27  2009 QoS/
+drwxr-xr-x  2 rrc rrc 4.0K Nov  8  2009 OpenSSH/
+drwxr-xr-x  2 rrc rrc 4.0K Dec  6  2009 InstallMDK2010.0/
+drwxr-x---  3 rrc rrc 4.0K Nov  2  2011 OpenVPN/
+drwxrwxr-x 23 rrc rrc 4.0K Aug 16 16:11 ../
+-rw-rw-r--  1 rrc rrc 3.1K Nov 11 20:47 time.txt
+drwxr-x--- 13 rrc rrc 4.0K Nov 11 20:49 ./
+drwxr-x---  3 rrc rrc 4.0K Nov 11 20:49 MurosContrafuegos/
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
