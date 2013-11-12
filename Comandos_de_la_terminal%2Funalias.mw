@@ -1,0 +1,47 @@
+__NOTOC__
+* [[:#unalias | unalias]]
+
+== unalias ==
+
+<syntaxhighlight lang="bash">
+
+bash built-in command
+unalias [-a] [name ...]
+
+[rrc@pridd Presentaciones]$ alias MyLS
+alias MyLS='ls -altrh'
+
+[rrc@pridd Presentaciones]$ unalias MyLS
+
+[rrc@pridd Presentaciones]$ alias MyLS
+bash: alias: MyLS: not found
+
+[rrc@pridd Presentaciones]$ alias
+alias cd..='cd ..'
+alias cp='cp -i'
+alias d='ls'
+alias df='df -h -x supermount'
+alias du='du -h'
+alias egrep='egrep --color'
+alias fgrep='fgrep --color'
+alias grep='grep --color'
+alias l='ls'
+alias la='ls -a'
+alias ll='ls -l'
+alias ls='ls -F --color=auto'
+alias lsd='ls -d */'
+alias mc='. /usr/lib64/mc/mc-wrapper.sh'
+alias md='mkdir'
+alias mv='mv -i'
+alias p='cd -'
+alias rd='rmdir'
+alias rm='rm -i'
+alias s='cd ..'
+
+[rrc@pridd Presentaciones]$ unalias -a
+
+[rrc@pridd Presentaciones]$ alias
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
