@@ -1,0 +1,25 @@
+__NOTOC__
+* [[:#pwd | pwd]]
+
+== pwd ==
+
+<syntaxhighlight lang="bash">
+
+Built-In command y también /bin/pwd
+pwd [-LP]
+
+[rrc@pridd rc3.d]$ ls -ald /etc/rc3.d
+lrwxrwxrwx 1 root root 10 Aug 24 11:41 /etc/rc3.d -> rc.d/rc3.d
+
+[rrc@pridd rc3.d]$ pwd
+/etc/rc3.d
+
+[rrc@pridd rc3.d]$ pwd -L
+/etc/rc3.d
+
+[rrc@pridd rc3.d]$ pwd -P
+/etc/rc.d/rc3.d
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
