@@ -1,0 +1,428 @@
+__NOTOC__
+* [[:#ls | ls]]
+
+== ls ==
+
+<syntaxhighlight lang="bash">
+
+ls [OPTION]... [FILE]...
+
+[rrc@pridd ~]$ ls
+Abogado/          Desktop/              LinuxCabal/  screencast.webm
+audacity2.0-rrc/  Documents/            MageiaList   screencast.webm-20131102
+BashClase/        Downloads/            Mail/        tallerLDAP/
+Books/            dwhelper/             Music/       Templates/
+CClase/           Feast_of_All_Saints/  MySQLBack/   Titles
+Clients/          kdenlive/             nohup.out    tmp/
+Code/             LdapSearch            Photos/      Videos/
+
+[rrc@pridd ~]$ ls -a
+./                    .fontconfig/         .ncftp/
+../                   .gconf/              nohup.out
+...                   .gimp-2.8/           .openshot/
+Abogado/              .gnome2/             Photos/
+.adobe/               .gnome2_private/     .pki/
+audacity2.0-rrc/      .gnupg/              .pulse/
+.audacity-data/       .grl-bookmarks       .pulse-cookie
+BashClase/            .grl-metadata-store  screencast.webm
+.bash_completion      .grl-podcasts        screencast.webm-20131102
+.bash_history         .gstreamer-0.10/     .screenrc
+.bash_logout          .gtk-bookmarks       .shotwell/
+.bash_profile         .hplip/              .spumux/
+.bashrc               .ICEauthority        .ssh/
+Books/                .kchmviewer/         tallerLDAP/
+.cache/               .kde4/               Templates/
+CClase/               kdenlive/            .thumbnails/
+Clients/              LdapSearch           .thunderbird/
+Code/                 .lesshst             Titles
+.config/              LinuxCabal/          tmp/
+.cups/                .local/              Videos/
+.dbus/                .macromedia/         .vim/
+Desktop/              MageiaList           .viminfo
+.directory            Mail/                .vimrc
+.dmrc                 .mdk-menu-migrated   .xauth9VPTjE
+Documents/            .MgaOnline/          .xauthCwekhh
+Downloads/            .mgarepo/            .Xauthority
+.dvdcss/              .mission-control/    .xine/
+dwhelper/             .mozilla/            .xsession-errors
+.esd_auth             .mplayer/            .xsession-errors.old
+.filezilla/           MySQLBack/
+
+[rrc@pridd ~]$ ls -l
+total 566420
+drwxr-x---   2 rrc rrc      4096 Jan  4  2013 Abogado/
+drwxr-xr-x   2 rrc rrc      4096 Aug 24 00:47 audacity2.0-rrc/
+drwxr-x---   2 rrc rrc      4096 Aug 24 03:17 BashClase/
+drwxr-x---  18 rrc rrc      4096 Nov  7 22:49 Books/
+drwxr-x---   2 rrc rrc      4096 Nov 23  2012 CClase/
+drwx------  23 rrc rrc      4096 Sep 24 11:16 Clients/
+drwxr-x---   3 rrc rrc     12288 Nov  6 12:39 Code/
+drwxr-xr-x   2 rrc rrc      4096 Nov  5  2012 Desktop/
+drwxr-x---   3 rrc rrc      4096 Oct 18 17:28 Documents/
+drwxr-xr-x   6 rrc rrc      4096 Nov  9 06:02 Downloads/
+drwxr-xr-x   2 rrc rrc      4096 Mar 17  2013 dwhelper/
+drwxrwxr-x   6 rrc rrc      4096 Nov  9 17:40 kdenlive/
+-rw-------   1 rrc rrc      3687 Aug 26 09:18 LdapSearch
+drwxrwxr-x  23 rrc rrc      4096 Aug 16 16:11 LinuxCabal/
+-rw-rw-r--   1 rrc rrc     10820 Oct  5 21:25 MageiaList
+drwxrwxr-x   9 rrc rrc      4096 Nov  6 14:03 Mail/
+drwxr-xr-x 445 rrc rrc     36864 May 17 06:33 Music/
+drwxr-xr-x   2 rrc rrc     24576 Oct 25 14:01 MySQLBack/
+-rw-------   1 rrc rrc  31885046 Nov  9 16:15 nohup.out
+drwxr-x---  18 rrc rrc      4096 Jul 25 21:51 Photos/
+-rw-rw-r--   1 rrc rrc 393871751 Nov  9 21:24 screencast.webm
+-rw-rw-r--   1 rrc rrc 154064014 Nov  2 16:44 screencast.webm-20131102
+drwx------   3 rrc rrc      4096 Oct  3 13:30 tallerLDAP/
+drwxr-xr-x   2 rrc rrc      4096 Oct 29  2012 Templates/
+-rw-rw-r--   1 rrc rrc        60 Aug 18 18:04 Titles
+drwx------  22 rrc rrc      4096 Nov 11 20:15 tmp/
+drwxr-xr-x   3 rrc rrc      4096 Jan  3  2013 Videos/
+
+[rrc@pridd ~]$ ls -al
+total 567208
+drwxr-x--x  60 rrc  rrc     12288 Nov 11 20:14 ./
+drwxr-x--x   6 root adm      4096 May  8  2013 ../
+-rw-rw-r--   1 rrc  rrc       127 Feb 23  2013 ...
+drwxr-x---   2 rrc  rrc      4096 Jan  4  2013 Abogado/
+drwx------   3 rrc  rrc      4096 Nov 10  2012 .adobe/
+drwxr-xr-x   2 rrc  rrc      4096 Aug 24 00:47 audacity2.0-rrc/
+drwxrwxr-x   4 rrc  rrc      4096 Aug 24 00:47 .audacity-data/
+drwxr-x---   2 rrc  rrc      4096 Aug 24 03:17 BashClase/
+-rw-r--r--   1 rrc  rrc       387 Jan  9  2012 .bash_completion
+-rw-------   1 rrc  rrc      3014 Nov 11 20:19 .bash_history
+-rw-r--r--   1 rrc  rrc        24 May  9  2011 .bash_logout
+-rw-r--r--   1 rrc  rrc       191 May  9  2011 .bash_profile
+-rw-r--r--   1 rrc  rrc       124 May  9  2011 .bashrc
+drwxr-x---  18 rrc  rrc      4096 Nov  7 22:49 Books/
+drwx------  17 rrc  rrc      4096 Oct 26 21:46 .cache/
+drwxr-x---   2 rrc  rrc      4096 Nov 23  2012 CClase/
+drwx------  23 rrc  rrc      4096 Sep 24 11:16 Clients/
+drwxr-x---   3 rrc  rrc     12288 Nov  6 12:39 Code/
+drwx------  31 rrc  rrc      4096 Oct 23 21:59 .config/
+drwx------   2 rrc  rrc      4096 Feb 27  2013 .cups/
+drwx------   3 rrc  rrc      4096 Oct 29  2012 .dbus/
+drwxr-xr-x   2 rrc  rrc      4096 Nov  5  2012 Desktop/
+-rw-rw-r--   1 rrc  rrc        46 Oct  5 15:25 .directory
+-rw-------   1 rrc  rrc        26 Oct  5 15:32 .dmrc
+drwxr-x---   3 rrc  rrc      4096 Oct 18 17:28 Documents/
+drwxr-xr-x   6 rrc  rrc      4096 Nov  9 06:02 Downloads/
+drwxr-xr-x  59 rrc  rrc      4096 Oct 28 19:34 .dvdcss/
+drwxr-xr-x   2 rrc  rrc      4096 Mar 17  2013 dwhelper/
+-rw-------   1 rrc  rrc        16 Aug 24 03:33 .esd_auth
+drwx------   2 rrc  rrc      4096 Aug  4 23:27 .filezilla/
+drwxr-xr-x   2 rrc  rrc      4096 Feb  1  2013 .fontconfig/
+drwx------   3 rrc  rrc      4096 Nov 11 19:52 .gconf/
+drwx------  24 rrc  rrc      4096 Sep  8 02:41 .gimp-2.8/
+drwx------   6 rrc  rrc      4096 Nov  9 16:15 .gnome2/
+drwx------   2 rrc  rrc      4096 Oct 29  2012 .gnome2_private/
+drwx------   3 rrc  rrc      4096 Oct 29  2012 .gnupg/
+-rw-r--r--   1 rrc  rrc      3072 Sep 21 00:21 .grl-bookmarks
+-rw-r--r--   1 rrc  rrc      2048 Sep 21 00:21 .grl-metadata-store
+-rw-r--r--   1 rrc  rrc      4096 Sep 21 00:21 .grl-podcasts
+drwx------   2 rrc  rrc      4096 Oct 24 21:30 .gstreamer-0.10/
+-rw-rw-r--   1 rrc  rrc       170 Nov 11 19:52 .gtk-bookmarks
+drwxr-----   2 rrc  rrc      4096 Nov  9 17:37 .hplip/
+-rw-------   1 rrc  rrc    137344 Nov 11 19:52 .ICEauthority
+drwx------   2 rrc  rrc      4096 Mar 19  2013 .kchmviewer/
+drwx------   4 rrc  rrc      4096 Oct  5 15:25 .kde4/
+drwxrwxr-x   6 rrc  rrc      4096 Nov  9 17:40 kdenlive/
+-rw-------   1 rrc  rrc      3687 Aug 26 09:18 LdapSearch
+-rw-------   1 rrc  rrc       320 Aug 24 17:00 .lesshst
+drwxrwxr-x  23 rrc  rrc      4096 Aug 16 16:11 LinuxCabal/
+drwx------   3 rrc  rrc      4096 Oct 29  2012 .local/
+drwx------   3 rrc  rrc      4096 Nov 10  2012 .macromedia/
+-rw-rw-r--   1 rrc  rrc     10820 Oct  5 21:25 MageiaList
+drwxrwxr-x   9 rrc  rrc      4096 Nov  6 14:03 Mail/
+-rw-rw-r--   1 rrc  rrc         0 Oct 29  2012 .mdk-menu-migrated
+drwxr-xr-x   2 rrc  rrc      4096 Oct 29  2012 .MgaOnline/
+drwx------   2 rrc  rrc      4096 Nov  5  2012 .mgarepo/
+drwx------   3 rrc  rrc      4096 Oct 29  2012 .mission-control/
+drwx------   4 rrc  rrc      4096 Dec 11  2012 .mozilla/
+drwxrwxr-x   2 rrc  rrc      4096 Nov 28  2012 .mplayer/
+drwxr-xr-x 445 rrc  rrc     36864 May 17 06:33 Music/
+drwxr-xr-x   2 rrc  rrc     24576 Oct 25 14:01 MySQLBack/
+drwx------   2 rrc  rrc      4096 Nov  2 18:59 .ncftp/
+-rw-------   1 rrc  rrc  31885046 Nov  9 16:15 nohup.out
+drwxr-x---   6 rrc  rrc      4096 Oct 11 08:48 .openshot/
+drwxr-x---  18 rrc  rrc      4096 Jul 25 21:51 Photos/
+drwx------   3 rrc  rrc      4096 Feb  1  2013 .pki/
+drwx------   2 rrc  rrc      4096 Oct 29  2012 .pulse/
+-rw-------   1 rrc  rrc       256 Oct 29  2012 .pulse-cookie
+-rw-rw-r--   1 rrc  rrc 393871751 Nov  9 21:24 screencast.webm
+-rw-rw-r--   1 rrc  rrc 154064014 Nov  2 16:44 screencast.webm-20131102
+-rw-r--r--   1 rrc  rrc      3793 Jan  8  2011 .screenrc
+drwxrwxr-x   4 rrc  rrc      4096 Apr 24  2013 .shotwell/
+drwxrwxr-x   2 rrc  rrc      4096 Jun 11 00:57 .spumux/
+drwx------   2 rrc  rrc      4096 Sep 24 13:03 .ssh/
+drwx------   3 rrc  rrc      4096 Oct  3 13:30 tallerLDAP/
+drwxr-xr-x   2 rrc  rrc      4096 Oct 29  2012 Templates/
+drwx------   5 rrc  rrc      4096 Feb  9  2013 .thumbnails/
+drwx------   3 rrc  rrc      4096 Oct 29  2012 .thunderbird/
+-rw-rw-r--   1 rrc  rrc        60 Aug 18 18:04 Titles
+drwx------  22 rrc  rrc      4096 Nov 11 20:18 tmp/
+drwxr-xr-x   3 rrc  rrc      4096 Jan  3  2013 Videos/
+drwx------   2 rrc  rrc      4096 Oct 21 13:16 .vim/
+-rw-------   1 rrc  rrc     25692 Oct 26 22:32 .viminfo
+-rw-------   1 rrc  rrc      1024 Aug  3 20:47 .vimrc
+-rw-------   1 rrc  rrc        65 Aug 26 11:02 .xauth9VPTjE
+-rw-------   1 rrc  rrc        65 Oct  1 16:00 .xauthCwekhh
+-rw-------   1 rrc  rrc       722 Nov 11 20:12 .Xauthority
+drwxr-xr-x   2 rrc  rrc      4096 Oct 29 22:51 .xine/
+-rw-------   1 rrc  rrc      5366 Nov 11 20:15 .xsession-errors
+-rw-------   1 rrc  rrc    377596 Oct  5 15:27 .xsession-errors.old
+
+[rrc@pridd Presentaciones]$ ls -l MurosContrafuegos
+total 10132
+drwxr-x--- 3 rrc rrc    4096 Oct 14  2009 list-of-tcp-and-udp-port-numbers_files/
+-rw------- 1 rrc rrc  182017 Oct 14  2009 list-of-tcp-and-udp-port-numbers.html
+-rw-r----- 1 rrc rrc 1116382 Oct 29 12:46 MurosContrafuegos.odp
+-rw-r--r-- 1 rrc rrc 8003947 Jul 17  2011 MurosContrafuegos.pdf
+-rwxr-xr-x 1 rrc rrc  103995 Oct 14  2009 ports.html*
+-rw-rw-r-- 1 rrc rrc    2166 Nov 11 20:40 record.txt
+-rw-r--r-- 1 rrc rrc  942426 Apr 26  2010 SeguridadSectSalud.odp
+-rw-rw-r-- 1 rrc rrc     642 Nov 11 20:40 time.txt
+
+[rrc@pridd Presentaciones]$ ls -ld MurosContrafuegos
+drwxr-x--- 3 rrc rrc 4096 Nov 11 20:39 MurosContrafuegos/
+
+[rrc@pridd MurosContrafuegos]$ ls -lt
+total 10128
+-rw-rw-r-- 1 rrc rrc     134 Nov 11 20:39 time.txt
+-rw-rw-r-- 1 rrc rrc       0 Nov 11 20:39 record.txt
+-rw-r----- 1 rrc rrc 1116382 Oct 29 12:46 MurosContrafuegos.odp
+-rw-r--r-- 1 rrc rrc 8003947 Jul 17  2011 MurosContrafuegos.pdf
+-rw-r--r-- 1 rrc rrc  942426 Apr 26  2010 SeguridadSectSalud.odp
+-rw------- 1 rrc rrc  182017 Oct 14  2009 list-of-tcp-and-udp-port-numbers.html
+-rwxr-xr-x 1 rrc rrc  103995 Oct 14  2009 ports.html*
+drwxr-x--- 3 rrc rrc    4096 Oct 14  2009 list-of-tcp-and-udp-port-numbers_files/
+
+[rrc@pridd MurosContrafuegos]$ ls -ltr
+total 10128
+drwxr-x--- 3 rrc rrc    4096 Oct 14  2009 list-of-tcp-and-udp-port-numbers_files/
+-rwxr-xr-x 1 rrc rrc  103995 Oct 14  2009 ports.html*
+-rw------- 1 rrc rrc  182017 Oct 14  2009 list-of-tcp-and-udp-port-numbers.html
+-rw-r--r-- 1 rrc rrc  942426 Apr 26  2010 SeguridadSectSalud.odp
+-rw-r--r-- 1 rrc rrc 8003947 Jul 17  2011 MurosContrafuegos.pdf
+-rw-r----- 1 rrc rrc 1116382 Oct 29 12:46 MurosContrafuegos.odp
+-rw-rw-r-- 1 rrc rrc       0 Nov 11 20:39 record.txt
+-rw-rw-r-- 1 rrc rrc     342 Nov 11 20:39 time.txt
+
+[rrc@pridd MurosContrafuegos]$ ls -ltrh
+total 9.9M
+drwxr-x--- 3 rrc rrc 4.0K Oct 14  2009 list-of-tcp-and-udp-port-numbers_files/
+-rwxr-xr-x 1 rrc rrc 102K Oct 14  2009 ports.html*
+-rw------- 1 rrc rrc 178K Oct 14  2009 list-of-tcp-and-udp-port-numbers.html
+-rw-r--r-- 1 rrc rrc 921K Apr 26  2010 SeguridadSectSalud.odp
+-rw-r--r-- 1 rrc rrc 7.7M Jul 17  2011 MurosContrafuegos.pdf
+-rw-r----- 1 rrc rrc 1.1M Oct 29 12:46 MurosContrafuegos.odp
+-rw-rw-r-- 1 rrc rrc    0 Nov 11 20:39 record.txt
+-rw-rw-r-- 1 rrc rrc  489 Nov 11 20:39 time.txt
+
+[rrc@Llawyr MurosContrafuegos]$ ls -lSr
+total 10124
+-rw-rw-r-- 1 rrc rrc       0 Nov 11 20:39 record.txt
+-rw-rw-r-- 1 rrc rrc     489 Nov 11 20:39 time.txt
+drwxr-x--- 3 rrc rrc    4096 Oct 14  2009 list-of-tcp-and-udp-port-numbers_files/
+-rwxr-xr-x 1 rrc rrc  103995 Oct 14  2009 ports.html*
+-rw------- 1 rrc rrc  182017 Oct 14  2009 list-of-tcp-and-udp-port-numbers.html
+-rw-r--r-- 1 rrc rrc  942426 Apr 26  2010 SeguridadSectSalud.odp
+-rw-r----- 1 rrc rrc 1116382 Oct 29 12:46 MurosContrafuegos.odp
+-rw-r--r-- 1 rrc rrc 8003947 Jul 17  2011 MurosContrafuegos.pdf
+
+[rrc@pridd Presentaciones]$ ls -li MurosContrafuegos/
+total 10128
+17040365 drwxr-x--- 3 rrc rrc    4096 Oct 14  2009 list-of-tcp-and-udp-port-numbers_files/
+17040738 -rw------- 1 rrc rrc  182017 Oct 14  2009 list-of-tcp-and-udp-port-numbers.html
+17039464 -rw-r----- 1 rrc rrc 1116382 Oct 29 12:46 MurosContrafuegos.odp
+17040736 -rw-r--r-- 1 rrc rrc 8003947 Jul 17  2011 MurosContrafuegos.pdf
+17040739 -rwxr-xr-x 1 rrc rrc  103995 Oct 14  2009 ports.html*
+17040737 -rw-r--r-- 1 rrc rrc  942426 Apr 26  2010 SeguridadSectSalud.odp
+17039450 -rw-rw-r-- 1 rrc rrc     642 Nov 11 20:40 time.txt
+
+[rrc@pridd Presentaciones]$ ls -lR MurosContrafuegos/
+MurosContrafuegos/:
+total 10128
+drwxr-x--- 3 rrc rrc    4096 Oct 14  2009 list-of-tcp-and-udp-port-numbers_files/
+-rw------- 1 rrc rrc  182017 Oct 14  2009 list-of-tcp-and-udp-port-numbers.html
+-rw-r----- 1 rrc rrc 1116382 Oct 29 12:46 MurosContrafuegos.odp
+-rw-r--r-- 1 rrc rrc 8003947 Jul 17  2011 MurosContrafuegos.pdf
+-rwxr-xr-x 1 rrc rrc  103995 Oct 14  2009 ports.html*
+-rw-r--r-- 1 rrc rrc  942426 Apr 26  2010 SeguridadSectSalud.odp
+-rw-rw-r-- 1 rrc rrc     642 Nov 11 20:40 time.txt
+
+MurosContrafuegos/list-of-tcp-and-udp-port-numbers_files:
+total 432
+-rw------- 1 rrc rrc  61895 Oct 14  2009 2231078.js
+-rw------- 1 rrc rrc   2499 Oct 14  2009 34158172-100x100-0-0.jpg
+-rw------- 1 rrc rrc    996 Oct 14  2009 34160392-100x100-0-0.jpg
+-rw------- 1 rrc rrc   4332 Oct 14  2009 3717810.js
+-rw------- 1 rrc rrc  23924 Oct 14  2009 40727034-100x100-0-0.jpg
+-rw------- 1 rrc rrc     43 Oct 14  2009 817-grey.gif
+-rw------- 1 rrc rrc     74 Oct 14  2009 a
+-rw------- 1 rrc rrc    241 Oct 14  2009 a_002
+-rw------- 1 rrc rrc   2168 Oct 14  2009 ads
+-rw------- 1 rrc rrc   2282 Oct 14  2009 answersLogo.gif
+-rw------- 1 rrc rrc   2667 Oct 14  2009 answers_print_style.css
+-rw------- 1 rrc rrc    391 Oct 14  2009 answertip.jsp
+-rw------- 1 rrc rrc 106792 Oct 14  2009 answ_utils27795.js
+-rw------- 1 rrc rrc   2300 Oct 14  2009 b_search.gif
+-rw------- 1 rrc rrc   2500 Oct 14  2009 buy_now.jpg
+-rw------- 1 rrc rrc   1795 Oct 14  2009 citation_button.gif
+-rw------- 1 rrc rrc   2604 Oct 14  2009 compare_prices.jpg
+-rw------- 1 rrc rrc   2230 Oct 14  2009 dsdata.
+drwxr-x--- 2 rrc rrc   4096 Oct 14  2009 dsdata_data/
+-rw------- 1 rrc rrc   2326 Oct 14  2009 healthination_logo.gif
+-rw------- 1 rrc rrc   1832 Oct 14  2009 healthination_playvideo.gif
+-rw------- 1 rrc rrc   1137 Oct 14  2009 link_icon.gif
+-rw------- 1 rrc rrc   1155 Oct 14  2009 mail_icon.gif
+-rw------- 1 rrc rrc  56755 Oct 14  2009 picture201931.css
+-rw------- 1 rrc rrc   1625 Oct 14  2009 priceGrabber.css
+-rw------- 1 rrc rrc   1221 Oct 14  2009 print_icon.gif
+-rw------- 1 rrc rrc   2392 Oct 14  2009 provided_by_shopping.gif
+-rw------- 1 rrc rrc   2628 Oct 14  2009 quant.js
+-rw------- 1 rrc rrc    652 Oct 14  2009 rss_feed_icon.gif
+-rw------- 1 rrc rrc   1426 Oct 14  2009 searcht177.gif
+-rw------- 1 rrc rrc   3111 Oct 14  2009 t205.css
+-rw------- 1 rrc rrc   2294 Oct 14  2009 thumb_familyhealth_80x58.jpg
+-rw------- 1 rrc rrc    140 Oct 14  2009 top_arrow_blue.gif
+-rw------- 1 rrc rrc    328 Oct 14  2009 topNav_blue.gif
+-rw------- 1 rrc rrc  21414 Oct 14  2009 urchin.js
+-rw------- 1 rrc rrc  17669 Oct 14  2009 web_tip.css
+-rw------- 1 rrc rrc   4445 Oct 14  2009 wgw_03.gif
+-rw------- 1 rrc rrc   2219 Oct 14  2009 wikipedia.gif
+
+MurosContrafuegos/list-of-tcp-and-udp-port-numbers_files/dsdata_data:
+total 24
+-rw------- 1 rrc rrc  2756 Oct 14  2009 ads
+-rw------- 1 rrc rrc 16407 Oct 14  2009 show_ads.js
+
+[rrc@pridd Presentaciones]$ ls  /etc/rc.d/
+init.d	rc0.d  rc2.d  rc4.d  rc6.d  rc.alsa_default  rcS.d
+rc	rc1.d  rc3.d  rc5.d  rc7.d  rc.local	     rc.sysinit
+
+[rrc@pridd Presentaciones]$ ls -F /etc/rc.d/
+init.d/  rc0.d/  rc2.d/  rc4.d/  rc6.d/  rc.alsa_default*  rcS.d@
+rc*	 rc1.d/  rc3.d/  rc5.d/  rc7.d/  rc.local*	   rc.sysinit*
+
+[rrc@Llawyr MurosContrafuegos]$ ls --help
+Usage: ls [OPTION]... [FILE]...
+List information about the FILEs (the current directory by default).
+Sort entries alphabetically if none of -cftuvSUX nor --sort is specified.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -a, --all                  do not ignore entries starting with .
+  -A, --almost-all           do not list implied . and ..
+      --author               with -l, print the author of each file
+  -b, --escape               print C-style escapes for nongraphic characters
+      --block-size=SIZE      scale sizes by SIZE before printing them.  E.g.,
+                               '--block-size=M' prints sizes in units of
+                               1,048,576 bytes.  See SIZE format below.
+  -B, --ignore-backups       do not list implied entries ending with ~
+  -c                         with -lt: sort by, and show, ctime (time of last
+                               modification of file status information)
+                               with -l: show ctime and sort by name
+                               otherwise: sort by ctime, newest first
+  -C                         list entries by columns
+      --color[=WHEN]         colorize the output.  WHEN defaults to 'always'
+                               or can be 'never' or 'auto'.  More info below
+  -d, --directory            list directory entries instead of contents,
+                               and do not dereference symbolic links
+  -D, --dired                generate output designed for Emacs' dired mode
+  -f                         do not sort, enable -aU, disable -ls --color
+  -F, --classify             append indicator (one of */=>@|) to entries
+      --file-type            likewise, except do not append '*'
+      --format=WORD          across -x, commas -m, horizontal -x, long -l,
+                               single-column -1, verbose -l, vertical -C
+      --full-time            like -l --time-style=full-iso
+  -g                         like -l, but do not list owner
+      --group-directories-first
+                             group directories before files.
+                               augment with a --sort option, but any
+                               use of --sort=none (-U) disables grouping
+  -G, --no-group             in a long listing, don't print group names
+  -h, --human-readable       with -l, print sizes in human readable format
+                               (e.g., 1K 234M 2G)
+      --si                   likewise, but use powers of 1000 not 1024
+  -H, --dereference-command-line
+                             follow symbolic links listed on the command line
+      --dereference-command-line-symlink-to-dir
+                             follow each command line symbolic link
+                             that points to a directory
+      --hide=PATTERN         do not list implied entries matching shell PATTERN
+                               (overridden by -a or -A)
+      --indicator-style=WORD  append indicator with style WORD to entry names:
+                               none (default), slash (-p),
+                               file-type (--file-type), classify (-F)
+  -i, --inode                print the index number of each file
+  -I, --ignore=PATTERN       do not list implied entries matching shell PATTERN
+  -k, --kibibytes            use 1024-byte blocks
+  -l                         use a long listing format
+  -L, --dereference          when showing file information for a symbolic
+                               link, show information for the file the link
+                               references rather than for the link itself
+  -m                         fill width with a comma separated list of entries
+  -n, --numeric-uid-gid      like -l, but list numeric user and group IDs
+  -N, --literal              print raw entry names (don't treat e.g. control
+                               characters specially)
+  -o                         like -l, but do not list group information
+  -p, --indicator-style=slash
+                             append / indicator to directories
+  -q, --hide-control-chars   print ? instead of non graphic characters
+      --show-control-chars   show non graphic characters as-is (default
+                             unless program is 'ls' and output is a terminal)
+  -Q, --quote-name           enclose entry names in double quotes
+      --quoting-style=WORD   use quoting style WORD for entry names:
+                               literal, locale, shell, shell-always, c, escape
+  -r, --reverse              reverse order while sorting
+  -R, --recursive            list subdirectories recursively
+  -s, --size                 print the allocated size of each file, in blocks
+  -S                         sort by file size
+      --sort=WORD            sort by WORD instead of name: none -U,
+                             extension -X, size -S, time -t, version -v
+      --time=WORD            with -l, show time as WORD instead of modification
+                             time: atime -u, access -u, use -u, ctime -c,
+                             or status -c; use specified time as sort key
+                             if --sort=time
+      --time-style=STYLE     with -l, show times using style STYLE:
+                             full-iso, long-iso, iso, locale, +FORMAT.
+                             FORMAT is interpreted like 'date'; if FORMAT is
+                             FORMAT1<newline>FORMAT2, FORMAT1 applies to
+                             non-recent files and FORMAT2 to recent files;
+                             if STYLE is prefixed with 'posix-', STYLE
+                             takes effect only outside the POSIX locale
+  -t                         sort by modification time, newest first
+  -T, --tabsize=COLS         assume tab stops at each COLS instead of 8
+  -u                         with -lt: sort by, and show, access time
+                               with -l: show access time and sort by name
+                               otherwise: sort by access time
+  -U                         do not sort; list entries in directory order
+  -v                         natural sort of (version) numbers within text
+  -w, --width=COLS           assume screen width instead of current value
+  -x                         list entries by lines instead of by columns
+  -X                         sort alphabetically by entry extension
+  -Z, --context              print any SELinux security context of each file
+  -1                         list one file per line
+      --help     display this help and exit
+      --version  output version information and exit
+
+SIZE is an integer and optional unit (example: 10M is 10*1024*1024).  Units
+are K, M, G, T, P, E, Z, Y (powers of 1024) or KB, MB, ... (powers of 1000).
+
+Using color to distinguish file types is disabled both by default and
+with --color=never.  With --color=auto, ls emits color codes only when
+standard output is connected to a terminal.  The LS_COLORS environment
+variable can change the settings.  Use the dircolors command to set it.
+
+Exit status:
+ 0  if OK,
+ 1  if minor problems (e.g., cannot access subdirectory),
+ 2  if serious trouble (e.g., cannot access command-line argument).
+
+Report ls bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'ls invocation'
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
