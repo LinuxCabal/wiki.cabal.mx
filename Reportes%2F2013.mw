@@ -1,0 +1,136 @@
+Aquí describiremos el reporte de actividades de [[LinuxCabal]], A.C. durante el 2013.
+
+== Resumen ==
+
+
+== [http://www.linuxcabal.org/InstallFests.php InstallFest]s ==
+Cada semana; se realiza un [http://www.linuxcabal.org/InstallFests.php InstallFest]; el cual inicia los Sábados; desde las 15:00 GMT-06:00 hasta las 21:00 GMT-06:00.
+
+En éstos, se incita al convivio y la colaboración entre los miembros de la Comunidad. Se realizan presentaciones, se graban screencasts y se ofrece comida y bebida a los asistentes. Es un foro abierto para propuestas, discusiones, noticias y demás.
+
+La actividad principal es ayudar a la gente que es nueva en el mundo del [[FOSS]] a entrar en él.
+
+== Eventos ==
+=== [http://www.linuxcabal.org/FLISoL20130427.php FLISoL] ===
+Cada año organizamos una [http://www.linuxcabal.org/FLISoL20130427.php FLISoL] en [[LinuxCabal]]. La comunidad ofrece platicas tecnológicas; relacionadas con el [[FOSS]] para el público en general; con entrada libre (sin costo).
+
+=== [http://www.linuxcabal.org/CUTonola20131111.php?Lang=es&From=Eventos Primera Semana de la Ciencia] ===
+[[User:rrc| Richard Couture]] representó a [[LinuxCabal]] en la primera edición de éste evento; presentando su plática: "Software Libre y su importancia en la industria".
+
+=== [http://www.linuxcabal.org/FSLVallarta2013.php Festival de Software Libre Vallarta 2013]
+[[User:rrc| Richard Couture]] representó a [[LinuxCabal]] en la primera edición de éste evento; presentando sus talleres de "Implementación de VPNs usando OpenVPN" y "Muros Cortafuegos Usando NetFilter/IPTables".
+
+=== [http://softwarefreedomday.org/ Free Software Freedom Day] ===
+Cada año, celebramos el [http://softwarefreedomday.org/ Free Software Freedom Day].
+
+
+== Grupos de Interés Específico ==
+
+=== PHPCabal ===
+
+==== Comunidad en Google ====
+Se ha abierto una comunidad en [https://plus.google.com Google+]; titulada "[https://plus.google.com/communities/108158002819580456173 PHP en Español]"; la cual ya contiene ~3,000 participantes de habla hispana.
+
+=== PythonCabal ===
+Nos seguimos reuniendo, con contínuo éxito, en las instalaciones de [http://hp.com.mx/ HP], quien ha brindado sus instalaciones por más de un año ya.
+
+Algunos de los temas tratados han sido:
+# [[Wikipedia:Test-driven_development|Test-driven Development]]
+# Web Frameworks (Pyramid, Django, etc)
+# PythonInteractivo
+# VirtualENV
+
+=== ArduinoCabal ===
+Continuamos a dar soporte en nuestra lista de correo. Este año ha habido poca actividad en general; aunque se siguen inscribiendo bastante a a lista.
+
+== Servicios ==
+
+=== Espejo de Mageia ===
+[http://tracking.cloudsigma.com/aff_c?offer_id=3&aff_id=1009&url_id=3 CloudSigma]; en conjunción con [[LinuxCabal]], colaboran para proveer uno de los 4 espejos principales de la distribución [http://mageia.org/ Mageia] GNU & Linux; la cual, actualmente, es la #2 en popularidad; en [http://distrowatch.com/ DistroWatch]. 
+
+Éste espejo es el que nos consume la mayoría de los recursos; los cuales son provistos por nuestro mayor patrocinador: [http://tracking.cloudsigma.com/aff_c?offer_id=3&aff_id=1009&url_id=3 CloudSigma]
+
+=== WikiCabal ===
+
+
+# [[:Categoría:Pronunciación_de_Términos | Pronunciación de Terminos]]
+# [[Comandos de la terminal]]
+# [[Curso básico de PHP]]
+# [[Curso de Drupal]]
+# [[Curso de Programación en Bash]]
+# [[Curso de Programación en C]]
+# [[Lenguaje Ensamblador en Linux]]
+# [[Tutorial de NetFilter/IPTables]]
+
+==== Presentaciones ====
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/Sendmail20100612.webm Sendmail por Richard Couture - 20110612]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/IntroduccionAImageMagick20120211.webm Introcucción a imagemacick por Patricio Páez - 20120211]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/Nagios20120310.webm Test Nagios por Cristian Trujillo - 20120310]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/TestDrivenDevelopment20120324.webm Test Driven Development por PatricioPáez - 20120324]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/InterfacesWebEnSVG_ParaControlDeProcesosDeAutomatizacionCriticos20120609.webm Interfaces Web en SVG Para Control de Procesos de Automatización Críticos por Donald Carr - 20120609]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/IPv6-20120707.webm IPv6 por Luis Enrique Pineda - 20120707]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/MongoDB20120721.webm MongoDB por Juan José González - 20120721]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/ComoCalibrarUnaGuitarraElectrica20120728.webm Cómo calibrar una guitarra eléctrica por Josafat (Nemo) Verdin - 20120728]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/ComoCrearUnServidorDeInstalacionConPXE-20120804.webm Cómo crear un servidor de instalación con PXE por Rene Bon Ciric - 20120804]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/UnBreveTutorialACodeIgniter-20120811.webm  Un Breve Tutorial a CodeIgniter por Josue David Hernandez - 20120811]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/ComoInstalarFuntooEnUnaMaquinaVirtual-20120818.webm Cómo instalar Funtoo en una máquina virtual por Rene Bon Ciric - 20120818]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/SDCC-ComplandoParaElMicroProc-PIC-18F2550-20120908.webm SDCC Complando para el micro processador PIC-18F2550 por Javier Zavala - 20120908]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/ModeladoDeNudosCeltasConBlender-20120908.webm Modelado de nudos celtas con blender-20120908 por Sergio Gutiérrez - 20120908]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/SecuenciasNumericasFibonacci-20120922.webm Secuencias Numéricas Fibonacci por Josue David Hernandez - 20120922]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/ObtenerIPv4yIPv6DeSitiosInternet20121002.webm Obtener IPv4 e IPv6 de sitios Internet por Donald Carr - 20121002]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/PHPEnAmbientesDeAltaDisponibilidad20121011.webm PHP en ambientes de alta disponibilidad por Basilio Briceño de GLO - 20121011]
+# [ftp://ftp.linuxcabal.org/pub/Videos/Presentaciones/Porque-ComoTrabajamosConFOSS20121006.webm Porque y Como Trabajamos Con FOSS20121006 por los asistentes de LinuxCabal - 20121006]
+
+==== HowTos ====
+# [[Blender]]
+# [[Compilar Python]]
+# [[Cómo armar una PC silenciosa]]
+# [[Cómo contribuir a los Koans de Python]]
+# [[Cómo contribuir a Pyramid]]
+# [[Cómo contribuir a StringTemplate]]
+# [[Cómo crear un tutorial en video]]
+# [[Cómo escoger un módulo de memoria]]
+# [[Cómo promover proyectos de FOSS en el gobierno mexicano]]
+# [[Cómo usar encriptación]]
+# [[Cómo usar Python en la web]]
+# [[GitHub]]
+# [[Instalación de Debian]]
+# [[Instalación de Fritzing]]
+# [[Instalación de Git]]
+# [[Instalación de pygame]]
+# [[Instalación de Ubuntu]]
+# [[Instalación y Configuración de PHP]]
+# [[Introducción a Git]]
+# [[Introducción a Test Driven Development]]
+# [[OpenVPN-2.1.1HowTo]]
+# [[Python en la música]]
+# [[Python Koans]]
+# [[PyYAML]]
+# [[QEMU y KVM]]
+# [[Usuario:Renich/MicroHowTos/Cherokee/Configuración para Joomla 1.6]]
+# [[Usuario:Renich/MicroHowTos/Cherokee/Configuración predilecta para desarrollo]]
+# [[Trucos de Git]]
+
+==== Tips y Trucos ====
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/YumYPackagekit20120630.webm Yum y Packagekit por Rene Bon Ciric - 20120630]
+# [[Tips And Tricks General/Yum y Packagekit | Texto de la presentacion: Yum y Packagekit]]
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/AhorraDeEnergiaEnGNUyLinux20120714.webm Ahorra de Energia en GNU y Linux por Diego Sanchez - 20120714]
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/netcat20120721.webm netcat por Sergio Ezequiel Gutierrez Álvarez - 20120721]
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/screen20120728.webm screen por Patricio Páez - 20120728]
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/GnomeTemplates-20120811.webm Gnome Templates por Rene Bon Ciric - 20120811]
+# [[Tips_And_Tricks_General/mount_-o_loop | Puedes ver los contenidos de un archivo .iso con mount -o loop]]
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/PrecaucionUsandoArchivosBinariosDeAreglosDeDoblesOAreglosDeStruct20120901.webm Precaucion Usando Archivos Binarios De Areglos De Dobles O Areglos De Structs por Donald Carr - 20120901]
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/SitiosWebParaInvestigarEnManeraGratisArbolesGenealogicos-20120901.webm Sitios Web Para Investigar, En Manera Gratis, Arboles Genealogicos por Luis Enrique Pineda - 20120901]
+# [ftp://ftp.LinuxCabal.org/pub/Videos/TipsAndTricks/PHPCodeSniffer-20120915.webm PHP Code Sniffer por Rene Bon Ciric - 20120915]
+# [[Tips And Tricks General/Vim Cheatsheet |Vim Cheatsheet]]
+# [[Trucos_de_Python]]
+
+== Otras Actividades ==
+
+=== Leyes Mexicanas ===
+[[ User:Renich | Renich ]] ha publicado las [https://github.com/Renich/LeyesMexicanas Leyes Mexicanas] en [https://github.com/ Github] para poder ver los [[Wikipedia:diff | diff ]] de las mismas.
+
+== Conclusiones ==
+
+
+[[Category: Reportes]]
