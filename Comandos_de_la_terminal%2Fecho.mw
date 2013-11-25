@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#echo| echo]]
+
+== echo ==
+
+<syntaxhighlight lang="bash">
+
+Built-in y /usr/bin/echo
+echo [SHORT-OPTION]... [STRING]...
+
+[rrc@Llawyr ~]$ echo "Hola Mundo"
+Hola Mundo
+
+[rrc@Llawyr ~]$ echo -n "Hola Mundo"
+Hola Mundo[rrc@Llawyr ~]$ echo -n -e  "Hola Mundo\n"
+Hola Mundo
+
+[rrc@Llawyr ~]$ echo -n -e  "Hola Mundo\b\b"
+Hola Mun[rrc@Lla
+
+[rrc@Llawyr ~]$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin
+
+[rrc@Llawyr ~]$ echo $HOME
+/home/rrc
+
+[rrc@Llawyr ~]$ echo Un Diagonal \
+> seguida de una línea nueva \
+> es a decir que la línea se continua
+Un Diagonal seguida de una línea nueva es a decir que la línea se continua
+
+[rrc@Llawyr ~]$ echo -e "Hola \0137 Mundo"
+Hola _ Mundo
+
+[rrc@Llawyr ~]$ echo -e "Hola \x5f Mundo"
+Hola _ Mundo
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
