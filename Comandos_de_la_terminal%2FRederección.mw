@@ -1,0 +1,164 @@
+__NOTOC__
+* [[:#Rederección | Rederección]]
+
+== Rederección ==
+
+<syntaxhighlight lang="bash">
+
+Existe STDIN   dispositivo 0 Normalmente el teclado
+       STDOUT  dispositivo 1 Normalmente la pantalla
+       STDERR  Dispositivo 2 Normalmente la pantalla
+
+Puede redireccionar STDIN con '<'
+Puede redireccionar STDOUT con '>'
+Puede redireccionar STDERR con '>'
+Puede anexar al destino de redireccion con '>>"
+
+[rrc@Llawyr ~]$ ls LinuxCabal/
+AC/            DrenajesPuertaAbogado.odt    OtroLado/
+AztecaFiscal/  Expidiente717-2005.txt       Presentaciones/
+BluePrints/    Factura.jpg                  Propuestas/
+Cafeteria/     Flyers/                      SAT/
+Clases/        INM/                         SigLCCom
+CLUNI/         JohnLinCharacterRef.odt      SigLCOrg
+CoffeeNet/     JohnLinCharacterRef.pdf      StationaryAndForms/
+Constancias/   JohnLinCharacterRef_Pg1.jpg  TarjetaDePres/
+Construccion/  JohnLinCharacterRef_Pg2.jpg  Triptico/
+Curriculo/     Lenovo/                      WineLabels/
+
+[rrc@Llawyr ~]$ ls LinuxCabal > LSList
+[rrc@Llawyr ~]$ cat LSList 
+AC/
+AztecaFiscal/
+BluePrints/
+Cafeteria/
+Clases/
+CLUNI/
+CoffeeNet/
+Constancias/
+Construccion/
+Curriculo/
+DrenajesPuertaAbogado.odt
+Expidiente717-2005.txt
+Factura.jpg
+Flyers/
+INM/
+JohnLinCharacterRef.odt
+JohnLinCharacterRef.pdf
+JohnLinCharacterRef_Pg1.jpg
+JohnLinCharacterRef_Pg2.jpg
+Lenovo/
+OtroLado/
+Presentaciones/
+Propuestas/
+SAT/
+SigLCCom
+SigLCOrg
+StationaryAndForms/
+TarjetaDePres/
+Triptico/
+WineLabels/
+
+[rrc@Llawyr ~]$ ls LinuxCabal/Presentaciones > LSList 
+[rrc@Llawyr ~]$ cat LSList 
+Asterisk/
+Bash/
+DHCP/
+InstallMandriva/
+InstallMDK2010.0/
+LSComando*
+MurosContrafuegos/
+OpenSSH/
+OpenVPN/
+PPPoE/
+QoS/
+Squid/
+
+[rrc@Llawyr ~]$ ls LinuxCabal >> LSList
+[rrc@Llawyr ~]$ cat LSList 
+Asterisk/
+Bash/
+DHCP/
+InstallMandriva/
+InstallMDK2010.0/
+LSComando*
+MurosContrafuegos/
+OpenSSH/
+OpenVPN/
+PPPoE/
+QoS/
+Squid/
+AC/
+AztecaFiscal/
+BluePrints/
+Cafeteria/
+Clases/
+CLUNI/
+CoffeeNet/
+Constancias/
+Construccion/
+Curriculo/
+DrenajesPuertaAbogado.odt
+Expidiente717-2005.txt
+Factura.jpg
+Flyers/
+INM/
+JohnLinCharacterRef.odt
+JohnLinCharacterRef.pdf
+JohnLinCharacterRef_Pg1.jpg
+JohnLinCharacterRef_Pg2.jpg
+Lenovo/
+OtroLado/
+Presentaciones/
+Propuestas/
+SAT/
+SigLCCom
+SigLCOrg
+StationaryAndForms/
+TarjetaDePres/
+Triptico/
+WineLabels/
+
+Puede borrar los contenidos de un archivo usand '>'
+
+[rrc@Llawyr ~]$ > LSList 
+[rrc@Llawyr ~]$ cat LSList 
+[rrc@Llawyr ~]$ ls -alh LSList 
+-rw------- 1 rrc rrc 0 Nov 15 13:39 LSList
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo
+cat: MiArchivo: No such file or directory
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo 2> MiArchivo.Err
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo.Err 
+cat: MiArchivo: No such file or directory
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "Está algunas palabras" > MiArchivo
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo MiOtroArchivo 2> MiArchivo.Err
+Está algunas palabras
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo.Err 
+cat: MiOtroArchivo: No such file or directory
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo MiOtroArchivo MiTercerArchivo > Resulto
+cat: MiOtroArchivo: No such file or directory
+cat: MiTercerArchivo: No such file or directory
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Resulto
+Está algunas palabras
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo ElQueNoExiste > Res2 2>Err3
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Res
+Res2     Resulto  
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Res2 
+Está algunas palabras
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Err3
+cat: ElQueNoExiste: No such file or directory
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat MiArchivo MiOtroArchivo MiTercerArchivo > Resulto 2>&1
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Resulto 
+Está algunas palabras
+cat: MiOtroArchivo: No such file or directory
+cat: MiTercerArchivo: No such file or directory
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
