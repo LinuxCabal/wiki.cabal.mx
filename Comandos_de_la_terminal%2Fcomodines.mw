@@ -1,0 +1,95 @@
+__NOTOC__
+* [[:#comodines | comodines]]
+
+== comodines ==
+
+<syntaxhighlight lang="bash">
+
+? representa un caracter
+
+* representa 0 o más caracteres
+
+[  ] representa un character en la lista
+
+~[Nombre] el hogar del usuario actual o del usurio especificado.
+
+[rrc@pridd ComandosDeLaTerminal]$ touch ArchivoDeTres Archivo1DeTres Archivo2DeTres Archivo3DeTres 
+[rrc@pridd ComandosDeLaTerminal]$ ls -al
+total 16
+drwxrwxr-x  2 rrc rrc  4096 Dec  4 21:55 ./
+drwxr-x--x 62 rrc rrc 12288 Dec  4 21:40 ../
+-rw-rw-r--  1 rrc rrc     0 Dec  4 21:55 Archivo1DeTres
+-rw-rw-r--  1 rrc rrc     0 Dec  4 21:55 Archivo2DeTres
+-rw-rw-r--  1 rrc rrc     0 Dec  4 21:55 Archivo3DeTres
+-rw-rw-r--  1 rrc rrc     0 Dec  4 21:55 ArchivoDeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Archivo?DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo1DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo2DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo3DeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Archivo?eTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 ArchivoDeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Ar*DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo1DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo2DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo3DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 ArchivoDeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Ar*2*
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo2DeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Ar*D*
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo1DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo2DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo3DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 ArchivoDeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Ar*L*
+ls: cannot access Ar*L*: No such file or directory
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Archivo[13]DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo1DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo3DeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Archivo[1-3]DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo1DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo2DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo3DeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ ls -al Arch?vo[13D]*
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo1DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 Archivo3DeTres
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:55 ArchivoDeTres
+
+[rrc@pridd ComandosDeLaTerminal]$ cd /tmp
+[rrc@pridd tmp]$ pwd
+/tmp
+[rrc@pridd tmp]$ ls
+gpg-t6Ntqi/          systemd-private-JeZ9Us/  systemd-private-RXlQuT/
+kde-root/            systemd-private-PfwmP3/  systemd-private-V4zaQN/
+ksocket-root/        systemd-private-R1Zq01/
+pulse-PKdhtXMmr18n/  systemd-private-RI9iQ1/
+
+[rrc@pridd tmp]$ ls ~
+04:56             Code/                  LinuxCabal/  Templates/
+12:34             ComandosDeLaTerminal/  Mail/        Titles
+Abogado/          Desktop/               Music/       tmp/
+audacity2.0-rrc/  Documents/             MySQLBack/   TouchArchivo
+BashClase/        Downloads/             nohup.out    Videos/
+Books/            dwhelper/              OpenVPN/
+CClase/           Feast_of_All_Saints/   Photos/
+Clients/          kdenlive/              tallerLDAP/
+
+[rrc@pridd tmp]$ ls ~phpdev
+ls: cannot open directory /home/phpdev: Permission denied
+[rrc@pridd tmp]$ ls ~pydev
+ls: cannot open directory /home/pydev: Permission denied
+[rrc@pridd tmp]$ ls ~mail
+postfix
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
