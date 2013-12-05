@@ -1,0 +1,90 @@
+__NOTOC__
+* [[:#touch | touch]]
+
+== touch ==
+
+<syntaxhighlight lang="bash">
+
+ touch [OPTION]... FILE...
+
+       -a     change only the access time
+
+       -c, --no-create
+              do not create any files
+
+       -d, --date=STRING
+              parse STRING and use it instead of current time
+
+       -f     (ignored)
+
+       -h, --no-dereference
+              affect each symbolic link instead of any referenced file (useful
+              only on systems that can change the timestamps of a symlink)
+
+       -m     change only the modification time
+
+       -r, --reference=FILE
+              use this file\'s times instead of current time
+
+       -t STAMP
+              use [[CC]YY]MMDDhhmm[.ss] instead of current time
+
+       --time=WORD
+              change the specified time: WORD is access, atime, or use: equiv‐
+              alent to -a WORD is modify or mtime: equivalent to -m
+
+       --help display this help and exit
+
+       --version
+              output version information and exit
+
+       Note that the -d and -t options accept different time-date formats.
+
+[rrc@pridd ~]$ ls -al TouchArchivo
+ls: cannot access TouchArchivo: No such file or directory
+[rrc@pridd ~]$ touch TouchArchivo
+[rrc@pridd ~]$ ls -al TouchArchivo
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:34 TouchArchivo
+
+[rrc@pridd ~]$ touch TouchArchivo
+[rrc@pridd ~]$ ls -al TouchArchivo
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 21:35 TouchArchivo
+
+[rrc@pridd ~]$ ls -al TouchArchivo2
+ls: cannot access TouchArchivo2: No such file or directory
+[rrc@pridd ~]$ touch -c TouchArchivo
+[rrc@pridd ~]$ ls -al TouchArchivo2
+ls: cannot access TouchArchivo2: No such file or directory
+
+[rrc@pridd ~]$ touch -d 04:56 TouchArchivo 
+[rrc@pridd ~]$ ls -al TouchArchivo
+-rw-rw-r-- 1 rrc rrc 0 Dec  4 04:56 TouchArchivo
+
+[rrc@pridd ~]$ touch -d 2012-12-12 TouchArchivo 
+[rrc@pridd ~]$ ls -al TouchArchivo
+-rw-rw-r-- 1 rrc rrc 0 Dec 12  2012 TouchArchivo
+
+[rrc@pridd ~]$ touch -d "last sunday" TouchArchivo 
+[rrc@pridd ~]$ ls -al TouchArchivo
+-rw-rw-r-- 1 rrc rrc 0 Dec  1 00:00 TouchArchivo
+
+[rrc@pridd ~]$ touch -t 195109041234 TouchArchivo 
+[rrc@pridd ~]$ ls -al TouchArchivo
+-rw-rw-r-- 1 rrc rrc 0 Sep  4  1951 TouchArchivo
+
+[rrc@pridd ~]$ ls -al TouchArchivo
+-rw-rw-r-- 1 rrc rrc 0 Sep  4 12:34 TouchArchivo
+
+[rrc@pridd ~]$ touch --version
+touch (GNU coreutils) 8.20
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Paul Rubin, Arnold Robbins, Jim Kingdon,
+David MacKenzie, and Randy Smith.
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
