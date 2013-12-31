@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#cut | cut]]
+
+== cut ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat CutEjemplo 
+Esta es el archivo que vamos usar para
+investigar cómo sirve el comando cut
+
+Listo???
+[rrc@Llawyr ComandosDeLaTerminal]$ cut -b 13 CutEjemplo 
+r
+
+
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cut -c 13 CutEjemplo 
+r
+ó
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cut -c 1,3,5-7 CutEjemplo 
+Et es
+ivsti
+
+Lso??
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cut -d : -f 1,3 /etc/passwd 
+root:0
+bin:1
+daemon:2
+adm:3
+lp:4
+sync:5
+shutdown:6
+halt:7
+mail:8
+news:9
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
