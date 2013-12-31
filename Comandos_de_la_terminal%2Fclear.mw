@@ -1,0 +1,14 @@
+__NOTOC__
+* [[:#clear | clear]]
+
+== clear ==
+
+<syntaxhighlight lang="bash">
+
+Se usa para vaciar la pantalla. Tiene ningún parámetro
+
+[rrc@Llawyr man]$ clear
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
