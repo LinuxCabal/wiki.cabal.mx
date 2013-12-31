@@ -1,0 +1,27 @@
+__NOTOC__
+* [[:#reset | reset]]
+
+== reset ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr man]$ reset -q
+xterm-new
+
+[rrc@Llawyr man]$ reset -
+xterm-new
+
+[rrc@Llawyr man]$ reset -r
+Terminal type is xterm-new.
+
+[rrc@Llawyr man]$ reset -s
+TERM=xterm-new;
+
+[rrc@Llawyr man]$ reset -V
+ncurses 5.9.20120204
+
+[rrc@Llawyr man]$ reset
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
