@@ -1,0 +1,73 @@
+__NOTOC__
+* [[:#wc | wc]]
+
+== wc ==
+
+<syntaxhighlight lang="bash">
+
+ wc [options]... [file]...
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat WCEjemplo 
+Línea Uno
+dos Tres Dos
+quatro
+Línea quatro
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc WCEjemplo 
+ 4  8 45 WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc -c WCEjemplo 
+45 WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc --chars WCEjemplo 
+43 WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc --bytes WCEjemplo 
+45 WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc -w WCEjemplo 
+8 WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc -l WCEjemplo 
+4 WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc -L WCEjemplo 
+12 WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc --version
+wc (GNU coreutils) 8.20
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Paul Rubin and David MacKenzie.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ wc --help
+Usage: wc [OPTION]... [FILE]...
+  or:  wc [OPTION]... --files0-from=F
+Print newline, word, and byte counts for each FILE, and a total line if
+more than one FILE is specified.  With no FILE, or when FILE is -,
+read standard input.  A word is a non-zero-length sequence of characters
+delimited by white space.
+The options below may be used to select which counts are printed, always in
+the following order: newline, word, character, byte, maximum line length.
+  -c, --bytes            print the byte counts
+  -m, --chars            print the character counts
+  -l, --lines            print the newline counts
+      --files0-from=F    read input from the files specified by
+                           NUL-terminated names in file F;
+                           If F is - then read names from standard input
+  -L, --max-line-length  print the length of the longest line
+  -w, --words            print the word counts
+      --help     display this help and exit
+      --version  output version information and exit
+
+Report wc bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'wc invocation'
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
