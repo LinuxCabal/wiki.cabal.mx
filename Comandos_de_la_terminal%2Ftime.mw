@@ -1,0 +1,195 @@
+__NOTOC__
+* [[:#time | time]]
+
+== time ==
+
+<syntaxhighlight lang="bash">
+Measure the running time of a program.
+
+The `time' command will run another program, and record the elapsed time or CPU Resource Used time used by that program.
+The information mmay be displayed on screen or saved in a file.
+
+Syntax
+      time [option...] command [arg...]
+
+Options
+
+ -o FILE
+ --output=FILE
+     Write the resource use statistics to FILE.
+
+ -a
+ --append
+     *Append* the resource use information to the output file instead
+     of overwriting it.
+
+ -f FORMAT
+ --format=FORMAT
+     Use FORMAT as the format string, see below for formatting options.
+
+ --help
+     Summary of the command line options.
+
+ -o FILE
+ --output=FILE
+     Write the resource use statistics to FILE.  By default, this
+     *overwrites* the file, destroying the file's previous contents.
+
+ -a
+ --append
+     *Append* the resource use information to the output file instead
+     of overwriting it.  This option is only useful with the `-o' or
+     `--output' option.
+
+ -p
+ --portability
+     Use the POSIX format.
+
+ -v
+ --verbose
+     Use the built-in verbose format, which displays each available
+     piece of information on the program's resource use on its own
+     line, with an English description of its meaning.
+
+-V
+--version
+     Print the version number of `time' and exit.
+
+Options to `time' must appear on the command line before COMMAND.
+Anything on the command line after COMMAND is passed as arguments to
+COMMAND.
+
+Setting the Output Format
+`time' uses a "format string" to determine which information to display about the resources used by the command it runs. You can specify a format string with the options listed above.
+If no format is specified on the command line, but the `TIME' environment variable is set, its value is used as the format string. Otherwise, the default format built into `time' is used:
+
+   %Uuser %Ssystem %Eelapsed %PCPU (%Xtext+%Ddata %Mmax)k 
+   %Iinputs+%Ooutputs (%Fmajor+%Rminor)pagefaults %Wswaps
+
+The Format String
+
+The "format string" controls the contents of the `time' output. It consists of "resource specifiers" and "escapes", interspersed with
+plain text.
+
+A backslash introduces an "escape", which is translated into a single printing character upon output. The valid escapes are listed
+below. An invalid escape is output as a question mark followed by a backslash.
+
+ \t     a tab character
+ \n     a newline
+ \\     a literal backslash
+
+`time' always prints a newline after printing the resource use information, so normally format strings do not end with a newline
+character (or `\n').
+
+A resource specifier consists of a percent sign followed by another character. An invalid resource specifier is output as a question mark
+followed by the invalid character. Use `%%' to output a literal percent sign.
+
+Time Resources
+
+ %E   Elapsed real (wall clock) time used by the process, in [hours:]minutes:seconds.
+
+ %e   Elapsed real (wall clock) time used by the process, in seconds.
+
+ %S   Total number of CPU-seconds used by the system on behalf of the
+      process (in kernel mode), in seconds.
+
+ %U   Total number of CPU-seconds that the process used directly (in user
+      mode), in seconds.
+
+ %P   Percentage of the CPU that this job got.  This is just user +
+      system times divied by the total running time.
+
+Memory Resources
+
+ %M   Maximum resident set size of the process during its lifetime, in
+      Kilobytes.
+
+ %t   Average resident set size of the process, in Kilobytes.
+
+ %K   Average total (data+stack+text) memory use of the process, in
+      Kilobytes.
+
+ %D   Average size of the process's unshared data area, in Kilobytes.
+
+ %p   Average size of the process's unshared stack, in Kilobytes.
+
+ %X   Average size of the process's shared text, in Kilobytes.
+
+ %Z   System's page size, in bytes.  This is a per-system constant, but
+       varies between systems.
+
+I/O Resources
+
+ %F   Number of major, or I/O-requiring, page faults that occurred while
+      the process was running.  These are faults where the page has
+      actually migrated out of primary memory.
+
+ %R   Number of minor, or recoverable, page faults.  These are pages
+      that are not valid (so they fault) but which have not yet been
+      claimed by other virtual pages.  Thus the data in the page is
+      still valid but the system tables must be updated.
+
+ %W   Number of times the process was swapped out of main memory.
+
+ %c   Number of times the process was context-switched involuntarily
+      (because the time slice expired).
+
+ %w   Number of times that the program was context-switched voluntarily,
+      for instance while waiting for an I/O operation to complete.
+
+ %I   Number of file system inputs by the process.
+
+ %O   Number of file system outputs by the process.
+
+ %r   Number of socket messages received by the process.
+
+ %s   Number of socket messages sent by the process.
+
+ %k   Number of signals delivered to the process.
+
+Command Info
+
+ %C   Name and command line arguments of the command being timed.
+
+ %x   Exit status of the command.
+
+[rrc@Llawyr ~]$ alias time=/usr/bin/time
+
+[rrc@Llawyr ~]$ cd ComandosDeLaTerminal/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ time wc /etc/hosts
+ 10  29 400 /etc/hosts
+0.00user 0.00system 0:00.00elapsed ?%CPU (0avgtext+0avgdata 3200maxresident)k
+0inputs+0outputs (0major+249minor)pagefaults 0swaps
+
+[rrc@Llawyr ComandosDeLaTerminal]$ time -f "\t%E real,\t%U user,\t%S sys" ls -Fs
+total 96
+0 Archivo1DeTres  4 CatArchivo3  4 MiArchivo.Err  4 SortSi
+0 Archivo2DeTres  4 cdcommand	 0 OutTxt	  0 STDERRArchivo
+0 Archivo3DeTres  4 CosaFile	 4 Paginas/	  4 STRERR
+0 ArchivodeTres   4 CutEjemplo	 4 RedirTxt	  0 TouchArchivo
+0 ArchivoDeTres   4 DirFile	 4 Res2		  4 typescript
+0 ArD		  4 Err3	 4 Resulto	  4 UniqEjemplo
+0 ArDeTres	  4 LSComando*	 4 ScriptFile	  4 UniqSortEjemplo
+4 CatArchivo	  0 LSList	 4 SortEjemplo	  4 WCEjemplo
+4 CatArchivo2	  4 MiArchivo	 4 SortFile
+	0:00.00 real,	0.00 user,	0.00 sys
+[rrc@Llawyr ComandosDeLaTerminal]$  time cat
+Puedes terminar con ^d
+Puedes terminar con ^d
+
+
+0.00user 0.00system 0:14.26elapsed 0%CPU (0avgtext+0avgdata 2736maxresident)k
+0inputs+0outputs (0major+220minor)pagefaults 0swaps
+
+[rrc@Llawyr ComandosDeLaTerminal]$ time -V
+GNU time 1.7
+
+[rrc@Llawyr ComandosDeLaTerminal]$ time --help
+Usage: /usr/bin/time [-apvV] [-f format] [-o file] [--append] [--verbose]
+       [--portability] [--format=format] [--output=file] [--version]
+       [--quiet] [--help] command [arg...]
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
