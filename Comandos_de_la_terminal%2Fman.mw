@@ -1,0 +1,135 @@
+__NOTOC__
+* [[:#man | man]]
+
+== man ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ man --version
+man, version 1.6g
+
+[rrc@pridd ~]$ man --help
+man, version 1.6g
+
+usage: man [-adfhktwW] [section] [-M path] [-P pager] [-S list]
+	[-m system] [-p string] name ...
+
+  a : find all matching entries
+  c : do not use cat file
+  d : print gobs of debugging information
+  D : as for -d, but also display the pages
+  f : same as whatis(1)
+  h : print this help message
+  k : same as apropos(1)
+  K : search for a string in all pages
+  t : use troff to format pages for printing
+  w : print location of man page(s) that would be displayed
+      (if no name given: print directories that would be searched)
+  W : as for -w, but display filenames only
+
+  C file   : use `file' as configuration file
+  M path   : set search path for manual pages to `path'
+  P pager  : use program `pager' to display pages
+  S list   : colon separated section list
+  m system : search for alternate system's man pages
+  p string : string tells which preprocessors to run
+               e - [n]eqn(1)   p - pic(1)    t - tbl(1)
+               g - grap(1)     r - refer(1)  v - vgrind(1)
+secciones:
+
+0p      POSIX Programmer's Manual header files
+1 	General commands
+1p      POSIX Programmer's Manual Utilities
+2 	System calls
+3 	Library functions, covering in particular the C standard library
+3p      POSIX Programmer's Manual Functions
+3pm     Perl Programmers Reference Guide
+4 	Special files (usually devices, those found in /dev) and drivers
+5 	File formats and conventions
+6 	Games and screensavers
+7 	Miscellanea
+8 	System administration commands and daemons
+9       Kernel Functions
+n       Tcl Built-In Commands
+
+
+[rrc@Llawyr man]$ man write
+WRITE(1)                         User Commands                        WRITE(1)
+
+NAME
+       write - send a message to another user
+
+SYNOPSIS
+       write user [ttyname]
+
+DESCRIPTION
+       Write allows you to communicate with other users, by copying lines from
+       your terminal to theirs.
+.
+.
+.
+
+[rrc@Llawyr man]$ man 3p write
+WRITE(3P)                  POSIX Programmer's Manual                 WRITE(3P)
+
+PROLOG
+       This  manual  page is part of the POSIX Programmer's Manual.  The Linux
+       implementation of this interface may differ (consult the  corresponding
+       Linux  manual page for details of Linux behavior), or the interface may
+       not be implemented on Linux.
+
+NAME
+       pwrite, write - write on a file
+
+SYNOPSIS
+       #include <unistd.h>
+
+       ssize_t pwrite(int fildes, const void *buf, size_t nbyte,
+              off_t offset);
+       ssize_t write(int fildes, const void *buf, size_t nbyte);
+
+.
+.
+.
+
+[rrc@Llawyr man]$ man 2 write
+WRITE(2)                   Linux Programmer's Manual                  WRITE(2)
+
+NAME
+       write - write to a file descriptor
+
+SYNOPSIS
+       #include <unistd.h>
+
+       ssize_t write(int fd, const void *buf, size_t count);
+
+DESCRIPTION
+       write()  writes  up  to  count bytes from the buffer pointed buf to the
+       file referred to by the file descriptor fd.
+
+.
+.
+.
+
+[rrc@Llawyr man]$ man 1p write
+WRITE(1P)                  POSIX Programmer's Manual                 WRITE(1P)
+
+PROLOG
+       This  manual  page is part of the POSIX Programmer's Manual.  The Linux
+       implementation of this interface may differ (consult the  corresponding
+       Linux  manual page for details of Linux behavior), or the interface may
+       not be implemented on Linux.
+
+NAME
+       write - write to another user
+
+SYNOPSIS
+       write user_name [terminal]
+
+.
+.
+.
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
