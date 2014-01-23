@@ -1,0 +1,57 @@
+__NOTOC__
+* [[:#md5sum | md5sum]]
+
+== md5sum ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ md5sum --version
+md5sum (GNU coreutils) 8.20
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Ulrich Drepper, Scott Miller, and David Madore.
+
+[rrc@pridd ~]$ md5sum --help
+Usage: md5sum [OPTION]... [FILE]...
+Print or check MD5 (128-bit) checksums.
+With no FILE, or when FILE is -, read standard input.
+
+  -b, --binary         read in binary mode
+  -c, --check          read MD5 sums from the FILEs and check them
+      --tag            create a BSD-style checksum
+  -t, --text           read in text mode (default)
+  Note: There is no difference between binary and text mode option on GNU system.
+
+The following three options are useful only when verifying checksums:
+      --quiet          don't print OK for each successfully verified file
+      --status         don't output anything, status code shows success
+  -w, --warn           warn about improperly formatted checksum lines
+
+      --strict         with --check, exit non-zero for any invalid input
+      --help     display this help and exit
+      --version  output version information and exit
+
+The sums are computed as described in RFC 1321.  When checking, the input
+should be a former output of this program.  The default mode is to print
+a line with checksum, a character indicating input mode ('*' for binary,
+space for text), and name for each FILE.
+
+Report md5sum bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'md5sum invocation'
+
+[rrc@pridd ComandosDeLaTerminal]$ md5sum ../Downloads/FacturaLibreCFDI_1.7.1.oxt 
+6efb6c01e90e725fbd25d7d21f99c7a6  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ md5sum ../Downloads/FacturaLibreCFDI_1.7.1.oxt > FacturaLibreCFDI_1.7.1.oxt.MD5SUM
+
+[rrc@pridd ComandosDeLaTerminal]$ md5sum -c FacturaLibreCFDI_1.7.1.oxt.MD5SUM
+../Downloads/FacturaLibreCFDI_1.7.1.oxt: OK
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
