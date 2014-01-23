@@ -1,0 +1,92 @@
+__NOTOC__
+* [[:#shasum | shasum]]
+
+== shasum ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum --version
+5.71
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum --help
+Usage: shasum [OPTION]... [FILE]...
+Print or check SHA checksums.
+With no FILE, or when FILE is -, read standard input.
+
+  -a, --algorithm   1 (default), 224, 256, 384, 512, 512224, 512256
+  -b, --binary      read in binary mode
+  -c, --check       read SHA sums from the FILEs and check them
+  -t, --text        read in text mode (default)
+  -p, --portable    read in portable mode
+                        produces same digest on Windows/Unix/Mac
+  -0, --01          read in BITS mode
+                        ASCII '0' interpreted as 0-bit,
+                        ASCII '1' interpreted as 1-bit,
+                        all other characters ignored
+
+The following two options are useful only when verifying checksums:
+  -s, --status      don't output anything, status code shows success
+  -w, --warn        warn about improperly formatted checksum lines
+
+  -h, --help        display this help and exit
+  -v, --version     output version information and exit
+
+When verifying SHA-512/224 or SHA-512/256 checksums, indicate the
+algorithm explicitly using the -a option, e.g.
+
+  shasum -a 512224 -c checksumfile
+
+The sums are computed as described in FIPS-180-4.  When checking, the
+input should be a former output of this program.  The default mode is to
+print a line with checksum, a character indicating type (`*' for binary,
+` ' for text, `?' for portable, `^' for BITS), and name for each FILE.
+
+Report shasum bugs to mshelor@cpan.org
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum ../Downloads/FacturaLibreCFDI_1.7.1.oxt 
+01500ec4dbf22149fbc1c04d33ad6e05532b03e3  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a 1 ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+01500ec4dbf22149fbc1c04d33ad6e05532b03e3  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a 224 ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+85f7e4320341844015bbb744ec93e4b72dce37cbb2381fd6bdbb48d7  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a 256 ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+c1e9ce02a8da5a944770fa822343539bf3eb0a926ab74c4f8679fcf9d7fac119  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a 384 ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+d1757c7740854e96beb3b8c0715e27a80f555ddb6f5c869087958f2f6d4a637d287a1271cd54af78beb4f47b2498bd7f  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a 512 ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+ca9072e6d3c8c39c49e8e0925adda6ca6da8d4f4091b5fb4cb1761b45535b32c777ba6b6d76218fe450395e324f839e942068dd4de861f32d3c1b5b199cf8dd0  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum ../Downloads/FacturaLibreCFDI_1.7.1.oxt > FacturaLibreCFDI_1.7.1.oxt.shasum
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -c FacturaLibreCFDI_1.7.1.oxt.shasum 
+../Downloads/FacturaLibreCFDI_1.7.1.oxt: OK
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a256 ../Downloads/FacturaLibreCFDI_1.7.1.oxt > FacturaLibreCFDI_1.7.1.oxt.shasum
+
+[rrc@pridd ComandosDeLaTerminal]$ cat FacturaLibreCFDI_1.7.1.oxt.shasum 
+c1e9ce02a8da5a944770fa822343539bf3eb0a926ab74c4f8679fcf9d7fac119  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -c FacturaLibreCFDI_1.7.1.oxt.shasum ../Downloads/FacturaLibreCFDI_1.7.1.oxt: OK
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a512 ../Downloads/FacturaLibreCFDI_1.7.1.oxt > FacturaLibreCFDI_1.7.1.oxt.shasum
+
+[rrc@pridd ComandosDeLaTerminal]$ cat FacturaLibreCFDI_1.7.1.oxt.shasum ca9072e6d3c8c39c49e8e0925adda6ca6da8d4f4091b5fb4cb1761b45535b32c777ba6b6d76218fe450395e324f839e942068dd4de861f32d3c1b5b199cf8dd0  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -c FacturaLibreCFDI_1.7.1.oxt.shasum ../Downloads/FacturaLibreCFDI_1.7.1.oxt: OK
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -a512 ../Downloads/FacturaLibreCFDI_1.7.1.oxt > FacturaLibreCFDI_1.7.1.oxt.sha512sum
+
+[rrc@pridd ComandosDeLaTerminal]$ cat FacturaLibreCFDI_1.7.1.oxt.sha512sum 
+ca9072e6d3c8c39c49e8e0925adda6ca6da8d4f4091b5fb4cb1761b45535b32c777ba6b6d76218fe450395e324f839e942068dd4de861f32d3c1b5b199cf8dd0  ../Downloads/FacturaLibreCFDI_1.7.1.oxt
+
+[rrc@pridd ComandosDeLaTerminal]$ shasum -c FacturaLibreCFDI_1.7.1.oxt.sha512sum 
+../Downloads/FacturaLibreCFDI_1.7.1.oxt: OK
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
