@@ -1,0 +1,20 @@
+__NOTOC__
+* [[:#uptime | uptime]]
+
+== uptime ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]# uptime -V
+procps version 3.2.8
+
+[rrc@pridd ~]# uptime --help
+usage: uptime [-V]
+    -V    display version
+
+[rrc@pridd ~]# uptime
+ 12:14:40 up 12:22,  2 users,  load average: 0.06, 0.08, 0.10
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
