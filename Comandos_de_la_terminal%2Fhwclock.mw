@@ -1,0 +1,73 @@
+__NOTOC__
+* [[:#hwclock | hwclock]]
+
+== hwclock ==
+
+<syntaxhighlight lang="bash">
+
+[root@pridd ~]# hwclock --version
+hwclock from util-linux 2.22.2
+[root@pridd ~]# hwclock --help
+
+Usage:
+ hwclock [function] [option...]
+
+Functions:
+ -h, --help           show this help text and exit
+ -r, --show           read hardware clock and print result
+     --set            set the RTC to the time given with --date
+ -s, --hctosys        set the system time from the hardware clock
+ -w, --systohc        set the hardware clock from the current system time
+     --systz          set the system time based on the current timezone
+     --adjust         adjust the RTC to account for systematic drift since
+                        the clock was last set or adjusted
+     --getepoch       print out the kernel's hardware clock epoch value
+     --setepoch       set the kernel's hardware clock epoch value to the 
+                        value given with --epoch
+     --predict        predict RTC reading at time given with --date
+ -V, --version        display version information and exit
+
+Options:
+ -u, --utc            the hardware clock is kept in UTC
+     --localtime      the hardware clock is kept in local time
+ -f, --rtc <file>     special /dev/... file to use instead of default
+     --directisa      access the ISA bus directly instead of /dev/rtc
+     --badyear        ignore RTC's year because the BIOS is broken
+     --date <time>    specifies the time to which to set the hardware clock
+     --epoch <year>   specifies the year which is the beginning of the
+                        hardware clock's epoch value
+     --noadjfile      do not access /etc/adjtime; this requires the use of
+                        either --utc or --localtime
+     --adjfile <file> specifies the path to the adjust file;
+                        the default is /etc/adjtime
+     --test           do not update anything, just show what would happen
+ -D, --debug          debugging mode
+
+[root@pridd ~]# hwclock
+Thu 23 Jan 2014 12:06:10 PM CST  -0.282194 seconds
+[root@pridd ~]# hwclock -r
+Thu 23 Jan 2014 12:06:13 PM CST  -0.172749 seconds
+[root@pridd ~]# hwclock --show
+Thu 23 Jan 2014 12:06:19 PM CST  -0.047776 seconds
+
+Se muestra el tiempo en tiempo local. No importa si el reloj está en UTC
+
+[root@pridd ~]# hwclock --systohc --test
+Clock not changed - testing only.
+Not updating adjtime file because of testing mode.
+Would have written the following to /etc/adjtime:
+0.000134 1390500511 0.000000
+1390500511
+LOCAL
+
+[root@pridd ~]# hwclock --systohc -u --test
+Clock not changed - testing only.
+Not updating adjtime file because of testing mode.
+Would have written the following to /etc/adjtime:
+247.795551 1390500548 0.000000
+1390500548
+UTC
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
