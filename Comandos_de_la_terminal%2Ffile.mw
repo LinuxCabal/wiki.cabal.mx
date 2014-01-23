@@ -1,0 +1,88 @@
+__NOTOC__
+* [[:#file | file]]
+
+== file ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ file --version
+file-5.12
+magic file from /usr/share/misc/magic
+
+[rrc@pridd ~]$ file --help
+Usage: file [OPTION...] [FILE...]
+Determine type of FILEs.
+
+      --help                 display this help and exit
+  -v, --version              output version information and exit
+  -m, --magic-file LIST      use LIST as a colon-separated list of magic
+                               number files
+  -z, --uncompress           try to look inside compressed files
+  -b, --brief                do not prepend filenames to output lines
+  -c, --checking-printout    print the parsed form of the magic file, use in
+                               conjunction with -m to debug a new magic file
+                               before installing it
+  -e, --exclude TEST         exclude TEST from the list of test to be
+                               performed for file. Valid tests are:
+                               apptype, ascii, cdf, compress, elf, encoding,
+                               soft, tar, text, tokens
+  -f, --files-from FILE      read the filenames to be examined from FILE
+  -F, --separator STRING     use string as separator instead of `:'
+  -i, --mime                 output MIME type strings (--mime-type and
+                               --mime-encoding)
+      --apple                output the Apple CREATOR/TYPE
+      --mime-type            output the MIME type
+      --mime-encoding        output the MIME encoding
+  -k, --keep-going           don't stop at the first match
+  -l, --list                 list magic strength
+  -L, --dereference          follow symlinks (default)
+  -h, --no-dereference       don't follow symlinks
+  -n, --no-buffer            do not buffer output
+  -N, --no-pad               do not pad output
+  -0, --print0               terminate filenames with ASCII NUL
+  -p, --preserve-date        preserve access times on files
+  -r, --raw                  don't translate unprintable chars to \ooo
+  -s, --special-files        treat special (block/char devices) files as
+                             ordinary ones
+  -C, --compile              compile file specified by -m
+  -d, --debug                print debugging messages
+
+[rrc@pridd ~]$ file /usr/bin/bash
+/usr/bin/bash: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.33, BuildID[sha1]=fe0cb92354ccf5fc2af3caca90c8fa11d4065f14, stripped
+
+[rrc@pridd ~]$ file -b /usr/bin/bash
+ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked (uses shared libs), for GNU/Linux 2.6.33, BuildID[sha1]=fe0cb92354ccf5fc2af3caca90c8fa11d4065f14, stripped
+
+[rrc@pridd ~]$ file /dev/ttyS0 
+/dev/ttyS0: character special
+
+[rrc@pridd ~]$ file /dev/sda1
+/dev/sda1: block special
+
+[rrc@pridd ~]$ file /etc/rc.d/rc3.d
+/etc/rc.d/rc3.d: directory
+
+[rrc@pridd ~]$ file /etc/rc3.d
+/etc/rc3.d: symbolic link to `rc.d/rc3.d'
+
+[rrc@pridd ~]$ file -L /etc/rc3.d
+/etc/rc3.d: directory
+
+[rrc@pridd ~]$ file ComandosDeLaTerminal/ScriptFile 
+ComandosDeLaTerminal/ScriptFile: ASCII text, with CRLF, LF line terminators, with escape sequences, with overstriking
+
+file screencastRAW20131207.webm 
+screencastRAW20131207.webm: WebM
+
+[rrc@pridd ~]$ file FacturaLibreCFDI_1.7.1.oxt
+FacturaLibreCFDI_1.7.1.oxt: Zip archive data, at least v2.0 to extract
+
+[rrc@pridd ~]$ su -c "file /boot/initrd-3.10.24-desktop-2.mga3.img"
+Password: 
+/boot/initrd-3.10.24-desktop-2.mga3.img: gzip compressed data, from Unix, last modified: Thu Dec 19 08:33:38 2013, max compression
+
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
