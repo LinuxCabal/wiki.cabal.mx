@@ -1,0 +1,86 @@
+Espacio para iniciarte en la experimentación con el Arduino.
+
+== Software para programar ==
+Los programas se editan y se compilan en una PC o laptop.  El arduino se conecta mediante el cable USB y se le descargan los programas para que sean ejecutados.
+
+Puedes escoger entre un ambiente integrado en modo gráfico basado en Java, o usar la línea de comando.
+
+=== Ambiente integrado de desarrollo ===
+En Ubuntu y Debian instala el paquete '''arduino'''.
+
+=== Uso desde la línea de comando ===
+Los pasos siguientes son para Ubuntu y Debian.
+# Instala los paquetes '''arduino-core''' y '''arduino-mk'''.  
+# Crea una carpeta general para arduino, y dentro de ésta puedes crear subcarpetas para cada programa o proyecto.
+# Cambia a la subcarpeta del programa en el cual vas a trabajar.
+# Crea un archivo .ino y escribe código o pega de alguno de los ejemplos o tutoriales.
+# Crea un archivo Makefile con el contenido que se muestra más abajo.
+# Para compilar el programa ejecuta ''make''.
+# Para enviar el programa al arduino ejecuta ''sudo make upload''.
+
+* Makefile
+ ARDUINO_DIR   = /usr/share/arduino
+ ARDMK_DIR     = /usr
+ AVR_TOOLS_DIR = /usr
+ 
+ BOARD_TAG    = uno
+ ARDUINO_PORT = /dev/ttyACM0
+ 
+ include /usr/share/arduino/Arduino.mk
+
+
+tras seguir las instrucciones (en Mint), encontre un pequeño problema:
+
+ /usr/share/arduino/Arduino.mk:514: build-cli/depends.mk: No such file or directory
+ mkdir build-cli
+ echo '#include <Arduino.h>' > build-cli/blink.cpp
+ cat  blink.ino >> build-cli/blink.cpp
+ make: ard-parse-boards: Command not found
+ make: ard-parse-boards: Command not found
+ make: ard-parse-boards: Command not found
+ /usr/bin/avr-g++ -MM -mmcu= -DF_CPU= -DARDUINO=100 -I. -I/...
+ cc1plus: error: missing argument to "-mmcu="
+ make: *** [build-cli/blink.d] Error 1
+ rm build-cli/blink.cpp
+
+El problema es que make no puede encontrar el programa
+'''ard-parse-boards''',
+para arreglarlo, debemos modificar el archivo
+
+/usr/share/arduino/Arduino.mk 
+(se necesita ser sudo para editarlo)
+linea 218, esta asi:
+
+ PARSE_BOARD = ard-parse-boards --boards_txt=$(BOARDS_TXT)
+
+cambiarla con:
+
+ PARSE_BOARD = $(ARDUINO_DIR)/ard-parse-boards --boards_txt=$(BOARDS_TXT)
+
+=== Comunicación serial ===
+Usa ''screen'' así:
+ screen /dev/ttyACMO 115200
+
+== Proveedores ==
+*[http://www.5hz-electronica.com/arduino.aspx 5Hz Electrónica] Dieron un descuento para dos pedidos de Arduinos y accesorios en conjunto que hizo Renich en Octubre/Noviembre  de 2011 para varios participantes de LinuxCabal.  En Monterrey.
+*[http://www.electronicaestudio.com Electrónica Estudio], motores, accesorios para robótica. En México D.F.  La recomendó Javier.
+*[http://www.steren.com.mx/catalogo/prod.asp?p=3687 ULN2803A], Darlington 8 canales, 50V, 500mA, disponible en Steren, Don lo recomendó. En varias ciudades.
+*[http://www.coldfire-electronica.com/ Coldfire Electrónica], en Guadalajara. La recomendó Arthur.
+*[http://www.hetpro-store.com/ HeTPro], en Guadalajara junto a CUCEI.  Arduino Uno y accesorios, cables conectores para protoboard, fabricación de circuitos impresos.
+
+== Ver también ==
+[[Instalación de Fritzing]]
+
+== Enlaces externos ==
+*[http://www.linuxcabal.org/TallerArduinoCabal20111001.pdf Taller introductorio], por Javier Zavala, 1 de Octubre de 2011, 27 páginas en PDF.
+*[http://groups.google.com/group/ArduinoCabal ArduinoCabal], lista de correos en google groups.
+*[http://www.arduino.cc Página oficial de Arduino]
+*[http://makezine.com/arduino/ La sección para Arduino] en Makezine
+*[http://shallowsky.com/software/arduino/arduino-cmdline.html Command-line Arduino development]
+*[http://www.suffix.be/blog/send-data-to-arduino Send data from a computer to an Arduino]
+*[http://www.slideshare.net/amritayan/test-driven-development-in-c Test Driven Development in c], por Olve Maudal, TDD usando un esquema muy sencillo para hacer las pruebas unitarias sin un framework.
+*[http://javierzavalaponce.wikispaces.com/Taller+Eagle.+Como+hacer+PCBs Taller Eagle. Como hacer PCBs], por Javier Zavala, 14 de enero de 2012
+*[http://ruggedcircuits.com/html/ancp01.html 10 Ways to Destroy an Arduino] en Rugged Circuits
+*[http://www1.electusdistribution.com.au/images_uploaded/optocoup.pdf Optocouplers: When & how to use them], PDF, 3 páginas. Electus Distribution.
+
+[[Category: ArduinoCabal]]
