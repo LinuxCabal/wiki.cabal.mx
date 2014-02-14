@@ -1,0 +1,31 @@
+__NOTOC__
+* [[:#source | source]]
+
+== source ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Source 
+MiVariable=Hola
+TuVariable=Adios
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $MiVariable
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $TuVariable
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./Source
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $MiVariable
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $TuVariable
+
+[rrc@Llawyr ComandosDeLaTerminal]$ . ./Source
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $MiVariable
+Hola
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $TuVariable
+Adios
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
