@@ -1,0 +1,81 @@
+__NOTOC__
+* [[:#env | env]]
+
+== env ==
+
+<syntaxhighlight lang="bash">
+
+Usage: env [OPTION]... [-] [NAME=VALUE]... [COMMAND [ARG]...]
+Set each NAME to VALUE in the environment and run COMMAND.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -i, --ignore-environment  start with an empty environment
+  -0, --null           end each output line with 0 byte rather than newline
+  -u, --unset=NAME     remove variable from the environment
+      --help     display this help and exit
+      --version  output version information and exit
+
+A mere - implies -i.  If no COMMAND, print the resulting environment.
+
+Report env bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'env invocation'
+
+[rrc@Llawyr ComandosDeLaTerminal]$ env --version
+env (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Richard Mlynarik and David MacKenzie.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ env
+XDG_VTNR=1
+LC_PAPER=es_MX.UTF-8
+LC_ADDRESS=es_MX.UTF-8
+XDG_SESSION_ID=1
+DM_CONTROL=/var/run/xdmctl
+LC_MONETARY=es_MX.UTF-8
+HOSTNAME=Llawyr.linuxcabal.org
+GPG_AGENT_INFO=/run/user/500/keyring-q58te9/gpg:0:1
+TERM=xterm
+VTE_VERSION=3409
+XDG_MENU_PREFIX=gnome-
+SHELL=/bin/bash
+XDM_MANAGED=method=classic
+HISTSIZE=1000
+CANBERRA_DRIVER=pulse
+LC_SOURCED=1
+.
+.
+.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al Bin
+total 12
+drwx------ 2 rrc rrc 4096 Feb 14 12:35 ./
+drwx------ 4 rrc rrc 4096 Feb 14 12:34 ../
+-rwxr-xr-x 1 rrc rrc   64 Feb 14 12:35 foo*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Bin/foo
+#!/bin/bash
+
+echo "Son los contenidos de foo en la carpeta Bin"
+
+[rrc@Llawyr ComandosDeLaTerminal]$ foo
+bash: foo: command not found
+
+[rrc@Llawyr ComandosDeLaTerminal]$ env - PATH=Bin foo
+PATH ahorra es Bin
+Son los contenidos de foo en la carpeta Bin
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
