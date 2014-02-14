@@ -1,0 +1,20 @@
+__NOTOC__
+* [[:#test | []]
+
+== [ ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $Var
+
+[rrc@Llawyr ComandosDeLaTerminal]$ if [ $Var  ]; then echo SiVar;else echo NoVar; fi
+NoVar
+
+[rrc@Llawyr ComandosDeLaTerminal]$ Var=OK
+
+[rrc@Llawyr ComandosDeLaTerminal]$ if [ $Var  ]; then echo SiVar;else echo NoVar; fi
+SiVar
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
