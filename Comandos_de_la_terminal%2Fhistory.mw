@@ -1,0 +1,158 @@
+__NOTOC__
+* [[:#history | history]]
+
+== history ==
+
+<syntaxhighlight lang="bash">
+
+history [n]
+       history -c
+       history -d offset
+       history -anrw [filename]
+       history -p arg [arg ...]
+       history -s arg [arg ...]
+              With no options, display the command history list with line num‐
+              bers.  Lines listed with a * have been modified.  An argument of
+              n lists only the last n lines.  If the shell variable  HISTTIME‐
+              FORMAT  is  set  and not null, it is used as a format string for
+              strftime(3) to display the time stamp associated with each  dis‐
+              played  history  entry.  No intervening blank is printed between
+              the formatted time stamp and the history line.  If  filename  is
+              supplied,  it  is  used as the name of the history file; if not,
+              the value of HISTFILE is used.  Options, if supplied,  have  the
+              following meanings:
+              -c     Clear the history list by deleting all the entries.
+              -d offset
+                     Delete the history entry at position offset.
+              -a     Append  the  ``new'' history lines (history lines entered
+                     since the beginning of the current bash session)  to  the
+                     history file.
+              -n     Read  the history lines not already read from the history
+                     file into the current  history  list.   These  are  lines
+                     appended  to  the history file since the beginning of the
+                     current bash session.
+              -r     Read the contents of the history file and use them as the
+                     current history.
+              -w     Write  the current history to the history file, overwrit‐
+                     ing the history file's contents.
+              -p     Perform history substitution on the  following  args  and
+                     display  the  result  on  the  standard output.  Does not
+                     store the results in the history list.  Each arg must  be
+                     quoted to disable normal history expansion.
+              -s     Store  the  args  in  the history list as a single entry.
+                     The last command in the history list  is  removed  before
+                     the args are added.
+
+              If  the  HISTTIMEFORMAT variable is set, the time stamp informa‐
+              tion associated with each history entry is written to  the  his‐
+              tory  file, marked with the history comment character.  When the
+              history file is read, lines beginning with the  history  comment
+              character  followed  immediately  by  a digit are interpreted as
+              timestamps for the previous history line.  The return value is 0
+              unless  an  invalid option is encountered, an error occurs while
+              reading or writing the history file, an invalid offset  is  sup‐
+              plied as an argument to -d, or the history expansion supplied as
+              an argument to -p fails.
+
+[rrc@Llawyr ~]$ history
+    1  okular Downloads/2014013331452638NGELO\(1\).pdf
+    2  ls -al *.pdf
+    3  ls -al Downloads/*.pdf
+    4  ssh myrddin
+    5  su -
+    6  cd ComandosDeLaTerminal/
+    7  vi Source
+    8  bash Source 
+    9  echo $MiVariable
+   10  cat Source 
+   11  echo $TuVariable
+   12  . /Source
+   13  . ./Source
+            .
+[rrc@Llawyr ~]$ history -d 3
+[rrc@Llawyr ~]$ history
+    1  okular Downloads/2014013331452638NGELO\(1\).pdf
+    2  ls -al *.pdf
+    3  ssh myrddin
+    4  su -
+    5  cd ComandosDeLaTerminal/
+    6  vi Source
+    7  bash Source 
+    8  echo $MiVariable
+    9  cat Source 
+   10  echo $TuVariable
+   11  . /Source
+   12  . ./Source
+   13  echo $TuVariable
+         .
+[rrc@Llawyr ~]$ history 10
+  125      6  vi Source
+  126      7  bash Source 
+  127      8  echo $MiVariable
+  128      9  cat Source 
+  129     10  echo $TuVariable
+  130     11  . /Source
+  131     12  . ./Source
+  132     13  echo $TuVariable
+  133  history -d 133
+  134  history 10
+        .
+[rrc@Llawyr ~]$ !!
+history 10
+  125      6  vi Source
+  126      7  bash Source 
+  127      8  echo $MiVariable
+  128      9  cat Source 
+  129     10  echo $TuVariable
+  130     11  . /Source
+  131     12  . ./Source
+  132     13  echo $TuVariable
+  133  history -d 133
+  134  history 10
+
+[rrc@Llawyr ~]$ !-129
+echo $TuVariable
+
+Mira ^P <Enter>
+[rrc@Llawyr ~]$ echo $TuVariable
+
+Presiona ^p más de una ves
+
+[rrc@Llawyr ~]$ !vi
+vi Source
+
+# vi ~/.bash_profile
+HISTSIZE=450
+HISTFILESIZE=450
+
+export HISTCONTROL=ignorespace
+
+[rrc@Llawyr ~]$ history
+  143 echo $TuVariable
+  144  cat HOLD
+  145 cat HOLD 
+  146  history | less
+  147  clear
+  148  export HISTCONTROL=ignorespace
+  149  history
+
+[rrc@Llawyr ~]$  ls -ald
+drwxr-xr-x 56 rrc rrc 20480 Feb 14 15:42 ./
+
+[rrc@Llawyr ~]$ history
+  143 echo $TuVariable
+  144  cat HOLD
+  145 cat HOLD 
+  146  history | less
+  147  clear
+  148  export HISTCONTROL=ignorespace
+  149  history
+  150  history
+
+[rrc@Llawyr ~]$ history -c
+[rrc@Llawyr ~]$ history
+    1  history
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
