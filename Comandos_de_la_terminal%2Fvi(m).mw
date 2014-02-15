@@ -1,0 +1,189 @@
+__NOTOC__
+* [[:#vi(m) | vi(m)]]
+
+== vi(m) ==
+
+<syntaxhighlight lang="bash">
+
+Invocación de vi.
+
+  vi
+abre la ventana de edición sin abrir ningún archivo.
+
+  vi arch1
+edita el archivo arch1 si existe; si no, lo crea.
+
+  vi arch1 arch2
+edita sucesivamente los archivos arch1 y luego arch2.
+
+  vi +45 arch1
+edita el archivo arch1 posicionando el cursor en la línea 45.
+
+  vi +$ arch1
+edita el archivo arch1 posicionando el cursor al final del archivo.
+
+  vi +/Habia arch1
+edita el archivo arch1 en la primera ocurrencia de la palabra "Habia".
+
+    modo comando: las teclas ejecutan acciones que permiten desplazar el cursor, recorrer el archivo, ejecutar comandos de manejo del texto y salir del editor. Es el modo inicial de vi.
+    modo texto o modo inserción: las teclas ingresan caracteres en el texto.
+    modo ex: las teclas se usan para escribir comandos en la última línea al final de la pantalla.
+
+Guía de supervivencia.
+Con unos pocos comandos básicos se puede ya trabajar en vi editando y salvando un texto:
+
+Movimiento del cursor:
+
+flechas      mover en distintas direcciones
+h o <BS>     una posición hacia la izquierda
+l o <SP>     una posición hacia la derecha
+k o -        una línea hacia arriba
+j o +        una línea hacia abajo
+$            fin de línea
+0            principio de línea
+gg           comienzo del archivo
+1G           comienzo del archivo
+G            fin del archivo
+18G          línea número 18
+Ctrl-G       mostrar número de línea actual
+w            comienzo de la palabra siguiente
+e            fin de la palabra siguiente
+E            fin de la palabra siguiente antes de espacio
+b            principio de la palabra anterior
+^            primera palabra de la línea
+%            hasta el paréntesis que aparea
+H            parte superior de la pantalla
+L            parte inferior de la pantalla
+M            al medio de la pantalla
+23|          cursor a la columna 23
+:1           mueve a línea 1 
+:15          mueve a línea 15 
+:$           mueve a última línea
+
+Control de pantalla.
+
+Ctrl-f    una pantalla adelante
+Ctrl-b    una pantalla atrás
+Ctrl-l    redibujar la pantalla
+Ctrl-d    media pantalla adelante
+Ctrl-u    media pantalla atrás
+
+i         inserta texto a la posición del cursor
+I         inserta texto al inicio de la línea
+a         agrega texto a la derecha del cursor
+A         agrega texto a la fin de la línea
+o         agrega una línea nueva abajo del cursor
+O         agrega una línea nueva arriba del cursor
+ESC       vuelve a modo comando
+
+x         borra el caracter sobre el cursor
+r         sobreescribir solo el caracter sobre el cursor
+R         sobreescribir (cambiar) texto
+dd        borra una línea
+D         borrar desde cursor a fin de línea
+dw        borrar desde cursor a fin de palabra
+d$        borrar desde cursor a fin de línea
+d0        borrar desde cursor a principio de línea
+c         reemplaza caracteres
+cw        reemplaza palabras
+C o c$    reemplaza hasta el fin de línea
+c0        reemplaza desde el comienzo de línea
+
+u         deshace último cambio
+J         unir dos líneas en una
+ZZ        grabar cambios si los hubo y salir
+U         deshacer todos los cambios en una línea
+^R        Redo (Solo en vim)
+
+Y o yy      copiar línea
+P           pegar antes del cursor
+p           pegar después del cursor
+yw          copiar palabra
+y0          copiar de cursor al inicio de la línea
+y$          copiar de cursor a fin de línea
+yG          copiar de la línea de curso hasta la fin del archivo
+ygg         copiar de la línea de curso hasta el inicio del archivo
+
+Un buffer nombrado puede ser asignado antes de cualquier cambio, borra, yank or put commando. Su nombre tiene la forma comilla con letra minuscula.
+"ayy o "aY  copiar línea en buffer llamado 'a'
+"ap         pegar desde buffer 'a', a la derecha del cursor
+"aP         pegar desde buffer 'a', a la izquierda del cursor
+"bdd        borrar línea y guardar en buffer 'b'
+"bdw        borrar palabra y guardar en buffer 'b'
+
+:6r arch3     inserta debajo de la líne 6 el archivo arch3
+
+:q            salir si no hubo cambios
+:q!           salir sin guardar cambios
+:n            siguiente archivo si no hubo cambios
+:n!           siguiente archivo sin guardar cambios
+:w            guardar cambios
+:wn           guardar cambios y muestra el siguiente archivo 
+:w arch1      guardar cambios en archivo arch1
+:wq           guardar cambios y salir
+:n,mw arch1   guardar líneas n a m en arch1
+:n,mw >>arch1 guardar líneas n a m al fin de arch1
+:r arch2      insertar un archivo
+:e arch2      editar un nuevo archivo
+:! comando    executar comando
+:e! arch2     idem sin salvar anterior
+:r! comando   insertar salida de comando
+:shell        salir al shell (vuelve con exit)
+
+Búsqueda
+
+/str    buscar hacia adelante cadena de caracteres 'str'
+?str    buscar hacia atrás cadena de caracteres 'str'
+/str\c  buscar hacia adelante cadena de caracteres 'str' sin sensibilidad a minuscula o mayuscula
+/str\C  buscar hacia adelante cadena de caracteres 'str' con sensibilidad a minuscula o mayuscula
+n       repetir último comando / o ?
+N       repetir último comando / o ? para el otro lado
+fc      buscar el siguiente caracter 'c' en la línea
+Fc      buscar el anterior caracter 'c' en la línea
+tc      ir al caracter anterior al siguiente 'c' 
+Tc      ir al caracter posterior al precedente 'c'
+;       repetir el último comando f, F, t, o T
+,       último comando f, F, t, o T para el otro lado
+.       repetir el último comando
+
+Buscar y re-empllzar
+:%s/cadena a buscar/cadena a sobreescribir/gc
+
+Opciones
+
+:set                cambio de opciones 
+:set nu             mostrar números de línea 
+:set nonu           no mostrar números de línea 
+:set showmode       mostrar modo actual de vi 
+:set noshowmode     no mostrar modo actual de vi
+:set paste          Pegar sin auto indent
+:set listchars=eol:$,tab:>-,trail::set listchars=eol:$,tab:>-
+:set list
+:set nolist
+:set ic             Buscar sin sensibilidad a minuscula o mayuscula
+:set noic           Regresa a buscar con sensibilidad a minuscula o mayuscula
+:set list           Muestra <tab> y Fin de líneas
+:set nolist         No muestra <tab> y Fin de líneas
+:set ts=n           Número de <space> de <tab> default de 8
+:set show mode      Muestra Insert o Replace al fondo
+:set tw=n           set ancho de línea para auto wrap
+:set formatoptions+=t No wrap en mitar de palabra
+
+grabar un macro:
+  qa                grabar macro llamado a
+  sequencia de comandos a asignar a a
+  q                 terminar grabar
+  @a                Ejecutar el macro una ves.
+
+ej:   vi Arch1
+      i1.
+      <esc>qa
+      yyp
+      <ctrl>a
+      q
+      98@a
+ 
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
