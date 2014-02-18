@@ -1,0 +1,59 @@
+__NOTOC__
+* [[:#info | info]]
+
+== info ==
+
+<syntaxhighlight lang="bash">
+
+info [OPTION]... [MENU-ITEM...]  
+
+OPTIONS
+--apropos=STRING
+    look up STRING in all indices of all manuals. 
+-d, --directory=DIR
+    add DIR to INFOPATH. 
+--dribble=FILENAME
+    remember user keystrokes in FILENAME. 
+-f, --file=FILENAME
+    specify Info file to visit. 
+-h, --help
+    display this help and exit. 
+--index-search=STRING
+    go to node pointed by index entry STRING. 
+-n, --node=NODENAME
+    specify nodes in first visited Info file. 
+-o, --output=FILENAME
+    output selected nodes to FILENAME. 
+-R, --raw-escapes
+    don't remove ANSI escapes from man pages. 
+--restore=FILENAME
+    read initial keystrokes from FILENAME. 
+-O, --show-options, --usage
+    go to command-line options node. 
+--subnodes
+    recursively output menu items. 
+--vi-keys
+    use vi-like and less-like key bindings. 
+--version
+    display version information and exit. 
+
+The first non-option argument, if present, is the menu entry to start from; it is searched for in all `dir' files along INFOPATH. If it is not present, info merges all `dir' files and shows the result. Any remaining arguments are treated as the names of menu items relative to the initial node visited.  
+EXAMPLES
+
+info
+    show top-level dir menu 
+
+[rrc@Llawyr ~]$ info printf
+
+[rrc@Llawyr ~]$ info --apropos printf
+"(coreutils)stat invocation" -- --printf=FORMAT
+"(coreutils)printf invocation" -- printf
+"(find)Print File Information" -- -fprintf
+"(find)Print File Information" -- -printf
+"(autoconf)Particular Functions" -- HAVE_VPRINTF
+"(autoconf)Particular Functions" -- AC_FUNC_VPRINTF
+
+ 
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
