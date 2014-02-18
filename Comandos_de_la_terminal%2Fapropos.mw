@@ -1,0 +1,41 @@
+__NOTOC__
+* [[:#apropos | apropos]]
+
+== apropos ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ apropos --help
+usage: apropos keyword ...
+
+[rrc@Llawyr ~]$ apropos --version
+apropos from man-1.6g
+
+[rrc@Llawyr ~]$ apropos printf
+.
+.
+.
+asprintf             (3)  - print to allocated string
+dprintf              (3)  - print to a file descriptor
+format               (n)  - Format a string in the style of sprintf
+fprintf [printf]     (3)  - formatted output conversion
+fprintf [printf]     (3p)  - print formatted output
+fwprintf [wprintf]   (3)  - formatted wide-character output conversion
+fwprintf [wprintf]   (3p)  - print formatted wide-character output
+printf               (1)  - format and print data
+printf               (1p)  - write formatted output
+printf               (3)  - formatted output conversion
+printf               (3p)  - print formatted output
+printf [builtins]    (1)  - bash built-in commands, see bash(1)
+snprintf [printf]    (3)  - formatted output conversion
+snprintf [printf]    (3p)  - print formatted output
+sprintf [printf]     (3)  - formatted output conversion
+sprintf [printf]     (3p)  - print formatted output
+swprintf [wprintf]   (3)  - formatted wide-character output conversion
+swprintf [wprintf]   (3p)  - print formatted wide-character output
+.
+.
+.
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
