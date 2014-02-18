@@ -1,0 +1,72 @@
+__NOTOC__
+* [[:#which | which]]
+
+== which ==
+
+<syntaxhighlight lang="bash">
+[rrc@Llawyr ~]$ which --help
+Usage: which [options] [--] COMMAND [...]
+Write the full path of COMMAND(s) to standard output.
+
+  --version, -[vV] Print version and exit successfully.
+  --help,          Print this help and exit successfully.
+  --skip-dot       Skip directories in PATH that start with a dot.
+  --skip-tilde     Skip directories in PATH that start with a tilde.
+  --show-dot       Don't expand a dot to current directory in output.
+  --show-tilde     Output a tilde for HOME directory for non-root.
+  --tty-only       Stop processing options on the right if not on tty.
+  --all, -a        Print all matches in PATH, not just the first
+  --read-alias, -i Read list of aliases from stdin.
+  --skip-alias     Ignore option --read-alias; don't read stdin.
+  --read-functions Read shell functions from stdin.
+  --skip-functions Ignore option --read-functions; don't read stdin.
+
+Recommended use is to write the output of (alias; declare -f) to standard
+input, so that which can show aliases and shell functions. See which(1) for
+examples.
+
+If the options --read-alias and/or --read-functions are specified then the
+output can be a full alias or function definition, optionally followed by
+the full path of each command used inside of those.
+
+Report bugs to <which-bugs@gnu.org>.
+
+[rrc@Llawyr ~]$ which --version
+GNU which v2.20, Copyright (C) 1999 - 2008 Carlo Wood.
+GNU which comes with ABSOLUTELY NO WARRANTY;
+This program is free software; your freedom to use, change
+and distribute this program is protected by the GPL.
+
+[rrc@Llawyr ~]$ which HolaMundo
+which: no HolaMundo in (/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin)
+
+[rrc@Llawyr ~]$ which printf
+/usr/bin/printf
+
+[rrc@Llawyr ~]$ which fsck.ext4
+which: no fsck.ext4 in (/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin)
+
+[rrc@Llawyr ~]$ su -
+Password: 
+[root@Llawyr ~]#  which fsck.ext4
+/usr/sbin/fsck.ext4
+
+[root@Llawyr ~]# which HolaMundo
+which: no HolaMundo in (/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin)
+
+[root@Llawyr bin]# cp -a /bin/yes .
+[root@Llawyr bin]# ls -al yes
+-rwxr-xr-x 1 root root 28992 Dec 20 19:21 yes*
+[root@Llawyr bin]# which yes
+/usr/local/bin/yes
+
+[root@Llawyr bin]# which -a yes
+/usr/local/bin/yes
+/usr/bin/yes
+
+[root@Llawyr bin]# rm yes
+rm: remove regular file ‘yes’? y
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
