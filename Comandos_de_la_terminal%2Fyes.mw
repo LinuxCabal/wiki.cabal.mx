@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#yes | yes]]
+
+== yes ==
+
+<syntaxhighlight lang="bash">
+[rrc@Llawyr ~]$ yes --help
+Usage: yes [STRING]...
+  or:  yes OPTION
+Repeatedly output a line with all specified STRING(s), or 'y'.
+
+      --help     display this help and exit
+      --version  output version information and exit
+
+Report yes bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'yes invocation'
+
+[rrc@Llawyr ~]$ yes --version
+yes (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David MacKenzie.
+
+[rrc@Llawyr ~]$ yes
+y
+y
+y
+y
+y
+y
+y
+y
+y
+^C
+
+[rrc@Llawyr ~]$ yes Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+Hola Clase
+^C
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
