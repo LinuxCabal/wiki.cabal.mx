@@ -1,0 +1,18 @@
+__NOTOC__
+* [[:#false | false]]
+
+== false ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ true
+[rrc@Llawyr ~]$ if [  $? == 0 ]; then echo Verdad; else echo Falso;fi
+Verdad
+
+[rrc@Llawyr ~]$ false
+[rrc@Llawyr ~]$ if [  $? == 0 ]; then echo Verdad; else echo Falso;fi
+Falso
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
