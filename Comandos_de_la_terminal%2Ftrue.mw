@@ -1,0 +1,19 @@
+__NOTOC__
+* [[:#true | true]]
+
+== true ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ hola
+bash: hola: command not found
+[rrc@Llawyr ~]$ echo $?
+127
+
+[rrc@Llawyr ~]$ true
+[rrc@Llawyr ~]$ if [  $? == 0 ]; then echo Verdad; else echo falso;fi
+Verdad
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
