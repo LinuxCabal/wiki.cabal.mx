@@ -1,0 +1,68 @@
+__NOTOC__
+* [[:#cd | cd]]
+
+== cd ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# which cd
+which: no cd in (/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin)
+
+Built-In command
+cd [-L|[-P [-e]]] [dir]
+
+[rrc@Llawyr ~]$ cd /bin
+[rrc@Llawyr bin]$ pwd
+/bin
+
+[rrc@Llawyr bin]$ cd
+[rrc@Llawyr ~]$ pwd
+/home/rrc
+
+[rrc@Llawyr ~]$ cd -
+/bin
+
+[rrc@Llawyr bin]$ cd ~
+[rrc@Llawyr ~]$ pwd
+/home/rrc
+
+[rrc@Llawyr ~]$ cd ~rrc2
+[rrc@Llawyr rrc2]$ pwd
+/home/rrc2
+
+[rrc@Llawyr ~]$ unalias cd
+[rrc@Llawyr ~]$ alias cd
+bash: alias: cd: not found
+
+[rrc@Llawyr ~]$ cd /etc
+[rrc@Llawyr etc]$ pwd
+/etc
+
+[rrc@Llawyr etc]$ ls -ald rc3.d
+lrwxrwxrwx 1 root root 10 Jun 17 08:14 rc3.d -> rc.d/rc3.d/
+
+[rrc@Llawyr etc]$ cd -L rc3.d
+[rrc@Llawyr rc3.d]$ pwd
+/etc/rc3.d
+
+[rrc@Llawyr rc3.d]$ cd -
+[rrc@Llawyr etc]$ pwd
+/etc
+
+[rrc@Llawyr etc]$ cd -P rc3.d
+[rrc@Llawyr rc3.d]$ pwd
+/etc/rc.d/rc3.d
+
+[rrc@Llawyr rc3.d]$ CDPATH=.:/usr/local
+
+[rrc@Llawyr rc3.d]$ cd /
+[rrc@Llawyr /]$ pwd
+/
+[rrc@Llawyr /]$ cd bin
+/bin
+[rrc@Llawyr bin]$ cd bin
+/usr/local/bin
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
