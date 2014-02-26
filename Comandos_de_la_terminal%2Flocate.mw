@@ -1,0 +1,86 @@
+__NOTOC__
+* [[:#locate | locate]]
+
+== locate ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# locate --help
+Usage: locate [OPTION]... [PATTERN]...
+Search for entries in a mlocate database.
+
+  -A, --all              only print entries that match all patterns
+  -b, --basename         match only the base name of path names
+  -c, --count            only print number of found entries
+  -d, --database DBPATH  use DBPATH instead of default database (which is
+                         /var/lib/mlocate/mlocate.db)
+  -e, --existing         only print entries for currently existing files
+  -L, --follow           follow trailing symbolic links when checking file
+                         existence (default)
+  -h, --help             print this help
+  -i, --ignore-case      ignore case distinctions when matching patterns
+  -l, --limit, -n LIMIT  limit output (or counting) to LIMIT entries
+  -m, --mmap             ignored, for backward compatibility
+  -P, --nofollow, -H     don't follow trailing symbolic links when checking file
+                         existence
+  -0, --null             separate entries with NUL on output
+  -S, --statistics       don't search for entries, print statistics about each
+                         used database
+  -q, --quiet            report no error messages about reading databases
+  -r, --regexp REGEXP    search for basic regexp REGEXP instead of patterns
+      --regex            patterns are extended regexps
+  -s, --stdio            ignored, for backward compatibility
+  -V, --version          print version information
+  -w, --wholename        match whole path name (default)
+
+Report bugs to mitr@redhat.com.
+
+[root@Llawyr ~]# locate --version
+mlocate 0.26
+Copyright (C) 2007 Red Hat, Inc. All rights reserved.
+This software is distributed under the GPL v.2.
+
+This program is provided with NO WARRANTY, to the extent permitted by law.
+
+[root@Llawyr ~]# locate --count man
+20142
+
+[root@Llawyr ~]# locate screencast
+/home/rrc/screencast.webm
+/home/rrc/screencastRAW20140215.webm
+/home/rrc/.kde4/share/apps/RecentDocuments/screencast.webm.desktop
+/usr/lib64/chromium-browser/resources/inspector/screencastView.css
+/usr/share/blender/2.69/scripts/addons/space_view3d_screencast_keys.py
+/usr/share/blender/2.69/scripts/addons/__pycache__/space_view3d_screencast_keys.cpython-33.pyc
+/usr/share/blender/2.69/scripts/addons/__pycache__/space_view3d_screencast_keys.cpython-33.pyo
+/usr/share/gnome-shell/js/ui/screencast.js
+/usr/share/gnome-shell/js/ui/status/screencast.js
+/usr/share/help/C/evince/figures/synctex_screencast.ogv
+/usr/share/help/en_GB/evince/figures/synctex_screencast.ogv
+/usr/share/help/es/evince/figures/synctex_screencast.ogv
+
+
+[root@Llawyr ~]# locate [Ss]creencast
+
+[root@Llawyr ~]# locate -r [Ss]creencast
+/home/rrc/screencast.webm
+/home/rrc/screencastRAW20140215.webm
+/home/rrc/.kde4/share/apps/RecentDocuments/screencast.webm.desktop
+/usr/lib64/chromium-browser/resources/inspector/screencastView.css
+/usr/share/blender/2.69/scripts/addons/space_view3d_screencast_keys.py
+/usr/share/blender/2.69/scripts/addons/__pycache__/space_view3d_screencast_keys.cpython-33.pyc
+/usr/share/blender/2.69/scripts/addons/__pycache__/space_view3d_screencast_keys.cpython-33.pyo
+/usr/share/dbus-1/interfaces/org.gnome.Shell.Screencast.xml
+/usr/share/gnome-shell/js/ui/screencast.js
+/usr/share/gnome-shell/js/ui/status/screencast.js
+/usr/share/help/C/evince/figures/synctex_screencast.ogv
+/usr/share/help/en_GB/evince/figures/synctex_screencast.ogv
+/usr/share/help/es/evince/figures/synctex_screencast.ogv
+
+[root@Llawyr ~]# locate -r ^\/home\/rrc\/[Ss]creencast
+/home/rrc/screencast.webm
+/home/rrc/screencastRAW20140215.webm
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
