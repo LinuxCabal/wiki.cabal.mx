@@ -1,0 +1,60 @@
+__NOTOC__
+* [[:#updatedb | updatedb]]
+
+== updatedb ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# updatedb --help
+Usage: updatedb [OPTION]...
+Update a mlocate database.
+
+  -f, --add-prunefs FS           omit also FS
+  -n, --add-prunenames NAMES     omit also NAMES
+  -e, --add-prunepaths PATHS     omit also PATHS
+  -U, --database-root PATH       the subtree to store in database (default "/")
+  -h, --help                     print this help
+  -o, --output FILE              database to update (default
+                                 `/var/lib/mlocate/mlocate.db')
+      --prune-bind-mounts FLAG   omit bind mounts (default "no")
+      --prunefs FS               filesystems to omit from database
+      --prunenames NAMES         directory names to omit from database
+      --prunepaths PATHS         paths to omit from database
+  -l, --require-visibility FLAG  check visibility before reporting files
+                                 (default "yes")
+  -v, --verbose                  print paths of files as they are found
+  -V, --version                  print version information
+
+The configuration defaults to values read from
+`/etc/updatedb.conf'.
+
+Report bugs to mitr@redhat.com.
+
+[root@Llawyr ~]# cat /etc/updatedb.conf 
+PRUNE_BIND_MOUNTS = "yes"
+PRUNEFS = "9p afs anon_inodefs auto autofs bdev binfmt_misc cgroup cifs coda configfs cpuset debugfs devpts ecryptfs exofs fuse fuse.sshfs fusectl gfs gfs2 hugetlbfs inotifyfs iso9660 jffs2 lustre mqueue ncpfs nfs nfs4 nfsd pipefs proc ramfs rootfs rpc_pipefs securityfs selinuxfs sfs sockfs sysfs tmpfs ubifs udf usbfs"
+PRUNENAMES = ".git .hg .svn"
+PRUNEPATHS = "/afs /media /mnt /net /sfs /tmp /udev /var/cache/ccache /var/spool/cups /var/spool/squid /var/tmp"
+
+
+[root@Llawyr ~]# updatedb --version
+updatedb (mlocate) 0.26
+Copyright (C) 2007 Red Hat, Inc. All rights reserved.
+This software is distributed under the GPL v.2.
+
+This program is provided with NO WARRANTY, to the extent permitted by law.
+[root@Llawyr ~]# cat /etc/cron.daily/mlocate.cron 
+#!/bin/sh
+nodevs=$(< /proc/filesystems awk '$1 == "nodev" && $2 != "rootfs" { print $2 }')
+renice +19 -p $$ >/dev/null 2>&1
+ionice -c3 -p $$ >/dev/null 2>&1
+/usr/bin/updatedb -f "$nodevs"
+
+[root@Llawyr ~]# ls -al /var/lib/mlocate/mlocate.db
+-rw-r----- 1 root mlocate 7575063 Feb 26 10:46 /var/lib/mlocate/mlocate.db
+
+[root@Llawyr ~]# man 5 mlocate.db 
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
