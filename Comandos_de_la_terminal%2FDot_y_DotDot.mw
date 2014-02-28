@@ -1,0 +1,62 @@
+__NOTOC__
+* [[:#Dot y DotDot | Dot y DotDot]]
+
+== Dot y DotDot ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr Presentaciones]$ ls
+Asterisk/  InstallMandriva/   MurosContrafuegos/  PPPoE/
+Bash/      InstallMDK2010.0/  OpenSSH/            QoS/
+DHCP/      LSComando*         OpenVPN/            Squid/
+
+[rrc@Llawyr Presentaciones]$ ls .
+Asterisk/  InstallMandriva/   MurosContrafuegos/  PPPoE/
+Bash/      InstallMDK2010.0/  OpenSSH/            QoS/
+DHCP/      LSComando*         OpenVPN/            Squid/
+
+[rrc@Llawyr Presentaciones]$ ls ./OpenVPN/
+client.conf    openvpn/                   OpenVPN.odp  server.conf
+gaytan70.ovpn  openvpn-2.2.1-install.exe  OpenVPN.pdf
+
+[rrc@Llawyr Presentaciones]$ ls -al LSComando 
+-rwx------ 1 rrc rrc 5 Nov 14 11:48 LSComando*
+
+[rrc@Llawyr Presentaciones]$ cat LSComando 
+ls /
+
+[rrc@Llawyr Presentaciones]$ echo $PATH
+/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin
+
+[rrc@Llawyr Presentaciones]$ LSComando
+bash: LSComando: command not found
+
+[rrc@Llawyr Presentaciones]$ ./LSComando
+1    boot  etc   initrd  lib64       media  opt   root  sbin  sys  usr
+bin  dev   home  lib     lost+found  mnt    proc  run   srv   tmp  var
+
+[rrc@Llawyr ~]$ cd /usr/share/doc/systemd/
+[rrc@Llawyr systemd]$ pwd
+/usr/share/doc/systemd
+
+[rrc@Llawyr systemd]$ cd /usr/share/doc/system-config-printer/
+[rrc@Llawyr system-config-printer]$ pwd
+/usr/share/doc/system-config-printer
+
+[rrc@Llawyr system-config-printer]$ cd ../systemd
+[rrc@Llawyr systemd]$ pwd
+/usr/share/doc/systemd
+
+[rrc@Llawyr systemd]$ cd ../../gnome-tweak-tool/
+[rrc@Llawyr gnome-tweak-tool]$ pwd
+/usr/share/gnome-tweak-tool
+
+[rrc@Llawyr gnome-tweak-tool]$ cd ../../../../home/rrc
+[rrc@Llawyr ~]$ pwd
+/home/rrc
+
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
