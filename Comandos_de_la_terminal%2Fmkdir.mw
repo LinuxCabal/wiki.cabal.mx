@@ -1,0 +1,85 @@
+__NOTOC__
+* [[:#mkdir | mkdir]]
+
+== mkdir ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ mkdir --help
+Usage: mkdir [OPTION]... DIRECTORY...
+Create the DIRECTORY(ies), if they do not already exist.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -m, --mode=MODE   set file mode (as in chmod), not a=rwx - umask
+  -p, --parents     no error if existing, make parent directories as needed
+  -v, --verbose     print a message for each created directory
+  -Z, --context=CTX  set the SELinux security context of each created
+                      directory to CTX
+      --help     display this help and exit
+      --version  output version information and exit
+
+Report mkdir bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'mkdir invocation'
+
+[rrc@Llawyr ~]$ mkdir --version
+mkdir (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David MacKenzie.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir NuevaCarpeta
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald NuevaCarpeta/
+drwx------ 2 rrc rrc 4096 Mar  4 12:25 NuevaCarpeta//
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir --mode=750 NuevaCarpeta2 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald NuevaCarpeta2
+drwx------ 2 rrc rrc 4096 Mar  4 12:26 NuevaCarpeta2/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir --mode=g=r NuevaCarpeta4
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald NuevaCarpeta4
+drwx------ 2 rrc rrc 4096 Mar  4 12:28 NuevaCarpeta4/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ umask
+0077
+[rrc@Llawyr ComandosDeLaTerminal]$ umask 022
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir NuevaCarpeta5
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald NuevaCarpeta5
+drwxr-xr-x 2 rrc rrc 4096 Mar  4 12:32 NuevaCarpeta5/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir --mode=g-r NuevaCarpeta6
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald NuevaCarpeta6
+drwx--xr-x 2 rrc rrc 4096 Mar  4 12:41 NuevaCarpeta6/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir --mode=750 NuevaCarpeta7
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald NuevaCarpeta7
+drwxr-x--- 2 rrc rrc 4096 Mar  4 12:33 NuevaCarpeta7/
+
+rrc@Llawyr ComandosDeLaTerminal]$ mkdir -p Carpeta1/Carpeta2/Carpeta3
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alR Carpeta1
+Carpeta1:
+total 12
+drwxr-xr-x  3 rrc rrc 4096 Mar  4 12:44 ./
+drwx------ 12 rrc rrc 4096 Mar  4 12:44 ../
+drwxr-xr-x  3 rrc rrc 4096 Mar  4 12:44 Carpeta2/
+
+Carpeta1/Carpeta2:
+total 12
+drwxr-xr-x 3 rrc rrc 4096 Mar  4 12:44 ./
+drwxr-xr-x 3 rrc rrc 4096 Mar  4 12:44 ../
+drwxr-xr-x 2 rrc rrc 4096 Mar  4 12:44 Carpeta3/
+
+Carpeta1/Carpeta2/Carpeta3:
+total 8
+drwxr-xr-x 2 rrc rrc 4096 Mar  4 12:44 ./
+drwxr-xr-x 3 rrc rrc 4096 Mar  4 12:44 ../
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
