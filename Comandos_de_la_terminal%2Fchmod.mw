@@ -1,0 +1,118 @@
+__NOTOC__
+* [[:#chmod | chmod]]
+
+== chmod ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ chmod --help
+Usage: chmod [OPTION]... MODE[,MODE]... FILE...
+  or:  chmod [OPTION]... OCTAL-MODE FILE...
+  or:  chmod [OPTION]... --reference=RFILE FILE...
+Change the mode of each FILE to MODE.
+With --reference, change the mode of each FILE to that of RFILE.
+
+  -c, --changes          like verbose but report only when a change is made
+  -f, --silent, --quiet  suppress most error messages
+  -v, --verbose          output a diagnostic for every file processed
+      --no-preserve-root  do not treat '/' specially (the default)
+      --preserve-root    fail to operate recursively on '/'
+      --reference=RFILE  use RFILE's mode instead of MODE values
+  -R, --recursive        change files and directories recursively
+      --help     display this help and exit
+      --version  output version information and exit
+
+Each MODE is of the form '[ugoa]*([-+=]([rwxXst]*|[ugo]))+|[-+=][0-7]+'.
+
+Report chmod bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'chmod invocation'
+
+[rrc@Llawyr ~]$ chmod --version
+chmod (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David MacKenzie and Jim Meyering.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rw------- 1 rrc rrc 1359 Nov 16 13:16 typescript
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod a+x typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwx--x--x 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod g-x,o-x typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwx------ 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod u=rwx,g=rx,o=rx typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxr-xr-x 1 rrc rrc 1359 Nov 16 13:16 typescript
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod -R o-rx Carpeta1/
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alR Carpeta1
+Carpeta1:
+total 12
+drwxr-x---  3 rrc rrc 4096 Mar  5 11:45 ./
+drwx------ 14 rrc rrc 4096 Mar  5 16:50 ../
+drwxr-x---  3 rrc rrc 4096 Mar  4 12:44 Carpeta2/
+lrwxrwxrwx  1 rrc rrc   11 Mar  5 11:45 ChownPrueba -> ChownPrueba
+
+Carpeta1/Carpeta2:
+total 12
+drwxr-x--- 3 rrc rrc 4096 Mar  4 12:44 ./
+drwxr-x--- 3 rrc rrc 4096 Mar  5 11:45 ../
+drwxr-x--- 2 rrc rrc 4096 Mar  4 12:44 Carpeta3/
+
+Carpeta1/Carpeta2/Carpeta3:
+total 8
+drwxr-x--- 2 rrc rrc 4096 Mar  4 12:44 ./
+drwxr-x--- 3 rrc rrc 4096 Mar  4 12:44 ../
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod 775 Carpeta1
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald Carpeta1
+drwxrwxr-x 3 rrc rrc 4096 Mar  5 11:45 Carpeta1/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxr-x--- 1 rrc rrc 1359 Nov 16 13:16 typescript*
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod 1775 typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwxr-t 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod 2775 typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwsr-x 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod 4775 typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwsrwxr-x 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod u-s typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwxr-x 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod 2775 typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwsr-x 1 rrc rrc 1359 Nov 16 13:16 typescript*
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod g-s typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwxr-x 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod 1775 typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwxr-t 1 rrc rrc 1359 Nov 16 13:16 typescript*
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod o-s typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwxr-t 1 rrc rrc 1359 Nov 16 13:16 typescript*
+[rrc@Llawyr ComandosDeLaTerminal]$ chmod o-t typescript 
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al typescript 
+-rwxrwxr-x 1 rrc rrc 1359 Nov 16 13:16 typescript*
+
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
