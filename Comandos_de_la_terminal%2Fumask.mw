@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#umask | umask]]
+
+== umask ==
+
+<syntaxhighlight lang="bash">
+
+builtin command
+
+[rrc@Llawyr ~]$ umask
+0077
+
+[rrc@Llawyr ~]$ umask -p
+umask 0077
+
+[rrc@Llawyr ~]$ umask -S
+u=rwx,g=,o=
+
+[rrc@Llawyr ComandosDeLaTerminal]$ touch UmaskPruebaArchivo
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al UmaskPruebaArchivo 
+-rw------- 1 rrc rrc 0 Mar  5 16:48 UmaskPruebaArchivo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir UmaskPruebaCarpeta
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald UmaskPruebaCarpeta
+drwx------ 2 rrc rrc 4096 Mar  5 16:49 UmaskPruebaCarpeta/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ umask 022
+
+[rrc@Llawyr ComandosDeLaTerminal]$ touch UmaskPruebaArchivo2
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al UmaskPruebaArchivo2 
+-rw-r--r-- 1 rrc rrc 0 Mar  5 16:50 UmaskPruebaArchivo2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ mkdir UmaskPruebaCarpeta2
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -ald UmaskPruebaCarpeta2
+drwxr-xr-x 2 rrc rrc 4096 Mar  5 16:50 UmaskPruebaCarpeta2/
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
