@@ -1,0 +1,106 @@
+__NOTOC__
+* [[:#rmdir | rmdir]]
+
+== rmdir ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ComandosDeLaTerminal]$ rmdir --help
+Usage: rmdir [OPTION]... DIRECTORY...
+Remove the DIRECTORY(ies), if they are empty.
+
+      --ignore-fail-on-non-empty
+                  ignore each failure that is solely because a directory
+                    is non-empty
+  -p, --parents   remove DIRECTORY and its ancestors; e.g., 'rmdir -p a/b/c' is
+                    similar to 'rmdir a/b/c a/b a'
+  -v, --verbose   output a diagnostic for every directory processed
+      --help     display this help and exit
+      --version  output version information and exit
+
+Report rmdir bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'rmdir invocation'
+[rrc@pridd ComandosDeLaTerminal]$ rmdir --version
+rmdir (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David MacKenzie.
+
+[rrc@pridd ComandosDeLaTerminal]$ touch Carpeta1/Archivo
+[rrc@pridd ComandosDeLaTerminal]$ ls -altR Carpeta1/
+Carpeta1/:
+total 12
+-rw------- 1 rrc rrc    0 Mar 20 20:15 Archivo
+drwxrwxr-x 3 rrc bin 4096 Mar 20 20:14 ./
+drwxrwxr-x 5 rrc rrc 4096 Mar  8 16:28 ../
+drwxr-x--- 3 rrc bin 4096 Mar  8 16:25 Carpeta2/
+
+Carpeta1/Carpeta2:
+total 12
+drwxrwxr-x 3 rrc bin 4096 Mar 20 20:14 ../
+drwxr-x--- 3 rrc bin 4096 Mar  8 16:25 ./
+drwxr-x--- 2 rrc bin 4096 Mar  8 16:25 Carpeta3/
+
+Carpeta1/Carpeta2/Carpeta3:
+total 8
+drwxr-x--- 3 rrc bin 4096 Mar  8 16:25 ../
+drwxr-x--- 2 rrc bin 4096 Mar  8 16:25 ./
+
+[rrc@pridd ComandosDeLaTerminal]$ rmdir Carpeta1/Carpeta2/
+rmdir: failed to remove ‘Carpeta1/Carpeta2/’: Directory not empty
+
+[rrc@pridd ComandosDeLaTerminal]$ rmdir Carpeta1/Carpeta2/Carpeta3/
+[rrc@pridd ComandosDeLaTerminal]$ ls -altR Carpeta1/
+Carpeta1/:
+total 12
+-rw------- 1 rrc rrc    0 Mar 20 20:15 Archivo
+drwxrwxr-x 3 rrc bin 4096 Mar 20 20:14 ./
+drwxrwxr-x 5 rrc rrc 4096 Mar  8 16:28 ../
+drwxr-x--- 3 rrc bin 4096 Mar  8 16:25 Carpeta2/
+
+Carpeta1/Carpeta2:
+total 12
+drwxrwxr-x 3 rrc bin 4096 Mar 20 20:14 ../
+drwxr-x--- 3 rrc bin 4096 Mar  8 16:25 ./
+
+
+[rrc@pridd ComandosDeLaTerminal]$ rmdir Carpeta1/Carpeta2/
+[rrc@pridd ComandosDeLaTerminal]$ ls -altR Carpeta1/
+Carpeta1/:
+total 12
+-rw------- 1 rrc rrc    0 Mar 20 20:15 Archivo
+drwxrwxr-x 3 rrc bin 4096 Mar 20 20:14 ./
+drwxrwxr-x 5 rrc rrc 4096 Mar  8 16:28 ../
+
+[rrc@pridd ComandosDeLaTerminal]$ rmdir Carpeta1
+rmdir: failed to remove ‘Carpeta1’: Directory not empty
+
+[rrc@pridd ComandosDeLaTerminal]$ mkdir -p Carpeta1/Carpeta2/Carpeta3
+
+[rrc@pridd ComandosDeLaTerminal]$ rmdir -p Carpeta1/Carpeta2/Carpeta3/
+rmdir: failed to remove directory ‘Carpeta1’: Directory not empty
+[rrc@pridd ComandosDeLaTerminal]$ ls -alR Carpeta1/
+Carpeta1/:
+total 8
+drwx------ 2 rrc rrc 4096 Mar 20 20:29 ./
+drwxrwxr-x 5 rrc rrc 4096 Mar 20 20:29 ../
+-rw------- 1 rrc rrc    0 Mar 20 20:29 Archivo
+
+[rrc@pridd ComandosDeLaTerminal]$ mkdir -p Carpeta1/Carpeta2/Carpeta3
+[rrc@pridd ComandosDeLaTerminal]$ rmdir -p --ignore-fail-on-non-empty Carpeta1/Carpeta2/Carpeta3/
+[rrc@pridd ComandosDeLaTerminal]$ ls -alR Carpeta1/Carpeta1/:
+total 8
+drwx------ 2 rrc rrc 4096 Mar 20 20:34 ./
+drwxrwxr-x 5 rrc rrc 4096 Mar 20 20:29 ../
+-rw------- 1 rrc rrc    0 Mar 20 20:29 Archivo
+[rrc@pridd ComandosDeLaTerminal]$ alias rmdir
+bash: alias: rmdir: not found
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
