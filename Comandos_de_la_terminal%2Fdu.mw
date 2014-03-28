@@ -1,0 +1,184 @@
+__NOTOC__
+* [[:#du | du]]
+
+== du ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ComandosDeLaTerminal]$ du --help
+Usage: du [OPTION]... [FILE]...
+  or:  du [OPTION]... --files0-from=F
+Summarize disk usage of each FILE, recursively for directories.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -0, --null            end each output line with 0 byte rather than newline
+  -a, --all             write counts for all files, not just directories
+      --apparent-size   print apparent sizes, rather than disk usage; although
+                          the apparent size is usually smaller, it may be
+                          larger due to holes in ('sparse') files, internal
+                          fragmentation, indirect blocks, and the like
+  -B, --block-size=SIZE  scale sizes by SIZE before printing them.  E.g.,
+                           '-BM' prints sizes in units of 1,048,576 bytes.
+                           See SIZE format below.
+  -b, --bytes           equivalent to '--apparent-size --block-size=1'
+  -c, --total           produce a grand total
+  -D, --dereference-args  dereference only symlinks that are listed on the
+                          command line
+  -d, --max-depth=N     print the total for a directory (or file, with --all)
+                          only if it is N or fewer levels below the command
+                          line argument;  --max-depth=0 is the same as
+                          --summarize
+      --files0-from=F   summarize disk usage of the NUL-terminated file
+                          names specified in file F;
+                          If F is - then read names from standard input
+  -H                    equivalent to --dereference-args (-D)
+  -h, --human-readable  print sizes in human readable format (e.g., 1K 234M 2G)
+  -k                    like --block-size=1K
+  -L, --dereference     dereference all symbolic links
+  -l, --count-links     count sizes many times if hard linked
+  -m                    like --block-size=1M
+  -P, --no-dereference  don't follow any symbolic links (this is the default)
+  -S, --separate-dirs   do not include size of subdirectories
+      --si              like -h, but use powers of 1000 not 1024
+  -s, --summarize       display only a total for each argument
+  -t, --threshold=SIZE  exclude entries smaller than SIZE if positive,
+                          or entries greater than SIZE if negative
+      --time            show time of the last modification of any file in the
+                          directory, or any of its subdirectories
+      --time=WORD       show time as WORD instead of modification time:
+                          atime, access, use, ctime or status
+      --time-style=STYLE  show times using style STYLE:
+                          full-iso, long-iso, iso, +FORMAT
+                          FORMAT is interpreted like 'date'
+  -X, --exclude-from=FILE  exclude files that match any pattern in FILE
+      --exclude=PATTERN    exclude files that match PATTERN
+  -x, --one-file-system    skip directories on different file systems
+      --help     display this help and exit
+      --version  output version information and exit
+
+Display values are in units of the first available SIZE from --block-size,
+and the DU_BLOCK_SIZE, BLOCK_SIZE and BLOCKSIZE environment variables.
+Otherwise, units default to 1024 bytes (or 512 if POSIXLY_CORRECT is set).
+
+SIZE is an integer and optional unit (example: 10M is 10*1024*1024).  Units
+are K, M, G, T, P, E, Z, Y (powers of 1024) or KB, MB, ... (powers of 1000).
+
+Report du bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'du invocation'
+
+[rrc@pridd ComandosDeLaTerminal]$ du --version
+du (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Torbjörn Granlund, David MacKenzie, Paul Eggert,
+and Jim Meyering.
+
+[rrc@pridd ComandosDeLaTerminal]$ alias du
+alias du='du -h'
+[rrc@pridd ComandosDeLaTerminal]$ unalias du
+[rrc@pridd ComandosDeLaTerminal]$ alias du
+bash: alias: du: not found
+[rrc@pridd ComandosDeLaTerminal]$ du /var/www/html/richard
+12	/var/www/html/richard/images
+76	/var/www/html/richard
+[rrc@pridd ComandosDeLaTerminal]$ alias du='du -h'
+[rrc@pridd ComandosDeLaTerminal]$ alias du
+alias du='du -h'
+[rrc@pridd ComandosDeLaTerminal]$ du /var/www/html/richard
+12K	/var/www/html/richard/images
+76K	/var/www/html/richard
+
+[rrc@pridd ComandosDeLaTerminal]$ du -a /var/www/html/richard
+8.0K	/var/www/html/richard/RichardSleeve.html
+4.0K	/var/www/html/richard/evolution.html
+16K	/var/www/html/richard/index.html
+4.0K	/var/www/html/richard/images/valid-xhtml10.png
+4.0K	/var/www/html/richard/images/valid-xhtml11.png
+12K	/var/www/html/richard/images
+8.0K	/var/www/html/richard/RichardSleeve.es.html
+4.0K	/var/www/html/richard/robots.txt
+16K	/var/www/html/richard/index.es.html
+4.0K	/var/www/html/richard/evolution.es.html
+76K	/var/www/html/richard
+
+[rrc@pridd ComandosDeLaTerminal]$ du -ac /var/www/html/richard
+8.0K	/var/www/html/richard/RichardSleeve.html
+4.0K	/var/www/html/richard/evolution.html
+16K	/var/www/html/richard/index.html
+4.0K	/var/www/html/richard/images/valid-xhtml10.png
+4.0K	/var/www/html/richard/images/valid-xhtml11.png
+12K	/var/www/html/richard/images
+8.0K	/var/www/html/richard/RichardSleeve.es.html
+4.0K	/var/www/html/richard/robots.txt
+16K	/var/www/html/richard/index.es.html
+4.0K	/var/www/html/richard/evolution.es.html
+76K	/var/www/html/richard
+76K	total
+
+[rrc@pridd ~]$ du ComandosDeLaTerminal/
+4.0K	ComandosDeLaTerminal/C1/C2/C3/C4/C5/C6
+8.0K	ComandosDeLaTerminal/C1/C2/C3/C4/C5
+12K	ComandosDeLaTerminal/C1/C2/C3/C4
+16K	ComandosDeLaTerminal/C1/C2/C3
+20K	ComandosDeLaTerminal/C1/C2
+24K	ComandosDeLaTerminal/C1
+4.0K	ComandosDeLaTerminal/Carpeta2
+44K	ComandosDeLaTerminal/Paginas
+4.0K	ComandosDeLaTerminal/DelMe2
+4.0K	ComandosDeLaTerminal/DelMe
+8.0K	ComandosDeLaTerminal/Bin
+4.0K	ComandosDeLaTerminal/C11/C12/C13
+8.0K	ComandosDeLaTerminal/C11/C12
+12K	ComandosDeLaTerminal/C11
+20M	ComandosDeLaTerminal/
+
+[rrc@pridd ~]$ du -d 1 ComandosDeLaTerminal/
+24K	ComandosDeLaTerminal/C1
+4.0K	ComandosDeLaTerminal/Carpeta2
+44K	ComandosDeLaTerminal/Paginas
+4.0K	ComandosDeLaTerminal/DelMe2
+4.0K	ComandosDeLaTerminal/DelMe
+8.0K	ComandosDeLaTerminal/Bin
+12K	ComandosDeLaTerminal/C11
+20M	ComandosDeLaTerminal/
+
+[rrc@pridd ~]$ du -d 2 ComandosDeLaTerminal/
+20K	ComandosDeLaTerminal/C1/C2
+24K	ComandosDeLaTerminal/C1
+4.0K	ComandosDeLaTerminal/Carpeta2
+44K	ComandosDeLaTerminal/Paginas
+4.0K	ComandosDeLaTerminal/DelMe2
+4.0K	ComandosDeLaTerminal/DelMe
+8.0K	ComandosDeLaTerminal/Bin
+8.0K	ComandosDeLaTerminal/C11/C12
+12K	ComandosDeLaTerminal/C11
+20M	ComandosDeLaTerminal/
+
+[rrc@pridd ~]$ du -a --time /var/www/html/richard
+8.0K	2008-06-25 21:26	/var/www/html/richard/RichardSleeve.html
+4.0K	2008-06-25 21:15	/var/www/html/richard/evolution.html
+16K	2008-06-25 22:09	/var/www/html/richard/index.html
+4.0K	2008-07-08 18:53	/var/www/html/richard/images/valid-xhtml10.png
+4.0K	2008-06-22 13:30	/var/www/html/richard/images/valid-xhtml11.png
+12K	2008-07-08 18:53	/var/www/html/richard/images
+8.0K	2008-06-25 21:27	/var/www/html/richard/RichardSleeve.es.html
+4.0K	2013-06-20 12:52	/var/www/html/richard/robots.txt
+16K	2008-07-10 09:03	/var/www/html/richard/index.es.html
+4.0K	2008-06-25 21:20	/var/www/html/richard/evolution.es.html
+76K	2013-06-20 12:52	/var/www/html/richard
+
+[rrc@pridd ~]$ du -a --time --exclude="*es*" /var/www/html/richard
+8.0K	2008-06-25 21:26	/var/www/html/richard/RichardSleeve.html
+4.0K	2008-06-25 21:15	/var/www/html/richard/evolution.html
+16K	2008-06-25 22:09	/var/www/html/richard/index.html
+4.0K	2013-06-20 12:52	/var/www/html/richard/robots.txt
+36K	2013-06-20 12:52	/var/www/html/richard
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
