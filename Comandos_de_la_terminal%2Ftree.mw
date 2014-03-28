@@ -1,0 +1,461 @@
+__NOTOC__
+* [[:#tree | tree]]
+
+== tree ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ComandosDeLaTerminal]$ tree --help
+usage: tree [-acdfghilnpqrstuvxACDFQNSUX] [-H baseHREF] [-T title ] [-L level [-R]]
+	[-P pattern] [-I pattern] [-o filename] [--version] [--help] [--inodes]
+	[--device] [--noreport] [--nolinks] [--dirsfirst] [--filesfirst] [--charset charset]
+	[--filelimit[=]#] [--si] [--timefmt[=]<f>] [<directory list>]
+  ------- Listing options -------
+  -a            All files are listed.
+  -d            List directories only.
+  -l            Follow symbolic links like directories.
+  -f            Print the full path prefix for each file.
+  -x            Stay on current filesystem only.
+  -L level      Descend only level directories deep.
+  -R            Rerun tree when max dir level reached.
+  -P pattern    List only those files that match the pattern given.
+  -I pattern    Do not list files that match the given pattern.
+  --noreport    Turn off file/directory count at end of tree listing.
+  --charset X   Use charset X for terminal/HTML and indentation line output.
+  --filelimit # Do not descend dirs with more than # files in them.
+  --timefmt <f> Print and format time according to the format <f>.
+  -o filename   Output to file instead of stdout.
+  -------- File options ---------
+  -q            Print non-printable characters as '?'.
+  -N            Print non-printable characters as is.
+  -Q            Quote filenames with double quotes.
+  -p            Print the protections for each file.
+  -u            Displays file owner or UID number.
+  -g            Displays file group owner or GID number.
+  -s            Print the size in bytes of each file.
+  -h            Print the size in a more human readable way.
+  --si          Like -h, but use in SI units (powers of 1000).
+  -D            Print the date of last modification or (-c) status change.
+  -F            Appends '/', '=', '*', '@', '|' or '>' as per ls -F.
+  --inodes      Print inode number of each file.
+  --device      Print device ID number to which each file belongs.
+  ------- Sorting options -------
+  -v            Sort files alphanumerically by version.
+  -r            Sort files in reverse alphanumeric order.
+  -t            Sort files by last modification time.
+  -c            Sort files by last status change time.
+  -U            Leave files unsorted.
+  --dirsfirst   List directories before files (-U disables).
+  --filesfirst  List files before directories (-U disables).
+  ------- Graphics options ------
+  -i            Don't print indentation lines.
+  -A            Print ANSI lines graphic indentation lines.
+  -S            Print with ASCII graphics indentation lines.
+  -n            Turn colorization off always (-C overrides).
+  -C            Turn colorization on always.
+  ------- XML/HTML options -------
+  -X            Prints out an XML representation of the tree.
+  -H baseHREF   Prints out HTML format with baseHREF as top directory.
+  -T string     Replace the default HTML title and H1 header with string.
+  --nolinks     Turn off hyperlinks in HTML output.
+  ---- Miscellaneous options ----
+  --version     Print version and exit.
+  --help        Print usage and this help message and exit.
+
+[rrc@pridd ComandosDeLaTerminal]$ tree --version
+tree v1.6.0 (c) 1996 - 2011 by Steve Baker, Thomas Moore, Francesc Rocher, Kyosuke Tokoro 
+
+[rrc@pridd ComandosDeLaTerminal]$ tree /var/www/html/richard
+/var/www/html/richard
+├── evolution.es.html
+├── evolution.html
+├── images
+│   ├── valid-xhtml10.png
+│   └── valid-xhtml11.png
+├── index.es.html
+├── index.html
+├── RichardSleeve.es.html
+├── RichardSleeve.html
+└── robots.txt
+
+1 directory, 9 files
+[rrc@pridd ComandosDeLaTerminal]$ tree -d /var/www/html/richard
+/var/www/html/richard
+└── images
+
+1 directory
+[rrc@pridd ComandosDeLaTerminal]$ tree -f /var/www/html/richard
+/var/www/html/richard
+├── /var/www/html/richard/evolution.es.html
+├── /var/www/html/richard/evolution.html
+├── /var/www/html/richard/images
+│   ├── /var/www/html/richard/images/valid-xhtml10.png
+│   └── /var/www/html/richard/images/valid-xhtml11.png
+├── /var/www/html/richard/index.es.html
+├── /var/www/html/richard/index.html
+├── /var/www/html/richard/RichardSleeve.es.html
+├── /var/www/html/richard/RichardSleeve.html
+└── /var/www/html/richard/robots.txt
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -L 1 /var/www/html/richard
+/var/www/html/richard
+├── evolution.es.html
+├── evolution.html
+├── images
+├── index.es.html
+├── index.html
+├── RichardSleeve.es.html
+├── RichardSleeve.html
+└── robots.txt
+
+1 directory, 7 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -P "*es*" /var/www/html/richard
+/var/www/html/richard
+├── evolution.es.html
+├── images
+├── index.es.html
+└── RichardSleeve.es.html
+
+1 directory, 3 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -I "*es*" /var/www/html/richard
+/var/www/html/richard
+├── evolution.html
+├── index.html
+├── RichardSleeve.html
+└── robots.txt
+
+0 directories, 4 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -I "*es*" --noreport /var/www/html/richard
+/var/www/html/richard
+├── evolution.html
+├── index.html
+├── RichardSleeve.html
+└── robots.txt
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -o TreeRichard /var/www/html/richard 
+[rrc@pridd ComandosDeLaTerminal]$ cat TreeRichard 
+/var/www/html/richard
+├── evolution.es.html
+├── evolution.html
+├── images
+│   ├── valid-xhtml10.png
+│   └── valid-xhtml11.png
+├── index.es.html
+├── index.html
+├── RichardSleeve.es.html
+├── RichardSleeve.html
+└── robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -Q /var/www/html/richard 
+"/var/www/html/richard"
+├── "evolution.es.html"
+├── "evolution.html"
+├── "images"
+│   ├── "valid-xhtml10.png"
+│   └── "valid-xhtml11.png"
+├── "index.es.html"
+├── "index.html"
+├── "RichardSleeve.es.html"
+├── "RichardSleeve.html"
+└── "robots.txt"
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -p /var/www/html/richard 
+/var/www/html/richard
+├── [-rw-rw-r--]  evolution.es.html
+├── [-rw-rw-r--]  evolution.html
+├── [drwxrwsr-x]  images
+│   ├── [-rw-rw-r--]  valid-xhtml10.png
+│   └── [-rw-rw-r--]  valid-xhtml11.png
+├── [-rw-rw-r--]  index.es.html
+├── [-rw-rw-r--]  index.html
+├── [-rw-rw-r--]  RichardSleeve.es.html
+├── [-rw-rw-r--]  RichardSleeve.html
+└── [-rw-rw-r--]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -u /var/www/html/richard 
+/var/www/html/richard
+├── [rrc     ]  evolution.es.html
+├── [rrc     ]  evolution.html
+├── [rrc     ]  images
+│   ├── [rrc     ]  valid-xhtml10.png
+│   └── [rrc     ]  valid-xhtml11.png
+├── [rrc     ]  index.es.html
+├── [rrc     ]  index.html
+├── [rrc     ]  RichardSleeve.es.html
+├── [rrc     ]  RichardSleeve.html
+└── [rrc     ]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -g /var/www/html/richard 
+/var/www/html/richard
+├── [webmin  ]  evolution.es.html
+├── [webmin  ]  evolution.html
+├── [webmin  ]  images
+│   ├── [webmin  ]  valid-xhtml10.png
+│   └── [webmin  ]  valid-xhtml11.png
+├── [webmin  ]  index.es.html
+├── [webmin  ]  index.html
+├── [webmin  ]  RichardSleeve.es.html
+├── [webmin  ]  RichardSleeve.html
+└── [webmin  ]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -ug /var/www/html/richard 
+/var/www/html/richard
+├── [rrc      webmin  ]  evolution.es.html
+├── [rrc      webmin  ]  evolution.html
+├── [rrc      webmin  ]  images
+│   ├── [rrc      webmin  ]  valid-xhtml10.png
+│   └── [rrc      webmin  ]  valid-xhtml11.png
+├── [rrc      webmin  ]  index.es.html
+├── [rrc      webmin  ]  index.html
+├── [rrc      webmin  ]  RichardSleeve.es.html
+├── [rrc      webmin  ]  RichardSleeve.html
+└── [rrc      webmin  ]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -ugp /var/www/html/richard 
+/var/www/html/richard
+├── [-rw-rw-r-- rrc      webmin  ]  evolution.es.html
+├── [-rw-rw-r-- rrc      webmin  ]  evolution.html
+├── [drwxrwsr-x rrc      webmin  ]  images
+│   ├── [-rw-rw-r-- rrc      webmin  ]  valid-xhtml10.png
+│   └── [-rw-rw-r-- rrc      webmin  ]  valid-xhtml11.png
+├── [-rw-rw-r-- rrc      webmin  ]  index.es.html
+├── [-rw-rw-r-- rrc      webmin  ]  index.html
+├── [-rw-rw-r-- rrc      webmin  ]  RichardSleeve.es.html
+├── [-rw-rw-r-- rrc      webmin  ]  RichardSleeve.html
+└── [-rw-rw-r-- rrc      webmin  ]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -s /var/www/html/richard 
+/var/www/html/richard
+├── [       3320]  evolution.es.html
+├── [       3272]  evolution.html
+├── [       4096]  images
+│   ├── [       1882]  valid-xhtml10.png
+│   └── [       1842]  valid-xhtml11.png
+├── [      14700]  index.es.html
+├── [      13242]  index.html
+├── [       4329]  RichardSleeve.es.html
+├── [       4328]  RichardSleeve.html
+└── [        489]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -h /var/www/html/richard 
+/var/www/html/richard
+├── [3.2K]  evolution.es.html
+├── [3.2K]  evolution.html
+├── [4.0K]  images
+│   ├── [1.8K]  valid-xhtml10.png
+│   └── [1.8K]  valid-xhtml11.png
+├── [ 14K]  index.es.html
+├── [ 13K]  index.html
+├── [4.2K]  RichardSleeve.es.html
+├── [4.2K]  RichardSleeve.html
+└── [ 489]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -D /var/www/html/richard 
+/var/www/html/richard
+├── [Jun 25  2008]  evolution.es.html
+├── [Jun 25  2008]  evolution.html
+├── [Jul  8  2008]  images
+│   ├── [Jul  8  2008]  valid-xhtml10.png
+│   └── [Jun 22  2008]  valid-xhtml11.png
+├── [Jul 10  2008]  index.es.html
+├── [Jun 25  2008]  index.html
+├── [Jun 25  2008]  RichardSleeve.es.html
+├── [Jun 25  2008]  RichardSleeve.html
+└── [Jun 20  2013]  robots.txt
+
+1 directory, 9 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -F /etc/rc.d 
+/etc/rc.d
+├── init.d/
+│   ├── dm*
+│   ├── functions
+│   ├── irqbalance*
+│   ├── mandi*
+│   ├── mandrake_everytime*
+│   ├── mandrake_firstime*
+│   ├── microcode_ctl*
+│   ├── msec*
+│   ├── netconsole*
+│   ├── network*
+│   ├── network-auth*
+│   ├── network-up*
+│   ├── partmon*
+│   ├── postfix*
+│   ├── preload*
+│   ├── README*
+│   ├── resolvconf*
+│   ├── routed*
+│   └── vnstat*
+├── rc0.d/
+│   ├── K09dm -> ../init.d/dm*
+│   ├── K20msec -> ../init.d/msec*
+│   ├── K20partmon -> ../init.d/partmon*
+│   ├── K30postfix -> ../init.d/postfix*
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K49routed -> ../init.d/routed*
+│   ├── K50network-up -> ../init.d/network-up*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K87irqbalance -> ../init.d/irqbalance*
+│   ├── K89network -> ../init.d/network*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   └── K95preload -> ../init.d/preload*
+├── rc1.d/
+│   ├── K09dm -> ../init.d/dm*
+│   ├── K20msec -> ../init.d/msec*
+│   ├── K20partmon -> ../init.d/partmon*
+│   ├── K30postfix -> ../init.d/postfix*
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K49routed -> ../init.d/routed*
+│   ├── K50network-up -> ../init.d/network-up*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K87irqbalance -> ../init.d/irqbalance*
+│   ├── K89network -> ../init.d/network*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   └── K95preload -> ../init.d/preload*
+├── rc2.d/
+│   ├── K09dm -> ../init.d/dm*
+│   ├── K20msec -> ../init.d/msec*
+│   ├── K20partmon -> ../init.d/partmon*
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K49routed -> ../init.d/routed*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K87irqbalance -> ../init.d/irqbalance*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   ├── K95preload -> ../init.d/preload*
+│   ├── S10network -> ../init.d/network*
+│   ├── S50network-up -> ../init.d/network-up*
+│   └── S80postfix -> ../init.d/postfix*
+├── rc3.d/
+│   ├── K09dm -> ../init.d/dm*
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   ├── K95preload -> ../init.d/preload*
+│   ├── S10network -> ../init.d/network*
+│   ├── S13irqbalance -> ../init.d/irqbalance*
+│   ├── S13msec -> ../init.d/msec*
+│   ├── S13partmon -> ../init.d/partmon*
+│   ├── S50network-up -> ../init.d/network-up*
+│   ├── S55routed -> ../init.d/routed*
+│   └── S80postfix -> ../init.d/postfix*
+├── rc4.d/
+│   ├── K09dm -> ../init.d/dm*
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   ├── K95preload -> ../init.d/preload*
+│   ├── S10network -> ../init.d/network*
+│   ├── S13irqbalance -> ../init.d/irqbalance*
+│   ├── S13msec -> ../init.d/msec*
+│   ├── S13partmon -> ../init.d/partmon*
+│   ├── S50network-up -> ../init.d/network-up*
+│   ├── S55routed -> ../init.d/routed*
+│   └── S80postfix -> ../init.d/postfix*
+├── rc5.d/
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   ├── S10network -> ../init.d/network*
+│   ├── S13irqbalance -> ../init.d/irqbalance*
+│   ├── S13msec -> ../init.d/msec*
+│   ├── S13partmon -> ../init.d/partmon*
+│   ├── S31preload -> ../init.d/preload*
+│   ├── S50network-up -> ../init.d/network-up*
+│   ├── S51dm -> ../init.d/dm*
+│   ├── S55routed -> ../init.d/routed*
+│   └── S80postfix -> ../init.d/postfix*
+├── rc6.d/
+│   ├── K09dm -> ../init.d/dm*
+│   ├── K20msec -> ../init.d/msec*
+│   ├── K20partmon -> ../init.d/partmon*
+│   ├── K30postfix -> ../init.d/postfix*
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K49routed -> ../init.d/routed*
+│   ├── K50network-up -> ../init.d/network-up*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K87irqbalance -> ../init.d/irqbalance*
+│   ├── K89network -> ../init.d/network*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   └── K95preload -> ../init.d/preload*
+├── rc7.d/
+│   ├── K20msec -> ../init.d/msec*
+│   ├── K20partmon -> ../init.d/partmon*
+│   ├── K30postfix -> ../init.d/postfix*
+│   ├── K49netconsole -> ../init.d/netconsole*
+│   ├── K49network-auth -> ../init.d/network-auth*
+│   ├── K49routed -> ../init.d/routed*
+│   ├── K50network-up -> ../init.d/network-up*
+│   ├── K59mandi -> ../init.d/mandi*
+│   ├── K87irqbalance -> ../init.d/irqbalance*
+│   ├── K89network -> ../init.d/network*
+│   ├── K90resolvconf -> ../init.d/resolvconf*
+│   ├── K95microcode_ctl -> ../init.d/microcode_ctl*
+│   ├── K95preload -> ../init.d/preload*
+│   └── S51dm -> ../init.d/dm*
+├── rc.alsa_default*
+└── rcS.d -> rc7.d/
+
+10 directories, 132 files
+
+[rrc@pridd ComandosDeLaTerminal]$ tree -X /var/www/html/richard 
+<?xml version="1.0" encoding="UTF-8"?>
+<tree>
+  <directory name="/var/www/html/richard">
+    <file name="evolution.es.html"></file>
+    <file name="evolution.html"></file>
+    <directory name="images">
+      <file name="valid-xhtml10.png"></file>
+      <file name="valid-xhtml11.png"></file>
+    </directory>
+    <file name="index.es.html"></file>
+    <file name="index.html"></file>
+    <file name="RichardSleeve.es.html"></file>
+    <file name="RichardSleeve.html"></file>
+    <file name="robots.txt"></file>
+  </directory>
+  <report>
+    <directories>1</directories>
+    <files>9</files>
+  </report>
+</tree>
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
