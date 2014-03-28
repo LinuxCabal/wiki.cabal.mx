@@ -1,0 +1,116 @@
+__NOTOC__
+* [[:#df | df]]
+
+== df ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ComandosDeLaTerminal]$ df --help
+Usage: df [OPTION]... [FILE]...
+Show information about the file system on which each FILE resides,
+or all file systems by default.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -a, --all             include dummy file systems
+  -B, --block-size=SIZE  scale sizes by SIZE before printing them.  E.g.,
+                           '-BM' prints sizes in units of 1,048,576 bytes.
+                           See SIZE format below.
+      --total           produce a grand total
+  -h, --human-readable  print sizes in human readable format (e.g., 1K 234M 2G)
+  -H, --si              likewise, but use powers of 1000 not 1024
+  -i, --inodes          list inode information instead of block usage
+  -k                    like --block-size=1K
+  -l, --local           limit listing to local file systems
+      --no-sync         do not invoke sync before getting usage info (default)
+      --output[=FIELD_LIST]  use the output format defined by FIELD_LIST,
+                               or print all fields if FIELD_LIST is omitted.
+  -P, --portability     use the POSIX output format
+      --sync            invoke sync before getting usage info
+  -t, --type=TYPE       limit listing to file systems of type TYPE
+  -T, --print-type      print file system type
+  -x, --exclude-type=TYPE   limit listing to file systems not of type TYPE
+  -v                    (ignored)
+      --help     display this help and exit
+      --version  output version information and exit
+
+Display values are in units of the first available SIZE from --block-size,
+and the DF_BLOCK_SIZE, BLOCK_SIZE and BLOCKSIZE environment variables.
+Otherwise, units default to 1024 bytes (or 512 if POSIXLY_CORRECT is set).
+
+SIZE is an integer and optional unit (example: 10M is 10*1024*1024).  Units
+are K, M, G, T, P, E, Z, Y (powers of 1024) or KB, MB, ... (powers of 1000).
+
+FIELD_LIST is a comma-separated list of columns to be included.  Valid
+field names are: 'source', 'fstype', 'itotal', 'iused', 'iavail', 'ipcent',
+'size', 'used', 'avail', 'pcent' and 'target' (see info page).
+
+Report df bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'df invocation'
+
+[rrc@pridd ComandosDeLaTerminal]$ df --version
+df (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Torbjörn Granlund, David MacKenzie, and Paul Eggert.
+
+[rrc@pridd ComandosDeLaTerminal]$ alias df
+alias df='df -h -x supermount'
+
+[rrc@pridd ComandosDeLaTerminal]$ unalias df
+[rrc@pridd ComandosDeLaTerminal]$ alias df
+bash: alias: df: not found
+
+[rrc@pridd ComandosDeLaTerminal]$ df
+Filesystem     1K-blocks      Used Available Use% Mounted on
+/dev/sda1       64368776   8195096  52880892  14% /
+devtmpfs         1973740         0   1973740   0% /dev
+tmpfs            1979468       140   1979328   1% /dev/shm
+tmpfs            1979468       840   1978628   1% /run
+tmpfs            1979468         0   1979468   0% /sys/fs/cgroup
+tmpfs            1979468         4   1979464   1% /tmp
+/dev/sda3      412063480 388724672  23322424  95% /home
+
+[rrc@pridd ComandosDeLaTerminal]$ alias "df=df -h"
+[rrc@pridd ComandosDeLaTerminal]$ alias df
+alias df='df -h'
+[rrc@pridd ComandosDeLaTerminal]$ df
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        62G  7.9G   51G  14% /
+devtmpfs        1.9G     0  1.9G   0% /dev
+tmpfs           1.9G  140K  1.9G   1% /dev/shm
+tmpfs           1.9G  840K  1.9G   1% /run
+tmpfs           1.9G     0  1.9G   0% /sys/fs/cgroup
+tmpfs           1.9G  4.0K  1.9G   1% /tmp
+/dev/sda3       393G  371G   23G  95% /home
+
+[rrc@pridd ComandosDeLaTerminal]$ df -t ext4
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        62G  7.9G   51G  14% /
+/dev/sda3       393G  371G   23G  95% /home
+
+[rrc@pridd ComandosDeLaTerminal]$ df -T
+Filesystem     Type      Size  Used Avail Use% Mounted on
+/dev/sda1      ext4       62G  7.9G   51G  14% /
+devtmpfs       devtmpfs  1.9G     0  1.9G   0% /dev
+tmpfs          tmpfs     1.9G  140K  1.9G   1% /dev/shm
+tmpfs          tmpfs     1.9G  840K  1.9G   1% /run
+tmpfs          tmpfs     1.9G     0  1.9G   0% /sys/fs/cgroup
+tmpfs          tmpfs     1.9G  4.0K  1.9G   1% /tmp
+/dev/sda3      ext4      393G  371G   23G  95% /home
+
+[rrc@pridd ComandosDeLaTerminal]$ df -x tmpfs
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda1        62G  7.9G   51G  14% /
+devtmpfs        1.9G     0  1.9G   0% /dev
+/dev/sda3       393G  371G   23G  95% /home
+
+
+
+</syntaxhighlightf
+
+[[Category:Comandos de la terminal]]
