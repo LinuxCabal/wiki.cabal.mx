@@ -1,0 +1,94 @@
+__NOTOC__
+* [[:#su | su]]
+
+== su ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ su --help
+
+Usage:
+ su [options] [-] [<user> [<argument>...]]
+
+Change the effective user ID and group ID to that of <user>.
+A mere - implies -l.  If <user> is not given, root is assumed.
+
+Options:
+ -m, -p, --preserve-environment  do not reset environment variables
+ -g, --group <group>             specify the primary group
+ -G, --supp-group <group>        specify a supplemental group
+
+ -, -l, --login                  make the shell a login shell
+ -c, --command <command>         pass a single command to the shell with -c
+ --session-command <command>     pass a single command to the shell with -c
+                                   and do not create a new session
+ -f, --fast                      pass -f to the shell (for csh or tcsh)
+ -s, --shell <shell>             run <shell> if /etc/shells allows it
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see su(1).
+
+[rrc@pridd ~]$ su --version
+su from util-linux 2.24
+
+[rrc@pridd ~]$ su
+Password: 
+[root@pridd rrc]#
+
+Mirra la carpeta actual
+[root@pridd rrc]# pwd
+/home/rrc
+[root@pridd rrc]# cd
+[root@pridd ~]# pwd
+/root
+
+Usa ^d o exit para regresar 
+
+[root@pridd rrc]# exit
+[rrc@pridd ~]$ 
+
+[rrc@pridd ~]$ su -
+Password: 
+[root@pridd ~]# 
+
+Mirra la carpeta actual
+[root@pridd ~]# pwd
+/root
+
+Usa ^d o exit para regresar 
+
+[root@pridd rrc]# exit
+[rrc@pridd ~]$ 
+
+[rrc@pridd ~]$ su -
+Password: 
+[root@pridd ~]# touch DelMe
+[root@pridd ~]# ls -al DelMe
+-rw-r--r-- 1 root root 0 Mar 27 20:21 DelMe
+
+[rrc@pridd ~]$ su -lg webmin
+su: only root can specify alternative groups
+[rrc@pridd ~]$ su -g webmin
+su: only root can specify alternative groups
+[rrc@pridd ~]$ su -
+Password: 
+[root@pridd ~]# su -lg webmin
+[root@pridd ~]# touch DelMe2
+[root@pridd ~]# ls -al DelMe2
+-rw-r--r-- 1 root webmin 0 Mar 27 20:22 DelMe2
+
+[rrc@pridd ComandosDeLaTerminal]$ rm /root/DelMe*
+rm: cannot remove ‘/root/DelMe*’: Permission denied
+[rrc@pridd ComandosDeLaTerminal]$ su -c rm /root/DelMe*
+su: user /root/DelMe* does not exist
+[rrc@pridd ComandosDeLaTerminal]$ su -c "rm /root/DelMe*"
+Password: 
+[rrc@pridd ComandosDeLaTerminal]$ su -c "ls -al /root/DelMe*"
+Password: 
+ls: cannot access /root/DelMe*: No such file or directory
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
