@@ -1,0 +1,68 @@
+__NOTOC__
+* [[:#uname | uname]]
+
+== uname ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ uname --help
+Usage: uname [OPTION]...
+Print certain system information.  With no OPTION, same as -s.
+
+  -a, --all                print all information, in the following order,
+                             except omit -p and -i if unknown:
+  -s, --kernel-name        print the kernel name
+  -n, --nodename           print the network node hostname
+  -r, --kernel-release     print the kernel release
+  -v, --kernel-version     print the kernel version
+  -m, --machine            print the machine hardware name
+  -p, --processor          print the processor type or "unknown"
+  -i, --hardware-platform  print the hardware platform or "unknown"
+  -o, --operating-system   print the operating system
+      --help     display this help and exit
+      --version  output version information and exit
+
+Report uname bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'uname invocation'
+
+[rrc@pridd ~]$ uname --version
+uname (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David MacKenzie.
+
+[rrc@pridd ~]$ uname -s
+Linux
+
+[rrc@pridd ~]$ uname -n
+pridd.linuxcabal.org
+
+[rrc@pridd ~]$ uname -r
+3.12.13-desktop-2.mga4
+
+[rrc@pridd ~]$ uname -v
+#1 SMP Sat Feb 22 23:45:28 UTC 2014
+
+[rrc@pridd ~]$ uname -m
+x86_64
+
+[rrc@pridd ~]$ uname -p
+x86_64
+
+[rrc@pridd ~]$ uname -i
+x86_64
+
+[rrc@pridd ~]$ uname -o
+GNU/Linux
+
+[rrc@pridd ~]$ uname -a
+Linux pridd.linuxcabal.org 3.12.13-desktop-2.mga4 #1 SMP Sat Feb 22 23:45:28 UTC 2014 x86_64 x86_64 x86_64 GNU/Linux
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
