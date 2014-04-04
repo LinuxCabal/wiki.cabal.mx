@@ -1,0 +1,228 @@
+__NOTOC__
+* [[:#cp | cp]]
+
+== cp ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ cp --help
+Usage: cp [OPTION]... [-T] SOURCE DEST
+  or:  cp [OPTION]... SOURCE... DIRECTORY
+  or:  cp [OPTION]... -t DIRECTORY SOURCE...
+Copy SOURCE to DEST, or multiple SOURCE(s) to DIRECTORY.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -a, --archive                same as -dR --preserve=all
+      --attributes-only        don't copy the file data, just the attributes
+      --backup[=CONTROL]       make a backup of each existing destination file
+  -b                           like --backup but does not accept an argument
+      --copy-contents          copy contents of special files when recursive
+  -d                           same as --no-dereference --preserve=links
+  -f, --force                  if an existing destination file cannot be
+                                 opened, remove it and try again (this option
+                                 is ignored when the -n option is also used)
+  -i, --interactive            prompt before overwrite (overrides a previous -n
+                                  option)
+  -H                           follow command-line symbolic links in SOURCE
+  -l, --link                   hard link files instead of copying
+  -L, --dereference            always follow symbolic links in SOURCE
+  -n, --no-clobber             do not overwrite an existing file (overrides
+                                 a previous -i option)
+  -P, --no-dereference         never follow symbolic links in SOURCE
+  -p                           same as --preserve=mode,ownership,timestamps
+      --preserve[=ATTR_LIST]   preserve the specified attributes (default:
+                                 mode,ownership,timestamps), if possible
+                                 additional attributes: context, links, xattr,
+                                 all
+      --no-preserve=ATTR_LIST  don't preserve the specified attributes
+      --parents                use full source file name under DIRECTORY
+  -R, -r, --recursive          copy directories recursively
+      --reflink[=WHEN]         control clone/CoW copies. See below
+      --remove-destination     remove each existing destination file before
+                                 attempting to open it (contrast with --force)
+      --sparse=WHEN            control creation of sparse files. See below
+      --strip-trailing-slashes  remove any trailing slashes from each SOURCE
+                                 argument
+  -s, --symbolic-link          make symbolic links instead of copying
+  -S, --suffix=SUFFIX          override the usual backup suffix
+  -t, --target-directory=DIRECTORY  copy all SOURCE arguments into DIRECTORY
+  -T, --no-target-directory    treat DEST as a normal file
+  -u, --update                 copy only when the SOURCE file is newer
+                                 than the destination file or when the
+                                 destination file is missing
+  -v, --verbose                explain what is being done
+  -x, --one-file-system        stay on this file system
+      --help     display this help and exit
+      --version  output version information and exit
+
+By default, sparse SOURCE files are detected by a crude heuristic and the
+corresponding DEST file is made sparse as well.  That is the behavior
+selected by --sparse=auto.  Specify --sparse=always to create a sparse DEST
+file whenever the SOURCE file contains a long enough sequence of zero bytes.
+Use --sparse=never to inhibit creation of sparse files.
+
+When --reflink[=always] is specified, perform a lightweight copy, where the
+data blocks are copied only when modified.  If this is not possible the copy
+fails, or if --reflink=auto is specified, fall back to a standard copy.
+
+The backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.
+The version control method may be selected via the --backup option or through
+the VERSION_CONTROL environment variable.  Here are the values:
+
+  none, off       never make backups (even if --backup is given)
+  numbered, t     make numbered backups
+  existing, nil   numbered if numbered backups exist, simple otherwise
+  simple, never   always make simple backups
+
+As a special case, cp makes a backup of SOURCE when the force and backup
+options are given and SOURCE and DEST are the same name for an existing,
+regular file.
+
+Report cp bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'cp invocation'
+
+[rrc@pridd ~]$ cp --version
+cp (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Torbjörn Granlund, David MacKenzie, and Jim Meyering.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ alias cp
+alias cp='cp -i'
+
+[rrc@Llawyr ComandosDeLaTerminal]$ unalias cp
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cp SortFile Archivo1
+
+[rrc@Llawyr ComandosDeLaTerminal]$ diff SortFile Archivo1
+
+[rrc@Llawyr ComandosDeLaTerminal]$ alias cp='cp -i'
+[rrc@Llawyr ComandosDeLaTerminal]$ alias cp
+alias cp='cp -i'
+[rrc@Llawyr ComandosDeLaTerminal]$ cp SortFile Archivo1
+cp: overwrite ‘Archivo1’? y
+
+[root@Llawyr ComandosDeLaTerminal]# cp /var/www/html/richard/index
+index.es.html  index.html     
+
+[root@Llawyr ComandosDeLaTerminal]# cp /var/www/html/richard/index.html .
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al /var/www/html/richard/index.html 
+-rw-rw-r-- 1 rrc webmin 13242 Jun 25  2008 /var/www/html/richard/index.html
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al index.html 
+-rw-r--r-- 1 root root 13242 Apr  4 14:38 index.html
+
+[root@Llawyr ComandosDeLaTerminal]# cp -p /var/www/html/richard/index.html index2.html
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al index2.html 
+-rw-rw-r-- 1 rrc webmin 13242 Jun 25  2008 index2.html
+
+[root@Llawyr ComandosDeLaTerminal]# cp -s index.html index-s.html
+[root@Llawyr ComandosDeLaTerminal]# ls -al index-s.html 
+lrwxrwxrwx 1 root root 10 Apr  4 14:49 index-s.html -> index.html
+
+[root@Llawyr ComandosDeLaTerminal]# cp  /var/www/html/richard .
+cp: omitting directory ‘/var/www/html/richard’
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al richard
+ls: cannot access richard: No such file or directory
+
+[root@Llawyr ComandosDeLaTerminal]# cp -r /var/www/html/richard richard2
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al richard2
+total 72
+drwxr-xr-x  3 root root  4096 Apr  4 14:54 ./
+drwx------ 18 rrc  rrc   4096 Apr  4 14:54 ../
+-rw-r--r--  1 root root  3320 Apr  4 14:54 evolution.es.html
+-rw-r--r--  1 root root  3272 Apr  4 14:54 evolution.html
+drwxr-xr-x  2 root root  4096 Apr  4 14:54 images/
+-rw-r--r--  1 root root 14700 Apr  4 14:54 index.es.html
+-rw-r--r--  1 root root 13242 Apr  4 14:54 index.html
+-rw-r--r--  1 root root  4329 Apr  4 14:54 RichardSleeve.es.html
+-rw-r--r--  1 root root  4328 Apr  4 14:54 RichardSleeve.html
+-rw-r--r--  1 root root   489 Apr  4 14:54 robots.txt
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al /var/www/html/richard
+total 72
+drwxrwsr-x  3 rrc  webmin  4096 Jun 20  2013 ./
+drwxr-xr-x 20 root root    4096 Oct 18 18:29 ../
+-rw-rw-r--  1 rrc  webmin  3320 Jun 25  2008 evolution.es.html
+-rw-rw-r--  1 rrc  webmin  3272 Jun 25  2008 evolution.html
+drwxrwsr-x  2 rrc  webmin  4096 Jul  8  2008 images/
+-rw-rw-r--  1 rrc  webmin 14700 Jul 10  2008 index.es.html
+-rw-rw-r--  1 rrc  webmin 13242 Jun 25  2008 index.html
+-rw-rw-r--  1 rrc  webmin  4329 Jun 25  2008 RichardSleeve.es.html
+-rw-rw-r--  1 rrc  webmin  4328 Jun 25  2008 RichardSleeve.html
+-rw-rw-r--  1 rrc  webmin   489 Jun 20  2013 robots.txt
+ 
+[root@Llawyr ComandosDeLaTerminal]# cp -a  /var/www/html/richard richard3
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al richard3
+total 72
+drwxrwsr-x  3 rrc webmin  4096 Jun 20  2013 ./
+drwx------ 17 rrc rrc     4096 Apr  4 14:46 ../
+-rw-rw-r--  1 rrc webmin  3320 Jun 25  2008 evolution.es.html
+-rw-rw-r--  1 rrc webmin  3272 Jun 25  2008 evolution.html
+drwxrwsr-x  2 rrc webmin  4096 Jul  8  2008 images/
+-rw-rw-r--  1 rrc webmin 14700 Jul 10  2008 index.es.html
+-rw-rw-r--  1 rrc webmin 13242 Jun 25  2008 index.html
+-rw-rw-r--  1 rrc webmin  4329 Jun 25  2008 RichardSleeve.es.html
+-rw-rw-r--  1 rrc webmin  4328 Jun 25  2008 RichardSleeve.html
+-rw-rw-r--  1 rrc webmin   489 Jun 20  2013 robots.txt
+
+[root@Llawyr ComandosDeLaTerminal]# cp -u /var/www/html/richard/* richard2
+cp: omitting directory ‘/var/www/html/richard/images’
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al richard2
+total 76
+drwxr-xr-x  4 root root  4096 Apr  4 15:01 ./
+drwx------ 18 rrc  rrc   4096 Apr  4 14:54 ../
+-rw-r--r--  1 root root     0 Apr  4 15:01 DelMe
+-rw-r--r--  1 root root  3320 Apr  4 14:54 evolution.es.html
+-rw-r--r--  1 root root  3272 Apr  4 14:54 evolution.html
+drwxr-xr-x  2 root root  4096 Apr  4 14:54 images/
+-rw-r--r--  1 root root 14700 Apr  4 14:54 index.es.html
+-rw-r--r--  1 root root 13242 Apr  4 14:54 index.html
+drwxr-xr-x  3 root root  4096 Apr  4 15:00 richard/
+-rw-r--r--  1 root root  4329 Apr  4 14:54 RichardSleeve.es.html
+-rw-r--r--  1 root root  4328 Apr  4 14:54 RichardSleeve.html
+-rw-r--r--  1 root root   489 Apr  4 14:54 robots.txt
+
+[root@Llawyr ComandosDeLaTerminal]# touch /var/www/html/richard/DelMe2
+[root@Llawyr ComandosDeLaTerminal]# cp -vu /var/www/html/richard/* richard2
+‘/var/www/html/richard/DelMe2’ -> ‘richard2/DelMe2’
+cp: omitting directory ‘/var/www/html/richard/images’
+
+[root@Llawyr ComandosDeLaTerminal]# touch /var/www/html/richard/DelMe3
+
+[root@Llawyr ComandosDeLaTerminal]# cp -vpu /var/www/html/richard/* richard2
+‘/var/www/html/richard/DelMe3’ -> ‘richard2/DelMe3’
+cp: omitting directory ‘/var/www/html/richard/images’
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al richard2
+total 76
+drwxr-xr-x  4 root root    4096 Apr  4 15:04 ./
+drwx------ 18 rrc  rrc     4096 Apr  4 14:54 ../
+-rw-r--r--  1 root root       0 Apr  4 15:01 DelMe
+-rw-r--r--  1 root root       0 Apr  4 15:03 DelMe2
+-rw-r--r--  1 root webmin     0 Apr  4 15:04 DelMe3
+-rw-r--r--  1 root root    3320 Apr  4 14:54 evolution.es.html
+-rw-r--r--  1 root root    3272 Apr  4 14:54 evolution.html
+drwxr-xr-x  2 root root    4096 Apr  4 14:54 images/
+-rw-r--r--  1 root root   14700 Apr  4 14:54 index.es.html
+-rw-r--r--  1 root root   13242 Apr  4 14:54 index.html
+drwxr-xr-x  3 root root    4096 Apr  4 15:00 richard/
+-rw-r--r--  1 root root    4329 Apr  4 14:54 RichardSleeve.es.html
+-rw-r--r--  1 root root    4328 Apr  4 14:54 RichardSleeve.html
+-rw-r--r--  1 root root     489 Apr  4 14:54 robots.txt
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
