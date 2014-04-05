@@ -1,0 +1,148 @@
+__NOTOC__
+* [[:#ln | ln]]
+
+== ln ==
+
+<syntaxhighlight lang="bash">
+[root@Llawyr ComandosDeLaTerminal]# ln --help
+Usage: ln [OPTION]... [-T] TARGET LINK_NAME   (1st form)
+  or:  ln [OPTION]... TARGET                  (2nd form)
+  or:  ln [OPTION]... TARGET... DIRECTORY     (3rd form)
+  or:  ln [OPTION]... -t DIRECTORY TARGET...  (4th form)
+In the 1st form, create a link to TARGET with the name LINK_NAME.
+In the 2nd form, create a link to TARGET in the current directory.
+In the 3rd and 4th forms, create links to each TARGET in DIRECTORY.
+Create hard links by default, symbolic links with --symbolic.
+By default, each destination (name of new link) should not already exist.
+When creating hard links, each TARGET must exist.  Symbolic links
+can hold arbitrary text; if later resolved, a relative link is
+interpreted in relation to its parent directory.
+
+Mandatory arguments to long options are mandatory for short options too.
+      --backup[=CONTROL]      make a backup of each existing destination file
+  -b                          like --backup but does not accept an argument
+  -d, -F, --directory         allow the superuser to attempt to hard link
+                                directories (note: will probably fail due to
+                                system restrictions, even for the superuser)
+  -f, --force                 remove existing destination files
+  -i, --interactive           prompt whether to remove destinations
+  -L, --logical               dereference TARGETs that are symbolic links
+  -n, --no-dereference        treat LINK_NAME as a normal file if
+                                it is a symbolic link to a directory
+  -P, --physical              make hard links directly to symbolic links
+  -r, --relative              create symbolic links relative to link location
+  -s, --symbolic              make symbolic links instead of hard links
+  -S, --suffix=SUFFIX         override the usual backup suffix
+  -t, --target-directory=DIRECTORY  specify the DIRECTORY in which to create
+                                the links
+  -T, --no-target-directory   treat LINK_NAME as a normal file always
+  -v, --verbose               print name of each linked file
+      --help     display this help and exit
+      --version  output version information and exit
+
+The backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.
+The version control method may be selected via the --backup option or through
+the VERSION_CONTROL environment variable.  Here are the values:
+
+  none, off       never make backups (even if --backup is given)
+  numbered, t     make numbered backups
+  existing, nil   numbered if numbered backups exist, simple otherwise
+  simple, never   always make simple backups
+
+Using -s ignores -L and -P.  Otherwise, the last option specified controls
+behavior when a TARGET is a symbolic link, defaulting to -P.
+
+Report ln bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'ln invocation'
+
+[root@Llawyr ComandosDeLaTerminal]# ln --version
+ln (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Mike Parker and David MacKenzie.
+
+[root@Llawyr ComandosDeLaTerminal]# ln STRERR HLSTERR
+
+[root@Llawyr ComandosDeLaTerminal]# ls -ali STRERR HLSTERR 
+8521820 -rw------- 2 rrc rrc 44 Nov 16 13:10 HLSTERR
+8521820 -rw------- 2 rrc rrc 44 Nov 16 13:10 STRERR
+
+[root@Llawyr ComandosDeLaTerminal]# rm STRERR 
+rm: remove regular file ‘STRERR’? y
+
+[root@Llawyr ComandosDeLaTerminal]# ls -ali STRERR HLSTERR 
+ls: cannot access STRERR: No such file or directory
+8521820 -rw------- 1 rrc rrc 44 Nov 16 13:10 HLSTERR
+
+[root@Llawyr ComandosDeLaTerminal]# ln -s HLSTERR STDERR
+
+[root@Llawyr ComandosDeLaTerminal]# ls -ali STDERR 
+8523095 lrwxrwxrwx 1 root root 7 Apr  4 15:31 STDERR -> HLSTERR
+
+[root@Llawyr ComandosDeLaTerminal]# rm HLSTERR 
+rm: remove regular file ‘HLSTERR’? y
+
+[root@Llawyr ComandosDeLaTerminal]# ls -ali STDERR  HLSTDERR
+ls: cannot access HLSTDERR: No such file or directory
+8523095 lrwxrwxrwx 1 root root 7 Apr  4 15:31 STDERR -> HLSTERR
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ln -s ../../../var/www/html/linuxcabal.org 
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al linuxcabal.org
+lrwxrwxrwx 1 rrc rrc 36 Apr  4 16:31 linuxcabal.org -> ../../../var/www/html/linuxcabal.org/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ln -s ../../var/www/html/richard 
+ln: failed to create symbolic link ‘./richard’: File exists
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ln -sf ../../var/www/html/richard 
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al richard
+lrwxrwxrwx 1 rrc rrc 26 Apr  4 16:34 richard -> ../../var/www/html/richard
+
+[root@pridd ComandosDeLaTerminal]# ln -is ../../../var/www/html/richard 
+ln: replace ‘./richard’? 
+
+[root@pridd ComandosDeLaTerminal]# ls -al richard
+lrwxrwxrwx 1 root root 29 Apr  5 13:51 richard -> ../../../var/www/html/richard/
+
+[root@pridd ComandosDeLaTerminal]# ln -sr /var/www/html 
+
+[root@pridd ComandosDeLaTerminal]# ls -al html
+lrwxrwxrwx 1 root root 21 Apr  5 13:53 html -> ../../../var/www/html/
+
+[root@pridd ComandosDeLaTerminal]# ls -al C1/C2/C3
+total 12
+drwxrwxrwx 3 rrc rrc 4096 Mar 22 16:03 ./
+drwxrwxrwx 3 rrc rrc 4096 Mar 22 16:03 ../
+drwxrwxrwx 3 rrc rrc 4096 Mar 22 16:04 C4/
+
+[root@pridd ComandosDeLaTerminal]# ln -st C1/C2/C3 /var/www/html/richard
+[root@pridd ComandosDeLaTerminal]# ls -al C1/C2/C3
+total 12
+drwxrwxrwx 3 rrc  rrc  4096 Apr  5 13:57 ./
+drwxrwxrwx 3 rrc  rrc  4096 Mar 22 16:03 ../
+drwxrwxrwx 3 rrc  rrc  4096 Mar 22 16:04 C4/
+lrwxrwxrwx 1 root root   21 Apr  5 13:57 richard -> /var/www/html/richard/
+
+[root@pridd ComandosDeLaTerminal]# ln -irst C1/C2/C3 /var/www/html/richard
+ln: replace ‘C1/C2/C3/richard’? y
+
+[root@pridd ComandosDeLaTerminal]# ls -al C1/C2/C3
+total 12
+drwxrwxrwx 3 rrc  rrc  4096 Apr  5 13:57 ./
+drwxrwxrwx 3 rrc  rrc  4096 Mar 22 16:03 ../
+drwxrwxrwx 3 rrc  rrc  4096 Mar 22 16:04 C4/
+lrwxrwxrwx 1 root root   38 Apr  5 13:57 richard -> ../../../../../../var/www/html/richard/
+
+[root@pridd ComandosDeLaTerminal]# ln -sriv /var/www/html/richard
+ln: replace ‘./richard’? y
+‘./richard’ -> ‘../../../var/www/html/richard’
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
