@@ -1,0 +1,151 @@
+__NOTOC__
+* [[:#lsblk| lsblk]]
+
+== lsblk ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# lsblk --help
+
+Usage:
+ lsblk [options] [<device> ...]
+
+Options:
+ -a, --all            print all devices
+ -b, --bytes          print SIZE in bytes rather than in human readable format
+ -d, --nodeps         don't print slaves or holders
+ -D, --discard        print discard capabilities
+ -e, --exclude <list> exclude devices by major number (default: RAM disks)
+ -f, --fs             output info about filesystems
+ -i, --ascii          use ascii characters only
+ -I, --include <list> show only devices with specified major numbers
+ -l, --list           use list format output
+ -m, --perms          output info about permissions
+ -n, --noheadings     don't print headings
+ -o, --output <list>  output columns
+ -p, --paths          print complete device path
+ -P, --pairs          use key="value" output format
+ -r, --raw            use raw output format
+ -s, --inverse        inverse dependencies
+ -S, --scsi           output info about SCSI devices
+ -t, --topology       output info about topology
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+Available columns (for --output):
+        NAME  device name
+       KNAME  internal kernel device name
+     MAJ:MIN  major:minor device number
+      FSTYPE  filesystem type
+  MOUNTPOINT  where the device is mounted
+       LABEL  filesystem LABEL
+        UUID  filesystem UUID
+   PARTLABEL  partition LABEL
+    PARTUUID  partition UUID
+          RA  read-ahead of the device
+          RO  read-only device
+          RM  removable device
+       MODEL  device identifier
+      SERIAL  disk serial number
+        SIZE  size of the device
+       STATE  state of the device
+       OWNER  user name
+       GROUP  group name
+        MODE  device node permissions
+   ALIGNMENT  alignment offset
+      MIN-IO  minimum I/O size
+      OPT-IO  optimal I/O size
+     PHY-SEC  physical sector size
+     LOG-SEC  logical sector size
+        ROTA  rotational device
+       SCHED  I/O scheduler name
+     RQ-SIZE  request queue size
+        TYPE  device type
+    DISC-ALN  discard alignment offset
+   DISC-GRAN  discard granularity
+    DISC-MAX  discard max bytes
+   DISC-ZERO  discard zeroes data
+       WSAME  write same max bytes
+         WWN  unique storage identifier
+        RAND  adds randomness
+      PKNAME  internal parent kernel device name
+        HCTL  Host:Channel:Target:Lun for SCSI
+        TRAN  device transport type
+         REV  device revision
+      VENDOR  device vendor
+
+For more details see lsblk(8).
+
+[root@Llawyr ~]# lsblk --version
+lsblk from util-linux 2.24
+
+[root@Llawyr ~]# lsblk
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 465.8G  0 disk 
+├─sda1   8:1    0  48.8G  0 part /
+├─sda2   8:2    0  11.7G  0 part [SWAP]
+└─sda3   8:3    0 405.2G  0 part /home
+sdb      8:16   1         0 disk 
+sr0     11:0    1  1024M  0 rom  
+
+[root@Llawyr ~]# lsblk /dev/sda
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda      8:0    0 465.8G  0 disk 
+├─sda1   8:1    0  48.8G  0 part /
+├─sda2   8:2    0  11.7G  0 part [SWAP]
+└─sda3   8:3    0 405.2G  0 part /home
+
+[root@Llawyr ~]# lsblk -d  /dev/sda
+NAME MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
+sda    8:0    0 465.8G  0 disk 
+
+[root@Llawyr ~]# lsblk -f
+NAME   FSTYPE LABEL UUID                                 MOUNTPOINT
+sda                                                      
+├─sda1 ext4         e8217457-cd9d-40a0-a32c-6d0189bdd579 /
+├─sda2 swap         ad93cd6c-e55a-4f42-88fe-9d44d08d243a [SWAP]
+└─sda3 ext4         8a0c6fab-047a-4366-a1c1-8fd6bf350d03 /home
+sr0                                                      
+
+[root@Llawyr ~]# lsblk -fl
+NAME FSTYPE LABEL UUID                                 MOUNTPOINT
+sda                                                    
+sda1 ext4         e8217457-cd9d-40a0-a32c-6d0189bdd579 /
+sda2 swap         ad93cd6c-e55a-4f42-88fe-9d44d08d243a [SWAP]
+sda3 ext4         8a0c6fab-047a-4366-a1c1-8fd6bf350d03 /home
+sr0                         
+
+[root@Llawyr ~]# lsblk -m
+NAME     SIZE OWNER GROUP MODE
+sda    465.8G root  disk  brw-rw----
+├─sda1  48.8G root  disk  brw-rw----
+├─sda2  11.7G root  disk  brw-rw----
+└─sda3 405.2G root  disk  brw-rw----
+sr0     1024M root  cdrom brw-rw----
+
+[root@Llawyr ~]# lsblk -mn
+sda    465.8G root  disk  brw-rw----
+├─sda1  48.8G root  disk  brw-rw----
+├─sda2  11.7G root  disk  brw-rw----
+└─sda3 405.2G root  disk  brw-rw----
+sr0     1024M root  cdrom brw-rw----
+
+[root@Llawyr ~]# lsblk -P
+NAME="sda" MAJ:MIN="8:0" RM="0" SIZE="465.8G" RO="0" TYPE="disk" MOUNTPOINT=""
+NAME="sda1" MAJ:MIN="8:1" RM="0" SIZE="48.8G" RO="0" TYPE="part" MOUNTPOINT="/"
+NAME="sda2" MAJ:MIN="8:2" RM="0" SIZE="11.7G" RO="0" TYPE="part" MOUNTPOINT="[SWAP]"
+NAME="sda3" MAJ:MIN="8:3" RM="0" SIZE="405.2G" RO="0" TYPE="part" MOUNTPOINT="/home"
+NAME="sr0" MAJ:MIN="11:0" RM="1" SIZE="1024M" RO="0" TYPE="rom" MOUNTPOINT=""
+
+[root@Llawyr ~]# lsblk -t
+NAME   ALIGNMENT MIN-IO OPT-IO PHY-SEC LOG-SEC ROTA SCHED RQ-SIZE  RA WSAME
+sda            0    512      0     512     512    1 cfq     20480 128    0B
+├─sda1         0    512      0     512     512    1 cfq     20480 128    0B
+├─sda2         0    512      0     512     512    1 cfq     20480 128    0B
+└─sda3         0    512      0     512     512    1 cfq     20480 128    0B
+sr0            0    512      0     512     512    1 cfq       128 128    0B
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
