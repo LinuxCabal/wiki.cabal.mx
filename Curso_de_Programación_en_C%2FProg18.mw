@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Prog18 | Prog18]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog18 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog18.c -- flags con strings */
+
+#include <stdio.h>
+
+#define BLURB "Imitacion autentico"
+
+int main( void )
+{
+  printf( "/%2s/\n", BLURB );
+  printf( "/%26s/\n", BLURB );
+  printf( "/123456789012345678901234567890/\n" );
+  printf( "/%26.5s/\n", BLURB );
+  printf( "/123456789012345678901234567890/\n" );
+  printf( "/%-26.5s/\n", BLURB );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog18 Prog18.c
+ [rrc@Pridd CClase]$ ./Prog18
+ /Imitacion autentico/
+ /      Imitacion autentico/
+ /123456789012345678901234567890/
+ /                     Imita/
+ /123456789012345678901234567890/
+ /Imita                     /
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
