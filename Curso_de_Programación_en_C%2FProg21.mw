@@ -1,0 +1,41 @@
+__NOTOC__
+* [[:#Prog21 | Prog21]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog21 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog21.c -- Valor regresado por printf() */
+
+#include <stdio.h>
+
+int main( void )
+{
+  int EbullicionH2O = 100,
+      ValorRegresado;
+
+  ValorRegresado = printf( "%dC es el punto de ebullicion del agua.\n", EbullicionH2O );
+  printf( "12345678901234567890123456789012345\n" );
+  printf( "La funcion printf() escribio %d caracteres.\n", ValorRegresado );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog21 Prog21.c
+ [rrc@Pridd CClase]$ ./Prog21
+ 100C es el punto de ebullicion del agua.
+ 12345678901234567890123456789012345
+ La funcion printf() escribio 41 caracteres.
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
