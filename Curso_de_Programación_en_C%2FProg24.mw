@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#Prog24 | Prog24]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog24 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+/* Prog24.c - Salta algunas entradas */
+
+#include <stdio.h>
+
+int main( void )
+{
+  int n;
+
+  printf( "Ingresa tres (3) enteros por favor:\n" );
+  scanf( "%*d %*d %d", &n );
+  printf( "El ultimo entero fue %d\n", n );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog24 Prog24.c
+ [rrc@Pridd CClase]$ ./Prog24
+ Ingresa tres (3) enteros por favor:
+ 23 -44 944
+ El ultimo entero fue 944
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
