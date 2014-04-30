@@ -1,0 +1,84 @@
+__NOTOC__
+* [[:#lscpu| lscpu]]
+
+== lscpu ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# lscpu --help
+
+Usage:
+ lscpu [options]
+
+Options:
+ -a, --all               print both online and offline CPUs (default for -e)
+ -b, --online            print online CPUs only (default for -p)
+ -c, --offline           print offline CPUs only
+ -e, --extended[=<list>] print out an extended readable format
+ -p, --parse[=<list>]    print out a parsable format
+ -s, --sysroot <dir>     use specified directory as system root
+ -x, --hex               print hexadecimal masks rather than lists of CPUs
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+Available columns:
+           CPU  logical CPU number
+          CORE  logical core number
+        SOCKET  logical socket number
+          NODE  logical NUMA node number
+          BOOK  logical book number
+         CACHE  shows how caches are shared between CPUs
+  POLARIZATION  CPU dispatching mode on virtual hardware
+       ADDRESS  physical address of a CPU
+    CONFIGURED  shows if the hypervisor has allocated the CPU
+        ONLINE  shows if Linux currently makes use of the CPU
+        MAXMHZ  shows the maximum MHz of the CPU
+        MINMHZ  shows the minimum MHz of the CPU
+
+For more details see lscpu(1).
+
+[root@Llawyr ~]# lscpu --version
+lscpu from util-linux 2.24
+
+[root@Llawyr ~]# lscpu
+Architecture:          x86_64
+CPU op-mode(s):        32-bit, 64-bit
+Byte Order:            Little Endian
+CPU(s):                8
+On-line CPU(s) list:   0-7
+Thread(s) per core:    2
+Core(s) per socket:    4
+Socket(s):             1
+NUMA node(s):          1
+Vendor ID:             GenuineIntel
+CPU family:            6
+Model:                 58
+Model name:            Intel(R) Core(TM) i7-3610QM CPU @ 2.30GHz
+Stepping:              9
+CPU MHz:               2301.000
+CPU max MHz:           2301.0000
+CPU min MHz:           1200.0000
+BogoMIPS:              4589.66
+Virtualization:        VT-x
+L1d cache:             32K
+L1i cache:             32K
+L2 cache:              256K
+L3 cache:              6144K
+NUMA node0 CPU(s):     0-7
+
+[root@Llawyr ~]# lscpu -e=cpu,node,core,address,configured,online,maxmhz,minmhz
+CPU NODE CORE ADDRESS CONFIGURED ONLINE MAXMHZ    MINMHZ
+0   0    0    -       -          yes    2301.0000 1200.0000
+1   0    1    -       -          yes    2301.0000 1200.0000
+2   0    2    -       -          yes    2301.0000 1200.0000
+3   0    3    -       -          yes    2301.0000 1200.0000
+4   0    0    -       -          yes    2301.0000 1200.0000
+5   0    1    -       -          yes    2301.0000 1200.0000
+6   0    2    -       -          yes    2301.0000 1200.0000
+7   0    3    -       -          yes    2301.0000 1200.0000
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
