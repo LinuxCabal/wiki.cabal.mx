@@ -1,0 +1,241 @@
+__NOTOC__
+* [[:#lsof| lsof]]
+
+== lsof ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# lsof -?
+lsof 4.87
+ latest revision: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/
+ latest FAQ: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/FAQ
+ latest man page: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/lsof_man
+ usage: [-?abhKlnNoOPRtUvVX] [+|-c c] [+|-d s] [+D D] [+|-f[gG]] [+|-e s]
+ [-F [f]] [-g [s]] [-i [i]] [+|-L [l]] [+m [m]] [+|-M] [-o [o]] [-p s]
+[+|-r [t]] [-s [p:s]] [-S [t]] [-T [t]] [-u s] [+|-w] [-x [fl]] [--] [names]
+Defaults in parentheses; comma-separated set (s) items; dash-separated ranges.
+  -?|-h list help          -a AND selections (OR)     -b avoid kernel blocks
+  -c c  cmd c ^c /c/[bix]  +c w  COMMAND width (9)    +d s  dir s files
+  -d s  select by FD set   +D D  dir D tree *SLOW?*   +|-e s  exempt s *RISKY*
+  -i select IPv[46] files  -K list tasKs (threads)    -l list UID numbers
+  -n no host names         -N select NFS files        -o list file offset
+  -O no overhead *RISKY*   -P no port names           -R list paRent PID
+  -s list file size        -t terse listing           -T disable TCP/TPI info
+  -U select Unix socket    -v list version info       -V verbose search
+  +|-w  Warnings (+)       -X skip TCP&UDP* files     -- end option scan
+  +f|-f  +filesystem or -file names     +|-f[gG] flaGs 
+  -F [f] select fields; -F? for help  
+  +|-L [l] list (+) suppress (-) link counts < l (0 = all; default = 0)
+                                        +m [m] use|create mount supplement
+  +|-M   portMap registration (-)       -o o   o 0t offset digits (8)
+  -p s   exclude(^)|select PIDs         -S [t] t second stat timeout (15)
+  -T qs TCP/TPI Q,St (s) info
+  -g [s] exclude(^)|select and print process group IDs
+  -i i   select by IPv[46] address: [46][proto][@host|addr][:svc_list|port_list]
+  +|-r [t[m<fmt>]] repeat every t seconds (15);  + until no files, - forever.
+       An optional suffix to t is m<fmt>; m must separate t from <fmt> and
+      <fmt> is an strftime(3) format for the marker line.
+  -s p:s  exclude(^)|select protocol (p = TCP|UDP) states by name(s).
+  -u s   exclude(^)|select login|UID set s
+  -x [fl] cross over +d|+D File systems or symbolic Links
+  names  select named files or files on named file systems
+Only root can list all files; /dev warnings disabled; kernel ID check disabled.
+
+[root@Llawyr ~]# lsof -v
+lsof version information:
+    revision: 4.87
+    latest revision: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/
+    latest FAQ: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/FAQ
+    latest man page: ftp://lsof.itap.purdue.edu/pub/tools/unix/lsof/lsof_man
+    constructed: Fri Oct 18 21:19:22 UTC 2013
+    constructed by and on: iurt@rabbit.mageia.org
+    compiler: cc
+    compiler version: 4.8.2 (GCC) 
+    compiler flags: -DLINUXV=312000 -DGLIBCV=218 -DHASIPv6 -D_FILE_OFFSET_BITS=64 -D_LARGEFILE64_SOURCE -DHAS_STRFTIME -DLSOF_VSTR="3.12.0" -O2 -g -pipe -Wformat -Werror=format-security -Wp,-D_FORTIFY_SOURCE=2 -fstack-protector --param=ssp-buffer-size=4 -fPIC
+    loader flags: -Wl,--as-needed -Wl,--no-undefined -Wl,-z,relro -Wl,-O1 -Wl,--build-id -Wl,--enable-new-dtags -L./lib -llsof
+    system info: Linux rabbit.mageia.org 3.4.52-server-1.mga2 #1 SMP Thu Jul 4 07:46:13 UTC 2013 x86_64 x86_64 x86_64 GNU/Linux
+    Only root can list all files.
+    /dev warnings are disabled.
+    Kernel ID check is disabled.
+
+[root@Llawyr ~]# rpm -qf $( which lsof )
+lsof-4.87-2.mga4
+
+información acerca de archivos abiertos en lo siguientes sabores de UNIX:
+
+            Apple Darwin 9 and Mac OS X 10.[567]
+            FreeBSD 4.9 and 6.4 for x86-based systems
+            FreeBSD 8.2, 9.0 and 10.0 for AMD64-based systems
+            Linux 2.1.72 and above for x86-based systems
+            Solaris 9, 10 and 11
+
+[root@Llawyr ~]# lsof
+COMMAND     PID   TID       USER   FD      TYPE             DEVICE   SIZE/OFF       NODE NAME
+systemd       1             root  cwd       DIR                8,1       4096          2 /
+systemd       1             root  rtd       DIR                8,1       4096          2 /
+systemd       1             root  txt       REG                8,1    1083248    2624630 /usr/lib/systemd/systemd
+systemd       1             root  mem       REG                8,1      52952    2621595 /usr/lib64/libnss_files-2.18.so
+systemd       1             root  mem       REG                8,1     106296    2622648 /usr/lib64/libz.so.1.2.8
+systemd       1             root  mem       REG                8,1     202000    2622223 /usr/lib64/liblzma.so.5.0.99
+systemd       1             root  mem       REG                8,1      15856    2621583 /usr/lib64/libdl-2.18.so
+systemd       1             root  mem       REG                8,1      95520    2621587 /usr/lib64/libnsl-2.18.so
+systemd       1             root  mem       REG                8,1    2065240    2621577 /usr/lib64/libc-2.18.so
+systemd       1             root  mem       REG                8,1     144176    2621603 /usr/lib64/libpthread-2.18.so
+ .
+ .
+ .
+xdemineur  6960              rrc  mem       REG                8,1      23464   
+ 2629141 /usr/lib64/libXfixes.so.3.1.0
+xdemineur  6960              rrc  mem       REG                8,1      40424   
+ 2629143 /usr/lib64/libXrender.so.1.3.0
+xdemineur  6960              rrc  mem       REG                8,1      44912   
+ 2629145 /usr/lib64/libXcursor.so.1.0.2
+xdemineur  6960              rrc  mem       REG                8,1      23504   
+ 2629133 /usr/lib64/libXdmcp.so.6.0.0
+xdemineur  6960              rrc  mem       REG                8,1      15408   
+ 2629131 /usr/lib64/libXau.so.6.0.0
+xdemineur  6960              rrc  mem       REG                8,1      15856   
+ 2621583 /usr/lib64/libdl-2.18.so
+xdemineur  6960              rrc  mem       REG                8,1     127032   
+ 2629135 /usr/lib64/libxcb.so.1.1.0
+xdemineur  6960              rrc  mem       REG                8,1    2065240    2621577 /usr/lib64/libc-2.18.so
+xdemineur  6960              rrc  mem       REG                8,1    1297720    2629139 /usr/lib64/libX11.so.6.3.0
+xdemineur  6960              rrc  mem       REG                8,1      74776    2629150 /usr/lib64/libXext.so.6.4.0
+xdemineur  6960              rrc  mem       REG                8,1      73992    2631067 /usr/lib64/libXpm.so.4.11.0
+ .
+ .
+ .
+
+[root@Llawyr ~]# lsof -c p
+ .
+ .
+ .
+python    31496     rrc  mem       REG                8,1  1805456   2634640 /usr/lib64/libpython2.7.so.1.0
+python    31496     rrc  mem       REG                8,1   149504   2621570 /usr/lib64/ld-2.18.so
+python    31496     rrc    0r      CHR                1,3      0t0      1029 /dev/null
+python    31496     rrc    1u     unix 0xffff8800d1bcdb00      0t0     19158 socket
+python    31496     rrc    2u     unix 0xffff8800d1bcdb00      0t0     19158 socket
+python    31496     rrc    3w      REG                8,3        0   8523000 /home/rrc/.hplip/hp-systray.lock
+python    31496     rrc    4r     FIFO                0,8      0t0     21759 pipe
+python    31496     rrc    5w     FIFO                0,8      0t0     23101 pipe
+ .
+ .
+ .
+
+[root@Llawyr ~]# lsof -u rrc
+ .
+ .
+ .
+kglobalac 11174  rrc  mem       REG                8,1      32536    2631301 /usr/lib64/libfam.so.0.0.0
+kglobalac 11174  rrc  mem       REG                8,1     202000    2622223 /usr/lib64/liblzma.so.5.0.99
+kglobalac 11174  rrc  mem       REG                8,1      67936    2627268 /usr/lib64/libbz2.so.1.0.6
+kglobalac 11174  rrc  mem       REG                8,1     106296    2622648 /usr/lib64/libz.so.1.2.8
+kglobalac 11174  rrc  mem       REG                8,1      15856    2621583 /usr/lib64/libdl-2.18.so
+kglobalac 11174  rrc  mem       REG                8,1     127032    2629135 /usr/lib64/libxcb.so.1.1.0
+ .
+ .
+ .
+
+[root@Llawyr ~]# lsof -a -c p -u rrc
+ .
+ .
+ .
+pxgsettin 14266  rrc    2u     unix 0xffff8800d1bcdb00      0t0     19158 socket
+pxgsettin 14266  rrc    3u  a_inode                0,9        0      6211 [eventfd]
+pxgsettin 14266  rrc    4u  a_inode                0,9        0      6211 [eventfd]
+pxgsettin 14266  rrc    5u     unix 0xffff88015eee1040      0t0   3556065 socket
+pxgsettin 14266  rrc    6u  a_inode                0,9        0      6211 [eventfd]
+pxgsettin 14266  rrc    7u  a_inode                0,9        0      6211 [eventfd]
+plugin-co 17269  rrc  cwd       DIR                8,3    20480   8519681 /home/rrc
+plugin-co 17269  rrc  rtd       DIR                8,1     4096         2 /
+plugin-co 17269  rrc  txt       REG                8,1   107936   2770219 /usr/lib64/firefox-24.4.0/plugin-container
+plugin-co 17269  rrc  mem       REG               0,16 67108904   3938479 /dev/shm/pulse-shm-1801647526
+ .
+ .
+ .
+
+[root@Llawyr ~]# lsof  +d /home/rrc
+lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/500/gvfs
+      Output information may be incomplete.
+COMMAND     PID USER   FD   TYPE DEVICE SIZE/OFF    NODE NAME
+xdemineur  5162  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+xdemineur  6960  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+xdemineur  9492  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+ktorrent  11139  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+kdeinit4  11150  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+klauncher 11152  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+kded4     11154  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+gam_serve 11156  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+kglobalac 11174  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+gnome-ter 12122  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+bash      12130  rrc  cwd    DIR    8,3    20480 8519681 /home/rr
+ .
+ .
+ .
+
+[root@Llawyr ~]# lsof -a -r 5 -c p  +d /home/rrc
+lsof: WARNING: can't stat() fuse.gvfsd-fuse file system /run/user/500/gvfs
+      Output information may be incomplete.
+COMMAND     PID USER   FD   TYPE DEVICE SIZE/OFF    NODE NAME
+pxgsettin 14266  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+plugin-co 17269  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+pulseaudi 29765  rrc   39r   DIR    8,3    20480 8519681 /home/rrc
+python    31359  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+pinot-dbu 31414  rrc  cwd    DIR    8,3     4096 8519737 /home/rrc/.pinot
+pam-panel 31416  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+python    31495  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+python    31496  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+=======
+COMMAND     PID USER   FD   TYPE DEVICE SIZE/OFF    NODE NAME
+pxgsettin 14266  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+plugin-co 17269  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+pulseaudi 29765  rrc   39r   DIR    8,3    20480 8519681 /home/rrc
+python    31359  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+pinot-dbu 31414  rrc  cwd    DIR    8,3     4096 8519737 /home/rrc/.pinot
+pam-panel 31416  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+python    31495  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+python    31496  rrc  cwd    DIR    8,3    20480 8519681 /home/rrc
+=======
+^C
+
+[root@Llawyr ~]# lsof  -iTCP -sTCP:LISTEN
+COMMAND    PID   USER   FD   TYPE  DEVICE SIZE/OFF NODE NAME
+httpd     1279   root    3u  IPv6    9088      0t0  TCP *:http (LISTEN)
+httpd     1279   root    4u  IPv6   16621      0t0  TCP *:https (LISTEN)
+sshd      1299   root    3u  IPv4   14918      0t0  TCP *:ssh (LISTEN)
+sshd      1299   root    4u  IPv6   14920      0t0  TCP *:ssh (LISTEN)
+httpd     1364 apache    3u  IPv6    9088      0t0  TCP *:http (LISTEN)
+httpd     1364 apache    4u  IPv6   16621      0t0  TCP *:https (LISTEN)
+httpd     1365 apache    3u  IPv6    9088      0t0  TCP *:http (LISTEN)
+httpd     1365 apache    4u  IPv6   16621      0t0  TCP *:https (LISTEN)
+httpd     1366 apache    3u  IPv6    9088      0t0  TCP *:http (LISTEN)
+httpd     1366 apache    4u  IPv6   16621      0t0  TCP *:https (LISTEN)
+httpd     1368 apache    3u  IPv6    9088      0t0  TCP *:http (LISTEN)
+httpd     1368 apache    4u  IPv6   16621      0t0  TCP *:https (LISTEN)
+httpd     1369 apache    3u  IPv6    9088      0t0  TCP *:http (LISTEN)
+httpd     1369 apache    4u  IPv6   16621      0t0  TCP *:https (LISTEN)
+master    1504   root   13u  IPv4   18664      0t0  TCP Llawyr.LinuxCabal.org:smtp (LISTEN)
+master    1504   root  100u  IPv4   18751      0t0  TCP Llawyr.LinuxCabal.org:10026 (LISTEN)
+cupsd     8094   root   10u  IPv4 4254705      0t0  TCP *:ipp (LISTEN)
+cupsd     8094   root   11u  IPv6 4254706      0t0  TCP *:ipp (LISTEN)
+ktorrent 11139    rrc   24u  IPv6  301421      0t0  TCP *:6881 (LISTEN)
+
+[root@Llawyr ~]# lsof  -U
+ .
+ .
+ .
+mission-c 31281        rrc    3u  unix 0xffff8802fbdeba80      0t0   22581 socket
+mission-c 31281        rrc    7u  unix 0xffff8800d12c6180      0t0   21679 socket
+mission-c 31281        rrc   10u  unix 0xffff8802fa0e1a00      0t0   20568 socket
+accounts- 31282       root    1u  unix 0xffff8800d12c5b00      0t0   21678 socket
+accounts- 31282       root    2u  unix 0xffff8800d12c5b00      0t0   21678 socket
+accounts- 31282       root    5u  unix 0xffff8802fbdee180      0t0   22575 socket
+gvfs-udis 31294        rrc    4u  unix 0xffff88030f9f5b00      0t0   22584 socket
+gvfs-udis 31294        rrc    8u  unix 0xffff8802fa0e3400      0t0   20574 socket
+ .
+ .
+ .
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
