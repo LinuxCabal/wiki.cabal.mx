@@ -1,0 +1,57 @@
+__NOTOC__
+* [[:#Prog49 | Funciones para probar un caracter]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog49 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+int main( void )
+{
+  printf( "  Nombre        Verdad si su argumento es\n\n"
+          " isalnum()             Alfanumerico\n"
+          " isalpha()             Alfabetico\n"
+          " isblank()  caracter vacio como \' \', \'<tab>\', \'\\n\'\n"
+          " iscntrl()  caracter de control como \'<Ctrl+B>\'\n"
+          " isdigit()  un numeral (\'0\' - \'9\')\n"
+          " isgraph()  un caracter que escribe algo que no es \' \'\n"
+          " islower()  una minuscula\n"
+          " isprint()  que imprime algo en la pantalla\n"
+          " ispunct()  imprime algo que NO es \' \' , o alfanumerico\n"
+          " isspace()  un caracter de espacio blanco\n"
+          " isupper()  una mayuscula\n"
+          " isxdigit() un numeral hexadecimal\n\n" );
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog49 Prog49.c 
+ [rrc@Pridd CClase]$ ./Prog49 
+ 
+  Nombre        Verdad si su argumento es
+ 
+ isalnum()             Alfanumerico
+ isalpha()             Alfabetico
+ isblank()  caracter vacio como ' ', '<tab>', '\n'
+ iscntrl()  caracter de control como '<Ctrl+B>'
+ isdigit()  un numeral ('0' - '9')
+ isgraph()  un caracter que escribe algo que no es ' '
+ islower()  una minuscula
+ isprint()  que imprime algo en la pantalla
+ ispunct()  imprime algo que NO es ' ' , o alfanumerico
+ isspace()  un caracter de espacio blanco
+ isupper()  una mayuscula
+ isxdigit() un numeral hexadecimal
+ 
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
