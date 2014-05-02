@@ -1,0 +1,72 @@
+__NOTOC__
+* [[:#Prog56 | Leer un Archivo]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog56 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main( void )
+{
+  int ch;
+  FILE * fp;
+  char NArchivo[50];
+
+  printf("¿Que archivo quieres ver? ");
+  scanf("%s", NArchivo);
+
+  if( ( fp = fopen(NArchivo, "r") ) == NULL )
+  {
+    printf( "No puedo abrir %s\n", NArchivo );
+    exit(1);
+  }
+
+  while( ( ch = getc( fp ) ) != EOF )
+    putchar( ch );
+  fclose( fp );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ ¿Que archivo quieres ver? Prog56.c
+ #include <stdio.h>
+ #include <stdlib.h>
+ 
+ int main( void )
+ {
+   int ch;
+   FILE * fp;
+   char NArchivo[50];
+ 
+   printf("¿Que archivo quieres ver? ");
+   scanf("%s", NArchivo);
+ 
+   if( ( fp = fopen(NArchivo, "r") ) == NULL )
+   {
+     printf( "No puedo abrir %s\n", NArchivo );
+     exit(1);
+   }
+ 
+   while( ( ch = getc( fp ) ) != EOF )
+     putchar( ch );
+   fclose( fp );
+ 
+   return 0;
+  }
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
+
+Para Windows, el archivo Prog01.c que vamos a abrir, debe estar en la carpeta donde se encuentra Prog56.c
+El formato de fopen es: fp = fopen(nombre, modo) . En el "nombre" puede especificar un path o ruta donde se encuentra el archivo.
