@@ -1,0 +1,153 @@
+__NOTOC__
+* [[:#Prog57 | Validación de ingreso]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog57 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdbool.h>
+
+int obten_int( void ); // Validar que ingreso es int
+bool mal_limites( int inicia, int termina, int bajo, int alto );
+double suma_cuadrados( int a, int b );
+
+int main( void )
+{
+  const int MIN = -1000;  
+  const int MAX = +1000;  
+  int inicio;
+  int termina;
+  double respuesta;
+
+  printf( "Este programa calcula la suma de los cuadrados de enteros\n"
+          "en un rango entre -1000 y +1000.\n"
+          "Entra los limites (0 en los dos limites para terminar)\n"
+          "Limite bajo: " );
+  inicio = obten_int();
+  printf( "Limite alto: " );
+  termina = obten_int();
+  while( inicio !=0 || termina != 0 )
+  {
+    if( mal_limites( inicio, termina, MIN, MAX ) )
+      printf( "Otra vez por favor.\n" );
+    else
+    {
+      respuesta = suma_cuadrados( inicio, termina );
+      printf( "La suma de los cuadrados de los enteros " );
+      printf( "entre %d y %d es %g\n", inicio, termina, respuesta );
+    }
+    printf( "Entra los limites (0 en los dos "
+            "para terminar)\n" );
+    printf( "limite bajo: " );
+    inicio = obten_int();
+    printf( "limite alto: " );
+    termina = obten_int();
+  }
+  printf( "Listo.\n" );
+
+  return 0;
+}
+
+int obten_int( void )
+{
+  int ingreso;
+  char ch;
+
+  while( scanf( "%d", &ingreso ) != 1)
+  {
+    while( ( ch = getchar() ) != '\n' )
+      putchar( ch );
+    printf( " no es un entero.\nFavor entrar un " );
+    printf( "entero cómo 25, -178, o 3: " );
+  }
+
+  return ingreso;
+}
+
+double suma_cuadrados( int a, int b )
+{
+  double total = 0;
+  int i;
+
+  for( i = a; i <= b; i++ )
+    total += i * i;
+
+  return total;
+}
+
+bool mal_limites( int inicio, int termina, int bajo, int alto )
+{
+  bool no_bueno = false;
+
+  if( inicio > termina )
+  {
+    printf( "%d no es menor que %d.\n", inicio, termina );
+      no_bueno = true;
+  }
+
+  if( inicio < bajo || termina < bajo )
+  {
+    printf( "Valores deben ser >= %d.\n", bajo );
+      no_bueno = true;
+  }
+
+  if( inicio > alto || termina > alto )
+  {
+    printf( "Valores deben ser <= %d.\n", alto );
+      no_bueno = true;
+  }
+
+  return no_bueno;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog57 Prog57.c
+ [rrc@Pridd CClase]$ ./Prog57
+ Este programa calcula la suma de los cuadrados de enteros
+ en un rango entre -1000 y +1000.
+ Entra los limites (0 en los dos limites para terminar)
+ Limite bajo: 4r
+ limite alto: r no es un entero.
+ Favor a entrar un entero cómo 25, -178, o 3: 999
+ La suma de los cuadrados de los enteros entre 4 y 999 es 3.32833e+08
+ Entra los limites (0 en los dos para terminar)
+ limite bajo: 45
+ limite alto: 33
+ 45 no es menor que 33.
+ Otra vez por favor.
+ Entra los limites (0 en los dos para terminar)
+ limite bajo: 999
+ limite alto: 2000
+ Valores deben ser <= 1000.
+ Otra ves por favor.
+ Entra los limites (0 en los dos para terminar)
+ limite bajo: -1200
+ limite alto: 3
+ Valores deben ser >= -1000.
+ Otra vez por favor.
+ Entra los limites (0 en los dos para terminar)
+ limite bajo: 3
+ limite alto: 4
+ La suma de los cuadrados de los enteros entre 3 y 4 es 25
+ Entra los limites (0 en los dos para terminar)
+ limite bajo: -3
+ limite alto: 3
+ La suma de los cuadrados de los enteros entre -3 y 3 es 28
+ Entra los limites (0 en los dos para terminar)
+ limite bajo: 0
+ limite alto: 0
+ Listo.
+ [rrc@Pridd CClase]$
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
+Linea 50. scanf() != 1: significa q ingreso no ha sido asignado pq el texto ingresado no coincide con un entero.
