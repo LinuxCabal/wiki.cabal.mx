@@ -1,0 +1,73 @@
+__NOTOC__
+* [[:#ldd | ldd]]
+
+== ldd ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# ldd --help
+Usage: ldd [OPTION]... FILE...
+      --help              print this help and exit
+      --version           print version information and exit
+  -d, --data-relocs       process data relocations
+  -r, --function-relocs   process data and function relocations
+  -u, --unused            print unused direct dependencies
+  -v, --verbose           print all information
+
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/libc/bugs.html>.
+
+[root@Llawyr ~]# ldd --version
+ldd (GNU libc) 2.18
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Written by Roland McGrath and Ulrich Drepper.
+
+[root@Llawyr ~]# ldd /bin/bash
+	linux-vdso.so.1 (0x00007fff1d8ed000)
+	libtinfo.so.5 => /lib64/libtinfo.so.5 (0x00007f66db87f000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00007f66db67b000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007f66db2c6000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007f66dbaa9000)
+
+[root@Llawyr ~]# ldd -u /bin/bash
+Unused direct dependencies:
+	/lib64/libdl.so.2
+
+[root@Llawyr ~]# ldd -v /bin/bash
+	linux-vdso.so.1 (0x00007fffdeed3000)
+	libtinfo.so.5 => /lib64/libtinfo.so.5 (0x00007fa040b2e000)
+	libdl.so.2 => /lib64/libdl.so.2 (0x00007fa04092a000)
+	libc.so.6 => /lib64/libc.so.6 (0x00007fa040575000)
+	/lib64/ld-linux-x86-64.so.2 (0x00007fa040d58000)
+
+	Version information:
+	/bin/bash:
+		libdl.so.2 (GLIBC_2.2.5) => /lib64/libdl.so.2
+		libc.so.6 (GLIBC_2.11) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.8) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.15) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.4) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.3.4) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.3) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.2.5) => /lib64/libc.so.6
+	/lib64/libtinfo.so.5:
+		libc.so.6 (GLIBC_2.3) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.14) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.15) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.4) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.3.4) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.2.5) => /lib64/libc.so.6
+	/lib64/libdl.so.2:
+		ld-linux-x86-64.so.2 (GLIBC_PRIVATE) => /lib64/ld-linux-x86-64.so.2
+		libc.so.6 (GLIBC_PRIVATE) => /lib64/libc.so.6
+		libc.so.6 (GLIBC_2.2.5) => /lib64/libc.so.6
+	/lib64/libc.so.6:
+		ld-linux-x86-64.so.2 (GLIBC_2.3) => /lib64/ld-linux-x86-64.so.2
+		ld-linux-x86-64.so.2 (GLIBC_PRIVATE) => /lib64/ld-linux-x86-64.so.2
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
