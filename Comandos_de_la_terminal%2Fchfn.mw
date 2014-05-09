@@ -1,0 +1,57 @@
+__NOTOC__
+* [[:#chfn | chfn]]
+
+== chfn ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr usr]# chfn --help
+
+Usage:
+ chfn [options] [username]
+
+Options:
+ -f, --full-name <full-name>  real name
+ -o, --office <office>        office number
+ -p, --office-phone <phone>   office phone number
+ -h, --home-phone <phone>     home phone number
+
+ -u, --help     display this help and exit
+ -v, --version  output version information and exit
+
+For more details see chfn(1).
+[root@Llawyr usr]# chfn --version
+chfn from util-linux 2.24
+
+
+[root@Llawyr usr]# finger Prueba
+Login: Prueba         			Name: (null)
+Directory: /home/Prueba             	Shell: /bin/bash
+Never logged in.
+No mail.
+No Plan.
+
+[root@Llawyr usr]# chfn Prueba
+Changing finger information for Prueba.
+Name []: La Buena Cuenta
+Office []: Install Fest
+Office Phone []: 33 3145 2638
+Home Phone []: 3333 777 505
+
+Finger information changed.
+
+[root@Llawyr usr]# finger Prueba
+Login: Prueba         			Name: La Buena Cuenta
+Directory: /home/Prueba             	Shell: /bin/bash
+Office: Install Fest, 33 3145 2638	Home Phone: 3333 777 505
+Never logged in.
+No mail.
+No Plan.
+
+[root@Llawyr usr]# grep Prueba /etc/passwd
+Prueba:x:501:501:La Buena Cuenta,Install Fest,33 3145 2638,3333 777 505:/home/Prueba:/bin/bash
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
