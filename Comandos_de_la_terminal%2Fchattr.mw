@@ -1,0 +1,25 @@
+[root@Llawyr usr]# finger Prueba
+Login: Prueba         			Name: (null)
+Directory: /home/Prueba             	Shell: /bin/bash
+Never logged in.
+No mail.
+No Plan.
+[root@Llawyr usr]# chfn Prueba
+Changing finger information for Prueba.
+Name []: La Buena Cuenta
+Office []: Install Fest
+Office Phone []: 33 3145 2638
+Home Phone []: 3333 777 505
+
+Finger information changed.
+[root@Llawyr usr]# finger Prueba
+Login: Prueba         			Name: La Buena Cuenta
+Directory: /home/Prueba             	Shell: /bin/bash
+Office: Install Fest, 33 3145 2638	Home Phone: 3333 777 505
+Never logged in.
+No mail.
+No Plan.
+[root@Llawyr usr]# grep Prueba /etc/pass
+passwd         passwd-        passwd.OLD     passwd.rpmnew  
+[root@Llawyr usr]# grep Prueba /etc/passwd
+Prueba:x:501:501:La Buena Cuenta,Install Fest,33 3145 2638,3333 777 505:/home/Prueba:/bin/bash
