@@ -1,0 +1,111 @@
+__NOTOC__
+* [[:#Prog66 | Función Recursivo]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog66 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+void a_binario( unsigned long n );
+
+int main( void )
+{
+  unsigned long numero;
+  printf( "Que intero quieres convertir en binario (q para terminar)? " );
+  while( scanf( "%lu", &numero ) == 1 )
+  {
+    printf("Equivalente Binario: ");
+    a_binario( numero );
+    putchar( '\n' );
+    putchar( '\n' );
+    printf( "Que intero quieres convertir en binario (q para terminar)? " );
+  }
+  printf( "Listo.\n" );
+
+  return 0;
+}
+
+void a_binario( unsigned long n )
+{
+  int r;
+
+  r = n % 2;
+  if ( n >= 2 )
+    a_binario( n / 2 );
+  putchar( '0' + r );
+
+  return;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog66 Prog66.c
+ [rrc@Pridd CClase]$ ./Prog66
+ Que intero quieres convertir en binario (q para terminar)? 1
+ Equivalente Binario: 1
+ 
+ Que intero quieres convertir en binario (q para terminar)? 2
+ Equivalente Binario: 10
+ 
+ Que intero quieres convertir en binario (q para terminar)? 3
+ Equivalente Binario: 11
+ 
+ Que intero quieres convertir en binario (q para terminar)? 4
+ Equivalente Binario: 100
+ 
+ Que intero quieres convertir en binario (q para terminar)? 5
+ Equivalente Binario: 101
+ 
+ Que intero quieres convertir en binario (q para terminar)? 55
+ Equivalente Binario: 110111
+ 
+ Que intero quieres convertir en binario (q para terminar)? 44444555
+ Equivalente Binario: 10101001100010101110001011
+ 
+ Que intero quieres convertir en binario (q para terminar)? q
+ Listo.
+ 
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
+Ejemplo para el número 4: El truco está en seguir el flujo de control hasta volver a main(). Notece que la variable r de uno a otro bloque, aunque se llama igual no es la misma. Se crea en cada bloque, posee su propia dirección de memoria y no es sobreescrita por la calculada en otro bloque.
+
+n = 4: <-------- Viene de main()
+
+a_binario (4) --------> n = 4
+{
+    int r;
+    r = 4 % 2; --------> r = 0
+    if (4 >= 2) <-- Verdadero
+
+        a_binario (4/2) --------> n = 2
+        {
+            int r;
+            r = 2 % 2; --------> r = 0
+            if (2 >= 2) <-- Verdadero
+
+                a_binario (2/2) --------> n = 1
+                {
+                    int r;
+                    r = 1 % 2; --------> r = 1
+                    if (1 >= 2) <-- Falso
+                    putchar('0' + 1)--------> Imprime 1
+                    return;
+                }
+
+            putchar('0' + 0)--------> Imprime 0
+            return;
+        }
+
+    putchar('0' + 0)--------> Imprime 0
+    return;
+} <-------- Vuelve el control a main()
+
+Impresión final: 100
