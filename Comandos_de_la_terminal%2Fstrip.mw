@@ -1,0 +1,21 @@
+
+__NOTOC__
+* [[:#strip | strip]]
+
+== strip ==
+
+<syntaxhighlight lang="bash">
+
+
+[root@Llawyr mp3wrap-0.5]# ls -al mp3wrap
+-rwxr-xr-x 1 root root 52763 Dec 29 19:01 mp3wrap*
+
+[root@Llawyr mp3wrap-0.5]# strip mp3wrap
+
+[root@Llawyr mp3wrap-0.5]# ls -al mp3wrap
+-rwxr-xr-x 1 root root 19224 May 17 11:40 mp3wrap*
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
