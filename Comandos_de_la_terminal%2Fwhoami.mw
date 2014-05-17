@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#whoami | whoami]]
+
+== whoami ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ whoami --help
+Usage: whoami [OPTION]...
+Print the user name associated with the current effective user ID.
+Same as id -un.
+
+      --help     display this help and exit
+      --version  output version information and exit
+
+Report whoami bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'whoami invocation'
+
+[rrc@pridd ~]$ whoami --version
+whoami (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Richard Mlynarik.
+
+[rrc@pridd ~]$ whoami
+rrc
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
