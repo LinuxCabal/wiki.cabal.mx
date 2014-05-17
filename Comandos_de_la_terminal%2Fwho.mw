@@ -1,0 +1,109 @@
+__NOTOC__
+* [[:#who | who]]
+
+== who ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ssh priddwifi
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Last login: Fri May 16 23:47:10 2014
+
+[rrc@pridd ~]$ who --help
+Usage: who [OPTION]... [ FILE | ARG1 ARG2 ]
+Print information about users who are currently logged in.
+
+  -a, --all         same as -b -d --login -p -r -t -T -u
+  -b, --boot        time of last system boot
+  -d, --dead        print dead processes
+  -H, --heading     print line of column headings
+  -l, --login       print system login processes
+      --lookup      attempt to canonicalize hostnames via DNS
+  -m                only hostname and user associated with stdin
+  -p, --process     print active processes spawned by init
+  -q, --count       all login names and number of users logged on
+  -r, --runlevel    print current runlevel
+  -s, --short       print only name, line, and time (default)
+  -t, --time        print last system clock change
+  -T, -w, --mesg    add user's message status as +, - or ?
+  -u, --users       list users logged in
+      --message     same as -T
+      --writable    same as -T
+      --help     display this help and exit
+      --version  output version information and exit
+
+If FILE is not specified, use /run/utmp.  /var/log/wtmp as FILE is common.
+If ARG1 ARG2 given, -m presumed: 'am i' or 'mom likes' are usual.
+
+Report who bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'who invocation'
+
+[rrc@pridd ~]$ who --version
+who (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Joseph Arceneaux, David MacKenzie, and Michael Stone.
+
+[rrc@pridd ~]$ who
+rrc      :0           2014-05-16 23:47
+rrc      pts/0        2014-05-17 12:10 (192.168.51.57)
+
+[rrc@pridd ~]$ who -a
+           system boot  2014-05-16 23:46
+rrc      ? :0           2014-05-16 23:47   ?          1306
+           run-level 5  2014-05-16 23:47
+rrc      + pts/0        2014-05-17 12:10   .         32697 (192.168.51.57)
+
+[rrc@pridd ~]$ ps aux | grep 1306
+rrc        591  0.0  0.0  15444  1000 pts/0    S+   12:16   0:00 grep --color 1306
+rrc       1306  0.0  0.2 774008  8112 ?        Ssl  May16   0:00 gnome-session
+
+[rrc@pridd ~]$ ps aux | grep 32697
+rrc        580  0.0  0.0  15444  1004 pts/0    S+   12:15   0:00 grep --color 32697
+root     32697  0.0  0.0  90620  3816 ?        Ss   12:10   0:00 sshd: rrc [priv]    
+
+[rrc@pridd ~]$ who -b
+         system boot  2014-05-16 23:46
+
+[rrc@pridd ~]$ who -H
+NAME     LINE         TIME             COMMENT
+rrc      :0           2014-05-16 23:47
+rrc      pts/0        2014-05-17 12:10 (192.168.51.57)
+
+[rrc@pridd ~]$ who -m
+rrc      pts/0        2014-05-17 12:10 (192.168.51.57)
+
+[rrc@pridd ~]$ who -q
+rrc rrc
+# users=2
+
+[rrc@pridd ~]$ who -r
+         run-level 5  2014-05-16 23:47
+
+[rrc@pridd ~]$ who -uH
+NAME     LINE         TIME             IDLE          PID COMMENT
+rrc      :0           2014-05-16 23:47   ?          1306
+rrc      pts/0        2014-05-17 12:10   .         32697 (192.168.51.57)
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
