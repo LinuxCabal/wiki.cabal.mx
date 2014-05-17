@@ -1,0 +1,152 @@
+__NOTOC__
+* [[:#ldconfig | ldconfig]]
+
+== ldconfig ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# ldconfig --help
+Usage: ldconfig [OPTION...]
+Configure Dynamic Linker Run Time Bindings.
+
+  -c, --format=FORMAT        Format to use: new, old or compat (default)
+  -C CACHE                   Use CACHE as cache file
+  -f CONF                    Use CONF as configuration file
+  -i, --ignore-aux-cache     Ignore auxiliary cache file
+  -l                         Manually link individual libraries.
+  -n                         Only process directories specified on the command
+                             line.  Don't build cache.
+  -N                         Don't build cache
+  -p, --print-cache          Print cache
+  -r ROOT                    Change to and use ROOT as root directory
+  -v, --verbose              Generate verbose messages
+  -X                         Don't generate links
+  -?, --help                 Give this help list
+      --usage                Give a short usage message
+  -V, --version              Print program version
+
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
+
+For bug reporting instructions, please see:
+<http://www.gnu.org/software/libc/bugs.html>.
+
+[root@Llawyr ~]# ldconfig --version
+ldconfig (GNU libc) 2.18
+Copyright (C) 2013 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+Written by Andreas Jaeger.
+
+ldconfig se usa para crear, actualizar y remover ligas simbolicas para los LIBS compartidos basado en el ifo de /etc/ld.so.conf
+
+[root@Llawyr ~]# cat /etc/ld.so.conf
+include /etc/ld.so.conf.d/*.conf
+
+[root@Llawyr ~]# ls -al /etc/ld.so.conf.d/
+total 24
+drwxr-xr-x   3 root root  4096 Feb  4 17:52 ./
+drwxr-xr-x 140 root root 12288 May 16 12:58 ../
+-rw-r--r--   1 root root    17 Nov 17 05:12 atlas.conf
+drwxr-xr-x   2 root root  4096 Feb  4 15:36 GL/
+lrwxrwxrwx   1 root root    25 Dec 20 05:36 GL.conf -> /etc/alternatives/gl_conf
+
+[root@Llawyr ~]# cat /etc/ld.so.conf.d/atlas.conf 
+/usr/lib64/atlas
+[root@Llawyr ~]# cat /etc/ld.so.conf.d/atlas.conf 
+/usr/lib64/atlas
+[root@Llawyr ~]# ls -al /usr/lib64/atlas
+total 13692
+drwxr-xr-x   2 root root    4096 Feb  4 17:52 ./
+drwxr-xr-x 216 root root  159744 May 15 16:35 ../
+lrwxrwxrwx   1 root root      17 Feb  4 17:52 libatlas.so.3 -> ./libatlas.so.3.0*
+-rwxr-xr-x   1 root root 4297416 Nov 17 05:12 libatlas.so.3.0*
+lrwxrwxrwx   1 root root      17 Feb  4 17:52 libcblas.so.3 -> ./libcblas.so.3.0*
+-rwxr-xr-x   1 root root  122976 Nov 17 05:12 libcblas.so.3.0*
+lrwxrwxrwx   1 root root      19 Feb  4 17:52 libclapack.so.3 -> ./libclapack.so.3.0*
+-rwxr-xr-x   1 root root   94032 Nov 17 05:12 libclapack.so.3.0*
+lrwxrwxrwx   1 root root      19 Feb  4 17:52 libf77blas.so.3 -> ./libf77blas.so.3.0*
+-rwxr-xr-x   1 root root  124080 Nov 17 05:12 libf77blas.so.3.0*
+lrwxrwxrwx   1 root root      18 Feb  4 17:52 liblapack.so.3 -> ./liblapack.so.3.0*
+-rwxr-xr-x   1 root root 8947736 Nov 17 05:12 liblapack.so.3.0*
+lrwxrwxrwx   1 root root      19 Feb  4 17:52 libptcblas.so.3 -> ./libptcblas.so.3.0*
+-rwxr-xr-x   1 root root  122976 Nov 17 05:12 libptcblas.so.3.0*
+lrwxrwxrwx   1 root root      21 Feb  4 17:52 libptf77blas.so.3 -> ./libptf77blas.so.3.0*
+-rwxr-xr-x   1 root root  124088 Nov 17 05:12 libptf77blas.so.3.0*
+
+[root@Llawyr ~]# ls -al /etc/ld.so.conf.d/GL
+total 12
+drwxr-xr-x 2 root root 4096 Feb  4 15:36 ./
+drwxr-xr-x 3 root root 4096 Feb  4 17:52 ../
+-rw-r--r-- 1 root root  114 Dec 27 03:30 standard.conf
+
+[root@Llawyr ~]# cat /etc/ld.so.conf.d/GL/standard.conf 
+# This file is knowingly empty since the libraries are in standard search
+# path. Please do not remove this file.
+
+[root@Llawyr ~]# cat /etc/ld.so.conf.d/GL.conf 
+# This file is knowingly empty since the libraries are in standard search
+# path. Please do not remove this file.
+
+Para ver los LIBs registrados en el cache
+[root@Llawyr ~]# ldconfig -p | head -15
+1812 libs found in cache `/etc/ld.so.cache'
+	libzvbi.so.0 (libc6,x86-64) => /lib64/libzvbi.so.0
+	libzvbi-chains.so.0 (libc6,x86-64) => /lib64/libzvbi-chains.so.0
+	libzip.so.2 (libc6,x86-64) => /lib64/libzip.so.2
+	libzip.so (libc6,x86-64) => /lib64/libzip.so
+	libzeitgeist-2.0.so.0 (libc6,x86-64) => /lib64/libzeitgeist-2.0.so.0
+	libzbar.so.0 (libc6,x86-64) => /lib64/libzbar.so.0
+	libz.so.1 (libc6,x86-64) => /lib64/libz.so.1
+	libz.so.1 (libc6) => /lib/libz.so.1
+	libz.so (libc6,x86-64) => /lib64/libz.so
+	libz.so (libc6) => /lib/libz.so
+	libytnef.so.0 (libc6,x86-64) => /lib64/libytnef.so.0
+	libyelp.so.0 (libc6,x86-64) => /lib64/libyelp.so.0
+	libyaml-cpp.so.0.3 (libc6,x86-64) => /lib64/libyaml-cpp.so.0.3
+	libx264.so.133 (libc6,x86-64) => /lib64/libx264.so.133
+
+Para mostrar los LIBs por carpeta:
+
+[root@Llawyr ~]# ldconfig -v
+/usr/lib64/atlas:
+	libatlas.so.3 -> libatlas.so.3.0
+	libclapack.so.3 -> libclapack.so.3.0
+	libptcblas.so.3 -> libptcblas.so.3.0
+	libptf77blas.so.3 -> libptf77blas.so.3.0
+	libf77blas.so.3 -> libf77blas.so.3.0
+	liblapack.so.3 -> liblapack.so.3.0
+	libcblas.so.3 -> libcblas.so.3.0
+/lib:
+	libSegFault.so -> libSegFault.so
+	libnss_dns.so.2 -> libnss_dns-2.18.so
+	libpulse.so.0 -> libpulse.so.0.16.2
+ .
+ .
+ ./lib64:
+	libkonsoleprivate.so -> libkonsoleprivate.so
+	libkdeinit4_kcalc.so -> libkdeinit4_kcalc.so
+	libLLVM-3.3.so -> libLLVM-3.3.so
+	libkdeinit4_kwin_gles.so -> libkdeinit4_kwin_gles.so
+ .
+ .
+ .
+
+[root@Llawyr lib64]# ldconfig -v | head -25
+/usr/lib64/atlas:
+	libatlas.so.3 -> libatlas.so.3.0
+	libclapack.so.3 -> libclapack.so.3.0
+	libptcblas.so.3 -> libptcblas.so.3.0
+	libptf77blas.so.3 -> libptf77blas.so.3.0
+	libf77blas.so.3 -> libf77blas.so.3.0
+	liblapack.so.3 -> liblapack.so.3.0
+	libcblas.so.3 -> libcblas.so.3.0
+/usr/local/lib64:
+/lib:
+	libSegFault.so -> libSegFault.so
+	libnss_dns.so.2 -> libnss_dns-2.18.so
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
