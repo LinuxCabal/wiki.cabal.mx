@@ -1,0 +1,25 @@
+__NOTOC__
+* [[:#logout | logout]]
+
+== logout ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ which logout
+which: no logout in (/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin)
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Leave
+#!/usr/bin/bash
+
+echo "Me voy"
+logout
+
+[rrc@Llawyr ~]$ ./Leave 
+Me voy
+./Leave: line 4: logout: not login shell: use `exit'
+
+[rrc@Llawyr ~]$ logout 
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
