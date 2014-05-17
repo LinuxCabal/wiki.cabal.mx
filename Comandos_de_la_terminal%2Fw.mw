@@ -1,0 +1,70 @@
+__NOTOC__
+* [[:#w | w]]
+
+== w ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ w --help
+w: invalid option -- '-'
+usage: w -hlsufV [user]
+    -h    skip header
+    -l    long listing (default)
+    -s    short listing
+    -u    ignore uid of processes
+    -f    toggle FROM field (default off)
+    -V    display version
+
+[rrc@Llawyr ComandosDeLaTerminal]$ w -V
+procps version 3.2.8
+
+[rrc@Llawyr ComandosDeLaTerminal]$ rpm -qf $( which w )
+procps-3.2.8-6.2.mga3
+
+[rrc@Llawyr ComandosDeLaTerminal]$ w
+ 12:07:08 up 18:08,  2 users,  load average: 0.11, 0.12, 0.13
+USER     TTY        LOGIN@   IDLE   JCPU   PCPU WHAT
+rrc      :0        Fri17   ?xdm?   1:54m  0.19s gnome-session
+rrc      pts/0     12:00    4.00s  0.09s  1.72s /usr/libexec/gnome-terminal-ser
+
+[rrc@Llawyr ComandosDeLaTerminal]$ w -h
+rrc      :0        Fri17   ?xdm?   1:54m  0.19s gnome-session
+rrc      pts/0     12:00    7.00s  0.09s  2.01s /usr/libexec/gnome-terminal-ser
+
+[rrc@Llawyr ComandosDeLaTerminal]$ w -s
+ 12:08:19 up 18:09,  2 users,  load average: 0.08, 0.11, 0.13
+USER     TTY         IDLE WHAT
+rrc      :0        ?xdm?  gnome-session
+rrc      pts/0      3.00s /usr/libexec/gnome-terminal-server
+
+[rrc@Llawyr ComandosDeLaTerminal]$ w -hs
+rrc      :0        ?xdm?  gnome-session
+rrc      pts/0      3.00s /usr/libexec/gnome-terminal-server
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ssh priddwifi
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Last login: Fri May 16 23:47:10 2014
+
+[rrc@pridd ~]$ w -f
+ 12:10:12 up 12:23,  2 users,  load average: 0.00, 0.01, 0.05
+USER     TTY      FROM              LOGIN@   IDLE   JCPU   PCPU WHAT
+rrc      :0       -                Fri23   ?xdm?  14:43   0.15s gnome-session
+rrc      pts/0    192.168.51.57    12:10    4.00s  0.09s  0.00s w -f
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
