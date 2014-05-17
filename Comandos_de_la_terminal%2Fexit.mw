@@ -1,0 +1,27 @@
+__NOTOC__
+* [[:#exit | exit]]
+
+== exit ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ which exit
+which: no exit in (/usr/local/bin:/usr/bin:/usr/games:/usr/lib64/qt4/bin:/home/rrc/bin)
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat Leave2
+#!/usr/bin/bash
+
+echo "Me voy"
+exit 13
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./Leave2
+Me voy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo $?
+13
+
+[rrc@Llawyr ComandosDeLaTerminal]$ exit
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
