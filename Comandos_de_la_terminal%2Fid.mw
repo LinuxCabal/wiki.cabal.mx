@@ -1,0 +1,66 @@
+__NOTOC__
+* [[:#id | id]]
+
+== id ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@pridd ~]$ id --help
+Usage: id [OPTION]... [USERNAME]
+Print user and group information for the specified USERNAME,
+or (when USERNAME omitted) for the current user.
+
+  -a              ignore, for compatibility with other versions
+  -Z, --context   print only the security context of the current user
+  -g, --group     print only the effective group ID
+  -G, --groups    print all group IDs
+  -n, --name      print a name instead of a number, for -ugG
+  -r, --real      print the real ID instead of the effective ID, with -ugG
+  -u, --user      print only the effective user ID
+      --help     display this help and exit
+      --version  output version information and exit
+
+Without any OPTION, print some useful set of identified information.
+
+Report id bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'id invocation'
+
+[rrc@pridd ~]$ id --version
+id (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Arnold Robbins and David MacKenzie.
+
+[rrc@pridd ~]$ id
+uid=500(rrc) gid=500(rrc) groups=500(rrc),10(wheel),417(webmin),419(wnsoladmin),420(mxrepadmin),421(wikiadmin),479(ntools)
+
+[rrc@pridd ~]$ id root
+uid=0(root) gid=0(root) groups=0(root)
+
+[rrc@pridd ~]$ id -un
+rrc
+
+[rrc@pridd ~]$ id -Z
+id: --context (-Z) works only on an SELinux-enabled kernel
+
+[rrc@pridd ~]$ id -g
+500
+
+[rrc@pridd ~]$ id -G
+500 10 417 419 420 421 479
+
+[rrc@pridd ~]$ id -un
+rrc
+
+[rrc@pridd ~]$ id -Gn
+rrc wheel webmin wnsoladmin mxrepadmin wikiadmin ntools
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
