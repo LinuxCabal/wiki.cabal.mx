@@ -1,0 +1,94 @@
+__NOTOC__
+* [[:#Prog77 | Arregle de tamaños variables]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog77 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define FILAS 3
+#define COLS 4
+
+int sum2d( int rows, int cols, int ar[rows][cols] );
+
+int main( void )
+{
+   int cs = 10,
+       i,
+       j,
+       junk[FILAS][COLS] = {
+                             {2,4,6,8},
+                             {3,5,7,9},
+                             {12,10,8,6}
+                           },
+       masjunk[FILAS-1][COLS+2] = {
+                                    {20,30,40,50,60,70},
+                                    {5,6,7,8,9,10}
+                                  },
+       rs = 3,
+       varr[rs][cs];
+
+   for( i = 0; i < rs; i++ )
+     for( j = 0; j < cs; j++ )
+       varr[i][j] = i * j + j;
+
+   printf( "3x5 arreglo\n" );
+   printf( "Sum de todos los elementos = %d\n",
+              sum2d( FILAS, COLS, junk ) );
+
+   printf( "2x6 arreglo\n" );
+   printf( "Sum de todos los elementos = %d\n",
+              sum2d( FILAS-1, COLS+2, masjunk ) );
+
+   printf( "3x10 VLA\n" );
+   printf( "Sum de todos los elementos = %d\n",
+              sum2d( rs, cs, varr ) );
+
+   return 0;
+}
+
+int sum2d( int rows, int cols, int ar[rows][cols] )
+{
+  int r;
+  int c;
+  int tot = 0;
+
+  for( r = 0; r < rows; r++ )
+    for( c = 0; c < cols; c++ )
+      tot += ar[r][c];
+
+  return tot;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd CClase]$ gcc -Wall -O2 -o Prog77 Prog77.c
+ [rrc@Pridd CClase]$ ./Prog77
+ 3x5 arreglo
+ Sum de todos los elementos = 80
+ 2x6 arreglo
+ Sum de todos los elementos = 315
+ 3x10 VLA
+ Sum de todos los elementos = 270
+ [rrc@Pridd CClase]$ 
+ 
+ === Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
+
+La asignación de los elementos del arreglo varr = [rs][cs] queda así:
+
+for( i = 0; i < rs; i++ )
+   for( j = 0; j < cs; j++ )
+     varr[i][j] = i * j + j;
+
+igual a:
+
+varr = [3][10] = { { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 },{ 0, 2, 4, 6, 8, 10, 12, 14, 16, 18 },{ 0, 3, 6, 9, 12, 15, 18, 21, 24, 27 } }
