@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#Prog87| strcat()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog87 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>  /* para usar strcat() */
+
+#define TAMANO 80
+
+int main( void )
+{
+  char flor[TAMANO],
+       agregado[] = "s huelen como zapatos viejos.";
+
+  printf( "¿Cuál es su flor preferida? " );
+  gets( flor );
+  strcat( flor, agregado );  //strcat() Añade un string a otro
+  puts( flor );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog87 Prog87.c
+ [rrc@llawyr CClase]$ ./Prog87
+ ¿Cuál es su flor preferida? Anthurium
+ Anthuriums huelen como zapatos viejos.
+ [rrc@llawyr CClase]$ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
