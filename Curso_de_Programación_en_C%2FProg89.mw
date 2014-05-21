@@ -1,0 +1,58 @@
+__NOTOC__
+* [[:#Prog89 | strcmp()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog89 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>
+
+#define PAIS "India"
+
+void ObtenRespuesta( void );
+
+char respuesta[40];
+
+int main( void )
+{
+  printf( "En que pais es el Taj Mahal? " );
+  ObtenRespuesta();
+
+  while( strcmp( respuesta, PAIS ) )         //strcmp(): Compara dos strings 
+  {
+    printf( "No, incorrecto. Otra ves: " );
+    ObtenRespuesta();
+  }
+  puts( "¡Correcto!" );
+
+  return 0;
+}
+
+void ObtenRespuesta( void )
+{
+  fgets( respuesta, 37, stdin );
+  if( *(respuesta + strlen( respuesta ) - 1) == '\n' )
+    *(respuesta + strlen( respuesta ) - 1) = '\0';
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog89 Prog89.c 
+ [rrc@llawyr CClase]$ ./Prog89
+ En que pais es el Taj Mahal? Italia
+ No, incorrecto. Otra ves: Grecia
+ No, incorrecto. Otra ves: india
+ No, incorrecto. Otra ves: India
+ ¡Correcto!
+ [rrc@llawyr CClase]$ 
+ 
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
