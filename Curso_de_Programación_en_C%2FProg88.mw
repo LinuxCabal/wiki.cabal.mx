@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Prog88 | Prog87 con fgets()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog88 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <string.h>  /* para usar strcat() */
+
+#define TAMANO 80
+
+int main( void )
+{
+  char flor[TAMANO],
+       agregado[] = "s huelen como zapatos viejos.";
+
+  printf( "¿Cuál es su flor preferida? " );
+  fgets( flor, 51, stdin );                 // char *fgets(char *s, int n, FILE *flujo): Toma un string
+                                            // de un flujo
+  *(flor + strlen( flor ) - 1 ) = '\0';     // strlen(): Calcula la longitud de un string
+  strcat( flor, agregado );
+  puts( flor );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog88 Prog88.c
+ [rrc@llawyr CClase]$ ./Prog88
+ ¿Cuál es su flor preferida? Rosa
+ Rosas huelen como zapatos viejos.
+ [rrc@llawyr CClase]$
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
