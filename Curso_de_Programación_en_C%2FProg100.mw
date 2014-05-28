@@ -1,0 +1,70 @@
+__NOTOC__
+* [[:#Prog100 | strtol()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog100 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main( void )
+{
+  char numero[30];
+  char * Fin;
+  long Valor;
+
+  printf( "Ingresa un número (Returno de carro para terminar): " );
+
+  while( fgets( numero, 29, stdin ) && numero[0] != '\n' )
+  {
+    *(numero + ( strlen( numero ) -1 )) = '\0';
+
+    Valor = strtol( numero, &Fin, 10 );  /* base 10 */
+    printf( "Valor: %ld, terminado a %s (%d)\n",
+                 Valor, Fin, *Fin );
+    Valor = strtol( numero, &Fin, 16 );  /* base 16 */
+    printf( "Valor: %ld, terminado a %s (%d)\n",
+                 Valor, Fin, *Fin );
+    printf( "Siguiente numero: " );
+  }
+  puts( "\n¡Adios!\n" );
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog100 Prog100.c
+[rrc@llawyr CClase]$ ./Prog100
+Ingresa un número (Returno de carro para terminar): 46
+Valor: 46, terminado a  (0)
+Valor: 70, terminado a  (0)
+Siguiente numero:           356.7
+Valor: 356, terminado a .7 (46)
+Valor: 854, terminado a .7 (46)
+Siguiente numero: -87
+Valor: -87, terminado a  (0)
+Valor: -135, terminado a  (0)
+Siguiente numero:         765iu45
+Valor: 765, terminado a iu45 (105)
+Valor: 1893, terminado a iu45 (105)
+Siguiente numero: 
+Ingresa un número (Returno de carro para terminar): 24abcg
+Valor: 24, terminado a abcg (97)
+Valor: 150204, terminado a g (103)
+Siguiente numero: 
+
+¡Adios!
+
+[rrc@llawyr CClase]$
+</pre>
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
