@@ -1,0 +1,451 @@
+
+__NOTOC__
+* [[:#ps  ps]]
+
+== ps ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ComandosDeLaTerminal]# ps --help
+********* simple selection *********  ********* selection by list *********
+-A all processes                      -C by command name
+-N negate selection                   -G by real group ID (supports names)
+-a all w/ tty except session leaders  -U by real user ID (supports names)
+-d all except session leaders         -g by session OR by effective group name
+-e all processes                      -p by process ID
+T  all processes on this terminal     -s processes in the sessions given
+a  all w/ tty, including other users  -t by tty
+g  OBSOLETE -- DO NOT USE             -u by effective user ID (supports names)
+r  only running processes             U  processes for specified users
+x  processes w/o controlling ttys     t  by tty
+*********** output format **********  *********** long options ***********
+-o,o user-defined  -f full            --Group --User --pid --cols --ppid
+-j,j job control   s  signal          --group --user --sid --rows --info
+-O,O preloaded -o  v  virtual memory  --cumulative --format --deselect
+-l,l long          u  user-oriented   --sort --tty --forest --version
+-F   extra full    X  registers       --heading --no-heading --context
+                    ********* misc options *********
+-V,V  show version      L  list format codes  f  ASCII art forest
+-m,m,-L,-T,H  threads   S  children in sum    -y change -l format
+-M,Z  security data     c  true command name  -c scheduling class
+-w,w  wide output       n  numeric WCHAN,UID  -H process hierarchy
+
+[root@Llawyr ComandosDeLaTerminal]# ps --version
+procps version 3.2.8
+
+
+Para ver todos los procesos usando syntax de SysV:
+
+[root@Llawyr ComandosDeLaTerminal]# ps -e
+  PID TTY          TIME CMD
+    1 ?        00:00:00 systemd
+    2 ?        00:00:00 kthreadd
+    3 ?        00:00:00 ksoftirqd/0
+    5 ?        00:00:00 kworker/0:0H
+    7 ?        00:00:00 migration/0
+    8 ?        00:00:00 rcu_bh
+    9 ?        00:00:08 rcu_sched
+   10 ?        00:00:00 migration/1
+   11 ?        00:00:00 ksoftirqd/1
+   13 ?        00:00:00 kworker/1:0H
+   14 ?        00:00:00 migration/2
+ .
+ .
+ .
+ 6516 ?        00:00:00 kworker/2:1
+ 6601 ?        00:00:00 kworker/5:1
+ 7063 ?        00:00:00 gvfsd-metadata
+ 7066 ?        00:00:00 gvfsd-trash
+10536 ?        00:00:00 xdemineur
+11414 ?        00:00:17 gnome-terminal-
+11422 ?        00:00:00 gnome-pty-helpe
+11423 pts/0    00:00:00 bash
+12170 ?        00:00:00 kworker/u16:1
+15014 pts/0    00:00:00 su
+15025 pts/0    00:00:00 bash
+15254 ?        00:00:00 kworker/0:0
+15931 ?        00:00:00 kworker/0:2
+15968 ?        00:00:00 kworker/1:2
+16435 ?        00:00:00 kworker/u16:0
+16548 ?        00:00:00 kworker/1:0
+16724 pts/0    00:00:00 ps
+
+[root@Llawyr ComandosDeLaTerminal]# ps -ef
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 11:19 ?        00:00:00 /sbin/init
+root         2     0  0 11:19 ?        00:00:00 [kthreadd]
+root         3     2  0 11:19 ?        00:00:00 [ksoftirqd/0]
+root         5     2  0 11:19 ?        00:00:00 [kworker/0:0H]
+root         7     2  0 11:19 ?        00:00:00 [migration/0]
+root         8     2  0 11:19 ?        00:00:00 [rcu_bh]
+root         9     2  0 11:19 ?        00:00:08 [rcu_sched]
+root        10     2  0 11:19 ?        00:00:00 [migration/1]
+root        11     2  0 11:19 ?        00:00:00 [ksoftirqd/1]
+root        13     2  0 11:19 ?        00:00:00 [kworker/1:0H]
+root        14     2  0 11:19 ?        00:00:00 [migration/2]
+ .
+ .
+ .
+rrc      16782  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16783  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16784  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16785  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16790  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16792  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16793  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16797  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16798  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16799  2155  0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16820     1  0 14:23 ?        00:00:00 /usr/libexec/tracker-extract
+root     16852     2  0 14:23 ?        00:00:00 [kworker/3:1]
+root     16887 15025  0 14:24 pts/0    00:00:00 ps -ef
+
+[root@Llawyr ComandosDeLaTerminal]# ps -eF
+UID        PID  PPID  C    SZ   RSS PSR STIME TTY          TIME CMD
+root         1     0  0 11600  4420   1 11:19 ?        00:00:00 /sbin/init
+root         2     0  0     0     0   0 11:19 ?        00:00:00 [kthreadd]
+root         3     2  0     0     0   0 11:19 ?        00:00:00 [ksoftirqd/0]
+root         5     2  0     0     0   0 11:19 ?        00:00:00 [kworker/0:0H]
+root         7     2  0     0     0   0 11:19 ?        00:00:00 [migration/0]
+root         8     2  0     0     0   0 11:19 ?        00:00:00 [rcu_bh]
+root         9     2  0     0     0   2 11:19 ?        00:00:08 [rcu_sched]
+root        10     2  0     0     0   1 11:19 ?        00:00:00 [migration/1]
+root        11     2  0     0     0   1 11:19 ?        00:00:00 [ksoftirqd/1]
+root        13     2  0     0     0   1 11:19 ?        00:00:00 [kworker/1:0H]
+root        14     2  0     0     0   2 11:19 ?        00:00:00 [migration/2]
+ .
+ .
+ .
+rrc      16782  2155  0 76648 15484   5 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16783  2155  0 76648 15484   3 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16784  2155  0 76648 15484   0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16785  2155  0 76648 15484   2 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16790  2155  0 76647 15480   0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16792  2155  0 76647 15480   0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16793  2155  0 76648 15620   2 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16797  2155  0 76647 15480   0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16798  2155  0 76647 15480   0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16799  2155  0 76648 15484   0 14:23 ?        00:00:00 kdeinit4: kio_http [kdein e
+rrc      16820     1  0 249611 21500  7 14:23 ?        00:00:00 /usr/libexec/tracker-extract
+root     16852     2  0     0     0   3 14:23 ?        00:00:00 [kworker/3:1]
+root     16912     2  0     0     0   1 14:24 ?        00:00:00 [kworker/1:2]
+root     16994 15025  0  3303  1084   2 14:25 pts/0    00:00:00 ps -eF
+
+[root@Llawyr ComandosDeLaTerminal]# ps -ely
+S   UID   PID  PPID  C PRI  NI   RSS    SZ WCHAN  TTY          TIME CMD
+S     0     1     0  0  80   0  4420 11600 ep_pol ?        00:00:00 systemd
+S     0     2     0  0  80   0     0     0 kthrea ?        00:00:00 kthreadd
+S     0     3     2  0  80   0     0     0 smpboo ?        00:00:00 ksoftirqd/0
+S     0     5     2  0  60 -20     0     0 worker ?        00:00:00 kworker/0:0H
+S     0     7     2  0 -40   -     0     0 smpboo ?        00:00:00 migration/0
+S     0     8     2  0  80   0     0     0 rcu_gp ?        00:00:00 rcu_bh
+S     0     9     2  0  80   0     0     0 rcu_gp ?        00:00:08 rcu_sched
+S     0    10     2  0 -40   -     0     0 smpboo ?        00:00:00 migration/1
+S     0    11     2  0  80   0     0     0 smpboo ?        00:00:00 ksoftirqd/1
+S     0    13     2  0  60 -20     0     0 worker ?        00:00:00 kworker/1:0H
+S     0    14     2  0 -40   -     0     0 smpboo ?        00:00:00 migration/2
+ .
+ .
+ .
+S   500 16782  2155  0  80   0 15620 76648 poll_s ?        00:00:00 kio_http
+S   500 16783  2155  0  80   0 15484 76648 poll_s ?        00:00:00 kio_http
+S   500 16784  2155  0  80   0 15484 76648 poll_s ?        00:00:00 kio_http
+S   500 16785  2155  0  80   0 15484 76648 poll_s ?        00:00:00 kio_http
+S   500 16790  2155  0  80   0 15480 76647 poll_s ?        00:00:00 kio_http
+S   500 16792  2155  0  80   0 15480 76647 poll_s ?        00:00:00 kio_http
+S   500 16793  2155  0  80   0 15620 76648 poll_s ?        00:00:00 kio_http
+S   500 16797  2155  0  80   0 15480 76647 poll_s ?        00:00:00 kio_http
+S   500 16798  2155  0  80   0 15480 76647 poll_s ?        00:00:00 kio_http
+S   500 16799  2155  0  80   0 15484 76648 poll_s ?        00:00:00 kio_http
+S   500 16820     1  0  99  19 24180 249611 poll_s ?       00:00:00 tracker-extract
+S     0 16852     2  0  80   0     0     0 worker ?        00:00:00 kworker/3:1
+S     0 16912     2  0  80   0     0     0 worker ?        00:00:00 kworker/1:2
+S   500 17099  1874  1  87   7 53612 107347 wait  ?        00:00:00 mgaapplet-updat
+S   500 17106 17099  0  87   7  1268  3938 wait   ?        00:00:00 urpmi.update
+S     0 17107 17106  0  87   7 22868 34936 pipe_w ?        00:00:00 urpmi.update
+S     0 17140 17107  0  87   7  1288  3938 wait   ?        00:00:00 sh
+S     0 17141 17140  0  87   7  1212  8048 sk_wai ?        00:00:00 rsync
+R     0 17145 15025  0  80   0   892  3303 -      pts/0    00:00:00 ps
+
+Para ver todos los procesos usando syntax de BSD:
+
+[root@Llawyr ComandosDeLaTerminal]# ps ax
+  PID TTY      STAT   TIME COMMAND
+    1 ?        Ss     0:00 /sbin/init
+    2 ?        S      0:00 [kthreadd]
+    3 ?        S      0:00 [ksoftirqd/0]
+    5 ?        S<     0:00 [kworker/0:0H]
+    7 ?        S      0:00 [migration/0]
+    8 ?        S      0:00 [rcu_bh]
+    9 ?        S      0:08 [rcu_sched]
+   10 ?        S      0:00 [migration/1]
+   11 ?        S      0:00 [ksoftirqd/1]
+   13 ?        S<     0:00 [kworker/1:0H]
+   14 ?        S      0:00 [migration/2]
+ .
+ .
+ .
+10536 ?        S      0:00 /usr/bin/xdemineur
+11414 ?        Sl     0:20 /usr/libexec/gnome-terminal-server
+11422 ?        S      0:00 gnome-pty-helper
+11423 pts/0    Ss     0:00 bash
+12170 ?        S      0:00 [kworker/u16:1]
+15014 pts/0    S      0:00 su -
+15025 pts/0    S      0:00 -bash
+15254 ?        S      0:00 [kworker/0:0]
+16774 ?        S      0:00 [kworker/0:1]
+16820 ?        SNl    0:01 /usr/libexec/tracker-extract
+16852 ?        S      0:00 [kworker/3:1]
+16912 ?        S      0:00 [kworker/1:2]
+17263 ?        S      0:00 [kworker/0:2]
+17377 ?        S      0:00 [kworker/u16:0]
+17388 ?        S      0:00 [kworker/1:0]
+17543 pts/0    R+     0:00 ps ax
+
+
+[root@Llawyr ComandosDeLaTerminal]# ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  46400  4420 ?        Ss   11:19   0:00 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    11:19   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    11:19   0:00 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   11:19   0:00 [kworker/0:0H]
+root         7  0.0  0.0      0     0 ?        S    11:19   0:00 [migration/0]
+root         8  0.0  0.0      0     0 ?        S    11:19   0:00 [rcu_bh]
+root         9  0.0  0.0      0     0 ?        S    11:19   0:08 [rcu_sched]
+root        10  0.0  0.0      0     0 ?        S    11:19   0:00 [migration/1]
+root        11  0.0  0.0      0     0 ?        S    11:19   0:00 [ksoftirqd/1]
+root        13  0.0  0.0      0     0 ?        S<   11:19   0:00 [kworker/1:0H]
+root        14  0.0  0.0      0     0 ?        S    11:19   0:00 [migration/2]
+ .
+ .
+ .
+root     12170  0.0  0.0      0     0 ?        S    13:28   0:00 [kworker/u16:1]
+root     15014  0.0  0.0  63600  2056 pts/0    S    14:00   0:00 su -
+root     15025  0.0  0.0  16516  2700 pts/0    S    14:00   0:00 -bash
+root     15254  0.0  0.0      0     0 ?        S    14:02   0:00 [kworker/0:0]
+root     16774  0.0  0.0      0     0 ?        S    14:22   0:00 [kworker/0:1]
+rrc      16820  0.3  0.2 998444 28428 ?        SNl  14:23   0:01 /usr/libexec/tracker-extract
+root     16852  0.0  0.0      0     0 ?        S    14:23   0:00 [kworker/3:1]
+root     16912  0.0  0.0      0     0 ?        S    14:24   0:00 [kworker/1:2]
+root     17263  0.0  0.0      0     0 ?        S    14:28   0:00 [kworker/0:2]
+root     17377  0.0  0.0      0     0 ?        S    14:29   0:00 [kworker/u16:0]
+root     17388  0.0  0.0      0     0 ?        S    14:29   0:00 [kworker/1:0]
+root     17616  0.0  0.0  13212  1076 pts/0    R+   14:32   0:00 ps aux
+
+Para mostrar el arbol de procesos:
+
+[root@Llawyr ComandosDeLaTerminal]# ps -ejH
+  PID  PGID   SID TTY          TIME CMD
+    2     0     0 ?        00:00:00 kthreadd
+    3     0     0 ?        00:00:00   ksoftirqd/0
+    5     0     0 ?        00:00:00   kworker/0:0H
+    7     0     0 ?        00:00:00   migration/0
+    8     0     0 ?        00:00:00   rcu_bh
+    9     0     0 ?        00:00:08   rcu_sched
+   10     0     0 ?        00:00:00   migration/1
+   11     0     0 ?        00:00:00   ksoftirqd/1
+   13     0     0 ?        00:00:00   kworker/1:0H
+   14     0     0 ?        00:00:00   migration/2
+ .
+ .
+ .
+  829   829   829 ?        00:00:00   udisks-daemon
+  830   829   829 ?        00:00:00     udisks-daemon
+  859   859   859 ?        00:00:00   gdm
+  933   859   859 ?        00:00:00     gdm-simple-slav
+  978   978   978 tty1     00:03:02       X
+ 1523   859   859 ?        00:00:00       gdm-session-wor
+ 1536  1536  1536 ?        00:00:00         gnome-session
+ 1572  1572  1572 ?        00:00:00           ssh-agent
+ 1632  1536  1536 ?        00:00:00           menu <defunct>
+ 1646  1536  1536 ?        00:00:00           xdg-user-dirs-u <defunct>
+ 1678  1536  1536 ?        00:00:01           gnome-settings-
+ 1718  1536  1536 ?        00:00:00             syndaemon
+ 1738  1536  1536 ?        00:02:47           gnome-shell
+ 2040  1536  1536 ?        00:17:54             firefox
+ 2069  1536  1536 ?        00:00:00               pxgsettings
+ 2128  1536  1536 ?        00:09:06               plugin-containe
+10536  1536  1536 ?        00:00:00             xdemineur
+ 1848  1536  1536 ?        00:00:16           net_applet
+ 1850  1536  1536 ?        00:00:00           evolution-alarm
+ 1853  1536  1536 ?        00:00:00           pam-panel-icon
+ 1880  1536  1536 ?        00:00:00             pam_timestamp_c
+ 1857  1536  1536 ?        00:00:00           nm-applet
+ 1858  1536  1536 ?        00:00:05           tracker-miner-f
+ 1859  1536  1536 ?        00:00:03           applet.py
+ 1865  1865  1865 ?        00:00:00           python
+ 1928  1865  1865 ?        00:00:04             python
+ 1929  1865  1865 ?        00:00:00               python
+ 1871  1536  1536 ?        00:00:11           tracker-store
+ 1874  1536  1536 ?        00:00:02           mgaapplet
+  922   922   922 ?        00:00:00   polkitd
+ 1069  1068  1068 ?        00:00:00   ifplugd
+ 1123  1123  1123 ?        00:00:00   wpa_supplicant
+ 1125  1124  1124 ?        00:00:00   ifplugd
+ 1155  1155  1155 ?        00:00:00   colord
+ 1157  1157  1157 ?        00:00:00   accounts-daemon
+ 1322  1322  1322 ?        00:00:00   httpd
+ 1352  1322  1322 ?        00:00:00     httpd
+ 1353  1322  1322 ?        00:00:00     httpd
+ 1354  1322  1322 ?        00:00:00     httpd
+ 1355  1322  1322 ?        00:00:00     httpd
+ 1356  1322  1322 ?        00:00:00     httpd
+ 1323  1323  1323 ?        00:00:00   xinetd
+ .
+ .
+ .
+ 7063  1624  1624 ?        00:00:00   gvfsd-metadata
+ 7066  1624  1624 ?        00:00:00   gvfsd-trash
+11414  1624  1624 ?        00:00:21   gnome-terminal-
+11422  1624  1624 ?        00:00:00     gnome-pty-helpe
+11423 11423 11423 pts/0    00:00:00     bash
+15014 15014 11423 pts/0    00:00:00       su
+15025 15025 11423 pts/0    00:00:00         bash
+17693 17693 11423 pts/0    00:00:00           ps
+16820  1624  1624 ?        00:00:01   tracker-extract
+
+Info de hilos:
+[root@Llawyr ComandosDeLaTerminal]# ps axjf
+ PPID   PID  PGID   SID TTY      TPGID STAT   UID   TIME COMMAND
+    0     2     0     0 ?           -1 S        0   0:00 [kthreadd]
+    2     3     0     0 ?           -1 S        0   0:00  \_ [ksoftirqd/0]
+    2     5     0     0 ?           -1 S<       0   0:00  \_ [kworker/0:0H]
+    2     7     0     0 ?           -1 S        0   0:00  \_ [migration/0]
+    2     8     0     0 ?           -1 S        0   0:00  \_ [rcu_bh]
+    2     9     0     0 ?           -1 S        0   0:08  \_ [rcu_sched]
+    2    10     0     0 ?           -1 S        0   0:00  \_ [migration/1]
+    2    11     0     0 ?           -1 S        0   0:00  \_ [ksoftirqd/1]
+    2    13     0     0 ?           -1 S<       0   0:00  \_ [kworker/1:0H]
+    2    14     0     0 ?           -1 S        0   0:00  \_ [migration/2]
+ .
+ .
+ .
+    1   825   825   825 ?           -1 Ss       0   0:01 /usr/sbin/acpid
+    1   826   826   826 ?           -1 Ss       0   0:00 /usr/lib/systemd/systemd-logind
+    1   827   827   827 ?           -1 Ssl      0   0:00 /usr/libexec/upowerd
+    1   828   828   828 ?           -1 Ss     499   0:00 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopi
+    1   829   829   829 ?           -1 Ssl      0   0:00 /usr/libexec/udisks-daemon --no-debug --replace
+  829   830   829   829 ?           -1 S        0   0:00  \_ udisks-daemon: not polling any devices         
+    1   859   859   859 ?           -1 Ssl      0   0:00 /usr/sbin/gdm -nodaemon
+  859   933   859   859 ?           -1 Sl       0   0:00  \_ /usr/libexec/gdm-simple-slave --display-id /org/gnome/Displa
+  933   978   978   978 tty1       978 Ss+      0   3:05      \_ /etc/X11/X :0 -background none -verbose -auth /var/run/g
+  933  1523   859   859 ?           -1 Sl       0   0:00      \_ gdm-session-worker [pam/gdm-password]
+ 1523  1536  1536  1536 ?           -1 Ssl    500   0:00          \_ gnome-session
+ 1536  1572  1572  1572 ?           -1 Ss     500   0:00              \_ /usr/bin/ssh-agent -- /usr/share/X11/xdm/Xsessio
+ 1536  1632  1536  1536 ?           -1 Z      500   0:00              \_ [menu] <defunct>
+ 1536  1646  1536  1536 ?           -1 Z      500   0:00              \_ [xdg-user-dirs-u] <defunct>
+ 1536  1678  1536  1536 ?           -1 Sl     500   0:01              \_ /usr/libexec/gnome-settings-daemon
+ 1678  1718  1536  1536 ?           -1 S      500   0:00              |   \_ syndaemon -i 1.0 -t -K -R
+ 1536  1738  1536  1536 ?           -1 Sl     500   2:49              \_ /usr/bin/gnome-shell
+ 1738  2040  1536  1536 ?           -1 Sl     500  18:06              |   \_ firefox
+ 2040  2069  1536  1536 ?           -1 Sl     500   0:00              |   |   \_ /usr/lib/pxgsettings org.gnome.system.pr
+ 2040  2128  1536  1536 ?           -1 Sl     500   9:08              |   |   \_ /usr/lib64/firefox-24.5.0/plugin-contain
+ 1738 10536  1536  1536 ?           -1 S      500   0:00              |   \_ /usr/bin/xdemineur
+ 1536  1848  1536  1536 ?           -1 Sl     500   0:16              \_ /usr/bin/perl /usr/bin/net_applet
+ 1536  1850  1536  1536 ?           -1 Sl     500   0:00              \_ /usr/libexec/evolution/3.10/evolution-alarm-noti
+ 1536  1853  1536  1536 ?           -1 Sl     500   0:00              \_ pam-panel-icon
+ 1853  1880  1536  1536 ?           -1 S        0   0:00              |   \_ /sbin/pam_timestamp_check -d root
+ 1536  1857  1536  1536 ?           -1 Sl     500   0:00              \_ nm-applet
+ 1536  1858  1536  1536 ?           -1 SNl    500   0:05              \_ /usr/libexec/tracker-miner-fs
+ 1536  1859  1536  1536 ?           -1 Sl     500   0:03              \_ /usr/bin/python /usr/share/system-config-printer
+ 1536  1865  1865  1865 ?           -1 Ss     500   0:00              \_ python /usr/bin/hp-systray -x
+ 1865  1928  1865  1865 ?           -1 S      500   0:04              |   \_ python /usr/bin/hp-systray -x
+ 1928  1929  1865  1865 ?           -1 S      500   0:00              |       \_ python /usr/bin/hp-systray -x
+ 1536  1871  1536  1536 ?           -1 Sl     500   0:11              \_ /usr/libexec/tracker-store
+ 1536  1874  1536  1536 ?           -1 Sl     500   0:02              \_ /usr/bin/perl /usr/bin/mgaapplet
+    1   922   922   922 ?           -1 Ssl    495   0:00 /usr/lib/polkit-1/polkitd --no-debug
+    1  1069  1068  1068 ?           -1 S        0   0:00 /sbin/ifplugd -I -b -i enp4s0
+ .
+ .
+ .
+    1  7066  1624  1624 ?           -1 Sl     500   0:00 /usr/libexec/gvfsd-trash --spawner :1.5 /org/gtk/gvfs/exec_spaw/
+    1 11414  1624  1624 ?           -1 Sl     500   0:22 /usr/libexec/gnome-terminal-server
+11414 11422  1624  1624 ?           -1 S      500   0:00  \_ gnome-pty-helper
+11414 11423 11423 11423 pts/0    17806 Ss     500   0:00  \_ bash
+11423 15014 15014 11423 pts/0    17806 S        0   0:00      \_ su -
+15014 15025 15025 11423 pts/0    17806 S        0   0:00          \_ -bash
+15025 17806 17806 11423 pts/0    17806 R+       0   0:00              \_ ps axjf
+    1 16820  1624  1624 ?           -1 SNl    500   0:02 /usr/libexec/tracker-extract
+
+
+Mostrar los procesos de root:
+
+ps -U root -u root u
+[root@Llawyr ComandosDeLaTerminal]# ps -U root -u root u
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  46400  4420 ?        Ss   11:19   0:00 /sbin/init
+root         2  0.0  0.0      0     0 ?        S    11:19   0:00 [kthreadd]
+root         3  0.0  0.0      0     0 ?        S    11:19   0:00 [ksoftirqd/0]
+root         5  0.0  0.0      0     0 ?        S<   11:19   0:00 [kworker/0:0H]
+root         7  0.0  0.0      0     0 ?        S    11:19   0:00 [migration/0]
+root         8  0.0  0.0      0     0 ?        S    11:19   0:00 [rcu_bh]
+root         9  0.0  0.0      0     0 ?        S    11:19   0:09 [rcu_sched]
+root        10  0.0  0.0      0     0 ?        S    11:19   0:00 [migration/1]
+root        11  0.0  0.0      0     0 ?        S    11:19   0:00 [ksoftirqd/1]
+root        13  0.0  0.0      0     0 ?        S<   11:19   0:00 [kworker/1:0H]
+root        14  0.0  0.0      0     0 ?        S    11:19   0:00 [migration/2]
+ .
+ .
+ .
+root     12170  0.0  0.0      0     0 ?        S    13:28   0:00 [kworker/u16:1]
+root     15014  0.0  0.0  63600  2056 pts/0    S    14:00   0:00 su -
+root     15025  0.0  0.0  16516  2700 pts/0    S    14:00   0:00 -bash
+root     15254  0.0  0.0      0     0 ?        S    14:02   0:01 [kworker/0:0]
+root     16852  0.0  0.0      0     0 ?        S    14:23   0:00 [kworker/3:1]
+root     16912  0.0  0.0      0     0 ?        S    14:24   0:00 [kworker/1:2]
+root     17377  0.0  0.0      0     0 ?        S    14:29   0:00 [kworker/u16:0]
+root     17388  0.0  0.0      0     0 ?        S    14:29   0:00 [kworker/1:0]
+root     17820  0.0  0.0      0     0 ?        S    14:34   0:00 [kworker/0:1]
+root     17985  0.0  0.0      0     0 ?        S    14:37   0:00 [kworker/1:1]
+root     18288  0.0  0.0  13212  1088 pts/0    R+   14:40   0:00 ps -U root -u root u
+
+para definir el formato de la salida:
+
+ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm
+[root@Llawyr ComandosDeLaTerminal]# ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm
+  PID   TID CLS RTPRIO  NI PRI PSR %CPU STAT WCHAN          COMMAND
+    1     1 TS       -   0  19   1  0.0 Ss   ep_poll        systemd
+    2     2 TS       -   0  19   3  0.0 S    kthreadd       kthreadd
+    3     3 TS       -   0  19   0  0.0 S    smpboot_thread ksoftirqd/0
+    5     5 TS       - -20  39   0  0.0 S<   worker_thread  kworker/0:0H
+    7     7 FF      99   - 139   0  0.0 S    smpboot_thread migration/0
+    8     8 TS       -   0  19   0  0.0 S    rcu_gp_kthread rcu_bh
+    9     9 TS       -   0  19   2  0.0 S    rcu_gp_kthread rcu_sched
+   10    10 FF      99   - 139   1  0.0 S    smpboot_thread migration/1
+   11    11 TS       -   0  19   1  0.0 S    smpboot_thread ksoftirqd/1
+   13    13 TS       - -20  39   1  0.0 S<   worker_thread  kworker/1:0H
+   14    14 FF      99   - 139   2  0.0 S    smpboot_thread migration/2
+ .
+ .
+ .
+11423 11423 TS       -   0  19   2  0.0 Ss   wait           bash
+12170 12170 TS       -   0  19   2  0.0 S    worker_thread  kworker/u16:1
+15014 15014 TS       -   0  19   4  0.0 S    wait           su
+15025 15025 TS       -   0  19   2  0.0 S    wait           bash
+15254 15254 TS       -   0  19   0  0.0 S    worker_thread  kworker/0:0
+16820 16820 TS       -  19   0   2  0.2 SNl  poll_schedule_ tracker-extract
+16852 16852 TS       -   0  19   3  0.0 S    worker_thread  kworker/3:1
+16912 16912 TS       -   0  19   1  0.0 S    worker_thread  kworker/1:2
+17377 17377 TS       -   0  19   0  0.0 S    worker_thread  kworker/u16:0
+17388 17388 TS       -   0  19   1  0.0 S    worker_thread  kworker/1:0
+17820 17820 TS       -   0  19   0  0.0 R    -              kworker/0:1
+17985 17985 TS       -   0  19   1  0.0 S    worker_thread  kworker/1:1
+18358 18358 TS       -   0  19   0  0.0 R+   -              ps
+
+
+Mostrar solo los IDs de algunos procesos:
+[root@Llawyr ComandosDeLaTerminal]# ps -C dconf-service -o pid=
+ 1713
+[root@Llawyr ComandosDeLaTerminal]# ps -C gnome-terminal- -o pid=
+11414
+[root@Llawyr ComandosDeLaTerminal]# ps -C gconfd-2 -o pid=
+ 1733
+
+Mostrar solo el nombre de Proceso ID 15:
+[root@Llawyr ComandosDeLaTerminal]# ps -p 15 -o comm=
+ksoftirqd/2
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
