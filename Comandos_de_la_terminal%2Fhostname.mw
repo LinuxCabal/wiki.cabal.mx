@@ -1,0 +1,70 @@
+__NOTOC__
+* [[:#hostname | hostname]]
+
+== hostname ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# hostname --help
+Usage: hostname [-v] {hostname|-F file}      set hostname (from file)
+       domainname [-v] {nisdomain|-F file}   set NIS domainname (from file)
+       hostname [-v] [-d|-f|-s|-a|-i|-y]  display formatted name
+       hostname [-v]                         display hostname
+
+       hostname -V|--version|-h|--help       print info and exit
+
+    dnsdomainname=hostname -d, {yp,nis,}domainname=hostname -y
+
+    -s, --short           short host name
+    -a, --alias           alias names
+    -i, --ip-address      addresses for the hostname
+    -f, --fqdn, --long    long host name (FQDN)
+    -d, --domain          DNS domain name
+    -y, --yp, --nis       NIS/YP domainname
+    -F, --file            read hostname or NIS domainname from given file
+
+   This command can read or set the hostname or the NIS domainname. You can
+   also read the DNS domain or the FQDN (fully qualified domain name).
+   Unless you are using bind or NIS for host lookups you can change the
+   FQDN (Fully Qualified Domain Name) and the DNS domain name (which is
+   part of the FQDN) in the /etc/hosts file.
+
+[root@Llawyr ~]# hostname --version
+net-tools 1.60
+hostname 1.100 (2001-04-14)
+
+[root@Llawyr ComandosDeLaTerminal]# cat /etc/hostname 
+Llawyr.linuxcabal.org
+
+[root@Llawyr ComandosDeLaTerminal]# cat /etc/sysconfig/network
+HOSTNAME=Llawyr.linuxcabal.org
+NETWORKING=yes
+CRDA_DOMAIN=MX
+
+[root@Llawyr ~]# hostname
+Llawyr.linuxcabal.org
+
+[root@Llawyr ~]# hostname -s
+Llawyr
+
+[root@Llawyr ~]# hostname -d
+linuxcabal.org
+
+[root@Llawyr ~]# hostname -a
+
+[root@Llawyr ComandosDeLaTerminal]# cat NuevoHostName 
+NuevoHostName.Imat.Com
+
+[root@Llawyr ComandosDeLaTerminal]#  hostname  -F NuevoHostName
+
+[root@Llawyr ComandosDeLaTerminal]# hostname
+NuevoHostName.Imat.Com
+
+[root@Llawyr ComandosDeLaTerminal]# hostname Llawyr.LinuxCabal.org
+
+[root@Llawyr ComandosDeLaTerminal]# hostname
+Llawyr.LinuxCabal.org
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
