@@ -1,0 +1,356 @@
+__NOTOC__
+* [[:#last | last]]
+
+== last ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ last --help
+
+Usage:
+ last [options] [<username>...] [<tty>...]
+
+Options:
+ -<number>            how many lines to show
+ -a, --hostlast       display hostnames in the last column
+ -d, --dns            translate the IP number back into a hostname
+ -f, --file <file>    use a specific file instead of /var/log/wtmp
+ -F, --fulltimes      print full login and logout times and dates
+ -i, --ip             display IP numbers in numbers-and-dots notation
+ -n, --limit <number> how many lines to show
+ -R, --nohostname     don't display the hostname field
+ -s, --since <time>   display the lines since the specified time
+ -t, --until <time>   display the lines until the specified time
+ -p, --present <time> display who where present at the specified time
+ -w, --fullnames      display full user and domain names
+ -x, --system         display system shutdown entries and run level changes
+     --time-format <format>  show time stamp using format:
+                               [notime|short|full|iso]
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see last(1).
+
+[rrc@Llawyr ~]$ last --version
+last from util-linux 2.24
+
+[rrc@Llawyr ~]$ last
+rrc      pts/0        :0               Thu May 29 13:20   still logged in
+rrc      :0           :0               Thu May 29 11:21   still logged in
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+(unknown :0           :0               Thu May 29 11:20 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+rrc      pts/0        :0               Thu May 29 10:47 - 10:56  (00:08)
+rrc      pts/0        :0               Wed May 28 14:25 - 14:43  (00:18)
+rrc      :0           :0               Wed May 28 14:22 - 11:19  (20:56)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22 - 11:19 (1+01:57)
+(unknown :0           :0               Wed May 28 14:22 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22 - 11:19 (1+01:57)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20 - 14:21  (05:00)
+(unknown :0           :0               Wed May 28 14:21 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20 - 14:21  (05:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+(unknown :0           :0               Wed May 28 14:19 - crash  (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+(unknown :0           :0               Wed May 28 14:15 - crash  (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+rrc      pts/0        :0               Wed May 28 12:26 - 12:27  (00:00)
+rrc      pts/0        :0               Wed May 28 11:16 - 11:28  (00:12)
+rrc      pts/0        :0               Tue May 27 17:10 - 17:20  (00:09)
+rrc      pts/0        :0               Tue May 27 09:24 - 10:11  (00:47)
+rrc      pts/0        :0               Mon May 26 17:45 - 18:03  (00:18)
+rrc      pts/0        :0               Mon May 26 16:55 - 17:16  (00:20)
+rrc      pts/0        :0               Mon May 26 00:49 - 00:50  (00:00)
+rrc      :0           :0               Mon May 26 00:49 - crash (2+08:22)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47 - 14:15 (2+18:28)
+(unknown :0           :0               Mon May 26 00:48 - crash  (-5:-1)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47 - 14:15 (2+18:28)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47 - 14:15 (2+18:28)
+(unknown :0           :0               Mon May 26 00:40 - down   (00:07)
+rrc      pts/0        192.168.51.53    Mon May 26 00:35 - 00:45  (00:10)
+rrc      :0           :0               Mon May 26 00:26 - 00:40  (00:13)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25 - 00:47  (05:21)
+(unknown :0           :0               Mon May 26 00:26 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25 - 00:47  (05:21)
+
+wtmp begins Sun May 25 19:25:53 2014
+
+[rrc@Llawyr ~]$ last -a
+rrc      pts/0        Thu May 29 13:20   still logged in    :0
+rrc      :0           Thu May 29 11:21   still logged in    :0
+reboot   system boot  Thu May 29 06:20   still running      3.12.20-desktop-1.mga4
+(unknown :0           Thu May 29 11:20 - crash  (-5:00)     :0
+reboot   system boot  Thu May 29 06:20   still running      3.12.20-desktop-1.mga4
+rrc      pts/0        Thu May 29 10:47 - 10:56  (00:08)     :0
+rrc      pts/0        Wed May 28 14:25 - 14:43  (00:18)     :0
+rrc      :0           Wed May 28 14:22 - 11:19  (20:56)     :0
+reboot   system boot  Wed May 28 09:22 - 11:19 (1+01:57)    3.12.20-desktop-1.mga4
+(unknown :0           Wed May 28 14:22 - crash  (-5:00)     :0
+reboot   system boot  Wed May 28 09:22 - 11:19 (1+01:57)    3.12.20-desktop-1.mga4
+reboot   system boot  Wed May 28 09:20 - 14:21  (05:00)     3.12.20-desktop-1.mga4
+(unknown :0           Wed May 28 14:21 - crash  (-5:00)     :0
+reboot   system boot  Wed May 28 09:20 - 14:21  (05:00)     3.12.20-desktop-1.mga4
+reboot   system boot  Wed May 28 09:16 - 14:20  (05:04)     3.12.20-desktop-1.mga4
+(unknown :0           Wed May 28 14:19 - crash  (-5:-3)     :0
+reboot   system boot  Wed May 28 09:16 - 14:20  (05:04)     3.12.20-desktop-1.mga4
+reboot   system boot  Wed May 28 09:16 - 14:20  (05:04)     3.12.20-desktop-1.mga4
+reboot   system boot  Wed May 28 09:12 - 14:15  (05:03)     3.12.20-desktop-1.mga4
+(unknown :0           Wed May 28 14:15 - crash  (-5:-3)     :0
+reboot   system boot  Wed May 28 09:12 - 14:15  (05:03)     3.12.20-desktop-1.mga4
+reboot   system boot  Wed May 28 09:12 - 14:15  (05:03)     3.12.20-desktop-1.mga4
+rrc      pts/0        Wed May 28 12:26 - 12:27  (00:00)     :0
+rrc      pts/0        Wed May 28 11:16 - 11:28  (00:12)     :0
+rrc      pts/0        Tue May 27 17:10 - 17:20  (00:09)     :0
+rrc      pts/0        Tue May 27 09:24 - 10:11  (00:47)     :0
+rrc      pts/0        Mon May 26 17:45 - 18:03  (00:18)     :0
+rrc      pts/0        Mon May 26 16:55 - 17:16  (00:20)     :0
+rrc      pts/0        Mon May 26 00:49 - 00:50  (00:00)     :0
+rrc      :0           Mon May 26 00:49 - crash (2+08:22)    :0
+reboot   system boot  Sun May 25 19:47 - 14:15 (2+18:28)    3.12.20-desktop-1.mga4
+(unknown :0           Mon May 26 00:48 - crash  (-5:-1)     :0
+reboot   system boot  Sun May 25 19:47 - 14:15 (2+18:28)    3.12.20-desktop-1.mga4
+reboot   system boot  Sun May 25 19:47 - 14:15 (2+18:28)    3.12.20-desktop-1.mga4
+(unknown :0           Mon May 26 00:40 - down   (00:07)     :0
+rrc      pts/0        Mon May 26 00:35 - 00:45  (00:10)     192.168.51.53
+rrc      :0           Mon May 26 00:26 - 00:40  (00:13)     :0
+reboot   system boot  Sun May 25 19:25 - 00:47  (05:21)     3.12.20-desktop-1.mga4
+(unknown :0           Mon May 26 00:26 - crash  (-5:00)     :0
+reboot   system boot  Sun May 25 19:25 - 00:47  (05:21)     3.12.20-desktop-1.mga4
+
+wtmp begins Sun May 25 19:25:53 2014
+
+[rrc@Llawyr ~]$ last -F
+rrc      pts/0        :0               Thu May 29 13:20:28 2014   still logged in
+rrc      :0           :0               Thu May 29 11:21:48 2014   still logged in
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20:03 2014   still running
+(unknown :0           :0               Thu May 29 11:20:28 2014 - crash                     (-5:00)
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20:03 2014   still running             (-5:00)
+rrc      pts/0        :0               Thu May 29 10:47:53 2014 - Thu May 29 10:56:38 2014  (00:08)
+rrc      pts/0        :0               Wed May 28 14:25:02 2014 - Wed May 28 14:43:38 2014  (00:18)
+rrc      :0           :0               Wed May 28 14:22:44 2014 - Thu May 29 11:19:38 2014  (20:56)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22:09 2014 - Thu May 29 11:19:41 2014 (1+01:57)
+(unknown :0           :0               Wed May 28 14:22:29 2014 - crash                     (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22:09 2014 - Thu May 29 11:19:41 2014 (1+01:57)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20:51 2014 - Wed May 28 14:21:43 2014  (05:00)
+(unknown :0           :0               Wed May 28 14:21:12 2014 - crash                     (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20:51 2014 - Wed May 28 14:21:43 2014  (05:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16:11 2014 - Wed May 28 14:20:14 2014  (05:04)
+(unknown :0           :0               Wed May 28 14:19:43 2014 - crash                     (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16:11 2014 - Wed May 28 14:20:14 2014  (05:04)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16:11 2014 - Wed May 28 14:20:14 2014  (05:04)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12:04 2014 - Wed May 28 14:15:55 2014  (05:03)
+(unknown :0           :0               Wed May 28 14:15:20 2014 - crash                     (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12:04 2014 - Wed May 28 14:15:55 2014  (05:03)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12:04 2014 - Wed May 28 14:15:55 2014  (05:03)
+rrc      pts/0        :0               Wed May 28 12:26:47 2014 - Wed May 28 12:27:00 2014  (00:00)
+rrc      pts/0        :0               Wed May 28 11:16:15 2014 - Wed May 28 11:28:16 2014  (00:12)
+rrc      pts/0        :0               Tue May 27 17:10:40 2014 - Tue May 27 17:20:19 2014  (00:09)
+rrc      pts/0        :0               Tue May 27 09:24:01 2014 - Tue May 27 10:11:02 2014  (00:47)
+rrc      pts/0        :0               Mon May 26 17:45:35 2014 - Mon May 26 18:03:37 2014  (00:18)
+rrc      pts/0        :0               Mon May 26 16:55:43 2014 - Mon May 26 17:16:23 2014  (00:20)
+rrc      pts/0        :0               Mon May 26 00:49:36 2014 - Mon May 26 00:50:06 2014  (00:00)
+rrc      :0           :0               Mon May 26 00:49:15 2014 - crash                    (2+08:22)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47:45 2014 - Wed May 28 14:15:55 2014 (2+18:28)
+(unknown :0           :0               Mon May 26 00:48:58 2014 - crash                     (-5:-1)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47:45 2014 - Wed May 28 14:15:55 2014 (2+18:28)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47:45 2014 - Wed May 28 14:15:55 2014 (2+18:28)
+(unknown :0           :0               Mon May 26 00:40:21 2014 - down                      (00:07)
+rrc      pts/0        192.168.51.53    Mon May 26 00:35:04 2014 - Mon May 26 00:45:30 2014  (00:10)
+rrc      :0           :0               Mon May 26 00:26:42 2014 - Mon May 26 00:40:15 2014  (00:13)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25:53 2014 - Mon May 26 00:47:27 2014  (05:21)
+(unknown :0           :0               Mon May 26 00:26:25 2014 - crash                     (-5:00)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25:53 2014 - Mon May 26 00:47:27 2014  (05:21)
+
+wtmp begins Sun May 25 19:25:53 2014
+
+
+[rrc@Llawyr ~]$ last -ai
+rrc      pts/0        Thu May 29 13:20   still logged in    0.0.0.0
+rrc      :0           Thu May 29 11:21   still logged in    0.0.0.0
+reboot   system boot  Thu May 29 06:20   still running      0.0.0.0
+(unknown :0           Thu May 29 11:20 - crash  (-5:00)     0.0.0.0
+reboot   system boot  Thu May 29 06:20   still running      0.0.0.0
+rrc      pts/0        Thu May 29 10:47 - 10:56  (00:08)     0.0.0.0
+rrc      pts/0        Wed May 28 14:25 - 14:43  (00:18)     0.0.0.0
+rrc      :0           Wed May 28 14:22 - 11:19  (20:56)     0.0.0.0
+reboot   system boot  Wed May 28 09:22 - 11:19 (1+01:57)    0.0.0.0
+(unknown :0           Wed May 28 14:22 - crash  (-5:00)     0.0.0.0
+reboot   system boot  Wed May 28 09:22 - 11:19 (1+01:57)    0.0.0.0
+reboot   system boot  Wed May 28 09:20 - 14:21  (05:00)     0.0.0.0
+(unknown :0           Wed May 28 14:21 - crash  (-5:00)     0.0.0.0
+reboot   system boot  Wed May 28 09:20 - 14:21  (05:00)     0.0.0.0
+reboot   system boot  Wed May 28 09:16 - 14:20  (05:04)     0.0.0.0
+(unknown :0           Wed May 28 14:19 - crash  (-5:-3)     0.0.0.0
+reboot   system boot  Wed May 28 09:16 - 14:20  (05:04)     0.0.0.0
+reboot   system boot  Wed May 28 09:16 - 14:20  (05:04)     0.0.0.0
+reboot   system boot  Wed May 28 09:12 - 14:15  (05:03)     0.0.0.0
+(unknown :0           Wed May 28 14:15 - crash  (-5:-3)     0.0.0.0
+reboot   system boot  Wed May 28 09:12 - 14:15  (05:03)     0.0.0.0
+reboot   system boot  Wed May 28 09:12 - 14:15  (05:03)     0.0.0.0
+rrc      pts/0        Wed May 28 12:26 - 12:27  (00:00)     0.0.0.0
+rrc      pts/0        Wed May 28 11:16 - 11:28  (00:12)     0.0.0.0
+rrc      pts/0        Tue May 27 17:10 - 17:20  (00:09)     0.0.0.0
+rrc      pts/0        Tue May 27 09:24 - 10:11  (00:47)     0.0.0.0
+rrc      pts/0        Mon May 26 17:45 - 18:03  (00:18)     0.0.0.0
+rrc      pts/0        Mon May 26 16:55 - 17:16  (00:20)     0.0.0.0
+rrc      pts/0        Mon May 26 00:49 - 00:50  (00:00)     0.0.0.0
+rrc      :0           Mon May 26 00:49 - crash (2+08:22)    0.0.0.0
+reboot   system boot  Sun May 25 19:47 - 14:15 (2+18:28)    0.0.0.0
+(unknown :0           Mon May 26 00:48 - crash  (-5:-1)     0.0.0.0
+reboot   system boot  Sun May 25 19:47 - 14:15 (2+18:28)    0.0.0.0
+reboot   system boot  Sun May 25 19:47 - 14:15 (2+18:28)    0.0.0.0
+(unknown :0           Mon May 26 00:40 - down   (00:07)     0.0.0.0
+rrc      pts/0        Mon May 26 00:35 - 00:45  (00:10)     192.168.51.53
+rrc      :0           Mon May 26 00:26 - 00:40  (00:13)     0.0.0.0
+reboot   system boot  Sun May 25 19:25 - 00:47  (05:21)     0.0.0.0
+(unknown :0           Mon May 26 00:26 - crash  (-5:00)     0.0.0.0
+reboot   system boot  Sun May 25 19:25 - 00:47  (05:21)     0.0.0.0
+
+wtmp begins Sun May 25 19:25:53 2014
+
+
+[rrc@Llawyr ~]$ last -n 5
+rrc      pts/0        :0               Thu May 29 13:20   still logged in
+rrc      :0           :0               Thu May 29 11:21   still logged in
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+(unknown :0           :0               Thu May 29 11:20 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+
+wtmp begins Sun May 25 19:25:53 2014
+
+[rrc@Llawyr ~]$ last -in 5
+rrc      pts/0        0.0.0.0          Thu May 29 13:20   still logged in
+rrc      :0           0.0.0.0          Thu May 29 11:21   still logged in
+reboot   system boot  0.0.0.0          Thu May 29 06:20   still running
+(unknown :0           0.0.0.0          Thu May 29 11:20 - crash  (-5:00)
+reboot   system boot  0.0.0.0          Thu May 29 06:20   still running
+
+wtmp begins Sun May 25 19:25:53 2014
+
+[rrc@Llawyr ~]$ last -Rin 5
+rrc      pts/0        Thu May 29 13:20   still logged in
+rrc      :0           Thu May 29 11:21   still logged in
+reboot   system boot  Thu May 29 06:20   still running
+(unknown :0           Thu May 29 11:20 - crash  (-5:00)
+reboot   system boot  Thu May 29 06:20   still running
+
+wtmp begins Sun May 25 19:25:53 2014
+
+
+[rrc@Llawyr ~]$ last -s 00:01
+rrc      pts/0        :0               Thu May 29 13:20   still logged in
+rrc      :0           :0               Thu May 29 11:21   still logged in
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+(unknown :0           :0               Thu May 29 11:20 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+rrc      pts/0        :0               Thu May 29 10:47 - 10:56  (00:08)
+
+wtmp begins Sun May 25 19:25:53 2014
+
+[rrc@Llawyr ~]$ last -t 2014-05-27
+rrc      pts/0        :0               Mon May 26 17:45 - 18:03  (00:18)
+rrc      pts/0        :0               Mon May 26 16:55 - 17:16  (00:20)
+rrc      pts/0        :0               Mon May 26 00:49 - 00:50  (00:00)
+rrc      :0           :0               Mon May 26 00:49    gone - no logout
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47   still running
+(unknown :0           :0               Mon May 26 00:48 - crash  (-5:-1)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47   still running
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47   still running
+(unknown :0           :0               Mon May 26 00:40 - down   (00:07)
+rrc      pts/0        192.168.51.53    Mon May 26 00:35 - 00:45  (00:10)
+rrc      :0           :0               Mon May 26 00:26 - 00:40  (00:13)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25 - 00:47  (05:21)
+(unknown :0           :0               Mon May 26 00:26 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25 - 00:47  (05:21)
+
+wtmp begins Sun May 25 19:25:53 2014
+
+
+[rrc@Llawyr ~]$ last -s 2014-05-28 -t 2014-05-29
+rrc      pts/0        :0               Wed May 28 14:25 - 14:43  (00:18)
+rrc      :0           :0               Wed May 28 14:22   still logged in
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22   still running
+(unknown :0           :0               Wed May 28 14:22 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22   still running
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20 - 14:21  (05:00)
+(unknown :0           :0               Wed May 28 14:21 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20 - 14:21  (05:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+(unknown :0           :0               Wed May 28 14:19 - crash  (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+(unknown :0           :0               Wed May 28 14:15 - crash  (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+rrc      pts/0        :0               Wed May 28 12:26 - 12:27  (00:00)
+rrc      pts/0        :0               Wed May 28 11:16 - 11:28  (00:12)
+
+wtmp begins Sun May 25 19:25:53 2014
+
+
+[rrc@Llawyr ~]$ last -x
+rrc      pts/0        :0               Thu May 29 13:20   still logged in
+rrc      :0           :0               Thu May 29 11:21   still logged in
+runlevel (to lvl 5)   3.12.20-desktop- Thu May 29 11:20   still running
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+(unknown :0           :0               Thu May 29 11:20 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Thu May 29 06:20   still running
+shutdown system down  3.12.20-desktop- Thu May 29 11:19 - 06:20  (-4:-59)
+rrc      pts/0        :0               Thu May 29 10:47 - 10:56  (00:08)
+rrc      pts/0        :0               Wed May 28 14:25 - 14:43  (00:18)
+rrc      :0           :0               Wed May 28 14:22 - 11:19  (20:56)
+runlevel (to lvl 5)   3.12.20-desktop- Wed May 28 14:22 - 11:19  (20:56)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22 - 11:19 (1+01:57)
+(unknown :0           :0               Wed May 28 14:22 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:22 - 11:19 (1+01:57)
+shutdown system down  3.12.20-desktop- Wed May 28 14:21 - 09:22  (-4:-59)
+runlevel (to lvl 5)   3.12.20-desktop- Wed May 28 14:21 - 14:21  (00:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20 - 14:21  (05:00)
+(unknown :0           :0               Wed May 28 14:21 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:20 - 14:21  (05:00)
+shutdown system down  3.12.20-desktop- Wed May 28 14:20 - 09:20  (-4:-59)
+runlevel (to lvl 5)   3.12.20-desktop- Wed May 28 14:20 - 14:20  (00:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+(unknown :0           :0               Wed May 28 14:19 - crash  (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:16 - 14:20  (05:04)
+shutdown system down  3.12.20-desktop- Wed May 28 14:15 - 09:16  (-4:-59)
+runlevel (to lvl 5)   3.12.20-desktop- Wed May 28 14:15 - 14:15  (00:00)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+(unknown :0           :0               Wed May 28 14:15 - crash  (-5:-3)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+reboot   system boot  3.12.20-desktop- Wed May 28 09:12 - 14:15  (05:03)
+rrc      pts/0        :0               Wed May 28 12:26 - 12:27  (00:00)
+rrc      pts/0        :0               Wed May 28 11:16 - 11:28  (00:12)
+rrc      pts/0        :0               Tue May 27 17:10 - 17:20  (00:09)
+rrc      pts/0        :0               Tue May 27 09:24 - 10:11  (00:47)
+rrc      pts/0        :0               Mon May 26 17:45 - 18:03  (00:18)
+rrc      pts/0        :0               Mon May 26 16:55 - 17:16  (00:20)
+rrc      pts/0        :0               Mon May 26 00:49 - 00:50  (00:00)
+rrc      :0           :0               Mon May 26 00:49 - crash (2+08:22)
+runlevel (to lvl 5)   3.12.20-desktop- Mon May 26 00:49 - 14:15 (2+13:26)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47 - 14:15 (2+18:28)
+(unknown :0           :0               Mon May 26 00:48 - crash  (-5:-1)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47 - 14:15 (2+18:28)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:47 - 14:15 (2+18:28)
+shutdown system down  3.12.20-desktop- Mon May 26 00:47 - 19:47  (-4:-59)
+(unknown :0           :0               Mon May 26 00:40 - down   (00:07)
+rrc      pts/0        192.168.51.53    Mon May 26 00:35 - 00:45  (00:10)
+rrc      :0           :0               Mon May 26 00:26 - 00:40  (00:13)
+runlevel (to lvl 5)   3.12.20-desktop- Mon May 26 00:26 - 00:47  (00:20)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25 - 00:47  (05:21)
+(unknown :0           :0               Mon May 26 00:26 - crash  (-5:00)
+reboot   system boot  3.12.20-desktop- Sun May 25 19:25 - 00:47  (05:21)
+
+wtmp begins Sun May 25 19:25:53 2014
+
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
