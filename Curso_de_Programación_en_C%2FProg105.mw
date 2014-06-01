@@ -1,0 +1,102 @@
+__NOTOC__
+* [[:#Prog105 | Multiples Archivos]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog105 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+//Archivo Prog105a.c
+#include <stdio.h>
+
+void InformeDelConteo( void );
+extern void acumularse( int );
+
+int Contar = 0;
+
+int main(void)
+{
+  int Valor;
+  register int i;
+
+  printf( "Ingresa un número entero positivo (0 a terminar): " );
+
+  while( scanf( "%d", &Valor ) == 1 && Valor > 0 )  // mientras que scanf() lea un dato y este sea positivo
+  {
+    ++Contar;
+
+    for( i = Valor; i >= 0; i-- )
+      acumularse(i);
+    printf( "Ingresa un número entero positivo (0 a terminar): ");
+  }
+  InformeDelConteo();   // scanf() recibe un dato negativo o cero
+
+  return 0;
+}
+
+void InformeDelConteo( void )
+{
+  printf( "El while loop fue ejecutado %d veces\n", Contar );
+}
+
+// Archivo Prog105b.c
+#include <stdio.h>
+
+extern int Contar; 
+static int total = 0;
+
+void acumularse( int k )
+{
+  static int subtotal = 0;
+
+  if( k <= 0 )
+  {
+    printf( "ciclo de loop: %d\n", Contar );
+    printf( "subtotal: %d; total: %d\n", subtotal, total );
+    subtotal = 0;
+  }
+  else
+  {
+    subtotal += k;
+    total += k;
+  }
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog105 Prog105a.c Prog105b.c 
+[rrc@llawyr CClase]$ ./Prog105
+Ingresa un númenro entero positivo (0 a terminar): 1
+ciclo de loop: 1
+subtotal: 1; total: 1
+Ingresa un númenro entero positivo (0 a terminar): 1
+ciclo de loop: 2
+subtotal: 1; total: 2
+Ingresa un númenro entero positivo (0 a terminar): 2
+ciclo de loop: 3
+subtotal: 3; total: 5
+Ingresa un númenro entero positivo (0 a terminar): 2
+ciclo de loop: 4
+subtotal: 3; total: 8
+Ingresa un númenro entero positivo (0 a terminar): 3
+ciclo de loop: 5
+subtotal: 6; total: 14
+Ingresa un númenro entero positivo (0 a terminar): 3
+ciclo de loop: 6
+subtotal: 6; total: 20
+Ingresa un númenro entero positivo (0 a terminar): 4
+ciclo de loop: 7
+subtotal: 10; total: 30
+Ingresa un númenro entero positivo (0 a terminar): 0
+El while loop fue ejecutado 7 veces
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
