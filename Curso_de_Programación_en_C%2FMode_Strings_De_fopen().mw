@@ -1,0 +1,38 @@
+__NOTOC__
+* [[:#Mode Strings De fopen() | Mode Strings De fopen()]]
+** [[:#Explicación | Explicación]]
+
+== Mode Strings De fopen() ==
+
+<table cellpadding="1" cellspacing="12">
+  <tr>
+    <th>String</th><th>Explicación</th>
+  </tr>
+  <tr style=text-align:center;>
+    <td>"r"</td><td>Abrir archivo de texto para leer</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>"w"</td><td>Abrir un archivo de texto para escribir.<br />Si existe el archivo se trunca.<br />Si el archivo no existe, se crea.</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>"a"</td><td>Abrir un archivo de texto para escribir al final del archivo.<br />Si el archivo no existe, se crea.</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>"r+"</td><td>Abrir un archivo de texto para leer y para escribir.<br />No se borran los contenidos del archivo si existe.<br />Si el archivo no existe, se crea.</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>"w+"</td><td>Abrir un archivo de texto para leer y para escribir.<br />Se borran todos los contenidos del archivo si existe.<br />Si el archivo no existe, se crea.</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>"a+"</td><td>Como "r+" pero escribir se permite solo al final del archivo</td>
+  </tr>
+  <tr style=text-align:center;>
+    <td>"rb", "wb", "ab"<br />"ab+", "a+b", "wb+"<br />"w+b", "ab+", "a+b"</td><td>Como los anteriores pero en modo binario</td>
+  </tr>
+</table>
+
+=== Explicación ===
+
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
