@@ -1,0 +1,191 @@
+__NOTOC__
+* [[:#Prog109 | malloc(), free(), exit() & strtod()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog109 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h> /* for malloc(), free() */
+#include <string.h>
+
+int main( void )
+{
+  double * ptd;
+
+  char NumSTR[10];
+
+  char * endptr;
+
+  int i = 0,
+      Max,
+      NumCharsLeidos,
+      NumEntradas,
+      NumPuntos,
+      NumValidosChars,
+      Numero;
+
+  printf( "¿Cuál es el máximo número de dobles que vamos a guardar? " );
+
+  fgets( NumSTR, 4, stdin );
+  NumValidosChars = 0;
+  if( ( NumCharsLeidos = strlen( NumSTR ) )  > 4 )
+  {
+    puts( "Entrada ¡INVALIDO!\nDebe ser menor que 99" );
+    exit( 1 );
+  }
+
+  if( NumSTR[0] == '0' )
+  {
+    puts( "Debemos guardar un mínimo de 1 double" );
+    exit( 1 );
+  }
+
+  if( *(NumSTR + NumCharsLeidos - 1) != '\n' )
+  {
+    puts( "Entrada ¡INVALIDO!\nDebe ser menor que 99" );
+    exit( 1 );
+  }
+  else
+    *(NumSTR + NumCharsLeidos - 1) = '\0';
+
+  for( i = 0; i < NumCharsLeidos -1; i++ )
+    if( ( *(NumSTR + i ) >= '0' && *(NumSTR + i ) <= '9' ) )
+      NumValidosChars++;
+
+  if( NumCharsLeidos == 1 || NumValidosChars != NumCharsLeidos - 1 )
+  {
+    puts( "Entrada ¡INVALIDO!" );
+    exit( 1 );
+  }
+  Max = atoi( NumSTR );
+
+  ptd = (double *)malloc( Max * sizeof( double ) );
+
+  if( ptd == NULL )
+  {
+    puts( "Falló la asignación de memoria. Adiós." );
+    exit( EXIT_FAILURE );
+  }
+
+  puts( "Ingresa los dobles (q para terminar):" );
+  
+  NumEntradas = 0;
+
+  while( ( NumEntradas < Max ) && fgets( NumSTR, 8, stdin ) )
+  {
+    NumValidosChars = 0;
+    NumCharsLeidos = strlen( NumSTR );
+
+    if( NumSTR[0] == 'q' && NumCharsLeidos == 2 )
+      break;
+
+    if( *(NumSTR + NumCharsLeidos - 1) != '\n' )
+    {
+      puts( "Entrada ¡INVALIDO! (Tan Grande - No más que 6 chars)" );
+      while( getchar() != '\n' );
+      puts( "Ingresa los dobles:" );
+      continue;
+    }
+    else
+      *(NumSTR + NumCharsLeidos - 1) = '\0';
+
+    NumPuntos = 0;
+    
+    for( i = 0; i < NumCharsLeidos -1; i++ )
+      if( ( *(NumSTR + i ) >= '0' && *(NumSTR + i ) <= '9' ) ||
+          (  *(NumSTR) == '-' && i == '0' ) ||
+          ( *(NumSTR + i ) == '.' && ++NumPuntos < 2 ) )
+        NumValidosChars++;
+
+    if( NumCharsLeidos == 1 || NumValidosChars != NumCharsLeidos - 1 )
+    {
+      puts( "Entrada ¡INVALIDO!" );
+      puts( "Ingresa los dobles:" );
+      continue;
+    }
+    ptd[NumEntradas++] = strtod( NumSTR, &endptr );
+  }
+
+  printf( "\nAquí son sus %d dobles:\n", Numero = NumEntradas );
+
+  for( i = 0; i < Numero; i++ )
+  {
+    printf("%7.2f ", ptd[i]);
+
+    if( i % 7 == 6 )
+      putchar( '\n' );
+  }
+
+  if( i % 7 != 0 )
+    putchar( '\n' );
+
+  puts("¡Listo!");
+  free(ptd);
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre> 
+[rrc@llawyr CClase]$ gcc -Wall -o Prog109 Prog109.c 
+[rrc@llawyr CClase]$ ./Prog109
+¿Cuál es el máximo número de dobles que vamos a guardar? 25
+Ingresa los dobles (q para terminar):
+q
+
+Aquí son sus 0 dobles:
+¡Listo!
+[rrc@llawyr CClase]$ ./Prog109
+¿Cuál es el máximo número de dobles que vamos a guardar? 25
+Ingresa los dobles (q para terminar):
+23
+-23
+23.456
+-23.456
+Entrada ¡INVALIDO! (Tan Grande - No más que 6 chars)
+Ingresa los dobles:
+-23.45
+123456
+-123456
+Entrada ¡INVALIDO! (Tan Grande - No más que 6 chars)
+Ingresa los dobles:
+-12345
+
+Entrada ¡INVALIDO!
+Ingresa los dobles:
+
+Entrada ¡INVALIDO!
+Ingresa los dobles:
+quit
+Entrada ¡INVALIDO!
+Ingresa los dobles:
+8765.2
+45.67
+-53.4.4
+Entrada ¡INVALIDO! (Tan Grande - No más que 6 chars)
+Ingresa los dobles:
+5.3.2
+Entrada ¡INVALIDO!
+Ingresa los dobles:
+54-3 
+Entrada ¡INVALIDO!
+Ingresa los dobles:
+66
+q
+
+Aquí son sus 9 dobles:
+  23.00  -23.00   23.46  -23.45 123456.00 -12345.00 8765.20 
+  45.67   66.00 
+¡Listo!
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
