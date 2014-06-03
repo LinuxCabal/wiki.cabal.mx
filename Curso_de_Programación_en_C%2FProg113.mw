@@ -1,0 +1,41 @@
+__NOTOC__
+* [[:#Prog113 | fgets() y fputs()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog113 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+
+#define MAXLINEA 20
+
+int main(void)
+{
+  char Linea[MAXLINEA];
+
+  while( fgets( Linea, MAXLINEA - 1, stdin ) != NULL && Linea[0] != '\n' )
+    fputs( Linea, stdout );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog113 Prog113.c
+[rrc@llawyr CClase]$ ./Prog113
+Aquí podemos ver que la combinación de fputs() y fgets() sirven bien.
+Aquí podemos ver que la combinación de fputs() y fgets() sirven bien.
+El fgets() guarda el retorno de carro y el fputs() no agrega un returno de carro al fin.
+El fgets() guarda el retorno de carro y el fputs() no agrega un returno de carro al fin.
+
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
