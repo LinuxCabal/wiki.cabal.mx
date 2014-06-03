@@ -1,0 +1,82 @@
+__NOTOC__
+* [[:#Prog112 | fopen() con a+ y rewind()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog112 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 40
+
+int main( void )
+{
+  FILE *fp;
+
+  char Palabras[MAX];
+
+  if( ( fp = fopen( "Palabras", "a+" ) ) == NULL )
+  {
+    fprintf( stderr, "No puedo abrir \"Palabras\" archivo.\n");
+    exit(1);
+  }
+
+  puts( "Ingresa las palabras que quieres agregar en el archivo." );
+  puts( "Retorno de carrito al inicio de la línea para terminar" );
+
+  while( gets( Palabras ) != NULL  && Palabras[0] != '\0' )
+    fprintf( fp, "%s ", Palabras );
+
+  puts( "Contenidos del archivo:" );
+  rewind( fp );
+
+  while( fscanf( fp, "%s", Palabras ) == 1 )
+    puts( Palabras );
+
+  if( fclose( fp ) != 0 )
+  {
+    fprintf( stderr, "Error: No puedo cerrar el archivo\n" );
+    exit(1);
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog112 Prog112.c
+[rrc@llawyr CClase]$ ./Prog112
+Ingresa las palabras que quieres agregar en el archivo.
+Retorno de carrito al inicio de la línea para terminar
+Son mis palabras
+
+Contenidos del archivo:
+Son
+mis
+palabras
+[rrc@llawyr CClase]$ ./Prog112
+Ingreso las palabras que quieres agregar en el archivo.
+Retorno de carrito al inicio de la línea a terminar
+Son más de mis palabras
+
+Contenidos del archivo:
+Son
+mis
+palabras
+Son
+más
+de
+mis
+palabras
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
