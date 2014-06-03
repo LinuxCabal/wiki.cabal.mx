@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Prog82 | fgets()]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog82 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#includ#include <stdio.h>
+
+#define MAX 5
+
+int main( void )
+{
+  char   nombre[MAX];
+  char * ptr;
+
+  printf( "Hola, cómo se llama usted?\n" );
+
+  ptr = fgets( nombre, MAX, stdin );
+  printf( "%s? Ah! %s!\n", nombre, ptr );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+  
+ [rrc@llawyr CClase]$ gcc -Wall -o Prog82 Prog82.c
+ [rrc@llawyr CClase]$ ./Prog82
+ Hola, cómo se llama usted?
+ Richard
+ Richard
+ ? Ah! Richard
+ !
+  
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
+Ver una explicación detallada de la función en https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_C/Manejo_de_archivos#fgets
