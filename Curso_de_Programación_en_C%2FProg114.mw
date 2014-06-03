@@ -1,0 +1,91 @@
+__NOTOC__
+* [[:#Prog114 | fseek(), ftell() y fopen con "rb" ]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog114 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define CNTL_Z '\032'   /* eof marker in DOS text files */
+#define SLEN 50
+
+int main( void )
+{
+  char file[SLEN],
+       ch;
+
+  FILE *fp;
+
+  long count,
+       last;
+
+  printf( "Escribe el nombre del archivo a usar: ");
+  fgets( file, SLEN - 2, stdin );
+
+  if( *(file + strlen( file ) -1 ) != '\n' )
+  {
+    printf( "El nombre que entraste es demasiado largo.\n"
+            "Solo %d chars MAX\n", SLEN - 2 );
+    exit(1);
+  }
+  else
+    *(file + strlen( file ) -1 ) = '\0'; 
+  
+  if( ( fp = fopen( file, "rb" ) ) == NULL )
+  {
+    printf( "No puedo abrir el archivo %s\n", file );
+    exit( 1 );
+  }
+
+  fseek( fp, 0L, SEEK_END );
+  last = ftell( fp );
+
+  for( count = 1L; count <= last; count++ )
+  {
+    fseek( fp, -count, SEEK_END );  /* Leer en reversa SEEK_CUR SEEK_SET */
+    ch = getc( fp );
+    if( ch != CNTL_Z && ch != '\r' )
+      putchar( ch );
+  }
+
+  putchar( '\n' );
+  fclose( fp );
+
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog114 Prog114.c
+[rrc@llawyr CClase]$ ./Prog114
+Escribe el nombre del archivo a usar: MiArchivo 
+No puedo abrir el archivo MiArchivo
+[rrc@llawyr CClase]$ ./Prog114
+Escribe el nombre del archivo a usar: Prog1.c
+
+
+}
+;0 nruter   
+;)mun ,"n\.remirp le se le euqrop d% se otirovaf orem��n iM"(ftnirp   
+;)"n\.elpmis"(ftnirp   
+/*  noitcnuf )(ftnirp eht esu */ ;)" arodatupmoc anu yoS"(ftnirp   
+
+/*          mun a rolav anu rangisa */                  ;1 = mun   
+/* mun adamall elbairav anu rinifed */                  ;mun tni   
+{
+/*               elpmis amargorp nU */               )diov(niam tni
+
+>h.oidts< edulcni#
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
