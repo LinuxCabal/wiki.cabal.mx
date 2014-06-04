@@ -1,0 +1,209 @@
+__NOTOC__
+* [[:#Prog115 | fopen con "a", setvbuf() y ferror() ]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog115 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define BUFTAMANO 1024
+#define STROZO 81
+
+void append( FILE *Fuente, FILE *dest );
+
+int main( void )
+{
+  FILE *ADest,
+       *AFuente;
+
+  int  Archivos = 0;
+
+  char ArchivoDestino[STROZO],  // Nombre de archivo de fuente
+       ArchivoFuente[STROZO];  // Nombre de archivo de destino
+
+  printf( "Ingresa el nombre del archivo de destino: " );
+  fgets( ArchivoDestino, STROZO - 2, stdin );
+
+  if( *(ArchivoDestino + strlen( ArchivoDestino ) -1 ) != '\n' )
+  {
+    printf( "El nombre que entraste es demasiado largo.\n"
+            "Solo %d chars MAX\n", STROZO - 2 );
+    exit(1);
+  }
+  else
+    *(ArchivoDestino + strlen( ArchivoDestino ) -1 ) = '\0'; 
+
+  if( ( ADest = fopen( ArchivoDestino, "a" ) ) == NULL )
+  {
+    fprintf( stderr, "No puedo abrir %s\n", ArchivoDestino );
+    exit( 2 );
+  }
+
+  if( setvbuf( ADest, NULL, _IOFBF, BUFTAMANO ) != 0 )
+  {
+    fputs( "No puedo crear el buffer de salida\n", stderr );
+    exit( 3 );
+  }
+
+  puts( "Ingresa el nombre del primer archivo de fuente (Línea vacio para terminar):" );
+  while( fgets( ArchivoFuente, STROZO - 2, stdin ) && ArchivoFuente[0] != '\n' )
+  {
+    if( *(ArchivoFuente + strlen( ArchivoFuente ) -1 ) != '\n' )
+    {
+      printf( "El nombre que entraste es demasiado largo.\n"
+              "Solo %d chars MAX\n", STROZO - 2 );
+      exit(1);
+    }
+    else
+      *(ArchivoFuente + strlen( ArchivoFuente ) -1 ) = '\0'; 
+
+    if( strcmp( ArchivoFuente, ArchivoDestino ) == 0 )
+      fputs( "No puedo usar el mismo archivo por fuente y destino\n", stderr );
+    else if( ( AFuente = fopen( ArchivoFuente, "r" ) ) == NULL )
+      fprintf( stderr, "No puedo abrir %s\n", ArchivoFuente );
+    else
+    {
+      if( setvbuf( AFuente, NULL, _IOFBF, BUFTAMANO ) != 0 )
+      {
+        fputs( "No puedo crear el buffer de ingreso\n", stderr );
+        continue;
+      }
+      append( AFuente, ADest );
+      if( ferror( AFuente ) != 0 )
+        fprintf( stderr, "Error en leer el archivo %s.\n", ArchivoFuente );
+      if( ferror( ADest ) != 0 )
+        fprintf( stderr, "Error in escribir el archivo file %s.\n", ArchivoDestino );
+      fclose( AFuente );
+      Archivos++;
+      printf( "Archivo %s agregado.\n", ArchivoFuente );
+      puts( "Siguiente archivo (Línea vacio para terminar):" );
+    }
+  }
+  printf( "Listo. %d archivos agregados.\n", Archivos );
+  fclose( ADest );
+
+  return 0;
+}
+
+void append( FILE *Fuente, FILE *dest )
+{
+  size_t bytes;
+  static char temp[BUFTAMANO]; // allocate once
+  while( ( bytes = fread( temp, sizeof( char ), BUFTAMANO, Fuente ) ) > 0 )
+    fwrite( temp, sizeof (char), bytes, dest );
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog115 Prog115.c
+[rrc@llawyr CClase]$ ./Prog115
+Ingresa el nombre del archivo de destino: Dest
+Ingresa el nombre del primer archivo de fuente (Línea vacio a terminar):
+Prog1.c
+Archivo Prog1.c agregado.
+Siguiente archivo (Línea vacio para terminar):
+Prog2.c
+Archivo Prog2.c agregado.
+Siguiente archivo (Línea vacio para terminar):
+Prog3.c
+Archivo Prog3.c agregado.
+Siguiente archivo (Línea vacio para terminar):
+
+Listo. 3 archivos agregados.
+[rrc@llawyr CClase]$ cat Dest
+/*  Prog4.c -- Asignación de resultados aritméticos */
+#include <stdio.h>
+     
+int main( void )
+{
+  int n  = 5,
+      n2 = n * n,
+      n3 = n2 * n; /* decleración y asignación de resultado de multiplicación */
+
+  printf( "n = %d, n cuadrado = %d, n cubo = %d\n", n, n2, n3 );
+  return 0;
+}
+/* Prog5.c  -- floats y scanf()                 */
+
+#include <stdio.h>
+
+int main(void)
+{
+    float peso; 
+
+    printf("¿Vale usted su peso en rhodium?\n");
+    printf("Vamos a ver.\n");
+    printf("Ingrese su peso en libras: ");
+
+/* Obtener peso del usuario                         */
+    scanf("%f", &peso);
+
+/* Si rhodium vale $770 el once                     */
+/* 14.5833 para convertir pounds avd. a ounces troy */
+
+    printf("Su peso en rhodium vale $%.2f.\n", (770.0 * peso * 14.5833) );
+    printf("Si el valor de rhodium baja,\n");
+    printf("come más a mantener su valor.\n");
+
+    return 0;
+}
+
+
+// Prog1.c
+#include <stdio.h>
+
+int main(void)               /* Un programa simple               */
+{
+   int num;                  /* definir una variable llamada num */
+   num = 1;                  /* asignar una valor a num          */
+
+   printf("Soy una computadora "); /* use the printf() function  */
+   printf("simple.\n");
+   printf("Mi número favorito es %d porque el es el primer.\n", num);
+   return 0;
+}
+
+/* Prog2.c */
+
+#include <stdio.h>
+
+int main (void)
+{
+  int fathoms = 2,
+      feet    = 6 * fathoms;
+
+  printf("Son %d pies en %d fathoms!\n", feet, fathoms);
+  return 0;
+}
+
+// Prog3.c
+#include <stdio.h>
+
+void macero( void );  /* Prototipo de la función macero() */
+      
+int main(void)
+{ 
+   printf( "Voy a convocar el macero.\n" );
+   macero();
+   printf( "Si. Me traen algunos DVDs grabables y té.\n" );
+   return 0;
+}
+
+void macero(void)            /* Definición de la función macero() */
+{
+   printf( "Me llamaste, señor?\n" );
+} 
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
