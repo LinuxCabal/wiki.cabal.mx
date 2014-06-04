@@ -1,0 +1,151 @@
+__NOTOC__
+* [[:#Prog117 | struct]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog117 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAXTITL  41
+#define MAXAUTL  31
+#define MAXVALL  10
+
+
+struct Libro
+{
+  char Titulo[MAXTITL];
+  char Autor[MAXAUTL];
+  float Valor;
+};
+
+int main( void )
+{
+  int    i;
+  char   ValSTR[MAXVALL + 1];
+  struct Libro Biblio;
+
+  printf( "Ingresa el nombre del libro: " );
+
+
+  fgets( Biblio.Titulo, MAXTITL - 2, stdin );
+
+  if( *(Biblio.Titulo + strlen( Biblio.Titulo ) -1 ) != '\n' )
+  {
+    printf( "El nombre que entraste es demasiado largo.\n"
+            "Solo %d chars MAX\n", MAXTITL - 2 );
+    exit(1);
+  }
+  else
+    *(Biblio.Titulo + strlen( Biblio.Titulo ) -1 ) = '\0'; 
+
+  printf( "Ingresa el nombre del autor: " );
+
+  fgets( Biblio.Autor, MAXAUTL - 2, stdin );
+
+  if( *(Biblio.Autor + strlen( Biblio.Autor ) -1 ) != '\n' )
+  {
+    printf( "El nombre que entraste es demasiado largo.\n"
+            "Solo %d chars MAX\n", MAXAUTL - 2 );
+    exit(1);
+  }
+  else
+    *(Biblio.Autor + strlen( Biblio.Autor ) -1 ) = '\0'; 
+
+  printf( "Ingresa el valor: " );
+  scanf( "%10s", ValSTR );
+
+  if( strlen( ValSTR ) > MAXVALL -1 )
+  {
+    printf( "El valor que entraste es demasiado largo.\n"
+            "Solo %d chars MAX\n", MAXVALL - 1 );
+    exit(1);
+  }
+
+  if( ValSTR[0] == '-' )
+  {
+    puts( "No se permiten valores negativos." );
+    exit(1);
+  }
+
+  for( i = 0; i < strlen( ValSTR ) - 1; i++ )
+  {
+    if( ValSTR[i] < '0' ||  ValSTR[i] > '9' )
+    {
+      if( ValSTR[i] == '.' )
+      {
+        if( strlen( ValSTR ) - i > 3 )
+        {
+          puts( "Se permiten solo 2 decimales después del punto." );
+          exit(1);
+        }
+      }
+      else
+      {
+        puts( "Caracteres ilegales en su valor." );
+        exit(1);
+      }
+    }
+  }
+
+  Biblio.Valor = atof( ValSTR );
+
+  printf( "%s por %s: $%.2f\n", Biblio.Titulo,
+          Biblio.Autor, Biblio.Valor );
+  printf( "%s: \"%s\" ($%.2f)\n", Biblio.Autor,
+          Biblio.Titulo, Biblio.Valor );
+  printf( "Listo.\n" );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog117 Prog117.c
+[rrc@llawyr CClase]$ ./Prog117
+Ingresa el nombre del libro: Mi Libro
+Ingresa el nombre del autor: El Autor
+Ingresa el valor: 345
+Mi Libro por El Autor: $345.00
+El Autor: "Mi Libro" ($345.00)
+Listo.
+[rrc@llawyr CClase]$ ./Prog117
+Ingresa el nombre del libro: Mi Otro Libro
+Ingresa el nombre del autor: El otro Autor
+Ingresa el valor: -34.56
+Se permiten valores negativos.
+[rrc@llawyr CClase]$ ./Prog117
+Ingresa el nombre del libro: Un Otro Libro
+Ingresa el nombre del autor: Un Otro Auto
+Ingresa el valor: 4567543.34
+El valor que entraste es demasiado largo.
+Solo 9 chars MAX
+[rrc@llawyr CClase]$ ./Prog117
+Ingresa el nombre del libro: Otro Libro
+Ingresa el nombre del autor: Otro Autor
+Ingresa el valor: 34566.456
+Se permiten solo 2 numerales después del punto.
+[rrc@llawyr CClase]$ ./Prog117
+Ingresa el nombre del libro: Otro Libro
+Ingresa el nombre del autor: Otra Autora
+Ingresa el valor: 345r.56
+Caracteres ilegales en su valor.
+[rrc@llawyr CClase]$ ./Prog117
+Ingresa el nombre del libro: Ultimo Libro
+Ingresa el nombre del autor: Ultimo Autor
+Ingresa el valor: 435456.43
+Ultimo Libro por Ultimo Autor: $435456.44
+Ultimo Autor: "Ultimo Libro" ($435456.44)
+Listo.
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
