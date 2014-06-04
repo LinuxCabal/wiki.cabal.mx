@@ -1,0 +1,188 @@
+__NOTOC__
+* [[:#Prog118 | Arreglos de structs]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog118 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAXTITL   40
+#define MAXAUTL   40
+#define MAXVALL   12
+#define MAXLIBROS   100
+
+struct Libro {
+    char Titulo[MAXTITL];
+    char Autor[MAXAUTL];
+    float Valor;
+};
+
+int main( void )
+{
+  struct Libro Biblioteca[MAXLIBROS];
+  int   Conteo = 0,
+        Index,
+        NumPuntos,
+        i;
+  char  ValSTR[MAXVALL];
+
+  printf( "Ingresa el nombre del libro: " );
+  while( Conteo < MAXLIBROS )
+  {
+    if( fgets( Biblioteca[Conteo].Titulo, MAXTITL - 2, stdin ) &&
+               Biblioteca[Conteo].Titulo[0] != '\n' )
+    {
+      if( *(Biblioteca[Conteo].Titulo +
+            strlen( Biblioteca[Conteo].Titulo ) -1 ) != '\n' )
+      {
+        printf( "El titulo que entraste es demasiado largo.\n"
+                "Solo %d chars MAX\n", MAXTITL - 2 );
+        exit(1);
+      }
+
+      *(Biblioteca[Conteo].Titulo +
+        strlen( Biblioteca[Conteo].Titulo ) -1 ) = '\0';
+    }
+    else
+      break;
+
+    printf( "Ingresa el nombre del autor: " );
+    if( fgets( Biblioteca[Conteo].Autor, MAXAUTL - 2, stdin ) &&
+               Biblioteca[Conteo].Autor[0] != '\n' )
+    {
+      if( *(Biblioteca[Conteo].Autor +
+            strlen( Biblioteca[Conteo].Autor ) -1 ) != '\n' )
+      {
+        printf( "El autor que entraste es demasiado largo.\n"
+                "Solo %d chars MAX\n", MAXAUTL - 2 );
+        exit(1);
+      }
+
+      *(Biblioteca[Conteo].Autor +
+        strlen( Biblioteca[Conteo].Autor ) -1 ) = '\0';
+    }
+    else
+    {
+      printf( "Faltan el nombre del autor de \"%s\"\n",
+               Biblioteca[Conteo].Titulo );
+      exit(1);
+    }
+
+    NumPuntos = 0;
+    printf( "Ingresa el valor: " );
+    if( fgets( ValSTR, MAXVALL - 2, stdin ) && ValSTR[0] != '\n' )
+    {
+      if( *(ValSTR + strlen( ValSTR ) -1 ) != '\n' )
+      {
+        printf( "El valor que entraste es demasiado largo.\n"
+                "Solo %d chars MAX\n", MAXVALL - 2 );
+        exit(1);
+      }
+
+      *(ValSTR + strlen( ValSTR ) -1 ) = '\0';
+
+      if( ValSTR[0] == '-' )
+      {
+        puts( "No se permiten valores negativos." );
+        exit(1);
+      }
+
+      for( i = 0; i < strlen( ValSTR ) - 1; i++ )
+      {
+        if( ValSTR[i] < '0' ||  ValSTR[i] > '9' )
+        {
+          if( ValSTR[i] == '.' )
+          {
+            if( ++NumPuntos > 1 )
+            {
+              fprintf( stderr, "Se permite solo 1 punto.\n" );
+              exit(1);
+            }
+
+            if( strlen( ValSTR ) - i > 3 )
+            {
+              puts( "Se permiten solo 2 decimales después del punto." );
+              exit(1);
+            }
+          }
+          else
+          {
+            puts( "Caracteres ilegales en su valor." );
+            exit(1);
+          }
+        }
+      }
+
+      Biblioteca[Conteo++].Valor = atof( ValSTR );
+    }
+    else
+    {
+      printf( "Faltan el valor de \"%s\"\n", Biblioteca[Conteo].Titulo );
+      exit(1);
+    }
+
+    if( Conteo < MAXLIBROS )
+      printf( "Ingresa el siguiente titulo: (<Enter> para terminar): " );
+  }
+
+  if (Conteo > 0)
+  {
+    puts( "Aquí está la lista de tus libros:" );
+    for (Index = 0; Index < Conteo; Index++)
+      printf( "\t\"%s\" por \"%s\": $%.2f\n", Biblioteca[Index].Titulo,
+            Biblioteca[Index].Autor, Biblioteca[Index].Valor);
+  }
+  else
+    puts( "Lo siento pero no tengo libros para mostrar." );
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ gcc -Wall -o Prog118 Prog118.c
+[rrc@llawyr CClase]$ ./Prog118
+Ingresa el nombre del libro: 
+Lo siento pero no tengo libros para mostrar.
+[rrc@llawyr CClase]$ ./Prog118
+Ingresa el nombre del libro: Libro 118
+Ingresa el nombre del autor: 
+Faltan el nombre del autor de "Libro 118"
+[rrc@llawyr CClase]$ gcc -Wall -o Prog118 Prog118.c
+[rrc@llawyr CClase]$ ./Prog118
+Ingresa el nombre del libro: Libro 1
+Ingresa el nombre del autor: Autor 1
+Ingresa el valor: 
+Faltan el valor de "Libro 1"
+[rrc@llawyr CClase]$ ./Prog118
+Ingresa el nombre del libro: Libro 1
+Ingresa el nombre del autor: Autor 1
+Ingresa el valor: 34
+Ingresa el siguiente titulo: (<Enter> para terminar): 
+Aquí está la lista de tus libros:
+    "Libro 1" por "Autor 1": $34.00
+[rrc@llawyr CClase]$ ./Prog118
+Ingresa el nombre del libro: Libro 1
+Ingresa el nombre del autor: Autor 1
+Ingresa el valor: 45.33
+Ingresa el siguiente titulo: (<Enter> para terminar): Libro 2
+Ingresa el nombre del autor: Autor 2
+Ingresa el valor: 53
+Ingresa el siguiente titulo: (<Enter> para terminar): 
+Aquí es la lista de sus libros:
+    "Libro 1" por "Autor 1": $45.33
+    "Libro 2" por "Autor 2": $53.00
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
