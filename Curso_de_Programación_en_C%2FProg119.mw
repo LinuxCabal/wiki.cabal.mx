@@ -1,0 +1,91 @@
+__NOTOC__
+* [[:#Prog119 | Pointers de struct]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog119 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define LARGO 20
+
+struct Nombres {
+    char Nombre[LARGO];
+    char Apellido[LARGO];
+};
+
+struct Personas {
+    struct Nombres handle;
+    char ComidaPreferida[LARGO];
+    char Profesion[LARGO];
+    float IngresosMensual;
+};
+
+int main( void )
+{
+  struct Personas Companero[2] = 
+  {
+    {
+      { "Horacio", "Villanueva" },
+     "salmon",
+     "Gigolo",
+      58112.00
+    },
+
+    {
+      {"Rupert", "Delgado" },
+     "menudo",
+     "Editor de Revistas",
+      32400.00
+    }
+  };
+
+  struct Personas * El;    /* here is a pointer to a structure */
+  El = &Companero[0];    /* tell the pointer where to point  */
+
+  printf( "\npointer: %p\n", El );
+  printf( "Nombre: %s\n", El->handle.Nombre ); 
+  printf( "Apellido: %s\n", El->handle.Apellido ); 
+  printf( "Comida Preferida: %s\n", El->ComidaPreferida ); 
+  printf( "Profesión: %s\n", El->Profesion ); 
+  printf( "Ingreso Mensual: %.2f\n", El->IngresosMensual ); 
+
+  El++;               /* point to the next structure      */
+
+  printf( "\npointer: %p\n", El );
+  printf( "Nombre: %s\n", (*El).handle.Nombre ); 
+  printf( "Apellido: %s\n", (*El).handle.Apellido ); 
+  printf( "Comida Preferida: %s\n", (*El).ComidaPreferida ); 
+  printf( "Profesión: %s\n", (*El).Profesion ); 
+  printf( "Ingreso Mensual: %.2f\n\n", (*El).IngresosMensual ); 
+
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+pointer: 0x7ffffaec23a0
+Nombre: Horacio
+Apellido: Villanueva
+Comida Preferida: salmon
+Profesión: Gigolo
+Ingreso Mensual: 58112.00
+
+pointer: 0x7ffffaec23f4
+Nombre: Rupert
+Apellido: Delgado
+Comida Preferida: menudo
+Profesión: Editor de Revistas
+Ingreso Mensual: 32400.00
+
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
