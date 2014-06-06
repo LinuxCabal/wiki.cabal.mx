@@ -1,0 +1,270 @@
+__NOTOC__
+* [[:#kill | kill]]
+
+== kill ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ kill -?
+kill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]
+
+[rrc@Llawyr ~]$ rpm -qf $( which kill )
+bash: /usr/bin/rpm: Permission denied
+[rrc@Llawyr ~]$ su -
+Password: 
+[root@Llawyr ~]# rpm -qf $( which kill )
+util-linux-2.24-2.mga4
+
+[root@Llawyr ~]# kill -l
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP
+ 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1
+11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM
+16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP
+21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ
+26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR
+31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3
+38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8
+43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13
+48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12
+53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7
+58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2
+63) SIGRTMAX-1	64) SIGRTMAX	
+
+SIGABRT
+     La señal SIGABRT se envia al proceso para decirle a abortar/Terminar.
+     La señal generalmente es iniciada por el propio proceso cuando llama 
+     a la función de interrupción de la biblioteca estándar de C, pero se 
+     puede enviar el proceso desde fuera, así como cualquier otra señal
+
+SIGALRM, SIGVTALRM and SIGPROF
+     Las señales SIGALRM, SIGVTALRM y SIGPROF  se envían a un proceso cuando 
+     transcurre el plazo especificado en una llamada a una función 
+     (por ejemplo, setitimer) de ajuste de alarma precedente. 
+     SIGALRM se envía cuando real o ha transcurrido el tiempo de reloj. 
+     SIGVTALRM se envía cuando el tiempo de CPU utilizado por el proceso transcurre. 
+     SIGPROF se envía cuando el tiempo de CPU utilizado por el proceso 
+     y el sistema en nombre el proceso transcurre
+
+SIGBUS
+     La señal SIGBUS es enviada a un proceso cuando provoca un error de bus. 
+     Las condiciones que conducen a la señal se eleva son, por ejemplo, 
+     alineación de acceso de memoria incorrecta o inexistente dirección física
+
+SIGCHLD
+     La señal SIGCHLD es enviada a un proceso cuando un proceso hijo termina, 
+     se interrumpe o se reanuda después de ser interrumpido. Un uso común de 
+     la señal es para indicar al sistema operativo para limpiar los recursos 
+     utilizados por un proceso secundario después de su finalización sin una 
+     llamada explícita a la llamada de sistema de espera
+
+SIGCONT
+     La señal SIGCONT indica al sistema operativo para continuar (reinicio) 
+     un proceso previamente hizo una pausa por la señal SIGSTOP o SIGTSTP. 
+     Un uso importante de esta señal está en control de trabajos en el shell de Unix
+ 
+SIGFPE
+     La señal SIGFPE es enviada a un proceso cuando se ejecuta una operación aritmética 
+     errónea, tales como división por cero (el nombre 'FPE', a excepción de coma flotante, 
+     es un nombre incorrecto ya que la señal cubre entero-aritmética errores también)
+
+SIGHUP
+     La señal SIGHUP es enviada a un proceso cuando su control terminal está cerrada. 
+     Originalmente fue diseñado para notificar el proceso de una caída de línea serial (un bloqueo).
+     En los sistemas modernos, esta señal generalmente significa que el pseudo controla 
+     o terminal virtual ha sido cerrado.[3] muchos demonios recargar sus archivos de 
+     configuración y volver a abrir sus archivos de registro en lugar de salir al 
+     recibir esta señal. nohup es un comando para hacer un comando ignore la señal
+ 
+SIGILL
+     La señal SIGILL es enviada a un proceso cuando intenta ejecutar una instrucción 
+     ilegal, malformada, desconocida o privilegiada
+
+SIGINT
+     La señal SIGINT es enviada a un proceso por su terminal control cuando un usuario 
+     desea interrumpir el proceso. Esto normalmente se inicia pulsando Control-C, 
+     pero en algunos sistemas, puede utilizarse la tecla 'delete' carácter o 'break'
+ 
+SIGKILL
+     La señal SIGKILL es enviada a un proceso para hacer que termine inmediatamente (matar).
+     En contraste con SIGTERM y SIGINT, esta señal no puede ser atrapada o ignorada, y 
+     el proceso de recepción no puede realizar cualquier limpiar al recibir esta señal
+
+SIGPIPE
+     La señal SIGPIPE es enviada a un proceso cuando se intenta escribir en una tubería
+     sin un proceso conectado al otro extremo
+
+SIGQUIT
+     La señal SIGQUIT es enviada a un proceso por su terminal de control cuando el 
+     usuario solicita que el proceso de dejar y realizar un volcado de memoria
+
+SIGSEGV
+     La señal SIGSEGV es enviada a un proceso cuando hace una referencia válida 
+     de memoria virtual, o fallo de segmentación, es decir, cuando se realiza 
+     una violación de segmentación
+
+SIGSTOP
+     La señal SIGSTOP indica al sistema operativo para detener un proceso posterior reanudación
+
+SIGTERM
+     La señal SIGTERM es enviada a un proceso para solicitar su terminación. A diferencia 
+     de la señal SIGKILL, puede ser atrapado e interpretado o ignorada por el proceso. 
+     Esto permite que el proceso realizar buena terminación liberando recursos y ahorro 
+     estatal si es apropiado. Cabe señalar que SIGINT es casi idéntico al SIGTERM
+    
+SIGTSTP
+     La señal SIGTSTP es enviada a un proceso por su terminal de control para solicitar
+     que se detenga temporalmente. Comúnmente es Iniciado por el usuario pulsando
+     Control-Z. A diferencia de SIGSTOP, el proceso puede registrar un manejador de 
+     señales para o ignorar la señal
+
+SIGTTIN and SIGTTOU
+     Las señales SIGTTIN y SIGTTOU son enviadas a un proceso cuando intenta leer o escribir
+     respectivamente desde el tty mientras que en el fondo. Normalmente, esta señal puede 
+     ser recibida solamente por procesos bajo control de trabajo; demonios no tienen 
+     terminales de control y no deben recibir esta señal
+
+SIGUSR1 and SIGUSR2
+     Las señales SIGUSR1 y SIGUSR2 son enviadas a un proceso para indicar 
+     las condiciones definidas por el usuario
+
+SIGPOLL
+     La señal SIGPOLL es enviada a un proceso cuando ocurre un evento de 
+     I/O asincrónico (es decir, que ha sido encuestado)
+
+SIGSYS
+     La señal SIGSYS es enviada a un proceso cuando pasa un mal argumento a 
+     una llamada de sistema
+
+SIGTRAP
+     La señal SIGTRAP es enviada a un proceso cuando se produce una excepción 
+     (o trampa): una condición que ha solicitado un depurador para estar 
+     informado de — por ejemplo, cuando se ejecuta una función en particular, 
+     o cuando una variable particular cambia su valor
+
+SIGURG
+     La señal SIGURG es enviada a un proceso cuando un zócalo tiene urgente 
+     o datos fuera de banda disponibles para leer
+
+SIGXCPU
+     La señal SIGXCPU es enviada a un proceso cuando ha utilizado por la CPU
+     durante un período que excede un cierto valor predeterminado del 
+     usuario-configurables.[7] la llegada de una señal SIGXCPU proporciona 
+     el proceso de recibir una oportunidad para guardar rápidamente cualquier
+     resultados intermedios y salir con dignidad, antes de que sea detenido
+     por el sistema operativo mediante la señal SIGKILL
+
+SIGXFSZ
+     La señal SIGXFSZ es enviada a un proceso cuando crece un archivo más 
+     grande que el máximo permitido de tamaño
+
+SIGRTMIN to SIGRTMAX
+     Las SIGRTMIN hasta SIGRTMAX pretende ser utilizado para propósitos definidos
+     por el usuario. Son señales en tiempo real
+
+Signal 	       Code   Action 	Description
+              Default
+SIGABRT 	6 	A       Señal de abortar el proceso
+SIGALRM 	14 	T       reloj despertador
+SIGBUS 	        10      A       Acceso a una parte indeterminada de un objeto de memoria
+SIGCHLD 	18 	I       Hilo terminado
+SIGCONT 	25 	C       Continuar si terminado
+SIGFPE  	8       A       Opración aretmetica ilegal
+SIGHUP    	1 	T       Quelga
+SIGILL 	        4       A       Instrucción Ilegal 
+SIGINT 	        2       T       Señal a terminar
+SIGKILL 	9 	T       Matar (No se puede capturar o ignorar)
+SIGPIPE 	13 	T       Escrito a un 'pipe' no monitoreado
+SIGQUIT 	3 	A       Señal a terminar
+SIGSEGV 	11 	A       Referencia a memoria invalido
+SIGSTOP 	23 	S       Terminar ejecución (No se puede capturar o ignorar)
+SIGTERM 	15 	T       Señal a terminar
+SIGTSTP 	23 	S       Señal a terminar
+SIGTTIN 	26 	S       Lectura atente de proceso de fondo
+SIGTTOU 	27 	S       Escrito atente de proceso de fondo
+SIGUSR1 	16 	T       Señal 1 definido por usuario
+SIGUSR2 	17 	T       Señal 2 definido por usuario
+SIGPOLL 	22 	T       Evento encuestable
+SIGPROF 	29 	T       Temporizador de profiling vencido
+SIGSYS 	        12      A       Mal llamada del sistema
+SIGTRAP 	5 	A       Trace/breakpoint trampa
+SIGURG 	        21      I       Datos de banda ancha está disponible en un socket
+SIGVTALRM 	28 	T       Temporizador vertual vencido
+SIGXCPU 	30 	A       Límite de tiempo de CPU excedido
+SIGXFSZ 	31 	A       Límite de tamaño de archivo excedido
+
+    Default Actions:
+    T - Terminación anormal del proceso. Se cancela el proceso con todas las 
+        consecuencias de exit() excepto que el estado de disposición de wait()
+        y waitpid() indica terminación anormal de la señal especificada
+    A - Terminación anormal del proceso. Además, acciones de terminación anormal
+        aplicación definidos, como la creación de un fichero core, pueden ocurrir
+    I - Ignorar la señal
+    S - Terminar el proceso
+    C - Continuar con el proceso, si se detiene; en caso contrario, ignorar la señal
+
+[rrc@Llawyr ~]$ cd ComandosDeLaTerminal/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cat KillIt
+#!/usr/bin/bash
+
+Num=0
+
+while :; do
+  echo "Num es ${Num} y PID es $$"
+  ((Num++))
+done
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt 
+Num es 0 y PID es 19768
+Num es 1 y PID es 19768
+Num es 2 y PID es 19768
+Num es 3 y PID es 19768
+Num es 4 y PID es 19768
+Num es 5 y PID es 19768
+Num es 6 y PID es 19768
+ .
+ .
+ .
+
+[rrc@Llawyr ~]$ ps -aux | grep KillIt
+Warning: bad ps syntax, perhaps a bogus '-'? See http://procps.sf.net/faq.html
+rrc      19768 25.5  0.0  15756  1260 pts/0    S+   13:39   0:12 /usr/bin/bash ./KillIt
+rrc      19807  0.0  0.0  15444  1004 pts/1    S+   13:39   0:00 grep --color KillIt
+
+[rrc@Llawyr ~]$ kill 19768
+
+Num es 1078014 y PID es 19768
+Num es 1078015 y PID es 19768
+Num es 1078016 y PID es 19768
+Terminated
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt
+Num es 0 y PID es 20444
+Num es 1 y PID es 20444
+Num es 2 y PID es 20444
+Num es 3 y PID es 20444
+Num es 4 y PID es 20444
+
+[rrc@Llawyr ComandosDeLaTerminal]$ kill -s STOP 20444
+
+Num es 6288 y PID es 20444
+Num es 6289 y PID es 20444
+Num es 6290 y PID es 20444
+Num es 6291 y PID es 20444
+Num es 6292 y PID es 20444
+[1]+  Stopped              ./KillIt
+
+[rrc@Llawyr ComandosDeLaTerminal]$ kill -s CONT 20444
+Num es 6293 y PID es 20444
+Num es 6294 y PID es 20444
+Num es 6295 y PID es 20444
+Num es 6296 y PID es 20444
+Num es 6297 y PID es 20444
+
+[rrc@Llawyr ComandosDeLaTerminal]$ kill -s TERM 20444
+[1]+  Terminated              ./KillIt
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
