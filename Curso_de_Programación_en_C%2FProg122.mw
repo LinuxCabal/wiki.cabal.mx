@@ -1,0 +1,274 @@
+__NOTOC__
+* [[:#Prog122 | Guardar un iarreglo de structs en un archivo]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog122 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAXTITL   40
+#define MAXAUTL   40
+#define MAXVALL   12
+#define MAXLIBROS   100
+
+struct Libro {
+    char Titulo[MAXTITL];
+    char Autor[MAXAUTL];
+    float Valor;
+};
+
+int main( void )
+{
+  struct Libro Biblioteca[MAXLIBROS];
+
+  int   Conteo = 0,
+        ConteoDelArchivo,
+        Index,
+        NumPuntos,
+        Tamano = sizeof( struct Libro ),
+        i;
+
+  char  ValSTR[MAXVALL];
+
+  FILE * PLibros;
+
+  if( ( PLibros = fopen( "Libros.dat", "a+b" ) ) == NULL )
+  {
+    fputs( "No puedo abrir Libros.dat\n", stderr );
+    exit( 1 );
+  }
+
+  rewind( PLibros );
+
+  while( Conteo < MAXLIBROS &&
+         fread( &Biblioteca[Conteo], Tamano, 1, PLibros ) == 1 )
+  {
+    if( Conteo == 0 )
+      puts( "Los contenidos de Libros.dat ahora:" );
+    printf( "\t%s por %s: $%.2f\n", Biblioteca[Conteo].Titulo,
+                                    Biblioteca[Conteo].Autor,
+                                    Biblioteca[Conteo].Valor );
+    Conteo++;
+  }
+
+  ConteoDelArchivo = Conteo;
+
+  if( Conteo == MAXLIBROS )
+  {
+    fputs( "El archivo: Libros.dat está lleno.", stderr );
+    fclose( PLibros );
+    exit( 2 );
+  }
+
+  printf( "\nIngresa el nombre del libro: " );
+  while( Conteo < MAXLIBROS )
+  {
+    if( fgets( Biblioteca[Conteo].Titulo, MAXTITL - 2, stdin ) &&
+               Biblioteca[Conteo].Titulo[0] != '\n' )
+    {
+      if( *(Biblioteca[Conteo].Titulo +
+            strlen( Biblioteca[Conteo].Titulo ) -1 ) != '\n' )
+      {
+        fprintf( stderr, "El titulo que entraste es demasiado largo.\n"
+                "Solo %d chars MAX\n", MAXTITL - 2 );
+        fclose( PLibros );
+        exit(1);
+      }
+
+      *(Biblioteca[Conteo].Titulo +
+        strlen( Biblioteca[Conteo].Titulo ) -1 ) = '\0';
+    }
+    else
+      break;
+
+    printf( "Ingresa el nombre del autor: " );
+    if( fgets( Biblioteca[Conteo].Autor, MAXAUTL - 2, stdin ) &&
+               Biblioteca[Conteo].Autor[0] != '\n' )
+    {
+      if( *(Biblioteca[Conteo].Autor +
+            strlen( Biblioteca[Conteo].Autor ) -1 ) != '\n' )
+      {
+        fprintf( stderr, "El autor que entraste es demasiado largo.\n"
+                "Solo %d chars MAX\n", MAXAUTL - 2 );
+        fclose( PLibros );
+        exit(1);
+      }
+
+      *(Biblioteca[Conteo].Autor +
+        strlen( Biblioteca[Conteo].Autor ) -1 ) = '\0';
+    }
+    else
+    {
+      fprintf( stderr, "Falta el nombre del autor de \"%s\"\n",
+               Biblioteca[Conteo].Titulo );
+      fclose( PLibros );
+      exit(1);
+    }
+
+    NumPuntos = 0;
+    printf( "Ingresa el valor: " );
+    if( fgets( ValSTR, MAXVALL - 2, stdin ) && ValSTR[0] != '\n' )
+    {
+      if( *(ValSTR + strlen( ValSTR ) -1 ) != '\n' )
+      {
+        fprintf( stderr, "El valor que entraste es demasiado largo.\n"
+                "Solo %d chars MAX\n", MAXVALL - 2 );
+        fclose( PLibros );
+        exit(1);
+      }
+
+      *(ValSTR + strlen( ValSTR ) -1 ) = '\0';
+
+      if( ValSTR[0] == '-' )
+      {
+        fputs( "No se permiten valores negativos.", stderr );
+        fclose( PLibros );
+        exit(1);
+      }
+
+      for( i = 0; i < strlen( ValSTR ) - 1; i++ )
+      {
+        if( ValSTR[i] < '0' ||  ValSTR[i] > '9' )
+        {
+          if( ValSTR[i] == '.' )
+          {
+            if( ++NumPuntos > 1 )
+            {
+              fprintf( stderr, "Se permite solo 1 punto.\n" );
+              fclose( PLibros );
+              exit(1);
+            }
+
+            if( strlen( ValSTR ) - i > 3 )
+            {
+              fputs( "Se permiten solo 2 decimales después del punto.", stderr );
+              fclose( PLibros );
+              exit(1);
+            }
+          }
+          else
+          {
+            fputs( "Caracteres ilegales en su valor.", stderr );
+            fclose( PLibros );
+            exit(1);
+          }
+        }
+      }
+
+      Biblioteca[Conteo++].Valor = atof( ValSTR );
+    }
+    else
+    {
+      fprintf( stderr, "Falta el valor de \"%s\"\n", Biblioteca[Conteo].Titulo );
+      fclose( PLibros );
+      exit(1);
+    }
+
+    if( Conteo < MAXLIBROS )
+      printf( "Ingresa el sigiuente titulo: (<Enter> para terminar): " );
+  }
+
+  if (Conteo > 0)
+  {
+    puts( "\nAquí es la lista de sus libros:" );
+    for( Index = 0; Index < Conteo; Index++ )
+      printf( "\t\"%s\" por \"%s\": $%.2f\n", Biblioteca[Index].Titulo,
+                                              Biblioteca[Index].Autor,
+                                              Biblioteca[Index].Valor );
+    fwrite( &Biblioteca[ConteoDelArchivo], Tamano, Conteo - ConteoDelArchivo,
+                                                                   PLibros );
+  }
+  else
+    puts( "Lo siento pero no tengo libros nuevos para mostrar." );
+
+  puts( "\n¡Adios!\n" );
+  fclose( PLibros );
+  return 0;
+}
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@llawyr CClase]$ rm Libros.dat 
+rm: remove regular file `Libros.dat'? y
+[rrc@llawyr CClase]$ gcc -Wall -o Prog122 Prog122.c
+[rrc@llawyr CClase]$ ./Prog122
+
+Ingresa el nombre del libro: 
+Lo siento pero no tengo libros nuevos para mostrar.
+
+¡Adios!
+
+[rrc@llawyr CClase]$ ./Prog122
+
+Ingresa el nombre del libro: Libro Uno
+Ingresa el nombre del autor: Autor uno
+Ingresa el valor: Valor 1
+Caracteres ilegales en su valor.
+[rrc@llawyr CClase]$ ./Prog122
+
+Ingresa el nombre del libro: Libro Uno
+Ingresa el nombre del autor: Autor Uno
+Ingresa el valor: 13.55
+Ingresa el siguiente titulo: (<Enter> para terminar): Libro Dos
+Ingresa el nombre del autor: Autor 2
+Ingresa el valor: 52.66
+Ingresa el siguiente titulo: (<Enter> para terminar): 
+
+Aquí esta la lista de sus libros:
+	"Libro Uno" por "Autor Uno": $13.55
+	"Libro Dos" por "Autor 2": $52.66
+
+¡Adios!
+
+[rrc@llawyr CClase]$ ./Prog122
+Los contenidos de Libros.dat ahora:
+	Libro Uno por Autor Uno: $13.55
+	Libro Dos por Autor 2: $52.66
+
+Ingresa el nombre del libro: Libro Tres
+Ingresa el nombre del autor: Autor Tres
+Ingresa el valor: 62.88
+Ingresa el siguiente titulo: (<Enter> para terminar): Libro Cuatro
+Ingresa el nombre del autor: Autor Cuatro
+Ingresa el valor: 62.44
+Ingresa el siguiente titulo: (<Enter> para terminar): 
+
+Aquí esta la lista de sus libros:
+	"Libro Uno" por "Autor Uno": $13.55
+	"Libro Dos" por "Autor 2": $52.66
+	"Libro Tres" por "Autor Tres": $62.88
+	"Libro Cuatro" por "Autor Cuatro": $62.44
+
+¡Adios!
+
+[rrc@llawyr CClase]$ ./Prog122
+Los contenidos de Libros.dat ahora:
+	Libro Uno por Autor Uno: $13.55
+	Libro Dos por Autor 2: $52.66
+	Libro Tres por Autor Tres: $62.88
+	Libro Cuatro por Autor Cuatro: $62.44
+
+Ingresa el nombre del libro: 
+
+Aquí esta la lista de sus libros:
+	"Libro Uno" por "Autor Uno": $13.55
+	"Libro Dos" por "Autor 2": $52.66
+	"Libro Tres" por "Autor Tres": $62.88
+	"Libro Cuatro" por "Autor Cuatro": $62.44
+
+¡Adios!
+
+[rrc@llawyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
