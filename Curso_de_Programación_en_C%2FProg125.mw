@@ -1,0 +1,219 @@
+__NOTOC__
+* [[:#Prog125 | Pointers de funciones]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog125 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+char DesplegaMenu( void );
+void ComeLinea( void );
+void Desplega( void (* fp)( char * ), char * str );
+void AMayuscula( char * );
+void AMinuscula( char * );
+void Invierta( char * );
+void Tonto( char * );
+
+int main(void)
+{
+  char Linea[81];
+  char Copia[81];
+  char Seleccion;
+  void (*pfun)(char *);   // Declarar un pointer a función, pfun, que tiene
+                          // argumento de char * y no valor de returno
+  printf( "\nIngresa una línea (<Enter> para terminar): " );
+  while( fgets( Linea, 79, stdin ) && Linea[0] != '\n' )
+  {
+    if( *(Linea + strlen( Linea ) -1 ) != '\n' )
+    {
+      fputs( "La línea que entraste es demasiado largo.\nSolo 79 chars MAX",
+                                                                     stderr );
+      exit(1);
+    }
+    *(Linea + strlen( Linea ) -1 ) = '\0';
+
+    while( ( Seleccion = DesplegaMenu() ) != 's' )
+    {
+      switch( Seleccion )
+      {
+        case 'y' : pfun = AMayuscula;   break;
+        case 'n' : pfun = AMinuscula;   break;
+        case 'i' : pfun = Invierta;     break;
+        case 'o' : pfun = Tonto;        break;
+      }
+      strcpy( Copia, Linea );
+      Desplega( pfun, Copia );
+    }
+    printf( "\nIngresa una línea (<Enter> para terminar): " );
+  }
+  puts( "\n¡Adios!\n" );
+  return 0;
+}
+
+char DesplegaMenu( void )
+{
+  char ans;
+  puts( "\n\t\ty) Todo Mayúsculas  \t\tn) Todo Minúsculas" );
+  puts( "\t\ti) Invertir         \t\to) Cómo original" );
+  puts( "\t\ts) Siguiente string" );
+  printf( "\tElige una opción: " );
+  ans = getchar();
+  ans = tolower(ans);
+  ComeLinea();
+  while( strchr( "ynios", ans ) == NULL )
+  {
+    printf( "\tElige y, n, i, o, o s: " );
+    ans = tolower( getchar() );
+    ComeLinea();
+  }
+  return ans;
+}
+
+void ComeLinea( void )
+{
+  while( getchar() != '\n' )
+    continue;
+}
+
+void AMayuscula( char * str )
+{
+  while( *str )
+  {
+    *str = toupper( *str );
+    str++;
+  }
+}
+
+void AMinuscula( char * str )
+{
+  while( *str )
+  {
+    *str = tolower( *str );
+    str++;
+  }
+}
+
+void Invierta( char * str )
+{
+  while( *str )
+  {
+    if( islower( *str ) )
+      *str = toupper( *str );
+    else if( isupper( *str ) )
+      *str = tolower( *str );
+    str++;
+  }
+}
+
+void Tonto(char * str)
+{
+  // No cambio el string
+}
+
+void Desplega( void (* fp)( char * ), char * str )
+{
+    (*fp)( str ); // aplicar la función
+    printf( "\n\tEl Resultado: %s\n", str );
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@localhost CClase]$ gcc -Wall -o Prog125 Prog125.c
+[rrc@localhost CClase]$ ./Prog125
+
+Ingresa una línea (<Enter> para terminar): 
+
+¡Adios!
+
+[rrc@localhost CClase]$ ./Prog125
+
+Ingresa una línea (<Enter> para terminar): Una Línea
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: y
+
+	El Resultado: UNA LíNEA
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: n
+
+	El Resultado: una línea
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: o
+
+	El Resultado: Una Línea
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: i
+
+	El Resultado: uNA líNEA
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: s
+
+Ingresa una línea (<Enter> para terminar): OTRA línea
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: y
+
+	El Resultado: OTRA LíNEA
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: r
+	Elige y, n, i, o, o s: i
+
+	El Resultado: otra LíNEA
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: n
+
+	El Resultado: otra línea
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: o
+
+	El Resultado: OTRA línea
+
+		y) Todo Mayúsculas  		n) Todo Minúsculas
+		i) Invertir         		o) Cómo original
+		s) Siguiente string
+	Elige un opción: s
+
+Ingresa una línea (<Enter> para terminar): 
+
+¡Adios!
+
+[rrc@localhost CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
