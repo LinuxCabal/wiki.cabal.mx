@@ -1,0 +1,231 @@
+__NOTOC__
+* [[:#Prog129 | Bitwise AND para pagar bits]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog129 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main( void )
+{
+  unsigned char Mascara,
+                Semaforos;
+
+  char Buf[7];
+
+  int  i,
+       Prueba;
+
+  puts( "\nEl bitwise AND es usado a veces para" );
+  puts( "apagar algunos bits en un entero\n" );
+  printf( "Dame un número positivo entre 0 y 255: " );
+  while( fgets( Buf, 5, stdin ) && Buf[0] != '\n' )
+  {
+    if( *(Buf + strlen( Buf ) -1 ) != '\n' )
+    {
+      fputs( "La línea que entraste es demasiado larga.\nSolo 3 chars MAX",
+                                                                     stderr );
+      exit(1);
+    }
+    *(Buf + strlen( Buf ) -1 ) = '\0';
+
+    for( i = 0; i < strlen( Buf ); i++ )
+    {
+      if( Buf[i] < '0' || Buf[i] > '9' )
+      {
+        fputs( "Caracteres ilegales en su ingreso\n", stderr );
+        exit(1);
+      }
+    }
+
+    Prueba = atoi( Buf);
+    if( Prueba > 255 )
+    {
+      fputs( "Su entrada está fuera del rango especificado\n", stderr );
+      exit(1);
+    }
+
+
+    for( i = 1; i <= 8; i++ )
+    {
+      switch( i )
+      {
+        case 1: Mascara = 0xfe;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+        case 2: Mascara = 0xfd;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+        case 3: Mascara = 0xfb;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+        case 4: Mascara = 0xf7;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+        case 5: Mascara = 0xef;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+        case 6: Mascara = 0xdf;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+        case 7: Mascara = 0xbf;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+        case 8: Mascara = 0x7f;
+                Semaforos = Prueba;
+                Semaforos &= Mascara;
+            printf( "Su número %d se cambia a %d cuando bit %d está apagado\n",
+                                                      Prueba, Semaforos, i -1 );
+	    break;
+      }
+    }
+    printf( "\nDame un número positivo entre 0 y 255"
+            " (<Enter> para terminar): " );
+  }
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@AbelLap CClase]$ gcc -Wall -o Prog129 Prog129.c
+[rrc@AbelLap CClase]$ ./Prog129
+
+El bitwise AND es usado a veces para
+apagar algunos bits en un entero
+
+Dame un número positivo entre 0 y 255: 255
+Su número 255 se cambia a 254 cuando bit 0 está apagado
+Su número 255 se cambia a 253 cuando bit 1 está apagado
+Su número 255 se cambia a 251 cuando bit 2 está apagado
+Su número 255 se cambia a 247 cuando bit 3 está apagado
+Su número 255 se cambia a 239 cuando bit 4 está apagado
+Su número 255 se cambia a 223 cuando bit 5 está apagado
+Su número 255 se cambia a 191 cuando bit 6 está apagado
+Su número 255 se cambia a 127 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 127
+Su número 127 se cambia a 126 cuando bit 0 está apagado
+Su número 127 se cambia a 125 cuando bit 1 está apagado
+Su número 127 se cambia a 123 cuando bit 2 está apagado
+Su número 127 se cambia a 119 cuando bit 3 está apagado
+Su número 127 se cambia a 111 cuando bit 4 está apagado
+Su número 127 se cambia a 95 cuando bit 5 está apagado
+Su número 127 se cambia a 63 cuando bit 6 está apagado
+Su número 127 se cambia a 127 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 63
+Su número 63 se cambia a 62 cuando bit 0 está apagado
+Su número 63 se cambia a 61 cuando bit 1 está apagado
+Su número 63 se cambia a 59 cuando bit 2 está apagado
+Su número 63 se cambia a 55 cuando bit 3 está apagado
+Su número 63 se cambia a 47 cuando bit 4 está apagado
+Su número 63 se cambia a 31 cuando bit 5 está apagado
+Su número 63 se cambia a 63 cuando bit 6 está apagado
+Su número 63 se cambia a 63 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 31
+Su número 31 se cambia a 30 cuando bit 0 está apagado
+Su número 31 se cambia a 29 cuando bit 1 está apagado
+Su número 31 se cambia a 27 cuando bit 2 está apagado
+Su número 31 se cambia a 23 cuando bit 3 está apagado
+Su número 31 se cambia a 15 cuando bit 4 está apagado
+Su número 31 se cambia a 31 cuando bit 5 está apagado
+Su número 31 se cambia a 31 cuando bit 6 está apagado
+Su número 31 se cambia a 31 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 15
+Su número 15 se cambia a 14 cuando bit 0 está apagado
+Su número 15 se cambia a 13 cuando bit 1 está apagado
+Su número 15 se cambia a 11 cuando bit 2 está apagado
+Su número 15 se cambia a 7 cuando bit 3 está apagado
+Su número 15 se cambia a 15 cuando bit 4 está apagado
+Su número 15 se cambia a 15 cuando bit 5 está apagado
+Su número 15 se cambia a 15 cuando bit 6 está apagado
+Su número 15 se cambia a 15 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 7
+Su número 7 se cambia a 6 cuando bit 0 está apagado
+Su número 7 se cambia a 5 cuando bit 1 está apagado
+Su número 7 se cambia a 3 cuando bit 2 está apagado
+Su número 7 se cambia a 7 cuando bit 3 está apagado
+Su número 7 se cambia a 7 cuando bit 4 está apagado
+Su número 7 se cambia a 7 cuando bit 5 está apagado
+Su número 7 se cambia a 7 cuando bit 6 está apagado
+Su número 7 se cambia a 7 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 3
+Su número 3 se cambia a 2 cuando bit 0 está apagado
+Su número 3 se cambia a 1 cuando bit 1 está apagado
+Su número 3 se cambia a 3 cuando bit 2 está apagado
+Su número 3 se cambia a 3 cuando bit 3 está apagado
+Su número 3 se cambia a 3 cuando bit 4 está apagado
+Su número 3 se cambia a 3 cuando bit 5 está apagado
+Su número 3 se cambia a 3 cuando bit 6 está apagado
+Su número 3 se cambia a 3 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 1
+Su número 1 se cambia a 0 cuando bit 0 está apagado
+Su número 1 se cambia a 1 cuando bit 1 está apagado
+Su número 1 se cambia a 1 cuando bit 2 está apagado
+Su número 1 se cambia a 1 cuando bit 3 está apagado
+Su número 1 se cambia a 1 cuando bit 4 está apagado
+Su número 1 se cambia a 1 cuando bit 5 está apagado
+Su número 1 se cambia a 1 cuando bit 6 está apagado
+Su número 1 se cambia a 1 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 0
+Su número 0 se cambia a 0 cuando bit 0 está apagado
+Su número 0 se cambia a 0 cuando bit 1 está apagado
+Su número 0 se cambia a 0 cuando bit 2 está apagado
+Su número 0 se cambia a 0 cuando bit 3 está apagado
+Su número 0 se cambia a 0 cuando bit 4 está apagado
+Su número 0 se cambia a 0 cuando bit 5 está apagado
+Su número 0 se cambia a 0 cuando bit 6 está apagado
+Su número 0 se cambia a 0 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 35
+Su número 35 se cambia a 34 cuando bit 0 está apagado
+Su número 35 se cambia a 33 cuando bit 1 está apagado
+Su número 35 se cambia a 35 cuando bit 2 está apagado
+Su número 35 se cambia a 35 cuando bit 3 está apagado
+Su número 35 se cambia a 35 cuando bit 4 está apagado
+Su número 35 se cambia a 3 cuando bit 5 está apagado
+Su número 35 se cambia a 35 cuando bit 6 está apagado
+Su número 35 se cambia a 35 cuando bit 7 está apagado
+
+Dame un número positivo entre 0 y 255 (<Enter> para terminar): 
+[rrc@AbelLap CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
