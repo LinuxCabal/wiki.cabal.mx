@@ -1,0 +1,48 @@
+__NOTOC__
+* [[:#Prog131 | Más DEFINE]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Prog131 ==
+
+<syntaxhighlight lang="c" line="GESHI_FANCY_LINE_NUMBERS">
+
+#include <stdio.h>
+
+#define DOS 2        /* Puedes usar comentarios si quieres */
+#define OW "La consistencia es el último refugio de l\
+os con poco imaginación. - Oscar Wilde"
+#define CUADRADO  DOS*DOS
+#define PX printf("X es %d.\n", x)
+#define FMT  "X es %d.\n"
+
+int main(void)
+{
+  int x = DOS;
+
+  PX;
+  x = CUADRADO;
+  printf(FMT, x);
+  printf("%s\n", OW);
+  printf("DOS: OW\n");
+  return 0;
+}
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@pwyr CClase]$ gcc -Wall -O2 -o Prog131 Prog131.c
+[rrc@pwyr CClase]$ ./Prog131
+X es 2.
+X es 4.
+La consistencia es el último refugio de los con poco imaginación. - Oscar Wilde
+DOS: OW
+[rrc@pwyr CClase]$ 
+</pre>
+
+=== Explicación ===
+ 
+[[Category:Programación en C]]
+[[Category:CCabal]]
+[[Category:CursoC]]
