@@ -1,0 +1,129 @@
+__NOTOC__
+* [[:#killall | killall]]
+
+== killall ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ killall --help
+Usage: killall [OPTION]... [--] NAME...
+       killall -l, --list
+       killall -V, --version
+
+  -e,--exact          require exact match for very long names
+  -I,--ignore-case    case insensitive process name match
+  -g,--process-group  kill process group instead of process
+  -y,--younger-than   kill processes younger than TIME
+  -o,--older-than     kill processes older than TIME
+  -i,--interactive    ask for confirmation before killing
+  -l,--list           list all known signal names
+  -q,--quiet          don't print complaints
+  -r,--regexp         interpret NAME as an extended regular expression
+  -s,--signal SIGNAL  send this signal instead of SIGTERM
+  -u,--user USER      kill only process(es) running as USER
+  -v,--verbose        report if the signal was successfully sent
+  -V,--version        display version information
+  -w,--wait           wait for processes to die
+
+[rrc@Llawyr ~]$ killall --version
+killall (PSmisc) 22.21
+Copyright (C) 1993-2012 Werner Almesberger and Craig Small
+
+PSmisc comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it under
+the terms of the GNU General Public License.
+For more information about these matters, see the files named COPYING.
+
+[rrc@Llawyr ~]$ rpm
+bash: /usr/bin/rpm: Permission denied
+[rrc@Llawyr ~]$ su -
+Password: 
+[root@Llawyr ~]# rpm -qf $( which killall )
+psmisc-22.21-2.mga4
+[root@Llawyr ~]# rpm -qf $( which kill )
+util-linux-2.24-2.mga4
+[root@Llawyr ~]# 
+
+[root@Llawyr ~]# gwenview &
+[1] 21196
+
+[root@Llawyr ~]# killall gwenview
+[1]+  Terminated              gwenview
+[root@Llawyr ~]# 
+
+[rrc@Llawyr ~]$ killall -l
+HUP INT QUIT ILL TRAP ABRT IOT BUS FPE KILL USR1 SEGV USR2 PIPE ALRM TERM
+STKFLT CHLD CONT STOP TSTP TTIN TTOU URG XCPU XFSZ VTALRM PROF WINCH IO PWR SYS
+UNUSED
+
+
+[rrc@Llawyr ~]$ gwenview &
+[1] 21485
+
+[rrc@Llawyr ~]$ killall GwenView
+GwenView: no process found
+
+[rrc@Llawyr ~]$ killall -I GwenView
+
+
+[rrc@Llawyr ~]$ ps aux | grep bash
+rrc      22268  0.0  0.0  16412  2496 pts/2    Ss   14:08   0:00 bash
+rrc      22734  0.0  0.0  15444  1000 pts/2    R+   14:10   0:00 grep --color bash
+
+[rrc@Llawyr ~]$ ps aux | grep bash
+rrc      22268  0.0  0.0  16412  2496 pts/2    Ss+  14:08   0:00 bash bash
+rrc      22833  0.1  0.0  16412  2492 pts/3    Ss+  14:10   0:00 bash
+rrc      22885  0.1  0.0  16412  2496 pts/4    Ss   14:10   0:00 bash
+rrc      22974  0.0  0.0  15448  1000 pts/4    S+   14:11   0:00 grep --color bash
+
+[rrc@Llawyr ~]$ ps aux | grep bash
+rrc      22268  0.0  0.0  16412  2496 pts/2    Ss   14:08   0:00 bash
+rrc      22833  0.0  0.0  16412  2492 pts/3    Ss+  14:10   0:00 bash
+rrc      22885  0.0  0.0  16412  2496 pts/4    Ss+  14:10   0:00 bash
+rrc      23178  0.0  0.0  15448  1000 pts/2    S+   14:12   0:00 grep --color bash
+
+
+[rrc@Llawyr ~]$ killall -KILL -i bash
+Signal bash(22268) ? (y/N) n
+Signal bash(22833) ? (y/N) y
+Signal bash(22885) ? (y/N) y
+[rrc@Llawyr ~]$ ps aux | grep bash
+rrc      22268  0.0  0.0  16412  2500 pts/2    Ss   14:08   0:00 bash
+rrc      23335  0.0  0.0  15448  1000 pts/2    R+   14:13   0:00 grep --color bash
+
+[rrc@Llawyr ~]$ killall  ElProceso
+ElProceso: no process found
+[rrc@Llawyr ~]$ killall -q  ElProceso
+
+[rrc@Llawyr ~]$ ps aux | grep bash
+rrc      22268  0.0  0.0  16412  2500 pts/2    Ss   14:08   0:00 bash
+rrc      24294  0.0  0.0  15448  1000 pts/2    R+   14:13   0:00 grep --color bash
+
+[rrc@Llawyr ~]$  killall -KILL --verbose -i bash
+Signal bash(22268) ? (y/N) n
+Signal bash(24234) ? (y/N) y
+Killed bash(24234) with signal 9
+
+-sh-4.2$ ps aux | grep sh$
+rrc      22268  0.0  0.0  16412  2500 pts/2    Ss   14:08   0:00 bash
+rrc      25180  0.0  0.0  16412  2492 pts/3    Ss   14:22   0:00 bash
+root     25608  0.0  0.0  16384  2488 pts/2    S    14:24   0:00 -bash
+bin      24593  0.0  0.0  16388  2480 pts/2    S    14:19   0:00 -sh
+
+[rrc@Llawyr ~]$ killall -u bin sh
+sh(25357): Operation not permitted
+sh: no process found
+
+[rrc@Llawyr ~]$ su -
+Password: 
+[root@Llawyr ~]# killall -u bin sh
+[root@Llawyr ~]# killall -9 -u bin sh
+
+[root@Llawyr ~]# ps aux | grep sh$
+rrc      22268  0.0  0.0  16412  2500 pts/2    Ss   14:08   0:00 bash
+rrc      25180  0.0  0.0  16412  2492 pts/3    Ss   14:22   0:00 bash
+root     25242  0.0  0.0  16384  2488 pts/3    S+   14:22   0:00 -bash
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
