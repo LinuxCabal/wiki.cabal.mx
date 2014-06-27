@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#fg | fg]]
+
+== fg ==
+
+<syntaxhighlight lang="bash">
+
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt > File &
+
+[rrc@Llawyr ComandosDeLaTerminal]$ tail -f File
+Num es 536738 y PID es 10061
+Num es 536739 y PID es 10061
+Num es 536740 y PID es 10061
+Num es 536741 y PID es 10061
+Num es 536742 y PID es 10061
+Num es 536743 y PID es 10061
+^C
+
+[rrc@Llawyr ComandosDeLaTerminal]$ fg
+./KillIt > File
+^C
+
+[rrc@Llawyr ComandosDeLaTerminal]$ gwenview &
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt > File &
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bg
+bash: bg: job 2 already in background
+
+[rrc@Llawyr ComandosDeLaTerminal]$ fg
+./KillIt > File
+^C
+
+[rrc@Llawyr ComandosDeLaTerminal]$ fg
+gwenview
+^C
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
