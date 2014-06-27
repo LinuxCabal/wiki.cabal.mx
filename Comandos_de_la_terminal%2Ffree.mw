@@ -1,0 +1,92 @@
+__NOTOC__
+* [[:#free | free]]
+
+== free ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ free --help
+free: invalid option -- '-'
+usage: free [-b|-k|-m|-g] [-l] [-o] [-t] [-s delay] [-c count] [-V]
+  -b,-k,-m,-g show output in bytes, KB, MB, or GB
+  -l show detailed low and high memory statistics
+  -o use old format (no -/+buffers/cache line)
+  -t display total for RAM + swap
+  -s update every [delay] seconds
+  -c update [count] times
+  -V display version information and exit
+
+[rrc@Llawyr ~]$ su -
+Password: 
+[root@Llawyr ~]# rpm -qf $( which free )
+procps-3.2.8-6.2.mga3
+
+[root@Llawyr ~]# free -V
+procps version 3.2.8
+
+[root@Llawyr ~]# free
+             total       used       free     shared    buffers     cached
+Mem:      12259680    2215120   10044560          0      73584    1027480
+-/+ buffers/cache:    1114056   11145624
+Swap:     15357556          0   15357556
+
+[root@Llawyr ~]# free -b
+             total       used       free     shared    buffers     cached
+Mem:    12553912320 2269556736 10284355584          0   75378688 1052143616
+-/+ buffers/cache: 1142034432 11411877888
+Swap:   15726137344          0 15726137344
+
+[root@Llawyr ~]# free -k
+             total       used       free     shared    buffers     cached
+Mem:      12259680    2215036   10044644          0      73592    1027480
+-/+ buffers/cache:    1113964   11145716
+Swap:     15357556          0   15357556
+
+
+[root@Llawyr ~]# free -m
+             total       used       free     shared    buffers     cached
+Mem:         11972       2115       9856          0         71       1003
+-/+ buffers/cache:       1040      10932
+Swap:        14997          0      14997
+
+[root@Llawyr ~]# free -g
+             total       used       free     shared    buffers     cached
+Mem:            11          2          9          0          0          0
+-/+ buffers/cache:          1         10
+Swap:           14          0         14
+
+[root@Llawyr ~]# free -l
+             total       used       free     shared    buffers     cached
+Mem:      12259680    2166452   10093228          0      73656    1027620
+Low:      12259680    2166452   10093228
+High:            0          0          0
+-/+ buffers/cache:    1065176   11194504
+Swap:     15357556          0   15357556
+
+[root@Llawyr ~]# free -t
+             total       used       free     shared    buffers     cached
+Mem:      12259680    2104876   10154804          0      73680    1027620
+-/+ buffers/cache:    1003576   11256104
+Swap:     15357556          0   15357556
+Total:    27617236    2104876   25512360
+
+[root@Llawyr ~]# free -s 2 -c 3
+             total       used       free     shared    buffers     cached
+Mem:      12259680    2105984   10153696          0      73728    1027756
+-/+ buffers/cache:    1004500   11255180
+Swap:     15357556          0   15357556
+
+             total       used       free     shared    buffers     cached
+Mem:      12259680    2106120   10153560          0      73736    1027748
+-/+ buffers/cache:    1004636   11255044
+Swap:     15357556          0   15357556
+
+             total       used       free     shared    buffers     cached
+Mem:      12259680    2105868   10153812          0      73736    1027760
+-/+ buffers/cache:    1004372   11255308
+Swap:     15357556          0   15357556
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
