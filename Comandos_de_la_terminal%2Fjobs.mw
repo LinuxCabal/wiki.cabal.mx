@@ -1,0 +1,45 @@
+__NOTOC__
+* [[:#jobs | jobs]]
+
+== jobs ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt > File &
+[1] 10429
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt > File2 &
+[2] 10436
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt > File3 &
+[3] 10442
+
+[rrc@Llawyr ComandosDeLaTerminal]$ jobs
+[1]   Running                 ./KillIt > File &
+[2]-  Running                 ./KillIt > File2 &
+[3]+  Running                 ./KillIt > File3 &
+
+[rrc@Llawyr ComandosDeLaTerminal]$ fg 2
+./KillIt > File2
+^C
+
+[rrc@Llawyr ComandosDeLaTerminal]$ jobs
+[1]-  Running                 ./KillIt > File &
+[3]+  Running                 ./KillIt > File3 &
+
+[rrc@Llawyr ComandosDeLaTerminal]$ fg 3
+./KillIt > File3
+^C
+
+[rrc@Llawyr ComandosDeLaTerminal]$ jobs
+[1]+  Running                 ./KillIt > File &
+
+[rrc@Llawyr ComandosDeLaTerminal]$ fg 1
+./KillIt > File
+^C
+
+[rrc@Llawyr ComandosDeLaTerminal]$ jobs
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
