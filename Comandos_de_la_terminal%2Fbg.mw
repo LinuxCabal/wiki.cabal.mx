@@ -1,0 +1,86 @@
+__NOTOC__
+* [[:#bg | bg]]
+
+== bg ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# which bg
+which: no bg in (/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin)
+
+[root@Llawyr ~]# bg --help
+-bash: bg: --: invalid bg: usage: bg [job_spec ...]
+
+[root@Llawyr ~]# bg --version
+-bash: bg: --: invalid option
+bg: usage: bg [job_spec ...]
+
+bg es un comando de bash. No existe el archivo bg en el disco duro.
+
+ bg [jobspec ...]
+              Resume each suspended job jobspec in the background,  as  if  it
+              had been started with &.  If jobspec is not present, the shell's
+              notion of the current job is used.  bg jobspec returns 0  unless
+              run  when  job control is disabled or, when run with job control
+              enabled, any specified jobspec was  not  found  or  was  started
+              without job control.
+
+  Reanude cada trabajo suspendido jobspec en el fondo, como si se había comenzado con &.
+  Si jobspec no está presente, la noción de la terminal del trabajo corriente se usa.
+  el bg jobspec vuelve 0 a menos que no dirigido cuando el control de trabajo es el
+  minusválido o, cuando dirigido con el control de trabajo permitido,
+  cualquiera especificó que jobspec no se encontró o se comenzó sin el control de trabajo.
+
+
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ./KillIt > File
+
+^Z
+[1]+  Stopped                 ./KillIt > File
+
+[rrc@Llawyr ComandosDeLaTerminal]$ tail -f File
+Num es 416141 y PID es 9800
+Num es 416142 y PID es 9800
+Num es 416143 y PID es 9800
+Num es 416144 y PID es 9800
+Num es 416145 y PID es 9800
+Num es 416146 y PID es 9800
+Num es 416147 y PID es 9800
+Num es 416148 y PID es 9800
+Num es 416149 y PID es 9800
+Num es 416150 y PID es 9800
+^C
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bg
+[1]+ ./KillIt > File &
+
+[rrc@Llawyr ComandosDeLaTerminal]$ tail -f File
+Num es 2433831 y PID es 9800
+Num es 2433832 y PID es 9800
+Num es 2433833 y PID es 9800
+Num es 2433834 y PID es 9800
+Num es 2433835 y PID es 9800
+Num es 2433836 y PID es 9800
+Num es 2433837 y PID es 9800
+Num es 2433838 y PID es 9800
+Num es 2433839 y PID es 9800
+Num es 2433840 y PID es 9800
+^C[rrc@Llawyr ComandosDeLaTerminal]$ 
+
+[rrc@Llawyr ComandosDeLaTerminal]$ kill 9800
+[1]+  Terminated              ./KillIt > File
+[rrc@Llawyr ComandosDeLaTerminal]$ tail -f File
+Num es 5876356 y PID es 9800
+Num es 5876357 y PID es 9800
+Num es 5876358 y PID es 9800
+Num es 5876359 y PID es 9800
+Num es 5876360 y PID es 9800
+Num es 5876361 y PID es 9800
+Num es 5876362 y PID es 9800
+Num es 5876363 y PID es 9800
+Num es 5876364 y PID es 9800
+Num es 5876365 y PID es 9800
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
