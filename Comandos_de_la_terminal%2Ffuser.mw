@@ -1,0 +1,175 @@
+__NOTOC__
+* [[:#fuser | fuser]]
+
+== fuser ==
+
+<syntaxhighlight lang="bash">
+
+
+[root@Llawyr ~]# fuser --help
+fuser: Invalid option --help
+Usage: fuser [-fMuvw] [-a|-s] [-4|-6] [-c|-m|-n SPACE] [-k [-i] [-SIGNAL]] NAME...
+       fuser -l
+       fuser -V
+Show which processes use the named files, sockets, or filesystems.
+
+  -a,--all              display unused files too
+  -i,--interactive      ask before killing (ignored without -k)
+  -k,--kill             kill processes accessing the named file
+  -l,--list-signals     list available signal names
+  -m,--mount            show all processes using the named filesystems or block device
+  -M,--ismountpoint     fulfill request only if NAME is a mount point
+  -n,--namespace SPACE  search in this name space (file, udp, or tcp)
+  -s,--silent           silent operation
+  -SIGNAL               send this signal instead of SIGKILL
+  -u,--user             display user IDs
+  -v,--verbose          verbose output
+  -w,--writeonly        kill only processes with write access
+  -V,--version          display version information
+  -4,--ipv4             search IPv4 sockets only
+  -6,--ipv6             search IPv6 sockets only
+  -                     reset options
+
+  udp/tcp names: [local_port][,[rmt_host][,[rmt_port]]]
+
+[root@Llawyr ~]# fuser --version
+fuser (PSmisc) 22.21
+Copyright (C) 1993-2010 Werner Almesberger and Craig Small
+
+PSmisc comes with ABSOLUTELY NO WARRANTY.
+This is free software, and you are welcome to redistribute it under
+the terms of the GNU General Public License.
+For more information about these matters, see the files named COPYING.
+[root@Llawyr ~]# 
+
+[root@Llawyr ~]# rpm -qf $(which fuser )
+psmisc-22.21-2.mga4
+
+[root@Llawyr ~]# fuser $( which wpa_supplicant )
+/usr/sbin/wpa_supplicant:   821e  1128e
+
+[root@Llawyr ~]# ps aux | grep 821
+root       821  0.0  0.0  31980  2024 ?        Ss   17:01   0:00 /usr/sbin/wpa_supplicant -u -f /var/log/wpa_supplicant.log -c /etc/wpa_supplicant.conf -P /run/wpa_supplicant.pid
+root      4504  0.0  0.0  15448  1000 pts/0    S+   17:50   0:00 grep --color 821
+
+[root@Llawyr ~]# ps aux | grep 1128
+root      1128  0.0  0.0  32108  1340 ?        Ss   17:01   0:00 /usr/sbin/wpa_supplicant -B -i wlp3s0 -c /etc/wpa_supplicant.conf -D wext
+root      4527  0.0  0.0  15448  1000 pts/0    S+   17:51   0:00 grep --color 1128
+
+ c      current directory.
+ e      executable being run.
+ f      open file.  f is omitted in default display mode.
+ F      open file for writing.  F is omitted in  default  display mode.
+ r      root directory.
+ m      mmap'ed file or shared library.
+
+[root@Llawyr ~]# fuser /usr/lib64/libglib-2.0.so.0.3800.2
+/usr/lib64/libglib-2.0.so.0.3800.2:   773m   826m   828m   830m   833m   890m   900m  1033m  1175m  1476m  1490m  1492m  1609m  1613m  1620m  1627m  1631m  1634m  1668m  1672m  1682m  1684m  1689m  1694m  1707m  1711m  1713m  1724m  1730m  1734m  1739m  1747m  1749m  1758m  1763m  1767m  1771m  1804m  1805m  1807m  1808m  1811m  1812m  1817m  1823m  1828m  1861m  1870m  1909m  3534m  3574m  3690m
+
+root      4763  0.0  0.0  15444  1008 pts/0    S+   17:55   0:00 grep --color 773|826|828|830
+[root@Llawyr ~]# ps aux | grep -e "773|826|828|830"
+root      4772  0.0  0.0  15444  1016 pts/0    S+   17:56   0:00 grep --color -e 773|826|828|830
+[root@Llawyr ~]# ps aux | grep 773
+root       773  0.0  0.0  19316  1188 ?        Ss   17:01   0:00 /usr/sbin/irqbalance --foreground
+root      4781  0.0  0.0  15448  1000 pts/0    S+   17:56   0:00 grep --color 773
+
+[root@Llawyr ~]# fuser -u /usr/lib64/libglib-2.0.so.0.3800.2
+/usr/lib64/libglib-2.0.so.0.3800.2:   773m(root)   826m(root)   828m(root)   830m(root)   833m(root)   890m(polkitd)   900m(root)  1033m(root)  1175m(colord)  1476m(root)  1490m(rrc)  1492m(rrc)  1609m(rrc)  1613m(rrc)  1620m(rrc)  1627m(rrc)  1631m(rrc)  1634m(rrc)  1668m(rrc)  1672m(rrc)  1682m(rrc)  1684m(rrc)  1689m(rrc)  1694m(rrc)  1707m(rrc)  1711m(rrc)  1713m(rrc)  1724m(rrc)  1730m(rrc)  1734m(rrc)  1739m(rrc)  1747m(rrc)  1749m(root)  1758m(rrc)  1763m(rrc)  1767m(rrc)  1771m(rrc)  1804m(rrc)  1805m(rrc)  1807m(rrc)  1808m(rrc)  1811m(rrc)  1812m(rrc)  1817m(rrc)  1823m(rrc)  1828m(rrc)  1861m(rrc)  1870m(rrc)  1909m(rrc)  3534m(rrc)  3574m(rrc)  3690m(rrc)
+
+
+[root@Llawyr ~]# fuser -av /usr/lib64/libglib-2.0.so.0.3800.2
+                     USER        PID ACCESS COMMAND
+/usr/lib64/libglib-2.0.so.0.3800.2:
+                     root        773 ....m irqbalance
+                     root        826 ....m upowerd
+                     root        828 ....m udisks-daemon
+                     root        830 ....m udisks-daemon
+                     root        833 ....m gdm
+                     polkitd     890 ....m polkitd
+                     root        900 ....m gdm-simple-slav
+                     root       1033 ....m accounts-daemon
+                     colord     1175 ....m colord
+                     root       1476 ....m gdm-session-wor
+                     rrc        1490 ....m gnome-keyring-d
+                     rrc        1492 ....m gnome-session
+                     rrc        1609 ....m s2u
+                     rrc        1613 ....m at-spi-bus-laun
+                     rrc        1620 ....m at-spi2-registr
+                     rrc        1627 ....m gvfsd
+                     rrc        1631 ....m gvfsd-fuse
+                     rrc        1634 ....m gnome-settings-
+                     rrc        1668 ....m gsd-locate-poin
+                     rrc        1672 ....m gsd-printer
+                     rrc        1682 ....m gconf-helper
+                     rrc        1684 ....m gconfd-2
+                     rrc        1689 ....m gnome-shell
+                     rrc        1694 ....m dconf-service
+                     rrc        1707 ....m ibus-daemon-rea
+                     rrc        1711 ....m ibus-dconf
+                     rrc        1713 ....m ibus-x11
+                     rrc        1724 ....m gnome-shell-cal
+                     rrc        1730 ....m evolution-sourc
+                     rrc        1734 ....m mission-control
+                     rrc        1739 ....m goa-daemon
+                     rrc        1747 ....m gvfs-udisks2-vo
+                     root       1749 ....m udisksd
+                     rrc        1758 ....m gvfs-afc-volume
+                     rrc        1763 ....m gvfs-gphoto2-vo
+                     rrc        1767 ....m gvfs-goa-volume
+                     rrc        1771 ....m gvfs-mtp-volume
+                     rrc        1804 ....m net_applet
+                     rrc        1805 ....m evolution-alarm
+                     rrc        1807 ....m pam-panel-icon
+                     rrc        1808 ....m nm-applet
+                     rrc        1811 ....m tracker-miner-f
+                     rrc        1812 ....m applet.py
+                     rrc        1817 ....m python
+                     rrc        1823 ....m mgaapplet
+                     rrc        1828 ....m tracker-store
+                     rrc        1861 ....m evolution-calen
+                     rrc        1870 ....m python
+                     rrc        1909 ....m ibus-engine-sim
+                     rrc        3534 ....m firefox
+                     rrc        3574 ....m pxgsettings
+                     rrc        3690 ....m gnome-terminal-
+
+[root@Llawyr ~]# fuser -l
+HUP INT QUIT ILL TRAP ABRT IOT BUS FPE KILL USR1 SEGV USR2 PIPE ALRM TERM
+STKFLT CHLD CONT STOP TSTP TTIN TTOU URG XCPU XFSZ VTALRM PROF WINCH IO PWR SYS
+UNUSED
+
+[root@Llawyr ComandosDeLaTerminal]# fuser -auv ~rrc/ComandosDeLaTerminal/KillIt
+                     USER        PID ACCESS COMMAND
+/home/rrc/ComandosDeLaTerminal/KillIt:
+                     rrc        5201 f.... (rrc)KillIt
+
+[root@Llawyr ComandosDeLaTerminal]# fuser -aukv ~rrc/ComandosDeLaTerminal/KillIt
+                     USER        PID ACCESS COMMAND
+/home/rrc/ComandosDeLaTerminal/KillIt:
+                     rrc        5201 f.... (rrc)KillIt
+
+[root@Llawyr ComandosDeLaTerminal]# fuser -avuk -STOP  ~rrc/ComandosDeLaTerminal/KillIt
+                     USER        PID ACCESS COMMAND
+/home/rrc/ComandosDeLaTerminal/KillIt:
+                     rrc        5330 f.... (rrc)KillIt
+
+[root@Llawyr ComandosDeLaTerminal]# fuser -avuk -CONT  ~rrc/ComandosDeLaTerminal/KillIt
+                     USER        PID ACCESS COMMAND
+/home/rrc/ComandosDeLaTerminal/KillIt:
+                     rrc        5330 f.... (rrc)KillIt
+
+[root@Llawyr ComandosDeLaTerminal]# fuser -avuk -TERM  ~rrc/ComandosDeLaTerminal/KillIt
+                     USER        PID ACCESS COMMAND
+/home/rrc/ComandosDeLaTerminal/KillIt:
+                     rrc        5330 f.... (rrc)KillIt
+
+[root@Llawyr ComandosDeLaTerminal]# fuser -avuik -TERM  ~rrc/ComandosDeLaTerminal/KillIt
+                     USER        PID ACCESS COMMAND
+/home/rrc/ComandosDeLaTerminal/KillIt:
+                     rrc        5446 f.... (rrc)KillIt
+Kill process 5446 ? (y/N) y
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
