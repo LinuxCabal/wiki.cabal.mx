@@ -1,0 +1,181 @@
+__NOTOC__
+* [[:#mkfs | mkfs]]
+
+== mkfs ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# mkfs --help
+Usage:
+ mkfs [options] [-t <type>] [fs-options] <device> [<size>]
+
+Options:
+ -t, --type=<type>  filesystem type; when unspecified, ext2 is used
+     fs-options     parameters for the real filesystem builder
+     <device>       path to the device to be used
+     <size>         number of blocks to be used on the device
+ -V, --verbose      explain what is being done;
+                      specifying -V more than once will cause a dry-run
+ -V, --version      display version information and exit;
+                      -V as --version must be the only option
+ -h, --help         display this help text and exit
+
+For more information see mkfs(8).
+
+[root@Llawyr ~]# mkfs --version
+mkfs from util-linux 2.24
+
+[root@Llawyr ~]# ls -al /usr/sbin/mkfs*
+-rwxr-xr-x 1 root root  11672 Dec 28  2013 /usr/sbin/mkfs*
+-rwxr-xr-x 1 root root  28736 Dec 28  2013 /usr/sbin/mkfs.cramfs*
+lrwxrwxrwx 1 root root      6 May 23 10:37 /usr/sbin/mkfs.ext2 -> mke2fs*
+lrwxrwxrwx 1 root root      6 May 23 10:37 /usr/sbin/mkfs.ext3 -> mke2fs*
+lrwxrwxrwx 1 root root      6 May 23 10:37 /usr/sbin/mkfs.ext4 -> mke2fs*
+lrwxrwxrwx 1 root root      6 May 23 10:37 /usr/sbin/mkfs.ext4dev -> mke2fs*
+-rwxr-xr-x 1 root root  28656 Jan 18 13:59 /usr/sbin/mkfs.fat*
+-rwxr-xr-x 1 root root  28864 Dec 28  2013 /usr/sbin/mkfs.minix*
+lrwxrwxrwx 1 root root      8 May 23 11:00 /usr/sbin/mkfs.msdos -> mkfs.fat*
+lrwxrwxrwx 1 root root     14 May 23 11:00 /usr/sbin/mkfs.ntfs -> ../sbin/mkntfs*
+lrwxrwxrwx 1 root root      8 May 23 11:00 /usr/sbin/mkfs.vfat -> mkfs.fat*
+-rwxr-xr-x 1 root root 289144 Oct 21  2013 /usr/sbin/mkfs.xfs*
+
+[root@Llawyr ~]# fdisk -l /dev/sdc
+
+Disk /dev/sdc: 7.5 GiB, 8024752128 bytes, 15673344 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x15005631
+
+Device    Boot     Start       End Blocks  Id System
+/dev/sdc1           2048    206847 102400  fd Linux raid autodetect
+/dev/sdc2         206848    411647 102400  fd Linux raid autodetect
+/dev/sdc3         411648    616447 102400  fd Linux raid autodetect
+
+[root@Llawyr ~]# ls -al /dev/md
+md/  md1  
+
+[root@Llawyr ~]# fdisk -l /dev/md1
+
+Disk /dev/md1: 198 MiB, 207618048 bytes, 405504 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 524288 bytes / 1048576 bytes
+Disklabel type: dos
+Disk identifier: 0xcf5bd272
+
+Device     Boot Start       End Blocks  Id System
+/dev/md1p1       2048    405503 201728  83 Linux
+
+[root@Llawyr ~]# mkfs -t ext4 /dev/md1p1
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=512 blocks, Stripe width=1024 blocks
+50600 inodes, 201728 blocks
+10086 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67371008
+25 block groups
+8192 blocks per group, 8192 fragments per group
+2024 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done 
+
+[root@Llawyr ~]# mkfs -V -L MiLlaveUSB  -t ext4 /dev/md1p1
+mkfs from util-linux 2.24
+mkfs.ext2 -L MiLlaveUSB /dev/md1p1 -t ext4
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=MiLlaveUSB
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=512 blocks, Stripe width=1024 blocks
+50600 inodes, 201728 blocks
+10086 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67371008
+25 block groups
+8192 blocks per group, 8192 fragments per group
+2024 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Writing superblocks and filesystem accounting information: done 
+
+[root@Llawyr ~]# mkfs -V -L MiLlaveUSB -t xfs /dev/md1p1
+mkfs from util-linux 2.24
+mkfs.ext2 -L MiLlaveUSB -t xfs /dev/md1p1 
+mke2fs 1.42.9 (28-Dec-2013)
+
+Your mke2fs.conf file does not define the xfs filesystem type.
+Aborting...
+[root@Llawyr ~]# mkfs. -V -L MiLlaveUSB  /dev/md1p1
+mkfs.cramfs   mkfs.ext4     mkfs.minix    mkfs.vfat     
+mkfs.ext2     mkfs.ext4dev  mkfs.msdos    mkfs.xfs      
+mkfs.ext3     mkfs.fat      mkfs.ntfs     
+
+[root@Llawyr ~]# mkfs.xfs -V -L MiLlaveUSB  /dev/md1p1
+mkfs.xfs version 3.1.11
+
+[root@Llawyr ~]# mkfs.xfs -L MiLlaveUSB  /dev/md1p1
+mkfs.xfs: /dev/md1p1 appears to contain an existing filesystem (ext3).
+mkfs.xfs: Use the -f option to force overwrite.
+
+[root@Llawyr ~]# mkfs.xfs -f -L MiLlaveUSB  /dev/md1p1
+meta-data=/dev/md1p1             isize=256    agcount=4, agsize=12608 blks
+         =                       sectsz=512   attr=2, projid32bit=0
+data     =                       bsize=4096   blocks=50432, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal log           bsize=4096   blocks=1200, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+
+[root@Llawyr ~]# mount -t xfs /dev/md1p1 /mnt
+[root@Llawyr ~]# cd /mnt
+
+[root@Llawyr mnt]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+/dev/sda4 on / type ext4 (rw,noatime,data=ordered)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /sys/fs/cgroup type tmpfs (rw,nosuid,nodev,noexec,mode=755)
+cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)
+cgroup on /sys/fs/cgroup/cpu,cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,cpuacct,cpu)
+cgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,devices)
+cgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,freezer)
+cgroup on /sys/fs/cgroup/net_cls type cgroup (rw,nosuid,nodev,noexec,relatime,net_cls)
+cgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=27,pgrp=1,timeout=300,minproto=5,maxproto=5,direct)
+mqueue on /dev/mqueue type mqueue (rw,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime,mode=755)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime)
+tmpfs on /tmp type tmpfs (rw)
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,relatime)
+gvfsd-fuse on /run/user/500/gvfs type fuse.gvfsd-fuse (rw,nosuid,nodev,relatime,user_id=500,group_id=500)
+/dev/md1p1 on /mnt type xfs (rw,relatime,attr2,inode64,noquota)
+[root@Llawyr mnt]# 
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
