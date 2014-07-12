@@ -1,0 +1,170 @@
+__NOTOC__
+* [[:#fsck | fsck]]
+
+== fsck ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr mnt]# fsck --help
+fsck from util-linux 2.24
+fsck.ext4: invalid option -- 'h'
+Usage: fsck.ext4 [-panyrcdfvtDFV] [-b superblock] [-B blocksize]
+		[-I inode_buffer_blocks] [-P process_inode_size]
+		[-l|-L bad_blocks_file] [-C fd] [-j external_journal]
+		[-E extended-options] device
+
+Emergency help:
+ -p                   Automatic repair (no questions)
+ -n                   Make no changes to the filesystem
+ -y                   Assume "yes" to all questions
+ -c                   Check for bad blocks and add them to the badblock list
+ -f                   Force checking even if filesystem is marked clean
+ -v                   Be verbose
+ -b superblock        Use alternative superblock
+ -B blocksize         Force blocksize when looking for superblock
+ -j external_journal  Set location of the external journal
+ -l bad_blocks_file   Add to badblocks list
+ -L bad_blocks_file   Set badblocks list
+
+[root@Llawyr mnt]# ls -al /usr/sbin/fsck*
+-rwxr-xr-x 1 root root 33048 Dec 28  2013 /usr/sbin/fsck*
+-rwxr-xr-x 1 root root 24616 Dec 28  2013 /usr/sbin/fsck.cramfs*
+lrwxrwxrwx 1 root root     6 May 23 10:37 /usr/sbin/fsck.ext2 -> e2fsck*
+lrwxrwxrwx 1 root root     6 May 23 10:37 /usr/sbin/fsck.ext3 -> e2fsck*
+lrwxrwxrwx 1 root root     6 May 23 10:37 /usr/sbin/fsck.ext4 -> e2fsck*
+lrwxrwxrwx 1 root root     6 May 23 10:37 /usr/sbin/fsck.ext4dev -> e2fsck*
+-rwxr-xr-x 1 root root 57640 Jan 18 13:59 /usr/sbin/fsck.fat*
+-rwxr-xr-x 1 root root 62856 Dec 28  2013 /usr/sbin/fsck.minix*
+lrwxrwxrwx 1 root root     8 May 23 11:00 /usr/sbin/fsck.msdos -> fsck.fat*
+lrwxrwxrwx 1 root root     8 May 23 11:00 /usr/sbin/fsck.vfat -> fsck.fat*
+-rwxr-xr-x 1 root root   450 Oct 21  2013 /usr/sbin/fsck.xfs*
+
+[root@Llawyr ~]# umount /dev/md1p1
+
+[root@Llawyr ~]# mkfs -L MiLlaveUSB -t ext4 /dev/md1p1
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=MiLlaveUSB
+OS type: Linux
+Block size=1024 (log=0)
+Fragment size=1024 (log=0)
+Stride=512 blocks, Stripe width=1024 blocks
+50600 inodes, 201728 blocks
+10086 blocks (5.00%) reserved for the super user
+First data block=1
+Maximum filesystem blocks=67371008
+25 block groups
+8192 blocks per group, 8192 fragments per group
+2024 inodes per group
+Superblock backups stored on blocks: 
+	8193, 24577, 40961, 57345, 73729
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (4096 blocks): done
+Writing superblocks and filesystem accounting information: done 
+
+[root@Llawyr ~]# fsck -f -y -t ext4 /dev/md1p1
+fsck from util-linux 2.24
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+MiLlaveUSB: 11/50600 files (0.0% non-contiguous), 12034/201728 blocks
+
+
+[root@Llawyr ~]# fsck -f -y -t ext4 /dev/md1p1
+fsck from util-linux 2.24
+e2fsck 1.42.9 (28-Dec-2013)
+Pass 1: Checking inodes, blocks, and sizes
+Pass 2: Checking directory structure
+Pass 3: Checking directory connectivity
+Pass 4: Checking reference counts
+Pass 5: Checking group summary information
+MiLlaveUSB: 11/50600 files (0.0% non-contiguous), 12034/201728 blocks
+[root@Llawyr ~]# mkfs.xfs -f -L MiLlaveUSB  /dev/md1p1
+meta-data=/dev/md1p1             isize=256    agcount=4, agsize=12608 blks
+         =                       sectsz=512   attr=2, projid32bit=0
+data     =                       bsize=4096   blocks=50432, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal log           bsize=4096   blocks=1200, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+
+[root@Llawyr ~]# fsck -t xfs -f -y /dev/md1p1
+fsck from util-linux 2.24
+/sbin/fsck.xfs: XFS file system.
+
+[root@Llawyr ~]# fsck.xfs --help
+/usr/sbin/fsck.xfs: --help does not exist
+
+[root@Llawyr ~]# fsck.xfs
+If you wish to check the consistency of an XFS filesystem or
+repair a damaged filesystem, see xfs_check(8) and xfs_repair(8).
+
+[root@Llawyr ~]# fsck.xfs -f -y /dev/md1p1
+/usr/sbin/fsck.xfs: XFS file system.
+
+[root@Llawyr ~]# man fsck.xfs
+
+fsck.xfs(8)                 System Manager's Manual                fsck.xfs(8)
+
+NAME
+       fsck.xfs - do nothing, successfully
+
+SYNOPSIS
+       fsck.xfs [ filesys ... ]
+
+DESCRIPTION
+       fsck.xfs  is  called by the generic Linux fsck(8) program at startup to
+       check and repair an XFS filesystem.  XFS is a journaling filesystem and
+       performs  recovery  at  mount(8)  time if necessary, so fsck.xfs simply
+       exits with a zero exit status.
+
+       If you wish to check the consistency of an XFS filesystem, or repair  a
+       damaged or corrupt XFS filesystem, see xfs_check(8) and xfs_repair(8).
+
+FILES
+       /etc/fstab.
+
+SEE ALSO
+       fsck(8), fstab(5), xfs(5), xfs_check(8), xfs_repair(8).
+
+[root@Llawyr ~]# xfs_check /dev/md1p1
+xfs_check is deprecated and scheduled for removal in June 2014.
+Please use xfs_repair -n <dev> instead.
+
+[root@Llawyr ~]# xfs_repair -n /dev/md1p1
+Phase 1 - find and verify superblock...
+Phase 2 - using internal log
+        - scan filesystem freespace and inode maps...
+        - found root inode chunk
+Phase 3 - for each AG...
+        - scan (but don't clear) agi unlinked lists...
+        - process known inodes and perform inode discovery...
+        - agno = 0
+        - agno = 1
+        - agno = 2
+        - agno = 3
+        - process newly discovered inodes...
+Phase 4 - check for duplicate blocks...
+        - setting up duplicate extent list...
+        - check for inodes claiming duplicate blocks...
+        - agno = 0
+        - agno = 1
+        - agno = 3
+        - agno = 2
+No modify flag set, skipping phase 5
+Phase 6 - check inode connectivity...
+        - traversing filesystem ...
+        - traversal finished ...
+        - moving disconnected inodes to lost+found ...
+Phase 7 - verify link counts...
+No modify flag set, skipping filesystem flush and exiting.
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
