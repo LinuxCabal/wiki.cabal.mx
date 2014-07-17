@@ -1,0 +1,32 @@
+__NOTOC__
+* [[:#sync | sync]]
+
+== sync ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ sync --help
+Usage: sync [OPTION]
+Force changed blocks to disk, update the super block.
+
+      --help     display this help and exit
+      --version  output version information and exit
+
+Report sync bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'sync invocation'
+
+[rrc@Llawyr ~]$ sync --version
+sync (coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Jim Meyering.
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
