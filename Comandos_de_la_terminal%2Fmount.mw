@@ -1,0 +1,353 @@
+__NOTOC__
+* [[:#mount | mount]]
+
+== mount ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ mount --help
+
+Usage:
+ mount [-lhV]
+ mount -a [options]
+ mount [options] [--source] <source> | [--target] <directory>
+ mount [options] <source> <directory>
+ mount <operation> <mountpoint> [<target>]
+
+Options:
+ -a, --all               mount all filesystems mentioned in fstab
+ -c, --no-canonicalize   don't canonicalize paths
+ -f, --fake              dry run; skip the mount(2) syscall
+ -F, --fork              fork off for each device (use with -a)
+ -T, --fstab <path>      alternative file to /etc/fstab
+ -h, --help              display this help text and exit
+ -i, --internal-only     don't call the mount.<type> helpers
+ -l, --show-labels       lists all mounts with LABELs
+ -n, --no-mtab           don't write to /etc/mtab
+ -o, --options <list>    comma-separated list of mount options
+ -O, --test-opts <list>  limit the set of filesystems (use with -a)
+ -r, --read-only         mount the filesystem read-only (same as -o ro)
+ -t, --types <list>      limit the set of filesystem types
+     --source <src>      explicitly specifies source (path, label, uuid)
+     --target <target>   explicitly specifies mountpoint
+ -v, --verbose           say what is being done
+ -V, --version           display version information and exit
+ -w, --rw, --read-write  mount the filesystem read-write (default)
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+Source:
+ -L, --label <label>     synonym for LABEL=<label>
+ -U, --uuid <uuid>       synonym for UUID=<uuid>
+ LABEL=<label>           specifies device by filesystem label
+ UUID=<uuid>             specifies device by filesystem UUID
+ PARTLABEL=<label>       specifies device by partition label
+ PARTUUID=<uuid>         specifies device by partition UUID
+ <device>                specifies device by path
+ <directory>             mountpoint for bind mounts (see --bind/rbind)
+ <file>                  regular file for loopdev setup
+
+Operations:
+ -B, --bind              mount a subtree somewhere else (same as -o bind)
+ -M, --move              move a subtree to some other place
+ -R, --rbind             mount a subtree and all submounts somewhere else
+ --make-shared           mark a subtree as shared
+ --make-slave            mark a subtree as slave
+ --make-private          mark a subtree as private
+ --make-unbindable       mark a subtree as unbindable
+ --make-rshared          recursively mark a whole subtree as shared
+ --make-rslave           recursively mark a whole subtree as slave
+ --make-rprivate         recursively mark a whole subtree as private
+ --make-runbindable      recursively mark a whole subtree as unbindable
+
+For more details see mount(8).
+
+[rrc@Llawyr ~]$ mount --version
+mount from util-linux 2.24 (libmount 2.24.0: debug, assert)
+
+Dispositivos
+
+Los dispositivos en Unix se encuentran dentro de /dev. Así es como se designan los más comunes en GNU/Linux:
+
+    fd0 Primera unidad de disquetes (a: en sistemas MS-DOS y Windows).
+    fd1 Segunda unidad de disquetes (b: en sistemas MS-DOS y Windows).
+    hda Primer disco duro IDE (Primary Master).
+    hda0 Primera partición del primer disco duro IDE (Primary Master).
+    hda1 Segunda partición del primer disco duro IDE (Primary Slave).
+    hdb0 Primera partición del segundo disco duro IDE (Secondary Master).
+    hdb1 Segunda partición del segundo disco duro IDE (Secondary Slave).
+    sda Primer disco duro SCSI.
+    sda1 Primera partición del primer disco duro SCSI.
+    sdb Primera unidad de llave usb (Memoria USB).
+    sdb4 Cuarta partición del segundo disco duro SCSI.
+    scd0 Primera unidad de CD-ROM SCSI.
+    scd1 Segunda unidad de CD-ROM SCSI.
+    sga Primer dispositivo genérico SCSI (scanner, etc.).
+    sgb Segundo dispositivo genérico SCSI.
+    sg0 Primer dispositivo genérico SCSI en sistemas nuevos.
+    sg1 Segundo dispositivo genérico SCSI en sistemas nuevos.
+
+Desde la aparición de las unidades de almacenamiento USB (pendrives) y los discos duros SATA (serial ATA), estos han empezado a usar también la denominación propia de los dispositivos SCSI (sda1, sdb3, etc.). Aun así, algunas veces se pueden encontrar unidades IDE con nombres del tipo sda, sdb, etc. Esto se debe a que ciertas distribuciones utilizan emulación IDE-SCSI. De esta forma se utiliza una capa de software común para el manejo de todos los discos duros, CD-ROM, etc.
+
+Tipos de sistemas de archivos soportados
+
+El tipo del sistema de archivos puede ser:
+
+    adfs, affs, coda,  coherent,  cramfs, debugfs, devpts, efs, hfs, hfsplus,
+    hpfs,  jfs, minix, ncpfs, proc, qnx4, ramfs, romfs,  squashfs, sysv,
+    tmpfs, ubifs, udf, ufs, umsdos, usbfs, xenix,  xfs,  xiafs
+    auto (intenta descubrir automáticamente el sistema de archivos).
+    iso9660 (sistema de archivos de los CD y DVD).
+    ext2 (sistema de archivos muy extendido en maquinas Linux).
+    ext3 (igual que ext2 pero además añade journaling).
+    ext4 (introdujo significativas mejoras respecto a ext3)
+    reiserfs (otro sistema muy utilizado en maquinas Linux).
+    msdos (para dispositivos que usen FAT12 o FAT16).
+    vfat (para dispositivos que usen FAT32).
+    ntfs, (sistema de archivos NTFS de Windows NT, XP, etc.).
+    smbfs (sistema de archivos de Samba).
+    cifs (sistema de archivos de Samba, windows compartida).
+    nfs, nfs4 (sistema de archivos de red NFS).
+    hfs y hfsplus (acceden a sistemas de archivos de Apple Macintosh).
+
+
+Las opciones comunes a todos los sistemas de archivos son:
+
+user/nouser
+    permitir o denegar el monteo del fs por usuarios
+auto / noauto
+    Con la opción auto, el dispositivo será montado automáticamente 
+    durante el inicio o en caso de que el comando mount -a sea ejecutado. 
+    auto es el valor por defecto. Si no se desea que el dispositivo se
+    monte automáticamente, se deberá substituir por noauto.
+dev / nodev
+    Interpretar / no interpretar dispositivos especiales de bloques en el
+    sistema de archivos. Los dispositivos especiales de bloques son similares 
+    a discos (donde se puede acceder a los datos dado un número de bloque, y p.
+    ej. tiene sentido tener un caché de bloques). Todos los otros 
+    dispositivos son ficheros especiales de caracteres. Hace tiempo la distinción 
+    era diferente: la E/S a un fichero especial de caracteres sería sin búfer,
+    y a un fichero especial de bloques, con búfer.
+exec / noexec
+    exec permite ejecutar binarios que están en la partición, mientras 
+    que noexec lo impide. noexec puede resultar útil en una partición que 
+    contenga binarios se deseen ejecutar en el sistema, o que no deban ser 
+    ejecutados. Este podría ser el caso de la partición de Windows.
+ro
+    Montar para sólo lectura.
+rw
+    Montar el sistema de archivos para lectura/esctritura. Utilizando esta opción,
+    muchos nuevos usuarios confusos, por no poder escribir en sus discos o 
+    particiones de Windows, pueden solucionar el problema.
+sync / async
+    Esta opción indica la manera en que se debe realizar la entrada y salida del 
+    sistema de archivos. sync especifica que se realice de manera síncrona. 
+    Para verlo en un ejemplo de un fstab, nótese que esta opción aparece en la 
+    unidad de discos flexibles. En particular sirve, si se está escribiendo en
+    una unidad con la opción activada, para que los cambios sean realizados 
+    físicamente en el dispositivo a la vez que se invoca el comando correspondiente.
+suid / nosuid
+    Permite / bloquea la operación sobre los bits suid y sgid.
+user / nouser
+    Permite a cualquier usuario montar el sistema de archivos. Implica directamente 
+    las opciones noexec, nosuid y nodev a menos que se especifiquen otras. Si se 
+    utiliza la opción nouser, solo el usuario root podrá montar el sistema de archivos.
+defaults
+    Utiliza las opciones por defecto: rw,suid,dev,exec,auto,nouser,async.
+nofail
+    No devuelve error si no se puede montar el dispositivo.
+noatime
+    No actualiza el tiempo de modificación en este FS (e.j., para acceder un news spool más rapido).
+
+nodev
+    No dereferenciar dispositivos en este FS
+
+
+Opciones específicas para cada sistema de archivos
+
+Hay multitud de opciones específicas para cada sistema de archivos soportado por mount. Las que se listan a continuación son las más habituales. Para una lista completa se puede acudir a la página del manual de Unix sobre mount.
+
+ext2
+
+    check={none, normal, strict}
+        Establece el nivel de comprobación de fsck.
+    debug
+        Imprime información de depuración durante cada re-montaje.
+    sb=n
+        n es el bloque que deber ser utilizado como superbloque para el sistema de archivos.
+
+fat
+
+    check={r[elaxed], n[ormal], s[trict]}
+        No es igual que en ext2, pero permite utilizar una sintaxis parecida.
+    conv={b[inary], t[ext], a[uto]}
+        Efectúa automáticamente conversiones de archivos de texto entre DOS<->UNIX.
+    uid=n, gid=n
+        Establece el identificador de usuario, uid, y el identificador de grupo, gid,
+        para todos los archivos de la partición.
+    umask=nnn, dmask=nnn, fmask=nnn
+        Establece máscara de usuario para la creación de archivos, umask, y lo mismo
+        para sólo directorios, dmask y sólo archivos, fmask.
+
+iso9660
+
+    norock
+        Deshabilita las extensiones Rock Ridge. 
+
+
+[rrc@Llawyr ~]$ mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+tmpfs on /dev/shm type tmpfs (rw,nosuid,nodev)
+tmpfs on /run type tmpfs (rw,nosuid,nodev,mode=755)
+/dev/sda4 on / type ext4 (rw,noatime,data=ordered)
+securityfs on /sys/kernel/security type securityfs (rw,nosuid,nodev,noexec,relatime)
+tmpfs on /sys/fs/cgroup type tmpfs (rw,nosuid,nodev,noexec,mode=755)
+cgroup on /sys/fs/cgroup/systemd type cgroup (rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd)
+pstore on /sys/fs/pstore type pstore (rw,nosuid,nodev,noexec,relatime)
+cgroup on /sys/fs/cgroup/cpuset type cgroup (rw,nosuid,nodev,noexec,relatime,cpuset)
+cgroup on /sys/fs/cgroup/cpu,cpuacct type cgroup (rw,nosuid,nodev,noexec,relatime,cpuacct,cpu)
+cgroup on /sys/fs/cgroup/devices type cgroup (rw,nosuid,nodev,noexec,relatime,devices)
+cgroup on /sys/fs/cgroup/freezer type cgroup (rw,nosuid,nodev,noexec,relatime,freezer)
+cgroup on /sys/fs/cgroup/net_cls type cgroup (rw,nosuid,nodev,noexec,relatime,net_cls)
+cgroup on /sys/fs/cgroup/blkio type cgroup (rw,nosuid,nodev,noexec,relatime,blkio)
+systemd-1 on /proc/sys/fs/binfmt_misc type autofs (rw,relatime,fd=27,pgrp=1,timeout=300,minproto=5,maxproto=5,direct)
+hugetlbfs on /dev/hugepages type hugetlbfs (rw,relatime)
+tmpfs on /tmp type tmpfs (rw)
+mqueue on /dev/mqueue type mqueue (rw,relatime)
+debugfs on /sys/kernel/debug type debugfs (rw,relatime,mode=755)
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,relatime)
+gvfsd-fuse on /run/user/500/gvfs type fuse.gvfsd-fuse  rw,nosuid,nodev,relatime,user_id=500,group_id=500)
+
+[rrc@Llawyr ~]$ cat /etc/fstab
+# Entry for /dev/sda4 :
+UUID=bd80f18b-1c1d-4c41-bc89-1e36d8dd5776 / ext4 acl,noatime 1 1
+# Entry for /dev/sda1 :
+UUID=40179781-5764-4fc3-96d8-f00f13207206 /boot ext4 acl,noatime 1 2
+# Entry for /dev/sda3 :
+UUID=8a0c6fab-047a-4366-a1c1-8fd6bf350d03 /home ext4 acl,noatime 1 2
+none /proc proc defaults 0 0
+# Entry for /dev/sda2 :
+UUID=8a094354-0baf-43c7-9208-4dc9de3c6030 swap swap defaults 0 0
+
+[rrc@Llawyr ~]$ cat /etc/mtab
+rootfs / rootfs rw 0 0
+proc /proc proc rw,relatime 0 0
+sysfs /sys sysfs rw,nosuid,nodev,noexec,relatime 0 0
+devtmpfs /dev devtmpfs rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755 0 0
+devpts /dev/pts devpts rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000 0 0
+tmpfs /dev/shm tmpfs rw,nosuid,nodev 0 0
+tmpfs /run tmpfs rw,nosuid,nodev,mode=755 0 0
+/dev/sda4 / ext4 rw,noatime,data=ordered 0 0
+securityfs /sys/kernel/security securityfs rw,nosuid,nodev,noexec,relatime 0 0
+tmpfs /sys/fs/cgroup tmpfs rw,nosuid,nodev,noexec,mode=755 0 0
+cgroup /sys/fs/cgroup/systemd cgroup rw,nosuid,nodev,noexec,relatime,xattr,release_agent=/usr/lib/systemd/systemd-cgroups-agent,name=systemd 0 0
+pstore /sys/fs/pstore pstore rw,nosuid,nodev,noexec,relatime 0 0
+cgroup /sys/fs/cgroup/cpuset cgroup rw,nosuid,nodev,noexec,relatime,cpuset 0 0
+cgroup /sys/fs/cgroup/cpu,cpuacct cgroup rw,nosuid,nodev,noexec,relatime,cpuacct,cpu 0 0
+cgroup /sys/fs/cgroup/devices cgroup rw,nosuid,nodev,noexec,relatime,devices 0 0
+cgroup /sys/fs/cgroup/freezer cgroup rw,nosuid,nodev,noexec,relatime,freezer 0 0
+cgroup /sys/fs/cgroup/net_cls cgroup rw,nosuid,nodev,noexec,relatime,net_cls 0 0
+cgroup /sys/fs/cgroup/blkio cgroup rw,nosuid,nodev,noexec,relatime,blkio 0 0
+systemd-1 /proc/sys/fs/binfmt_misc autofs rw,relatime,fd=27,pgrp=1,timeout=300,minproto=5,maxproto=5,direct 0 0
+hugetlbfs /dev/hugepages hugetlbfs rw,relatime 0 0
+tmpfs /tmp tmpfs rw 0 0
+mqueue /dev/mqueue mqueue rw,relatime 0 0
+debugfs /sys/kernel/debug debugfs rw,relatime,mode=755 0 0
+/dev/sda1 /boot ext4 rw,noatime,data=ordered 0 0
+/dev/sda3 /home ext4 rw,noatime,data=ordered 0 0
+fusectl /sys/fs/fuse/connections fusectl rw,relatime 0 0
+gvfsd-fuse /run/user/500/gvfs fuse.gvfsd-fuse rw,nosuid,nodev,relatime,user_id=500,group_id=500 0 0
+
+[root@Llawyr ~]# mkdir /mnt/imagenes
+
+[root@Llawyr ~]# mount -t iso9660 -o loop ~rrc/Downloads/Mageia/Mageia-4-x86_64-DVD.iso /mnt/imagenes
+mount: /dev/loop0 is write-protected, mounting read-only
+
+[root@Llawyr ~]# ls -al /mnt/imagenes/
+total 27
+dr-xr-xr-x 7 root root  2048 Jan 30 15:08 ./
+drwxr-x--- 4 root adm   4096 Jul 17 12:48 ../
+-r--r--r-- 1 root root    80 May 27  2011 autorun.inf
+-r--r--r-- 1 root root  2048 Jan 30 15:11 boot.catalog
+dr-xr-xr-x 3 root root  2048 May 27  2011 dosutils/
+dr-xr-xr-x 3 root root  2048 Jan 25 15:07 EFI/
+dr-xr-xr-x 3 root root 10240 Jan 29 16:45 isolinux/
+dr-xr-xr-x 3 root root  2048 Jan 25 15:07 loader/
+dr-xr-xr-x 6 root root  2048 Jan 30 15:11 x86_64/
+
+[root@Llawyr ~]# fdisk -l /dev/sdd
+
+Disk /dev/sdd: 7.5 GiB, 8024752128 bytes, 15673344 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x15005631
+
+Device    Boot Start       End  Blocks  Id System
+/dev/sdd1       2048  15673343 7835648  83 Linux
+
+[root@Llawyr ~]# mkdir /mnt/usb
+[root@Llawyr ~]# mount -t auto -ro,user /dev/sdd1 /mnt/usb
+[root@Llawyr ~]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+ .
+ .
+ .
+/dev/sda4 on / type ext4 (rw,noatime,data=ordered)
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)(rw,nosuid,nodev,relatime,user_id=500,group_id=500)
+/home/rrc/Downloads/Mageia/Mageia-4-x86_64-DVD.iso on /mnt/imagenes type iso9660 (ro,relatime)
+/dev/sdd1 on /mnt/usb type xfs (ro,nosuid,nodev,noexec,relatime,attr2,inode64,noquota,user)
+
+[root@Llawyr ~]# mkdir /tmp/BindMountISO
+
+[root@Llawyr ~]# mount -B /mnt/imagenes /tmp/BindMountISO
+
+[root@Llawyr ~]# ls -al /tmp/BindMountISO/
+total 23
+dr-xr-xr-x  7 root root  2048 Jan 30 15:08 ./
+drwxrwx-wt 15 root adm    320 Jul 17 12:56 ../
+-r--r--r--  1 root root    80 May 27  2011 autorun.inf
+-r--r--r--  1 root root  2048 Jan 30 15:11 boot.catalog
+dr-xr-xr-x  3 root root  2048 May 27  2011 dosutils/
+dr-xr-xr-x  3 root root  2048 Jan 25 15:07 EFI/
+dr-xr-xr-x  3 root root 10240 Jan 29 16:45 isolinux/
+dr-xr-xr-x  3 root root  2048 Jan 25 15:07 loader/
+dr-xr-xr-x  6 root root  2048 Jan 30 15:11 x86_64/
+
+[root@Llawyr ~]# ls -al /mnt/imagenes/
+total 27
+dr-xr-xr-x 7 root root  2048 Jan 30 15:08 ./
+drwxr-x--- 5 root adm   4096 Jul 17 12:52 ../
+-r--r--r-- 1 root root    80 May 27  2011 autorun.inf
+-r--r--r-- 1 root root  2048 Jan 30 15:11 boot.catalog
+dr-xr-xr-x 3 root root  2048 May 27  2011 dosutils/
+dr-xr-xr-x 3 root root  2048 Jan 25 15:07 EFI/
+dr-xr-xr-x 3 root root 10240 Jan 29 16:45 isolinux/
+dr-xr-xr-x 3 root root  2048 Jan 25 15:07 loader/
+dr-xr-xr-x 6 root root  2048 Jan 30 15:11 x86_64/
+
+[root@Llawyr ~]# mount -o remount,rw /mnt/usb
+
+[root@Llawyr ~]# mount
+/dev/sda4 on / type ext4 (rw,noatime,data=ordered)
+ . 
+ .
+ .
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+fusectl on /sys/fs/fuse/connections type fusectl (rw,relatime)
+gvfsd-fuse on /run/user/500/gvfs type fuse.gvfsd-fuse (rw,nosuid,nodev,relatime,user_id=500,group_id=500)
+/dev/sdd1 on /mnt/usb type xfs (rw,nosuid,nodev,noexec,relatime,attr2,inode64,noquota,user)
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
