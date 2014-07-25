@@ -1,0 +1,148 @@
+__NOTOC__
+* [[:#umount | umount]]
+
+== umount ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ umount --help
+
+Usage:
+ umount [-hV]
+ umount -a [options]
+ umount [options] <source> | <directory>
+
+Options:
+ -a, --all               unmount all filesystems
+ -A, --all-targets       unmount all mountpoins for the given device in the
+                           current namespace
+ -c, --no-canonicalize   don't canonicalize paths
+ -d, --detach-loop       if mounted loop device, also free this loop device
+     --fake              dry run; skip the umount(2) syscall
+ -f, --force             force unmount (in case of an unreachable NFS system)
+ -i, --internal-only     don't call the umount.<type> helpers
+ -n, --no-mtab           don't write to /etc/mtab
+ -l, --lazy              detach the filesystem now, clean up things later
+ -O, --test-opts <list>  limit the set of filesystems (use with -a)
+ -R, --recursive         recursively unmount a target with all its children
+ -r, --read-only         in case unmounting fails, try to remount read-only
+ -t, --types <list>      limit the set of filesystem types
+ -v, --verbose           say what is being done
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see umount(8).
+[rrc@Llawyr ~]$ umount --version
+umount from util-linux 2.24 (libmount 2.24.0: debug, assert)
+
+[root@Llawyr mnt]# mount -t auto /dev/sdd1 /mnt/usb
+
+[root@Llawyr mnt]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+ .
+ .
+ .
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+/dev/sdd1 on /mnt/usb type xfs (rw,relatime,attr2,inode64,noquota)
+
+[root@Llawyr mnt]# umount /dev/sdd1
+
+[root@Llawyr mnt]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+ .
+ .
+ .
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+
+[root@Llawyr mnt]# mount -t auto /dev/sdd1 /mnt/usb
+
+[root@Llawyr mnt]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+ .
+ .
+ .
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+/dev/sdd1 on /mnt/usb type xfs (rw,relatime,attr2,inode64,noquota)
+
+[root@Llawyr mnt]# umount usb
+
+[root@Llawyr mnt]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+ .
+ .
+ .
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+
+[root@Llawyr mnt]# mount -t auto /dev/sdd1 /mnt/usb
+
+[root@Llawyr mnt]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6124048k,nr_inodes=1531012,mode=755)
+devpts on /dev/pts type devpts (rw,nosuid,noexec,relatime,gid=5,mode=620,ptmxmode=000)
+ .
+ .
+ .
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+/dev/sdd1 on /mnt/usb type xfs (rw,relatime,attr2,inode64,noquota)
+
+[root@Llawyr /]# cd /mnt/usb
+
+[root@Llawyr usb]# mkdir LoopMNT
+
+[root@Llawyr usb]# mount -t iso9660 -o loop ~rrc/Downloads/Mageia/Mageia-4-x86_64-DVD.iso LoopMNT/
+mount: /dev/loop0 is write-protected, mounting read-only
+
+[root@Llawyr usb]# ls -al LoopMNT/
+total 23
+dr-xr-xr-x 7 root root  2048 Jan 30 15:08 ./
+drwxr-xr-x 3 root root    20 Jul 19 09:27 ../
+-r--r--r-- 1 root root    80 May 27  2011 autorun.inf
+-r--r--r-- 1 root root  2048 Jan 30 15:11 boot.catalog
+dr-xr-xr-x 3 root root  2048 May 27  2011 dosutils/
+dr-xr-xr-x 3 root root  2048 Jan 25 15:07 EFI/
+dr-xr-xr-x 3 root root 10240 Jan 29 16:45 isolinux/
+dr-xr-xr-x 3 root root  2048 Jan 25 15:07 loader/
+dr-xr-xr-x 6 root root  2048 Jan 30 15:11 x86_64/
+
+[root@Llawyr usb]# cd /mnt
+
+[root@Llawyr mnt]# umount usb
+umount: /mnt/usb: target is busy
+        (In some cases useful info about processes that
+         use the device is found by lsof(8) or fuser(1).)
+
+[root@Llawyr mnt]# umount -R usb
+
+[root@Llawyr mnt]# ls -al usb
+total 8
+drwxr-xr-x 2 root root 4096 Jul 17 12:52 ./
+drwxr-x--- 5 root adm  4096 Jul 17 13:03 ../
+
+[root@Llawyr mnt]# mount -t auto /dev/sdb1 /mnt/usb
+
+[root@Llawyr mnt]# umount -v /mnt/usb
+umount: /mnt/usb (/dev/sdb1) unmounted
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
