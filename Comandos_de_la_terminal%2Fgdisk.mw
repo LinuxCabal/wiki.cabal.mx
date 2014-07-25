@@ -1,0 +1,431 @@
+__NOTOC__
+* [[:#gdisk | gdisk]]
+
+== gdisk ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr mnt]# gdisk --help
+GPT fdisk (gdisk) version 0.8.8
+
+Problem opening --help for reading! Error is 2.
+The specified file does not exist!
+
+[root@Llawyr mnt]# gdisk -l /dev/sdb
+GPT fdisk (gdisk) version 0.8.8
+
+Partition table scan:
+  MBR: MBR only
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+
+***************************************************************
+Found invalid GPT and valid MBR; converting MBR to GPT format
+in memory. 
+***************************************************************
+
+
+Warning! Secondary partition table overlaps the last partition by
+33 blocks!
+You will need to delete this partition or resize it in another utility.
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): 31830E5B-93A9-4CCE-BD90-FD5D8359AFA5
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 2014 sectors (1007.0 KiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048        15673343   7.5 GiB     8300  Linux filesystem
+
+[root@Llawyr mnt]# gdisk  /dev/sdb
+GPT fdisk (gdisk) version 0.8.8
+
+Partition table scan:
+  MBR: MBR only
+  BSD: not present
+  APM: not present
+  GPT: not present
+
+
+***************************************************************
+Found invalid GPT and valid MBR; converting MBR to GPT format
+in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
+typing 'q' if you don't want to convert your MBR partitions
+to GPT format!
+***************************************************************
+
+
+Warning! Secondary partition table overlaps the last partition by
+33 blocks!
+You will need to delete this partition or resize it in another utility.
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): 73F98452-9BD6-4406-8859-7000C170E64F
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 2014 sectors (1007.0 KiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048        15673343   7.5 GiB     8300  Linux filesystem
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): A8D6F725-BE37-488B-9F6E-0EEBCE6CA483
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 2014 sectors (1007.0 KiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048        15673343   7.5 GiB     8300  Linux filesystem
+
+Command (? for help): d
+Using 1
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): A8D6F725-BE37-488B-9F6E-0EEBCE6CA483
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 15673277 sectors (7.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+
+Command (? for help): n
+Partition number (1-128, default 1): 
+First sector (34-15673310, default = 2048) or {+-}size{KMGTP}: 
+Last sector (2048-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): L
+0700 Microsoft basic data  0c01 Microsoft reserved    2700 Windows RE          
+4100 PowerPC PReP boot     4200 Windows LDM data      4201 Windows LDM metadata
+7501 IBM GPFS              7f00 ChromeOS kernel       7f01 ChromeOS root       
+7f02 ChromeOS reserved     8200 Linux swap            8300 Linux filesystem    
+8301 Linux reserved        8302 Linux /home           8400 Intel Rapid Start   
+8e00 Linux LVM             a500 FreeBSD disklabel     a501 FreeBSD boot        
+a502 FreeBSD swap          a503 FreeBSD UFS           a504 FreeBSD ZFS         
+a505 FreeBSD Vinum/RAID    a580 Midnight BSD data     a581 Midnight BSD boot   
+a582 Midnight BSD swap     a583 Midnight BSD UFS      a584 Midnight BSD ZFS    
+a585 Midnight BSD Vinum    a800 Apple UFS             a901 NetBSD swap         
+a902 NetBSD FFS            a903 NetBSD LFS            a904 NetBSD concatenated 
+a905 NetBSD encrypted      a906 NetBSD RAID           ab00 Apple boot          
+af00 Apple HFS/HFS+        af01 Apple RAID            af02 Apple RAID offline  
+af03 Apple label           af04 AppleTV recovery      af05 Apple Core Storage  
+be00 Solaris boot          bf00 Solaris root          bf01 Solaris /usr & Mac Z
+bf02 Solaris swap          bf03 Solaris backup        bf04 Solaris /var        
+bf05 Solaris /home         bf06 Solaris alternate se  bf07 Solaris Reserved 1  
+bf08 Solaris Reserved 2    bf09 Solaris Reserved 3    bf0a Solaris Reserved 4  
+bf0b Solaris Reserved 5    c001 HP-UX data            c002 HP-UX service       
+ea00 Freedesktop $BOOT     eb00 Haiku BFS             ed00 Sony system partitio
+ef00 EFI System            ef01 MBR partition scheme  ef02 BIOS boot partition 
+Press the <Enter> key to see more codes: 8300
+fb00 VMWare VMFS           fb01 VMWare reserved       fc00 VMWare kcore crash p
+fd00 Linux RAID            
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): A8D6F725-BE37-488B-9F6E-0EEBCE6CA483
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 13576125 sectors (6.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048         2099199   1024.0 MiB  8300  Linux filesystem
+
+Command (? for help): n
+Partition number (2-128, default 2): 
+First sector (34-15673310, default = 2099200) or {+-}size{KMGTP}: 
+Last sector (2099200-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n   
+Partition number (3-128, default 3): 
+First sector (34-15673310, default = 4196352) or {+-}size{KMGTP}: 
+Last sector (4196352-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (4-128, default 4): 
+First sector (34-15673310, default = 6293504) or {+-}size{KMGTP}: 
+Last sector (6293504-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (5-128, default 5): 
+First sector (34-15673310, default = 8390656) or {+-}size{KMGTP}: 
+Last sector (8390656-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): A8D6F725-BE37-488B-9F6E-0EEBCE6CA483
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 5187517 sectors (2.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048         2099199   1024.0 MiB  8300  Linux filesystem
+   2         2099200         4196351   1024.0 MiB  8300  Linux filesystem
+   3         4196352         6293503   1024.0 MiB  8300  Linux filesystem
+   4         6293504         8390655   1024.0 MiB  8300  Linux filesystem
+   5         8390656        10487807   1024.0 MiB  8300  Linux filesystem
+
+Command (? for help): i
+Partition number (1-5): 4
+Partition GUID code: 0FC63DAF-8483-4772-8E79-3D69D8477DE4 (Linux filesystem)
+Partition unique GUID: CC687F82-26A4-45F7-8463-B24EAF22861F
+First sector: 6293504 (at 3.0 GiB)
+Last sector: 8390655 (at 4.0 GiB)
+Partition size: 2097152 sectors (1024.0 MiB)
+Attribute flags: 0000000000000000
+Partition name: 'Linux filesystem'
+
+Command (? for help): l
+0700 Microsoft basic data  0c01 Microsoft reserved    2700 Windows RE          
+4100 PowerPC PReP boot     4200 Windows LDM data      4201 Windows LDM metadata
+7501 IBM GPFS              7f00 ChromeOS kernel       7f01 ChromeOS root       
+7f02 ChromeOS reserved     8200 Linux swap            8300 Linux filesystem    
+8301 Linux reserved        8302 Linux /home           8400 Intel Rapid Start   
+8e00 Linux LVM             a500 FreeBSD disklabel     a501 FreeBSD boot        
+a502 FreeBSD swap          a503 FreeBSD UFS           a504 FreeBSD ZFS         
+a505 FreeBSD Vinum/RAID    a580 Midnight BSD data     a581 Midnight BSD boot   
+a582 Midnight BSD swap     a583 Midnight BSD UFS      a584 Midnight BSD ZFS    
+a585 Midnight BSD Vinum    a800 Apple UFS             a901 NetBSD swap         
+a902 NetBSD FFS            a903 NetBSD LFS            a904 NetBSD concatenated 
+a905 NetBSD encrypted      a906 NetBSD RAID           ab00 Apple boot          
+af00 Apple HFS/HFS+        af01 Apple RAID            af02 Apple RAID offline  
+af03 Apple label           af04 AppleTV recovery      af05 Apple Core Storage  
+be00 Solaris boot          bf00 Solaris root          bf01 Solaris /usr & Mac Z
+bf02 Solaris swap          bf03 Solaris backup        bf04 Solaris /var        
+bf05 Solaris /home         bf06 Solaris alternate se  bf07 Solaris Reserved 1  
+bf08 Solaris Reserved 2    bf09 Solaris Reserved 3    bf0a Solaris Reserved 4  
+bf0b Solaris Reserved 5    c001 HP-UX data            c002 HP-UX service       
+ea00 Freedesktop $BOOT     eb00 Haiku BFS             ed00 Sony system partitio
+ef00 EFI System            ef01 MBR partition scheme  ef02 BIOS boot partition 
+Press the <Enter> key to see more codes: 
+fb00 VMWare VMFS           fb01 VMWare reserved       fc00 VMWare kcore crash p
+fd00 Linux RAID            
+
+Command (? for help): o
+This option deletes all partitions and creates a new protective MBR.
+Proceed? (Y/N): y
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): F2552AB7-74CD-414B-841B-CD0CD6DD6459
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 15673277 sectors (7.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+
+Command (? for help): r
+
+Recovery/transformation command (? for help): ?
+b	use backup GPT header (rebuilding main)
+c	load backup partition table from disk (rebuilding main)
+d	use main GPT header (rebuilding backup)
+e	load main partition table from disk (rebuilding backup)
+f	load MBR and build fresh GPT from it
+g	convert GPT into MBR and exit
+h	make hybrid MBR
+i	show detailed information on a partition
+l	load partition data from a backup file
+m	return to main menu
+o	print protective MBR data
+p	print the partition table
+q	quit without saving changes
+t	transform BSD disklabel partition
+v	verify disk
+w	write table to disk and exit
+x	extra functionality (experts only)
+?	print this menu
+
+Recovery/transformation command (? for help): m
+
+Command (? for help): n
+Partition number (1-128, default 1): 3
+First sector (34-15673310, default = 2048) or {+-}size{KMGTP}: 
+Last sector (2048-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (1-128, default 1): 5
+First sector (34-15673310, default = 2099200) or {+-}size{KMGTP}: 
+Last sector (2099200-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): n
+Partition number (1-128, default 1): 1
+First sector (34-15673310, default = 4196352) or {+-}size{KMGTP}: 
+Last sector (4196352-15673310, default = 15673310) or {+-}size{KMGTP}: +1G
+Current type is 'Linux filesystem'
+Hex code or GUID (L to show codes, Enter = 8300): 
+Changed type of partition to 'Linux filesystem'
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): F2552AB7-74CD-414B-841B-CD0CD6DD6459
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 9381821 sectors (4.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1         4196352         6293503   1024.0 MiB  8300  Linux filesystem
+   3            2048         2099199   1024.0 MiB  8300  Linux filesystem
+   5         2099200         4196351   1024.0 MiB  8300  Linux filesystem
+
+Command (? for help): s
+You may need to edit /etc/fstab and/or your boot loader configuration!
+
+Command (? for help): p
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): F2552AB7-74CD-414B-841B-CD0CD6DD6459
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 9381821 sectors (4.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048         2099199   1024.0 MiB  8300  Linux filesystem
+   2         2099200         4196351   1024.0 MiB  8300  Linux filesystem
+   3         4196352         6293503   1024.0 MiB  8300  Linux filesystem
+
+Command (? for help): v
+
+No problems found. 9381821 free sectors (4.5 GiB) available in 2
+segments, the largest of which is 9379807 (4.5 GiB) in size.
+
+Command (? for help): x
+
+Expert command (? for help): ?
+a	set attributes
+c	change partition GUID
+d	display the sector alignment value
+e	relocate backup data structures to the end of the disk
+g	change disk GUID
+h	recompute CHS values in protective/hybrid MBR
+i	show detailed information on a partition
+l	set the sector alignment value
+m	return to main menu
+n	create a new protective MBR
+o	print protective MBR data
+p	print the partition table
+q	quit without saving changes
+r	recovery and transformation options (experts only)
+s	resize partition table
+t	transpose two partition table entries
+u	Replicate partition table on new device
+v	verify disk
+w	write table to disk and exit
+z	zap (destroy) GPT data structures and exit
+?	print this menu
+
+Expert command (? for help): m
+
+Command (? for help): w
+
+Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
+PARTITIONS!!
+
+Do you want to proceed? (Y/N): y
+OK; writing new GUID partition table (GPT) to /dev/sdb.
+The operation has completed successfully.
+[root@Llawyr mnt]# gdisk -l
+GPT fdisk (gdisk) version 0.8.8
+
+Problem opening -l for reading! Error is 2.
+The specified file does not exist!
+[root@Llawyr mnt]# gdisk -l /dev/sdb
+GPT fdisk (gdisk) version 0.8.8
+
+Partition table scan:
+  MBR: protective
+  BSD: not present
+  APM: not present
+  GPT: present
+
+Found valid GPT with protective MBR; using GPT.
+Disk /dev/sdb: 15673344 sectors, 7.5 GiB
+Logical sector size: 512 bytes
+Disk identifier (GUID): F2552AB7-74CD-414B-841B-CD0CD6DD6459
+Partition table holds up to 128 entries
+First usable sector is 34, last usable sector is 15673310
+Partitions will be aligned on 2048-sector boundaries
+Total free space is 9381821 sectors (4.5 GiB)
+
+Number  Start (sector)    End (sector)  Size       Code  Name
+   1            2048         2099199   1024.0 MiB  8300  Linux filesystem
+   2         2099200         4196351   1024.0 MiB  8300  Linux filesystem
+   3         4196352         6293503   1024.0 MiB  8300  Linux filesystem
+
+[root@Llawyr mnt]# mkfs -t ext4 /dev/sdb3
+mke2fs 1.42.9 (28-Dec-2013)
+Filesystem label=
+OS type: Linux
+Block size=4096 (log=2)
+Fragment size=4096 (log=2)
+Stride=0 blocks, Stripe width=0 blocks
+65536 inodes, 262144 blocks
+13107 blocks (5.00%) reserved for the super user
+First data block=0
+Maximum filesystem blocks=268435456
+8 block groups
+32768 blocks per group, 32768 fragments per group
+8192 inodes per group
+Superblock backups stored on blocks: 
+	32768, 98304, 163840, 229376
+
+Allocating group tables: done                            
+Writing inode tables: done                            
+Creating journal (8192 blocks): done
+Writing superblocks and filesystem accounting information: done
+
+[root@Llawyr mnt]# mount -t auto /dev/sdb3 /mnt
+
+[root@Llawyr mnt]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+ .
+ .
+ .
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+/dev/sda1 on /boot type ext4 (rw,noatime,data=ordered)
+/dev/sdb3 on /mnt type ext4 (rw,relatime,data=ordered)
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
