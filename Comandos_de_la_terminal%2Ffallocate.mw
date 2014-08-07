@@ -1,0 +1,128 @@
+__NOTOC__
+* [[:#fallocate | fallocate]]
+
+== fallocate ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ComandosDeLaTerminal]# fallocate --help
+
+Usage:
+ fallocate [options] <filename>
+
+Options:
+ -n, --keep-size     don't modify the length of the file
+ -p, --punch-hole    punch holes in the file
+ -o, --offset <num>  offset of the allocation, in bytes
+ -l, --length <num>  length of the allocation, in bytes
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see fallocate(1).
+
+[root@Llawyr ComandosDeLaTerminal]# fallocate --version
+fallocate from util-linux 2.24
+
+[root@Llawyr ComandosDeLaTerminal]# umount /dev/sdc1
+
+[root@Llawyr ComandosDeLaTerminal]# fdisk /dev/sdc
+
+Welcome to fdisk (util-linux 2.24).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+
+Command (m for help): p
+Disk /dev/sdc: 7.5 GiB, 8024752128 bytes, 15673344 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: C5DD38DB-930E-493E-AA4A-2B9AEFFA7B8C
+
+Device    Start          End   Size Type
+/dev/sdc1  2048     15673310   7.5G Linux filesystem
+
+Command (m for help): d
+
+Selected partition 1
+Partition 1 has been deleted.
+
+Command (m for help): p
+Disk /dev/sdc: 7.5 GiB, 8024752128 bytes, 15673344 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: C5DD38DB-930E-493E-AA4A-2B9AEFFA7B8C
+
+Command (m for help): o
+
+Created a new DOS disklabel with disk identifier 0x1c37a385.
+
+Command (m for help): p
+Disk /dev/sdc: 7.5 GiB, 8024752128 bytes, 15673344 sectors
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: dos
+Disk identifier: 0x1c37a385
+
+
+Command (m for help): n
+
+Partition type:
+   p   primary (0 primary, 0 extended, 4 free)
+   e   extended
+Select (default p): p
+Partition number (1-4, default 1): 1
+First sector (2048-15673343, default 2048): 
+Last sector, +sectors or +size{K,M,G,T,P} (2048-15673343, default 15673343): 
+
+Created a new partition 1 of type 'Linux' and of size 7.5 GiB.
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+
+[root@Llawyr ComandosDeLaTerminal]# mkfs -t xfs /dev/sdc1
+mkfs.xfs: /dev/sdc1 appears to contain a partition table (DOS).
+mkfs.xfs: Use the -f option to force overwrite.
+
+[root@Llawyr ComandosDeLaTerminal]# mkfs -t xfs -f /dev/sdc1
+meta-data=/dev/sdc1              isize=256    agcount=4, agsize=489728 blks
+         =                       sectsz=512   attr=2, projid32bit=0
+data     =                       bsize=4096   blocks=1958912, imaxpct=25
+         =                       sunit=0      swidth=0 blks
+naming   =version 2              bsize=4096   ascii-ci=0
+log      =internal log           bsize=4096   blocks=2560, version=2
+         =                       sectsz=512   sunit=0 blks, lazy-count=1
+realtime =none                   extsz=4096   blocks=0, rtextents=0
+
+[root@Llawyr ComandosDeLaTerminal]# mount -t auto /dev/sdc1 /mnt
+
+[root@Llawyr ComandosDeLaTerminal]# mount
+proc on /proc type proc (rw,relatime)
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)
+devtmpfs on /dev type devtmpfs (rw,nosuid,size=6123732k,nr_inodes=1530933,mode=755)
+ .
+ .
+ .
+/dev/sda3 on /home type ext4 (rw,noatime,data=ordered)
+/dev/sdc1 on /mnt type xfs (rw,relatime,attr2,inode64,noquota)
+
+[root@Llawyr ComandosDeLaTerminal]# fallocate --length 2GiB /mnt/swapfile
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al /mnt
+total 2097156
+drwxr-xr-x  2 root root         21 Aug  7 09:38 ./
+drwxr-xr-x 20 root root       4096 Aug  7 06:39 ../
+-rw-r--r--  1 root root 2147483648 Aug  7 09:38 swapfile
+
+Debe usar el comando mkswap para iniciarlo y swapon para activarlo
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
