@@ -1,0 +1,74 @@
+__NOTOC__
+* [[:#mknod | mknod]]
+
+== mknod ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ mknod --help
+Usage: mknod [OPTION]... NAME TYPE [MAJOR MINOR]
+Create the special file NAME of the given TYPE.
+
+Mandatory arguments to long options are mandatory for short options too.
+  -m, --mode=MODE    set file permission bits to MODE, not a=rw - umask
+  -Z, --context=CTX  set the SELinux security context of NAME to CTX
+      --help     display this help and exit
+      --version  output version information and exit
+
+Both MAJOR and MINOR must be specified when TYPE is b, c, or u, and they
+must be omitted when TYPE is p.  If MAJOR or MINOR begins with 0x or 0X,
+it is interpreted as hexadecimal; otherwise, if it begins with 0, as octal;
+otherwise, as decimal.  TYPE may be:
+
+  b      create a block (buffered) special file
+  c, u   create a character (unbuffered) special file
+  p      create a FIFO
+
+NOTE: your shell may have its own version of mknod, which usually supersedes
+the version described here.  Please refer to your shell's documentation
+for details about the options it supports.
+
+Report mknod bugs to bug-coreutils@gnu.org
+GNU coreutils home page: <http://www.gnu.org/software/coreutils/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+For complete documentation, run: info coreutils 'mknod invocation'
+
+[rrc@Llawyr ~]$ mknod --version
+mknod (GNU coreutils) 8.21
+Copyright (C) 2013 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David MacKenzie.
+
+[root@Llawyr ~]# cd /usr/src/kernel-3.12.25-3.mga4/Documentation/
+[root@Llawyr Documentation]# vi devices.txt 
+
+[rrc@Llawyr src]$ ls -al /dev/sda*
+brw-rw---- 1 root disk 8, 0 Aug  7 06:38 /dev/sda
+brw-rw---- 1 root disk 8, 1 Aug  7 06:38 /dev/sda1
+brw-rw---- 1 root disk 8, 2 Aug  7 06:38 /dev/sda2
+brw-rw---- 1 root disk 8, 3 Aug  7 06:38 /dev/sda3
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al /dev/sr0
+brw-rw----+ 1 root cdrom 11, 0 Aug  7 08:12 /dev/sr0
+
+[root@Llawyr ComandosDeLaTerminal]# mknod sr0 b 11 0
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al sr0
+brw-r--r-- 1 root root 11, 0 Aug  7 08:38 sr0
+
+[root@Llawyr ComandosDeLaTerminal]# chmod 660 sr0
+
+[root@Llawyr ComandosDeLaTerminal]# chown root:cdrom sr0
+
+[root@Llawyr ComandosDeLaTerminal]# eject sr0
+
+[root@Llawyr ComandosDeLaTerminal]# eject sr1
+eject: sr1: not found mountpoint or device with the given name
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
