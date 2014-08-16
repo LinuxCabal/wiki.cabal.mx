@@ -1,0 +1,275 @@
+__NOTOC__
+* [[:#dmesg | dmesg]]
+
+== dmesg ==
+
+<syntaxhighlight lang="bash">
+
+[root@Pridd ~]# dmesg --help
+
+Usage:
+ dmesg [options]
+
+Options:
+ -C, --clear                 clear the kernel ring buffer
+ -c, --read-clear            read and clear all messages
+ -D, --console-off           disable printing messages to console
+ -E, --console-on            enable printing messages to console
+ -F, --file <file>           use the file instead of the kernel log buffer
+ -f, --facility <list>       restrict output to defined facilities
+ -H, --human                 human readable output
+ -k, --kernel                display kernel messages
+ -L, --color[=<when>]        colorize messages (auto, always or never)
+ -l, --level <list>          restrict output to defined levels
+ -n, --console-level <level> set level of messages printed to console
+ -P, --nopager               do not pipe output into a pager
+ -r, --raw                   print the raw message buffer
+ -S, --syslog                force to use syslog(2) rather than /dev/kmsg
+ -s, --buffer-size <size>    buffer size to query the kernel ring buffer
+ -u, --userspace             display userspace messages
+ -w, --follow                wait for new messages
+ -x, --decode                decode facility and level to readable string
+ -d, --show-delta            show time delta between printed messages
+ -e, --reltime               show local time and time delta in readable format
+ -T, --ctime                 show human readable timestamp
+ -t, --notime                don't print messages timestamp
+     --time-format <format>  show time stamp using format:
+                               [delta|reltime|ctime|notime|iso]
+Suspending/resume will make ctime and iso timestamps inaccurate.
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+Supported log facilities:
+    kern - kernel messages
+    user - random user-level messages
+    mail - mail system
+  daemon - system daemons
+    auth - security/authorization messages
+  syslog - messages generated internally by syslogd
+     lpr - line printer subsystem
+    news - network news subsystem
+
+Supported log levels (priorities):
+   emerg - system is unusable
+   alert - action must be taken immediately
+    crit - critical conditions
+     err - error conditions
+    warn - warning conditions
+  notice - normal but significant condition
+    info - informational
+   debug - debug-level messages
+
+
+For more details see dmesg(1).
+
+[root@Pridd ~]# dmesg --version
+dmesg from util-linux 2.24
+
+[root@Pridd ~]# dmesg
+ .
+ .
+ .
+[35060.001448] Adding 4087700k swap on /dev/sda2.  Priority:100 extents:1 across:4087700k FS
+[35105.721309] Adding 499996k swap on /mnt/MiSwapfile.  Priority:50 extents:1 across:499996k FS
+[35125.778044] Adding 2097148k swap on /mnt/swapfile.  Priority:500 extents:6 across:2392060k FS
+[35657.983304] Adding 4087700k swap on /dev/sda2.  Priority:-1 extents:1 across:4087700k FS
+[35687.522292] Adding 4087700k swap on /dev/sda2.  Priority:100 extents:1 across:4087700k FS
+
+[root@Pridd ~]# dmesg --reltime
+ .
+ .
+ .
+[Aug16 04:33] Adding 4087700k swap on /dev/sda2.  Priority:100 extents:1 across:4087700k FS
+[Aug16 04:34] Adding 499996k swap on /mnt/MiSwapfile.  Priority:50 extents:1 across:499996k FS
+[ +20.056735] Adding 2097148k swap on /mnt/swapfile.  Priority:500 extents:6 across:2392060k FS
+[Aug16 04:43] Adding 4087700k swap on /dev/sda2.  Priority:-1 extents:1 across:4087700k FS
+[Aug16 04:44] Adding 4087700k swap on /dev/sda2.  Priority:100 extents:1 across:4087700k FS
+[Aug16 05:02] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[  +0.010389] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+
+[rrc@Pridd ~]$ dmesg -f lpr
+
+[rrc@Pridd ~]$ dmesg -f auth
+
+[rrc@Pridd ~]$ dmesg -f mail
+
+[rrc@Pridd ~]$ dmesg -f daemon
+[    1.809026] dracut: dracut-034
+[    1.891473] systemd-udevd[193]: starting version 208
+[    2.836379] dracut: Starting plymouth daemon
+ .
+ .
+ .
+[    6.903736] systemd[1]: Starting Journal Service...
+[    6.904368] systemd[1]: Started Journal Service.
+[    6.973581] systemd-readahead[451]: Bumped block_nr parameter of 8:0 to 20480. This is a temporary hack and should be removed one day.
+[    8.148602] systemd-udevd[512]: starting version 208
+[    8.619331] systemd-udevd[521]: renamed network interface eth0 to enp3s0
+[    8.712155] systemd-udevd[524]: renamed network interface wlan0 to wlp2s0
+
+[rrc@Pridd ~]$ dmesg -ef kern
+ .
+ .
+ .
+[Aug16 05:12] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[  +0.011434] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+[Aug16 05:13] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[  +0.011420] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+[  +2.464155] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[  +0.011457] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+
+[rrc@Pridd ~]$ dmesg -ek
+
+[rrc@Pridd ~]$ dmesg -ef user
+
+[rrc@Pridd ~]$ dmesg -ef syslog
+[Aug15 18:49] systemd-journald[455]: Received request to flush runtime journal from PID 1
+
+[rrc@Pridd ~]$ dmesg -el emerg
+
+[rrc@Pridd ~]$ dmesg -el alert
+
+[rrc@Pridd ~]$ dmesg -el crit
+
+[rrc@Pridd ~]$ dmesg -el err
+[Aug16 03:54] sd 6:0:0:0: [sdb] No Caching mode page found
+[  +0.000004] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+[  +0.003267] sd 6:0:0:0: [sdb] No Caching mode page found
+[  +0.000008] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+[  +1.783254] sd 6:0:0:0: [sdb] No Caching mode page found
+[  +0.000008] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+[Aug16 03:57] sd 6:0:0:0: [sdb] No Caching mode page found
+[  +0.000006] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+
+[rrc@Pridd ~]$ dmesg -el warn
+ .
+ .
+ .
+[Aug16 05:08] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[Aug16 05:12] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[Aug16 05:13] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[  +2.475575] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[Aug16 05:18] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+[Aug16 05:19] psmouse serio4: Touchpad at isa0060/serio4/input0 lost sync at byte 6
+
+[rrc@Pridd ~]$ dmesg -el notice
+ .
+ .
+ .
+[Aug16 05:12] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+[Aug16 05:13] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+[  +2.475612] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+[Aug16 05:18] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+[Aug16 05:19] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+[Aug16 05:22] psmouse serio4: Touchpad at isa0060/serio4/input0 - driver resynced.
+
+[rrc@Pridd ~]$ dmesg -el info
+ .
+ .
+ .
+[Aug16 04:33] Adding 4087700k swap on /dev/sda2.  Priority:100 extents:1 across:4087700k FS
+[Aug16 04:34] Adding 499996k swap on /mnt/MiSwapfile.  Priority:50 extents:1 across:499996k FS
+[ +20.056735] Adding 2097148k swap on /mnt/swapfile.  Priority:500 extents:6 across:2392060k FS
+[Aug16 04:43] Adding 4087700k swap on /dev/sda2.  Priority:-1 extents:1 across:4087700k FS
+[Aug16 04:44] Adding 4087700k swap on /dev/sda2.  Priority:100 extents:1 across:4087700k FS
+
+[rrc@Pridd ~]$ dmesg -el debug
+ .
+ .
+ .
+[  +0.000002] PM: Looking for hibernation image.
+[  +0.002087] PM: Image not found (code -22)
+[  +0.000003] PM: Hibernation image not present or could not be loaded.
+[  +4.108699] snd_hda_intel 0000:00:1b.0: irq 43 for MSI/MSI-X
+[  +0.093792] ath: EEPROM regdomain: 0x60
+[  +0.000001] ath: EEPROM indicates we should expect a direct regpair map
+[  +0.000002] ath: Country alpha2 being used: 00
+[  +0.000001] ath: Regpair used: 0x60
+[  +0.003824] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[Aug15 18:50] atl1c 0000:03:00.0: irq 44 for MSI/MSI-X
+[Aug16 03:54] sd 6:0:0:0: [sdb] Mode Sense: 23 00 00 00
+
+[rrc@Pridd ~]$ dmesg -eHl debug
+
+[rrc@Pridd ~]$ dmesg -eL auto -l debug
+ .
+ .
+ .
+[  +0.020073] PM: Basic memory bitmaps freed
+[  +0.002976] PM: Hibernation image partition 8:2 present
+[  +0.000002] PM: Looking for hibernation image.
+[  +0.002087] PM: Image not found (code -22)
+[  +0.000003] PM: Hibernation image not present or could not be loaded.
+[  +4.108699] snd_hda_intel 0000:00:1b.0: irq 43 for MSI/MSI-X
+[  +0.093792] ath: EEPROM regdomain: 0x60
+[  +0.000001] ath: EEPROM indicates we should expect a direct regpair map
+[  +0.000002] ath: Country alpha2 being used: 00
+[  +0.000001] ath: Regpair used: 0x60
+[  +0.003824] ieee80211 phy0: Selected rate control algorithm 'minstrel_ht'
+[Aug15 18:50] atl1c 0000:03:00.0: irq 44 for MSI/MSI-X
+[Aug16 03:54] sd 6:0:0:0: [sdb] Mode Sense: 23 00 00 00
+
+[rrc@Pridd ~]$ dmesg -eL auto -u
+ .
+ .
+ .
+[  +0.000632] systemd[1]: Started Journal Service.
+[  +0.069213] systemd-readahead[451]: Bumped block_nr parameter of 8:0 to 20480. This is a temporary hack and should be removed one day.
+[  +1.175021] systemd-udevd[512]: starting version 208
+[  +0.470729] systemd-udevd[521]: renamed network interface eth0 to enp3s0
+[  +0.092824] systemd-udevd[524]: renamed network interface wlan0 to wlp2s0
+[  +4.718958] systemd-journald[455]: Received request to flush runtime journal from PID 1
+
+
+[rrc@Pridd ~]$ dmesg -exHL auto -l err
+kern  :err   : [Aug16 03:54] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [  +0.000004] sd 6:0:0:0: [sdb] Assuming drive cache: write throu
+kern  :err   : [  +0.003267] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [  +0.000008] sd 6:0:0:0: [sdb] Assuming drive cache: write throu
+kern  :err   : [  +1.783254] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [  +0.000008] sd 6:0:0:0: [sdb] Assuming drive cache: write throu
+kern  :err   : [Aug16 03:57] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [  +0.000006] sd 6:0:0:0: [sdb] Assuming drive cache: write throu
+
+(END)
+
+[rrc@Pridd ~]$ dmesg -dexHL auto -l err
+kern  :err   : [<    0.000000>] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [<    0.000004>] sd 6:0:0:0: [sdb] Assuming drive cache: write th
+kern  :err   : [<    0.003267>] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [<    0.000008>] sd 6:0:0:0: [sdb] Assuming drive cache: write th
+kern  :err   : [<    1.783254>] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [<    0.000008>] sd 6:0:0:0: [sdb] Assuming drive cache: write th
+kern  :err   : [<  174.202178>] sd 6:0:0:0: [sdb] No Caching mode page found
+kern  :err   : [<    0.000006>] sd 6:0:0:0: [sdb] Assuming drive cache: write th
+
+(END)
+
+[rrc@Pridd ~]$ dmesg -Tl err
+[Sat Aug 16 03:54:31 2014] sd 6:0:0:0: [sdb] No Caching mode page found
+[Sat Aug 16 03:54:31 2014] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+[Sat Aug 16 03:54:31 2014] sd 6:0:0:0: [sdb] No Caching mode page found
+[Sat Aug 16 03:54:31 2014] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+[Sat Aug 16 03:54:33 2014] sd 6:0:0:0: [sdb] No Caching mode page found
+[Sat Aug 16 03:54:33 2014] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+[Sat Aug 16 03:57:27 2014] sd 6:0:0:0: [sdb] No Caching mode page found
+[Sat Aug 16 03:57:27 2014] sd 6:0:0:0: [sdb] Assuming drive cache: write through
+
+[rrc@Pridd ~]$ dmesg -tl err
+sd 6:0:0:0: [sdb] No Caching mode page found
+sd 6:0:0:0: [sdb] Assuming drive cache: write through
+sd 6:0:0:0: [sdb] No Caching mode page found
+sd 6:0:0:0: [sdb] Assuming drive cache: write through
+sd 6:0:0:0: [sdb] No Caching mode page found
+sd 6:0:0:0: [sdb] Assuming drive cache: write through
+sd 6:0:0:0: [sdb] No Caching mode page found
+sd 6:0:0:0: [sdb] Assuming drive cache: write through
+
+[rrc@Pridd ~]$ dmesg -w
+
+[rrc@Pridd ~]$ dmesg -wdexL auto -l err
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
