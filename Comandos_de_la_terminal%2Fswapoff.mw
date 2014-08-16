@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#swapoff| swapoff]]
+
+== swapoff ==
+
+<syntaxhighlight lang="bash">
+
+[root@Pridd ~]# swapoff --help
+
+Usage:
+ swapoff [options] [<spec>]
+
+Options:
+ -a, --all              disable all swaps from /proc/swaps
+ -v, --verbose          verbose mode
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+The <spec> parameter:
+ -L <label>             LABEL of device to be used
+ -U <uuid>              UUID of device to be used
+ LABEL=<label>          LABEL of device to be used
+ UUID=<uuid>            UUID of device to be used
+ <device>               name of device to be used
+ <file>                 name of file to be used
+
+For more details see swapoff(8).
+
+[root@Pridd ~]# swapoff --version
+swapoff from util-linux 2.24
+
+[root@Pridd ~]# swapoff -v /mnt/swapfile
+swapoff /mnt/swapfile
+
+[root@Pridd ~]# swapon --show
+NAME            TYPE        SIZE USED PRIO
+/dev/sda2       partition   3.9G   0B  100
+/mnt/MiSwapfile file      488.3M   0B   50
+
+[root@Pridd ~]# cat /proc/swaps 
+Filename				Type		Size	Used	Priority
+/dev/sda2                               partition	4087700	0	100
+/mnt/MiSwapfile                         file		499996	0	50
+
+[root@Pridd ~]# swapoff -a
+
+[root@Pridd ~]# swapon --show
+
+[root@Pridd ~]# cat /proc/swaps 
+Filename				Type		Size	Used	Priority
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
