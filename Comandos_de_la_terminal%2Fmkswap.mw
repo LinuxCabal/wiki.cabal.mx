@@ -1,0 +1,108 @@
+__NOTOC__
+* [[:#mkswap| mkswap]]
+
+== mkswap ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ComandosDeLaTerminal]# mkswap --help
+
+Usage:
+ mkswap [options] device [size]
+
+Options:
+ -c, --check               check bad blocks before creating the swap area
+ -f, --force               allow swap size area be larger than device
+ -p, --pagesize SIZE       specify page size in bytes
+ -L, --label LABEL         specify label
+ -v, --swapversion NUM     specify swap-space version number
+ -U, --uuid UUID           specify the uuid to use
+ -V, --version             output version information and exit
+ -h, --help                display this help and exit
+
+[root@Llawyr ComandosDeLaTerminal]# mkswap --version
+mkswap from util-linux 2.24
+
+El parámetro de size es superfluo, pero retenido para hacia atrás la compatibilidad.
+Especifica size deseada del área de swap en bloques de 1024 bytes.
+mkswap usará la partición entera o archivo si se omite.
+La especificación de ello es imprudente - un typo puede destruir su disco.
+
+El swapon header no toca el primer bloque. Un cargador de arranque o la etiqueta del disco
+pueden estar allí, pero no es una configuración recomendada.
+El sistema recomendado debe usar una partición separada para un área de swap de Linux.
+
+
+Después de crear el swap, necesitamos el comando swapon para empezar a usarlo.
+Generalmente las áreas de swap se enumeran en/etc/fstab para que pueda ser inicializados
+al momento del arranque por un comando swapon -a.
+
+Linux permite 32 áreas de swap (esto era 8 antes de Linux 2.4.10 (Sep 2001)).
+Las áreas de swap en el uso se pueden ver en el archivo /proc/swaps.
+
+[root@Llawyr ComandosDeLaTerminal]# cat /proc/swaps 
+Filename				Type		Size	Used	Priority
+/dev/sda2                               partition	12280852	0	-1
+
+Para configurar un archivo de swap, es necesario crear ese archivo antes de inicializar con mkswap,
+ ej., usando un comando como:
+     # fallocate --length 2GiB swapfile
+Tenga en cuenta que un archivo de swap debe contener ninguno agujeros 
+(por lo tanto, usando cp para crear el archivo de swap no es aceptable).
+
+[root@Llawyr ComandosDeLaTerminal]# fallocate --length 2GiB /mnt/swapfile
+
+[root@Llawyr ComandosDeLaTerminal]# ls -al /mnt
+total 2097156
+drwxr-xr-x  2 root root         21 Aug  7 09:38 ./
+drwxr-xr-x 20 root root       4096 Aug  7 06:39 ../
+-rw-r--r--  1 root root 2147483648 Aug  7 09:38 swapfile
+
+[root@Llawyr ComandosDeLaTerminal]# mkswap -c /mnt/swapfile 
+Setting up swapspace version 1, size = 2097148 KiB
+no label, UUID=5c6ab6aa-43a4-4a37-b9de-b53e938a0b6e
+
+[root@Llawyr ~]# chmod 600 /mnt/swapfile
+
+[root@Llawyr ~]# swapon -c /mnt/swapfile
+swapon /mnt/swapfile
+swapon: /mnt/swapfile: found swap signature: version 1, page-size 4, same byte order
+swapon: /mnt/swapfile: pagesize=4096, swapsize=2147483648, devsize=2147483648
+
+[root@Llawyr ~]# swapon -v /mnt/swapfile
+swapon /mnt/swapfile
+swapon: /mnt/swapfile: found swap signature: version 1, page-size 4, same byte order
+swapon: /mnt/swapfile: pagesize=4096, swapsize=2147483648, devsize=2147483648
+
+[root@Llawyr ComandosDeLaTerminal]# cat /proc/swaps
+Filename				Type		Size	Used	Priority
+/dev/sda2                               partition	12280852	0	-1
+/mnt/swapfile                           file		2147483	0	-2
+
+T A M B I É N 
+
+[root@Llawyr ~]# dd if=/dev/zero of=/mnt/myswapfile bs=1M count=512
+512+0 records in
+512+0 records out
+536870912 bytes (537 MB) copied, 73.5836 s, 7.3 MB/s
+
+[root@Llawyr ~]# chmod 600 /mnt/myswapfile
+
+[root@Llawyr ~]# mkswap -c /mnt/myswapfile
+Setting up swapspace version 1, size = 524284 KiB
+no label, UUID=88f3b623-e597-4bbe-b304-c067f0e0da73
+
+[root@Llawyr ~]# swapon -v /mnt/myswapfile
+swapon /mnt/myswapfile
+swapon: /mnt/myswapfile: found swap signature: version 1, page-size 4, same byte order
+swapon: /mnt/myswapfile: pagesize=4096, swapsize=536870912, devsize=536870912
+
+[root@Llawyr ComandosDeLaTerminal]# cat /proc/swaps
+Filename				Type		Size	Used	Priority
+/dev/sda2                               partition	12280852	0	-1
+/mnt/swapfile                           file		2147483	0	-2
+/mnt/myswapfile                         file		524284	0	-3
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
