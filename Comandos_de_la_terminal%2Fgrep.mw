@@ -1,0 +1,565 @@
+__NOTOC__
+* [[:#grep| grep]]
+
+== grep ==
+
+<syntaxhighlight lang="bash">
+
+Su nombre deriva de un comando en el editor de texto ed,
+escrito también por Ken Thompson y agregado al sistema operativo 
+UNIX versión 4 en 1973, 
+que tiene la siguiente forma: g/re/p y significa 
+«hacer una búsqueda global para las líneas que encajen con 
+la expresión regular (regular expression en inglés), e imprimirlas»
+
+grep understands three different versions of regular expression syntax:
+       “basic,” “extended” and “perl.” In GNU grep, there is no difference  in
+       available  functionality between basic and extended syntaxes. 
+
+grep entiende tres versiones diferentes de la sintaxis de la expresión regular:
+"básico", "extendido" y "perl".
+
+[rrc@Pridd ~]$ grep --help
+Usage: grep [OPTION]... PATTERN [FILE]...
+Search for PATTERN in each FILE or standard input.
+PATTERN is, by default, a basic regular expression (BRE).
+Example: grep -i 'hello world' menu.h main.c
+
+Regexp selection and interpretation:
+  -E, --extended-regexp     PATTERN is an extended regular expression (ERE)
+  -F, --fixed-strings       PATTERN is a set of newline-separated fixed strings
+  -G, --basic-regexp        PATTERN is a basic regular expression (BRE)
+  -P, --perl-regexp         PATTERN is a Perl regular expression
+  -e, --regexp=PATTERN      use PATTERN for matching
+  -f, --file=FILE           obtain PATTERN from FILE
+  -i, --ignore-case         ignore case distinctions
+  -w, --word-regexp         force PATTERN to match only whole words
+  -x, --line-regexp         force PATTERN to match only whole lines
+  -z, --null-data           a data line ends in 0 byte, not newline
+
+Miscellaneous:
+  -s, --no-messages         suppress error messages
+  -v, --invert-match        select non-matching lines
+  -V, --version             print version information and exit
+      --help                display this help and exit
+      --mmap                deprecated no-op; evokes a warning
+
+Output control:
+  -m, --max-count=NUM       stop after NUM matches
+  -b, --byte-offset         print the byte offset with output lines
+  -n, --line-number         print line number with output lines
+      --line-buffered       flush output on every line
+  -H, --with-filename       print the file name for each match
+  -h, --no-filename         suppress the file name prefix on output
+      --label=LABEL         use LABEL as the standard input file name prefix
+  -o, --only-matching       show only the part of a line matching PATTERN
+  -q, --quiet, --silent     suppress all normal output
+      --binary-files=TYPE   assume that binary files are TYPE;
+                            TYPE is 'binary', 'text', or 'without-match'
+  -a, --text                equivalent to --binary-files=text
+  -I                        equivalent to --binary-files=without-match
+  -d, --directories=ACTION  how to handle directories;
+                            ACTION is 'read', 'recurse', or 'skip'
+  -D, --devices=ACTION      how to handle devices, FIFOs and sockets;
+                            ACTION is 'read' or 'skip'
+  -r, --recursive           like --directories=recurse
+  -R, --dereference-recursive  likewise, but follow all symlinks
+      --include=FILE_PATTERN  search only files that match FILE_PATTERN
+      --exclude=FILE_PATTERN  skip files and directories matching FILE_PATTERN
+      --exclude-from=FILE   skip files matching any file pattern from FILE
+      --exclude-dir=PATTERN  directories that match PATTERN will be skipped.
+  -L, --files-without-match  print only names of FILEs containing no match
+  -l, --files-with-matches  print only names of FILEs containing matches
+  -c, --count               print only a count of matching lines per FILE
+  -T, --initial-tab         make tabs line up (if needed)
+  -Z, --null                print 0 byte after FILE name
+
+Context control:
+  -B, --before-context=NUM  print NUM lines of leading context
+  -A, --after-context=NUM   print NUM lines of trailing context
+  -C, --context=NUM         print NUM lines of output context
+  -NUM                      same as --context=NUM
+      --color[=WHEN],
+      --colour[=WHEN]       use markers to highlight the matching strings;
+                            WHEN is 'always', 'never', or 'auto'
+  -U, --binary              do not strip CR characters at EOL (MSDOS/Windows)
+  -u, --unix-byte-offsets   report offsets as if CRs were not there
+                            (MSDOS/Windows)
+
+'egrep' means 'grep -E'.  'fgrep' means 'grep -F'.
+Direct invocation as either 'egrep' or 'fgrep' is deprecated.
+When FILE is -, read standard input.  With no FILE, read . if a command-line
+-r is given, - otherwise.  If fewer than two FILEs are given, assume -h.
+Exit status is 0 if any line is selected, 1 otherwise;
+if any error occurs and -q is not given, the exit status is 2.
+
+Report bugs to: bug-grep@gnu.org
+GNU Grep home page: <http://www.gnu.org/software/grep/>
+General help using GNU software: <http://www.gnu.org/gethelp/>
+
+[rrc@Pridd ~]$ grep --version
+grep (GNU grep) 2.16
+Copyright (C) 2014 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Mike Haertel and others, see <http://git.sv.gnu.org/cgit/grep.git/tree/AUTHORS>.
+
+[rrc@Pridd ~]$ cd ComandosDeLaTerminal
+
+[rrc@Pridd ComandosDeLaTerminal]$ grep 2013 ldd
+# Copyright (C) 1996-2013 Free Software Foundation, Inc.
+" "2013"
+
+[rrc@Pridd ComandosDeLaTerminal]$ grep 2013 *
+grep: bin: Is a directory
+grep: Bin: Is a directory
+grep: Carpeta1: Is a directory
+grep: Carpeta11: Is a directory
+grep: Carpeta2: Is a directory
+grep: Carpeta21: Is a directory
+cdcommand:Script started on Thu 14 Nov 2013 11:38:14 AM CST
+cdcommand:-rwxr-xr-x  1 root root  368 Jan 26  2013 rsyncMySQLBack*
+cdcommand:Script done on Thu 14 Nov 2013 11:40:44 AM CST
+grep: ChownPrueba: Is a directory
+grep: html: Is a directory
+ldd:# Copyright (C) 1996-2013 Free Software Foundation, Inc.
+ldd:" "2013"
+grep: linuxcabal.org: Is a directory
+grep: log: Permission denied
+grep: NuevaCarpeta: Is a directory
+grep: NuevaCarpeta2: Is a directory
+grep: NuevaCarpeta3: Is a directory
+grep: NuevaCarpeta4: Is a directory
+grep: NuevaCarpeta5: Is a directory
+grep: NuevaCarpeta6: Is a directory
+grep: Paginas: Is a directory
+grep: richard: Is a directory
+ScriptFile:Script started on Thu 14 Nov 2013 04:06:50 PM CST
+ScriptFile:Script done on Thu 14 Nov 2013 04:07:59 PM CST
+grep: UmaskPruebaCarpeta: Is a directory
+grep: UmaskPruebaCarpeta2: Is a directory
+grep: usr: Is a directory
+
+[rrc@Pridd ComandosDeLaTerminal]$ grep -d skip 2013 *
+cdcommand:Script started on Thu 14 Nov 2013 11:38:14 AM CST
+cdcommand:-rwxr-xr-x  1 root root  368 Jan 26  2013 rsyncMySQLBack*
+cdcommand:Script done on Thu 14 Nov 2013 11:40:44 AM CST
+ldd:# Copyright (C) 1996-2013 Free Software Foundation, Inc.
+ldd:" "2013"
+grep: log: Permission denied
+ScriptFile:Script started on Thu 14 Nov 2013 04:06:50 PM CST
+ScriptFile:Script done on Thu 14 Nov 2013 04:07:59 PM CST
+
+[rrc@Pridd ComandosDeLaTerminal]$ grep -d recurse 2013 *
+cdcommand:Script started on Thu 14 Nov 2013 11:38:14 AM CST
+cdcommand:-rwxr-xr-x  1 root root  368 Jan 26  2013 rsyncMySQLBack*
+cdcommand:Script done on Thu 14 Nov 2013 11:40:44 AM CST
+ldd:# Copyright (C) 1996-2013 Free Software Foundation, Inc.
+ldd:" "2013"
+Paginas/ChainingOperators:By Avishek Kumar Under: Bash Shell, Linux Commands On: December 13, 2013
+Paginas/PS:Linux   By Silver Moon On Dec 1, 2013 0 Comments    
+Paginas/PS:Every 1.0s: ps -e -o pid,uname,cmd,pmem,pcpu --...  Sun Dec  1 18:16:08 2013
+Paginas/PS:Last Updated On : 4th December 2013
+Paginas/PS:Copyright © 2013 BinaryTides
+Paginas/NMAP:By Tarunika Shrivastava Under: Linux Commands On: December 11, 2013
+Paginas/NMAP:Starting Nmap 4.11 ( http://www.insecure.org/nmap/ ) at 2013-11-11 15:42 EST
+Paginas/NMAP:Starting Nmap 4.11 ( http://www.insecure.org/nmap/ ) at 2013-11-18 11:04 EST
+ .
+ .
+ .
+Paginas/NMAP:Starting Nmap 4.11 ( http://www.insecure.org/nmap/ ) at 2013-11-11 18:12 EST
+Paginas/NMAP:Starting Nmap 4.11 ( http://www.insecure.org/nmap/ ) at 2013-11-11 19:01 EST
+ScriptFile:Script started on Thu 14 Nov 2013 04:06:50 PM CST
+ScriptFile:Script done on Thu 14 Nov 2013 04:07:59 PM CST
+
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -d recurse -d skip 2013 *
+cdcommand:Script started on Thu 14 Nov 2013 11:38:14 AM CST
+cdcommand:-rwxr-xr-x  1 root root  368 Jan 26  2013 rsyncMySQLBack*
+cdcommand:Script done on Thu 14 Nov 2013 11:40:44 AM CST
+ldd:# Copyright (C) 1996-2013 Free Software Foundation, Inc.
+ldd:" "2013"
+nohup.out:MPlayer SVN-3.r36361.1.mga4.tainted-4.8.2 (C) 2000-2013 MPlayer Team
+V:   0.0 24042/24042 ??% ??% ??,?% 0 0 
+ScriptFile:Script started on Thu 14 Nov 2013 04:06:50 PM CST
+ScriptFile:Script done on Thu 14 Nov 2013 04:07:59 PM CST
+grep: sr0: Permission denied
+
+En RegEx caracteres adentro de '[' y ']' coresponden a un caracter dentro de la lista
+de posibilidades. Se permite rangos. entonces [123a-d4567890] es para un caracter a ver
+si el esta en la lista de numerales o las letras a, b, c o d
+Si escribimos [^123a-d4567890], estamos buscando a un caracter afuera de la lista.
+
+Puedes evaluar un caracter a ver si el es un caracter especial con:
+[:alnum:], [:alpha:], [:cntrl:], [:digit:], [:graph:],
+[:lower:], [:print:], [:punct:], [:space:], [:upper:], and  [:xdigit:].
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep [[:digit:]]
+123Mno...  ---Mira que 123 son en rojo y Mn0... en negro
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123" | grep  [[:alpha:]]
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep  [[:alpha:]]
+123Mno...   ---Mira que 123 son en negro y Mno en rojo y ... en negro
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep  [[:upper:]]
+123Mno...   ---Mira que solo el 'M' es en rojo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep  [[:punct:]]
+123Mno...   ---Mira que '...' es en rojo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep  [[:lower:]n]
+123Mno...   ---Mira que solo 'no' son rojos
+
+Para incluir '[' o ']' en la lista, pone le como el primer caracter
+Para incluir '^' en la lista pone le después de primer caracter
+
+el '^' afuera de una lista significa el primer caracter en una línea
+el '$' afuera de una lista significa el ultimo caracter en una línea
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep ^1
+123Mno...   ---Mira que el '1' es en rojo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep ^3
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep .$
+123Mno... ---Mira que solo el ultimo '.' es en rojo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "123Mno..." | grep o$
+
+El "\?" despues de un caracter coincide a cero o uno de los caracteres.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\?y" 
+  El tercer es 'g' pero lo que sigue es 'y' no 'g'
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\?gy"
+buggy  --- Aquí el tercer es 'g' y los que siguen son 'gy'
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugy" | grep "bugg\?y"
+bugy  --- El quatro no es 'g' y lo que sigue es 'y' Cero o uno
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugy" | grep "bug7\?y"
+bugy  --- El quatro no es '7' y lo que sigue es 'y' Cero o uno
+
+El "*" después de un caracter coincide a cero o más de los caracteres caracteres.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug*y"
+buggy  -- 2 'g' después del 'u' y sigue con 'y'
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugy" | grep "bug*y"
+bugy   -- 1 'g' después del 'u' y sigue con 'y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buy" | grep "bug*y"
+buy   -- 0 'g' después del 'u' y sigue con 'y
+
+El "\+" después de un caracter coincide a cero o más de los caracteres caracteres.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\+y"
+buggy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugy" | grep "bug\+y"
+bugy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buy" | grep "bug\+y"
+
+El "{n}" después de un caracter coincide a exactamente n de los caracteres
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugggy" | grep "bug\{2\}y"
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\{2\}y"
+buggy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\{1\}y"
+
+El "{n,}"  después de un caracter coincide a n o más de los caracteres
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugggy" | grep "bug\{2,\}y"
+bugggy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\{2,\}y"
+buggy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugy" | grep "bug\{2,\}y"
+
+El {,m} después de un caracter coincide a no más de m los caracteres en GNU grep
+                                          puede ser cero de los caracteres
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugggy" | grep "bug\{,2\}y"
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\{,2\}y"
+buggy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugy" | grep "bug\{,2\}y"
+bugy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buy" | grep "bug\{,2\}y"
+buy
+
+El "{n,m}" después de un caracter coincide al minimo de n los caracteres y
+                                          no más de m de los caracteres
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugggy" | grep "bug\{1,2\}y"
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug\{1,2\}y"
+buggy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugy" | grep "bug\{1,2\}y"
+bugy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buy" | grep "bug\{1,2\}y"
+
+el '.' (punto) coincide a cualquier caracter en su posición
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "buggy" | grep "bug.y"
+buggy
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bugly" | grep "bug.y"
+bugly
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bug\y" | grep "bug.y"
+bug\y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "bsg\y" | grep "b.g.y"
+bsg\y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "b8g\y" | grep "b.g.y"
+b8g\y
+
+Escapar caracteres especiales para obtener su literal
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "D.Ok." | grep "^[A-Z].*\.$"
+D.Ok.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "DOk." | grep "^[A-Z].*\.$"
+DOk.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "D.Ok" | grep "^[A-Z].*\.$"
+
+Para ver líneas vacias en archivos usa
+
+grep ^$ Nombre de archivo(s)
+
+La frase contiene la palabra La pero no ^La
+[rrc@Llawyr ~]$ echo "La frase contiene la palabra La pero no ^La" | grep ^L
+La frase contiene la palabra La pero no ^La
+^
+
+La frase contiene la palabra La pero no ^La
+[rrc@Llawyr ~]$ echo "La frase contiene la palabra La pero no ^La" | grep \^L
+
+La frase contiene la palabra La pero no ^La
+[rrc@Llawyr ~]$ echo "La frase contiene la palabra La pero no ^La" | grep \\^L
+La frase contiene la palabra La pero no ^La
+
+                                        ^^  
+[rrc@Llawyr ~]$ echo "La frase contiene la palabra La pero no ^La" | grep "\^L"
+La frase contiene la palabra La pero no ^La
+                                        ^^
+ 
+[rrc@Llawyr ~]$ echo "La frase contiene la palabra La pero no ^La" | grep '\^L'
+La frase contiene la palabra La pero no ^La
+                                        ^^
+
+[rrc@Llawyr ~]$ echo "Que padre no es Que-padre?" | grep "Que[- ]padre"
+Que padre no es Que-padre?
+^^^^^^^^^       ^^^^^^^^^
+
+Una línea con SOLO la palabra: palabra
+
+[rrc@Llawyr ~]$ echo "La frase contiene la palabra La pero no solo" | grep "^palabra$"
+
+[rrc@Llawyr ~]$ echo "palabra" | grep "^palabra$"
+palabra
+^^^^^^^
+   
+El operador '|' (or) en grep extendido ( -E ) & palabras completos (-w)
+
+en vi usamos \< y \> para decir que estamos buscando el patron en palabras completos.
+entonces en vi escribimos \<if\> para ver if pero no stiff
+en grep podemos hacer lo mismo con -w
+
+[rrc@Llawyr ~]$ echo "stiff if possible" | grep -w if
+stiff if possible
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -E -w 'root|rrc' /etc/passwd
+root:x:0:0:root:/root:/bin/bash
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+
+El "^foo$" coincide solo a líneas que tiene solo la palabra "foo"
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "foo" | grep ^foo$
+foo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "2foo" | grep ^foo$
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "foof" | grep ^foo$
+
+el -i
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo UnIx | grep -i unix
+UnIx
+
+No tiene AND pero
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "Hola Mundo, cómo esta?" | grep "Mundo" | grep "cómo"
+Hola Mundo, cómo esta?
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "Hola Tierra, cómo esta?" | grep "Mundo" | grep "cómo"
+
+[rrc@Llawyr ComandosDeLaTerminal]$ echo "044-33 337-7505" | grep "[[:digit:]]\{3\}[-][[:digit:]]\{2\}[ ][[:digit:]]\{3\}[-][[:digit:]]\{4\}"
+044-33 337-7505
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -d skip 2013 *
+cdcommand:Script started on Thu 14 Nov 2013 11:38:14 AM CST
+cdcommand:-rwxr-xr-x  1 root root  368 Jan 26  2013 rsyncMySQLBack*
+cdcommand:Script done on Thu 14 Nov 2013 11:40:44 AM CST
+ldd:# Copyright (C) 1996-2013 Free Software Foundation, Inc.
+ldd:" "2013"
+nohup.out:MPlayer SVN-3.r36361.1.mga4.tainted-4.8.2 (C) 2000-2013 MPlayer Team
+V:   0.0 24042/24042 ??% ??% ??,?% 0 0 
+ScriptFile:Script started on Thu 14 Nov 2013 04:06:50 PM CST
+ScriptFile:Script done on Thu 14 Nov 2013 04:07:59 PM CST
+grep: sr0: Permission denied
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -ld skip 2013 *
+cdcommand
+ldd
+nohup.out
+ScriptFile
+grep: sr0: Permission denied
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -Ld skip "2013" *
+Archivo1DeTres
+Archivo2DeTres
+Archivo3DeTres
+ArchivoDeComando2
+ArchivodeTres
+ArchivoMV1
+ArD
+ArDeTres
+CatArchivo
+CatArchivo2
+CatArchivo3
+CosaFile
+CPEjemplo1
+CutEjemplo
+DelMe
+DelMe3
+DirFile
+Err3
+File
+File1
+File2
+File3
+FileKill
+HOLD
+index2.html
+index.html
+index-s.html
+KillIt
+Leave
+Leave2
+LSComando
+LSList
+MacroArchivo
+MBRRespalda
+MBR=Respalda
+MiArchivo
+MiArchivo.Err
+MiComando
+NombreDeArchivo
+NuevoHostName
+OutTxt
+RedirTxt
+Res2
+Resulto
+robots.txt
+S27.sh
+SDA.BAK
+SortEjemplo
+Source
+grep: sr0: Permission denied
+TouchArchivo
+UmaskPruebaArchivo
+UmaskPruebaArchivo2
+UniqEjemplo
+UniqEjemploConLineasVacios
+UniqEjemploMayusc
+UniqEjemploMinusc
+UniqSortEjemplo
+WCEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep  "1;32m" cdcommand
+-rwxr-xr-x  1 root root  855 Jul 13 23:09 �[01;32mrsyncAlmastock*
+-rwxr-xr-x  1 rrc  rrc   639 Dec 13  2011 �[01;32mrsyncBashClase*
+-rwxr-xr-x  1 root root  611 May 16  2012 �[01;32mrsyncBooks*
+-rwxr-xr-x  1 rrc  rrc   618 Dec 13  2011 �[01;32mrsyncCClase*
+-rwxr-xr-x  1 root root  224 Dec 27  2011 �[01;32mrsyncClients*
+-rwxr-xr-x  1 root root  604 Jan  4  2012 �[01;32mrsyncCode*
+-rwxr-xr-x  1 root root  639 Aug  8 06:23 �[01;32mrsyncDocuments*
+-rwxr-xr-x  1 root root  743 Jun 10 15:55 �[01;32mrsyncGarcon*
+-rwxr-xr-x  1 root root  656 Jan  3  2012 �[01;32mrsynclccom*
+-rwxr-xr-x  1 rrc  rrc  2588 May 22 12:29 �[01;32mrsynclcorg*
+-rwxr-xr-x  1 rrc  rrc   295 Dec 13  2011 �[01;32mrsyncLinuxCabal*
+-rwxr-xr-x  1 root root 2034 Dec 13  2011 �[01;32mrsyncMdk2010.2*
+-rwxr-xr-x  1 root root 2006 Dec 13  2011 �[01;32mrsyncMdk2011*
+-rwxr-xr-x  1 root root  368 Jan 26  2013 �[01;32mrsyncMySQLBack*
+-rwxr-xr-x  1 root root  774 Jan 24  2012 �[01;32mrsyncPrestamosAbastos*
+-rwxr-xr-x  1 root root  103 Jan  4  2012 �[01;32mrsyncRRCMailFromMyrddin*
+-rwxr-xr-x  1 root root  257 Jan  4  2012 �[01;32mrsyncRRCMailTo*
+-rwxr-xr-x  1 root root  750 Sep 25  2012 �[01;32mrsyncWNSol*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -m 4 "1;32m" cdcommand
+-rwxr-xr-x  1 root root  855 Jul 13 23:09 �[01;32mrsyncAlmastock*
+-rwxr-xr-x  1 rrc  rrc   639 Dec 13  2011 �[01;32mrsyncBashClase*
+-rwxr-xr-x  1 root root  611 May 16  2012 �[01;32mrsyncBooks*
+-rwxr-xr-x  1 rrc  rrc   618 Dec 13  2011 �[01;32mrsyncCCl
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -m 4 -d skip "1;32m" *
+cdcommand:-rwxr-xr-x  1 root root  855 Jul 13 23:09 �[01;32mrsyncAlmastock*
+cdcommand:-rwxr-xr-x  1 rrc  rrc   639 Dec 13  2011 �[01;32mrsyncBashClase*
+cdcommand:-rwxr-xr-x  1 root root  611 May 16  2012 �[01;32mrsyncBooks*
+cdcommand:-rwxr-xr-x  1 rrc  rrc   618 Dec 13  2011 �[01;32mrsyncCClase*
+grep: sr0: Permission denied
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -m 4 -d skip --exclude=cdcommand "1;32m" *
+grep: sr0: Permission denied
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -c -d skip "1;32m" cdcommand
+18
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep "Fecha" S27.sh*
+Fecha=`date +"%Y%m%d"`
+while( [ -f ${1}${Fecha}-${X}.tar.xz ] )
+tar acvf  ${1}${Fecha}-${X}.tar.xz ${1}
+
+[rrc@Llawyr ComandosDeLaTerminal]$ grep -v "Fecha" S27.sh*
+X=0
+do
+  ((X++))
+done
+
+En mi servidor web quiero ver los direcciones de "usuarios@sistemas" sin repetición.
+
+[root@www httpd]# cat access_log | grep -o '[^[:space:]]*@[^:]*[[:alpha:]][^:]*'  | sort -u
+(support.voilabot@orange-ftgroup.com)"
+(test@mgmt.mic)"
++info@netcraft.com)"
+/ftp://ftp.linuxcabal.org/mailto:rrc@imat.com HTTP/1.1" 404 993 "-" "Mozilla/4.0 (compatible; Win32; WinHttp.WinHttpRequest.5)"
+@ WhiteHat Team - www.whitehat.ro"
+backend@getprismatic.com)"
+crawler@alexa.com)"
+crawler@netseer.com)"
+crawler@unister.de)"
+help@moz.com)"
+noc@stumbleupon.com) Gecko/20100101 Firefox/12.0"
+rogerbot-wherecat@moz.com)"
+test@mgmt.mic"
+webauth@cmcm.com"
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
