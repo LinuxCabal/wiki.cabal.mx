@@ -1,0 +1,313 @@
+__NOTOC__
+* [[:#find| find]]
+
+== find ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Pridd ~]$ find --help
+Usage: find [-H] [-L] [-P] [-Olevel] [-D help|tree|search|stat|rates|opt|exec] [path...] [expression]
+
+default path is the current directory; default expression is -print
+expression may consist of: operators, options, tests, and actions:
+
+operators (decreasing precedence; -and is implicit where no others are given):
+      ( EXPR )   ! EXPR   -not EXPR   EXPR1 -a EXPR2   EXPR1 -and EXPR2
+      EXPR1 -o EXPR2   EXPR1 -or EXPR2   EXPR1 , EXPR2
+
+positional options (always true): -daystart -follow -regextype
+
+normal options (always true, specified before other expressions):
+      -depth --help -maxdepth LEVELS -mindepth LEVELS -mount -noleaf
+      --version -xdev -ignore_readdir_race -noignore_readdir_race
+
+tests (N can be +N or -N or N): -amin N -anewer FILE -atime N -cmin N
+      -cnewer FILE -ctime N -empty -false -fstype TYPE -gid N -group NAME
+      -ilname PATTERN -iname PATTERN -inum N -iwholename PATTERN -iregex PATTERN
+      -links N -lname PATTERN -mmin N -mtime N -name PATTERN -newer FILE
+      -nouser -nogroup -path PATTERN -perm [-/]MODE -regex PATTERN
+      -readable -writable -executable
+      -wholename PATTERN -size N[bcwkMG] -true -type [bcdpflsD] -uid N
+      -used N -user NAME -xtype [bcdpfls]
+      -context CONTEXT
+
+
+actions: -delete -print0 -printf FORMAT -fprintf FILE FORMAT -print 
+      -fprint0 FILE -fprint FILE -ls -fls FILE -prune -quit
+      -exec COMMAND ; -exec COMMAND {} + -ok COMMAND ;
+      -execdir COMMAND ; -execdir COMMAND {} + -okdir COMMAND ;
+
+Report (and track progress on fixing) bugs via the findutils bug-reporting
+page at http://savannah.gnu.org/ or, if you have no web access, by sending
+email to <bug-findutils@gnu.org>.
+
+[rrc@Pridd ~]$ find --version
+find (GNU findutils) 4.5.12
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Eric B. Decker, James Youngman, and Kevin Dalley.
+Features enabled: D_TYPE O_NOFOLLOW(enabled) LEAF_OPTIMISATION FTS(FTS_CWDFD) CBO(level=2) 
+
+[rrc@Pridd ~]$ man find
+[rrc@Pridd ~]$ find /var/www -name index.php
+/var/www/garcon.linuxcabal.org/index.php
+/var/www/prestamosabastos.mx/index.php
+/var/www/calidadcasera.mx/index.php
+/var/www/wnsoluciones.mx/index.php
+/var/www/www.mxrep.mx/index.php
+/var/www/almastock.asambiental.mx/index.php
+/var/www/mediawiki/index.php
+/var/www/mediawiki/mw-config/index.php
+/var/www/mediawiki/config/index.php
+/var/www/defaultNuevaWWW/index.php
+/var/www/html/admin/php5coder/index.php
+/var/www/html/linuxcabal.com/index.php
+/var/www/html/linuxcabal.com/4toCongresoSoftwareLibreUNAM/index.php
+/var/www/html/linuxcabal.org/index.phprm
+/var/www/html/linuxcabal.org/ArduinoCabal/index.php
+/var/www/html/linuxcabal.org/PHPCabal/index.php
+/var/www/html/linuxcabal.org/PHPDev/htdocs/index.php
+/var/www/html/linuxcabal.org/PythonCabal/index.php
+/var/www/html/linuxcabal.org/4toCongresoSoftwareLibreUNAM/index.php
+
+[rrc@Llawyr ~]$ find . -name ComandosDeLaTerminal
+./ComandosDeLaTerminal
+
+[rrc@Llawyr ~]$ find . -iname ComandosDeLaTerminal
+./ComandosDeLaTerminal
+./ComandosDeLaTerminal/comandosDeLaterMINal
+
+[rrc@Llawyr ~]$ find /var/www/html -type d -name images
+/var/www/html/nova/carrera20041023/images
+/var/www/html/nova/images
+/var/www/html/iovatious/images
+/var/www/html/coffeenet/images
+/var/www/html/images
+/var/www/html/richard/images
+/var/www/html/MexHoliday/images
+/var/www/html/PaulTaylor/images
+/var/www/html/linuxcabal.org/Microsoft20080925Images/images
+/var/www/html/linuxcabal.org/Aniversario2006Images/images
+/var/www/html/linuxcabal.org/AsociacionCivilImages/images
+/var/www/html/linuxcabal.org/10thRTLW20081025Images/images
+/var/www/html/linuxcabal.org/RMS20050926Images/images
+ .
+ .
+ ./var/www/html/linuxcabal.com/EnSuDerecho20130703Images/images
+/var/www/html/linuxcabal.com/ITSdeTantoyuca20060620Images/images
+/var/www/html/linuxcabal.com/HospRegLaBarca20081114Images/images
+/var/www/html/linuxcabal.com/FLISoL20070428Images/images
+
+[rrc@Llawyr ~]$ find ComandosDeLaTerminal -type f -name "Cat*"
+ComandosDeLaTerminal/CatArchivo
+ComandosDeLaTerminal/CatArchivo2
+ComandosDeLaTerminal/CatArchivo3
+
+[rrc@Llawyr ~]$ find . -type f -perm 0777 -print
+./ComandosDeLaTerminal/WCEjemplo
+
+[rrc@Llawyr ~]$ find . -type f -perm 777 -print
+./ComandosDeLaTerminal/WCEjemplo
+
+[rrc@Llawyr ~]$ ls -al ComandosDeLaTerminal/WCEjemplo 
+-rwxrwxrwx 1 rrc rrc 45 Jan  2  2014 ComandosDeLaTerminal/WCEjemplo*
+
+[rrc@Llawyr ~]$ find ComandosDeLaTerminal -type d -perm 700
+ComandosDeLaTerminal
+ComandosDeLaTerminal/UmaskPruebaCarpeta
+ComandosDeLaTerminal/NuevaCarpeta2
+ComandosDeLaTerminal/NuevaCarpeta
+ComandosDeLaTerminal/Algo2013Dir
+ComandosDeLaTerminal/Carpeta1/Carpeta2
+
+[rrc@Llawyr ~]$ find ComandosDeLaTerminal -type d ! -perm 700
+ComandosDeLaTerminal/Carpeta21
+ComandosDeLaTerminal/Carpeta21/Carpeta22
+ComandosDeLaTerminal/Carpeta21/Carpeta22/Carpeta33
+ComandosDeLaTerminal/Carpeta21/Carpeta22/Carpeta23
+ComandosDeLaTerminal/NuevaCarpeta4
+ComandosDeLaTerminal/Carpeta11
+ComandosDeLaTerminal/Carpeta11/Carpeta12
+ComandosDeLaTerminal/Carpeta11/Carpeta12/Carpeta13
+ComandosDeLaTerminal/Carpeta2
+ComandosDeLaTerminal/NuevaCarpeta5
+ComandosDeLaTerminal/NuevaCarpeta3
+ComandosDeLaTerminal/UmaskPruebaCarpeta2
+ComandosDeLaTerminal/NuevaCarpeta6
+ComandosDeLaTerminal/Carpeta1
+
+[rrc@Llawyr ~]$ find /bin   -perm /u=s
+
+[rrc@Llawyr ~]$ find /usr/bin   -perm /u=s
+/usr/bin/su
+/usr/bin/crontab
+/usr/bin/batch
+/usr/bin/chsh
+/usr/bin/pkexec
+/usr/bin/gpgsm
+/usr/bin/procmail
+/usr/bin/newgrp
+/usr/bin/cdrdao
+/usr/bin/ping
+/usr/bin/ping6
+/usr/bin/gpasswd
+/usr/bin/fusermount
+/usr/bin/passwd
+/usr/bin/at
+/usr/bin/lppasswd
+/usr/bin/Xwrapper
+/usr/bin/umount
+/usr/bin/chfn
+/usr/bin/mount
+
+[rrc@Llawyr ~]$ find -L /bin  -perm /u=s
+/bin/su
+/bin/crontab
+/bin/batch
+/bin/X
+/bin/atrm
+/bin/chsh
+/bin/pkexec
+/bin/gpgsm
+/bin/procmail
+/bin/newgrp
+/bin/cdrdao
+/bin/sg
+/bin/ping
+/bin/ping6
+/bin/gpasswd
+/bin/fusermount
+/bin/passwd
+/bin/at
+/bin/lppasswd
+/bin/Xwrapper
+/bin/atq
+/bin/umount
+/bin/chfn
+/bin/mount
+
+[rrc@Llawyr ~]$ find ComandosDeLaTerminal -type f -perm 0777 -print -exec chmod 644 {} \;
+ComandosDeLaTerminal/WCEjemplo
+
+[rrc@Llawyr ~]$ ls -al ComandosDeLaTerminal/WCEjemplo 
+-rw-r--r-- 1 rrc rrc 45 Jan  2  2014 ComandosDeLaTerminal/WCEjemplo
+
+[rrc@Llawyr ~]$ find . -name "*~"
+./.vimrc~
+./Music/loadmp3.sh~
+./.config/monitors.xml~
+./Titles~
+
+[rrc@Llawyr ~]$ find . -name "*~" -exec rm {} \;
+
+[rrc@Llawyr ~]$ find . -name "*~"
+
+[rrc@Llawyr ~]$ find ComandosDeLaTerminal/ -type f -empty
+ComandosDeLaTerminal/OutTxt
+ComandosDeLaTerminal/DelMe3
+ComandosDeLaTerminal/LSList
+ComandosDeLaTerminal/File
+ComandosDeLaTerminal/Archivo3DeTres
+ComandosDeLaTerminal/TouchArchivo
+ComandosDeLaTerminal/FileKill
+ComandosDeLaTerminal/Archivo1DeTres
+ComandosDeLaTerminal/ArDeTres
+ComandosDeLaTerminal/File3
+ComandosDeLaTerminal/ArchivodeTres
+ComandosDeLaTerminal/comandosDeLaterMINal
+ComandosDeLaTerminal/UmaskPruebaArchivo2~
+ComandosDeLaTerminal/UmaskPruebaArchivo
+ComandosDeLaTerminal/Carpeta1/Carpeta2/Archivo
+ComandosDeLaTerminal/File1
+ComandosDeLaTerminal/ArD
+ComandosDeLaTerminal/DelMe
+ComandosDeLaTerminal/Archivo2DeTres
+ComandosDeLaTerminal/File2
+
+[rrc@Llawyr ~]$ find . ! -user rrc -exec ls -al {} \;
+-rw-r--r-- 1 root root 32768 Aug 20 15:57 ./.local/share/gvfs-metadata/root-c9c9d49b.log
+-rw-r--r-- 1 root root 32768 Aug 20 15:57 ./.local/share/gvfs-metadata/home-2415262f.log
+brw-rw---- 1 root cdrom 11, 0 Aug  7 08:38 ./ComandosDeLaTerminal/sr0
+-rw-r--r-- 1 root root 8376 Aug  9 07:53 ./Downloads/xdemineur-2.1.1/demineur.o
+-rw-r--r-- 1 root root 4200 Aug  9 07:53 ./Downloads/xdemineur-2.1.1/main.o
+-rw-r--r-- 1 root root 1688 Aug  9 07:53 ./Downloads/xdemineur-2.1.1/util.o
+-rw-r--r-- 1 root root 29230 Aug  9 07:52 ./Downloads/xdemineur-2.1.1/Makefile
+
+[rrc@Llawyr ~]$ find . ! -group rrc -exec ls -al {} \;
+-rw-rw-r-- 1 rrc nogroup 8390 Aug 12 16:30 ./ImadineProj/jdORIG.xlsx
+-rw-rw-r-- 1 rrc nogroup 144850 Aug 12 16:30 ./ImadineProj/jd.xlsx
+-rw-r--r-- 1 root root 32768 Aug 20 15:57 ./.local/share/gvfs-metadata/root-c9c9d49b.log
+-rw-r--r-- 1 root root 32768 Aug 20 15:57 ./.local/share/gvfs-metadata/home-2415262f.log
+brw-rw---- 1 root cdrom 11, 0 Aug  7 08:38 ./ComandosDeLaTerminal/sr0
+-rw-r--r-- 1 root root 8376 Aug  9 07:53 ./Downloads/xdemineur-2.1.1/demineur.o
+-rw-r--r-- 1 root root 4200 Aug  9 07:53 ./Downloads/xdemineur-2.1.1/main.o
+-rw-r--r-- 1 root root 1688 Aug  9 07:53 ./Downloads/xdemineur-2.1.1/util.o
+-rw-r--r-- 1 root root 29230 Aug  9 07:52 ./Downloads/xdemineur-2.1.1/Makefile
+
+[rrc@Llawyr ~]$ for i in {0..10}; do echo $i; find ComandosDeLaTerminal/ -ctime $i; done
+0
+ComandosDeLaTerminal/
+ComandosDeLaTerminal/index.html~
+ComandosDeLaTerminal/WCEjemplo
+ComandosDeLaTerminal/UmaskPruebaArchivo2
+ComandosDeLaTerminal/comandosDeLaterMINal
+ComandosDeLaTerminal/index.html
+ComandosDeLaTerminal/UmaskPruebaArchivo2~
+1
+2
+3
+4
+5
+6
+ComandosDeLaTerminal/S27.sh
+ComandosDeLaTerminal/UmaskPruebaCarpeta
+ComandosDeLaTerminal/UmaskPruebaCarpeta/MiArchivo
+7
+8
+9
+10
+
+[rrc@Llawyr ~]$ for i in {20..30}; do echo $i; find ComandosDeLaTerminal/ -cmin $i; done
+20
+21
+22
+23
+24
+25
+ComandosDeLaTerminal/
+ComandosDeLaTerminal/index.html~
+ComandosDeLaTerminal/WCEjemplo
+ComandosDeLaTerminal/index.html
+26
+ComandosDeLaTerminal/UmaskPruebaArchivo2
+ComandosDeLaTerminal/UmaskPruebaArchivo2~
+27
+28
+29
+30
+
+[rrc@Llawyr ~]$  find ComandosDeLaTerminal -cmin -120
+ComandosDeLaTerminal
+ComandosDeLaTerminal/index.html~
+ComandosDeLaTerminal/WCEjemplo
+ComandosDeLaTerminal/UmaskPruebaArchivo2
+ComandosDeLaTerminal/comandosDeLaterMINal
+ComandosDeLaTerminal/index.html
+ComandosDeLaTerminal/UmaskPruebaArchivo2~
+
+[rrc@Llawyr ~]$  find ComandosDeLaTerminal -size +1000
+ComandosDeLaTerminal/nohup.out
+[rrc@Llawyr ~]$ ls -al ComandosDeLaTerminal/nohup.out 
+-rw------- 1 rrc rrc 1013278 Apr 12 16:54 ComandosDeLaTerminal/nohup.out
+
+[rrc@Llawyr ~]$  find /var/www/wnsoluciones.mx -type d -exec chmod 2775 {} \;
+[rrc@Llawyr ~]$  find /var/www/wnsoluciones.mx -type f -exec chmod 664 {} \;
+
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
