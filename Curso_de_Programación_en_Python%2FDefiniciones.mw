@@ -1,0 +1,28 @@
+=== Module ===
+Cada archivo de código que termina su nombre con  .py es un module.
+Modules sirven como libs de herraminetas
+Un module es normalmente un paquete de variables que se llaman namespace 
+y los nombres de cada variable se llaman attributes del module o objeto.
+
+
+=== import ===
+Aceder cosas definidas por un module de otro archivo con import. Unos de los modules
+en un programa se designada como el archivo mayor o "top level" archivo o script y todo
+más del programa son modules que import otro modules. Despues de importar un module, 
+siguientes imports de este module hacen NADA.
+Un module no puede ver variables o namespace de otro modules sin import o 
+from que es otra manera de import
+Precuación: from puede re-emplcer un variable local con otro valor entonces 
+el es más seguro usar import
+
+Programas son colecciones de modules
+
+modules contienen statements (aserciones)
+
+Statements contienen expresiones
+
+las expresiones crean y procesan objetos
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
