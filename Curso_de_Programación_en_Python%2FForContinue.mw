@@ -1,0 +1,49 @@
+__NOTOC__
+* [[:#ForContinue.py | ForContinue.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== ForContinue.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+
+for Num in range( -4, 12 ):
+  if ( Num == 0 ):
+    print( "No es legal dividir por 0, Siguiente" )
+    continue
+  print( "100 /", Num, " =", ( 100 / Num ) )
+print( "Listo" )
+
+# Mira que el ultimo en el rango es excluido
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./ForContinue.py
+ 100 / -4  = -25.0
+ 100 / -3  = -33.333333333333336
+ 100 / -2  = -50.0
+ 100 / -1  = -100.0
+ No es legal dividir por 0, Siguiente
+ 100 / 1  = 100.0
+ 100 / 2  = 50.0
+ 100 / 3  = 33.333333333333336
+ 100 / 4  = 25.0
+ 100 / 5  = 20.0
+ 100 / 6  = 16.666666666666668
+ 100 / 7  = 14.285714285714286
+ 100 / 8  = 12.5
+ 100 / 9  = 11.11111111111111
+ 100 / 10  = 10.0
+ 100 / 11  = 9.090909090909092
+ Listo
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
