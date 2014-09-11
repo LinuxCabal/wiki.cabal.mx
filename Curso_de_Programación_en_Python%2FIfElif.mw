@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#IfElif.py | IfElif.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== IfElif.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3     
+
+var = 20               #Asignación
+
+if var  != 20:
+  print( "El valor de var no es 20 y la expresion es verdad" )
+elif var == 20:
+  print( "El valor de var es 20 y la expresion es verdad en el primer elif" )
+elif var != 30:
+  print( "El valor de var no es 30 y la expresion es verdad pero no vamos a verlo" )
+else:   # El ultimo else no es obligatiorio
+  print( "El valor de var no es 20 y la expresion es falso" )
+print( "Listo" )
+
+# En Python 3.x print se cambio a una función y los parentesis son obligatorios
+# No se permite un comentario después de la fin de Línea 1
+# Cada print() se termina automaticamente con línea nueva
+# Mira los dos puntos despues de else
+# Si cambias la indentación, se cebra
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./IfElif.py 
+ El valor de var es 20 y la expresion es verdad en el elif
+ Listo
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
