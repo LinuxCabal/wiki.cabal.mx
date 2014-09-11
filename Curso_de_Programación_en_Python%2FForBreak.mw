@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#ForBreak.py | ForBreak.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== ForBreak.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+
+for Num in range( -4, 12 ):     # Primer Ejemplo
+  if ( Num == 0 ):
+    print( "No es legal dividir por 0, Terminamos" )
+    break
+  print( "100 /", Num, " =", ( 100 / Num ) )
+
+print( "Listo" )
+
+# Mira que el ultimo en el rango es excluido
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./ForBreak.py 
+ 100 / -4  = -25.0
+ 100 / -3  = -33.333333333333336
+ 100 / -2  = -50.0
+ 100 / -1  = -100.0
+ No es legal dividir por 0, Terminamos
+ Listo
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
