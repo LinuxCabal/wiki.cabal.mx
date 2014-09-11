@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#For2.py | For2.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== For2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+
+frutas = ['Platano', 'Manzana',  'Mango']
+
+for index in range( len( frutas ) ):
+  print( 'Fruta actual:', frutas[index] )
+
+print( "Listo" )
+
+# Mira que el ultimo en el rango es excluido
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./For2.py 
+ Fruta actual: Platano
+ Fruta actual: Manzana
+ Fruta actual: Mango
+ Listo
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
