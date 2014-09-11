@@ -1,0 +1,33 @@
+__NOTOC__
+* [[:#For1.py | For1.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== For1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+
+for letra in 'Python':     # Primer Ejemplo
+  print( 'Letra actual:', letra )
+print( "Listo" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./For1.py 
+ Letra actual: P
+ Letra actual: y
+ Letra actual: t
+ Letra actual: h
+ Letra actual: o
+ Letra actual: n
+ Listo
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
