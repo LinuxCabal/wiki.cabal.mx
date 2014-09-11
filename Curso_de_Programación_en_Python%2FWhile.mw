@@ -1,0 +1,45 @@
+__NOTOC__
+* [[:#While.py | While.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== While.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+
+Num = 0
+
+while (Num < 11):
+  print( 'Num es:', Num )
+  Num += 1
+
+print( "Listo!" )
+
+# Mira como print agrega un espacio despues de los dos puntos
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./While.py 
+ Num es: 0
+ Num es: 1
+ Num es: 2
+ Num es: 3
+ Num es: 4
+ Num es: 5
+ Num es: 6
+ Num es: 7
+ Num es: 8
+ Num es: 9
+ Num es: 10
+ Listo!
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
