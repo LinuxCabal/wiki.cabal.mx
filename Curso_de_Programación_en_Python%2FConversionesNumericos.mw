@@ -1,0 +1,13 @@
+<h2>Funciones de Conversiones Númericos:</h2>
+<table>
+<tr><th style="width:25%;">Function</th><th>Returns ( description )</th></tr>
+<tr><td>int(x)</td><td>convert x to a plain integer</td></tr>
+<tr><td>long(x)</td><td>convert x to a long integer en Python 2.x, NO en 3.x</td></tr>
+<tr><td>float(x)</td><td>convert x to a floating-point number</td></tr>
+<tr><td>complex(x)</td><td>convert x to a complex number with real part x and imaginary part zero</td></tr>
+<tr><td>complex(x, y)</td><td>convert x and y to a complex number with real part x and imaginary part y. x and y are numeric expressions</td></tr>
+</table>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
