@@ -1,0 +1,60 @@
+== Escape Sequencias ==
+
+<table>
+
+<tr><td>\n</td>
+<td>Línea nueva en UNIX</td>
+</tr>
+
+<tr><td>\\</td>
+<td>Diagonal invertida (\)</td>
+</tr>
+
+<tr><td>\'</td>
+<td>Comilla simple (')</td>
+</tr>
+
+<tr><td>\&quot;</td>
+<td>Comilla doble (&quot;)</td>
+</tr>
+
+<tr><td>\a</td>
+<td>ASCII Timbre (BEL)</td>
+</tr>
+
+<tr><td>\b</td>
+<td>ASCII Retroceso (BS)</td>
+</tr>
+
+<tr><td>\f</td>
+<td>ASCII Formfeed (FF)</td>
+</tr>
+
+<tr><td>\n</td>
+<td>ASCII Linefeed (LF)</td>
+</tr>
+
+<tr><td>\r</td>
+<td>ASCII Carriage Return (CR)</td>
+</tr>
+
+<tr><td>\t</td>
+<td>ASCII Horizontal Tab (TAB)</td>
+</tr>
+
+<tr><td>\v</td>
+<td>ASCII Vertical Tab (VT)</td>
+</tr>
+
+<tr><td>\ooo</td>
+<td>Caracter con valor octal<em>ooo</em></td>
+</tr>
+
+<tr><td>\xhh</td>
+<td>Caracter con valor hexidecimal<em>hh</em></td>
+</tr>
+</table>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
