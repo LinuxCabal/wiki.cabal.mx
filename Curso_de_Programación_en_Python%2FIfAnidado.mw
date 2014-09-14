@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#IfAnidada.py | IfAnidada.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== IfAnidada.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3     
+
+var = 100
+
+if var < 200:
+  print( "var es menor que 200" )
+  if var == 150:
+    print( "var vale 150" )
+  elif var == 100:
+    print( "var vale 100" )
+  elif var == 50:
+    print( "var vale 50" )
+elif var < 50:
+  print( "var es menor que 50" )
+else:
+  print( "No puedo determinar cual es el valor de var" )
+
+print( "Listo" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./IfAnidada.py 
+ var es menor que 200
+ var vale 100
+ Listo
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
