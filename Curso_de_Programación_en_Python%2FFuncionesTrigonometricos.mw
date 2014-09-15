@@ -1,0 +1,20 @@
+<h2>Funciones Trigonometricos:</h2>
+<table>
+<tr>
+<th style="width:25%;">Function</th><th>Description</th></tr>
+<tr><td>acos(x)</td><td>Regresa el arc cosine de x, in radians.</td></tr>
+<tr><td>asin(x)</td><td>Regresa el arc sine de x, in radians.</td></tr>
+<tr><td>atan(x)</td><td>Refresa el arc tangent de x, in radians.</td></tr>
+<tr><td>atan2(y, x)</td><td>Regresa el arc tangent de (y/x) en radians</td></tr>
+<tr><td>cos(x)</td><td>Regresa el cosine de x en radians</td></tr>
+<tr><td>hypot(x, y)</td><td>Regresa el Euclidean norm, sqrt(x*x + y*y)</td></tr>
+<tr><td>sin(x)</td><td>Regresa el sine de x radians</td></tr>
+<tr><td>tan(x)</td><td>Regresa el tangent de x en radians</td></tr>
+<tr><td>degrees(x)</td><td>Convertir un anglulo x de radians a grados</td></tr>
+<tr><td>radians(x)</td><td>Convertir un angulo  x de grados a radians.</td></tr>
+</table>
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
