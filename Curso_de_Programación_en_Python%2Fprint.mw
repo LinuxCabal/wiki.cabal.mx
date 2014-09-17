@@ -1,0 +1,52 @@
+print('this','is', 'a', 'test')
+
+print('this','is', 'a', 'test', sep="")
+
+print('this','is', 'a', 'test', sep="--*--")
+
+print( "Helo" )
+
+print( "World")
+
+print( "Helo", end=" " )
+
+print( "World")
+
+name = "RRC"
+score = 98
+
+print("Total score for %s is %s  " % (name, score))
+
+print("Total score for", name, "is", score)
+
+print("Total score for ", name, " is ", score, sep='')
+
+print( "Total score for " + name + " is " + str(score) )
+
+print('The story of {0}, {1}, and {other}.' .format('Bill', 'Manfred',
+                                                          other='Georg'))
+
+import math 
+print('The value of PI is approximately {}.'.format(math.pi))
+
+print('The value of PI is approximately {0:.3f}.'.format(math.pi))
+
+table = {'Julio': 4127, 'Mario': 4098, 'José': 7678}
+
+for name, phone in table.items():
+  # Passing an integer after the ':' will cause that field to be
+  # a minimum number of characters wide.
+  # This is useful for making tables pretty.
+  print('{0:10} ==> {1:10d}'.format(name, phone))
+
+# Reference the variables to be formatted by name instead of by position.
+# This can be done by simply passing the dict and
+# using square brackets '[]' to access the keys
+print('Mario: {0[Mario]:d}; Julio: {0[Julio]:d}; '
+                     'José: {0[José]:d}'.format(table))
+
+# This could also be done by passing the table as keyword arguments
+# with the ‘**’ notation
+print('Mario: {Mario:d}; Julio: {Julio:d}; José: {José:d}'.format(**table))
+
+print('The value of PI is approximately %5.3f.' % math.pi)
