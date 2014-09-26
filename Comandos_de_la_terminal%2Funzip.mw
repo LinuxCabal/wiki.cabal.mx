@@ -1,0 +1,186 @@
+__NOTOC__
+* [[:#unzip| unzip]]
+
+== unzip ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ unzip --help
+UnZip 6.00 of 20 April 2009, by Info-ZIP.  Maintained by C. Spieler.  Send
+bug reports using http://www.info-zip.org/zip-bug.html; see README for details.
+
+Usage: unzip [-Z] [-opts[modifiers]] file[.zip] [list] [-x xlist] [-d exdir]
+  Default action is to extract files in list, except those in xlist, to exdir;
+  file[.zip] may be a wildcard.  -Z => ZipInfo mode ("unzip -Z" for usage).
+
+  -p  extract files to pipe, no messages     -l  list files (short format)
+  -f  freshen existing files, create none    -t  test compressed archive data
+  -u  update files, create if necessary      -z  display archive comment only
+  -v  list verbosely/show version info       -T  timestamp archive to latest
+  -x  exclude files that follow (in xlist)   -d  extract files into exdir
+modifiers:
+  -n  never overwrite existing files         -q  quiet mode (-qq => quieter)
+  -o  overwrite files WITHOUT prompting      -a  auto-convert any text files
+  -j  junk paths (do not make directories)   -aa treat ALL files as text
+  -C  match filenames case-insensitively     -L  make (some) names lowercase
+  -X  restore UID/GID info                   -V  retain VMS version numbers
+  -K  keep setuid/setgid/tacky permissions   -M  pipe through "more" pager
+See "unzip -hh" or unzip.txt for more help.  Examples:
+  unzip data1 -x joe   => extract all files except joe from zipfile data1.zip
+  unzip -p foo | more  => send contents of foo.zip via pipe into program more
+  unzip -fo foo ReadMe => quietly replace existing ReadMe if archive file newer
+
+[rrc@Llawyr ~]$ unzip -v
+UnZip 6.00 of 20 April 2009, by Info-ZIP.  Maintained by C. Spieler.  Send
+bug reports using http://www.info-zip.org/zip-bug.html; see README for details.
+
+Latest sources and executables are at ftp://ftp.info-zip.org/pub/infozip/ ;
+see ftp://ftp.info-zip.org/pub/infozip/UnZip.html for other sites.
+
+Compiled with gcc 4.8.2 for Unix (Linux ELF) on Oct 18 2013.
+
+UnZip special compilation options:
+        COPYRIGHT_CLEAN (PKZIP 0.9x unreducing method not supported)
+        SET_DIR_ATTRIB
+        SYMLINKS (symbolic links supported, if RTL and file system permit)
+        TIMESTAMP
+        UNIXBACKUP
+        USE_EF_UT_TIME
+        USE_UNSHRINK (PKZIP/Zip 1.x unshrinking method supported)
+        USE_DEFLATE64 (PKZIP 4.x Deflate64(tm) supported)
+        VMS_TEXT_CONV
+        [decryption, version 2.11 of 05 Jan 2007]
+
+UnZip and ZipInfo environment options:
+           UNZIP:  [none]
+        UNZIPOPT:  [none]
+         ZIPINFO:  [none]
+      ZIPINFOOPT:  [none]
+
+[rrc@Llawyr ~]$ rpm -qf $( which unzip )
+bash: /usr/bin/rpm: Permission denied
+[rrc@Llawyr ~]$ su -c "rpm -qf $( which unzip )"
+Password: 
+unzip-6.0-7.mga4
+[rrc@Llawyr ~]$ 
+
+[rrc@Llawyr ~]$ unzip -l ComandosDeLaTerminal.zip 
+Archive:  ComandosDeLaTerminal.zip
+  Length      Date    Time    Name
+---------  ---------- -----   ----
+        0  09-20-2014 16:30   ComandosDeLaTerminal/
+        0  03-27-2014 13:45   ComandosDeLaTerminal/Carpeta21/
+        0  03-27-2014 13:48   ComandosDeLaTerminal/Carpeta21/Carpeta22/
+ .
+ .
+ .
+       46  11-16-2013 13:04   ComandosDeLaTerminal/MiArchivo.Err
+       87  12-31-2013 12:25   ComandosDeLaTerminal/CutEjemplo
+        0  07-28-2014 12:42   ComandosDeLaTerminal/File2
+---------                     -------
+  1057374                     85 files
+
+[rrc@Llawyr ~]$ unzip -v ComandosDeLaTerminal.zip 
+Archive:  ComandosDeLaTerminal.zip
+ Length   Method    Size  Cmpr    Date    Time   CRC-32   Name
+--------  ------  ------- ---- ---------- ----- --------  ----
+       0  Stored        0   0% 09-20-2014 16:30 00000000  ComandosDeLaTerminal/
+       0  Stored        0   0% 03-27-2014 13:45 00000000  ComandosDeLaTerminal/Carpeta21/
+       0  Stored        0   0% 03-27-2014 13:48 00000000  ComandosDeLaTerminal/Carpeta21/Carpeta22/
+ .
+ .
+ .
+      46  Stored       46   0% 11-16-2013 13:04 f7fb4007  ComandosDeLaTerminal/MiArchivo.Err
+      87  Defl:X       79   9% 12-31-2013 12:25 4f401049  ComandosDeLaTerminal/CutEjemplo
+       0  Stored        0   0% 07-28-2014 12:42 00000000  ComandosDeLaTerminal/File2
+--------          -------  ---                            -------
+ 1057374           132367  88%                            85 files
+
+[rrc@Llawyr ~]$ unzip -t ComandosDeLaTerminal.zip 
+Archive:  ComandosDeLaTerminal.zip
+    testing: ComandosDeLaTerminal/    OK
+    testing: ComandosDeLaTerminal/Carpeta21/   OK
+    testing: ComandosDeLaTerminal/Carpeta21/Carpeta22/   OK
+    testing: ComandosDeLaTerminal/Carpeta21/Carpeta22/Carpeta33/   OK
+ .
+ .
+ .
+    testing: ComandosDeLaTerminal/MiArchivo.Err   OK
+    testing: ComandosDeLaTerminal/CutEjemplo   OK
+    testing: ComandosDeLaTerminal/File2   OK
+No errors detected in compressed data of ComandosDeLaTerminal.zip.
+
+[rrc@Llawyr ~]$ unzip -d TestDir  ComandosDeLaTerminal.zip 
+Archive:  ComandosDeLaTerminal.zip
+   creating: TestDir/ComandosDeLaTerminal/
+   creating: TestDir/ComandosDeLaTerminal/Carpeta21/
+   creating: TestDir/ComandosDeLaTerminal/Carpeta21/Carpeta22/
+ .
+ .
+ .
+ extracting: TestDir/ComandosDeLaTerminal/Archivo2DeTres  
+ extracting: TestDir/ComandosDeLaTerminal/Agregado2  
+ extracting: TestDir/ComandosDeLaTerminal/MiArchivo.Err  
+  inflating: TestDir/ComandosDeLaTerminal/CutEjemplo  
+ extracting: TestDir/ComandosDeLaTerminal/File2  
+finishing deferred symbolic links:
+  TestDir/ComandosDeLaTerminal/linuxcabal.org -> /var/www/html/linuxcabal.org
+lchmod (file attributes) error: Function not implemented
+  TestDir/ComandosDeLaTerminal/index-s.html -> index.html
+lchmod (file attributes) error: Function not implemented
+  TestDir/ComandosDeLaTerminal/ChownPrueba -> Carpeta1
+lchmod (file attributes) error: Function not implemented
+
+
+[rrc@Llawyr ~]$ unzip -nd TestDir  ComandosDeLaTerminal.zip 
+Archive:  ComandosDeLaTerminal.zip
+TestDir/ComandosDeLaTerminal/linuxcabal.org exists and is a symbolic link.
+TestDir/ComandosDeLaTerminal/index-s.html exists and is a symbolic link.
+TestDir/ComandosDeLaTerminal/ChownPrueba exists and is a symbolic link.
+
+[rrc@Llawyr ~]$ unzip -d TestDir  ComandosDeLaTerminal.zip 
+Archive:  ComandosDeLaTerminal.zip
+replace TestDir/ComandosDeLaTerminal/RedirTxt? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace TestDir/ComandosDeLaTerminal/Agregado1? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace TestDir/ComandosDeLaTerminal/S27.sh? [y]es, [n]o, [A]ll, [N]one, [r]ename: n
+replace TestDir/ComandosDeLaTerminal/OutTxt? [y]es, [n]o, [A]ll, [N]one, [r]ename: A
+ extracting: TestDir/ComandosDeLaTerminal/OutTxt  
+  inflating: TestDir/ComandosDeLaTerminal/MBRRespalda  
+ extracting: TestDir/ComandosDeLaTerminal/Agregado3  
+ .
+ .
+ .
+ extracting: TestDir/ComandosDeLaTerminal/MiArchivo.Err  
+  inflating: TestDir/ComandosDeLaTerminal/CutEjemplo  
+ extracting: TestDir/ComandosDeLaTerminal/File2  
+finishing deferred symbolic links:
+  TestDir/ComandosDeLaTerminal/linuxcabal.org -> /var/www/html/linuxcabal.org
+lchmod (file attributes) error: Function not implemented
+  TestDir/ComandosDeLaTerminal/index-s.html -> index.html
+lchmod (file attributes) error: Function not implemented
+  TestDir/ComandosDeLaTerminal/ChownPrueba -> Carpeta1
+lchmod (file attributes) error: Function not implemented
+
+[rrc@Llawyr ~]$ unzip -od TestDir  ComandosDeLaTerminal.zip 
+Archive:  ComandosDeLaTerminal.zip
+  inflating: TestDir/ComandosDeLaTerminal/RedirTxt  
+ extracting: TestDir/ComandosDeLaTerminal/Agregado1  
+  inflating: TestDir/ComandosDeLaTerminal/S27.sh  
+ .
+ .
+ .
+ extracting: TestDir/ComandosDeLaTerminal/MiArchivo.Err  
+  inflating: TestDir/ComandosDeLaTerminal/CutEjemplo  
+ extracting: TestDir/ComandosDeLaTerminal/File2  
+finishing deferred symbolic links:
+  TestDir/ComandosDeLaTerminal/linuxcabal.org -> /var/www/html/linuxcabal.org
+lchmod (file attributes) error: Function not implemented
+  TestDir/ComandosDeLaTerminal/index-s.html -> index.html
+lchmod (file attributes) error: Function not implemented
+  TestDir/ComandosDeLaTerminal/ChownPrueba -> Carpeta1
+lchmod (file attributes) error: Function not implemented
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
