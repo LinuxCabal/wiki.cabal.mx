@@ -1,0 +1,126 @@
+__NOTOC__
+* [[:#gzip| gzip]]
+
+== gzip ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ gzip --help
+Usage: gzip [OPTION]... [FILE]...
+Compress or uncompress FILEs (by default, compress FILES in-place).
+
+Mandatory arguments to long options are mandatory for short options too.
+
+  -c, --stdout      write on standard output, keep original files unchanged
+  -d, --decompress  decompress
+  -f, --force       force overwrite of output file and compress links
+  -h, --help        give this help
+  -k, --keep        keep (don't delete) input files
+  -l, --list        list compressed file contents
+  -L, --license     display software license
+  -n, --no-name     do not save or restore the original name and time stamp
+  -N, --name        save or restore the original name and time stamp
+  -q, --quiet       suppress all warnings
+  -r, --recursive   operate recursively on directories
+  -S, --suffix=SUF  use suffix SUF on compressed files
+  -t, --test        test compressed file integrity
+  -v, --verbose     verbose mode
+  -V, --version     display version number
+  -1, --fast        compress faster
+  -9, --best        compress better
+    --rsyncable   Make rsync-friendly archive
+
+With no FILE, or when FILE is -, read standard input.
+
+Report bugs to <bug-gzip@gnu.org>.
+
+[rrc@Llawyr ~]$ gzip --version
+gzip 1.6
+Copyright (C) 2007, 2010, 2011 Free Software Foundation, Inc.
+Copyright (C) 1993 Jean-loup Gailly.
+This is free software.  You may redistribute copies of it under the terms of
+the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Jean-loup Gailly.
+
+[rrc@Llawyr ~]$ su -c "rpm -qf $( which gzip )"
+Password: 
+gzip-1.6-3.1.mga4
+
+[rrc@Llawyr ~]$ tar cf ComandosDeLaTerminal.tar ComandosDeLaTerminal
+
+[rrc@Llawyr ~]$ ls -aldh ComandosDeLaTerminal*
+drwx------ 9 rrc rrc 4.0K Sep 20 16:30 ComandosDeLaTerminal/
+-rw------- 1 rrc rrc 1.1M Sep 26 17:25 ComandosDeLaTerminal.tar
+
+[rrc@Llawyr ~]$ gzip ComandosDeLaTerminal
+gzip: ComandosDeLaTerminal is a directory -- ignored
+
+[rrc@Llawyr ~]$ gzip ComandosDeLaTerminal.tar 
+
+[rrc@Llawyr ~]$ ls -aldh ComandosDeLaTerminal*
+drwx------ 9 rrc rrc 4.0K Sep 20 16:30 ComandosDeLaTerminal/
+-rw------- 1 rrc rrc 135K Sep 26 17:25 ComandosDeLaTerminal.tar.gz
+
+[rrc@Llawyr ~]$ tar zcf ComandosDeLaTerminal.tgz ComandosDeLaTerminal
+
+[rrc@Llawyr ~]$ ls -aldh ComandosDeLaTerminal*
+drwx------ 9 rrc rrc 4.0K Sep 20 16:30 ComandosDeLaTerminal/
+-rw------- 1 rrc rrc 135K Sep 26 17:25 ComandosDeLaTerminal.tar.gz
+-rw------- 1 rrc rrc 135K Sep 26 17:29 ComandosDeLaTerminal.tgz
+
+
+[rrc@Llawyr ~]$ tar cf ComandosDeLaTerminal.tar ComandosDeLaTerminal
+
+[rrc@Llawyr ~]$ gzip -k ComandosDeLaTerminal.tar 
+gzip: ComandosDeLaTerminal.tar.gz already exists; do you wish to overwrite (y or n)? n
+	not overwritten
+
+[rrc@Llawyr ~]$ gzip -k ComandosDeLaTerminal.tar ComandosDeLaTerminal-2.tar.gz
+gzip: ComandosDeLaTerminal.tar.gz already exists; do you wish to overwrite (y or n)? n
+	not overwritten
+gzip: ComandosDeLaTerminal-2.tar.gz: No such file or directory
+
+[rrc@Llawyr ~]$ gzip -k ComandosDeLaTerminal.tar
+gzip: ComandosDeLaTerminal.tar.gz already exists; do you wish to overwrite (y or n)? y
+
+[rrc@Llawyr ~]$ ls -aldh ComandosDeLaTerminal*
+drwx------ 9 rrc rrc 4.0K Sep 20 16:30 ComandosDeLaTerminal/
+-rw------- 1 rrc rrc 1.1M Sep 26 17:34 ComandosDeLaTerminal.tar
+-rw------- 1 rrc rrc 135K Sep 26 17:34 ComandosDeLaTerminal.tar.gz
+-rw------- 1 rrc rrc 135K Sep 26 17:29 ComandosDeLaTerminal.tgz
+
+[rrc@Llawyr ~]$ gzip -k9 ComandosDeLaTerminal.tar
+gzip: ComandosDeLaTerminal.tar.gz already exists; do you wish to overwrite (y or n)? y
+[rrc@Llawyr ~]$ ls -aldh ComandosDeLaTerminal*
+drwx------ 9 rrc rrc 4.0K Sep 20 16:30 ComandosDeLaTerminal/
+-rw------- 1 rrc rrc 1.1M Sep 26 17:34 ComandosDeLaTerminal.tar
+-rw------- 1 rrc rrc 130K Sep 26 17:34 ComandosDeLaTerminal.tar.gz
+-rw------- 1 rrc rrc 135K Sep 26 17:29 ComandosDeLaTerminal.tgz
+
+[rrc@Llawyr BashClase]$ gzip -rk9 BashClase
+[rrc@Llawyr ~]$ ls -al BashClase
+total 304
+drwxr-x---  2 rrc rrc 4096 Sep 26 17:42 ./
+drwxr-x--x 49 rrc rrc 4096 Sep 26 17:37 ../
+-rw-r-----  1 rrc rrc    0 May 10 11:22 1.bak
+-rw-r-----  1 rrc rrc   26 May 10 11:22 1.bak.gz
+-rw-r-----  1 rrc rrc    0 May 10 11:32 1.Ztv
+-rw-r-----  1 rrc rrc   26 May 10 11:32 1.Ztv.gz
+-rw-r-----  1 rrc rrc    0 May 10 11:22 2.bak
+-rw-r-----  1 rrc rrc   26 May 10 11:22 2.bak.gz
+-rw-r-----  1 rrc rrc    0 May 10 11:32 2.Ztv
+-rw-r-----  1 rrc rrc   26 May 10 11:32 2.Ztv.gz
+ .
+ .
+ .
+-rw-r-----  1 rrc rrc  467 Jan 26  2013 S9.sh
+-rw-r-----  1 rrc rrc  224 Jan 26  2013 S9.sh.gz
+-rw-r-----  1 rrc rrc   34 Nov 17  2011 Saludos
+-rw-r-----  1 rrc rrc   62 Nov 17  2011 Saludos.gz
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
