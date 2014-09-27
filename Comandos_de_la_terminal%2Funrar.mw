@@ -1,0 +1,228 @@
+__NOTOC__
+* [[:#unrar| unrar]]
+
+== unrar ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ unrar --help
+
+UNRAR 4.20 freeware      Copyright (c) 1993-2012 Alexander Roshal
+
+Usage:     unrar <command> -<switch 1> -<switch N> <archive> <files...>
+               <@listfiles...> <path_to_extract\>
+
+<Commands>
+  e             Extract files to current directory
+  l[t,b]        List archive [technical, bare]
+  p             Print file to stdout
+  t             Test archive files
+  v[t,b]        Verbosely list archive [technical,bare]
+  x             Extract files with full path
+
+<Switches>
+  -             Stop switches scanning
+  @[+]          Disable [enable] file lists
+  ad            Append archive name to destination path
+  ag[format]    Generate archive name using the current date
+  ai            Ignore file attributes
+  ap<path>      Set path inside archive
+  c-            Disable comments show
+  cfg-          Disable read configuration
+  cl            Convert names to lower case
+  cu            Convert names to upper case
+  dh            Open shared files
+  ep            Exclude paths from names
+  ep3           Expand paths to full including the drive letter
+  f             Freshen files
+  id[c,d,p,q]   Disable messages
+  ierr          Send all messages to stderr
+  inul          Disable all messages
+  kb            Keep broken extracted files
+  n<file>       Include only specified file
+  n@            Read file names to include from stdin
+  n@<list>      Include files listed in specified list file
+  o[+|-]        Set the overwrite mode
+  or            Rename files automatically
+  ow            Save or restore file owner and group
+  p[password]   Set password
+  p-            Do not query password
+  r             Recurse subdirectories
+  sl<size>      Process files with size less than specified
+  sm<size>      Process files with size more than specified
+  ta<date>      Process files modified after <date> in YYYYMMDDHHMMSS format
+  tb<date>      Process files modified before <date> in YYYYMMDDHHMMSS format
+  tn<time>      Process files newer than <time>
+  to<time>      Process files older than <time>
+  ts<m,c,a>[N]  Save or restore file time (modification, creation, access)
+  u             Update files
+  v             List all volumes
+  ver[n]        File version control
+  vp            Pause before each volume
+  x<file>       Exclude specified file
+  x@            Read file names to exclude from stdin
+  x@<list>      Exclude files listed in specified list file
+  y             Assume Yes on all queries
+
+[rrc@Llawyr ~]$ su -c "rpm -qf $( which unrar )"
+Password: 
+unrar-4.20-3.mga4.nonfree
+
+
+
+[rrc@Llawyr ~]$ unrar l BC.rar 
+
+UNRAR 4.20 freeware      Copyright (c) 1993-2012 Alexander Roshal
+
+Archive BC.rar
+
+ Name             Size   Packed Ratio  Date   Time     Attr      CRC   Meth Ver
+-------------------------------------------------------------------------------
+ S6.sh             198      133  67% 17-11-11 08:47 -rw-r----- 6F990707 m3b 2.9
+ 5.Ztv               0        8   0% 10-05-14 11:32 -rw-r----- 00000000 m3b 2.9
+ S27.sh            127      110  86% 23-02-13 15:12 -rw-r----- A68D8DD9 m3b 2.9
+ S14.sh            394      231  58% 17-11-11 08:47 -rw-r----- DA4DBEA3 m3b 2.9
+ .
+ .
+ .
+ S25.sh            229      184  80% 10-05-14 12:37 -rw-r----- BDD3E21B m3b 2.9
+ 2.Ztv               0        8   0% 10-05-14 11:32 -rw-r----- 00000000 m3b 2.9
+ S19.sh            311      219  70% 17-11-11 08:47 -rw-r----- 54DDF20A m3b 2.9
+ 1.bak               0        8   0% 10-05-14 11:22 -rw-r----- 00000000 m3b 2.9
+ S22.sh            406      224  55% 10-05-14 11:36 -rw-r----- 6E7B0BD8 m3b 2.9
+ BashClase           0        0   0% 26-09-14 18:53 drwxr-x--- 00000000 m0  2.0
+-------------------------------------------------------------------------------
+   45            10727     6146  57%
+
+
+Testing archive BC.rar
+
+Testing     BashClase/S6.sh                                           OK 
+Testing     BashClase/5.Ztv                                           OK 
+ .
+ .
+ .
+Testing     BashClase/S8.sh                                           OK 
+Testing     BashClase/1.Ztv                                           OK 
+Testing     BashClase/3.Ztv                                           OK 
+Testing     BashClase/3.bak                                           OK 
+Testing     BashClase/S25.sh                                          OK 
+Testing     BashClase/2.Ztv                                           OK 
+Testing     BashClase/S19.sh                                          OK 
+Testing     BashClase/1.bak                                           OK 
+Testing     BashClase/S22.sh                                          OK 
+Testing     BashClase                                                 OK
+All OK
+
+[rrc@Llawyr ~]$ unrar v BC.rar 
+
+UNRAR 4.20 freeware      Copyright (c) 1993-2012 Alexander Roshal
+
+Archive BC.rar
+
+Pathname/Comment
+                  Size   Packed Ratio  Date   Time     Attr      CRC   Meth Ver
+-------------------------------------------------------------------------------
+ BashClase/S6.sh
+                   198      133  67% 17-11-11 08:47 -rw-r----- 6F990707 m3b 2.9
+ BashClase/5.Ztv
+                     0        8   0% 10-05-14 11:32 -rw-r----- 00000000 m3b 2.9
+ BashClase/S27.sh
+ .
+ .
+ .
+ BashClase/1.bak
+                     0        8   0% 10-05-14 11:22 -rw-r----- 00000000 m3b 2.9
+ BashClase/S22.sh
+                   406      224  55% 10-05-14 11:36 -rw-r----- 6E7B0BD8 m3b 2.9
+ BashClase
+                     0        0   0% 26-09-14 18:53 drwxr-x--- 00000000 m0  2.0
+-------------------------------------------------------------------------------
+   45            10727     6146  57%
+
+
+[rrc@Llawyr ~]$ mkdir DelMe
+[rrc@Llawyr ~]$ cd DelMe
+
+[rrc@Llawyr DelMe]$ unrar e ../BC.rar 
+
+UNRAR 4.20 freeware      Copyright (c) 1993-2012 Alexander Roshal
+
+
+Extracting from ../BC.rar
+
+Extracting  S6.sh                                                     OK 
+Extracting  5.Ztv                                                     OK 
+Extracting  S27.sh                                                    OK 
+ .
+ .
+ .
+Extracting  3.Ztv                                                     OK 
+Extracting  3.bak                                                     OK 
+Extracting  S25.sh                                                    OK 
+Extracting  2.Ztv                                                     OK 
+Extracting  S19.sh                                                    OK 
+Extracting  1.bak                                                     OK 
+Extracting  S22.sh                                                    OK 
+All OK
+
+[rrc@Llawyr DelMe]$ ls -al
+total 128
+drwx------  2 rrc rrc 4096 Sep 26 19:26 ./
+drwxr-x--x 50 rrc rrc 4096 Sep 26 19:26 ../
+-rw-r-----  1 rrc rrc    0 May 10 11:22 1.bak
+-rw-r-----  1 rrc rrc    0 May 10 11:32 1.Ztv
+-rw-r-----  1 rrc rrc    0 May 10 11:22 2.bak
+-rw-r-----  1 rrc rrc    0 May 10 11:32 2.Ztv
+ .
+ .
+ .
+-rw-r-----  1 rrc rrc  198 Nov 17  2011 S6.sh
+-rw-r-----  1 rrc rrc  307 May  3 10:57 S7.sh
+-rw-r-----  1 rrc rrc  393 May  3 11:17 S8.sh
+-rw-r-----  1 rrc rrc  467 Jan 26  2013 S9.sh
+-rw-r-----  1 rrc rrc   34 Nov 17  2011 Saludos
+
+[rrc@Llawyr DelMe]$ unrar x ../BC.rar 
+
+UNRAR 4.20 freeware      Copyright (c) 1993-2012 Alexander Roshal
+
+
+Extracting from ../BC.rar
+
+Creating    BashClase                                                 OK
+Extracting  BashClase/S6.sh                                           OK 
+Extracting  BashClase/5.Ztv                                           OK 
+ .
+ .
+ .
+Extracting  BashClase/2.Ztv                                           OK 
+Extracting  BashClase/S19.sh                                          OK 
+Extracting  BashClase/1.bak                                           OK 
+Extracting  BashClase/S22.sh                                          OK 
+All OK
+
+[rrc@Llawyr DelMe]$ ls -altr
+total 132
+-rw-r-----  1 rrc rrc   34 Nov 17  2011 Saludos
+-rw-r-----  1 rrc rrc  198 Nov 17  2011 S6.sh
+ .
+ .
+ .
+-rw-r-----  1 rrc rrc  229 May 10 12:37 S25.sh
+drwxr-x---  2 rrc rrc 4096 Sep 26 18:53 BashClase/
+drwxr-x--x 50 rrc rrc 4096 Sep 26 19:26 ../
+drwx------  3 rrc rrc 4096 Sep 26 19:27 ./
+[rrc@Llawyr DelMe]$ 
+
+
+[rrc@Llawyr DelMe]$ ls BashClase/
+1.bak  4.bak  ArchivoDePrueba  S12Eval.sh  S17.sh  S23.sh  S3.sh  S9.sh
+1.Ztv  4.Ztv  LibComun         S12.sh      S18.sh  S24.sh  S4.sh  Saludos
+2.bak  5.bak  Luiggi_Archivo   S13.sh      S19.sh  S25.sh  S5.sh
+2.Ztv  5.Ztv  NuevosUsuarios   S14.sh      S1.sh   S26.sh  S6.sh
+3.bak  6.bak  S10.sh           S15.sh      S20.sh  S27.sh  S7.sh
+3.Ztv  6.Ztv  S11.sh           S16.sh      S22.sh  S2.sh   S8.sh
+
+
+[[Category:Comandos de la terminal]]
