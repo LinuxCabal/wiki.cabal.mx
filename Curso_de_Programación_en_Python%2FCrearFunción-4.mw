@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#CrearFunción-4.py | CrearFunción-4.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== CrearFunción-4.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+a_var = 10
+b_var = 15
+e_var = 25
+ 
+def a_func( a_var ):
+  print( "en a_func a_var = ", a_var )
+  b_var = 100 + a_var
+  d_var = 2 * a_var
+  print( "en a_func b_var = ", b_var )
+  print( "en a_func d_var = ", d_var )
+  print( "en a_func e_var = ", e_var )
+  return b_var + 10 
+
+c_var = a_func( b_var ) 
+
+print( "a_var = ", a_var )
+print( "b_var = ", b_var )
+print( "c_var = ", c_var )
+print( "d_var = ", d_var )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+ in a_func a_var =  15
+ in a_func b_var =  115
+ in a_func d_var =  30
+ in a_func e_var =  25
+ a_var =  10
+ b_var =  15
+ c_var =  125
+ d_var = 
+ 
+ Traceback (most recent call last):
+  File "C:\def2.py", line 19, in &lt;module&gt;
+    print("d_var = ", d_var)
+ NameError: name 'd_var' is not defined
+
+=== Explicación ===
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
