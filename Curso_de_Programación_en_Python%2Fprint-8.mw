@@ -1,0 +1,51 @@
+__NOTOC__
+* [[:#print-8.py | print-8.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== print-8.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Capital_Pais={ "United States" : "Washington", 
+               "US" : "Washington", 
+               "Canada" : "Ottawa",
+               "Germany": "Berlin",
+               "France" : "Paris",
+               "England" : "London",
+               "UK" : "London",
+               "Switzerland" : "Bern",
+               "Austria" : "Vienna",
+               "Netherlands" : "Amsterdam" }
+
+print( "\nPaises y sus capitales:")
+for c in Capital_Pais:
+    print("{Pais:^14s}: {Capital}" .format( Pais=c, Capital=Capital_Pais[c] ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./print-8.py 
+ Paises y sus capitales:
+    Germany    : Berlin
+    France     : Paris
+    Austria    : Vienna
+    England    : London
+  Switzerland  : Bern
+    Canada     : Ottawa
+  Netherlands  : Amsterdam
+      UK       : London
+ United States : Washington
+      US       : Washington
+
+=== Explicación ===
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
