@@ -1,0 +1,195 @@
+<h3>Crear Funciones</h3>
+ a = 23
+ b = -23
+ 
+ def absolute_value( n ):
+   if n &lt; 0:
+     n = -n
+   return n
+ 
+ if absolute_value( a ) == absolute_value( b ):
+   print( "El valor absoluto de", a, "y", b, "son igual." )
+ else:
+   print( "El valor absoluto de", a, "y", b, "son diferentes." )
+
+Lo que sigue:
+ El valor absoluto de 23 y -23 son igual.
+
+
+ def hola( ):
+   print(  "Hola" )
+ 
+ def area( ancho, altura ):
+   return ancho * altura
+ 
+ def print_bienvenido( nombre):
+   print( "Bienvenido", nombre )
+ 
+ hola( )
+ hola( )
+ 
+ print_bienvenido( "Miguel")
+ w = 4
+ h = 5
+ print( "ancho =", w, " height =, h, " area =", area( w, h ))
+
+<p>Lo que sigue:</p>
+
+ Hola
+ Hola
+ Bienveenido Miguel
+ ancho = 4  altura = 5  areá = 20
+
+<h3>Variables in functions</h3>
+
+ a = 4
+ 
+ def print_func( ):
+   a = 17
+   print( "en print_func a = ", a)
+ 
+ print_func( )
+ print( "a = ", a)
+
+<p>Lo que sigue:</p>
+
+ in print_func a = 17
+ a = 4
+
+ a_var = 10
+ b_var = 15
+ e_var = 25
+ 
+ def a_func( a_var ):
+   print( "en a_func a_var = ", a_var )
+   b_var = 100 + a_var
+   d_var = 2 * a_var
+   print( "en a_func b_var = ", b_var )
+   print( "en a_func d_var = ", d_var )
+   print( "en a_func e_var = ", e_var )
+   return b_var + 10 
+ c_var = a_func( b_var ) 
+ print( "a_var = ", a_var )
+ print( "b_var = ", b_var )
+ print( "c_var = ", c_var )
+ print( "d_var = ", d_var )
+
+
+Lo que Sigue:
+
+ in a_func a_var =  15
+ in a_func b_var =  115
+ in a_func d_var =  30
+ in a_func e_var =  25
+ a_var =  10
+ b_var =  15
+ c_var =  125
+ d_var = 
+ 
+ Traceback (most recent call last):
+  File "C:\def2.py", line 19, in &lt;module&gt;
+    print("d_var = ", d_var)
+ NameError: name 'd_var' is not defined
+
+
+
+<p><h3><b>temperature2.py</b></h3></p>
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+# convertir temperatura en Fahrenheit a Celsius
+ 
+def print_options( ):
+  print( "Options:" )
+  print( " 'p' print options" )
+  print( " 'c' convert from Celsius" )
+  print( " 'f' convert from Fahrenheit" )
+  print( " 'q' quit the program" )
+ 
+def celsius_to_fahrenheit( c_temp ):
+  return 9.0 / 5.0 * c_temp + 32
+ 
+def fahrenheit_to_celsius( f_temp ):
+  return ( f_temp - 32.0 ) * 5.0 / 9.0
+ 
+choice = "p"
+while choice != "q":
+  if choice == "c":
+    c_temp = float( input( "Celsius temperature: " ) )
+    print( "Fahrenheit:", celsius_to_fahrenheit( c_temp ) )
+    choice = input( "option: " )
+  elif choice == "f":
+    f_temp = float( input( "Fahrenheit temperature: " ) )
+    print( "Celsius:", fahrenheit_to_celsius( f_temp ) )
+    choice = input( "option: " )
+  elif choice == "p": #Alternatively choice != "q": so that print when anything unexpected inputed
+     print_options( )
+     choice = input( "option: " )
+
+<p>Lo que sigue:</p>
+
+Options:
+ 'p' print options
+ 'c' convert from celsius
+ 'f' convert from fahrenheit
+ 'q' quit the program
+option: <b>c</b>
+Celsius temperature: <b>30</b> 
+Fahrenheit: 86.0
+option: <b>f</b>
+Fahrenheit temperature: <b>60</b>
+Celsius: 15.5555555556
+option: <b>q</b>
+
+
+<p><b>area2.py</b></p>
+<div dir="ltr" class="mw-geshi mw-code mw-content-ltr">
+<div class="python source-python">
+<pre class="de1">
+<span class="co1">#! /usr/bin/python</span>
+<span class="co1">#-*-coding: utf-8 -*-</span>
+<span class="co1"># calculates a given rectangle area</span>
+ 
+<span class="kw1">def</span> hello<span class="br0">(</span><span class="br0">)</span>:
+    <span class="kw1">print</span><span class="br0">(</span><span class="st0">'Hello!'</span><span class="br0">)</span>
+ 
+<span class="kw1">def</span> area<span class="br0">(</span>width<span class="sy0">,</span> height<span class="br0">)</span>:
+    <span class="kw1">return</span> width * height
+ 
+<span class="kw1">def</span> print_welcome<span class="br0">(</span>name<span class="br0">)</span>:
+    <span class="kw1">print</span><span class="br0">(</span><span class="st0">'Welcome,'</span><span class="sy0">,</span> name<span class="br0">)</span>
+ 
+<span class="kw1">def</span> positive_input<span class="br0">(</span>prompt<span class="br0">)</span>:
+    number <span class="sy0">=</span> <span class="kw2">float</span><span class="br0">(</span><span class="kw2">input</span><span class="br0">(</span>prompt<span class="br0">)</span><span class="br0">)</span>
+    <span class="kw1">while</span> number <span class="sy0">&lt;=</span> <span class="nu0">0</span>:
+        <span class="kw1">print</span><span class="br0">(</span><span class="st0">'Must be a positive number'</span><span class="br0">)</span>
+        number <span class="sy0">=</span> <span class="kw2">float</span><span class="br0">(</span><span class="kw2">input</span><span class="br0">(</span>prompt<span class="br0">)</span><span class="br0">)</span>
+    <span class="kw1">return</span> number
+ 
+name <span class="sy0">=</span> <span class="kw2">input</span><span class="br0">(</span><span class="st0">'Your Name: '</span><span class="br0">)</span>
+hello<span class="br0">(</span><span class="br0">)</span>
+print_welcome<span class="br0">(</span>name<span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="st0">'To find the area of a rectangle,'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="st0">'enter the width and height below.'</span><span class="br0">)</span>
+<span class="kw1">print</span><span class="br0">(</span><span class="br0">)</span>
+w <span class="sy0">=</span> positive_input<span class="br0">(</span><span class="st0">'Width: '</span><span class="br0">)</span>
+h <span class="sy0">=</span> positive_input<span class="br0">(</span><span class="st0">'Height: '</span><span class="br0">)</span>
+ 
+<span class="kw1">print</span><span class="br0">(</span><span class="st0">'Width ='</span><span class="sy0">,</span> w<span class="sy0">,</span> <span class="st0">' Height ='</span><span class="sy0">,</span> h<span class="sy0">,</span> <span class="st0">' so Area ='</span><span class="sy0">,</span> area<span class="br0">(</span>w<span class="sy0">,</span> h<span class="br0">)</span><span class="br0">)</span>
+</pre></div>
+</div>
+<p>Sample Run:</p>
+<pre>
+Your Name: <b>Josh</b>
+Hello!
+Welcome, Josh
+
+To find the area of a rectangle,
+enter the width and height below.
+
+Width: <b>-4</b>
+Must be a positive number
+Width: <b>4</b>
+Height: <b>3</b>
+Width = 4  Height = 3  so Area = 12
+</pre>
