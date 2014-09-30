@@ -1,0 +1,32 @@
+__NOTOC__
+* [[:#print-6.py | print-6.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== print-6.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( 'Coordenadas: {latitud}, {longitud}' .format( latitud='37.24N', longitud='-115.81W' ) )
+
+coord = { 'latitud': '37.24N', 'longitud': '-115.81W' }
+
+print( 'Coordenadas: {latitud}, {longitud}' .format( **coord ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./print-6.py 
+ Coordenadas: 37.24N, -115.81W
+ Coordenadas: 37.24N, -115.81W
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
