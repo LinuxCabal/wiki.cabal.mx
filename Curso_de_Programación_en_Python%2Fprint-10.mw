@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#print-10.py | print-10.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== print-10.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "{0:<20s} {1:6.2f}" .format('Jamon y Huevos:', 6.99) )
+print( "{0:>20s} {1:6.2f}" .format('Jamon y Huevos:', 6.99) )
+print( "{0:>27s} {1:+6.2f}" .format('Jamon, Frijoles y Huevos:', 7.99) )
+print( "{0:^27s} {1:6.2f}" .format('Jamon, Frijoles y Huevos:', 7.99) )
+print( "{0:<20} {1: 6.2f}" .format('Jamon y Huevos:', 7.99) )
+print( "{0:>20} {1:6.2f}" .format('Jamon y Huevos:', 7.99) )
+print( "{0:^27} {1:=6.2f}" .format('Jamon, Frijoles y Huevos:', 7.99) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./print-10.py 
+ Jamon y Huevos:        6.99
+      Jamon y Huevos:   6.99
+   Jamon, Frijoles y Huevos:  +7.99
+  Jamon, Frijoles y Huevos:    7.99
+ Jamon y Huevos:        7.99
+      Jamon y Huevos:   7.99
+  Jamon, Frijoles y Huevos:    7.99
+
+=== Explicación ===
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
