@@ -1,0 +1,19 @@
+<h1>Funciones integradas</h1>
+<h2><p>Python tiene los siguientes funciones interadas siempre disponibles</p></h2>
+<table border="1" cellpadding="2" cellspacing="10">
+<tr><th></th><th></th><th>Built-in Functions</th><th></th><th></th></tr>
+<tr><td>abs()</td><td>dict()</td><td>help()</td><td>min()</td><td>setattr()</td></tr>
+<tr><td>all()</td><td>dir()</td><td>hex()</td><td>next()</td><td>slice()</td></tr>
+<tr><td>any()</td><td>divmod()</td><td>id()</td><td>object()</td><td>sorted()</td></tr>
+<tr><td>ascii()</td><td>enumerate()</td><td>input()</td><td>oct()</td><td>staticmethod()</td></tr>
+<tr><td>bin()</td><td>eval()</td><td>int()</td><td>open()</td><td>str()</td></tr>
+<tr><td>bool()</td><td>exec()</td><td>isinstance()</td><td>ord()</td><td>sum()</td></tr>
+<tr><td>bytearray()</td><td>filter()</td><td>issubclass()</td><td>pow()</td><td>super()</td></tr>
+<tr><td>bytes()</td><td>float()</td><td>iter()</td><td>print()</td><td>tuple()</td></tr>
+<tr><td>callable()</td><td>format()</td><td>len()</td><td>property()</td><td>type()</td></tr>
+<tr><td>chr()</td><td>frozenset()</td><td>list()</td><td>range()</td><td>vars()</td></tr>
+<tr><td>classmethod()</td><td>getattr()</td><td>locals()</td><td>repr()</td><td>zip()</td></tr>
+<tr><td>compile()</td><td>globals()</td><td>map()</td><td>reversed()</td><td>__import__()</td></tr>
+<tr><td>complex()</td><td>hasattr()</td><td>max()</td><td>round()</td><td>&nbsp;</td></tr>
+<tr><td>delattr()</td><td>hash()</td><td>memoryview()</td><td>set()</td><td>&nbsp;</td></tr>
+</table>
