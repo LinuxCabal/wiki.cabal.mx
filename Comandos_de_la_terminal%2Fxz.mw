@@ -1,0 +1,265 @@
+__NOTOC__
+* [[:#xz | xz]]
+
+== xz ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz --help
+Usage: xz [OPTION]... [FILE]...
+Compress or decompress FILEs in the .xz format.
+
+  -z, --compress      force compression
+  -d, --decompress    force decompression
+  -t, --test          test compressed file integrity
+  -l, --list          list information about .xz files
+  -k, --keep          keep (don't delete) input files
+  -f, --force         force overwrite of output file and (de)compress links
+  -c, --stdout        write to standard output and don't delete input files
+  -0 ... -9           compression preset; default is 6; take compressor *and*
+                      decompressor memory usage into account before using 7-9!
+  -e, --extreme       try to improve compression ratio by using more CPU time;
+                      does not affect decompressor memory requirements
+  -q, --quiet         suppress warnings; specify twice to suppress errors too
+  -v, --verbose       be verbose; specify twice for even more verbose
+  -h, --help          display this short help and exit
+  -H, --long-help     display the long help (lists also the advanced options)
+  -V, --version       display the version number and exit
+
+With no FILE, or when FILE is -, read standard input.
+
+Report bugs to <lasse.collin@tukaani.org> (in English or Finnish).
+XZ Utils home page: <http://tukaani.org/xz/>
+
+[rrc@Llawyr ~]$ xz -H
+Usage: xz [OPTION]... [FILE]...
+Compress or decompress FILEs in the .xz format.
+
+Mandatory arguments to long options are mandatory for short options too.
+
+ Operation mode:
+
+  -z, --compress      force compression
+  -d, --decompress    force decompression
+  -t, --test          test compressed file integrity
+  -l, --list          list information about .xz files
+
+ Operation modifiers:
+
+  -k, --keep          keep (don't delete) input files
+  -f, --force         force overwrite of output file and (de)compress links
+  -c, --stdout        write to standard output and don't delete input files
+      --single-stream decompress only the first stream, and silently
+                      ignore possible remaining input data
+      --no-sparse     do not create sparse files when decompressing
+  -S, --suffix=.SUF   use the suffix `.SUF' on compressed files
+      --files[=FILE]  read filenames to process from FILE; if FILE is
+                      omitted, filenames are read from the standard input;
+                      filenames must be terminated with the newline character
+      --files0[=FILE] like --files but use the null character as terminator
+
+ Basic file format and compression options:
+
+  -F, --format=FMT    file format to encode or decode; possible values are
+                      `auto' (default), `xz', `lzma', and `raw'
+  -C, --check=CHECK   integrity check type: `none' (use with caution),
+                      `crc32', `crc64' (default), or `sha256'
+  -0 ... -9           compression preset; default is 6; take compressor *and*
+                      decompressor memory usage into account before using 7-9!
+  -e, --extreme       try to improve compression ratio by using more CPU time;
+                      does not affect decompressor memory requirements
+      --block-size=SIZE
+                      when compressing to the .xz format, start a new block
+                      after every SIZE bytes of input; 0=disabled (default)
+      --block-list=SIZES
+                      when compressing to the .xz format, start a new block
+                      after the given intervals of uncompressed data
+      --memlimit-compress=LIMIT
+      --memlimit-decompress=LIMIT
+  -M, --memlimit=LIMIT
+                      set memory usage limit for compression, decompression,
+                      or both; LIMIT is in bytes, % of RAM, or 0 for defaults
+      --no-adjust     if compression settings exceed the memory usage limit,
+                      give an error instead of adjusting the settings downwards
+
+ Custom filter chain for compression (alternative for using presets):
+
+  --lzma1[=OPTS]      LZMA1 or LZMA2; OPTS is a comma-separated list of zero or
+  --lzma2[=OPTS]      more of the following options (valid values; default):
+                        preset=PRE reset options to a preset (0-9[e])
+                        dict=NUM   dictionary size (4KiB - 1536MiB; 8MiB)
+                        lc=NUM     number of literal context bits (0-4; 3)
+                        lp=NUM     number of literal position bits (0-4; 0)
+                        pb=NUM     number of position bits (0-4; 2)
+                        mode=MODE  compression mode (fast, normal; normal)
+                        nice=NUM   nice length of a match (2-273; 64)
+                        mf=NAME    match finder (hc3, hc4, bt2, bt3, bt4; bt4)
+                        depth=NUM  maximum search depth; 0=automatic (default)
+
+  --x86[=OPTS]        x86 BCJ filter (32-bit and 64-bit)
+  --powerpc[=OPTS]    PowerPC BCJ filter (big endian only)
+  --ia64[=OPTS]       IA-64 (Itanium) BCJ filter
+  --arm[=OPTS]        ARM BCJ filter (little endian only)
+  --armthumb[=OPTS]   ARM-Thumb BCJ filter (little endian only)
+  --sparc[=OPTS]      SPARC BCJ filter
+                      Valid OPTS for all BCJ filters:
+                        start=NUM  start offset for conversions (default=0)
+
+  --delta[=OPTS]      Delta filter; valid OPTS (valid values; default):
+                        dist=NUM   distance between bytes being subtracted
+                                   from each other (1-256; 1)
+
+ Other options:
+
+  -q, --quiet         suppress warnings; specify twice to suppress errors too
+  -v, --verbose       be verbose; specify twice for even more verbose
+  -Q, --no-warn       make warnings not affect the exit status
+      --robot         use machine-parsable messages (useful for scripts)
+
+      --info-memory   display the total amount of RAM and the currently active
+                      memory usage limits, and exit
+  -h, --help          display the short help (lists only the basic options)
+  -H, --long-help     display this long help and exit
+  -V, --version       display the version number and exit
+
+With no FILE, or when FILE is -, read standard input.
+
+Report bugs to <lasse.collin@tukaani.org> (in English or Finnish).
+XZ Utils home page: <http://tukaani.org/xz/>
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -V
+xz (XZ Utils) 5.1.2alpha
+liblzma 5.1.2alpha
+
+[rrc@Llawyr ComandosDeLaTerminal]$ su -c "rpm -qf $( which xz )"
+Password: 
+xz-5.1.2-0.alpha.4.mga4
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al Uniq*
+-rw------- 1 rrc rrc 48 Jan  2  2014 UniqEjemplo
+-rw------- 1 rrc rrc 54 Apr  1  2014 UniqEjemploConLineasVacios
+-rw------- 1 rrc rrc 34 Apr  1  2014 UniqEjemploMayusc
+-rw------- 1 rrc rrc 34 Apr  1  2014 UniqEjemploMinusc
+-rw------- 1 rrc rrc 48 Jan  2  2014 UniqSortEjemplo
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -z Uniq*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al Uniq*
+-rw------- 1 rrc rrc 104 Apr  1  2014 UniqEjemploConLineasVacios.xz
+-rw------- 1 rrc rrc  92 Apr  1  2014 UniqEjemploMayusc.xz
+-rw------- 1 rrc rrc  92 Apr  1  2014 UniqEjemploMinusc.xz
+-rw------- 1 rrc rrc 100 Jan  2  2014 UniqEjemplo.xz
+-rw------- 1 rrc rrc 100 Jan  2  2014 UniqSortEjemplo.xz
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al  UmaskPruebaA*
+-rw------- 1 rrc rrc 0 Mar  5  2014 UmaskPruebaArchivo
+-rw------- 1 rrc rrc 6 Sep  6 08:53 UmaskPruebaArchivo2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -zk UmaskPruebaA*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al  UmaskPruebaA*
+-rw------- 1 rrc rrc  0 Mar  5  2014 UmaskPruebaArchivo
+-rw------- 1 rrc rrc  6 Sep  6 08:53 UmaskPruebaArchivo2
+-rw------- 1 rrc rrc 64 Sep  6 08:53 UmaskPruebaArchivo2.xz
+-rw------- 1 rrc rrc 32 Mar  5  2014 UmaskPruebaArchivo.xz
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -zk UmaskPruebaArchivo UmaskPruebaArchivo2 
+xz: UmaskPruebaArchivo.xz: File exists
+xz: UmaskPruebaArchivo2.xz: File exists
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -zkf UmaskPruebaArchivo UmaskPruebaArchivo2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -zkfv UmaskPruebaArchivo UmaskPruebaArchivo2 
+UmaskPruebaArchivo (1/2)
+  100 %                  32 B / 0 B > 9.999                                    
+
+UmaskPruebaArchivo2 (2/2)
+  100 %                  64 B / 6 B > 9.999                                    
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc 14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -zkv MySQLDumpwiki-20141002.sql
+MySQLDumpwiki-20141002.sql (1/1)
+  100 %      2 594.3 KiB / 13.8 MiB = 0.183   3.0 MiB/s       0:04             
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc  14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+-rw-r--r-- 1 rrc rrc 2.6M Oct  2 17:04 MySQLDumpwiki-20141002.sql.xz
+
+[rrc@Llawyr ComandosDeLaTerminal]$ rm MySQLDumpwiki-20141002.sql.xz
+rm: remove regular file ‘MySQLDumpwiki-20141002.sql.xz’? y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -z1kv MySQLDumpwiki-20141002.sql
+MySQLDumpwiki-20141002.sql (1/1)
+  100 %      2 880.5 KiB / 13.8 MiB = 0.204                                    
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc  14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+-rw-r--r-- 1 rrc rrc 2.9M Oct  2 17:04 MySQLDumpwiki-20141002.sql.xz
+
+[rrc@Llawyr ComandosDeLaTerminal]$ rm MySQLDumpwiki-20141002.sql.xz
+rm: remove regular file ‘MySQLDumpwiki-20141002.sql.xz’? y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -z9kv MySQLDumpwiki-20141002.sql
+MySQLDumpwiki-20141002.sql (1/1)
+  100 %      2 591.3 KiB / 13.8 MiB = 0.183   3.0 MiB/s       0:04             
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc  14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+-rw-r--r-- 1 rrc rrc 2.6M Oct  2 17:04 MySQLDumpwiki-20141002.sql.xz
+
+[rrc@Llawyr ComandosDeLaTerminal]$ rm MySQLDumpwiki-20141002.sql.xz
+rm: remove regular file ‘MySQLDumpwiki-20141002.sql.xz’? y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -zekv MySQLDumpwiki-20141002.sql
+MySQLDumpwiki-20141002.sql (1/1)
+  100 %      2 588.4 KiB / 13.8 MiB = 0.183   2.2 MiB/s       0:06             
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc  14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+-rw-r--r-- 1 rrc rrc 2.6M Oct  2 17:04 MySQLDumpwiki-20141002.sql.xz
+
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -l MySQLDumpwiki-20141002.sql.xz 
+Strms  Blocks   Compressed Uncompressed  Ratio  Check   Filename
+    1       1  2 588.4 KiB     13.8 MiB  0.183  CRC64   MySQLDumpwiki-20141002.sql.xz
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -lv MySQLDumpwiki-20141002.sql.xz 
+MySQLDumpwiki-20141002.sql.xz (1/1)
+  Streams:            1
+  Blocks:             1
+  Compressed size:    2 588.4 KiB (2 650 532 B)
+  Uncompressed size:  13.8 MiB (14 493 632 B)
+  Ratio:              0.183
+  Check:              CRC64
+  Stream padding:     0 B
+  Streams:
+    Stream    Blocks      CompOffset    UncompOffset        CompSize      UncompSize  Ratio  Check      Padding
+         1         1               0               0       2 650 532      14 493 632  0.183  CRC64            0
+  Blocks:
+    Stream     Block      CompOffset    UncompOffset       TotalSize      UncompSize  Ratio  Check
+         1         1              12               0       2 650 492      14 493 632  0.183  CRC64
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -t MySQLDumpwiki-20141002.sql.xz
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -tv MySQLDumpwiki-20141002.sql.xz
+MySQLDumpwiki-20141002.sql.xz (1/1)
+  100 %      2 591.3 KiB / 13.8 MiB = 0.183                                    
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -dv MySQLDumpwiki-20141002.sql.xz
+MySQLDumpwiki-20141002.sql.xz (1/1)
+xz: MySQLDumpwiki-20141002.sql: File exists
+
+[rrc@Llawyr ComandosDeLaTerminal]$ xz -dfv MySQLDumpwiki-20141002.sql.xz
+MySQLDumpwiki-20141002.sql.xz (1/1)
+  100 %      2 591.3 KiB / 13.8 MiB = 0.183         
+
+
+
+[rrc@Llawyr ~]$ ls -al $( which unxz )
+lrwxrwxrwx 1 root root 2 Sep 22 13:33 /usr/bin/unxz -> xz*
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
