@@ -1,0 +1,102 @@
+__NOTOC__
+* [[:#gunzip| gunzip]]
+
+== gunzip ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ gunzip --help
+Usage: /usr/bin/gunzip [OPTION]... [FILE]...
+Uncompress FILEs (by default, in-place).
+
+Mandatory arguments to long options are mandatory for short options too.
+
+  -c, --stdout      write on standard output, keep original files unchanged
+  -f, --force       force overwrite of output file and compress links
+  -k, --keep        keep (don't delete) input files
+  -l, --list        list compressed file contents
+  -n, --no-name     do not save or restore the original name and time stamp
+  -N, --name        save or restore the original name and time stamp
+  -q, --quiet       suppress all warnings
+  -r, --recursive   operate recursively on directories
+  -S, --suffix=SUF  use suffix SUF on compressed files
+  -t, --test        test compressed file integrity
+  -v, --verbose     verbose mode
+      --help        display this help and exit
+      --version     display version information and exit
+
+With no FILE, or when FILE is -, read standard input.
+
+Report bugs to <bug-gzip@gnu.org>.
+
+[rrc@Llawyr ~]$ gunzip --version
+gunzip (gzip) 1.6
+Copyright (C) 2007, 2011-2013 Free Software Foundation, Inc.
+This is free software.  You may redistribute copies of it under the terms of
+the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Paul Eggert.
+
+[rrc@Llawyr ~]$ su -c "rpm -qf $( which gunzip )"
+Password: 
+gzip-1.6-3.1.mga4
+
+[rrc@Llawyr ~]$ gunzip -l ComandosDeLaTerminal.tar.gz 
+         compressed        uncompressed  ratio uncompressed_name
+             133002             1126400  88.2% ComandosDeLaTerminal.tar
+
+[rrc@Llawyr ~]$ gunzip -vl ComandosDeLaTerminal.tar.gz 
+method  crc     date  time           compressed        uncompressed  ratio uncompressed_name
+defla 6d42a01c Sep 26 17:34              133002             1126400  88.2% ComandosDeLaTerminal.tar
+
+
+[rrc@Llawyr ~]$ gunzip -t ComandosDeLaTerminal.tar.gz 
+
+[rrc@Llawyr ~]$ echo $?
+0
+
+[rrc@Llawyr ~]$ gunzip -vt ComandosDeLaTerminal.tar.gz 
+ComandosDeLaTerminal.tar.gz:	 OK
+
+[rrc@Llawyr ~]$ gunzip ComandosDeLaTerminal.tgz
+gzip: ComandosDeLaTerminal.tar already exists; do you wish to overwrite (y or n)? n
+	not overwritten
+
+[rrc@Llawyr ~]$ gunzip -f ComandosDeLaTerminal.tgz
+
+[rrc@Llawyr ~]$ ls -aldh ComandosDeLaTerminal*
+drwx------ 9 rrc rrc 4.0K Sep 26 17:40 ComandosDeLaTerminal/
+-rw------- 1 rrc rrc 1.1M Sep 26 17:29 ComandosDeLaTerminal.tar
+-rw------- 1 rrc rrc 130K Sep 26 17:34 ComandosDeLaTerminal.tar.gz
+
+[rrc@Llawyr ~]$ gunzip -fk ComandosDeLaTerminal.tar.gz 
+
+[rrc@Llawyr ~]$ ls -aldh ComandosDeLaTerminal*
+drwx------ 9 rrc rrc 4.0K Sep 26 17:40 ComandosDeLaTerminal/
+-rw------- 1 rrc rrc 1.1M Sep 26 17:34 ComandosDeLaTerminal.tar
+-rw------- 1 rrc rrc 130K Sep 26 17:34 ComandosDeLaTerminal.tar.gz
+[rrc@Llawyr ~]$ 
+
+[rrc@Llawyr ~]$ gunzip -rf BashClase/
+
+[rrc@Llawyr ~]$ ls -al BashClase/
+total 128
+drwxr-x---  2 rrc rrc 4096 Sep 26 18:53 ./
+drwxr-x--x 49 rrc rrc 4096 Sep 26 18:52 ../
+-rw-r-----  1 rrc rrc    0 May 10 11:22 1.bak
+-rw-r-----  1 rrc rrc    0 May 10 11:32 1.Ztv
+-rw-r-----  1 rrc rrc    0 May 10 11:22 2.bak
+-rw-r-----  1 rrc rrc    0 May 10 11:32 2.Ztv
+ .
+ .
+ .
+-rw-r-----  1 rrc rrc  307 May  3 10:57 S7.sh
+-rw-r-----  1 rrc rrc  393 May  3 11:17 S8.sh
+-rw-r-----  1 rrc rrc  467 Jan 26  2013 S9.sh
+-rw-r-----  1 rrc rrc   34 Nov 17  2011 Saludo
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
