@@ -1,0 +1,60 @@
+== Acerca ==
+
+Python es un lenguage de programacion escrito a finales de los ochentas por [http://es.wikipedia.org/wiki/Guido_van_Rossum | Guido van Rossum] en el Centro para las Matemáticas y la Informática (CWI, Centrum Wiskunde & Informatica), en los Países Bajos, como un sucesor del lenguaje de programación ABC, capaz de manejar excepciones e interactuar con el sistema operativo Amoeba.
+
+El nombre del lenguaje proviene de la afición de su creador por los humoristas británicos Monty Python.
+
+Van Rossum es el principal autor de Python, y su continuo rol central en decidir la dirección de Python es reconocido, refiriéndose a él como Benevolente Dictador Vitalicio (en inglés: Benevolent Dictator for Life, BDFL).
+
+Python es administrado por la Python Software Foundation. Posee una licencia de código abierto, denominada Python Software Foundation License, que es compatible con la Licencia pública general de GNU a partir de la versión 2.1.1, e incompatible en ciertas versiones anteriores.
+
+El 13 de febrero de 2009 se lanzó una nueva versión de Python bajo el nombre clave "Python 3000" o, abreviado, "Py3K". Esta nueva versión incluye toda una serie de cambios que requieren reescribir el código de versiones anteriores. Para facilitar este proceso junto con Python 3 se ha publicado una herramienta automática llamada 2to3.
+
+== ¿Porqué aprender Python? ==
+
+=== Porque es Fácil de aprender ===
+
+A diferencia de muchos lenguajes allá afuera, Python tiene una sintaxis muy limpia y fácil de entender que es como hablarle en lenguaje natural (ingles). Cualquier persona puede aprender Python fácilmente gracias a ésto y se sentirá cómodo mientras trabaja con él, aún si nunca ha programado nada en su vida.
+
+Por otro lado, el intérprete interactivo (Python Shell) tiene un "Debugger" bastante explicativo que te muestra tu error cuando te equivocas, exactamente en donde está, y dependiendo lo que uses para escribir tu código, una sugerencia de como arreglarlo.
+
+=== Porque verás resultados más rápido ===
+
+En Python escribes una línea de código, la guardas como un archivo ".py" y ya tienes un programa hecho. Es un lenguaje que no requiere compilación ni muchísimos pasos para empezar a sentirte como un "programador" y te permitirá desarrollar las más curiosas creaciones desde tus primeras lecciones con tan sólo el conocimiento básico. Su sintaxis es menos estricta que la de otros lenguajes (Como Java) y te permitirá hacer cosas que no son posibles en algunos de los demás, como cambiar el valor de una variable "al vuelo" dentro de tu código "nomás porque así lo deseas" (Tipado Dinámico).
+
+Si quieres aprender un lenguaje de programación con el cual, desde el principio te veas CREANDO COSAS, entonces aprende Python.
+
+=== Porque puedes "especializarte" en varias cosas ===
+
+Python te permite elegir "caminos" ya que dominaste lo básico del lenguaje bien a bien. ¿Te interesa la programación orientada a objetos? pues puedes volverte un Pythonista que escribe código orientado a objetos. ¿Te interesa la programación funcional? Puedes escribir python centrado en ése tipo de programación, ¿Qué tal la programación imperativa? Con Python tienes múltiples paradigmas de los cuales escoger.
+
+=== Porque Google lo usa y recomienda ===
+
+El creador de Python, Guido Van Rossum trabaja para Google y no es de extrañarse que gracias a ésto, la mayoría de servicios de Google tengan un backend Python detrás de ellos. Google apoya activamente el uso de Python entre los programadores ya que les permite ser productivos en tiempo record y hacer cosas sorprendentes con pocas líneas de código. Encontrarás implementationes Python para todas las API de Google, (o la mayoría) que hoy por hoy, dominan la web.
+
+=== Porque puedes crear Webapps, Desktop Apps y Shell Apps ===
+
+Python es tan simple como poderoso. Si bien puedes hacer código fácilmente y crear programas en tiempo récord, ésto no significa que por éso "vayan a tener menos chiste" que los de lenguajes más complicados. Python te permite crear LO QUE TE IMAGINES. ¿Quieres hacer una aplicación web despampanante? con Python podrás hacerlo. ¿Te gustaría crear una aplicación de escritorio Multiplataforma? Con Python podrás hacerlo. ¿Qué tal un Script en "shell" para automatizar alguna tarea o proceso de tu sistema? También podrás hacerlo; Podrás hacer lo que quieras!
+
+Como siempre les digo: Otra de las ventajas es que posiblemente algo que quieras que tu aplicación o proyecto haga, (alguna funcionalidad o cosa extra) es posible que alguien más ya la haya implementado en python y te podrás valer de su módulo para enriquecer tu código, fácil, rápido y sencillo. Con Python el límite REALMENTE va a ser tu imaginación y determinación para crear cosas.
+
+=== Porque puedes comenzar más rápidamente y escalar ===
+
+Gracias a servicios como Google App Engine, cualquier usuario puede empezar a usar Python fácilmente en un ambiente práctico y de mundo real, haciendo (en ése caso) aplicaciones web para la nube, probando resultados, jugando con API's, resolviendo necesidades del usuario... ¿Necesitas escalar? Hacer tu código más grande? Python es TAN ESCALABLE que trabajar en ello no será un problema, al contrario, será todo un placer.
+
+=== Porque viene pre-instalado en MacOS y Muchas distribuciones de Linux ===
+
+Python es un lenguaje tan popular actualmente que sistemas como MacOS y la mayoria de las distribuciones de Linux lo traen pre-instalado desde que adquieres tu computadora o instalas tu distribución según el caso. Ésto por el lado del usuario (y/o aspirante a programador) ayuda a que se instale aplicaciones python y las pruebe más directamente, (además de que si quiere se inicie más rápido en el mundo de la programación con el lenguaje) Mientras que del lado del programador, con éso ya tienes "cubierta" una cuota de mercado bastante amplia para tus "PythonApps" (que no estén especialmente "preparadas" por plataforma por ejemplo) sabiendo que los usuarios de Linux y Mac no tendrán mayor problema al tratar de usarlas.
+
+=== Porque es fácil instalarlo en Windows y otros OSs ===
+
+En el caso de Windows, Python no viene Pre-instalado, pero su instalación es TAN SENCILLA que a nadie se le complicaría por nada del mundo. Basta con descargar el instalador, hacer un "Siguiente>Siguiente>Siguiente" y listo! ¿Así o más fácil?
+ 
+=== Porque es OpenSource ===
+
+Como el excelente lenguaje de programación que es, Python es de código libre, lo que te permitirá no sólo crear las mejores apps y cosas con él, sino que también INVOLUCRARTE EN SU MISMO DESARROLLO! Python es de todos y para todos, y por éso también, es que deberías usarlo y escogerlo.
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
