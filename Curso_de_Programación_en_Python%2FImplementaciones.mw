@@ -1,0 +1,119 @@
+== Implementaciones de Python ==
+
+Hay por lo menos cinco implementaciones del lenguaje Python: CPython, Jython, IronPython, Stackless, y
+PyPy. Aunque hay mucho intercambio de ideas y trabajo entre estos Pythons, cada uno es un sistema de software instalado por separado, con sus propios desarrolladores y usuarios base.
+
+CPython es la implementación estándar y el sistema que la mayor deseará usar (si no está seguro, esto probablemente le incluye).
+
+=== CPython: El estándar ===
+
+La implementación original y estándar de Python por lo general se llama CPython, cuando
+quiere contrastar esto con las otras opciones (y "Python" sólo(justo) claro por otra parte). Este el nombre viene del hecho que se cifra en ANSI portátil C código de la lengua. Esto es el Python del cual va [http://www.python.org http://www.python.org], se pone con ActivePython y Las distribuciones de Enthought, y tienen automáticamente en la mayor parte de Linux y Mac OS X. Si ha encontrado una versión preinstalada del Python en su máquina, es probablemente CPython, a menos que su compañía u organización usen el Python en el más especializado caminos.
+
+A menos que quiera a la escritura Java o aplicaciones .NET con el Python o encuentre las ventajas de la obligación de PyPy o Stackless, probablemente quiere usar el estándar CPython sistema. Como es la realización de la referencia de la lengua, tiende a correr (funcionar) lo más rápido, ser el más completo, y ser más actualizado y ser robusto que la alternativa sistema
+
+=== Jython: Python para Java ===
+Jython (Python en Java) es un lenguaje de programación de alto nivel, dinámico y orientado a objetos basado en Python e implementado íntegramente en Java. Es el sucesor de JPython. Jython al igual que Python es un proyecto de software libre.
+
+Jython consiste en clases de Java que compilan el código fuente del Python a byte-code de Java y luego ruta el byte-code que resulta a Java Virtual Machine (JVM). Los programadores todavía escriben declaraciones (afirmaciones) de Python en archivos del texto.py como de costumbre.
+
+El objetivo de Jython es permitir el código de Python a la escritura de aplicaciones de Java, mucho como CPython permite Python a componentes de la escritura C y C++. Su integración con Java es notablemente sin costuras. Como el código de Python se traduce al byte-code de Java, mira y parece a un programa Java verdadero en el tiempo de ejecución. Las escrituras de Jython pueden servir de la red applets y servlets, construir GUIs situado en Java, etcétera. Además, Jython incluye el apoyo de integración que permite que código de Python importe y use clases de Java como si se escritO en Python, como Jython es más lento y menos robusto que CPython, sin embargo, por lo general se ve como un instrumento de interés principalmente Reveladores de Java que buscan una lengua scripting para servir de un frontend a código de Java.
+
+=== IronPython: Python para .NET ===
+IronPython es una implementación del intérprete Python (CPython) escrita totalmente en C#. El proyecto trata de seguir al pie de la letra el lenguaje Python, como implementación de Python que es. Esto hace que cualquier programa escrito en Python pueda ser interpretado con IronPython, con las ventajas añadidas de poder usar las bibliotecas de la plataforma .NET y poder compilar el código a byte-code
+
+==== Características de IronPython ====
+Modo interactivo, heredado de Python. Al igual que en Python, consiste en un shell que interpreta las órdenes de forma interactiva.
+
+Soporte completo de la sintaxis y las bibliotecas (API) de Python.
+
+Integración con la plataforma .NET y sus bibliotecas.
+
+Compilación del código a byte-code, de forma que puede usarse en cualquier otro lenguaje soportado por la plataforma .NET.
+
+Integración del intérprete de IronPython en cualquier aplicación .NET para extender sus funcionalidades de forma sencilla.
+
+=== Stackless: Python para coincidencia ===
+De todos modos otros esquemas de dirigir programas Python han más enfocado objetivos. Por ejemplo, el sistema del Python Stackless es una versión realzada y la nueva realización del estándar CPython lengua orientado hacia la coincidencia. Como no salva el estado en la pila de llamada de la lengua C, Stackless Python puede hacer Python más fácil al portar al pequeño stack arquitecturas, proporciona opciones del multi-procesamiento eficientes y cría la novela pro-estructuras de gramming como co-routines.
+
+Entre otras cosas, los micro-hilos que Stackless añade al Python son un eficiente y
+alternativa ligera a la multi-asignación estándar de Python de instrumentos como hilos y
+los procesos, y prometen la mejor estructura del programa, el código más legible, y aumentado
+productividad del programador. Los Juegos de CCP, el creador de EVA en Línea, son un famoso
+Usuario del Stackless Python  y una historia de éxito del usuario de Python irresistible en general. Intente [http://stackless.com http://stackless.com] para más información.
+
+=== PyPy: Python para velocidad ===
+PyPy es un intérprete y compilador JIT para el lenguaje Python, que se enfoca en la velocidad y eficiencia, y es 100% compatible con el intérprete original CPython.
+
+PyPy fue concebido como una implementación de Python escrita en Python, lo que permite a los desarrolladores Python hackear el lenguaje. Esto hace que sea fácil identificar áreas mejorables. El hecho de que PyPy esté implementado en un lenguaje de alto nivel implica que es más flexible y fácil para experimentar que CPython, lo que permite a los desarrolladores explorar múltiples implementaciones de características específicas y elegir la mejor.
+
+PyPy tiene por objeto proporcionar una traducción común y un framework conceptual para la producción de implementaciones de lenguajes dinámicos, haciendo hincapié en una separación limpia entre la especificación del lenguaje y los aspectos de implementación. Intenta además proporcionar una implementación compatible, flexible y rápida del Lenguaje Python utilizando el mencionado framework para desarrollar nuevas características avanzadas sin tener que codificar detalles a bajo nivel.
+
+PyPy consiste en un intérprete estándar y un traductor. El intérprete está escrito en un subconjunto limitado del lenguaje Python llamado RPython (Python restringido). A diferencia de Python estándar, RPython es estáticamente tipado que permite una compilación eficiente.
+
+El traductor es una cadena de herramientas que analiza el código RPython y lo traduce a un lenguaje de más bajo nivel, tal como C, LLVM o MSIL. También permite un recolector de basura enchufable y opcionalmente habilitar Stackless. Finalmente incluye un generador JIT que construye un compilador JIT dentro del intérprete, brindando algunas anotaciones en el código fuente.
+
+== Modelos de ejecución ==
+
+Python es un lenguage enterpretado. Para ejecutar un script, Python le transforma tu script en Byte-code que es un código más optimizado, pero no es código binario como programas escritos en leguages compilados como C o C++. Después de transformar tu script, el interpretador de Python que actualmente es una maquina virtual llamada PVM, va a leer el byte-code una instrucción a la ves y va a realizar esta instrucción antes de continuar con la siguiente instucción.
+Al fin del script. Python va a borrar el archivo de byte-code ( un archivo temparario que termina con .pyc ).
+
+Puedes generar, guardar y ejecutar un archivo de byte-code con una herramienta que se llama, incorrectamante, ún Python compiler. El archivo se llama un binaio-congelado que implique algo que no está verdad. El "compilador genera byte-code que puede ejecutar en el PVM en una maquina sin Python instalada. El compilador no va a generar código-binario.
+
+== El prompt interactivo ==
+
+Es posible instalar multiples versiones de python en tu sistema. Mi sistema que tiene solo Python estandar (CPython) instalada, tiene 2 versiones. Python 3.3.2 y Python 2.7.5. Códogo escrito en 2.x no corre en 3.x y código excrito en 3.x no corre en 2.x. Entonces es buen idea hacer los dos versiones disponibles. Puedes usar 2.x para mentener código existtente escrito antes de 3.x y puedes escribir nuevo código en 3.x.
+
+Para entrar en el ambiente interactivo de Python escribes "python", "python2" o "python3" en el terminal o en MS-Windows escribes "py", o "py -2" o "py -3".
+
+ [rrc@Llawyr ~]$ python3
+ Python 3.3.2 (default, Nov 26 2013, 22:10:51)
+ [GCC 4.8.2] on linux
+ Type "help", "copyright", "credits" or "license" for more information.
+ >>> 
+
+Para salir de varios versiones de Python en UNIX (incluye MAX OS) escribe ^d ( <Ctrl>d )<br />
+y en MS-Windows ^Z ( <Ctrl>Z ).
+
+ [rrc@Llawyr ~]$ python3
+ Python 3.3.2 (default, Nov 26 2013, 22:10:51)
+ [GCC 4.8.2] on linux
+ Type "help", "copyright", "credits" or "license" for more information.
+ >>> print( 'Hola Mundo!' )
+ Hola Mundo!
+ >>> print( 5 ** 5 )
+ 3125
+ >>> print( 5 ** 2 )
+ 25
+ >>> "Hola Mundo"
+ Hola Mundo
+ >>> Frase = "Bien hecho"
+ >>> Frase
+ Bien hecho
+ >>> ^d
+ [rrc@Llawyr ~]$ 
+
+Puedes ver que cada instrucción ejecuta imediamente después de escribrlo. 
+
+Es una buena herramienta a probar código pero el NO guarda tu código en un archivo.
+
+En el ambiente interactivo, No es necesario escribir print("Hola Mundo") o print(Frase) para escribir Hola Mundo o los contenidos de la variable Frase en la pantalla. Solo escribe "Hola Mundo" o Frase para escribirlos cómo se mueste arriba. Afuera del ambiente interactivo seria obligatorio escribir print( "Hola Mundo" ) o print( Frase ) pero no en el ambiente interactivo.
+
+El ambiente interactivo algúnas versiones no les gusta indentación que es OBLIGATORIO afuera.
+
+En el ambiente interactivo, terminas coumpound statements con una línea vacio.
+
+ >>> for i in 'bueno':
+         print(i)
+ 
+ b
+ u
+ e
+ n
+ o
+ >>> 
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
