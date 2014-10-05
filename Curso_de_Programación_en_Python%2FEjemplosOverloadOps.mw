@@ -1,0 +1,25 @@
+== Overloading operadores ==
+
+>>> Str1 = "Yo soy Str1 "
+>>> Str2 = " Yo soy Str2"
+
+=== El operador + ===
+
+>>> Str1 + "y" + Str2
+ 'Yo soy Str1 y Yo soy Str2'
+>>> "Str1" + Str2
+ 'Str1 Yo soy Str2'
+>>> "Str1 no es" + "Str2"
+ 'Str1 no es Str2'
+
+=== El operador * ===
+
+>>> Str1 * 3
+ 'Yo soy Str1 Yo soy Str1 Yo soy Str1 '
+
+>>> "Mi Frase " * 2
+ 'Mi Frase Mi Frase '
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
