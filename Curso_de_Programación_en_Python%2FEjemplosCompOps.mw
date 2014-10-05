@@ -1,0 +1,95 @@
+== Operadores de comparación ==
+
+<table style="width:50%; text-align:left;">
+<tr><th style="width:20%">Operador</th><th>Descripción</th></tr>
+<tr>
+<td>==</td>
+<td>
+verificar que los operands son igual
+</td></tr>
+<tr>
+<td>!=</td>
+<td>
+Verificar que los operands NO son igual
+</td></tr>
+<tr>
+<td>&lt;&gt;</td>
+<td>
+Verificar que los operands NO son igual NO sirve en Python 3.x
+</td></tr>
+<tr>
+<td>&gt;</td>
+<td>
+Verificar que el operand del izqierda es mayor que el operand de la derecha
+</td></tr>
+<tr>
+<td>&lt;</td>
+<td>
+Verificar que el operand del izqierda es menor que el operand de la derecha
+</td></tr>
+<tr>
+<td>&gt;=</td>
+<td>
+Verificar que el operand del izqierda es mayor que o igual a  el operand de la derecha
+</td></tr>
+<tr>
+<td>&lt;=</td>
+<td>
+Verificar que el operand del izqierda es menor que o igual a  el operand de la derecha
+</td></tr>
+</table>
+
+<hr />
+
+>>> a = 21
+
+>>> b = 10
+
+=== Igualidad ===
+
+>>> ( a == b )<br />
+False
+
+=== Inigualidad ===
+>>> ( a != b )<br />
+True
+
+=== Inigualidad en Python 2.x pero NO en 3.x ===
+
+>>> ( a <> b )<br />
+  File "<stdin>", line 1
+    ( a <> b )
+         ^
+ SyntaxError: invalid syntax
+
+=== Menor que ===
+
+>>> ( a < b )<br />
+False
+
+=== Mayor que ===
+
+>>> ( a > b )<br />
+True
+
+=== Menor que o igual ===
+
+>>> (a <= b)<br />
+False
+
+>>> b <= a<br />
+True
+
+=== Mayor que o igual ===
+
+>>> (a >= b)<br />
+True
+
+>>> b >= a<br />
+False
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
