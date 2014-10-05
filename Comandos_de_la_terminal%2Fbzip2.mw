@@ -1,0 +1,238 @@
+__NOTOC__
+* [[:#bzip2 | bzip2]]
+
+== bzip2 ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Pridd ~]$ bzip2 --help
+bzip2, a block-sorting file compressor.  Version 1.0.6, 6-Sept-2010.
+
+   usage: bzip2 [flags and input files in any order]
+
+   -h --help           print this message
+   -d --decompress     force decompression
+   -z --compress       force compression
+   -k --keep           keep (don't delete) input files
+   -f --force          overwrite existing output files
+   -t --test           test compressed file integrity
+   -c --stdout         output to standard out
+   -q --quiet          suppress noncritical error messages
+   -v --verbose        be verbose (a 2nd -v gives more)
+   -L --license        display software version & license
+   -V --version        display software version & license
+   -s --small          use less memory (at most 2500k)
+   -1 .. -9            set block size to 100k .. 900k
+   --fast              alias for -1
+   --best              alias for -9
+
+   If invoked as `bzip2', default action is to compress.
+              as `bunzip2',  default action is to decompress.
+              as `bzcat', default action is to decompress to stdout.
+
+   If no file names are given, bzip2 compresses or decompresses
+   from standard input to standard output.  You can combine
+   short flags, so `-v -4' means the same as -v4 or -4v, &c.
+
+[rrc@Pridd ~]$ bzip2 --version
+bzip2, a block-sorting file compressor.  Version 1.0.6, 6-Sept-2010.
+   
+   Copyright (C) 1996-2010 by Julian Seward.
+   
+   This program is free software; you can redistribute it and/or modify
+   it under the terms set out in the LICENSE file, which is included
+   in the bzip2-1.0.6 source distribution.
+   
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   LICENSE file for more details.
+   
+bzip2: I won't write compressed data to a terminal.
+bzip2: For help, type: `bzip2 --help'.
+
+[rrc@Pridd ~]$ su -c "rpm -qf $( which bzip2 )"
+Password: 
+bzip2-1.0.6-4.mga4
+
+[rrc@Pridd ~]$ cd ComandosDeLaTerminal
+
+[rrc@Pridd ComandosDeLaTerminal]$ ls -al Uniq*
+-rw------- 1 rrc rrc 48 Jan  2  2014 UniqEjemplo
+-rw------- 1 rrc rrc 54 Apr  1  2014 UniqEjemploConLineasVacios
+-rw------- 1 rrc rrc 34 Apr  1  2014 UniqEjemploMayusc
+-rw------- 1 rrc rrc 34 Apr  1  2014 UniqEjemploMinusc
+-rw------- 1 rrc rrc 48 Jan  2  2014 UniqSortEjemplo
+[rrc@Pridd ComandosDeLaTerminal]$ bzip2 -z Uniq*
+
+[rrc@Pridd ComandosDeLaTerminal]$ ls -al Uniq*
+-rw------- 1 rrc rrc 73 Jan  2  2014 UniqEjemplo.bz2
+-rw------- 1 rrc rrc 77 Apr  1  2014 UniqEjemploConLineasVacios.bz2
+-rw------- 1 rrc rrc 65 Apr  1  2014 UniqEjemploMayusc.bz2
+-rw------- 1 rrc rrc 62 Apr  1  2014 UniqEjemploMinusc.bz2
+-rw------- 1 rrc rrc 71 Jan  2  2014 UniqSortEjemplo.bz2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al  UmaskPruebaA*
+-rw------- 1 rrc rrc 0 Mar  5  2014 UmaskPruebaArchivo
+-rw------- 1 rrc rrc 6 Sep  6 08:53 UmaskPruebaArchivo2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -zk UmaskPruebaA*
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al  UmaskPruebaA*
+-rw------- 1 rrc rrc  0 Mar  5  2014 UmaskPruebaArchivo
+-rw------- 1 rrc rrc  6 Sep  6 08:53 UmaskPruebaArchivo2
+-rw------- 1 rrc rrc 44 Sep  6 08:53 UmaskPruebaArchivo2.bz2
+-rw------- 1 rrc rrc 14 Mar  5  2014 UmaskPruebaArchivo.bz2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -zk UmaskPruebaArchivo UmaskPruebaArchivo2 
+bzip2: Output file UmaskPruebaArchivo.bz2 already exists.
+bzip2: Output file UmaskPruebaArchivo2.bz2 already exists.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al  UmaskPruebaA*
+-rw------- 1 rrc rrc  0 Mar  5  2014 UmaskPruebaArchivo
+-rw------- 1 rrc rrc  6 Sep  6 08:53 UmaskPruebaArchivo2
+-rw------- 1 rrc rrc 44 Sep  6 08:53 UmaskPruebaArchivo2.bz2
+-rw------- 1 rrc rrc 14 Mar  5  2014 UmaskPruebaArchivo.bz2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -zkf UmaskPruebaArchivo UmaskPruebaArchivo2 
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -zkfv UmaskPruebaArchivo UmaskPruebaArchivo2 
+  UmaskPruebaArchivo:   no data compressed.
+  UmaskPruebaArchivo2:  0.136:1, 58.667 bits/byte, -633.33% saved, 6 in, 44 out.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -zkfvv UmaskPruebaArchivo UmaskPruebaArchivo2 
+  UmaskPruebaArchivo:  
+    final combined CRC = 0x00000000
+    no data compressed.
+  UmaskPruebaArchivo2: 
+    block 1: crc = 0x5f557ca5, combined CRC = 0x5f557ca5, size = 6
+    final combined CRC = 0x5f557ca5
+    0.136:1, 58.667 bits/byte, -633.33% saved, 6 in, 44 out.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -zkfvvv UmaskPruebaArchivo UmaskPruebaArchivo2 
+  UmaskPruebaArchivo:  
+    final combined CRC = 0x00000000
+    no data compressed.
+  UmaskPruebaArchivo2: 
+    block 1: crc = 0x5f557ca5, combined CRC = 0x5f557ca5, size = 6
+      6 in block, 7 after MTF & 1-2 coding, 6+2 syms in use
+      initial group 2, [0 .. 4], has 3 syms (42.9%)
+      initial group 1, [5 .. 7], has 4 syms (57.1%)
+      pass 1: size is 5, grp uses are 1 0 
+      pass 2: size is 2, grp uses are 1 0 
+      pass 3: size is 2, grp uses are 1 0 
+      pass 4: size is 2, grp uses are 1 0 
+      bytes: mapping 11, selectors 2, code lengths 3, codes 3
+    final combined CRC = 0x5f557ca5
+    0.136:1, 58.667 bits/byte, -633.33% saved, 6 in, 44 out.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc 14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -zkv MySQLDumpwiki-20141002.sql
+  MySQLDumpwiki-20141002.sql:  4.486:1,  1.783 bits/byte, 77.71% saved, 14493632 in, 3230944 out.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc  14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+-rw-r--r-- 1 rrc rrc 3.1M Oct  2 17:04 MySQLDumpwiki-20141002.sql.bz2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ rm MySQLDumpwiki-20141002.sql.bz2 
+rm: remove regular file ‘MySQLDumpwiki-20141002.sql.bz2’? y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -z1kv MySQLDumpwiki-20141002.sql
+  MySQLDumpwiki-20141002.sql:  3.725:1,  2.148 bits/byte, 73.15% saved, 14493632 in, 3891413 out.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc  14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+-rw-r--r-- 1 rrc rrc 3.8M Oct  2 17:04 MySQLDumpwiki-20141002.sql.bz2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ rm MySQLDumpwiki-20141002.sql.bz2 
+rm: remove regular file ‘MySQLDumpwiki-20141002.sql.bz2’? y
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -z9kv MySQLDumpwiki-20141002.sql
+  MySQLDumpwiki-20141002.sql:  4.486:1,  1.783 bits/byte, 77.71% saved, 14493632 in, 3230944 out.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -alh MySQLDumpwiki-20141002.sql*
+-rw-r--r-- 1 rrc rrc  14M Oct  2 17:04 MySQLDumpwiki-20141002.sql
+-rw-r--r-- 1 rrc rrc 3.1M Oct  2 17:04 MySQLDumpwiki-20141002.sql.bz2
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -t MySQLDumpwiki-20141002.sql.bz2 
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -tv MySQLDumpwiki-20141002.sql.bz2 
+  MySQLDumpwiki-20141002.sql.bz2: ok
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -tvv MySQLDumpwiki-20141002.sql.bz2 
+  MySQLDumpwiki-20141002.sql.bz2: 
+    [1: huff+mtf rt+rld]
+    [2: huff+mtf rt+rld]
+    [3: huff+mtf rt+rld]
+    [4: huff+mtf rt+rld]
+    [5: huff+mtf rt+rld]
+    [6: huff+mtf rt+rld]
+    [7: huff+mtf rt+rld]
+    [8: huff+mtf rt+rld]
+    [9: huff+mtf rt+rld]
+    [10: huff+mtf rt+rld]
+    [11: huff+mtf rt+rld]
+    [12: huff+mtf rt+rld]
+    [13: huff+mtf rt+rld]
+    [14: huff+mtf rt+rld]
+    [15: huff+mtf rt+rld]
+    [16: huff+mtf rt+rld]
+    [17: huff+mtf rt+rld]
+    ok
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -tvvv MySQLDumpwiki-20141002.sql.bz2 
+  MySQLDumpwiki-20141002.sql.bz2: 
+    [1: huff+mtf rt+rld {0xe9474220, 0xe9474220}]
+    [2: huff+mtf rt+rld {0xf99291da, 0xf99291da}]
+    [3: huff+mtf rt+rld {0xf0ff5674, 0xf0ff5674}]
+    [4: huff+mtf rt+rld {0x92a415eb, 0x92a415eb}]
+    [5: huff+mtf rt+rld {0xa89a8c48, 0xa89a8c48}]
+    [6: huff+mtf rt+rld {0x996100ff, 0x996100ff}]
+    [7: huff+mtf rt+rld {0x6686cb2b, 0x6686cb2b}]
+    [8: huff+mtf rt+rld {0x5937f7f5, 0x5937f7f5}]
+    [9: huff+mtf rt+rld {0xa8c9ed48, 0xa8c9ed48}]
+    [10: huff+mtf rt+rld {0xc2686ca1, 0xc2686ca1}]
+    [11: huff+mtf rt+rld {0xe8324938, 0xe8324938}]
+    [12: huff+mtf rt+rld {0xcca514fb, 0xcca514fb}]
+    [13: huff+mtf rt+rld {0xbc32a05b, 0xbc32a05b}]
+    [14: huff+mtf rt+rld {0x61e54d38, 0x61e54d38}]
+    [15: huff+mtf rt+rld {0x8cd5eae2, 0x8cd5eae2}]
+    [16: huff+mtf rt+rld {0xbcc01ab9, 0xbcc01ab9}]
+    [17: huff+mtf rt+rld {0x379e8ccb, 0x379e8ccb}]
+    combined CRCs: stored = 0x5d4f5dcf, computed = 0x5d4f5dcf
+    ok
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -dvvv MySQLDumpwiki-20141002.sql.bz2 
+bzip2: Output file MySQLDumpwiki-20141002.sql already exists.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ bzip2 -dfvvv MySQLDumpwiki-20141002.sql.bz2 
+  MySQLDumpwiki-20141002.sql.bz2: 
+    [1: huff+mtf rt+rld {0xe9474220, 0xe9474220}]
+    [2: huff+mtf rt+rld {0xf99291da, 0xf99291da}]
+    [3: huff+mtf rt+rld {0xf0ff5674, 0xf0ff5674}]
+    [4: huff+mtf rt+rld {0x92a415eb, 0x92a415eb}]
+    [5: huff+mtf rt+rld {0xa89a8c48, 0xa89a8c48}]
+    [6: huff+mtf rt+rld {0x996100ff, 0x996100ff}]
+    [7: huff+mtf rt+rld {0x6686cb2b, 0x6686cb2b}]
+    [8: huff+mtf rt+rld {0x5937f7f5, 0x5937f7f5}]
+    [9: huff+mtf rt+rld {0xa8c9ed48, 0xa8c9ed48}]
+    [10: huff+mtf rt+rld {0xc2686ca1, 0xc2686ca1}]
+    [11: huff+mtf rt+rld {0xe8324938, 0xe8324938}]
+    [12: huff+mtf rt+rld {0xcca514fb, 0xcca514fb}]
+    [13: huff+mtf rt+rld {0xbc32a05b, 0xbc32a05b}]
+    [14: huff+mtf rt+rld {0x61e54d38, 0x61e54d38}]
+    [15: huff+mtf rt+rld {0x8cd5eae2, 0x8cd5eae2}]
+    [16: huff+mtf rt+rld {0xbcc01ab9, 0xbcc01ab9}]
+    [17: huff+mtf rt+rld {0x379e8ccb, 0x379e8ccb}]
+    combined CRCs: stored = 0x5d4f5dcf, computed = 0x5d4f5dcf
+    done
+
+
+[rrc@Llawyr ~]$ ls -al $( which bunzip2 )
+ lrwxrwxrwx 1 root root 5 Sep 22 13:33 /usr/bin/bunzip2 -> bzip2*
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
