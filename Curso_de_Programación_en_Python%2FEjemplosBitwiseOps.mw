@@ -1,0 +1,105 @@
+== Bitwise Operadores ==
+
+
+<table style="width:50%; text-align:left;">
+<tr>
+<th style="width:20%">
+Operador    
+</th><th>Descripción</th></tr>
+<tr><td>|</td>
+<td>
+Bitwuse OR, toma dos patrones de bits de igual longitud y realiza la operación lógico inclusivo OR cada par de bits correspondientes. El resultado en cada posición es 1 si el primer bit es 1 o el segundo bit es 1 o si ambos bits son 1; en caso contrario, el resultado es 0
+</td></tr>
+<tr><td>&</td>
+<td>
+Bitwise AND, toma dos representaciones binarias de la longitud igual y realiza el lógico AND operación en cada par de bits correspondientes. El resultado en cada posición es 1 si el primer bit es 1 y el segundo bit es 1; en caso contrario, el resultado es 0
+</td></tr>
+<tr><td>^</td>
+<td>
+Bitwise XOR, Toma dos patrones de bits de igual longitud y realiza la operación lógico exclusivo OR en cada par de bits correspondientes. El resultado en cada posición es 1 si sólo el primer bit es 1 o sólo el segundo bit es 1, pero será 0 si ambos son 0 o ambos son 1.
+</td></tr>
+<tr><td>~</td>
+<td>
+Bitwise NOT, es una operación unaria que realiza negación lógica en cada bit, formando los 'ones complemento' del valor binario determinado. Bits que sean 0 convertido en 1, y aquellos que son 1 convertido en 0.
+</td></tr>
+<tr><td>&lt;&lt;</td>
+<td>
+Bitwise Shift izquierda, Los bits del valor binario se mueve al izquierda por el numero de posiciones indicados en la instrucción y ceros son insertados a la derecha para re-emplacer los bits dezplacados.
+</td></tr>
+<tr><td>&gt;&gt;</td>
+<td>
+Bitwise Shift derecha, Los bits del valor binario se mueve a la derecha por el numero de posiciones indicados en la instrucción y ceros son insertados al izquierda para re-emplacer los bits dezplacados.
+</td></tr>
+</table>
+
+<hr />
+
+>>> a = 60<br />
+>>> b = 13<br />
+>>> c = 0<br />
+
+=== Bitwise AND ===
+
+>>> c = a & b<br /> 
+>>> print( "                    a es", a, bin( 60 ) ) 
+ ('                    a es', 60, '0b111100')
+>>> print( "                    b es", b, bin( 13 ) ) 
+ ('                    b es', 13, '0b1101')
+>>> print( "                    c es", c, bin( a & b ) )
+ ('                    c es', 12, '0b1100')
+
+=== Bitwise OR ===
+
+>>> c = a | b<br /> 
+>>> print( "                    a es", a, bin( 60 ) ) 
+ ('                    a es', 60, '0b111100')
+>>> print( "                    b es", b, bin( 13 ) ) 
+ ('                    b es', 13, '0b1101')
+>>> print( "                    c es", c, bin( a | b ) )
+ ('                    c es', 61, '0b111101')
+
+=== Bitwise XOR ===
+
+>>> c = a ^ b<br />
+>>> print( "                    a es", a, bin( 60 ) )
+ ('                    a es', 60, '0b111100')
+>>> print( "                    b es", b, bin( 13 ) )
+ ('                    b es', 13, '0b1101')
+>>> print( "                    c es", c, bin( a ^ b ) )
+ ('                    c es', 49, '0b110001')
+
+=== Bitwise NOT ===
+
+>>> Val = 249<br />
+>>> NotVal = ~Val<br />
+>>> print( "Val es", Val, bin( Val ) )
+ ('Val es', 249, '0b11111001')
+>>> print( "Not Val de", Val, "es", NotVal, bin( NotVal ) )
+ ('Not Val de', 249, 'es', -250, '-0b11111010')
+
+Python usa signed ints entonces NOT resulta en 2s complemento  -val -1<br /> 
+para evitar el signed int
+
+>>> RealNotval = NotVal & 0xff<br />
+>>> print( "Real Not Val es", RealNotVal, bin( NotVal & 0xff ) )
+ ('Real Not Val es', 6, '0b110')
+
+=== Bitwise shift izquierda ===
+
+>>> c = 12<br />
+>>> print( "c es", c, bin( c ) )
+ ('c es', 12, '0b1100')
+>>> print( "c << 2 =", c << 2, bin( c << 2 ) )
+ ('c << 2 =', 48, '0b110000')
+
+=== Bitwise shift derecha ===
+
+>>> c = 48<br />
+>>> print( "c es", c, bin( c ) )
+ ('c es', 48, '0b110000')
+>>> print( "c >> 2 =", c >> 2, bin( c >> 2 ) )
+ ('c >> 2 =', 12, '0b1100')
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
