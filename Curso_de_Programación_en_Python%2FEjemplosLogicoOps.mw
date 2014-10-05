@@ -1,0 +1,55 @@
+== Operadores lógicos ==
+
+<table style="width:50%; text-align:left;">
+<tr><th style="width:20%">Operador</th><th>Descripción</th></tr>
+<tr>
+<td>and</td>
+<td>
+AND  Logico. si todos los operands son verdad, la expresión es verdad.
+</td></tr>
+<tr>
+<td>or</td>
+<td>
+OR Logicao. Si algunos de los operands son verdad, la expresión es verdad
+</td></tr>
+<tr>
+<td>not</td>
+<td>
+NOT Logigo.  Se usa para reversar el estado logico de la expresión
+</td></tr>
+</table>
+
+<hr />
+
+>>> a = 4<br />
+>>> b = 12<br />
+>>> c = 0<br />
+
+=== Lógico AND ===
+
+>>> bool( a and b )
+ True
+
+>>> bool( a and c )
+ False
+
+=== Logico OR ===
+
+>>> bool( a or b )
+ True
+
+>>> bool( a or c )
+ True
+
+=== Logico NOT ===
+
+>>> bool( not a )
+ False
+
+>>> bool( not c )
+ True
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
