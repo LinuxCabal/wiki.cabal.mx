@@ -1,0 +1,196 @@
+= Funciones en el modulo de Math: =
+
+<table>
+<tr><th style="width:25%;">Función</th><th>Regresa ( descripción )</th></tr>
+<tr><td>math.acos(x)</td><td>Return the arc cosine of x, in radians.</td></tr>
+<tr><td>math.acosh(x)</td><td>Return the inversehttp://wiki.cabal.mx/index.php?title=Curso_de_Programaci%C3%B3n_en_Python/MathFunciones&action=edit hyperbolic cosine of x.</td></tr>
+<tr><td>math.asin(x)</td><td>Return the arc sine of x, in radians.</td></tr>
+<tr><td>math.asinh(x)</td><td>Return the inverse hyperbolic sine of x.</td></tr>
+<tr><td>math.atan(x)</td><td>Return the arc tangent of x, in radians.</td></tr>
+<tr><td>math.atanh(x)</td><td>Return the inverse hyperbolic tangent of x.</td></tr>
+<tr><td>math.atan2(y, x)</td><td>Return atan(y / x), in radians. The result is between -pi and pi. The vector in the plane from the origin to point (x, y) makes this angle with the positive X axis. The point of atan2() is that the signs of both inputs are known to it, so it can compute the correct quadrant for the angle. For example, atan(1) and atan2(1, 1) are both pi/4, but atan2(-1, -1) is -3*pi/4.</td></tr>
+<tr><td>math.ceil(x)</td><td>El ceil de x: El intero más pequeña que es mayor que x</td></tr>
+<tr><td>math.copysign(x, y)</td><td>Return x with the sign of y. On a platform that supports signed zeros, copysign(1.0, -0.0) returns -1.0.</td></tr>
+<tr><td>math.cos(x)</td><td>Return the cosine of x radians.</td></tr>
+<tr><td>math.cosh(x)</td><td>Return the hyperbolic cosine of x.</td></tr>
+<tr><td>math.degrees(x)</td><td>Converts angle x from radians to degrees.</td></tr>
+<tr><td>math.e</td><td>The mathematical constant e = 2.718281..., to available precision.</td></tr>
+<tr><td>math.erf(x)</td><td>Return the error function at x. The erf() function can be used to compute traditional statistical functions such as the cumulative standard normal distribution: def phi(x):
+'Cumulative distribution function for the standard normal distribution' return (1.0 + erf(x / qrt(2.0))) / 2.0  New in version 3.2.</td></tr>
+<tr><td>math.erfc(x)</td><td>Return the complementary error function at x. The complementary error function is defined as 1.0 - erf(x). It is used for large values of x where a subtraction from one would cause a loss of significance.  New in version 3.2.</td></tr>
+<tr><td>math.exp(ath.)</td><td>El exponential de x: e<sup>x</sup> </td></tr>
+<tr><td>math.expm1(x)</td><td>Return e**x - 1. For small floats x, the subtraction in exp(x) - 1 can result in a significant loss of precision; the expm1() function provides a way to compute this quantity to full precision. New in version 3.2.</td></tr>
+<tr><td>math.fabs(x)</td><td>El valor absoluto de x</td></tr>
+<tr><td>math.factorial(x)</td><td>Return x factorial. Raises ValueError if x is not integral or is negative.</td></tr>
+<tr><td>math.floor(x)</td><td>El floor de x: El intero más grand que no es mayor que x</td></tr>
+<tr><td>math.fmod(x, y)</td><td>Return fmod(x, y), as defined by the platform C library. Note that the Python expression x % y may not return the same result. The intent of the C standard is that fmod(x, y) be exactly (mathematically; to infinite precision) equal to x - n*y for some integer n such that the result has the same sign as x and magnitude less than abs(y). Python’s x % y returns a result with the sign of y instead, and may not be exactly computable for float arguments. For example, fmod(-1e-100, 1e100) is -1e-100, but the result of Python’s -1e-100 % 1e100 is 1e100-1e-100, which cannot be represented exactly as a float, and rounds to the surprising 1e100. For this reason, function fmod() is generally preferred when working with floats, while Python’s x % y is preferred when working with integers.</td></tr>
+<tr><td>math.frexp(x)</td><td>Return the mantissa and exponent of x as the pair (m, e). m is a float and e is an integer such that x == m * 2**e exactly. If x is zero, returns (0.0, 0), otherwise 0.5 <= abs(m) < 1. This is used to “pick apart” the internal representation of a float in a portable way.</td></tr>
+<tr><td>math.fsum(iterable)</td><td>Return an accurate floating point sum of values in the iterable. Avoids loss of precision by tracking multiple intermediate partial sums:
+</td></tr>
+<tr><td>math.gamma(x)</td><td>Return the Gamma function at x. New in version 3.2.</td></tr>
+<tr><td>math.hypot(x, y)</td><td>Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector from the origin to point (x, y).</td></tr>
+<tr><td>math.isfinite(x)</td><td>Return True if x is neither an infinity nor a NaN, and False otherwise. (Note that 0.0 is considered finite.) New in version 3.2.</td></tr>
+<tr><td>math.isinf(x)</td><td>Return True if x is a positive or negative infinity, and False otherwise.</td></tr>
+<tr><td>math.isnan(x)</td><td>Return True if x is a NaN (not a number), and False otherwise.</td></tr>
+<tr><td>math.ldexp(x, i)</td><td>Return x * (2**i). This is essentially the inverse of function frexp().</td></tr>
+<tr><td>math.lgamma(x)</td><td>Return the natural logarithm of the absolute value of the Gamma function at x. New in version 3.2.</td></tr>
+<tr><td>math.log(x)</td><td>El logaritmo natural de x, para x&gt; 0.</td></tr>
+<tr><td>math.log10(x)</td><td>The base-10 logarithm of x for x&gt; 0 .</td></tr>
+<tr><td>math.log1p(x)</td><td>Return the natural logarithm of 1+x (base e). The result is calculated in a way which is accurate for x near zero.</td></tr>
+<tr><td>math.max(x1, x2,...)</td><td>The largest of its arguments: the value closest to positive infinity </td></tr>
+<tr><td>math.min(x1, x2,...)</td><td>The smallest of its arguments: the value closest to negative infinity </td></tr>
+<tr><td>math.modf(x)</td><td>The fractional and integer parts of x in a two-item tuple. Both parts have the same sign as x. The integer part is returned as a float.</td></tr>
+<tr><td>math.pi</td><td>The mathematical constant π = 3.141592..., to available precision.</td></tr>
+<tr><td>math.pow(x, y)</td><td>The value of x**y.</td></tr>
+<tr><td>math.radians(x)</td><td>Converts angle x from degrees to radians.</td></tr>
+<tr><td>math.round(x [,n])</td><td><b>x</b> rounded to n digits from the decimal point. Python rounds away from zero as a tie-breaker: round(0.5) is 1.0 and round(-0.5) is -1.0.</td></tr>
+<tr><td>math.sin(x)</td><td>Return the sine of x radians.</td></tr>
+<tr><td>math.sinh(x)</td><td>Return the hyperbolic sine of x.</td></tr>
+<tr><td>math.sqrt(x)</td><td>The square root of x for x &gt; 0</td></tr>
+<tr><td>math.tan(x)</td><td>Return the tangent of x radians.</td></tr>
+<tr><td>math.tanh(x)</td><td>Return the hyperbolic tangent of x.</td></tr>
+<tr><td>math.trunc(x)</td><td>Return the Real value x truncated to an Integral (usually an integer). Delegates to x.__trunc__().
+</table>
+
+<hr />
+
+== ceil( x ) ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+print( "math.ceil( -45.17 ) : ", math.ceil( -45.17 ) )
+print( "math.ceil( 100.12 ) : ", math.ceil( 100.12 ) )
+print( "math.ceil( math.pi ) : ", math.ceil( math.pi ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./Ceil.py
+ math.ceil( -45.17 ) :  -45
+ math.ceil( 100.12 ) :  101
+ math.ceil( math.pi ) :  4
+
+== exp( x ) ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+print( "math.exp( 1e-3 ) =", math.exp( 1e-3 ) )
+print( "math.exp( 1e-5 ) =", math.exp( 1e-5 ) )
+print( "math.exp( 1e-7 ) =", math.exp( 1e-7 ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./Exp.py 
+ math.exp( 1e-3 ) = 1.0010005001667084
+ math.exp( 1e-5 ) = 1.00001000005
+ math.exp( 1e-7 ) = 1.000000100000005
+
+== fabs( x ) ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+print( "math.fabs( -45.17 ) : ", math.fabs( -45.17 ) )
+print( "math.fabs( 100.12 ) : ", math.fabs( 100.12 ) )
+print( "math.fabs( math.pi ) : ", math.fabs( math.pi ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./Fabs.py
+ math.fabs( -45.17 ) :  45.17
+ math.fabs( 100.12 ) :  100.12
+ math.fabs( math.pi ) :  3.141592653589793
+
+== floor( x ) ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+print( "math.floor( -45.17 ) : ", math.floor( -45.17 ) )
+print( "math.floor( 100.12 ) : ", math.floor( 100.12 ) )
+print( "math.floor( math.pi ) : ", math.floor( math.pi ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./Floor.py 
+ math.floor( -45.17 ) :  -46
+ math.floor( 100.12 ) :  100
+ math.floor( math.pi ) :  3
+
+== log( x ) ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+print( "math.log( 0.000001 ) : ", math.log( 0.000001 ) )
+print( "math.log( 0.0001 ) : ", math.log( 0.0001 ) )
+print( "math.log( 0.01 ) : ", math.log( 0.01 ) )
+print( "math.log( 0.999 ) : ", math.log( 999 ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./Log.py 
+ math.log( 0.000001 ) :  -13.815510557964274
+ math.log( 0.0001 ) :  -9.210340371976182
+ math.log( 0.01 ) :  -4.605170185988091
+ math.log( 0.999 ) :  6.906754778648554
+
+== log10( x ) ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+print( "math.log10( 0.000001 ) : ", math.log10( 0.000001 ) )
+print( "math.log10( 0.0001 ) : ", math.log10( 0.0001 ) )
+print( "math.log10( 0.01 ) : ", math.log10( 0.01 ) )
+print( "math.log10( 0.999 ) : ", math.log10( 999 ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./Log10.py 
+ math.log10( 0.000001 ) :  -6.0
+ math.log10( 0.0001 ) :  -4.0
+ math.log10( 0.01 ) :  -2.0
+ math.log10( 0.999 ) :  2.9995654882259823
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
