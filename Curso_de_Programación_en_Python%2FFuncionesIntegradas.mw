@@ -1,0 +1,456 @@
+== Funciones Integradas ==
+<table border="1" cellpadding="5" cellspacing="5">
+<tr><th colspan="5" style="text-align:center;">Funciones Integradas</th>
+</tr>
+<tr>
+<td>abs()</td><td>dir()</td><td>hex()</td><td>next()</td><td>slice()</td>
+</tr>
+<tr>
+<td>all()</td><td>divmod()</td><td>id()</td><td>object()</td><td>sorted()</td>
+</tr>
+<tr>
+<td>any()</td><td>enumerate()</td><td>input()</td><td>oct()</td><td>staticmethod()</td>
+</tr>
+<tr>
+<td>ascii()</td><td>eval()</td><td>int()</td><td>open()</td><td>str()</td>
+</tr>
+<tr><td>bin()</td><td>exec()</td><td>isinstance()</td><td>ord()</td><td>sum()</td>
+</tr>
+<tr><td>bool()</td><td>filter()</td><td>issubclass()</td><td>pow()</td>
+<td>super()</td>
+</tr>
+<tr><td>bytearray()</td><td>float()</td><td>iter()</td><td>print()</td>
+<td>tuple()</td>
+</tr>
+<tr><td>bytes()</td><td>format()</td><td>len()</td><td>property()</td><td>type()</td>
+</tr>
+<tr><td>chr()</td><td>frozenset()</td><td>list()</td><td>range()</td><td>vars()</td>
+</tr>
+<tr><td>classmethod()</td><td>getattr()</td><td>locals()</td><td>repr()</td><td>zip()</td>
+</tr>
+<tr><td>compile()</td><td>globals()</td><td>map()</td><td>reversed()</td>
+<td>__import__()</td>
+</tr>
+<tr><td>complex()</td><td>hasattr()</td><td>max()</td><td>round()</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>delattr()</td><td>hash()</td><td>memoryview()</td><td>set()</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>dict()</td><td>help()</td><td>min()</td><td>setattr()</td><td>&nbsp;</td>
+</tr>
+</table>
+
+<hr />
+
+=== abs( x ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+x = 44
+y = -44.55
+z = 0
+
+print( "abs(", x, ") =", abs( x ) )
+print( "abs( " + str( x ) + " ) = " + str( abs( x ) ) )
+
+print( "abs(", y, ") =", abs( y ) )
+
+print( "abs(", z, ") =", abs( z ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Pridd PythonClase]$ ./Abs.py
+ abs( 44 ) = 44
+ abs( 44 ) = 44
+ abs( -44.55 ) = 44.55
+ abs( 0 ) = 0
+
+=== all( set ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "all([0,1,0]) nos da:", all([0,1,0] ) )
+print( "all([0,0,0]) nos da:", all([0,0,0] ) )
+print( "all([1, \"Hola\", -10.6]) nos da:", all([1, "Hola", -10.6] ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Pridd PythonClase]$ ./All.py 
+ all([0,1,0]) nos da: False
+ all([0,0,0]) nos da: False
+ all([1, "Hola", -10.6]) nos da: True
+
+=== any( set ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "any([0,1,0]) nos da:", any([0,1,0] ) )
+print( "any([0,0,0]) nos da:", any([0,0,0] ) )
+print( "any([1, \"Hola\", -10.6]) nos da:", any([1, "Hola", -10.6] ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Pridd PythonClase]$ ./Any.py 
+ any([0,1,0]) nos da: True
+ any([0,0,0]) nos da: False
+ any([1, "Hola", -10.6]) nos da: True
+
+=== bin( x ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "bin( 245 ) nos da:", bin( 245 ) )
+print( "bin( -456 ) nos da:", bin( -456 ) )
+print( "bin( 34.5 ) nos da:", bin( 34.5 ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Pridd PythonClase]$ ./Bin.py 
+ bin( 245 ) nos da: 0b11110101
+ bin( -456 ) nos da: -0b111001000
+ Traceback (most recent call last):
+   File "./Bin.py", line 6, in <module>
+     print( "bin( 34.5 ) nos da:", bin( 34.5 ) )
+ TypeError: 'float' object cannot be interpreted as an integer
+
+=== bool(  ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "bool( 99 ) es:", bool( 99 ) )
+print( "bool( -100 ) es:", bool( -100 ) )
+print( "bool( 0 ) es:", bool( 0 ) )
+print( "bool( \'\' ) es:", bool( '' ) )
+print( "bool( \"\" ) es:", bool( "" ) )
+print( "bool( \" \" ) es:", bool( " " ) )
+print( "bool( [ \'\' ] ) es:", bool( [ '' ] ) )
+print( "bool( ( \'\' ) ) es:", bool( ( '' ) ) )
+print( "bool( [ 0 ] ) es:", bool( [ 0 ] ) )
+print( "bool( [   ] ) es:", bool( [  ] ) )
+print( "bool( (   ) ) es:", bool( (  ) ) )
+print( "bool( \'Hola\' ) es:", bool( 'Hola' ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Bool.py 
+ bool( 99 ) es: True
+ bool( -100 ) es: True
+ bool( 0 ) es: False
+ bool( '' ) es: False
+ bool( "" ) es: False
+ bool( " " ) es: True
+ bool( [ '' ] ) es: True
+ bool( ( '' ) ) es: False
+ bool( [ 0 ] ) es: True
+ bool( [   ] ) es: False
+ bool( (   ) ) es: False
+ bool( 'Hola' ) es: True
+
+=== bytearray( ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "\nEjemplo 1:" )
+s = bytearray(b"Hello World")
+s[:5] = b"Cruel"
+
+print( "s es:", s, "\n" )
+
+print( "Ejemplo 2:" )
+
+s = bytearray(b"Hello World")
+for c in s: print(c)
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Bytearray.py 
+ 
+ Ejemplo 1:
+ s es: bytearray(b'Cruel World') 
+ 
+ Ejemplo 2:
+ 72
+ 101
+ 108
+ 108
+ 111
+ 32
+ 87
+ 111
+ 114
+ 108
+ 100
+
+=== bytes(  ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( bytes( "Buenos días, cómo estás", "utf-8" ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Bytes.py
+ b'Buenos d\xc3\xadas, c\xc3\xb3mo est\xc3\xa1s'
+
+=== chr(  ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "chr( 97 ) es:", chr( 97 ), "y chr( 97 + 3 ) es:", chr( 97 + 3 ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Chr.py
+ chr( 97 ) es: a y chr( 97 + 3 ) es: d
+
+=== classmethod(  ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+print( "classmethod( classmethod ) es:", classmethod( classmethod ) )
+print( "classmethod( print ) es:      ", classmethod( print ) )
+print( "classmethod( format ) es:     ", classmethod( format ) )
+print( "classmethod( math.cos ) es:   ", classmethod( math.cos ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Classmethod.py
+ classmethod( classmethod ) es: <classmethod object at 0x7f31e5bf1ad0>
+ classmethod( print ) es:       <classmethod object at 0x7f31e5bf1ad0>
+ classmethod( format ) es:      <classmethod object at 0x7f31e5bf1ad0>
+ classmethod( math.cos ) es:    <classmethod object at 0x7f31e5bf1ad0>
+
+=== compile( ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+with open( 'Fabs.py' ) as f:
+  contents = f.read()
+
+code_obj = compile( contents, 'Fabs.py', 'exec')
+exec(code_obj)
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Compile.py
+ math.fabs( -45.17 ) :  45.17
+ math.fabs( 100.12 ) :  100.12
+ math.fabs( math.pi ) :  3.141592653589793
+
+[rrc@Llawyr PythonClase]$ ls -al __pycache__
+ total 12
+ drwxr-x--- 2 rrc rrc 4096 Oct  6 18:54 ./
+ drwxr-x--- 3 rrc rrc 4096 Oct  7 11:21 ../
+ -rw-r----- 1 rrc rrc  340 Oct  6 18:05 Fabs.cpython-33.pyc
+
+[rrc@Llawyr PythonClase]$ file __pycache__/Fabs.cpython-33.pyc 
+ __pycache__/Fabs.cpython-33.pyc: python 3.3 byte-compiled
+
+=== complex( x, y ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+x=complex(1,2)
+print( "x es:", x )
+y=complex(3,4)
+print( "y es:", y )
+z=x+y
+print( "z es:", z )
+z=x*y
+print( "z es:", z )
+z=x/y
+print( "z es:", z )
+print( "x.imag es:", x.imag )
+print( "x.real es:", x.real )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Complex.py
+ x es: (1+2j)
+ y es: (3+4j)
+ z es: (4+6j)
+ z es: (-5+10j)
+ z es: (0.44+0.08j)
+ x.imag es: 2.0
+ x.real es: 1.0
+
+=== delattr(  ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+class MyClass(object):
+    def __init__(self):
+        self.x = 10
+
+obj = MyClass()
+print( "\nAntes de borrar" )
+print( "obj.x es:", obj.x )
+delattr(obj, "x")
+print( "\nDespués de borrar" )
+print( "obj.x es:", obj.x )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Delattr.py
+ 
+ Antes de borrar
+ obj.x es: 10
+ 
+ Después de borrar
+ Traceback (most recent call last):
+   File "./Delattr.py", line 13, in <module>
+     print( "obj.x es:", obj.x )
+ AttributeError: 'MyClass' object has no attribute 'x'
+
+=== dict(  ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "dict([('x', 10), ('y', 20)]) nos da:", dict([('x', 10), ('y', 20)]) ) 
+print( "dict([\"a9\", \"b6\"]) nos da:", dict(["a9", "b6"]) )
+mylist = [('x', 10), ('y', 20)]
+print( "dict(mylist) nos da:", dict(mylist) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Dict.py
+ dict([('x', 10), ('y', 20)]) nos da: {'y': 20, 'x': 10}
+ dict(["a9", "b6"]) nos da: {'a': '9', 'b': '6'}
+ dict(mylist) nos da: {'y': 20, 'x': 10}
+
+=== dir(  ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+MiCadena = "Hola"
+
+print( "\ndir( ) te da una lista de todos los variables en el scope local actual:", dir( ) )
+
+print( "\ndir( MiCadena ) te dice cual son los heramientas que podemos usar con MiCadena:", dir( MiCadena ) )
+
+print( "\ndir( object ) te dice cual son los heramientas que podemos usar con un objeto:", dir( object ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Dir.py 
+
+ dir( ) te da una lista de todos los variables en el scope local actual: ['MiCadena', '__builtins__',
+ '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__']
+ 
+ dir( MiCadena ) te dice cual son los heramientas que podemos usar con MiCadena: ['__add__', '__class__', '__contains__',
+ '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__',
+ '__getnewargs__', '__gt__', '__hash__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__mod__',
+ '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmod__', '__rmul__',
+ '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 'capitalize', 'casefold', 'center', 'count',
+ 'encode', 'endswith', 'expandtabs', 'find', 'format', 'format_map', 'index', 'isalnum', 'isalpha',
+ 'isdecimal', 'isdigit', 'isidentifier', 'islower', 'isnumeric', 'isprintable', 'isspace', 'istitle',
+ 'isupper', 'join', 'ljust', 'lower', 'lstrip', 'maketrans', 'partition', 'replace', 'rfind', 'rindex', 
+ 'rjust', 'rpartition', 'rsplit', 'rstrip', 'split', 'splitlines', 'startswith', 'strip', 'swapcase',
+ 'title', 'translate', 'upper', 'zfill']
+ 
+ dir( object ) te dice cual son los heramientas que podemos usar con un objeto: ['__class__', '__delattr__',
+ '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__',
+ '__le__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__',
+ '__str__', '__subclasshook__']
+
+=== hex( x ) ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "hex( 99 ) : ", hex( 99 ) )
+print( "hex( -100 ) : ", hex( -100 ) )
+print( "hex( 5.1 ) : ", hex( 5.1 ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Pridd PythonClase]$ ./Hex.py 
+ hex( 99 ) :  0x63
+ hex( -100 ) :  -0x64
+ Traceback (most recent call last):
+   File "./Hex.py", line 6, in <module>
+     print( "hex( 5.1 ) : ", hex( 5.1 ) )
+ TypeError: 'float' object cannot be interpreted as an integer
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
