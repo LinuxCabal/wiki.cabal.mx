@@ -1,0 +1,285 @@
+__NOTOC__
+* [[:#cpio | cpio]]
+
+== cpio ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ cpio --help
+Usage: cpio [OPTION...] [destination-directory]
+GNU `cpio' copies files to and from archives
+
+Examples:
+  # Copy files named in name-list to the archive
+  cpio -o < name-list [> archive]
+  # Extract files from the archive
+  cpio -i [< archive]
+  # Copy files named in name-list to destination-directory
+  cpio -p destination-directory < name-list
+
+ Main operation mode:
+  -i, --extract              Extract files from an archive (run in copy-in
+                             mode)
+  -o, --create               Create the archive (run in copy-out mode)
+  -p, --pass-through         Run in copy-pass mode
+  -t, --list                 Print a table of contents of the input
+
+ Operation modifiers valid in any mode:
+
+      --block-size=BLOCK-SIZE   Set the I/O block size to BLOCK-SIZE * 512
+                             bytes
+  -B                         Set the I/O block size to 5120 bytes
+  -c                         Use the old portable (ASCII) archive format
+  -C, --io-size=NUMBER       Set the I/O block size to the given NUMBER of
+                             bytes
+      --force-local          Archive file is local, even if its name contains
+                             colons
+  -f, --nonmatching          Only copy files that do not match any of the given
+                             patterns
+  -F, --file=[[USER@]HOST:]FILE-NAME
+                             Use this FILE-NAME instead of standard input or
+                             output. Optional USER and HOST specify the user
+                             and host names in case of a remote archive
+  -H, --format=FORMAT        Use given archive FORMAT
+  -M, --message=STRING       Print STRING when the end of a volume of the
+                             backup media is reached
+  -n, --numeric-uid-gid      In the verbose table of contents listing, show
+                             numeric UID and GID
+      --quiet                Do not print the number of blocks copied
+      --rsh-command=COMMAND  Use remote COMMAND instead of rsh
+  -v, --verbose              Verbosely list the files processed
+  -V, --dot                  Print a "." for each file processed
+  -W, --warning=FLAG         Control warning display. Currently FLAG is one of
+                             'none', 'truncate', 'all'. Multiple options
+                             accumulate.
+
+ Operation modifiers valid only in copy-in mode:
+
+  -b, --swap                 Swap both halfwords of words and bytes of
+                             halfwords in the data. Equivalent to -sS
+  -r, --rename               Interactively rename files
+  -s, --swap-bytes           Swap the bytes of each halfword in the files
+  -S, --swap-halfwords       Swap the halfwords of each word (4 bytes) in the
+                             files
+      --to-stdout            Extract files to standard output
+
+  -E, --pattern-file=FILE    Read additional patterns specifying filenames to
+                             extract or list from FILE
+      --only-verify-crc      When reading a CRC format archive, only verify the
+                             CRC's of each file in the archive, don't actually
+                             extract the files
+
+ Operation modifiers valid only in copy-out mode:
+
+  -A, --append               Append to an existing archive.
+  -O [[USER@]HOST:]FILE-NAME Archive filename to use instead of standard
+                             output. Optional USER and HOST specify the user
+                             and host names in case of a remote archive
+
+ Operation modifiers valid only in copy-pass mode:
+
+  -l, --link                 Link files instead of copying them, when
+                             possible
+
+ Operation modifiers valid in copy-in and copy-out modes:
+
+      --absolute-filenames   Do not strip file system prefix components from
+                             the file names
+      --no-absolute-filenames   Create all files relative to the current
+                             directory
+
+ Operation modifiers valid in copy-out and copy-pass modes:
+
+  -0, --null                 A list of filenames is terminated by a null
+                             character instead of a newline
+  -a, --reset-access-time    Reset the access times of files after reading them
+                            
+  -I [[USER@]HOST:]FILE-NAME Archive filename to use instead of standard input.
+                             Optional USER and HOST specify the user and host
+                             names in case of a remote archive
+  -L, --dereference          Dereference  symbolic  links  (copy  the files
+                             that they point to instead of copying the links).
+  -R, --owner=[USER][:.][GROUP]   Set the ownership of all files created to the
+                             specified USER and/or GROUP
+
+ Operation modifiers valid in copy-in and copy-pass modes:
+
+  -d, --make-directories     Create leading directories where needed
+  -m, --preserve-modification-time
+                             Retain previous file modification times when
+                             creating files
+      --no-preserve-owner    Do not change the ownership of the files
+      --sparse               Write files with large blocks of zeros as sparse
+                             files
+  -u, --unconditional        Replace all files unconditionally
+
+  -?, --help                 give this help list
+      --usage                give a short usage message
+      --version              print program version
+
+Mandatory or optional arguments to long options are also mandatory or optional
+for any corresponding short options.
+
+Report bugs to <bug-cpio@gnu.org>.
+
+[rrc@Llawyr ~]$ cpio --version
+cpio (GNU cpio) 2.11
+Copyright (C) 2010 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Phil Nelson, David MacKenzie, John Oleynick,
+and Sergey Poznyakoff.
+
+[rrc@Llawyr ComandosDeLaTerminal]$ su -c "rpm -qf $( which cpio )"
+Password: 
+cpio-2.11-6.mga4
+
+[rrc@Llawyr BashClase]$ ls S*.sh | cpio -ov > Ejemplos.cpio
+S10.sh
+S11.sh
+S12Eval.sh
+ .
+ .
+ .
+S7.sh
+S8.sh
+S9.sh
+23 blocks
+
+[rrc@Llawyr BashClase]$ ls -alh Ejemplos.cpio 
+-rw------- 1 rrc rrc 12K Oct 10 11:49 ../BashClase/Ejemplos.cpio
+
+[rrc@Llawyr BashClase]$ cpio -itF Ejemplos.cpio 
+S10.sh
+S11.sh
+S12Eval.sh
+ .
+ .
+ .
+S5.sh
+S6.sh
+S7.sh
+S8.sh
+S9.sh
+23 blocks
+
+[rrc@Llawyr BashClase]$ cd ..
+
+[rrc@Llawyr ~]$ find BashClase -print | cpio -ov > BashClaseConFind.cpio 
+BashClase
+BashClase/S6.sh
+BashClase/5.Ztv
+BashClase/S27.sh
+ .
+ .
+ .
+BashClase/S19.sh
+BashClase/1.bak
+BashClase/S22.sh
+25 blocks
+
+[rrc@Llawyr ~]$ ls -alh BashClaseConFind.cpio 
+-rw------- 1 rrc rrc 13K Oct 10 11:40 BashClaseConFind.cpio
+
+[rrc@Llawyr ~]$ cpio -itF BashClaseConFind.cpio
+BashClase
+BashClase/S6.sh
+BashClase/5.Ztv
+BashClase/S27.sh
+BashClase/S14.sh
+ .
+ .
+ .
+BashClase/S19.sh
+BashClase/1.bak
+BashClase/S22.sh
+25 blocks
+
+[rrc@Llawyr ~]$ cd ComandosDeLaTerminal/
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls Uniq* | cpio -ovH tar -F UniqCpioTo.tar
+Uniq.cpio
+UniqEjemplo
+UniqEjemplo.bz2
+UniqEjemploConLineasVacios
+UniqEjemploConLineasVacios.bz2
+UniqEjemploMayusc
+UniqEjemploMayusc.bz2
+UniqEjemploMinusc
+UniqEjemploMinusc.bz2
+UniqSortEjemplo
+UniqSortEjemplo.bz2
+26 blocks
+
+[rrc@Llawyr ComandosDeLaTerminal]$ ls -al UniqCpioTo.tar 
+-rw------- 1 rrc rrc 13312 Oct 10 12:14 UniqCpioTo.tar
+
+[rrc@Llawyr ComandosDeLaTerminal]$ file UniqCpioTo.tar 
+UniqCpioTo.tar: tar archive
+
+[rrc@Llawyr ComandosDeLaTerminal]$ tar -tvf UniqCpioTo.tar 
+-rw------- 500/500        1536 2014-10-10 12:01 Uniq.cpio
+-rw------- 500/500          48 2014-01-02 04:53 UniqEjemplo
+-rw------- 500/500          73 2014-01-02 04:53 UniqEjemplo.bz2
+-rw------- 500/500          54 2014-04-01 16:58 UniqEjemploConLineasVacios
+-rw------- 500/500          77 2014-04-01 16:58 UniqEjemploConLineasVacios.bz2
+-rw------- 500/500          34 2014-04-01 16:53 UniqEjemploMayusc
+-rw------- 500/500          65 2014-04-01 16:53 UniqEjemploMayusc.bz2
+-rw------- 500/500          34 2014-04-01 16:54 UniqEjemploMinusc
+-rw------- 500/500          62 2014-04-01 16:54 UniqEjemploMinusc.bz2
+-rw------- 500/500          48 2014-01-02 04:58 UniqSortEjemplo
+-rw------- 500/500          71 2014-01-02 04:58 UniqSortEjemplo.bz2
+
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cpio -ivF ../BashClaseConFind.cpio 
+BashClase
+BashClase/S6.sh
+BashClase/5.Ztv
+BashClase/S27.sh
+ .
+ .
+ .
+BashClase/2.Ztv
+BashClase/S19.sh
+BashClase/1.bak
+BashClase/S22.sh
+25 blocks
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cpio -ivF ../BashClaseConFind.cpio
+BashClase
+cpio: BashClase/S6.sh not created: newer or same age version exists
+BashClase/S6.sh
+cpio: BashClase/5.Ztv not created: newer or same age version exists
+BashClase/5.Ztv
+cpio: BashClase/S27.sh not created: newer or same age version exists
+BashClase/S27.sh
+ .
+ .
+ .
+cpio: BashClase/S19.sh not created: newer or same age version exists
+BashClase/S19.sh
+cpio: BashClase/1.bak not created: newer or same age version exists
+BashClase/1.bak
+cpio: BashClase/S22.sh not created: newer or same age version exists
+BashClase/S22.sh
+25 blocks
+
+[rrc@Llawyr ComandosDeLaTerminal]$ cpio -iuvF ../BashClaseConFind.cpio 
+BashClase
+BashClase/S6.sh
+BashClase/5.Ztv
+BashClase/S27.sh
+ .
+ .
+ .
+BashClase/2.Ztv
+BashClase/S19.sh
+BashClase/1.bak
+BashClase/S22.sh
+25 blocks
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
