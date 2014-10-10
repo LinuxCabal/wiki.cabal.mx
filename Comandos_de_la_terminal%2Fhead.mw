@@ -1,0 +1,97 @@
+__NOTOC__
+* [[:#head | head]]
+
+== head ==
+
+<syntaxhighlight lang="bash">
+
+head [OPTION]... [FILE]...
+
+       -c, --bytes=[-]K
+              print the first K bytes of each  file;  with  the  leading  '-',
+              print all but the last K bytes of each file
+
+       -n, --lines=[-]K
+              print  the first K lines instead of the first 10; with the lead‐
+              ing '-', print all but the last K lines of each file
+
+       -q, --quiet, --silent
+              never print headers giving file names
+
+       -v, --verbose
+              always print headers giving file names
+
+       --help display this help and exit
+
+       --version
+              output version information and exit
+
+
+[rrc@pridd ~]$ head /var/www/almastock.asambiental.mx/index.php 
+<?php
+  require_once( "includes/AlmastockFunctions.inc.php" );
+  require_once( "includes/AlmastockConfig.php" );
+  require_once( "/etc/Almastock.inc.php" );
+
+  if( $_SERVER{'SERVER_PORT'} != 443 )
+  {
+    header( "Location: " . SSLURL );
+    exit();
+  }
+
+[rrc@pridd ~]$ head -c 100 /var/www/almastock.asambiental.mx/index.php 
+<?php
+  require_once( "includes/AlmastockFunctions.inc.php" );
+  require_once( "includes/AlmastockCo[rrc@pridd ~]$ 
+
+[rrc@pridd ~]$ head -c -11500 /var/www/almastock.asambiental.mx/index.php 
+<?php
+  require_once( "includes/AlmastockFunctions.inc.php" );
+  require_once( "includes/AlmastockConfig.php" );
+  require_once( "/etc/Almastock.inc.php" );
+
+  if( $_SERVER{'SERVER_PORT'} != 443 )
+  {
+    header( "Location: " . SSLURL
+
+[rrc@pridd ~]$ head -n 7 /var/www/almastock.asambiental.mx/index.php 
+<?php
+  require_once( "includes/AlmastockFunctions.inc.php" );
+  require_once( "includes/AlmastockConfig.php" );
+  require_once( "/etc/Almastock.inc.php" );
+
+  if( $_SERVER{'SERVER_PORT'} != 443 )
+  {
+
+[rrc@pridd ~]$ head -n -358 /var/www/almastock.asambiental.mx/index.php 
+<?php
+  require_once( "includes/AlmastockFunctions.inc.php" );
+  require_once( "includes/AlmastockConfig.php" );
+  require_once( "/etc/Almastock.inc.php" );
+
+  if( $_SERVER{'SERVER_PORT'} != 443 )
+  {
+
+[rrc@pridd ~]$ head -vn -358 /var/www/almastock.asambiental.mx/index.php 
+==> /var/www/almastock.asambiental.mx/index.php <==
+<?php
+  require_once( "includes/AlmastockFunctions.inc.php" );
+  require_once( "includes/AlmastockConfig.php" );
+  require_once( "/etc/Almastock.inc.php" );
+
+  if( $_SERVER{'SERVER_PORT'} != 443 )
+  {
+
+[rrc@pridd ~]$ head --version
+head (GNU coreutils) 8.20
+Copyright (C) 2012 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by David MacKenzie and Jim Meyering.
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
