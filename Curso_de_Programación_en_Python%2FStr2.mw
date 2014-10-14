@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Str2.py | Str2.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Hola Mundo"
+i = 0
+
+while i < len( Frase ):
+  print( Frase[i] )
+  i += 1
+print( "\nListo\n" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str2.py
+ H
+ o
+ l
+ a
+ 
+ M
+ u
+ n
+ d
+ o
+ 
+ Listo
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
