@@ -1,0 +1,35 @@
+__NOTOC__
+* [[:#Str6.py | Str6.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str6.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Mira cuantos espacios que tenemos aquí con .count"
+
+print( "\nTenemos ", Frase.count( ' ' ), " espacios en la frase:\n\"", Frase, "\"", sep='' )
+print( "\nTenemos ", Frase.count( 'nt' ), " \'nt\' en la frase:\n\"", Frase, "\"", sep='' )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str6.py
+ 
+ Tenemos 7 espacios en la frase:
+ "Mira cuantos espacios que tenemos aquí con .count"
+ 
+ Tenemos 2 'nt' en la frase:
+ "Mira cuantos espacios que tenemos aquí con .count"
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
