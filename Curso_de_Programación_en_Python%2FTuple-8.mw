@@ -1,0 +1,44 @@
+== Tuple-8.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Mascotas = ( "Zorrilla", "Puerca", "Cuyo", "Tortuga", "Halcón" )
+
+print( "El tuple Mascotas es:\n{}" .format( Mascotas ) )
+
+Index = Mascotas.index( "Cuyo" )
+
+print( "\nEl index del miembro \"Cuyo\" en Mascotas es: {}" .format( Index ) )
+print( "\nEl miembro en index: {0} en Mascotas es: {1}" .format( Index, Mascotas[Index] ) )
+
+print( "\nPero si usamos un miembro que no existe cómo Index2 = Mascotas.index( \"Gato\" ) obtenemos:" )
+
+Index2 = Mascotas.index( "Gato" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Tuple-8.py
+ El tuple Mascotas es:
+ ('Zorrilla', 'Puerca', 'Cuyo', 'Tortuga', 'Halcón')
+ 
+ El index del miembro "Cuyo" en Mascotas es: 2
+ 
+ El miembro en index: 2 en Mascotas es: Cuyo
+ 
+ Pero si usamos un miembro que no existe cómo Index2 = Mascotas.index( "Gato" ) obtenemos:
+ Traceback (most recent call last):
+   File "./Tuple-8.py", line 15, in <module>
+     Index2 = Mascotas.index( "Gato" )
+ ValueError: tuple.index(x): x not in tuple
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
