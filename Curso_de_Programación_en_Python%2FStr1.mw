@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#Str1.py | Str1.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str1.py ==
+
+Las strings, en Python, son inmutables
+
+[rrc@pridd ~]$ python3
+ Python 3.3.2 (default, Jun 28 2014, 20:02:44) 
+ [GCC 4.8.2] on linux
+ Type "help", "copyright", "credits" or "license" for more information.
+ >>> Str = "Hala Mundo"
+ >>> Str[3]
+ 'a'
+ >>> Str[3] = 'o'
+ Traceback (most recent call last):
+   File "<stdin>", line 1, in <module>
+ TypeError: 'str' object does not support item assignment
+ >>> 
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Hola Mundo"
+i = 0
+
+while Frase[i]:
+  print( Frase[i] )
+  i += 1
+print( "\nListo\n" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str1.py
+ H
+ o
+ l
+ a
+ 
+ M
+ u
+ n
+ d
+ o
+ Traceback (most recent call last):
+   File "./Str1.py", line 7, in <module>
+     while Frase[i]:
+ IndexError: string index out of range
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
