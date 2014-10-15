@@ -1,0 +1,40 @@
+== Tuple-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "\nTuples son inmutables\n" )
+
+MiTup = ( "Azul", "Verde", "Gris" )
+
+for i in range( len( MiTup ) ):
+  print( "MiTup[{}] es {}" .format( i, MiTup[i] ) )
+print( "A Decir ahorra que MiTup[1] = \"Amarillo\" nos da:\n" )
+
+MiTup[1] = "Amarillo"
+
+</syntaxhighlight>
+
+=== Resultado ===
+[rrc@pridd PythonClase]$ ./Tuple-2.py 
+ 
+ Tuples son inmutables
+ 
+ MiTup[0] es Azul
+ MiTup[1] es Verde
+ MiTup[2] es Gris
+ A Decir ahorra que MiTup[1] = "Amarillo" nos da:
+ 
+ Traceback (most recent call last):
+   File "./Tuple-2.py", line 12, in <module>
+     MiTup[1] = "Amarillo"
+ TypeError: 'tuple' object does not support item assignment
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
