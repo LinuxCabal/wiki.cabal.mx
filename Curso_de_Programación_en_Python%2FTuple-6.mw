@@ -1,0 +1,33 @@
+== Tuple-6.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Amigos = ( "Rebecca", "Julio", "Lulu", "Annabelle" )
+print( "\nEl tuple Amigos es:\n{}" .format( Amigos ) )
+
+if "Lulu" in Amigos:
+  print( "Descubrimos que Lulu es en el tuple Amigos usando \"in\"" )
+
+if "Hortencia" not in Amigos:
+  print( "Descubrimos que Hortencia no es en el tuple Amigos usando \"not in\"" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Tuple-6.py
+ 
+ El tuple Amigos es:
+ ('Rebecca', 'Julio', 'Lulu', 'Annabelle')
+ Descubrimos que Lulu es en el tuple Amigos usando "in"
+ Descubrimos que Hortencia no es en el tuple Amigos usando "not in"
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
