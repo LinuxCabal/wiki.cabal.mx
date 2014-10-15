@@ -1,0 +1,52 @@
+== Tuple-7.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Uno = 1
+Dos = 2
+Tres = 3
+
+Valores = ( 33, "Leo", -66.77, ( Uno, Dos, Tres ) )
+print( "\nEl tuple Valores es:\n{}" .format( Valores ) )
+
+print( "\nPuedes duplicar Valores con Valores[:]\n{}" .format( Valores[:] ) )
+
+print( "\nPuedes adquirir todos los Valores de posición 2 adelante con Valores[2:]\n{}"
+            .format( Valores[2:] ) )
+
+print( "\nPuedes adquir el primer Valor con Valores[:1]\n{}"
+            .format( Valores[:1] ) )
+
+print( "\nPuedes adquir Valores en posiciones 1, 2 y 3 con Valores[1:4]\n{}"
+            .format( Valores[1:4] ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Tuple-7.py
+ 
+ El tuple Valores es:
+ (33, 'Leo', -66.77, (1, 2, 3))
+ 
+ Puedes duplicar Valores con Valores[:]
+ (33, 'Leo', -66.77, (1, 2, 3))
+ 
+ Puedes adquirir todos los Valores de posición 2 adelante con Valores[2:]
+ (-66.77, (1, 2, 3))
+ 
+ Puedes adquir el primer Valor con Valores[:1]
+ (33,)
+ 
+ Puedes adquir Valores en posiciones 1, 2 y 3 con Valores[1:4]
+ ('Leo', -66.77, (1, 2, 3))
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
