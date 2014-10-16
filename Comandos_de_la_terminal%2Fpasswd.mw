@@ -1,0 +1,62 @@
+__NOTOC__
+* [[:#passwd | passwd]]
+
+== passwd ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# passwd --help
+Usage: passwd [OPTION...] <accountName>
+  -k, --keep-tokens       keep non-expired authentication tokens
+  -d, --delete            delete the password for the named account (root only)
+  -l, --lock              lock the password for the named account (root only)
+  -u, --unlock            unlock the password for the named account (root only)
+  -e, --expire            expire the password for the named account (root only)
+  -f, --force             force operation
+  -x, --maximum=DAYS      maximum password lifetime (root only)
+  -n, --minimum=DAYS      minimum password lifetime (root only)
+  -w, --warning=DAYS      number of days warning users receives before
+                          password expiration (root only)
+  -i, --inactive=DAYS     number of days after password expiration when an
+                          account becomes disabled (root only)
+  -S, --status            report password status on the named account (root
+                          only)
+      --stdin             read new tokens from stdin (root only)
+
+Help options:
+  -?, --help              Show this help message
+      --usage             Display brief usage message
+
+[root@Llawyr ~]# passwd --usage
+Usage: passwd [-kdluefS?] [-k|--keep-tokens] [-d|--delete] [-l|--lock]
+        [-u|--unlock] [-e|--expire] [-f|--force] [-x|--maximum=DAYS]
+        [-n|--minimum=DAYS] [-w|--warning=DAYS] [-i|--inactive=DAYS]
+        [-S|--status] [--stdin] [-?|--help] [--usage]
+        [OPTION...] <accountName>
+
+[root@Llawyr ~]# rpm -qf $( which passwd )
+passwd-0.79-2.mga4
+
+[root@Llawyr ~]# passwd -S rrc
+rrc PS 2014-09-21 0 99999 7 -1 (Password set, blowfish crypt.)
+
+[root@Llawyr ~]# passwd -S rrc
+rrc PS 2014-09-21 0 99999 7 -1 (Password set, blowfish crypt.)
+
+[root@Llawyr ~]# useradd DelMe1
+useradd: warning: the home directory already exists.
+Not copying any file from skel directory into it.
+
+[root@Llawyr ~]# passwd DelMe1
+Changing password for user DelMe1.
+New password: 
+BAD PASSWORD: it is based on a dictionary word
+Retype new password: 
+passwd: all authentication tokens updated successfully.
+
+[root@Llawyr ~]# passwd -S DelMe1
+DelMe1 PS 2014-10-15 0 99999 7 -1 (Password set, blowfish crypt.)
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
