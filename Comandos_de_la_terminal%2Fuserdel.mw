@@ -1,0 +1,132 @@
+__NOTOC__
+* [[:#userdel | userdel]]
+
+== userdel ==
+
+<syntaxhighlight lang="bash">
+
+Userdel puede modificar /etc/passwd, /etc/shadow, /etc/gshadow y /etc/group.
+También puede crear los carpetas de hogar y archivos spool de correo.
+Su comportamiento se define mediante el archivo /etc/login.defs.
+
+[root@Llawyr ~]# userdel --help
+Usage: userdel [options] LOGIN
+
+Options:
+  -f, --force                   force removal of files,
+                                even if not owned by user
+  -h, --help                    display this help message and exit
+  -r, --remove                  remove home directory and mail spool
+  -R, --root CHROOT_DIR         directory to chroot into
+
+[root@Llawyr ~]# userdel DelMe1
+
+[root@Llawyr ~]# tail -n 5 /etc/passwd /etc/group /etc/shadow /etc/gshadow
+==> /etc/passwd <==
+sshd:x:485:476:system user for openssh:/var/empty:/bin/true
+chrony:x:484:475:system user for chrony:/var/lib/chrony:/sbin/nologin
+nobody:x:65534:65534:Nobody:/:/bin/sh
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+DelMe2:x:502:502:Del Me 2:/mnt/DelMe2:/usr/sbin/nologin
+
+==> /etc/group <==
+sshd:x:476:
+chrony:x:475:
+lpadmin:x:474:
+rrc:x:500:
+DelMe2:x:502:
+
+==> /etc/shadow <==
+gdm:!:16335::::::
+sshd:!:16335::::::
+chrony:!:16335::::::
+rrc:$2a$08$BlahBlahBlah:16335:0:99999:7:::
+DelMe2:!:16359:0:99999:7:::
+
+==> /etc/gshadow <==
+sshd:!::
+chrony:!::
+lpadmin:!::
+rrc:!::
+DelMe2:!::
+
+[root@Llawyr ~]# ls -al /home
+total 32
+drwxr-x--x  5 root adm   4096 Oct 16 15:40 ./
+drwxr-xr-x 20 root adm   4096 Oct 14 10:24 ../
+drwxr-xr-x  4  501  501  4096 Oct 16 15:40 DelMe1/
+drwxr-x--x  2 root root 16384 Jul 29 05:50 lost+found/
+drwxr-x--x 49 rrc  rrc   4096 Oct 16 15:39 rrc/
+
+[root@Llawyr ~]# userdel -r DelMe1
+userdel: user 'DelMe1' does not exist
+
+[root@Llawyr ~]# echo $?
+6
+
+[root@Llawyr ~]# userdel -r DelMe2
+userdel: DelMe2 mail spool (/var/spool/mail/DelMe2) not found
+
+[root@Llawyr ~]# echo $?
+0
+
+[root@Llawyr ~]# tail -n 5 /etc/passwd /etc/group /etc/shadow /etc/gshadow
+==> /etc/passwd <==
+gdm:x:486:477:system user for gdm:/var/lib/gdm:/bin/false
+sshd:x:485:476:system user for openssh:/var/empty:/bin/true
+chrony:x:484:475:system user for chrony:/var/lib/chrony:/sbin/nologin
+nobody:x:65534:65534:Nobody:/:/bin/sh
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+
+==> /etc/group <==
+gdm:x:477:
+sshd:x:476:
+chrony:x:475:
+lpadmin:x:474:
+rrc:x:500:
+
+==> /etc/shadow <==
+lightdm:!:16335::::::
+gdm:!:16335::::::
+sshd:!:16335::::::
+chrony:!:16335::::::
+rrc:$2a$08$BlahBlahBlah:16335:0:99999:7:::
+
+==> /etc/gshadow <==
+gdm:!::
+sshd:!::
+chrony:!::
+lpadmin:!::
+rrc:!::
+
+[root@Llawyr ~]# ls -al /mnt
+total 8
+drwxr-x---  2 root adm 4096 Oct 16 16:02 ./
+drwxr-xr-x 20 root adm 4096 Oct 14 10:24 ../
+
+       The userdel command exits with the following values:
+
+       0
+           success
+
+       1
+           can't update password file
+
+       2
+           invalid command syntax
+
+       6
+           specified user doesn't exist
+
+       8
+           user currently logged in
+
+       10
+           can't update group file
+
+       12
+           can't remove home directory
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
