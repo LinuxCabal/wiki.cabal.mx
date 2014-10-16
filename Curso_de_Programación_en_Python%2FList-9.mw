@@ -1,0 +1,45 @@
+== List-9.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Valores = [ "Uno", "Dos", "Tres", "Cuatro" ]
+
+try:
+  Index = Valores.index( "Dos" )
+  print( "\nEl index de \"{1}\" es {0}" .format( Index, Valores[Index] ) )
+except:
+  print( "\nEl elemento \"Dos\" no se encontró" )
+
+try:
+  Index = Valores.index( "Tres" )
+  print( "\nEl index de \"{1}\" es {0}" .format( Index, Valores[Index] ) )
+except:
+  print( "\nEl elemento \"Tres\" no se encontró" )
+
+try:
+  Index = Valores.index( "Siete" )
+  print( "\nEl index de \"{1}\" es {0}" .format( Index, Valores[Index] ) )
+except:
+  print( "\nEl elemento \"Siete\" no se encontró" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./List-9.py
+ 
+ El index de "Dos" es 1
+ 
+ El index de "Tres" es 2
+ 
+ El elemento "Siete" no se encontró
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
