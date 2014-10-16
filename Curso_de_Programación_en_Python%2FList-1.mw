@@ -1,0 +1,45 @@
+== List-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "Creamos un list vacio con MiLista = []" )
+MiLista = []
+print( "La lista ahorra es {}\n" .format( MiLista ) )
+
+for i in range( 0, 6, 2 ):
+  MiLista.append( i )
+  print( "La lista, después de agregar {0} es {1}\n" .format( i, MiLista ) )
+
+for i in range( 1, 7, 2 ):
+  MiLista.append( i )
+  print( "La lista, después de agregar {0} es {1}\n" .format( i, MiLista ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./List-1.py
+ Creamos un list vacio con MiLista = []
+ La lista ahorra es []
+ 
+ La lista, después de agregar 0 es [0]
+ 
+ La lista, después de agregar 2 es [0, 2]
+ 
+ La lista, después de agregar 4 es [0, 2, 4]
+ 
+ La lista, después de agregar 1 es [0, 2, 4, 1]
+ 
+ La lista, después de agregar 3 es [0, 2, 4, 1, 3]
+ 
+ La lista, después de agregar 5 es [0, 2, 4, 1, 3, 5]
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
