@@ -1,0 +1,47 @@
+== List-5.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "\nPodemos combinar las funciones sort() y reverse() si usamos sort() antes de reverse(). Si usamos reverse() antes de sort(), sort() eliminará los cambios realizados por resverse()." )
+
+Nums = [400, 500, 100, 2000]
+
+print( "\nLa list Nums ahorra es:\n{}" .format( Nums ) )
+
+Nums.reverse()
+print( "\nLa list después de Nums.reverse() es:\n{}" .format( Nums ) )
+
+Nums.sort()
+print( "\nLa list después de Nums.sort() es:\n{}" .format( Nums ) )
+
+Nums.reverse()
+print( "\nLa list después de Nums.reverse() es:\n{}" .format( Nums ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+[rrc@Llawyr PythonClase]$ ./List-5.py
+ 
+ Podemos combinar las funciones sort() y reverse() si usamos sort() antes de reverse(). Si usamos reverse() antes de sort(), sort() eliminará los cambios realizados por resverse().
+ 
+ La list Nums ahorra es:
+ [400, 500, 100, 2000]
+ 
+ La list después de Nums.reverse() es:
+ [2000, 100, 500, 400]
+ 
+ La list después de Nums.sort() es:
+ [100, 400, 500, 2000]
+ 
+ La list después de Nums.reverse() es:
+ [2000, 500, 400, 100]
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
