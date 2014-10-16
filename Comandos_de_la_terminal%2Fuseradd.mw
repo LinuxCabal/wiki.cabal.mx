@@ -1,0 +1,401 @@
+__NOTOC__
+* [[:#useradd | useradd]]
+
+== useradd ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# ls -al $( which useradd )
+-rwxr-xr-x 1 root root 119176 Oct 18  2013 /usr/sbin/useradd*
+
+[root@Llawyr ~]# ls -al $( which adduser )
+lrwxrwxrwx 1 root root 7 Sep 22 13:33 /usr/sbin/adduser -> useradd*
+
+
+Useradd puede modificar /etc/passwd, /etc/shadow, /etc/gshadow y /etc/group.
+También puede crear los carpetas de hogar y archivos spool de correo.
+Su comportamiento se define mediante el archivo /etc/login.defs.
+
+[root@Llawyr ~]# cat /etc/login.defs
+# *REQUIRED*
+#   Directory where mailboxes reside, _or_ name of file, relative to the
+#   home directory.  If you _do_ define both, MAIL_DIR takes precedence.
+#   QMAIL_DIR is for Qmail
+#
+#QMAIL_DIR	Maildir
+MAIL_DIR	/var/spool/mail
+#MAIL_FILE	.mail
+
+# Password aging controls:
+#
+#	PASS_MAX_DAYS	Maximum number of days a password may be used.
+#	PASS_MIN_DAYS	Minimum number of days allowed between password changes.
+#	PASS_MIN_LEN	Minimum acceptable password length.
+#	PASS_WARN_AGE	Number of days warning given before a password expires.
+#
+PASS_MAX_DAYS	99999
+PASS_MIN_DAYS	0
+#PASS_MIN_LEN	5
+PASS_WARN_AGE	7
+
+#
+# Min/max values for automatic uid selection in useradd
+#
+UID_MIN			  500
+UID_MAX			60000
+
+#
+# Min/max values for automatic gid selection in groupadd
+#
+GID_MIN			  500
+GID_MAX			60000
+
+#
+# If defined, this command is run when removing a user.
+# It should remove any at/cron/print jobs etc. owned by
+# the user to be removed (passed as the first argument).
+#
+# USERDEL_CMD	/usr/sbin/userdel_local
+
+#
+# If useradd should create home directories for users by default
+# On RH systems, we do. This option is ORed with the -m flag on
+# useradd command line.
+#
+CREATE_HOME	yes
+
+#
+# The password hashing method and iteration count to use for group
+# passwords that may be set with gpasswd(1).
+#
+CRYPT_PREFIX            $2a$
+CRYPT_ROUNDS            8
+
+#
+# Whether to use tcb password shadowing scheme.  Use 'yes' if using
+# tcb and 'no' if using /etc/shadow
+#
+USE_TCB                 no
+
+#
+# Whether newly created tcb-style shadow files should be readable by
+# group "auth".
+#
+TCB_AUTH_GROUP          yes
+
+#
+# Whether useradd should create symlinks rather than directories under
+# /etc/tcb for newly created accounts with UIDs over 1000.  See tcb(5)
+# for information on why this may be needed.
+#
+TCB_SYMLINKS            no
+
+#
+# Delay in seconds before being allowed another attempt after a login failure
+#
+FAIL_DELAY		3
+
+#
+# Enable display of unknown usernames when login failures are recorded.
+#
+LOG_UNKFAIL_ENAB	no
+
+#
+# Enable logging of successful logins
+#
+LOG_OK_LOGINS		no
+
+#
+# Enable "syslog" logging of su activity - in addition to sulog file logging.
+# SYSLOG_SG_ENAB does the same for newgrp and sg.
+#
+SYSLOG_SU_ENAB		yes
+SYSLOG_SG_ENAB		yes
+
+#
+# If defined, either full pathname of a file containing device names or
+# a ":" delimited list of device names.  Root logins will be allowed only
+# upon these devices.
+#
+CONSOLE		/etc/securetty
+#CONSOLE	console:tty01:tty02:tty03:tty04
+
+#
+# If defined, the command name to display when running "su -".  For
+# example, if this is defined as "su" then a "ps" will display the
+# command is "-su".  If not defined, then "ps" would display the
+# name of the shell actually being run, e.g. something like "-sh".
+#
+SU_NAME		su
+
+#
+# If defined, file which inhibits all the usual chatter during the login
+# sequence.  If a full pathname, then hushed mode will be enabled if the
+# user's name or shell are found in the file.  If not a full pathname, then
+# hushed mode will be enabled if the file exists in the user's home directory.
+#
+HUSHLOGIN_FILE	.hushlogin
+#HUSHLOGIN_FILE	/etc/hushlogins
+
+#
+# *REQUIRED*  The default PATH settings, for superuser and normal users.
+#
+# (they are minimal, add the rest in the shell startup files)
+ENV_SUPATH	PATH=/usr/local/sbin:/usr/sbin:/usr/local/bin:/usr/bin
+ENV_PATH	PATH=/usr/local/bin:/usr/bin
+
+#
+# Terminal permissions
+#
+#	TTYGROUP	Login tty will be assigned this group ownership.
+#	TTYPERM		Login tty will be set to this permission.
+#
+# If you have a "write" program which is "setgid" to a special group
+# which owns the terminals, define TTYGROUP to the group number and
+# TTYPERM to 0620.  Otherwise leave TTYGROUP commented out and assign
+# TTYPERM to either 622 or 600.
+#
+TTYGROUP	tty
+TTYPERM		0600
+
+#
+# Login configuration initializations:
+#
+#	ERASECHAR	Terminal ERASE character ('\010' = backspace).
+#	KILLCHAR	Terminal KILL character ('\025' = CTRL/U).
+#	UMASK		Default "umask" value.
+#	ULIMIT		Default "ulimit" value.
+#
+# The ERASECHAR and KILLCHAR are used only on System V machines.
+# The ULIMIT is used only if the system supports it.
+# (now it works with setrlimit too; ulimit is in 512-byte units)
+#
+# Prefix these values with "0" to get octal, "0x" to get hexadecimal.
+#
+ERASECHAR	0177
+KILLCHAR	025
+UMASK		022
+#ULIMIT		2097152
+
+#
+# Max number of login retries if password is bad
+#
+LOGIN_RETRIES		5
+
+#
+# Max time in seconds for login
+#
+LOGIN_TIMEOUT		60
+
+#
+# Which fields may be changed by regular users using chfn - use
+# any combination of letters "frwh" (full name, room number, work
+# phone, home phone).  If not defined, no changes are allowed.
+# For backward compatibility, "yes" = "rwh" and "no" = "frwh".
+# 
+CHFN_RESTRICT		rwh
+
+#
+# Should login be allowed if we can't cd to the home directory?
+# Default in no.
+#
+DEFAULT_HOME	yes
+
+#
+# Enable setting of the umask group bits to be the same as owner bits
+# (examples: 022 -> 002, 077 -> 007) for non-root users, if the uid is
+# the same as gid, and username is the same as the primary group name.
+#
+# This also enables userdel to remove user groups if no members exist.
+#
+USERGROUPS_ENAB yes
+
+[root@Llawyr ~]# useradd --help
+Usage: useradd [options] LOGIN
+       useradd -D
+       useradd -D [options]
+
+Options:
+  -b, --base-dir BASE_DIR       base directory for the home directory of the
+                                new account
+  -c, --comment COMMENT         GECOS field of the new account
+  -d, --home-dir HOME_DIR       home directory of the new account
+  -D, --defaults                print or change default useradd configuration
+  -e, --expiredate EXPIRE_DATE  expiration date of the new account
+  -f, --inactive INACTIVE       password inactivity period of the new account
+  -g, --gid GROUP               name or ID of the primary group of the new
+                                account
+  -G, --groups GROUPS           list of supplementary groups of the new
+                                account
+  -h, --help                    display this help message and exit
+  -k, --skel SKEL_DIR           use this alternative skeleton directory
+  -K, --key KEY=VALUE           override /etc/login.defs defaults
+  -l, --no-log-init             do not add the user to the lastlog and
+                                faillog databases
+  -m, --create-home             create the user's home directory
+  -M, --no-create-home          do not create the user's home directory
+  -N, --no-user-group           do not create a group with the same name as
+                                the user
+  -o, --non-unique              allow to create users with duplicate
+                                (non-unique) UID
+  -p, --password PASSWORD       encrypted password of the new account
+  -r, --system                  create a system account
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shell SHELL             login shell of the new account
+  -u, --uid UID                 user ID of the new account
+  -U, --user-group              create a group with the same name as the user
+
+[root@Llawyr ~]# rpm -qf $( which useradd )
+shadow-utils-4.1.5.1-6.mga4
+
+[root@Llawyr ~]# tail -n 5 /etc/passwd /etc/group /etc/shadow /etc/gshadow
+==> /etc/passwd <==
+gdm:x:486:477:system user for gdm:/var/lib/gdm:/bin/false
+sshd:x:485:476:system user for openssh:/var/empty:/bin/true
+chrony:x:484:475:system user for chrony:/var/lib/chrony:/sbin/nologin
+nobody:x:65534:65534:Nobody:/:/bin/sh
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+
+==> /etc/group <==
+gdm:x:477:
+sshd:x:476:
+chrony:x:475:
+lpadmin:x:474:
+rrc:x:500:
+
+==> /etc/shadow <==
+lightdm:!:16335::::::
+gdm:!:16335::::::
+sshd:!:16335::::::
+chrony:!:16335::::::
+rrc:$2a$08$BlahBlahBlahjt6W:16335:0:99999:7:::
+
+==> /etc/gshadow <==
+gdm:!::
+sshd:!::
+chrony:!::
+lpadmin:!::
+rrc:!::
+
+[root@Llawyr ~]# ls -al /home
+total 28
+drwxr-x--x  4 root adm   4096 Oct 16 12:01 ./
+drwxr-xr-x 20 root adm   4096 Oct 14 10:24 ../
+drwxr-x--x  2 root root 16384 Jul 29 05:50 lost+found/
+drwxr-x--x 49 rrc  rrc   4096 Oct 16 11:37 rrc/
+
+[root@Llawyr ~]# useradd DelMe1
+
+[root@Llawyr ~]# tail -n 5 /etc/passwd /etc/group /etc/shadow /etc/gshadow
+==> /etc/passwd <==
+sshd:x:485:476:system user for openssh:/var/empty:/bin/true
+chrony:x:484:475:system user for chrony:/var/lib/chrony:/sbin/nologin
+nobody:x:65534:65534:Nobody:/:/bin/sh
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+DelMe1:x:501:501::/home/DelMe1:/bin/bash
+
+==> /etc/group <==
+sshd:x:476:
+chrony:x:475:
+lpadmin:x:474:
+rrc:x:500:
+DelMe1:x:501:
+
+==> /etc/shadow <==
+gdm:!:16335::::::
+sshd:!:16335::::::
+chrony:!:16335::::::
+rrc:$2a$08$BlahBlahBlah:16335:0:99999:7:::
+DelMe1:!:16359:0:99999:7:::
+
+==> /etc/gshadow <==
+sshd:!::
+chrony:!::
+lpadmin:!::
+rrc:!::
+DelMe1:!::
+
+[root@Llawyr ~]# ls -al /home
+total 32
+drwxr-x--x  5 root   adm     4096 Oct 16 15:40 ./
+drwxr-xr-x 20 root   adm     4096 Oct 14 10:24 ../
+drwxr-xr-x  4 DelMe1 DelMe1  4096 Oct 16 15:40 DelMe1/
+drwxr-x--x  2 root   root   16384 Jul 29 05:50 lost+found/
+drwxr-x--x 49 rrc    rrc     4096 Oct 16 15:39 rrc/
+
+[root@Llawyr ~]# useradd -c "Del Me 2" -s /usr/sbin/nologin -d /mnt/DelMe2 -G webmin DelMe2
+
+[root@Llawyr ~]# tail -n 5 /etc/passwd /etc/group /etc/shadow /etc/gshadow
+==> /etc/passwd <==
+chrony:x:484:475:system user for chrony:/var/lib/chrony:/sbin/nologin
+nobody:x:65534:65534:Nobody:/:/bin/sh
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+DelMe1:x:501:501::/home/DelMe1:/bin/bash
+DelMe2:x:502:502:Del Me 2:/mnt/DelMe2:/usr/sbin/nologin
+
+==> /etc/group <==
+chrony:x:475:
+lpadmin:x:474:
+rrc:x:500:
+DelMe1:x:501:
+DelMe2:x:502:
+
+==> /etc/shadow <==
+sshd:!:16335::::::
+chrony:!:16335::::::
+rrc:$2a$08$BlahBlahBlah:16335:0:99999:7:::
+DelMe1:!:16359:0:99999:7:::
+DelMe2:!:16359:0:99999:7:::
+
+==> /etc/gshadow <==
+chrony:!::
+lpadmin:!::
+rrc:!::
+DelMe1:!::
+DelMe2:!::
+
+[root@Llawyr ~]# ls -al /mnt
+total 12
+drwxr-x---  3 root   adm    4096 Oct 16 15:44 ./
+drwxr-xr-x 20 root   adm    4096 Oct 14 10:24 ../
+drwxr-xr-x  4 DelMe2 DelMe2 4096 Oct 16 15:44 DelMe2/
+
+[root@Llawyr ~]# grep webmin /etc/group
+webmin:x:417:rrc,DelMe2
+
+EXIT VALUES
+       The useradd command exits with the following values:
+
+       0
+           success
+
+       1
+           can't update password file
+
+       2
+           invalid command syntax
+
+       3
+           invalid argument to option
+
+       4
+           UID already in use (and no -o)
+
+       6
+           specified group doesn't exist
+
+       9
+           username already in use
+
+       10
+           can't update group file
+
+       12
+           can't create home directory
+
+       14
+           can't update SELinux user mapping
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
