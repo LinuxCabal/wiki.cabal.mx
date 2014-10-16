@@ -1,0 +1,63 @@
+__NOTOC__
+* [[:#vipw | vipw]]
+
+== vipw ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# vipw --help
+Usage: vipw [options]
+
+Options:
+  -g, --group                   edit group database
+  -h, --help                    display this help message and exit
+  -p, --passwd                  edit passwd database
+  -q, --quiet                   quiet mode
+  -R, --root CHROOT_DIR         directory to chroot into
+  -s, --shadow                  edit shadow or gshadow database
+  -u, --user                    which user's tcb shadow file to edit
+
+[root@Llawyr ~]# rpm -qf $( which vipw )
+shadow-utils-4.1.5.1-6.mga4
+
+[root@Llawyr ~]# vipw /etc/skel/.bashrc
+ .
+ .
+ .
+nobody:x:65534:65534:Nobody:/:/bin/sh
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+
+vipw: /etc/passwd is unchanged
+
+[root@Llawyr ~]# vipw -p
+ .
+ .
+ .
+nobody:x:65534:65534:Nobody:/:/bin/sh
+rrc:x:500:500:Richard Couture:/home/rrc:/bin/bash
+
+vipw: /etc/passwd is unchanged
+
+[root@Llawyr ~]# vipw -s
+ .
+ .
+ .
+sshd:!:16335::::::
+chrony:!:16335::::::
+rrc:$2a$08$BlahBlahBlah:16335:0:99999:7:::
+
+vipw: /etc/shadow is unchanged
+
+[root@Llawyr ~]# vipw -g
+ .
+ .
+ .
+chrony:x:475:
+lpadmin:x:474:
+rrc:x:500:
+
+vipw: /etc/group is unchanged
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
