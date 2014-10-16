@@ -1,0 +1,33 @@
+== List-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Joyas = [ "Esmeralda", "Diamante", "Zafiro" ]
+
+print( "La list Joyas, ahorra es:\n{}" .format( Joyas ) )
+
+Joyas.insert( 1, "Rubí" )
+print( "\nLa list después de insertar Rubí antes de Diamante con\nJoyas.insert( 1, \"Rubí\" ) es:\n{}" .format( Joyas ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+[rrc@Llawyr PythonClase]$ clear;./List-2.py
+ 
+ La list Joyas, ahorra es:
+ ['Esmeralda', 'Diamante', 'Zafiro']
+ 
+ La list después de insertar Rubí antes de Diamante con
+ Joyas.insert( 1, "Rubí" ) es:
+ ['Esmeralda', 'Rubí', 'Diamante', 'Zafiro']
+
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
