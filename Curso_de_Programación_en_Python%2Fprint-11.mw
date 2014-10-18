@@ -1,0 +1,37 @@
+__NOTOC__
+* [[:#print-11.py | print-11.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== print-11.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+# Otra manera a imprimir un Diccionario
+
+tabla = { 'Julio': 4127, 'Mario': 4098, 'José': 7678 }
+
+print( "{0}/{1:10s}     {0}/{1:10s}    {0}/{1:10s}"
+       .format( "Nombre", "Extensión" ) )
+
+print('Mario: {Mario:<16d} Julio: {Julio:<14d} José: {José:<16d}'
+       .format(**tabla))
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./print-11.py 
+ Nombre/Extensión      Nombre/Extensión     Nombre/Extensión 
+ Mario: 4098             Julio: 4127           José: 7678        
+
+=== Explicación ===
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
