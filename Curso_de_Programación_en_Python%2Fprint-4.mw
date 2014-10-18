@@ -1,0 +1,28 @@
+__NOTOC__
+* [[:#print-4.py | print-4.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== print-4.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( 'Los tres hermanos se llaman {0}, {1}, y {otro}.'
+        .format( 'Marco', 'Pablo', otro='Jorge') )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./print-4.py 
+ Los tres hermanos se llaman Marco, Pablo, y Jorge.
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
