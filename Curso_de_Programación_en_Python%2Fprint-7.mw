@@ -1,0 +1,47 @@
+__NOTOC__
+* [[:#print-7.py | print-7.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== print-7.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+
+pi = 3.14159265
+
+print( 'El valor de PI es más o menos %03.3f.' % (pi) ) # Viejo
+
+print( 'El valor de -PI es más o menos %07.3f.' % (-pi) ) # Viejo
+
+print( 'El valor de PI es más o menos {}.' .format( pi ) )
+
+print( 'El valor de PI es más o menos {0:.3f}.' .format( pi ) )
+
+print( 'El valor de PI es más o menos {}.' .format( math.pi ) )
+
+print( 'El valor de PI es más o menos {0:.3f}.' .format( math.pi ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Pridd PythonClase]$ ./print-7.py 
+ El valor de PI es más o menos 3.142.
+ El valor de -PI es más o menos -03.142.
+ El valor de PI es más o menos 3.14159265.
+ El valor de PI es más o menos 3.142.
+ El valor de PI es más o menos 3.141592653589793.
+ El valor de PI es más o menos 3.142.
+
+=== Explicación ===
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
