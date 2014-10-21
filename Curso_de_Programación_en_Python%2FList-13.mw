@@ -1,0 +1,34 @@
+== List-13.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+# A list:
+TuRopa = [ "Chaqueta", "suéter", "Pantalones", "Camisa", "Zapatos"]
+
+# Copiar a list1 con syntaxis de slice (:).
+
+MiRopa = TuRopa[:]
+
+# Modify list2.
+MiRopa[4] = "Chanclas"
+
+print( "La lista de TuRopa es {}" .format( TuRopa ) )
+print( "La lista de MiRopa es {}" .format( MiRopa ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./List-13.py 
+ La lista de TuRopa es ['Chaqueta', 'suéter', 'Pantalones', 'Camisa', 'Zapatos']
+ La lista de MiRopa es ['Chaqueta', 'suéter', 'Pantalones', 'Camisa', 'Chanclas']
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
