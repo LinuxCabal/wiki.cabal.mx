@@ -1,0 +1,28 @@
+== List-10.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Bichos = [ "Mariposa", "Escorpión", "Scolopendra", "Gorgojos"]
+
+for element in Bichos:
+  print( element )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./List-10.py 
+ Mariposa
+ Escorpión
+ Scolopendra
+ Gorgojos
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
