@@ -1,0 +1,33 @@
+Son dos tipos de argumentos para el metodo <em>.format</em>.
+
+Es el metodo preferido para formatear strings. El metodo printf se consirdera arcaico
+
+Una lista de argumentos se inicia con 0 o más argumentos posicionales (p0, p1, ...) puede ser seguida por 0 o más argumentos <em>keyword</em> en la forma nombre=valor
+
+Un parametro de posición se forma para poner el numero de <em>index.</em> después de la llave derecha ej.: {0} para el primer argumento y {1} para el segundo ...  El <em>index,/em> puedes seguirse con dos puntos (':') y una cadena de formato parasido de los usados por <em>printf-style</em>. ej.:{0:5d}
+
+Si usas las parametros en el orden especificado, los <em>index</em> de posición pueden ser omitados. Entonces '{} {} {}' significa '{0} {1} {2}'. Si quieres usar los valores en orden diferente que especificado usas los <em>index</em> '{2} {1} {0}'. También puedes repitir un <em>index</em>. ej.: '{0} {1} {0} {2} {2}'
+
+<table  cellpadding="6" cellspacing="0" border="1" bgcolor="#F5F5F5">
+<tr><th>Opción</th><th>Significado</th></tr>
+<tr><td>'&lt;'</td><td>El campo sera aligñado al izquierda a dentro del espacio disponible. Normalmente está el defualt para cadenas de caracteres.</td></tr>
+<tr><td>'&gt;'</td><td>El campo sera aligñado a la derecha a dentro del espacio disponible. Normalmente está el defualt para números.</td></tr>
+<tr><td>'='</td><td>Forcear el agregación de espacios, si estan especificadas, después del signo, pero antes de los digitos, ej.: "+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;120". Solo valido para tipos numéricos.</td></tr>
+<tr><td>'^'</td><td>Obliga el campo a centrarse dentro del espacio disponible.</td></tr>
+</table>
+
+A menos que un ancho de campo mínimo se define, el ancho del campo será siempre el mismo tamaño que los datos a llenar, por lo que la opción de alineación no tiene sentido en este caso.
+
+Además, podemos modificar el formateo con la opción del signo, que sólo es válida para tipos de datos numéricos:
+
+
+<table cellpadding="6" cellspacing="0" border="1" bgcolor="#F5F5F5">
+<tr><th>Opción</th><th>Significado</th></tr>
+<tr><td>'+'</td><td>Forcear el uso de un signo, positvo o negativo, antes de un número.</td></tr>
+<tr><td>'-'</td><td>Un signo está usado solo para números negativos. Es el default.</td></tr>
+<tr><td>space</td><td>Un espacio se ponga antes de un numero positivo y un signo antes de un número negativo.</td></tr>
+</table>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
