@@ -1,0 +1,35 @@
+== List-11.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Nums = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 ]
+
+for i in range( 1, ( len( Nums ) - 1 ) ):
+  print( "Num {} es entre de Num {} y Num {}"
+          .format( Nums[i], Nums[i-1], Nums[i+1] ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./List-11.py 
+ Num 5 es entre de Num 0 y Num 10
+ Num 10 es entre de Num 5 y Num 15
+ Num 15 es entre de Num 10 y Num 20
+ Num 20 es entre de Num 15 y Num 25
+ Num 25 es entre de Num 20 y Num 30
+ Num 30 es entre de Num 25 y Num 35
+ Num 35 es entre de Num 30 y Num 40
+ Num 40 es entre de Num 35 y Num 45
+ Num 45 es entre de Num 40 y Num 50
+
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
