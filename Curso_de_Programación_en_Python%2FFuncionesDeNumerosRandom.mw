@@ -1,0 +1,253 @@
+<h1>Functiones de Numeros Random:</h1>
+
+<h2>random &#8212; Generate pseudo-random numbers</h2>
+<p>This module implements pseudo-random number generators for various
+distributions.</p>
+<p>For integers, uniform selection from a range. For sequences, uniform selection
+of a random element, a function to generate a random permutation of a list
+in-place, and a function for random sampling without replacement.</p>
+<p>On the real line, there are functions to compute uniform, normal (Gaussian),
+lognormal, negative exponential, gamma, and beta distributions. For generating
+distributions of angles, the von Mises distribution is available.</p>
+<p>Almost all module functions depend on the basic function random(), which
+generates a random float uniformly in the semi-open range [0.0, 1.0).  Python
+uses the Mersenne Twister as the core generator.  It produces 53-bit precision
+floats and has a period of 2**19937-1.  The underlying implementation in C is
+both fast and threadsafe.  The Mersenne Twister is one of the most extensively
+tested random number generators in existence.  However, being completely
+deterministic, it is not suitable for all purposes, and is completely unsuitable
+for cryptographic purposes.</p>
+<p>The functions supplied by this module are actually bound methods of a hidden
+instance of the random.Random class.  You can instantiate your own
+instances of Random to get generators that don&#8217;t share state.</p>
+
+
+<p>Class Random can also be subclassed if you want to use a different basic generator of your own
+devising: in that case, override the random(), seed(), getstate(), and setstate(). Optionally,
+a new generator can supply a getrandbits() method — this allows randrange()
+to produce selections over an arbitrarily large range.</p>
+
+<p><h3>Bookkeeping functions:</h3></p>
+
+<table cellpadding="8">
+<tr><th style="width:25%; text-align:left;">Función</th><th>Regresa ( descripción )</th></tr>
+
+<tr><td>random.seed([x])</td><td>Initialize the basic random number generator. Optional argument x can be any hashable object. If x is omitted or None, current system time is used; current system time is also used to initialize the generator when the module is first imported. If randomness sources are provided by the operating system, they are used instead of the system time (see the os.urandom() function for details on availability). If x is not None or an int, hash(x) is used instead. If x is an int, x is used directly.</td></tr>
+
+<tr><td>random.getstate())</td><td>Return an object capturing the current internal state of the generator. This object can be passed to setstate() to restore the state.</td></tr>
+
+<tr><td>random.setstate(state))</td><td>state should have been obtained from a previous call to getstate(), and setstate() restores the internal state of the generator to what it was at the time setstate() was called.</td></tr>
+
+<tr><td>random.jumpahead(n)</td><td>Change the internal state to one different from and likely far away from the current state. n is a non-negative integer which is used to scramble the current state vector. This is most useful in multi-threaded programs, in conjunction with multiple instances of the Random class: setstate() or seed() can be used to force all instances into the same internal state, and then jumpahead() can be used to force the instances’ states far apart.</td></tr>
+
+<tr><td>random.getrandbits(k)</td><td>Returns a python integer with k random bits. This method is supplied with the MersenneTwister generator and some other generators may also provide it as an optional part of the API. When available, getrandbits() enables randrange() to handle arbitrarily large ranges.</td></tr>
+</table>
+
+<p><h3>Functions for integers:</h3></p>
+
+<table cellpadding="8">
+<tr><th style="width:25%; text-align:left;">Función</th><th>Regresa ( descripción )</th></tr>
+<tr><td>random.randrange([start], stop[, step])</td><td>Return a randomly selected element from range(start, stop, step). This is equivalent to choice(range(start, stop, step)), but doesn’t actually build a range object.</td></tr>
+
+<tr><td>random.randint(a, b)</td><td>Return a random integer N such that a <= N <= b.</td></tr>
+</table>
+
+<p><h3>Functions for sequences:</h3></p>
+
+<table cellpadding="8">
+<tr><th style="width:25%; text-align:left;">Función</th><th>Regresa ( descripción )</th></tr>
+<tr><td>random.choice(seq)</td><td>Return a random element from the non-empty sequence seq. If seq is empty, raises IndexError.</td></tr>
+
+<tr><td>random.shuffle(x[, random])</td><td>Shuffle the sequence x in place. The optional argument random is a 0-argument function returning a random float in [0.0, 1.0); by default, this is the function random(). Note that for even rather small len(x), the total number of permutations of x is larger than the period of most random number generators; this implies that most permutations of a long sequence can never be generated.</td></tr>
+
+<tr><td>random.sample(population, k)</td><td>Return a k length list of unique elements chosen from the population sequence or set. Used for random sampling without replacement. Returns a new list containing elements from the population while leaving the original population unchanged. The resulting list is in selection order so that all sub-slices will also be valid random samples. This allows raffle winners (the sample) to be partitioned into grand prize and second place winners (the subslices). Members of the population need not be hashable or unique. If the population contains repeats, then each occurrence is a possible selection in the sample. To choose a sample from a range of integers, use an range() object as an argument. This is especially fast and space efficient for sampling from a large population: sample(range(10000000), 60). The following functions generate specific real-valued distributions. Function parameters are named after the corresponding variables in the distribution’s equation, as used in common mathematical practice; most of these equations can be found in any statistics text.</td></tr>
+
+<tr><td>random.random()</td><td>Return the next random floating point number in the range [0.0, 1.0).</td></tr>
+
+<tr><td>random.uniform(a, b)</td><td>Return a random floating point number N such that a <= N <= b for a <= b and b <= N <= a for b < a.</td></tr>
+
+<tr><td>random.triangular(low, high, mode)</td><td>Return a random floating point number N such that low <= N <= high and with the specified mode between those bounds. The low and high bounds default to zero and one. The mode argument defaults to the midpoint between the bounds, giving a symmetric distribution.</td></tr>
+
+<tr><td>random.betavariate(alpha, beta)</td><td>Beta distribution. Conditions on the parameters are alpha > 0 and beta > 0. Returned values range between 0 and 1.</td></tr>
+
+<tr><td>random.expovariate(lambd)</td><td>Exponential distribution. lambd is 1.0 divided by the desired mean. (The parameter would be called “lambda”, but that is a reserved word in Python.) Returned values range from 0 to positive infinity.</td></tr>
+
+<tr><td>random.gammavariate(alpha, beta)</td><td>Gamma distribution. (Not the gamma function!) Conditions on the parameters are alpha > 0 and beta > 0.</td></tr>
+
+<tr><td>random.gauss(mu, sigma)</td><td>Gaussian distribution. mu is the mean, and sigma is the standard deviation. This is slightly faster than the normalvariate() function defined below.</td></tr>
+
+<tr><td>random.lognormvariate(mu, sigma)</td><td>Log normal distribution. If you take the natural logarithm of this distribution, you’ll get a normal distribution with mean mu and standard deviation sigma. mu can have any value, and sigma must be greater than zero.</td></tr>
+
+<tr><td>random.normalvariate(mu, sigma)</td><td>Normal distribution. mu is the mean, and sigma is the standard deviation.</td></tr>
+
+<tr><td>random.vonmisesvariate(mu, kappa)</td><td>mu is the mean angle, expressed in radians between 0 and 2*pi, and kappa is the concentration parameter, which must be greater than or equal to zero. If kappa is equal to zero, this distribution reduces to a uniform random angle over the range 0 to 2*pi.</td></tr>
+
+<tr><td>random.paretovariate(alpha)</td><td>Pareto distribution. alpha is the shape parameter.</td></tr>
+
+<tr><td>random.weibullvariate(alpha, beta)</td><td>Weibull distribution. alpha is the scale parameter and beta is the shape parameter.</td></tr>
+</table>
+
+<p><h3>Alternative Generators:</h3></p>
+
+<table cellpadding="8">
+<tr><th style="width:25%; text-align:left;">Función</th><th>Regresa ( descripción )</th></tr>
+<tr><td>class random.SystemRandom([seed])</td><td>Class that uses the os.urandom() function for generating random numbers from sources provided by the operating system. Not available on all systems. Does not rely on software state and sequences are not reproducible. Accordingly, the seed() and jumpahead() methods have no effect and are ignored. The getstate() and setstate() methods raise NotImplementedError if called.</td></tr>
+</table>
+
+<p><h2>Examples of basic usage:</h2></p>
+
+=== Rand1.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import random
+
+for i in range(5):
+    # random float: 0.0 <= number < 1.0
+    print( "random.random: ", random.random() )
+
+    # random float: 10 <= number < 20
+    print( "random.uniform: ", random.uniform(10, 20) )
+
+    # random integer: 100 <= number <= 1000
+    print( "random.randint: ", random.randint(100, 1000) )
+
+    # random integer: even numbers in 100 <= number < 1000
+    print( "random.randrange: ", random.randrange(100, 1000, 2) )
+
+    print()
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Rand1.py 
+ random.random:  0.39545676523508166
+ random.uniform:  16.464160956847362
+ random.randint:  529
+ random.randrange:  894
+ 
+ random.random:  0.9316735211692398
+ random.uniform:  11.927170096499617
+ random.randint:  711
+ random.randrange:  298
+ 
+ random.random:  0.4331936790877884
+ random.uniform:  13.665083300187707
+ random.randint:  404
+ random.randrange:  574
+ 
+ random.random:  0.14798394436742757
+ random.uniform:  17.76678555602416
+ random.randint:  342
+ random.randrange:  734
+ 
+ random.random:  0.22644630770571483
+ random.uniform:  12.244532767946936
+ random.randint:  302
+ random.randrange:  430
+
+=== Rand2.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import random
+
+# random choice from a list
+for i in range(5):
+  print( "random.choice: ", random.choice([1, 2, 3, 5, 9] ) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+ 
+[rrc@Llawyr PythonClase]$ ./Rand2.py 
+ random.choice:  2
+ random.choice:  3
+ random.choice:  3 
+ random.choice:  2
+ random.choice:  3
+
+[rrc@Llawyr PythonClase]$ ./Rand2.py 
+ random.choice:  5
+ random.choice:  9
+ random.choice:  5
+ random.choice:  9
+ random.choice:  1
+
+[rrc@Llawyr PythonClase]$ ./Rand2.py 
+ random.choice:  9
+ random.choice:  3
+ random.choice:  3
+ random.choice:  1
+ random.choice:  1
+
+=== Rand3.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from random import shuffle
+x = [[i] for i in range(10)]
+shuffle(x)
+print( x )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Rand3.py
+ [[0], [7], [3], [2], [9], [5], [4], [8], [1], [6]]
+
+=== Rand4.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import random
+for i in range(3):
+  print( random.randrange(0, 101, 5) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Rand4.py
+ 25
+ 95
+ 80
+
+=== Rand5.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import random
+
+for i in range( 3 ):
+  print( "random.sample: ", random.sample( [1, 2, 3, 4, 5, 6, 7, 8, 9 ],  3) )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+[rrc@Llawyr PythonClase]$ ./Rand5.py
+ random.sample:  [1, 2, 7]
+ random.sample:  [8, 2, 1]
+ random.sample:  [8, 9, 6]
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
