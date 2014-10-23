@@ -1,0 +1,84 @@
+<h1><p>Formato de las cadenas en el estilo de printf</p></h1>
+
+<h3><p>Nota</p></h3>
+
+<p>Las operaciones de formato descritas aquí exhiben una variedad de caprichos que conducen a una serie de errores comunes
+(ej: falta Mostrar tuples y Diccionarios correctamente). Usando el nuevo formato ayuda a evitar estos errores y también proporciona un enfoque generalmente más potente, flexible y extensible para dar formato al texto.</p>
+    
+<p>Los Objetos String tienen una operación incorporada única: el operador de %. Esto también se conoce como el operador de de formato de cadena o interpolación.</p>
+
+<p>Si formato requiere un solo argumento, los valores pueden ser una sola no-tuple objeto. De lo contrario, los valores deben ser una tupla con exactamente el número de elementos especificado por la cadena de formato, o de un solo objeto de asignación ej. un diccionario.</p>
+
+<h3><p>Un especificador de conversión contiene dos o más caracteres y tiene los siguientes componentes, que deben ocurrir en este orden:</p></h3>
+<ol>
+<li>El caracter de formato de cadena: '%', que significa el inicio de un especificador.</li>
+<li>La llave de mapa (opcional) entre parentasis, en formato de: (AlgúnNombre).</li>
+<li>caracteres de conversion (opcional)</li>
+<li>Ancho minimo del campo (opcional). Si especificado con un '*' (asterisco), el ancho se obtiene del siguiente elemento en el tuple y el objeto a convertir sigue después del ancho y precisión opcional.</li>
+<li>Precisión (opcional), se indica con un '.' (punto) seguieda por el operación de precisión.  Si especificado con un '*' (asterisco), la precición actual se obtiene del siguiente elemento en el tuple y el valor a convertir sigue después de la prcisión.</li>
+<li>Modificador de ancho (opcional).</li>
+<li>Tipo de conversión.</li>
+</ol>
+
+<p>Cuando el argumento de la derecha es un diccionario (o otro objeto de tipo mapa), Los formatos el la cadena <em>DEBEN</em> incuir una llave de mapa (en parentasis) en el diccionario que sigue después del caracter '%'.</p>
+
+<h3><p>Las llaves de conversión son:</p></h3>
+<table border="1">
+<tr><th>Llave</th><th>Significado</th></tr>
+<tr><td>'#'</td><td>Convertir al valor alternativo especificado por el caracter definido abajo.</td></tr>
+<tr><td>'0'</td><td>No va agregar espacios antes o después de valores numéricos.</td></tr>
+<tr><td>'-'</td><td>El valor convertido seria adaptado al izquierda (hace caso omiso de ignorar el '0' conversion si los dos son especificados).</td></tr>
+<tr><td>' '</td><td>(un espacio) debe ser antes de un número positivo (o cadena vacio) producido por un conversion de signo./td></tr>
+<tr><td>'+'</td><td>Un caracter de signo ('+' or '-') seria antes del caracter de conversión (hace caso omiso de ignorar el ' ' (espacio) llave).</td></tr>
+</table>
+
+<p>Un especificador de ancho (h, l o L) esta ignorado en Python, entonces ej: %ld es mismo a %d.</p>
+
+<h3><p>Tipos de conversión son:</p></h3>
+<table border="1">
+<tr><th>Conversión</th><th>Significo</th><th>Notas</th></tr>
+<tr><td>'d'</td><td>Entero con signo, decimal.</td><td>&nbsp;</td></tr>
+<tr><td>'i'</td><td>Entero con signo, decimal.</td><td>&nbsp;</td></tr>
+<tr><td>'o'</td><td>Octol con signo.</td><td>(1)</td></tr>
+<tr><td>'u'</td>
+<td>Obsolete type &#8211; es identico al 'd'.</td><td>&nbsp;</td></tr>
+<tr><td>'x'</td><td>hexadecimal con signo, minusculas.</td><td>(2)</td></tr>
+<tr><td>'X'</td><td>hexadecimal con signo, mayusculas.</td><td>(2)</td></tr>
+<tr><td>'e'</td><td>Float exponencial minusculas.</td><td>(3)</td></tr>
+<tr><td>'E'</td><td>Float exponencial mayusculas.</td><td>(3)</td></tr>
+<tr><td>'f'</td><td>Float decimal.</td><td>(3)</td></tr>
+<tr><td>'F'</td><td>Float decimal.</td><td>(3)</td></tr>
+<tr><td>'g'</td><td>Float. Uses lowercase exponential format if exponent is less than -4 or not less than precision, decimal format otherwise.</td><td>(4)</td></tr>
+<tr><td>'G'</td><td>Floating point format. Uses uppercase exponential format if exponent is less than -4 or not less than precision, decimal format otherwise.</td><td>(4)</td></tr>
+<tr><td>'c'</td><td>Single character (accepts integer or single character string).</td><td>&nbsp;</td></tr>
+<tr><td>'r'</td><td>String (converts any Python object using repr()).</td><td>(5)</td></tr>
+<tr><td>'s'</td><td>String (converts any Python object using str()).</td><td>(5)</td></tr>
+<tr><td>'a'</td><td>String (converts any Python object using ascii()).</td><td>(5)</td></tr>
+<tr><td>'%'</td><td>No argument is converted, results in a '%' character in the result.</td><td>&nbsp;</td></tr>
+</table>
+
+<h3><p>Notes:</p></h3>
+<ol>
+<li><p>The alternate form causes a leading zero (<tt class="docutils literal"><span class="pre">'0'</span></tt>) to be inserted between left-hand padding and the formatting of the number if the leading character of the result is not already a zero.</p>
+</li>
+<li><p>The alternate form causes a leading '0x' or '0X' (depending on whether the 'x' or 'X' format was used) to be inserted between left-hand padding and the formatting of the number if the leading character of the result is not already a zero.</p>
+</li>
+<li><p>The alternate form causes the result to always contain a decimal point, even if no digits follow it.</p>
+<p>The precision determines the number of digits after the decimal point and defaults to 6.</p>
+</li>
+<li><p>The alternate form causes the result to always contain a decimal point, and trailing zeroes are not removed as they would otherwise be.</p>
+<p>The precision determines the number of significant digits before and after the decimal point and defaults to 6.</p>
+</li>
+<li><p>If precision is N, the output is truncated to N characters.</p>
+</li>
+</ol>
+
+
+<p>Since Python strings have an explicit length, %s conversions do not assume that '\0' is the end of the string.</p>
+
+<p>Changed in version 3.1: %f conversions for numbers whose absolute value is over 1e50 are no longer replaced by %g conversions.</p>
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
