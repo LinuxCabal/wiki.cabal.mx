@@ -1,0 +1,33 @@
+__NOTOC__
+* [[:#Str8.py | Str8.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str8.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Bienvenido a nuestro curso de Python"
+
+print( "\nPodemos extraer una lista de palabras en la frase \n\"", Frase,
+       "\"\n con .split: \n", Frase.split( ' ' ), sep='' )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str8.py
+ 
+ Podemos extraer una lista de palabras en la frase 
+ "Bienvenido a nuestro curso de Python"
+  con .split: 
+ ['Bienvenido', 'a', 'nuestro', 'curso', 'de', 'Python']
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
