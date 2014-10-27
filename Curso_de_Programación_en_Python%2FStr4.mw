@@ -1,0 +1,66 @@
+__NOTOC__
+* [[:#Str4.py | Str4.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str4.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Hola Mundo"
+i = 0
+
+while i < len( Frase ):
+  print( "La letra \'", Frase[i],
+         "\' se presenta por primera vez en la posición ",
+           Frase.find( Frase[i] ), " en la frase: ",  Frase, sep='' )
+  i += 1
+
+print( "\nOtra manera:" )
+
+for Letra in Frase:
+  print( "La letra \'", Letra,
+         "\' se presenta por primera vez en la posición ", 
+          Frase.find( Letra ), " en la frase: ",  Frase, sep='' )
+
+print( "\nListo\n" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str4.py
+ La letra 'H' se presenta por primera vez en la posición 0 en la frase: Hola Mundo
+ La letra 'o' se presenta por primera vez en la posición 1 en la frase: Hola Mundo
+ La letra 'l' se presenta por primera vez en la posición 2 en la frase: Hola Mundo
+ La letra 'a' se presenta por primera vez en la posición 3 en la frase: Hola Mundo
+ La letra ' ' se presenta por primera vez en la posición 4 en la frase: Hola Mundo
+ La letra 'M' se presenta por primera vez en la posición 5 en la frase: Hola Mundo
+ La letra 'u' se presenta por primera vez en la posición 6 en la frase: Hola Mundo
+ La letra 'n' se presenta por primera vez en la posición 7 en la frase: Hola Mundo
+ La letra 'd' se presenta por primera vez en la posición 8 en la frase: Hola Mundo
+ La letra 'o' se presenta por primera vez en la posición 1 en la frase: Hola Mundo
+ 
+ Otra manera:
+ La letra 'H' se presenta por primera vez en la posición 0 en la frase: Hola Mundo
+ La letra 'o' se presenta por primera vez en la posición 1 en la frase: Hola Mundo
+ La letra 'l' se presenta por primera vez en la posición 2 en la frase: Hola Mundo
+ La letra 'a' se presenta por primera vez en la posición 3 en la frase: Hola Mundo
+ La letra ' ' se presenta por primera vez en la posición 4 en la frase: Hola Mundo
+ La letra 'M' se presenta por primera vez en la posición 5 en la frase: Hola Mundo
+ La letra 'u' se presenta por primera vez en la posición 6 en la frase: Hola Mundo
+ La letra 'n' se presenta por primera vez en la posición 7 en la frase: Hola Mundo
+ La letra 'd' se presenta por primera vez en la posición 8 en la frase: Hola Mundo
+ La letra 'o' se presenta por primera vez en la posición 1 en la frase: Hola Mundo
+ 
+ Listo
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
