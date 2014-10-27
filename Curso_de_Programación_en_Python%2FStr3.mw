@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Str3.py | Str3.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str3.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Hola Mundo"
+i = 0
+
+while i < len( Frase ):
+  print( "La letra \'", Frase[i], "\' aparece ", Frase.count( Frase[i] ),
+         " veces en la frase: ",  Frase, sep='' )
+  i += 1
+print( "\nListo\n" )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str3.py
+ La letra 'H' aparece 1 veces en la frase: Hola Mundo
+ La letra 'o' aparece 2 veces en la frase: Hola Mundo
+ La letra 'l' aparece 1 veces en la frase: Hola Mundo
+ La letra 'a' aparece 1 veces en la frase: Hola Mundo
+ La letra ' ' aparece 1 veces en la frase: Hola Mundo
+ La letra 'M' aparece 1 veces en la frase: Hola Mundo
+ La letra 'u' aparece 1 veces en la frase: Hola Mundo
+ La letra 'n' aparece 1 veces en la frase: Hola Mundo
+ La letra 'd' aparece 1 veces en la frase: Hola Mundo
+ La letra 'o' aparece 2 veces en la frase: Hola Mundo
+ 
+ Listo
+
+=== Explicación ===
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
