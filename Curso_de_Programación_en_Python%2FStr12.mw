@@ -1,0 +1,61 @@
+__NOTOC__
+* [[:#Str12 | Str12.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str12.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "\n\t  Bienvenido  a  nuestro  curso  de  Python  \t\n"
+Frase2= "\n\n  Bienvenido  a  nuestro  curso  de  Python  \n\n"
+
+print( "\nEn la frase:\n\"", Frase, "\"", sep='' )
+
+print( "strip()  nos da:\n|", Frase.strip( ), "|", sep='' )
+print( "\nrstrip() nos da:\n|", Frase.rstrip( ), "|", sep='' )
+print( "\nlstrip() nos da:\n|", Frase.lstrip( ), "|", sep='' )
+print( "\nEn la frase:\n\"", Frase2, "\"\n ", sep='' )
+print( "\nstrip('\\n') nos da\n|", Frase2.strip( '\n' ), "|", sep='' )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str12.py 
+ 
+ En la frase:
+ "
+ 	  Bienvenido  a  nuestro  curso  de  Python  	
+ "
+ strip()  nos da:
+ |Bienvenido  a  nuestro  curso  de  Python|
+ 
+ rstrip() nos da:
+ |
+ 	  Bienvenido  a  nuestro  curso  de  Python|
+ 
+ lstrip() nos da:
+ |Bienvenido  a  nuestro  curso  de  Python  	
+ |
+ 
+ En la frase:
+ "
+ 
+   Bienvenido  a  nuestro  curso  de  Python  
+ 
+ "
+  
+ 
+ strip('\n') nos da
+ |  Bienvenido  a  nuestro  curso  de  Python  |
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
