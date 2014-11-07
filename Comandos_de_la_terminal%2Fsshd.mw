@@ -1,0 +1,303 @@
+__NOTOC__
+* [[:#sshd | sshd]]
+
+== sshd ==
+
+<syntaxhighlight lang="bash">
+
+### TCP Wrapers
+[root@Llawyr ssh]# cat /etc/hosts.deny
+#
+# hosts.deny	This file describes the names of the hosts which are
+#		*not* allowed to use the local INET services, as decided
+#		by the '/usr/sbin/tcpd' server.
+#
+# The portmap line is redundant, but it is left to remind you that
+# the new secure portmap uses hosts.deny and hosts.allow.  In particular
+# you should know that NFS uses portmap!
+
+ALL:ALL EXCEPT 127.0.0.1:DENY
+
+[root@Llawyr ssh]# cat /etc/hosts.allow
+#
+# hosts.allow	This file describes the names of the hosts which are
+#		allowed to use the local INET services, as decided
+#		by the '/usr/sbin/tcpd' server.
+#
+
+sshd:all:allow
+
+[root@Llawyr ssh]# cat /etc/ssh/sshd_config 
+#	$OpenBSD: sshd_config,v 1.89 2013/02/06 00:20:42 dtucker Exp $
+
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information.
+
+# This sshd was compiled with PATH=/usr/local/bin:/usr/bin
+
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+
+#Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+#ListenAddress ::
+
+# The default requires explicit activation of protocol 1
+#Protocol 2
+
+# HostKey for protocol version 1
+HostKey /etc/ssh/ssh_host_key
+# HostKeys for protocol version 2
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_dsa_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+
+# Lifetime and size of ephemeral version 1 server key
+#KeyRegenerationInterval 1h
+#ServerKeyBits 1024
+
+# Logging
+# obsoletes QuietMode and FascistLogging
+#SyslogFacility AUTH
+#LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+PermitRootLogin no
+#StrictModes yes
+#MaxAuthTries 6
+#MaxSessions 10
+
+#RSAAuthentication yes
+#PubkeyAuthentication yes
+
+# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
+# but this is overridden so installations will only check .ssh/authorized_keys
+AuthorizedKeysFile	.ssh/authorized_keys
+
+#AuthorizedPrincipalsFile none
+
+#AuthorizedKeysCommand none
+#AuthorizedKeysCommandUser nobody
+
+# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+#RhostsRSAAuthentication no
+# similar for protocol version 2
+#HostbasedAuthentication no
+# Change to yes if you don't trust ~/.ssh/known_hosts for
+# RhostsRSAAuthentication and HostbasedAuthentication
+#IgnoreUserKnownHosts no
+# Don't read the user's ~/.rhosts and ~/.shosts files
+#IgnoreRhosts yes
+
+# To disable tunneled clear text passwords, change to no here!
+#PasswordAuthentication yes
+#PermitEmptyPasswords no
+
+# Change to no to disable s/key passwords
+#ChallengeResponseAuthentication yes
+
+# Kerberos options
+#KerberosAuthentication no
+#KerberosOrLocalPasswd yes
+#KerberosTicketCleanup yes
+#KerberosGetAFSToken no
+
+# GSSAPI options
+#GSSAPIAuthentication no
+#GSSAPICleanupCredentials yes
+
+# Set this to 'yes' to enable PAM authentication, account processing, 
+# and session processing. If this is enabled, PAM authentication will 
+# be allowed through the ChallengeResponseAuthentication and
+# PasswordAuthentication.  Depending on your PAM configuration,
+# PAM authentication via ChallengeResponseAuthentication may bypass
+# the setting of "PermitRootLogin without-password".
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+# Warning: when running under systemd, and PAM usage is disabled, restarting 
+# SSH service will likely kill off any ssh connections, including the
+# current one
+UsePAM yes
+
+# Accept locale-related environment variables
+AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+AcceptEnv LC_IDENTIFICATION LC_ALL
+
+#AllowAgentForwarding yes
+#AllowTcpForwarding yes
+#GatewayPorts no
+X11Forwarding yes
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+#PrintMotd yes
+#PrintLastLog yes
+#TCPKeepAlive yes
+#UseLogin no
+UsePrivilegeSeparation sandbox		# Default for new installations.
+#PermitUserEnvironment no
+#Compression delayed
+#ClientAliveInterval 0
+#ClientAliveCountMax 3
+#UseDNS yes
+#PidFile /var/run/sshd.pid
+#MaxStartups 10:30:100
+#PermitTunnel no
+#ChrootDirectory none
+#VersionAddendum none
+
+# no default banner path
+Banner /etc/ssh/banner
+AllowUsers rrc
+
+# override default of no subsystems
+Subsystem	sftp	/usr/lib64/ssh/sftp-server
+
+# Example of overriding settings on a per-user basis
+#Match User anoncvs
+#	X11Forwarding no
+#	AllowTcpForwarding no
+#	ForceCommand cvs server
+
+[root@Llawyr ssh]# systemctl restart sshd.service
+
+[root@Llawyr ssh]# journalctl -f
+-- Logs begin at Thu 2014-11-06 15:33:47 CST. --
+Nov 07 15:23:43 Llawyr.LinuxCabal.org systemd[1]: Stopping OpenSSH server daemon...
+Nov 07 15:23:43 Llawyr.LinuxCabal.org systemd[1]: Starting OpenSSH server daemon...
+Nov 07 15:23:43 Llawyr.LinuxCabal.org sshd[4325]: Received signal 15; terminating.
+Nov 07 15:23:43 Llawyr.LinuxCabal.org systemd[1]: Started OpenSSH server daemon.
+Nov 07 15:23:43 Llawyr.LinuxCabal.org sshd[3267]: Server listening on 0.0.0.0 port 22.
+Nov 07 15:23:43 Llawyr.LinuxCabal.org sshd[3267]: Server listening on :: port 22.
+
+ARCHIVOS
+     ~/.hushlogin
+         Este archivo se utiliza para suprimir la impresión de la última hora de inicio de
+         sesión y /etc/motd, si PrintLastLog y PrintMotd, respectivamente, están habilitados.
+         No suprime impresión del banner especificado por Banner.
+
+     ~/.rhosts
+         Este archivo se usa para la autenticación basada en host (véase ssh (1) para obtener
+         más información). En algunas máquinas este archivo deberá ser legible si el directorio
+         home del usuario está en una partición NFS, porque sshd Lee como root. Además, este
+         fichero debe ser propiedad del usuario y no debe tener permisos de escritura para los
+         demás. El permiso recomendado para la mayoría de las máquinas es de lectura/escritura
+         para el usuario y no accesibles por otros.
+
+     ~/.shosts
+         Este archivo se usa de exactamente el mismo modo como .rhosts, pero permite basado en
+         host autenticación sin permitir iniciar sesión con rlogin/rsh.
+
+     ~/.ssh/
+         Este carpeta es la ubicación predeterminada para toda la configuración específica del
+         usuario y información de autenticación. No hay ningún requisito general para mantener
+         todo el contenido de este carpeta ocultada, pero los permisos recomendados son
+         leer/escribir/ejecutar para el usuario y no son accesibles por otros.
+
+     ~/.ssh/authorized_keys
+         Pone las claves públicas en una lista (DSA/ECDSA/RSA) que se puede usar para entrar al
+         sistema como este usuario. El contenido del archivo no es muy sensible, entonces los
+         permisos recomendados son de lectura/escritura para el usuario y no accesibles
+         por otros.
+
+         Si este archivo, la carpeta ~/.ssh o carpeta home del usuario es editables por
+         otros usuarios, entonces el archivo puede ser modificado o reemplazado por usuarios
+         no autorizados. En este caso, sshd no permitirá ser utilizado a menos que la opción
+         StrictModes se ha ajustado a "no".
+
+     ~/.ssh/environment
+         Este archivo se lee en el ambiente en la entrada al sistema (si existe). Sólo puede
+         contener líneas vacías, líneas del comentario (que principio con ‘# ’) y líneas de la
+         asignación de la forma name=value. El archivo sólo debería ser escribible por el
+         usuario; no tiene que ser legible por nadie más. El procesamiento del ambiente es 
+         dishabilitada por default y se controla vía la opción de PermitUserEnvironment.
+
+     ~/.ssh/known_hosts
+         Contiene una lista de claves de host para todos los hosts que el usuario ha iniciado
+         sesiónes. Este archivo debe tener permiso de escritura sólo para el root/el dueño y
+         puede, pero no necesitan ser, legible.
+
+     ~/.ssh/rc
+         Contiene rutinas de inicialización que se ejecuta antes de que la carpeta de inicio del
+         usuario se vuelve accesible. Este archivo debe tener permisos de escritura sólo por el
+         usuario, y no es necesario ser leídos por nadie más.
+
+     /etc/hosts.allow
+     /etc/hosts.deny
+          Los archovos de tcp-wrappers mencionada anteriormente. Más detalles son disponibles
+          en hosts_access(5).
+
+     /etc/hosts.equiv
+          Este archivo es para la autenticación basada en host (véase ssh(1)). Sólo debe ser
+          escribible por root.
+
+     /etc/ssh/moduli
+          Contiene grupos Diffie-Hellman, utilizados para el "intercambio Diffie-Hellman Group".
+          El formato de archivo se describe en moduli(5).
+         
+     /etc/motd
+          Vees motd(5).
+
+     /etc/nologin
+          Si este archivo existe, el sshd rechaza dejar a cualquiera excepto a root entrar al
+          sistema. Los contenidos del archivo se muestran a cualquiera que trata de entrar al
+          sistema, y las conexiones no-root se negaron. El archivo debe ser mundialmente legible.
+
+     /etc/ssh/shosts.equiv
+          Este archivo se usa exactamente la misma manera como hosts.equiv, pero permite que la
+          autenticación basada en host sin que permite iniciar sesión con rlogin/rsh.
+
+     /etc/ssh/ssh_host_key
+     /etc/ssh/ssh_host_dsa_key
+     /etc/ssh/ssh_host_ecdsa_key
+     /etc/ssh/ssh_host_rsa_key
+          Estos archivos contienen las partes privadas de las claves del host. Estos archivos
+          deben ser propiedad de root, que solamente se puede leer por el usuario root, y no
+          es accesible a los demás. Tenga en cuenta que sshd no se inicia si estos archivos
+          son del grupo/mundo accesible.
+
+     /etc/ssh/ssh_host_key.pub
+     /etc/ssh/ssh_host_dsa_key.pub
+     /etc/ssh/ssh_host_ecdsa_key.pub
+     /etc/ssh/ssh_host_rsa_key.pub
+          Estos archivos contienen las partes públicas de las claves del sistema. Estos archivos
+          deben ser legible pero escribible sólo para el root. Su contenido debe coincidir con
+          las partes respectivas private. Estos archivos no se utilizan realmente para nada; se
+          proporcionan para la conveniencia del usuario para que su contenido puede ser copiado
+          de archivos hosts conocidos. Estos archivos se crean utilizando ssh-keygen(1).
+
+     /etc/ssh/ssh_known_hosts
+          Lista publica de claves de host conocidos. Este archivo debe estar preparada por el
+          administrador del sistema para contener las claves de host públicos de todas las
+          máquinas de la organización. Este archivo debe tener permiso de escritura sólo por
+          root/el dueño y debe ser mundialmente legible.
+
+     /etc/ssh/sshd_config
+          Contiene datos de configuración de sshd. Se describen las opciones de configuración y
+          formato de archivo en sshd_config(5).
+         
+     /etc/ssh/sshrc
+          Similar a ~/.ssh/rc, puede ser usado para especificar inicializaciones del tiempo de
+          la entrada al sistema específicas para la máquina globalmente. Este archivo sólo
+          debería ser escribible por root y debería ser mundialmente legible.
+
+     /var/empty
+          Chroot(2) carpeta usado por sshd en privilegio separación, en el pre-fase de
+          autenticación. La carpeta debe contener ningunos archivos y debe ser propiedad
+          de root y no con permisos de escritura al grupo o mundo.
+
+     /var/run/sshd.pid
+          Contiene el ID de proceso de sshd escucha conexiones (si hay varios demonios
+          ejecutándose simultáneamente en diferentes puertos, este contiene el ID. del
+          proceso de la que se puso en marcha el último). El contenido de este archivo
+          no es sensible, que puede ser accesible a todo el mundo.
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
