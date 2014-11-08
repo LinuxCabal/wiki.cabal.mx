@@ -12,7 +12,7 @@ __NOTOC__
 for y in range( 1, 13 ):
   for x in range( 1, 13 ):
     print( x, "*", y, " =", ( x * y ) )
-  print( "" )
+ print( "" )
 print( "Listo" )
 
 # Mira que el ultimo en el rango es excluido
