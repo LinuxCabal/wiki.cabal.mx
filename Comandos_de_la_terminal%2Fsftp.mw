@@ -1,0 +1,222 @@
+__NOTOC__
+* [[:#sftp | sftp]]
+
+== sftp ==
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ /usr/lib64/ssh/sftp-server -h
+usage: sftp-server [-ehR] [-d start_directory] [-f log_facility] [-l log_level]
+	[-u umask]
+
+[rrc@Llawyr ~]$ sftp --help
+usage: sftp [-1246Cpqrv] [-B buffer_size] [-b batchfile] [-c cipher]
+          [-D sftp_server_path] [-F ssh_config] [-i identity_file] [-l limit]
+          [-o ssh_option] [-P port] [-R num_requests] [-S program]
+          [-s subsystem | sftp_server] host
+       sftp [user@]host[:file ...]
+       sftp [user@]host[:dir[/]]
+       sftp -b batchfile [user@]host
+
+[rrc@Llawyr ~]$ sftp priddwifi
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Connected to priddwifi.
+sftp> ?
+Available commands:
+bye                                Quit sftp
+cd path                            Change remote directory to 'path'
+chgrp grp path                     Change group of file 'path' to 'grp'
+chmod mode path                    Change permissions of file 'path' to 'mode'
+chown own path                     Change owner of file 'path' to 'own'
+df [-hi] [path]                    Display statistics for current directory or
+                                   filesystem containing 'path'
+exit                               Quit sftp
+get [-Ppr] remote [local]          Download file
+help                               Display this help text
+lcd path                           Change local directory to 'path'
+lls [ls-options [path]]            Display local directory listing
+lmkdir path                        Create local directory
+ln [-s] oldpath newpath            Link remote file (-s for symlink)
+lpwd                               Print local working directory
+ls [-1afhlnrSt] [path]             Display remote directory listing
+lumask umask                       Set local umask to 'umask'
+mkdir path                         Create remote directory
+progress                           Toggle display of progress meter
+put [-Ppr] local [remote]          Upload file
+pwd                                Display remote working directory
+quit                               Quit sftp
+rename oldpath newpath             Rename remote file
+rm path                            Delete remote file
+rmdir path                         Remove remote directory
+symlink oldpath newpath            Symlink remote file
+version                            Show SFTP version
+!command                           Execute 'command' in local shell
+!                                  Escape to local shell
+?                                  Synonym for help
+
+sftp> version
+SFTP protocol version 3
+
+sftp> pwd
+Remote working directory: /home/rrc
+
+sftp> lpwd
+Local working directory: /home/rrc
+
+sftp> ls
+Abogado                                 BashClase                               
+Books                                   CClase                                  
+Clients                                 Code                                    
+ComandosDeLaTerminal                    ComandosDeLaTerminal_42.webm            
+Desktop                                 Documents                               
+Downloads                               FacturaLibreWork                        
+ImadineProj                             LinuxCabal                              
+LucilleAddress                          Mail                                    
+Music                                   MySQLBack                               
+MySQLCreate.sql                         MySQLCreate.sql~                        
+Photos                                  Pictures                                
+PythonClase                             Robin Hobb                              
+Templates                               TianguisCabalOnLineV1.0                 
+Titles                                  Videos                                  
+XDem.xcf                                XDemineur.png                           
+tmp   
+
+sftp> ls Downloads
+Downloads/FacturaLibreCFDI_1.7.1.oxt                                            
+Downloads/FacturaLibreCFDI_1.9.8.oxt                                            
+Downloads/GCalc-2.1.tar.gz                                                      
+Downloads/IBM-UltriumLTO-MSM-ts3100.pdf                                         
+Downloads/InProgress                                                            
+Downloads/Mageia                                                                
+Downloads/MusicClase                                                            
+Downloads/TechnoTrend                                                           
+Downloads/Torrents                                                              
+Downloads/comprobante(1).pdf                                                    
+Downloads/comprobante.pdf                                                       
+Downloads/ibm_fod_8003_7382KQ1KH1T_anyos_noarch.key                             
+Downloads/images.jpeg                                                           
+Downloads/torrents                                                              
+Downloads/xdemineur-2.1.1                                                       
+Downloads/xdemineur.jpg                                                         
+
+sftp> get -r Downloads/xdemineur-2.1.1
+Fetching /home/rrc/Downloads/xdemineur-2.1.1/ to xdemineur-2.1.1
+Retrieving /home/rrc/Downloads/xdemineur-2.1.1
+/home/rrc/Downloads/xdemineur-2.1.1/DoIt      100%  851     0.8KB/s   00:00    
+/home/rrc/Downloads/xdemineur-2.1.1/xdemineur 100% 1898     1.9KB/s   00:00    
+/home/rrc/Downloads/xdemineur-2.1.1/ANNOUNCE  100% 1486     1.5KB/s   00:00    
+ .
+ .
+ .
+/home/rrc/Downloads/xdemineur-2.1.1/util.c    100% 1021     1.0KB/s   00:00    
+/home/rrc/Downloads/xdemineur-2.1.1/README    100% 2658     2.6KB/s   00:00    
+/home/rrc/Downloads/xdemineur-2.1.1/INSTALL   100% 1967     1.9KB/s   00:00    
+
+sftp> lls
+Abogado    ComandosDeLaTerminal  Music		   Templates
+BashClase  Desktop		 MySQLBack	   Titles
+Books	   Documents		 MySQLCreate.sql   tmp
+CClase	   Downloads		 MySQLCreate.sql~  Videos
+Clients    FacturaLibreWork	 Pictures	   xdemineur-2.1.1
+Code	   LinuxCabal		 PythonClase
+
+sftp> lls -al
+total 272
+drwxr-x--x  37 rrc  rrc  4096 Nov 11 20:45 .
+drwxr-x--x   4 root adm  4096 Nov  9 11:10 ..
+drwxr-x---   2 rrc  rrc  4096 Jan  4  2013 Abogado
+drwxr-x---   2 rrc  rrc  4096 Oct 11 16:04 BashClase
+-rw-r--r--   1 rrc  rrc   387 Oct 21  2013 .bash_completion
+-rw-------   1 rrc  rrc  2384 Nov 11 16:07 .bash_history
+-rw-r--r--   1 rrc  rrc    24 Nov 30  2013 .bash_logout
+-rw-r--r--   1 rrc  rrc   191 Nov 30  2013 .bash_profile
+-rw-r--r--   1 rrc  rrc   124 Nov 30  2013 .bashrc
+drwxr-x---  12 rrc  rrc  4096 Oct 16 22:26 Books
+ .
+ .
+ .
+-rw-------   1 rrc  rrc   371 Nov 11 20:37 .Xauthority
+drwx------   3 rrc  rrc  4096 Nov 11 20:45 xdemineur-2.1.1
+-rw-------   1 rrc  rrc     0 Nov  9 18:54 .xsession-errors
+
+sftp> get XDemineur.png
+Fetching /home/rrc/XDemineur.png to XDemineur.png
+/home/rrc/XDemineur.png                       100%   13KB  12.7KB/s   00:00    
+
+sftp> rm XDemineur.png
+Removing /home/rrc/XDemineur.png
+
+sftp> ls
+Abogado                                 BashClase                               
+Books                                   CClase                                  
+Clients                                 Code                                    
+ComandosDeLaTerminal                    ComandosDeLaTerminal_42.webm            
+Desktop                                 Documents                               
+Downloads                               FacturaLibreWork                        
+ImadineProj                             LinuxCabal                              
+LucilleAddress                          Mail                                    
+Music                                   MySQLBack                               
+MySQLCreate.sql                         MySQLCreate.sql~                        
+Photos                                  Pictures                                
+PythonClase                             Robin Hobb                              
+Templates                               TianguisCabalOnLineV1.0                 
+Titles                                  Videos                                  
+XDem.xcf                                almaint.asambiental.mx.key              
+almastock.asambiental.mx.key            equimaint.asambiental.mx.StartSSL.crt   
+equimaint.asambiental.mx.key            equipres.asambiental.mx.StartSSL.crt    
+equipres.asambiental.mx.key             tmp                                     
+
+sftp> put XDemineur.png
+Uploading XDemineur.png to /home/rrc/XDemineur.png
+XDemineur.png                                 100%   13KB  12.7KB/s   00:00    
+sftp> ls
+A Time of Exile by Katharine Kerr       A Time of Omens by Katharine Kerr       
+Abogado                                 BashClase                               
+Books                                   CClase                                  
+Clients                                 Code                                    
+ComandosDeLaTerminal                    ComandosDeLaTerminal_42.webm            
+Desktop                                 Documents                               
+Downloads                               FacturaLibreWork                        
+ImadineProj                             LinuxCabal                              
+LucilleAddress                          Mail                                    
+Music                                   MySQLBack                               
+MySQLCreate.sql                         MySQLCreate.sql~                        
+Photos                                  Pictures                                
+PythonClase                             Robin Hobb                              
+Templates                               TianguisCabalOnLineV1.0                 
+Titles                                  Videos                                  
+XDem.xcf                                XDemineur.png                           
+almaint.asambiental.mx.key              almastock.asambiental.mx.key            
+equimaint.asambiental.mx.StartSSL.crt   equimaint.asambiental.mx.key            
+equipres.asambiental.mx.StartSSL.crt    equipres.asambiental.mx.key             
+tmp                                     
+
+sftp> df -h
+    Size     Used    Avail   (root)    %Capacity
+   440GB    380GB   59.7GB   59.7GB          86%
+
+sftp> chmod 660 XDemineur.png
+Changing mode on /home/rrc/XDemineur.png
+
+sftp> ls -l XDemineur.png
+-rw-rw----    0 500      500         12975 Nov 11 20:53 XDemineur.png
+
+sftp> bye
+[rrc@Llawyr ~]$ 
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
