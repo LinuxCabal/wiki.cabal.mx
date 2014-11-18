@@ -1,0 +1,211 @@
+__NOTOC__
+* [[:#ssh | ssh]]
+
+== ssh ==
+
+<syntaxhighlight lang="bash">
+
+[root@pridd ~]# ssh
+usage: ssh [-1246AaCfgKkMNnqsTtVvXxYy] [-b bind_address] [-c cipher_spec]
+           [-D [bind_address:]port] [-e escape_char] [-F configfile]
+           [-I pkcs11] [-i identity_file]
+           [-L [bind_address:]port:host:hostport]
+           [-l login_name] [-m mac_spec] [-O ctl_cmd] [-o option] [-p port]
+           [-R [bind_address:]port:host:hostport] [-S ctl_path]
+           [-W host:port] [-w local_tun[:remote_tun]]
+           [user@]hostname [command]
+
+[root@pridd ~]# rpm -qa | grep openssh
+openssh-server-6.2p2-3.2.mga4
+openssh-askpass-qt4-1.0.1-6.mga4
+openssh-6.2p2-3.2.mga4
+openssh-clients-6.2p2-3.2.mga4
+openssh-askpass-common-6.2p2-3.2.mga4
+
+[rrc@Llawyr ~]$ ssh priddwifi
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Last login: Mon Nov 10 13:32:32 2014 from 192.168.51.56
+[rrc@pridd ~]$ 
+
+[rrc@Llawyr ~]$ ssh usuario1@priddwifi
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+[usuario1@pridd ~]$  ls
+Mnt/  tmp/
+[usuario1@pridd ~]$ ^d
+Connection to priddwifi closed.
+[rrc@Llawyr ~]$  ssh usuario1@priddwifi "echo 'puedes ejecutar comandos sin entrar' > NuevoArchivo"
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+[rrc@Llawyr ~]$  ssh usuario1@priddwifi ls
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Mnt
+NuevoArchivo
+tmp
+
+[rrc@Llawyr ~]$ ssh usuario1@priddwifi "cat NuevoArchivo"
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Password: 
+puedes ejecutar comandos sin entrar
+[rrc@Llawyr ~]$ 
+
+[rrc@Llawyr ~]$ ssh usuario1@priddwifi xdemineur
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+
+</syntaxhighlight>
+
+[[Archivo:XDemineur.png]]
+
+<syntaxhighlight lang="bash">
+
+[rrc@Llawyr ~]$ mysql -h 127.0.0.1 -p -D equipres -u rrc
+Enter password: 
+ERROR 2003 (HY000): Can't connect to MySQL server on '127.0.0.1' (111)
+
+[rrc@Llawyr ~]$ ssh rrc@priddwifi -L 3306:127.0.0.1:3306 -N
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+^Z
+[1]+  Stopped                 ssh rrc@priddwifi -L 3306:127.0.0.1:3306 -N
+
+[rrc@Llawyr ~]$ bg
+[1]+ ssh rrc@priddwifi -L 3306:127.0.0.1:3306 -N &
+
+[rrc@Llawyr ~]$ mysql -h 127.0.0.1 -p -D equipres -u rrc
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 22
+Server version: 5.5.40-MariaDB Mageia MariaDB Server
+
+Copyright (c) 2000, 2014, Oracle, Monty Program Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [equipres]> show tables;
++--------------------+
+| Tables_in_equipres |
++--------------------+
+| CatAreas           |
+| Logs               |
+| Usuarios           |
++--------------------+
+3 rows in set (0.00 sec)
+
+MariaDB [equipres]> 
+
+[rrc@pridd ~]$ ssh -p 2222 -l rrc 192.168.51.130
+rrc@192.168.51.130's password: 
+X11 forwarding request failed on channel 0
+u0_a108@falcon_umts:/ $ cd /sdcard
+u0_a108@falcon_umts:/sdcard $ ls
+Alarms
+Android
+Camera360
+DCIM
+Download
+Fusion
+Movies
+Music
+MusicPlayer
+Notifications
+Pictures
+Podcasts
+Ringtones
+RocketPlayer
+apusapps
+data
+dianxin
+libs
+org.thetomahawk
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
