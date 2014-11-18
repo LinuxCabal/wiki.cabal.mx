@@ -1,0 +1,327 @@
+= Usando Archivos en Python =
+== Open() ==
+<pre>
+La sintaxis es:
+objeto_de_Archivo = open( NombreDeArchivo, modo, encoding )
+</pre>
+=== Modo ===
+<pre>
+El argumento de modo es opcional. Si no está, el modo es 'r' ( Leer ).
+
+Los modos pueden ser:
+
+'r' Abrir solo para leer
+
+'w' Abrir solo para escribir. Si existe el archivo, sus contenidos se borran.
+
+'a' Abrir para escribir al fin de un archivo sin borar sus contenidos. 
+
+'r+' Abrir para leer y también para escribir.
+</pre>
+
+== Crear un Archivo de texto - CrearArchivo-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+MiArchivo = open( "NuevoArchivo.txt", "w", encoding='utf-8' )
+
+MiArchivo.write( "Es mi primer archivo\n")
+
+MiArchivo.write("creado en Python\n")
+
+MiArchivo.close()
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@Llawyr PythonClase]$ ls -al NuevoArchivo.txt 
+-rw------- 1 rrc rrc 38 Oct  3 13:07 NuevoArchivo.txt
+
+[rrc@Llawyr PythonClase]$ cat NuevoArchivo.txt 
+Es mi primer archivo
+creado en Python
+</pre>
+
+== Agregar texto a un Archivo existente - AgregarEnArchivo-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+MiArchivo = open( "NuevoArchivo.txt", "a", encoding='utf-8' )
+
+MiArchivo.write( "Estamos agregando los líneas de texto al fin de NuevoArchivo.txt\n")
+
+MiArchivo.write("si todo sirve cómo pensamos\n")
+
+MiArchivo.close()
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@Llawyr PythonClase]$ ls -al NuevoArchivo.txt 
+-rw------- 1 rrc rrc 38 Oct  3 13:07 NuevoArchivo.txt
+[rrc@Llawyr PythonClase]$ cat NuevoArchivo.txt 
+Es mi primer archivo
+creado en Python
+[rrc@Llawyr PythonClase]$ ./AgregarEnArchivo-1.py 
+[rrc@Llawyr PythonClase]$ ls -al NuevoArchivo.txt 
+-rw------- 1 rrc rrc 133 Oct  3 15:06 NuevoArchivo.txt
+[rrc@Llawyr PythonClase]$ cat NuevoArchivo.txt 
+Es mi primer archivo
+creado en Python
+Estamos agregando los líneas de texto al fin de NuevoArchivo.txt
+si todo sirve cómo pensamos
+</pre>
+
+== Cómo leer de un archivo de texto ==
+Son diferentes manera a leer un archivo.
+
+=== file.read() - LeerArchivo-1.py ===
+Si quieres leer todos los caracteres de un archivo puedes usar file.read().
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+ArchivoALeer = open( 'NuevoArchivo.txt', 'r', encoding='utf-8' )
+
+print( ArchivoALeer.read() )
+ArchivoALeer.close()
+
+</syntaxhighlight>
+
+==== Resultado ====
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-1.py
+Es mi primer archivo
+creado en Python
+Estamos agregando los líneas de texto al fin de NuevoArchivo.txt
+si todo sirve cómo pensamos
+</pre>
+
+=== file.read( n ) - LeerArchivo-2.py ===
+Puedes especificar cuantos caracteres a leer usando file.read( n ).
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+ArchivoALeer = open( 'NuevoArchivo.txt', 'r', encoding='utf-8' )
+
+print( ArchivoALeer.read( 12 ) )
+ArchivoALeer.close()
+
+</syntaxhighlight>
+
+==== Resultado ====
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-2.py
+Es mi primer
+</pre>
+
+=== file.readline() - LeerArchivo-3.py ===
+Puedes leer una línea a la ves usando file.readline(n).</pre>
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+ArchivoALeer = open( 'NuevoArchivo.txt', 'r', encoding='utf-8' )
+print( "Usando readline() la primera ves:" )
+print( ArchivoALeer.readline() )
+print( "Usando readline() la segunda ves:" )
+print( ArchivoALeer.readline() )
+ArchivoALeer.close()
+
+</syntaxhighlight>
+
+==== Resultado ====
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-3.py
+Usando readline() la primera ves:
+Es mi primer archivo
+
+Usando readline() la segunda ves:
+creado en Python
+</pre>
+
+=== file.readlines() - LeerArchivo-4.py ===
+file.readlines() regresa el archivo completo en una lista de cadenas.
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+ArchivoALeer = open( 'NuevoArchivo.txt', 'r', encoding='utf-8' )
+print( ArchivoALeer.readlines() )
+ArchivoALeer.close()
+
+</syntaxhighlight>
+
+==== Resultado ====
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-4.py
+['Es mi primer archivo\n', 'creado en Python\n', 'Estamos agregando los líneas de texto al fin de NuevoArchivo.txt', 
+'si todo sirve cómo pensamos']
+</pre>
+
+=== Leer un archivo con un loop - LeerArchivo-5.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+ArchivoALeer = open( 'NuevoArchivo.txt', 'r', encoding='utf-8' )
+
+for line in ArchivoALeer:
+  print( line )
+
+ArchivoALeer.close()
+
+</syntaxhighlight>
+
+==== Resultado ====
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-5.py
+Es mi primer archivo
+
+creado en Python
+
+Estamos agregando los líneas de texto al fin de NuevoArchivo.txt
+
+si todo sirve cómo pensamos
+</pre>
+
+== Crear un archivo usando with - CrearArchivo-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+with open( 'NuevoArchivo3.txt', 'w', encoding='utf-8' ) as f:
+  f.write( "Estamos escibiendo en NuevoArchivo3 " )
+  f.write( "Usando with.\nNo está necesario usar f.close cuando uasas with.\n" )
+  f.write( "El sabe a cerrar el archivo sin instrucción, " )
+  f.write( "y se obtiene mejor sintaxis y manejo de excepciones" )
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@Llawyr PythonClase]$ ./CrearArchivo-2.py 
+[rrc@Llawyr PythonClase]$ ls -al NuevoArchivo3.txt 
+-rw------- 1 rrc rrc 197 Oct  3 15:29 NuevoArchivo3.txt
+[rrc@Llawyr PythonClase]$ cat NuevoArchivo3.txt 
+Estamos escibiendo en NuevoArchivo3 Usando with.
+No está necesario usar f.close cuando uasas with.
+El sabe a cerrar el archivo sin instrucción, y se obtiene mejor sintaxis y manejo de excepciones
+</pre>
+
+== Leer los contenidos de un archivo en una lista usando with - LeerArchivo-6.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+with open( "NuevoArchivo3.txt", encoding='utf-8' ) as f:
+  data = f.readlines()
+
+print( type( data ) )
+print( data )
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-6.py
+['Estamos escibiendo en NuevoArchivo3 Usando with.\n', 'No está necesario usar f.close cuando uasas with.\n', 'El sabe a cerrar el archivo sin instrucción, y se obtiene mejor sintaxis y manejo de excepciones']
+</pre>
+
+== dividir las líneas de texto en palabras - LeerArchivo-7.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+with open( 'NuevoArchivo.txt', encoding='utf-8' ) as f:
+  data = f.readlines()
+
+for line in data:
+  words = line.split()
+  print words
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-7.py 
+['Es', 'mi', 'primer', 'archivo']
+['creado', 'en', 'Python']
+['Estamos', 'agregando', 'los', 'líneas', 'de', 'texto', 'al', 'fin', 'de', 'NuevoArchivo.txt']
+['si', 'todo', 'sirve', 'cómo', 'pensamos']
+</pre>
+
+== Leer archivo con seek y tell - LeerArchivo-8.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+fh = open( "SeekArchivo.txt", encoding='utf-8')
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.read(8) nos da:", fh.read(8) )
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.seek( fh.tell() + 1 ) nos da:", fh.seek( fh.tell() + 1 ) )
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.read() nos da:", fh.read() )
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.seek( fh.tell() - 18 ) nos da:", fh.seek( fh.tell() - 18 ) )
+
+print( "fh.read( 6 ) nos da:", fh.read( 6 ) )
+
+fh.close()
+
+</syntaxhighlight>
+
+=== Resultado ===
+<pre>
+[rrc@Llawyr PythonClase]$ ./LeerArchivo-8.py 
+fh.tell() nos da: 0
+fh.read(8) nos da: En estos
+fh.tell() nos da: 8
+fh.seek( loc + 1 ) nos da: 9
+fh.tell() nos da: 9
+fh.read() nos da: tiempos se necesita mucho ingenio para cometer un pecado original. 
+
+fh.tell() nos da: 77
+fh.seek( loc - 18 ) nos da: 59
+fh.read( 6 ) nos da: pecado
+</pre>
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
