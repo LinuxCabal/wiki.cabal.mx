@@ -213,8 +213,8 @@ si todo sirve cómo pensamos
 
 with open( 'NuevoArchivo3.txt', 'w', encoding='utf-8' ) as f:
   f.write( "Estamos escibiendo en NuevoArchivo3 " )
-  f.write( "Usando with.\nNo está necesario usar f.close cuando usas with.\n" )
-  f.write( "El sabe cómo cerrar el archivo sin instrucción, " )
+  f.write( "Usando with.\nNo está necesario usar f.close cuando uasas with.\n" )
+  f.write( "El sabe a cerrar el archivo sin instrucción, " )
   f.write( "y se obtiene mejor sintaxis y manejo de excepciones" )
 </syntaxhighlight>
 
@@ -250,27 +250,7 @@ print( data )
 ['Estamos escibiendo en NuevoArchivo3 Usando with.\n', 'No está necesario usar f.close cuando uasas with.\n', 'El sabe a cerrar el archivo sin instrucción, y se obtiene mejor sintaxis y manejo de excepciones']
 </pre>
 
-== Leer los contenidos de un archivo en una lista usando with - LeerArchivo-6a.py ==
-
-<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
-
-#!/usr/bin/python3
-#-*-coding: utf-8 -*-
-
-with open( 'UniCodeArchivo.txt', 'r', encoding='utf-8' ) as ArchivoALeer:
-  print( ArchivoALeer.read( 12 ) )
-with open( 'UniCodeArchivo.txt', 'rb' ) as ArchivoALeer:
-  print( ArchivoALeer.read( 12 ) )
-</syntaxhighlight>
-
-=== Resultado ===
-<pre>
-[rrc@Pridd PythonClase]$ ./LeerArchivo-6a.py 
-á é í ó ú ñ Á É Í 
-b'\xc3\xa1 \xc3\xa9 \xc3\xad \xc3\xb3 \xc3\xba \xc3\xb1 '
-</pre>
-
-== Leer archivo en modo binary - LeerArchivo-7.py ==
+== dividir las líneas de texto en palabras - LeerArchivo-7.py ==
 
 <syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -282,7 +262,7 @@ with open( 'NuevoArchivo.txt', encoding='utf-8' ) as f:
 
 for line in data:
   words = line.split()
-  print( words )
+  print words
 
 </syntaxhighlight>
 
@@ -302,16 +282,27 @@ for line in data:
 #!/usr/bin/python3
 #-*-coding: utf-8 -*-
 
-with open( "SeekArchivo.txt", encoding='utf-8') as fh:
-  print( "fh.tell() nos da:", fh.tell() )
-  print( "fh.read(8) nos da:", fh.read(8) )
-  print( "fh.tell() nos da:", fh.tell() )
-  print( "fh.seek( fh.tell() + 1 ) nos da:", fh.seek( fh.tell() + 1 ) )
-  print( "fh.tell() nos da:", fh.tell() )
-  print( "fh.read() nos da:", fh.read() )
-  print( "fh.tell() nos da:", fh.tell() )
-  print( "fh.seek( fh.tell() - 18 ) nos da:", fh.seek( fh.tell() - 18 ) )
-  print( "fh.read( 6 ) nos da:", fh.read( 6 ) )
+fh = open( "SeekArchivo.txt", encoding='utf-8')
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.read(8) nos da:", fh.read(8) )
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.seek( fh.tell() + 1 ) nos da:", fh.seek( fh.tell() + 1 ) )
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.read() nos da:", fh.read() )
+
+print( "fh.tell() nos da:", fh.tell() )
+
+print( "fh.seek( fh.tell() - 18 ) nos da:", fh.seek( fh.tell() - 18 ) )
+
+print( "fh.read( 6 ) nos da:", fh.read( 6 ) )
+
+fh.close()
 
 </syntaxhighlight>
 
