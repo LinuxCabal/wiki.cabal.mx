@@ -1,0 +1,318 @@
+<h2>¿Qué es una excepción?</h2>
+<p>Una excepción es un evento que se produce durante la ejecución de un programa, que interrumpe el flujo normal de las instrucciones del programa. En general, cuando encuentra con una situación que no puede hacer frente a un script en Python, provoca una excepción. Una excepción es un objeto de Python que representa un error.</p>
+<p>Cuando un script de Python genera una excepción, debe manejar la excepción inmediatamente lo contrario, terminar y salir.</p>
+<h2>Manejo de una excepción</h2>
+<p>Si usted tiene un código sospechoso que pueda elevar una excepción, que puedes defender tu programa. Colocando el código sospechoso en una try: bloque. Después de la try: bloque, incluyen un except: declaración, seguido de un bloque de código que maneja el problema tan elegante como sea posible.</p>
+<h2>sintaxis</h2>
+<pre>
+try:
+   Pongas tu código suspecho aquí
+   ...
+except Excepción-1:
+   Si existe Excepción-1, ejecute este blóque de código
+   ...
+except Excepción-2:
+   Si existe Excepción-1, ejecute este blóque de código
+   ...
+else:
+   Si no hay excepciones, ejecute este bloque de código.
+   ...
+</pre>
+
+<ul>
+<li><p>Una declaración de try: puede tener múltiples excepciones. Esto es útil cuando el bloque try; contiene declaraciones que pueden lanzar diferentes tipos de excepciones.</p></li>
+<li><p>También se puede incluir una cláusula genérica, except: que maneja cualquier excepción que se encuentra.</p></li>
+<li><p>Después de las except: clause(s), puede incluir una cláusula else:. Se ejecuta el código en el bloque else: si el código de try: no levanta una excepción.></p></li>
+</ul>
+
+=== Try1.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+try:
+   fh = open( "ArchivoDePrueba.txt", "w" )
+   fh.write( "Eso es mi archivo a probar try/except/else!!\n" )
+except IOError:
+   print( "Error: No puedo abrir el archivo: ArchivoDePrueba.txt" )
+else:
+   print( "Se escribó con exito el archivo ArchivoDePrueba.txt" )
+   fh.close()
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try1.py 
+Se escribó con exito el archivo ArchivoDePrueba.txt
+
+[rrc@Llawyr PythonClase]$ cat ArchivoDePrueba.txt 
+Eso es mi archivo a probar try/except/else!!
+</pre>
+
+=== Try2.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+try:
+   fh = open( "/root/ArchivoDePrueba.txt", "r" )
+   fh.write( "Eso es mi archivo a probar try/except/else!!!!\n" )
+except PermissionError:
+   print( "Error: Permiso Denegado!!" )
+else:
+   print( "Se escribó con exito el archivo /root/ArchivoDePrueba.txt" )
+
+print( "Con el manejo de errores, el programa puede continuar!" )
+</syntaxhighlight>
+==== Resultado ====
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try2.py
+Error: Permiso Denegado!!
+Con el manejo de errores, el programa puede continuar!
+</pre>
+
+<h2>except: sin excepciones</h2>
+<p>puede utilizar el except: declaración sin excepciones definidas de la siguiente manera</p>
+
+<pre>
+try:
+   Pongas tu código suspecho aquí
+   ...
+except:
+   Si hay algún tipo de excepción, ejecute este blóque de código.
+   ...
+else:
+   Si no hay excepciones, ejecute este blóque de código. 
+</pre>
+
+<p>Este tipo de excepción atrapa todas las excepciones que se producen. Usando esta clase de excepción no se considera una buena práctica de programación, ya que atrapa todas las excepciones pero no significa el excepción especifico que se encuentro.</p>
+
+=== Try3.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+try:
+   Resultado = 25 / 0
+   print( "Tuvimos una falla, y no va ejecutar este código" )
+except:
+   print( "Tuvimos algún tipo de error!" )
+
+print( "Con el manejo de errores, el programa puede continuar!" )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try3.py 
+Tuvimos algún tipo de error!
+Con el manejo de errores, el programa puede continuar!
+</pre>
+
+<h2>except: con multiples excepciones</h2>
+<p>Puedes usar solo uno except: para manejar multiples excepciones en la siguiente manera:</p>
+
+<pre>
+try:
+   Pongas tu código suspecho aquí
+   ...
+except(Excepción1[, Excepción2[,...ExcepciónN]]]):
+   Si hay algunos de los excepciones en la lista, ejecute este blóque de código. 
+   ...
+else:
+   Si no hay excepciones, ejecute este blóque de código. 
+</pre>
+
+=== Try4.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+ 
+try:
+   fh = open( "/root/ArchivoDePrueba.txt", "r" )
+   fh.write( "Eso es mi archivo a probar try/except/else!!!!\n" )
+except ( IOError, PermissionError ):
+   print( "Error: de IO o de Permisos!!" )
+else:
+   print( "Se escribó con exito el archivo /root/ArchivoDePrueba.txt" )
+
+</syntaxhighlight>
+
+==== Resultado ====
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try4.py 
+Error: de IO o de Permisos!!
+</pre>
+
+<h2>try-finally</h2>
+<p>Puede usar un finaly: bloque junto con un try: bloque. Finaly: es un lugar para poner cualquier código que debiera ejecutar, si el bloque del try: levantado una excepción o no. La sintaxis del try finaly declaración es:</p>
+
+<pre>
+try:
+   Pongas tu código suspecho aquí
+   ...
+   Si hay algún excepción, no se ejecuta este codigo.
+finally:
+   Codigo a ejecutar si hay o no hay excepcioes.
+   ...
+</pre>
+
+=== Try5.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+x = 10
+y = 0
+
+try:
+   resultado = x / y
+   print( "Tuvimos una falla, y no va ejecutar este código" )
+except ZeroDivisionError:
+   print( "Ilegal dividir por cero!" )
+   print( "vamos cambiar y a 2 y re-ejecutar" )
+   y = 2
+else:
+   print( "resultado es", resultado )
+finally:
+   print( "Código que se ejecuta con o sin excepciones\n" )
+
+try:
+   resultado = x / y
+   print( "Tuvimos exito, y va ejecutar este código" )
+except ZeroDivisionError:
+   print( "Ilegal dividir por cero!" )
+else:
+   print( "resultado es", resultado )
+finally:
+   print( "Código que se ejecuta con o sin excepciones\n" )
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try3.py 
+Ilegal dividir por cero!
+vamos cambiar y a 2 y re-ejecutar
+Código que se ejecuta con o sin excepciones
+
+Tuvimos exito, y va ejecutar este código
+resultado es 5.0
+Código que se ejecuta con o sin excepciones
+</pre>
+
+<h2>raise exception con argumentos</h2>
+
+=== Try6.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+try:
+    raise Exception( 'jamon', 'huevos')
+except Exception as inst:
+    print( "Tipo de excepcón:", type( inst ) )
+    print( "inst.args son:" , inst.args )
+    print( "inst es;", inst ) # __str__ allows args to be printed
+                              # directly, but may be overridden in
+                              # exception subclasses
+    x, y = inst.args          # unpack args
+    print( "Si x, y = inst.args" )
+    print( 'x =', x )
+    print( 'y =', y )
+
+</syntaxhighlight>
+
+==== Resultado ====
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try6.py 
+Tipo de excepcón: <class 'Exception'>
+inst.args son: ('jamon', 'huevos')
+inst es; ('jamon', 'huevos')
+Si x, y = inst.args
+x = jamon
+y = huevos
+</pre>
+
+=== Try7.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import sys
+
+try:
+    f = open( 'myfile.txt' )
+    s = f.readline()
+    i = int( s.strip() )
+except OSError as err:
+    print( "OS error: {0}". format( err ), file=sys.stderr )
+except ValueError:
+    print( "Could not convert data to an integer.", file=sys.stderr  )
+except:
+    print( "Unexpected error:", sys.exc_info()[0], file=sys.stderr )
+    raise
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try7.py 
+OS error: [Errno 2] No such file or directory: 'myfile.txt'
+[rrc@Llawyr PythonClase]$ touch myfile.txt
+[rrc@Llawyr PythonClase]$ ./Try7.py 
+Could not convert data to an integer.
+[rrc@Llawyr PythonClase]$ chmod 000 myfile.txt 
+[rrc@Llawyr PythonClase]$ ./Try7.py 
+OS error: [Errno 13] Permission denied: 'myfile.txt'
+</pre>
+
+=== Try8.py ===
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+try:
+    raise NameError( "Sí realmente vi una excepción" )
+except NameError:
+    print( "¡Creo que vi una excepción!" )
+    raise
+
+</syntaxhighlight>
+
+==== Resultado ====
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Try8.py
+¡Creo que vi una excepción!
+Traceback (most recent call last):
+  File "./Try8.py", line 5, in <module>
+    raise NameError( "Sí realmente vi una excepción" )
+NameError: Sí realmente vi una excepción
+</pre>
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
