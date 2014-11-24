@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#Dict-11 | Dict-11.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-11.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+# First dictionary
+Mascotas1 = {"Gato": "felino", "Perro": "Animal"}
+print( "Mascotas1 antes de update:", Mascotas1 )
+
+# Second dictionary
+Mascotas2 = {"Perro": "Canino", "Agaporni": "Ave"}
+print( "Mascotas2 antes de update:", Mascotas2 )
+
+# Update first dictionary with second
+Mascotas1.update( Mascotas2 )
+
+# Display both dictionaries
+print( "Mascotas1 después de update:", Mascotas1 )
+print( "Mascotas2 después de update:", Mascotas2 )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-11.py 
+Mascotas1 antes de update: {'Perro': 'Animal', 'Gato': 'felino'}
+Mascotas2 antes de update: {'Agaporni': 'Ave', 'Perro': 'Canino'}
+Mascotas1 después de update: {'Agaporni': 'Ave', 'Perro': 'Canino', 'Gato': 'felino'}
+Mascotas2 después de update: {'Agaporni': 'Ave', 'Perro': 'Canino'}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
