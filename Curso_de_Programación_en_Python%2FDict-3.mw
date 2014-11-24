@@ -1,0 +1,42 @@
+__NOTOC__
+* [[:#Dict-3 | Dict-3.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-3.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Mascotas = {}
+Mascotas[ "Halcón" ] = 3
+Mascotas[ "Agaporni" ] = 3
+Mascotas[ "Zorrillo"]  = 1
+
+# Use in
+if "Agaporni" in Mascotas:
+    print( "Tenemos Agapornis" )
+else:
+    print( "No hay Agapornis" )
+
+
+if "Cabra" in Mascotas:
+    print( "Tenemos Cabras" )
+else:
+    print( "No hay Cabras" )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-3.py
+Tenemos Agapornis
+No hay Cabras
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
