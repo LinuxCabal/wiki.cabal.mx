@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#Dict-5 | Dict-5.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-5.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Accesos = { "Página principal" : 125, "Mapa de sitio" : 27, "Acerca de" : 43 }
+Llaves = Accesos.keys() # Guardar una LIST de llaves
+Valores = Accesos.values() # Guardar una LIST de valores
+
+print( "La list de Llaves: ", end='' )
+print( Llaves )  # Imprime una LIST de llaves
+print( "Son", len( Llaves ), "llaves\n" )
+
+print( "La list de Valores: ", end='' )
+print( Valores ) # Imprime una LIST de valores
+print( "Son", len( Valores ), "valores" )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-5.py
+La list de Llaves: dict_keys(['Página principal', 'Acerca de', 'Mapa de sitio'])
+Son 3 llaves
+
+La list de Valores: dict_values([125, 43, 27])
+Son 3 valores
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
