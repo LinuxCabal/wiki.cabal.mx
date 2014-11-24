@@ -1,0 +1,31 @@
+__NOTOC__
+* [[:#Dict-9 | Dict-9.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-9.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Mascotas = { "Halcón" : 3, "Agaporni" : 3, "Zorrillo": 1 }
+
+for Mascota in Mascotas:
+  print( Mascota )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-9.py 
+Agaporni
+Halcón
+Zorrillo
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
