@@ -1,0 +1,29 @@
+== Tuple-9.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Cosas = ( "Libro", "Plato", "Plato", "Libro", "Tasa", "Libro" )
+
+print( "El tuple Cosas es:\n{}" .format( Cosas ) )
+
+print( "Usando count() vemos que tenemos {0} Libro(s), {1} Plato(s) y {2} Tasa(s)"
+          .format( Cosas.count("Libro"), Cosas.count("Plato"), Cosas.count("Tasa") ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Tuple-9.py 
+ El tuple Cosas es:
+ ('Libro', 'Plato', 'Plato', 'Libro', 'Tasa', 'Libro')
+ Usando count() vemos que tenemos 3 Libro(s), 2 Plato(s) y 1 Tasa(s)
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
