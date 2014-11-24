@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#Dict-10 | Dict-10.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-10.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+OS = {"Mac OS X" : 1, "MS Windows" : 5, "GNU & linux" : 1, "Android" : 10 }
+
+# Display dictionary.
+print( "Antes de DEL:", OS )
+
+# Remove key-value at "MS Windows" key.
+del OS["MS Windows"]
+
+# Display dictionary.
+print( "Después de DEL:", OS )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-10.py 
+Antes de DEL: {'Mac OS X': 1, 'GNU & linux': 1, 'MS Windows': 5, 'Android': 10}
+Después de DEL: {'Mac OS X': 1, 'GNU & linux': 1, 'Android': 10}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
