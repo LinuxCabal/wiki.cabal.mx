@@ -1,0 +1,45 @@
+__NOTOC__
+* [[:#Dict-7 | Dict-7.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-7.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Gastos = { "Departamento" : 3500, "Coche" : 750, "Utilidades" : 4500 }
+
+# Convert to list of tuples
+GastosItems = Gastos.items()
+
+print( "El tuple GastosItems:", GastosItems, "\n" )
+# Loop and display tuple items
+for GastosItem in GastosItems:
+    print( "Gasto:", GastosItem[0] )
+    print( "Costo:", GastosItem[1] )
+    print( "" )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-7.py 
+El tuple GastosItems: dict_items([('Coche', 750), ('Departamento', 3500), ('Utilidades', 4500)]) 
+
+Gasto: Coche
+Costo: 750
+
+Gasto: Departamento
+Costo: 3500
+
+Gasto: Utilidades
+Costo: 4500
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
