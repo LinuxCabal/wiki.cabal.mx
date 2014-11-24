@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#Dict-1 | Dict-1.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frutas = {}
+
+# Add three key-value tuples to the dictionary
+Frutas[ "Fresa" ] = 2
+Frutas[ "Kiwi" ] = 4
+Frutas[ "Lichi" ] = 7
+
+
+print( Frutas[ "Kiwi"] )
+print( Frutas[ "Limon"] )
+
+
+print( Frutas.get( "Limon" ) )
+print( Frutas.get( "Limon", "no hay Limones" ) )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-1.py 
+4
+Traceback (most recent call last):
+  File "./Dict-1.py", line 13, in <module>
+    print( Frutas[ "Limon"] )
+KeyError: 'Limon'
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
