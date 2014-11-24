@@ -1,0 +1,45 @@
+== Tuple-3.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+print( "Creamos un packed tuple que se llama Mascotas" )
+Mascotas = ( "Zorrilla", "Puerca", "Cuyo" )
+
+# Unpack tuple
+print( "Vamos unpack nuestra tuple en Mascota1, Mascota2 y Mascota3" )
+(Mascota1, Mascota2, Mascota3) = Mascotas
+
+print( "Mascota1 es {0}\nMascota2 es {1}\nMascota3 es {2}"
+          .format( Mascota1, Mascota2, Mascota3 ) )
+
+print( "\nVamos cambiar Mascota1 con Macota3" )
+
+(Mascota3, Mascota1) = (Mascota1, Mascota3) 
+
+print( "Mascota1 es {0}\nMascota2 es {1}\nMascota3 es {2}"
+          .format( Mascota1, Mascota2, Mascota3 ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@pridd PythonClase]$ ./Tuple-3.py 
+ Creamos un packed tuple que se llama Mascotas
+ Vamos unpack nuestra tuple en Mascota1, Mascota2 y Mascota3
+ Mascota1 es Zorrilla
+ Mascota2 es Puerca
+ Mascota3 es Cuyo
+ 
+ Vamos cambiar Mascota1 con Macota3
+ Mascota1 es Cuyo
+ Mascota2 es Puerca
+ Mascota3 es Zorrilla
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
