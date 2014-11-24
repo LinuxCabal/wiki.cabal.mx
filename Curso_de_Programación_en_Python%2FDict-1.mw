@@ -18,13 +18,10 @@ Frutas[ "Lichi" ] = 7
 
 
 print( Frutas[ "Kiwi"] )
-try:
-  print( Frutas[ "Limon"] )
-except KeyError:
-  print( "Evitamos una explosión con try. No hay limones" )
+print( Frutas[ "Limon"] )
+
 
 print( Frutas.get( "Limon" ) )
-print( Frutas.get( "Lichi", "no hay Limones" ) )
 print( Frutas.get( "Limon", "no hay Limones" ) )
 
 </syntaxhighlight>
@@ -33,12 +30,12 @@ print( Frutas.get( "Limon", "no hay Limones" ) )
 === Resultado ===
 
 <pre>
-[rrc@Pridd PythonClase]$ ./Dict-1.py 
+[rrc@Llawyr PythonClase]$ ./Dict-1.py 
 4
-Evitamos una explosión con try. No hay limones
-None
-7
-no hay Limones
+Traceback (most recent call last):
+  File "./Dict-1.py", line 13, in <module>
+    print( Frutas[ "Limon"] )
+KeyError: 'Limon'
 </pre>
 
 [[Category:Programación en Python]]
