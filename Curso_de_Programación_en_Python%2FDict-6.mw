@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#Dict-6 | Dict-6.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-6.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Accesos = { "Página principal" : 125, "Mapa de sitio" : 27, "Acerca de" : 43 }
+# Sort the keys from the dictionary.
+Llaves = sorted( Accesos.keys() )
+
+print( "La lista de Llaves en el Dictionary :", Accesos.keys() )
+print( "La lista de Llaves, ordenada, en el Dictionary :", Llaves )
+
+print( "\nMira cómo la lista de llaves asignadas es diferente de la lista de llaves devueltas" )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-6.py
+La lista de Llaves en el Dictionary : dict_keys(['Mapa de sitio', 'Acerca de', 'Página principal'])
+La lista de Llaves, ordenada, en el Dictionary : ['Acerca de', 'Mapa de sitio', 'Página principal']
+
+Mira cómo la lista de llaves asignadas es diferente de la lista de llaves devueltas
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
