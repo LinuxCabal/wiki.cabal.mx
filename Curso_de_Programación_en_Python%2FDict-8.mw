@@ -1,0 +1,32 @@
+__NOTOC__
+* [[:#Dict-8 | Dict-8.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-8.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Gastos = { "Departamento" : 3500, "Coche" : 750, "Utilidades" : 4500 }
+
+# unpack cada tuple.
+for Llave, Valor in Gastos.items():
+  print( Llave, ": $", Valor, sep='' )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-8.py 
+Utilidades: $4500
+Coche: $750
+Departamento: $3500
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
