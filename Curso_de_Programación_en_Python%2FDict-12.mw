@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#Dict-12 | Dict-12.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-12.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+DictOrig = { "Caja" : 12, "Penguino" : 2, "Manzana" : 15}
+
+DictCopy = DictOrig.copy()
+
+DictCopy["Caja"] += 200
+DictCopy["Manzana"] -= 9
+
+# Original is still the same
+print( "DictOrig:", DictOrig )
+print( "DictCopy[", DictCopy )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-12.py
+DictOrig: {'Caja': 12, 'Penguino': 2, 'Manzana': 15}
+DictCopy[ {'Caja': 212, 'Penguino': 2, 'Manzana': 6}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
