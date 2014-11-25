@@ -1,0 +1,30 @@
+__NOTOC__
+* [[:#Dict-13 | Dict-13.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-13.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Llaves = [ "Ave", "Planta", "Piedra" ]
+
+DictNuevo = dict.fromkeys( Llaves, 5 )
+
+print( "El DictNuevo:", DictNuevo )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-13.py
+El DictNuevo: {'Planta': 5, 'Piedra': 5, 'Ave': 5}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
