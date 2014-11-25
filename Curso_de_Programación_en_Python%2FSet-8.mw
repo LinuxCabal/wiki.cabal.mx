@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#Set-8 | Set-8.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-8.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+# Lista de cosas a poner en un set congelado
+Llaves = [ "Ave", "Planta", "Compu" ]
+
+# Crear frozenset.
+SetCongelado = frozenset( Llaves )
+print( "SetCongelodo:", SetCongelado )
+
+# Cannot add to frozenset.
+try:
+    SetCongelado.add( "Gato" )
+except AttributeError:
+    print( "No podemos agregar algo en set congelado" )
+
+# Podemos usar un frozenset cómo llaves en un dictionary.
+Dict = {}
+Dict[SetCongelado] = "QueBueno"
+print( "Dict:", Dict )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Set-8.py 
+SetCongelodo: frozenset({'Ave', 'Compu', 'Planta'})
+No podemos agregar algo en set congelado
+Dict: {frozenset({'Ave', 'Compu', 'Planta'}): 'QueBueno'}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
