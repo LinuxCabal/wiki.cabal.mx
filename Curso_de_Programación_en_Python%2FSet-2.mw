@@ -1,0 +1,34 @@
+__NOTOC__
+* [[:#Set-2 | Set-2.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+# Crear un set vacio
+
+Cosas = set()
+
+# Agrega tres Cosas.
+Cosas.add( "Cuyo" )
+Cosas.add( "Conejos" )
+Cosas.add( "Zorrillo" )
+print( "Cosas:", Cosas )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Set-2.py
+Cosas: {'Zorrillo', 'Conejos', 'Cuyo'}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
