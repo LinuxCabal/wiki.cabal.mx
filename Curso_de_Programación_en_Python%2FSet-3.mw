@@ -1,0 +1,28 @@
+__NOTOC__
+* [[:#Set-3 | Set-3.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-3.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+# Crear un set de un list.
+
+Números = set( [ 10, 20, 20, 30, 40, 50 ] )
+print("Números:", Números)
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Set-3.py 
+Números: {40, 10, 20, 50, 30}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
