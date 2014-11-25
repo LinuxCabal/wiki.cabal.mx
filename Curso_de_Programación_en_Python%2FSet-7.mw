@@ -1,0 +1,46 @@
+__NOTOC__
+* [[:#Set-7 | Set-7.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-7.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Animales = { "Gato", "Perro", "Agaporni", "Lobo" }
+print( "Animales:", Animales )
+
+# Tiramos lo que no existe.
+Animales.discard( "Cebra" )
+print( "Animales:", Animales )
+
+Animales.discard( "Gato" )
+print( "Animales:", Animales )
+
+Animales.remove( "Agaporni" )
+print( "Animales:", Animales )
+
+# Remove nos da un error si el elemento no existe.
+Animales.remove( "Ballena" )
+print( "Animales:", Animales )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Set-7.py 
+Animales: {'Gato', 'Perro', 'Lobo', 'Agaporni'}
+Animales: {'Gato', 'Perro', 'Lobo', 'Agaporni'}
+Animales: {'Perro', 'Lobo', 'Agaporni'}
+Animales: {'Perro', 'Lobo'}
+Traceback (most recent call last):
+  File "./Set-7.py", line 18, in <module>
+    Animales.remove( "Ballena" )
+KeyError: 'Ballena'
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
