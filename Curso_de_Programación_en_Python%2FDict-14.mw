@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#Dict-14 | Dict-14.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-14.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+# Crear una list de pares de tuples.
+Pares = [ ("Gato", "Miau" ), ( "Perro", "Wooof" ), ( "Ave", "Twit" ) ]
+
+# Convertir la lista en dictionary.
+DictNuevo = dict( Pares )
+
+print( "DictNuevo:", DictNuevo )
+print( "DictNuevo.get( \"Perro\" ):", DictNuevo.get( "Perro" ) )
+print( "len( DictNuevo ):", len( DictNuevo ) )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-14.py
+DictNuevo: {'Gato': 'Miau', 'Ave': 'Twit', 'Perro': 'Wooof'}
+DictNuevo.get( "Perro" ): Wooof
+len( DictNuevo ): 3
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
