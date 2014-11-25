@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Set-4 | Set-4.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-4.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Números1 = { 11, 32, 35, 47 }
+Números2 = { 32, 47 }
+
+print( "Números1:", Números1 )
+print( "Números2:", Números2 )
+
+# Is subset.
+if Números2.issubset( Números1 ):
+    print( "Números2 es un subset de Números1" )
+
+# Is superset.
+if Números1.issuperset( Números2 ):
+    print( "Números1 es un superset de Números2" )
+
+# Intersection de los dos sets.
+print( "Números1.intersection( Números2 )", Números1.intersection( Números2 ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Set-4.py 
+Números1: {32, 11, 35, 47}
+Números2: {32, 47}
+Números2 es un subset de Números1
+Números1 es un superset de Números2
+Números1.intersection( Números2 ) {32, 47}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
