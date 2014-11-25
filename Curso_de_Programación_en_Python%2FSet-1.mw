@@ -1,0 +1,38 @@
+__NOTOC__
+* [[:#Set-1 | Set-1.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+# Crear un set.
+Cosas = { "Piano", "Calabaza", "Piano", "Piano", "Piedra" }
+
+# Print set.
+print( "Cosas:", Cosas )
+print( "len( Cosas ):", len(Cosas) )
+
+if "Piedra" in Cosas:
+  print( "Existe Piedra(s) en Cosas" )
+
+# Use not-in keywords.
+if "Compu" not in Cosas:
+  print( "No existe Compu(s) en Cosas")
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Set-1.py 
+Cosas: {'Calabaza', 'Piano', 'Piedra'}
+len( Cosas ): 3
+Existe Piedra(s) en Cosas
+No existe Compu(s) en Cosas
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
