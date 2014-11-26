@@ -1,0 +1,28 @@
+__NOTOC__
+* [[:#Set-9 | Set-9.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-9.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Valores = { -100, 1, -150, 10000, 10, 1000 }
+
+print( "El valor MAX del  set {} es {} y el valor MIN es {}"
+       .format( Valores, max(Valores), min( Valores ) ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@pridd PythonClase]$ ./Set-9.py 
+El valor MAX del  set {1, 1000, 10, 10000, -100, -150} es 10000 y el valor MIN es -150
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
