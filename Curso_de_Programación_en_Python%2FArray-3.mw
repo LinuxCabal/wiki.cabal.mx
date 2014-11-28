@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#Array-3 | Array-3.py]]
+** [[:#Resultado | Resultado]]
+
+== Array-3.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from array import array
+
+MiArregloDeInts = array( "i" )
+
+MiArregloDeInts.append( 10 )
+print( "MiArregloDeInts después de MiArregloDeInts.append( 10 ): {}"
+                .format( MiArregloDeInts ) )
+MiArregloDeInts.append( 20 )
+print( "MiArregloDeInts después de MiArregloDeInts.append( 20 ): {}"
+                .format( MiArregloDeInts ) )
+MiArregloDeInts.append( 30 )
+print( "MiArregloDeInts después de MiArregloDeInts.append( 30 ): {}"
+                .format( MiArregloDeInts ) )
+
+# Agrega un Int a index 1.
+MiArregloDeInts.insert( 1, 25 )
+print( "MiArregloDeInts después de MiArregloDeInts.insert( 1, 25 ): {}"
+                .format( MiArregloDeInts ) )
+
+# Removueve este elemento.
+MiArregloDeInts.remove( 20 )
+print( "MiArregloDeInts después de MiArregloDeInts.remove( 20 ): {}"
+                .format( MiArregloDeInts ) )
+
+# Cuantos elementos con este valor son?
+print( "Son {} elemento(s) de valor 25 en MiArregloDeInts"
+                .format( MiArregloDeInts.count( 25 ) ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@pridd PythonClase]$ ./Array-3.py 
+MiArregloDeInts después de MiArregloDeInts.append( 10 ): array('i', [10])
+MiArregloDeInts después de MiArregloDeInts.append( 20 ): array('i', [10, 20])
+MiArregloDeInts después de MiArregloDeInts.append( 30 ): array('i', [10, 20, 30])
+MiArregloDeInts después de MiArregloDeInts.insert( 1, 25 ): array('i', [10, 25, 20, 30])
+MiArregloDeInts después de MiArregloDeInts.remove( 20 ): array('i', [10, 25, 30])
+Son 1 elemento(s) de valor 25 en MiArregloDeInts
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
