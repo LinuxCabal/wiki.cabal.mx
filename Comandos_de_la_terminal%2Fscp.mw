@@ -1,0 +1,160 @@
+__NOTOC__
+* [[:#scp | scp]]
+
+== scp ==
+
+<syntaxhighlight lang="bash">
+
+usage: scp [-12346BCpqrv] [-c cipher] [-F ssh_config] [-i identity_file]
+           [-l limit] [-o ssh_option] [-P port] [-S program]
+           [[user@]host1:]file1 ... [[user@]host2:]file2
+
+[rrc@Llawyr ~]$ su -c "rpm -qf $( which scp )"
+Password: 
+openssh-clients-6.2p2-3.2.mga4
+
+[rrc@Llawyr ~]$ scp Titles priddwifi:
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Titles                                        100%  590     0.6KB/s   00:00    
+
+[rrc@Llawyr ~]$ scp priddwifi:Titles .
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+Titles                                        100%  590     0.6KB/s   00:00    
+
+[rrc@Llawyr ComandosDeLaTerminal]$ scp  priddwifi:BashClase .
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+scp: BashClase: not a regular file
+
+[rrc@Llawyr ComandosDeLaTerminal]$ scp -r  priddwifi:BashClase .
+
+                      Bienvenido a Pridd.LinuxCabal.org
+                       Welcome to Pridd.LinuxCabal.org
+                   Soyez bienvenus a  Pridd.LinuxCabal.org
+
+                 AVISO: Estamos supervisando su comportamiento
+                  WARNING:  We are monitoring this connection
+                AVERTISSEMENT: Nous controlons cette connexion
+
+                         El abuso no va a ser tolerado
+                          Abuse will NOT be tolerated
+                           L'abus ne sera pas tolere
+
+Password: 
+BashClaseConLS.cpio                           100%   13KB  12.5KB/s   00:00    
+2.bak                                         100%    0     0.0KB/s   00:00    
+1.Ztv                                         100%    0     0.0KB/s   00:00    
+4.bak                                         100%    0     0.0KB/s   00:00    
+S18.sh                                        100%  146     0.1KB/s   00:00    
+ .
+ .
+ .
+S12Eval.sh                                    100%  462     0.5KB/s   00:00    
+S15.sh                                        100%  172     0.2KB/s   00:00    
+S3.sh                                         100%  293     0.3KB/s   00:00    
+S2.sh                                         100%  730     0.7KB/s   00:00    
+
+[rrc@Llawyr ~]$ scp -P 2222 Titles rrc@192.168.51.130:/sdcard/Download
+rrc@192.168.51.130's password: 
+Titles                                        100%  590     0.6KB/s   00:00    
+
+[rrc@Llawyr ~]$ scp -v  -P 2222 Titles rrc@192.168.51.130:/sdcard/Download
+Executing: program /usr/bin/ssh host 192.168.51.130, user rrc, command scp -v -t /sdcard/Download
+OpenSSH_6.2p2, OpenSSL 1.0.1e 11 Feb 2013
+debug1: Reading configuration data /etc/ssh/ssh_config
+debug1: /etc/ssh/ssh_config line 49: Applying options for *
+debug1: Connecting to 192.168.51.130 [192.168.51.130] port 2222.
+debug1: Connection established.
+debug1: identity file /home/rrc/.ssh/identity type -1
+debug1: identity file /home/rrc/.ssh/identity-cert type -1
+debug1: identity file /home/rrc/.ssh/id_rsa type -1
+debug1: identity file /home/rrc/.ssh/id_rsa-cert type -1
+debug1: identity file /home/rrc/.ssh/id_dsa type -1
+debug1: identity file /home/rrc/.ssh/id_dsa-cert type -1
+debug1: identity file /home/rrc/.ssh/id_ecdsa type -1
+debug1: identity file /home/rrc/.ssh/id_ecdsa-cert type -1
+debug1: Remote protocol version 2.0, remote software version SSH Server - motog
+debug1: no match: SSH Server - motog
+debug1: Enabling compatibility mode for protocol 2.0
+debug1: Local version string SSH-2.0-OpenSSH_6.2
+debug1: SSH2_MSG_KEXINIT sent
+debug1: SSH2_MSG_KEXINIT received
+debug1: kex: server->client aes128-ctr hmac-md5 none
+debug1: kex: client->server aes128-ctr hmac-md5 none
+debug1: sending SSH2_MSG_KEXDH_INIT
+debug1: expecting SSH2_MSG_KEXDH_REPLY
+debug1: Server host key: DSA 29:1f:2d:5f:e3:fd:42:ab:57:99:12:8d:0a:3f:c1:e2
+debug1: Host '[192.168.51.130]:2222' is known and matches the DSA host key.
+debug1: Found key in /home/rrc/.ssh/known_hosts:9
+debug1: ssh_dss_verify: signature correct
+debug1: SSH2_MSG_NEWKEYS sent
+debug1: expecting SSH2_MSG_NEWKEYS
+debug1: SSH2_MSG_NEWKEYS received
+debug1: Roaming not allowed by server
+debug1: SSH2_MSG_SERVICE_REQUEST sent
+debug1: SSH2_MSG_SERVICE_ACCEPT received
+debug1: Authentications that can continue: password,publickey
+debug1: Next authentication method: publickey
+debug1: Trying private key: /home/rrc/.ssh/identity
+debug1: Trying private key: /home/rrc/.ssh/id_rsa
+debug1: Trying private key: /home/rrc/.ssh/id_dsa
+debug1: Trying private key: /home/rrc/.ssh/id_ecdsa
+debug1: Next authentication method: password
+rrc@192.168.51.130's password: 
+debug1: Authentication succeeded (password).
+Authenticated to 192.168.51.130 ([192.168.51.130]:2222).
+debug1: channel 0: new [client-session]
+debug1: Entering interactive session.
+debug1: Sending command: scp -v -t /sdcard/Download
+Sending file modes: C0600 590 Titles
+Titles                                        100%  590     0.6KB/s   00:00    
+debug1: client_input_channel_req: channel 0 rtype exit-status reply 0
+debug1: channel 0: free: client-session, nchannels 1
+debug1: fd 0 clearing O_NONBLOCK
+debug1: fd 1 clearing O_NONBLOCK
+Transferred: sent 3208, received 1592 bytes, in 0.2 seconds
+Bytes per second: sent 19532.5, received 9693.2
+debug1: Exit status 0
+
+
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
