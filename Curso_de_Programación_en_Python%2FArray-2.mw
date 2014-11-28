@@ -1,0 +1,56 @@
+__NOTOC__
+* [[:#Array-2 | Array-2.py]]
+** [[:#Resultado | Resultado]]
+
+== Array-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from array import array
+
+# Crear in unicode char array.
+MiArregloUniCode = array( "u", "¡Qué Bueno Python!" )
+i = 0
+
+for letra in MiArregloUniCode:
+  print( "MiArregloUniCode[{0}] es {1}" .format( i, letra ) )
+  i += 1
+
+# Convertir el array a un list.
+# ... y luego join.
+MiString = "".join(MiArregloUniCode.tolist() )
+print( MiString )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@pridd PythonClase]$ ./Array-2.py 
+MiArregloUniCode[0] es ¡
+MiArregloUniCode[1] es Q
+MiArregloUniCode[2] es u
+MiArregloUniCode[3] es é
+MiArregloUniCode[4] es  
+MiArregloUniCode[5] es B
+MiArregloUniCode[6] es u
+MiArregloUniCode[7] es e
+MiArregloUniCode[8] es n
+MiArregloUniCode[9] es o
+MiArregloUniCode[10] es  
+MiArregloUniCode[11] es P
+MiArregloUniCode[12] es y
+MiArregloUniCode[13] es t
+MiArregloUniCode[14] es h
+MiArregloUniCode[15] es o
+MiArregloUniCode[16] es n
+MiArregloUniCode[17] es !
+¡Qué Bueno Python!
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
