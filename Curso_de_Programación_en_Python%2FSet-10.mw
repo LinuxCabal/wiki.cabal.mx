@@ -1,0 +1,38 @@
+__NOTOC__
+* [[:#Set-10 | Set-10.py]]
+** [[:#Resultado | Resultado]]
+
+== Set-10.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Nums = { 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 }
+
+for element in Nums:
+  print( "Nums:", element )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@pridd PythonClase]$ ./Set-10.py 
+Nums: 0
+Nums: 35
+Nums: 5
+Nums: 40
+Nums: 10
+Nums: 45
+Nums: 15
+Nums: 50
+Nums: 20
+Nums: 25
+Nums: 30
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
