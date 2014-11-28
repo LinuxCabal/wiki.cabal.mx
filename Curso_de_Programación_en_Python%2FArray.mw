@@ -1,0 +1,318 @@
+<h1>Efficient arrays of numeric values</h1>
+<p>This module defines an object type which can compactly represent an array of
+basic values: characters, integers, floating point numbers.  Arrays are sequence
+types and behave very much like lists, except that the type of objects stored in
+them is constrained.  The type is specified at object creation time by using a
+<em class="dfn">type code</em>, which is a single character.  The following type codes are
+defined:</p>
+<table border="1">
+<tr><th>Type code</th>
+<th>C Type</th>
+<th>Python Type</th>
+<th>Minimum size in bytes</th>
+<th>Notes</th>
+</tr>
+<tr><td>'b'</td>
+<td>signed char</td>
+<td>int</td>
+<td>1</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'B'</td>
+<td>unsigned char</td>
+<td>int</td>
+<td>1</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'u'</td>
+<td>Py_UNICODE</td>
+<td>Unicode character</td>
+<td>2</td>
+<td>(1)</td>
+</tr>
+<tr><td>'h'</td>
+<td>signed short</td>
+<td>int</td>
+<td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'H'</td>
+<td>unsigned short</td>
+<td>int</td>
+<td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'i'</td>
+<td>signed int</td>
+<td>int</td>
+<td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'I'</td>
+<td>unsigned int</td>
+<td>int</td>
+<td>2</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'l'</td>
+<td>signed long</td>
+<td>int</td>
+<td>4</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'L'</td>
+<td>unsigned long</td>
+<td>int</td>
+<td>4</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'q'</td>
+<td>signed long long</td>
+<td>int</td>
+<td>8</td>
+<td>(2)</td>
+</tr>
+<tr><td>'Q'</td>
+<td>unsigned long long</td>
+<td>int</td>
+<td>8</td>
+<td>(2)</td>
+</tr>
+<tr><td>'f'</td>
+<td>float</td>
+<td>float</td>
+<td>4</td>
+<td>&nbsp;</td>
+</tr>
+<tr><td>'d'</td>
+<td>double</td>
+<td>float</td>
+<td>8</td>
+<td>&nbsp;</td>
+</tr>
+</table>
+<p>Notes:</p>
+<ol>
+<li><p>The 'u' type code corresponds to Python&#8217;s obsolete unicode character
+Py_UNICODE which is wchar_t. Depending on the platform, it can be 16 bits or 32 bits.</p>
+<p>'u' will be removed together with the rest of the Py_UNICODE API.</p>
+<p>Deprecated since version 3.3, will be removed in version 4.0.</p>
+</li>
+<li><p>The 'q' and 'Q' type codes are available only if the platform C compiler used to build Python supports C long long, or, on Windows, __int64.</p>
+<p>New in version 3.3.</p>
+</li>
+</ol>
+<p>The actual representation of values is determined by the machine architecture
+(strictly speaking, by the C implementation).  The actual size can be accessed
+through the itemsize attribute.</p>
+<p>The module defines the following type:</p>
+<dl>
+<em>class </em>array.array(<em>typecode</em>[, <em>initializer</em>])
+<p>A new array whose items are restricted by <em>typecode</em>, and initialized
+from the optional <em>initializer</em> value, which must be a list, a
+<em>bytes-like object</em>, or iterable over elements of the
+appropriate type.</p>
+<p>If given a list or string, the initializer is passed to the new array&#8217;s
+fromlist(), frombytes(), or fromunicode() method (see below)
+to add initial items to the array.  Otherwise, the iterable initializer is
+passed to the extend() method.</p>
+</dl>
+
+<dl>
+array.typecodes
+<p>A string with all available type codes.</p>
+</dl>
+
+<p>Array objects support the ordinary sequence operations of indexing, slicing,
+concatenation, and multiplication.  When using slice assignment, the assigned
+value must be an array object with the same type code; in all other cases,
+TypeError is raised. Array objects also implement the buffer interface,
+and may be used wherever <em>bytes-like object</em>s are supported.</p>
+<p>The following data items and methods are also supported:</p>
+<dl>
+<b>array.typecode</b>
+<p>The typecode character used to create the array.</p>
+</dl>
+
+<dl>
+<b>array.itemsize</b>
+<p>The length in bytes of one array item in the internal representation.</p>
+</dl>
+
+<dl>
+<b>array.append(x)</b>
+<p>Append a new item with value <em>x</em> to the end of the array.</p>
+</dl>
+
+<dl>
+<b>array.buffer_info()</b>
+<p>Return a tuple (address, length) giving the current memory address and the
+length in elements of the buffer used to hold array&#8217;s contents.  The size of the
+memory buffer in bytes can be computed as array.buffer_info()[1] * array.itemsize.  This is occasionally useful when working with low-level (and inherently unsafe) I/O interfaces that require memory addresses, such as certain ioctl() operations.  The returned numbers are valid as long as the array
+exists and no length-changing operations are applied to it.</p>
+
+<p>Note</p>
+<p>When using array objects from code written in C or C++ (the only way to
+effectively make use of this information), it makes more sense to use the buffer
+interface supported by array objects.  This method is maintained for backward
+compatibility and should be avoided in new code.  The buffer interface is
+documented in <em>Buffer Protocol</em>.</p>
+</dl>
+
+<dl>
+<b>array.byteswap()</b>
+<p>&#8220;Byteswap&#8221; all items of the array.  This is only supported for values which are
+1, 2, 4, or 8 bytes in size; for other types of values, RuntimeError is
+raised.  It is useful when reading data from a file written on a machine with a
+different byte order.</p>
+</dl>
+
+<dl>
+<b>array.count(<em>x</em>)</b>
+<p>Return the number of occurrences of <em>x</em> in the array.</p>
+</dl>
+
+<dl>
+<b>array.extend(<em>iterable</em>)</b>
+<p>Append items from <em>iterable</em> to the end of the array.  If <em>iterable</em> is another
+array, it must have <em>exactly</em> the same type code; if not, TypeError will
+be raised.  If <em>iterable</em> is not an array, it must be iterable and its elements
+must be the right type to be appended to the array.</p>
+</dl>
+
+<dl>
+<b>array.frombytes(<em>s</em>)</b>
+<p>Appends items from the string, interpreting the string as an array of machine
+values (as if it had been read from a file using the fromfile() method).</p>
+
+<p>New in version 3.2: fromstring() is renamed to frombytes() for clarity.</p>
+</dl>
+
+<dl class="method">
+<dt id="array.array.fromfile">
+<tt class="descclassname">array.</tt><tt class="descname">fromfile</tt><big>(</big><em>f</em>, <em>n</em><big>)</big><a class="headerlink" href="#array.array.fromfile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read <em>n</em> items (as machine values) from the <a class="reference internal" href="../glossary.html#term-file-object"><em class="xref std std-term">file object</em></a> <em>f</em> and append
+them to the end of the array.  If less than <em>n</em> items are available,
+<a class="reference internal" href="exceptions.html#EOFError" title="EOFError"><tt class="xref py py-exc docutils literal"><span class="pre">EOFError</span></tt></a> is raised, but the items that were available are still
+inserted into the array. <em>f</em> must be a real built-in file object; something
+else with a <tt class="xref py py-meth docutils literal"><span class="pre">read()</span></tt> method won&#8217;t do.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.fromlist">
+<tt class="descclassname">array.</tt><tt class="descname">fromlist</tt><big>(</big><em>list</em><big>)</big><a class="headerlink" href="#array.array.fromlist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append items from the list.  This is equivalent to <tt class="docutils literal"><span class="pre">for</span> <span class="pre">x</span> <span class="pre">in</span> <span class="pre">list:</span>
+<span class="pre">a.append(x)</span></tt> except that if there is a type error, the array is unchanged.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.fromstring">
+<tt class="descclassname">array.</tt><tt class="descname">fromstring</tt><big>(</big><big>)</big><a class="headerlink" href="#array.array.fromstring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated alias for <a class="reference internal" href="#array.array.frombytes" title="array.array.frombytes"><tt class="xref py py-meth docutils literal"><span class="pre">frombytes()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.fromunicode">
+<tt class="descclassname">array.</tt><tt class="descname">fromunicode</tt><big>(</big><em>s</em><big>)</big><a class="headerlink" href="#array.array.fromunicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extends this array with data from the given unicode string.  The array must
+be a type <tt class="docutils literal"><span class="pre">'u'</span></tt> array; otherwise a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><tt class="xref py py-exc docutils literal"><span class="pre">ValueError</span></tt></a> is raised.  Use
+<tt class="docutils literal"><span class="pre">array.frombytes(unicodestring.encode(enc))</span></tt> to append Unicode data to an
+array of some other type.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.index">
+<tt class="descclassname">array.</tt><tt class="descname">index</tt><big>(</big><em>x</em><big>)</big><a class="headerlink" href="#array.array.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the smallest <em>i</em> such that <em>i</em> is the index of the first occurrence of
+<em>x</em> in the array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.insert">
+<tt class="descclassname">array.</tt><tt class="descname">insert</tt><big>(</big><em>i</em>, <em>x</em><big>)</big><a class="headerlink" href="#array.array.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert a new item with value <em>x</em> in the array before position <em>i</em>. Negative
+values are treated as being relative to the end of the array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.pop">
+<tt class="descclassname">array.</tt><tt class="descname">pop</tt><big>(</big><span class="optional">[</span><em>i</em><span class="optional">]</span><big>)</big><a class="headerlink" href="#array.array.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the item with the index <em>i</em> from the array and returns it. The optional
+argument defaults to <tt class="docutils literal"><span class="pre">-1</span></tt>, so that by default the last item is removed and
+returned.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.remove">
+<tt class="descclassname">array.</tt><tt class="descname">remove</tt><big>(</big><em>x</em><big>)</big><a class="headerlink" href="#array.array.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the first occurrence of <em>x</em> from the array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.reverse">
+<tt class="descclassname">array.</tt><tt class="descname">reverse</tt><big>(</big><big>)</big><a class="headerlink" href="#array.array.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse the order of the items in the array.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.tobytes">
+<tt class="descclassname">array.</tt><tt class="descname">tobytes</tt><big>(</big><big>)</big><a class="headerlink" href="#array.array.tobytes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the array to an array of machine values and return the bytes
+representation (the same sequence of bytes that would be written to a file by
+the <a class="reference internal" href="#array.array.tofile" title="array.array.tofile"><tt class="xref py py-meth docutils literal"><span class="pre">tofile()</span></tt></a> method.)</p>
+<div class="versionadded">
+<p><span class="versionmodified">New in version 3.2: </span><a class="reference internal" href="#array.array.tostring" title="array.array.tostring"><tt class="xref py py-meth docutils literal"><span class="pre">tostring()</span></tt></a> is renamed to <a class="reference internal" href="#array.array.tobytes" title="array.array.tobytes"><tt class="xref py py-meth docutils literal"><span class="pre">tobytes()</span></tt></a> for clarity.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.tofile">
+<tt class="descclassname">array.</tt><tt class="descname">tofile</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#array.array.tofile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write all items (as machine values) to the <a class="reference internal" href="../glossary.html#term-file-object"><em class="xref std std-term">file object</em></a> <em>f</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.tolist">
+<tt class="descclassname">array.</tt><tt class="descname">tolist</tt><big>(</big><big>)</big><a class="headerlink" href="#array.array.tolist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the array to an ordinary list with the same items.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.tostring">
+<tt class="descclassname">array.</tt><tt class="descname">tostring</tt><big>(</big><big>)</big><a class="headerlink" href="#array.array.tostring" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deprecated alias for <a class="reference internal" href="#array.array.tobytes" title="array.array.tobytes"><tt class="xref py py-meth docutils literal"><span class="pre">tobytes()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="array.array.tounicode">
+<tt class="descclassname">array.</tt><tt class="descname">tounicode</tt><big>(</big><big>)</big><a class="headerlink" href="#array.array.tounicode" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert the array to a unicode string.  The array must be a type <tt class="docutils literal"><span class="pre">'u'</span></tt> array;
+otherwise a <a class="reference internal" href="exceptions.html#ValueError" title="ValueError"><tt class="xref py py-exc docutils literal"><span class="pre">ValueError</span></tt></a> is raised. Use <tt class="docutils literal"><span class="pre">array.tobytes().decode(enc)</span></tt> to
+obtain a unicode string from an array of some other type.</p>
+</dd></dl>
+
+<p>When an array object is printed or converted to a string, it is represented as
+<tt class="docutils literal"><span class="pre">array(typecode,</span> <span class="pre">initializer)</span></tt>.  The <em>initializer</em> is omitted if the array is
+empty, otherwise it is a string if the <em>typecode</em> is <tt class="docutils literal"><span class="pre">'u'</span></tt>, otherwise it is a
+list of numbers.  The string is guaranteed to be able to be converted back to an
+array with the same type and value using <a class="reference internal" href="functions.html#eval" title="eval"><tt class="xref py py-func docutils literal"><span class="pre">eval()</span></tt></a>, so long as the
+<a class="reference internal" href="#module-array" title="array: Space efficient arrays of uniformly typed numeric values."><tt class="xref py py-func docutils literal"><span class="pre">array()</span></tt></a> function has been imported using <tt class="docutils literal"><span class="pre">from</span> <span class="pre">array</span> <span class="pre">import</span> <span class="pre">array</span></tt>.
+Examples:</p>
+<div class="highlight-python3"><div class="highlight"><pre><span class="n">array</span><span class="p">(</span><span class="s">&#39;l&#39;</span><span class="p">)</span>
+<span class="n">array</span><span class="p">(</span><span class="s">&#39;u&#39;</span><span class="p">,</span> <span class="s">&#39;hello </span><span class="se">\u2641</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="n">array</span><span class="p">(</span><span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="n">array</span><span class="p">(</span><span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.14</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<dl class="last docutils">
+<dt>Module <a class="reference internal" href="struct.html#module-struct" title="struct: Interpret bytes as packed binary data."><tt class="xref py py-mod docutils literal"><span class="pre">struct</span></tt></a></dt>
+<dd>Packing and unpacking of heterogeneous binary data.</dd>
+<dt>Module <a class="reference internal" href="xdrlib.html#module-xdrlib" title="xdrlib: Encoders and decoders for the External Data Representation (XDR)."><tt class="xref py py-mod docutils literal"><span class="pre">xdrlib</span></tt></a></dt>
+<dd>Packing and unpacking of External Data Representation (XDR) data as used in some
+remote procedure call systems.</dd>
+<dt><a class="reference external" href="http://docs.scipy.org/doc/">The Numerical Python Documentation</a></dt>
+<dd>The Numeric Python extension (NumPy) defines another array type; see
+<a class="reference external" href="http://www.numpy.org/">http://www.numpy.org/</a> for further information about Numerical Python.</dd>
+</dl>
