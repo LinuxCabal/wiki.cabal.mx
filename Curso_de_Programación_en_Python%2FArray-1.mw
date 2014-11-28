@@ -1,0 +1,34 @@
+__NOTOC__
+* [[:#Array-1 | Array-1.py]]
+** [[:#Resultado | Resultado]]
+
+== Array-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from array import array
+
+MiArreglo = array( "i", [10, 20, 30] )
+i = 0
+
+for value in MiArreglo:
+  print( "MiArreglo[{0}] es {1}" .format( i, value ) )
+  i += 1
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@pridd PythonClase]$ ./Array-1.py 
+MiArreglo[0] es 10
+MiArreglo[1] es 20
+MiArreglo[2] es 30
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
