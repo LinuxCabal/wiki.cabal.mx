@@ -1,0 +1,29 @@
+Instrucciones para instalar el framework en un ambiente virtual en varias distribuciones, referencias a tutoriales.
+
+== Instalación ==
+
+=== Fedora ===
+
+Los pasos generales para instalar:
+# Instalar cython
+# [[Instalación de pygame#Python_3|Instalar pygame]] (requiere un parche)
+# Instalar kivy
+# Comprobar la instalación
+ 
+ pip install cython
+ 
+ pip install git+https://github.com/kivy/kivy.git
+
+El script ''install-kivy'' realiza los pasos anteriores, se probó en Fedora 20 y Debian testing.  Tal vez necesita adaptarse para otras distribuciones.  El script y el parche requerido estan aquí: https://github.com/LinuxCabal/LCUtils/tree/master/generales
+
+=== Debian ===
+Debian testing tiene los paquetes ''python-kivy'' y ''python3-kivy'' con la versión 1.8.0.
+
+== Tutoriales ==
+*[http://archlinux.me/dusty/2013/08/26/creating-an-application-in-kivy-part-9/ Creating an application in Kivy], por Dusty Phillips. Publicado en 9 partes entre junio y agosto de 2013.
+*[http://www.blog.pythonlibrary.org/2013/11/25/kivy-101-how-to-use-boxlayouts/ Kivy 101: How to Use BoxLayouts], por Mike Driscoll, 25 de noviembre de 2013
+
+== Ver también ==
+*[[Instalación de pygame]]
+
+[[Category: HowTos]]
