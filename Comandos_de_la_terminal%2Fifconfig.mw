@@ -1,0 +1,122 @@
+__NOTOC__
+* [[:#ifconfig | ifconfig]]
+
+== ifconfig ==
+
+<syntaxhighlight lang="bash">
+
+[root@Llawyr ~]# ifconfig --help
+Usage:
+  ifconfig [-a] [-v] [-s] <interface> [[<AF>] <address>]
+  [add <address>[/<prefixlen>]]
+  [del <address>[/<prefixlen>]]
+  [[-]broadcast [<address>]]  [[-]pointopoint [<address>]]
+  [netmask <address>]  [dstaddr <address>]  [tunnel <address>]
+  [outfill <NN>] [keepalive <NN>]
+  [hw <HW> <address>]  [metric <NN>]  [mtu <NN>]
+  [[-]trailers]  [[-]arp]  [[-]allmulti]
+  [multicast]  [[-]promisc]
+  [mem_start <NN>]  [io_addr <NN>]  [irq <NN>]  [media <type>]
+  [txqueuelen <NN>]
+  [[-]dynamic]
+  [up|down] ...
+
+  <HW>=Hardware Type.
+  List of possible hardware types:
+    loop (Local Loopback) slip (Serial Line IP) cslip (VJ Serial Line IP) 
+    slip6 (6-bit Serial Line IP) cslip6 (VJ 6-bit Serial Line IP) adaptive (Adaptive Serial Line IP) 
+    ash (Ash) ether (Ethernet) ax25 (AMPR AX.25) 
+    netrom (AMPR NET/ROM) rose (AMPR ROSE) tunnel (IPIP Tunnel) 
+    ppp (Point-to-Point Protocol) hdlc ((Cisco)-HDLC) lapb (LAPB) 
+    arcnet (ARCnet) dlci (Frame Relay DLCI) frad (Frame Relay Access Device) 
+    sit (IPv6-in-IPv4) fddi (Fiber Distributed Data Interface) hippi (HIPPI) 
+    irda (IrLAP) ec (Econet) x25 (generic X.25) 
+    infiniband (InfiniBand) 
+  <AF>=Address family. Default: inet
+  List of possible address families:
+    unix (UNIX Domain) inet (DARPA Internet) inet6 (IPv6) 
+    ax25 (AMPR AX.25) netrom (AMPR NET/ROM) rose (AMPR ROSE) 
+    ipx (Novell IPX) ddp (Appletalk DDP) ec (Econet) 
+    ash (Ash) x25 (CCITT X.25) 
+
+[root@Llawyr ~]# rpm -qf `which ifconfig`
+net-tools-1.60-38.mga4
+
+ifconfig es desfasado, Debemos utilizar el comando ip
+
+[root@Llawyr ~]# ifconfig
+enp4s0    Link encap:Ethernet  HWaddr 10:BF:48:08:02:FB  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+lo        Link encap:Local Loopback  
+          inet addr:127.0.0.1  Mask:255.0.0.0
+          inet6 addr: ::1/128 Scope:Host
+          UP LOOPBACK RUNNING  MTU:65536  Metric:1
+          RX packets:578 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:578 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:0 
+          RX bytes:638393 (623.4 KiB)  TX bytes:638393 (623.4 KiB)
+
+wlp3s0    Link encap:Ethernet  HWaddr 94:DB:C9:9D:51:3A  
+          inet addr:192.168.51.57  Bcast:192.168.51.255  Mask:255.255.255.0
+          inet6 addr: fe80::96db:c9ff:fe9d:513a/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:29177601 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:27700924 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:32012824349 (29.8 GiB)  TX bytes:24862418544 (23.1 GiB)
+
+[root@Llawyr ~]# ifconfig enp4s0
+enp4s0    Link encap:Ethernet  HWaddr 10:BF:48:08:02:FB  
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+[root@Llawyr ~]# ifconfig wlp3s0
+wlp3s0    Link encap:Ethernet  HWaddr 94:DB:C9:9D:51:3A  
+          inet addr:192.168.51.57  Bcast:192.168.51.255  Mask:255.255.255.0
+          inet6 addr: fe80::96db:c9ff:fe9d:513a/64 Scope:Link
+          UP BROADCAST RUNNING MULTICAST  MTU:1500  Metric:1
+          RX packets:29180945 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:27704137 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:32016798252 (29.8 GiB)  TX bytes:24862709723 (23.1 GiB)
+
+[root@Llawyr ~]# ifconfig enp4s0 10.11.12.13 netmask 255.255.0.0
+
+[root@Llawyr ~]# ifconfig enp4s0
+enp4s0    Link encap:Ethernet  HWaddr 10:BF:48:08:02:FB  
+          inet addr:10.11.12.13  Bcast:10.11.255.255  Mask:255.255.0.0
+          UP BROADCAST MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+[root@Llawyr ~]# ifconfig enp4s0
+enp4s0    Link encap:Ethernet  HWaddr 10:BF:48:08:02:FB  
+          inet addr:10.11.12.13  Bcast:10.11.255.255  Mask:255.255.0.0
+          UP BROADCAST PROMISC MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+
+[root@Llawyr ~]# ifconfig  enp4s0 down
+
+[root@Llawyr ~]# ifconfig  enp4s0
+enp4s0    Link encap:Ethernet  HWaddr 10:BF:48:08:02:FB  
+          UP BROADCAST PROMISC MULTICAST  MTU:1500  Metric:1
+          RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+          TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+          collisions:0 txqueuelen:1000 
+          RX bytes:0 (0.0 b)  TX bytes:0 (0.0 b)
+</syntaxhighlight>
+
+[[Category:Comandos de la terminal]]
