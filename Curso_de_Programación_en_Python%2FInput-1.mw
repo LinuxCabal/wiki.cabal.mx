@@ -1,0 +1,36 @@
+__NOTOC__
+* [[:#Input-1 | Input-1.py]]
+** [[:#Resultado | Resultado]]
+
+== Input-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import math
+Nombre = input( "¿Cómo te llama? ")
+
+EdadTuyo = int( input( "¿Cuantos años tienes? " ) )
+EdadPadre = int( input( "¿Cuantos años tiene to padre? " ) )
+
+print( "Mucho gusto conocerte {0}\nLa suma de tu edad: {1} y el edad de tu padre: {2} es {3} años"
+        .format( Nombre, EdadTuyo, EdadPadre, EdadTuyo + EdadPadre ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Input-1.py 
+¿Cómo te llama? Richard
+¿Cuantos años tienes? 63
+¿Cuantos años tiene to padre? 87
+Mucho gusto conocerte Richard
+La suma de tu edad: 63 y el edad de tu padre: 87 es 150 años
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
