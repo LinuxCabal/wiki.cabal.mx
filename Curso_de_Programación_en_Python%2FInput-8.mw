@@ -1,0 +1,43 @@
+__NOTOC__
+* [[:#Input-8 | Input-8.py]]
+** [[:#Resultado | Resultado]]
+
+== Input-8.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from tkinter import *
+
+class MyDialog:
+  def __init__( self, parent ):
+    top = self.top = Toplevel( parent )
+    Label( top, text="Valor" ).pack()
+    self.e = Entry( top )
+    self.e.pack( padx=5 )
+    b = Button( top, text="Listo", command=self.ok )
+    b.pack( pady=5 )
+
+  def ok( self ):
+    print( "El valor es:", self.e.get() )
+    self.top.destroy()
+
+root = Tk()
+Button( root, text="Hola!" ).pack()
+root.update()
+
+d = MyDialog( root )
+
+root.wait_window( d.top )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[[File:Input-8.png]]
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
