@@ -1,0 +1,219 @@
+__NOTOC__
+* [[:#MySQL-1 | MySQL-1.py]]
+
+== MySQL-1.py ==
+
+urpmi mysql-connector-python
+
+<table summary="Connection Arguments for Connector/Python" border="1">
+  <tr>
+    <th>Argument Name</th>
+    <th>Default</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>user</td>
+    <td> </td>
+    <td>The user name used to authenticate with the MySQL server.</td>
+  </tr>
+  <tr>
+    <td>password</td>
+    <td> </td>
+    <td>The password to authenticate the user with the MySQL server.</td>
+  </tr>
+  <tr>
+    <td>database</td>
+    <td> </td>
+    <td>The database name to use when connecting with the MySQL server.</td>
+  </tr>
+  <tr>
+    <td>host</td>
+    <td>127.0.0.1</td>
+    <td>The host name or IP address of the MySQL server.</td>
+  </tr>
+  <tr>
+    <td>port</td>
+    <td>3306</td>
+    <td>The TCP/IP port of the MySQL server. Must be an integer.</td>
+  </tr>
+  <tr>
+    <td>unix_socket</td>
+    <td> </td>
+    <td>The location of the Unix socket file.</td>
+  </tr>
+  <tr>
+    <td>auth_plugin</td>
+    <td> </td>
+    <td>Authentication plugin to use. Added in 1.2.1.</td>
+  </tr>
+  <tr>
+    <td>use_unicode</td>
+    <td>True</td>
+    <td>Whether to use Unicode.</td>
+  </tr>
+  <tr>
+    <td>charset</td>
+    <td>utf8</td>
+    <td>Which MySQL character set to use.</td>
+  </tr>
+  <tr>
+    <td>collation</td>
+    <td>utf8_general_ci</td>
+    <td>Which MySQL collation to use.</td>
+  </tr>
+  <tr>
+    <td>autocommit</td>
+    <td>False</td>
+    <td>Whether to autocommit transactions.</td>
+  </tr>
+  <tr><td>time_zone</td>
+  <td> </td>
+  <td>Set the time_zone session variable at connection time.</td>
+  </tr>
+    <tr><td>sql_mode</td>
+    <td> </td>
+    <td>Set the sql_mode session variable at connection time.</td>
+  </tr>
+  <tr>
+    <td>get_warnings</td>
+    <td>False</td>
+    <td>Whether to fetch warnings.</td>
+  </tr>
+  <tr>
+    <td>raise_on_warnings</td>
+    <td>False</td>
+    <td>Whether to raise an exception on warnings.</td>
+  </tr>
+  <tr>
+    <td>connection_timeout</td>
+    <td> </td>
+    <td>Timeout for the TCP and Unix socket connections.</td>
+  </tr>
+  <tr>
+    <td>client_flags</td>
+    <td> </td>
+    <td>MySQL client flags.</td>
+  </tr>
+  <tr>
+    <td>buffered</td>
+    <td>False</td>
+    <td>Whether cursor objects fetch the results immediately after executing queries.</td>
+  </tr>
+  <tr>
+    <td>raw</td>
+    <td>False</td>
+    <td>Whether MySQL results are returned as is, rather than converted to Python types.</td>
+  </tr>
+  <tr>
+    <td>ssl_ca</td>
+    <td> </td>
+    <td>File containing the SSL certificate authority.</td>
+  </tr>
+  <tr>
+    <td>ssl_cert</td>
+    <td> </td>
+    <td>File containing the SSL certificate file.</td>
+  </tr>
+  <tr>
+    <td>ssl_key</td>
+    <td> </td>
+    <td>File containing the SSL key.</td>
+  </tr>
+  <tr>
+    <td>ssl_verify_cert</td>
+    <td>False</td>
+    <td>When set to True, checks the server certificate against the certificate file specified by the ssl_ca option. Any mismatch causes a ValueError exception.</td>
+  </tr>
+  <tr>
+    <td>force_ipv6</td>
+    <td>False</td>
+    <td>When set to True, uses IPv6 when an address resolves to both IPv4 and IPv6. By default, IPv4 is used in such cases.</td>
+  </tr>
+  <tr>
+    <td>dsn</td>
+    <td> </td>
+    <td>Not supported (raises NotSupportedError when used).</td>
+  </tr>
+  <tr>
+    <td>pool_name</td>
+    <td> </td>
+    <td>Connection pool name. Added in 1.1.1.</td>
+  </tr>
+  <tr>
+    <td>pool_size</td>
+    <td>5</td>
+    <td>Connection pool size. Added in 1.1.1.</td>
+  </tr>
+  <tr>
+    <td>pool_reset_session</td>
+    <td>True</td>
+    <td>Whether to reset session variables when connection is returned to pool. Added in 1.1.5.</td>
+  </tr>
+  <tr>
+    <td>compress</td>
+    <td>False</td>
+    <td>Whether to use compressed client/server protocol. Added in 1.1.2.</td>
+  </tr>
+  <tr>
+    <td>converter_class</td>
+    <td> </td>
+    <td>Converter class to use. Added in 1.1.2.</td>
+  </tr>
+  <tr>
+    <td>fabric</td>
+    <td> </td>
+    <td>MySQL Fabric connection arguments. Added in 1.2.0.</td>
+  </tr>
+  <tr>
+    <td>failover</td>
+    <td> </td>
+    <td>Server failover sequence. Added in 1.2.1.</td>
+  </tr>
+  <tr>
+    <td>option_files</td>
+    <td> </td>
+    <td>Which option files to read. Added in 2.0.0.</td>
+  </tr>
+  <tr>
+    <td>option_groups</td>
+    <td>['client', 'connector_python']</td>
+    <td>Which groups to read from option files. Added in 2.0.0.</td>
+  </tr>
+  <tr>
+    <td>allow_local_infile</td>
+    <td>True</td>
+    <td>Whether to enable LOAD DATA LOCAL INFILE. Added in 2.0.0.</td>
+  </tr>
+</table>
+
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python
+#-*-coding: utf-8 -*-
+
+import mysql.connector
+from mysql.connector import errorcode
+
+try:
+  Conn = mysql.connector.connect( user='PythonClase',
+                                  password='Py800se',
+                                  host='127.0.0.1',
+                                  unix_socket='/var/lib/mysql/mysql.sock',
+                                  database='PythonClase')
+except mysql.connector.Error as err:
+  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+    print( "UsuarioNombre o Contraseña incorrecto" )
+  elif err.errno == errorcode.ER_BAD_DB_ERROR:
+    print( "Base de Datos no existe" )
+  else:
+    print( err )
+else:
+  Conn.close()
+
+</syntaxhighlight>
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
