@@ -1,0 +1,44 @@
+__NOTOC__
+* [[:#Input-9 | Input-9.py]]
+** [[:#Resultado | Resultado]]
+
+== Input-9.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import tkinter as tk
+
+class Application( tk.Frame ):
+  def __init__( self, master=None ):
+    tk.Frame.__init__( self, master )
+    self.pack()
+    self.createWidgets()
+
+  def createWidgets( self ):
+    self.hi_there = tk.Button( self )
+    self.hi_there["text"] = "Hola Mundo\n( Da click aquí )"
+    self.hi_there["command"] = self.say_hi
+    self.hi_there.pack( side="top" )
+    self.QUIT = tk.Button( self, text="Terminar", fg="red",
+                                            command=root.destroy )
+    self.QUIT.pack( side="bottom" )
+
+  def say_hi( self ):
+    print( "Saludos a todos!" )
+
+root = tk.Tk()
+app = Application( master=root )
+app.mainloop()
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[[File:Input-9.png]]
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
