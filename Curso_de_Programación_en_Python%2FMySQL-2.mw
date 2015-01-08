@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#MySQL-2 | MySQL-2.py]]
+
+== MySQL-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python
+#-*-coding: utf-8 -*-
+
+import mysql.connector
+from mysql.connector import errorcode
+
+config = {
+  'user': 'PythonClase',
+  'password': 'Py800se',
+  'host': '127.0.0.1',
+  'database': 'PythonClase',
+  'raise_on_warnings': True,
+  'unix_socket': '/var/lib/mysql/mysql.sock'
+}
+
+try:
+  Conn = mysql.connector.connect(**config)
+except mysql.connector.Error as err:
+  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+    print( "UsuarioNombre o Contraseña incorrecto" )
+  elif err.errno == errorcode.ER_BAD_DB_ERROR:
+    print( "Base de Datos no existe" )
+  else:
+    print( err )
+else:
+  Conn.close()
+
+</syntaxhighlight>
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
