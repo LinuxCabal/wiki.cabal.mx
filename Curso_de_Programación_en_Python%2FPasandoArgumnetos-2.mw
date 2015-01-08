@@ -1,0 +1,58 @@
+__NOTOC__
+* [[:#PasandoArgumentos-2.py | PasandoArgumentos-2.py]]
+** [[:#Resultado | Resultado]]
+
+== PasandoArgumentos-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import sys, getopt
+
+def main(argv):
+   IngresoArchivo = ''
+   SalidaArchivo = ''
+   try:
+      opts, args = getopt.getopt(argv,"hi:o:",["ifile=","ofile="])
+   except getopt.GetoptError:
+      print( 'PasandoArgumentos-2.py -i <IngresoArchivo> -o <SalidaArchivo>' )
+      sys.exit(2)
+   for opt, arg in opts:
+      if opt == '-h':
+         print( 'PasandoArgumentos-2.py -i <IngresoArchivo> -o <SalidaArchivo>' )
+         sys.exit()
+      elif opt in ("-i", "--ifile"):
+         IngresoArchivo = arg
+      elif opt in ("-o", "--ofile"):
+         SalidaArchivo = arg
+   print( 'El archivo de ingresso se llama:', IngresoArchivo )
+   print( 'El archivo de salida se llama:', SalidaArchivo )
+
+if __name__ == "__main__":
+   main(sys.argv[1:])
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@pridd PythonClase]$ ./PasandoArgumentos-2.py -h
+ PasandoArgumentos-2.py -i <IngresoArchivo> -o <SalidaArchivo>
+
+[rrc@pridd PythonClase]$ ./PasandoArgumentos-2.py -i InGres.txt
+ El archivo de ingresso se llama: InGres.txt
+ El archivo de salida se llama: 
+
+[rrc@pridd PythonClase]$ ./PasandoArgumentos-2.py -o Salida.txt
+ El archivo de ingresso se llama: 
+ El archivo de salida se llama: Salida.txt
+
+[rrc@pridd PythonClase]$ ./PasandoArgumentos-2.py -o Salida.txt -i Ingreso.xls
+ El archivo de ingresso se llama: Ingreso.xls
+ El archivo de salida se llama: Salida.txt
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
