@@ -1,0 +1,205 @@
+__NOTOC__
+* [[:#Input-10 | Input-10.py]]
+** [[:#Resultado | Resultado]]
+** [[:Explicación | Explicación]]
+
+== Input-10.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from tkinter import *
+from tkinter import ttk
+
+def calculate( *args ):
+  try:
+    value = float( pies.get() )
+    meters.set( ( 0.3048 * value * 10000.0 + 0.5 )/10000.0 )
+  except ValueError:
+    pass
+    
+root = Tk()
+root.title( "Pies a Metros" )
+
+mainframe = ttk.Frame( root, padding="3 3 12 12" )
+mainframe.grid( column=0, row=0, sticky=( N, W, E, S ) )
+mainframe.columnconfigure( 0, weight=1 )
+mainframe.rowconfigure( 0, weight=1 )
+
+pies = StringVar()
+meters = StringVar()
+
+pies_entry = ttk.Entry( mainframe, width=7, textvariable=pies )
+pies_entry.grid( column=2, row=1, sticky=( W, E ) )
+
+ttk.Label( mainframe, textvariable=meters ).grid( column=2, row=2, sticky=( W, E ) )
+ttk.Button( mainframe, text="Calcular", command=calculate ).grid( column=3, row=3, sticky=W )
+
+ttk.Label( mainframe, text="pies" ).grid(column=3, row=1, sticky=W )
+ttk.Label( mainframe, text="es equivalente a" ).grid(column=1, row=2, sticky=E )
+ttk.Label( mainframe, text="metros" ).grid(column=3, row=2, sticky=W )
+
+for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
+
+pies_entry.focus()
+root.bind('<Return>', calculate)
+
+root.mainloop()
+
+</syntaxhighlight>
+
+== Explicación ==
+
+#wm title . "Feet to Meters"
+#grid [ttk::frame .c -padding "3 3 12 12"] -column 0 -row 0 -sticky nwes
+#grid columnconfigure . 0 -weight 1; grid rowconfigure . 0 -weight 1
+#
+#root = TkRoot.new {title "Feet to Meters"}
+#content = Tk::Tile::Frame.new(root) {padding "3 3 12 12"}.grid(:sticky => 'nsew')
+#TkGrid.columnconfigure root, 0, :weight => 1; TkGrid.rowconfigure root, 0, :weight => 1
+#
+#Tkx::wm_title(".", "Feet to Meters");
+#Tkx::ttk__frame(".c",  -padding => "3 3 12 12");
+#Tkx::grid( ".c", -column => 0, -row => 0, -sticky => "nwes");
+#Tkx::grid_columnconfigure( ".", 0, -weight => 1); 
+#Tkx::grid_rowconfigure(".", 0, -weight => 1);
+#
+#root = Tk()
+#root.title("Feet to Meters")
+#mainframe = ttk.Frame(root, padding="3 3 12 12")
+#mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+#mainframe.columnconfigure(0, weight=1)
+#mainframe.rowconfigure(0, weight=1) 
+#
+#Yes, the "calculate" function appeared before this. We'll describe it down below, but need to include it near the start because we reference it in other parts of the program.
+#
+#Next, the above lines set up the main window, giving it the title "Feet to Meters". Next, we create a frame widget, which will hold all the content of our user interface, and place that in our main window. The "columnconfigure"/"rowconfigure" bits just tell Tk that if the main window is resized, the frame should expand to take up the extra space.
+#
+#Strictly speaking, we could just put the other parts of our interface directly into the main root window, without the intervening content frame. However, the main window isn't itself part of the "themed" widgets, so its background color wouldn't match the themed widgets we will put inside it. Using a "themed" frame widget to hold the content ensures that the background is correct.
+#
+#grid [ttk::entry .c.pies -width 7 -textvariable pies] -column 2 -row 1 -sticky we
+#grid [ttk::label .c.meters -textvariable meters] -column 2 -row 2 -sticky we
+#grid [ttk::button .c.calc -text "Calculate" -command calculate] -column 3 -row 3 -sticky w
+#
+#$pies = TkVariable.new; $meters = TkVariable.new
+#f = Tk::Tile::Entry.new(content) {width 7; textvariable $pies}.grid( :column => 2, :row => 1, :sticky => 'we' )
+#Tk::Tile::Label.new(content) {textvariable $meters}.grid( :column => 2, :row => 2, :sticky => 'we');
+#Tk::Tile::Button.new(content) {text 'Calculate'; command {calculate}}.grid( :column => 3, :row => 3, :sticky => 'w')
+#
+#Tkx::ttk__entry(".c.pies", -width => 7, -textvariable => \$pies);
+#Tkx::grid(".c.pies", -column => 2, -row => 1, -sticky => "we");
+#Tkx::ttk__label(".c.meters", -textvariable => \$meters);
+#Tkx::grid(".c.meters", -column => 2, -row => 2, -sticky => "we");
+#Tkx::ttk__button(".c.calc", -text => "Calculate", -command => sub {calculate();});
+#Tkx::grid(".c.calc", -column => 3, -row => 3, -sticky => "w");
+#
+#pies = StringVar()
+#meters = StringVar()
+#pies_entry = ttk.Entry(mainframe, width=7, textvariable=pies)
+#pies_entry.grid(column=2, row=1, sticky=(W, E))
+#ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
+#ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=3, sticky=W)
+#
+#The preceding lines create the three main widgets in our program: the entry where we type the number of pies in, a label where we put the resulting number of meters, and the calculate button that we press to perform the calculation.
+#
+#For each of the three widgets, we need to do two things: create the widget itself, and then place it onscreen. All three widgets, which are 'children' of our content window are created as instances of one of Tk's themed widget classes. At the same time as we create them, we give them certain options, such as how wide the entry is, the text to put inside the Button, etc. The entry and label each are assigned a mysterious "textvariable"; we'll see what that does shortly.
+#
+#If the widgets are just created, they won't automatically show up on screen, because Tk doesn't know how you want them to be placed relative to other widgets. That's what the "grid" part does. Remembering the layout grid for our application, we place each widget in the appropriate column (1, 2 or 3), and row (also 1, 2 or 3). The "sticky" option says how the widget would line up within the grid cell, using compass directions. So "w" (west) means anchor the widget to the left side of the cell, "we" (west-east) means anchor it to both the left and right sides, and so on.
+#
+#grid [ttk::label .c.flbl -text "pies"] -column 3 -row 1 -sticky w
+#grid [ttk::label .c.islbl -text "is equivalent to"] -column 1 -row 2 -sticky e
+#grid [ttk::label .c.mlbl -text "meters"] -column 3 -row 2 -sticky w
+#
+#Tk::Tile::Label.new(content) {text 'pies'}.grid( :column => 3, :row => 1, :sticky => 'w')
+#Tk::Tile::Label.new(content) {text 'is equivalent to'}.grid( :column => 1, :row => 2, :sticky => 'e')
+#Tk::Tile::Label.new(content) {text 'meters'}.grid( :column => 3, :row => 2, :sticky => 'w')
+#
+#Tkx::grid( Tkx::ttk__label(".c.flbl", -text => "pies"), -column => 3, -row => 1, -sticky => "w");
+#Tkx::grid( Tkx::ttk__label(".c.islbl", -text => "is equivalent to"), -column => 1, -row => 2, -sticky => "e");
+#Tkx::grid( Tkx::ttk__label(".c.mlbl", -text => "meters"), -column => 3, -row => 2, -sticky => "w");
+#
+#ttk.Label(mainframe, text="pies").grid(column=3, row=1, sticky=W)
+#ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
+#ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
+#
+#The above three lines do exactly the same thing for the three static text labels in our user interface; create each one, and place it onscreen in the appropriate cell in the grid.
+#
+#foreach w [winfo children .c] {grid configure $w -padx 5 -pady 5}
+#focus .c.pies
+#bind . <Return> {calculate}
+#
+#TkWinfo.children(content).each {|w| TkGrid.configure w, :padx => 5, :pady => 5}
+#f.focus
+#root.bind("Return") {calculate}
+#
+#foreach (Tkx::SplitList(Tkx::winfo_children(".c"))) { Tkx::grid_configure($_, -padx => 5, -pady => 5); }
+#Tkx::focus(".c.pies");
+#Tkx::bind(".", "<Return>", sub {calculate();});
+#
+#for child in mainframe.winfo_children(): child.grid_configure(padx=5, pady=5)
+#pies_entry.focus()
+#root.bind('<Return>', calculate)
+#
+#The preceeding three lines help put some nice finishing touches on our user interface.
+#
+#The first line walks through all of the widgets that are children of our content frame, and adds a little bit of padding around each, so they aren't so scrunched together. We could have added these options to each "grid" call when we first put the widgets onscreen, but this is a nice shortcut.
+#
+#The second line tells Tk to put the focus on our entry widget. That way the cursor will start in that field, so the user doesn't have to click in it before starting to type.
+#
+#The third line tells Tk that if the user presses the Return key (Enter on Windows) anywhere within the root window, that it should call our calculate routine, the same as if the user pressed the Calculate button.
+#
+#proc calculate {} {  
+#   if {[catch {
+#       set ::meters [expr {round($::pies*0.3048*10000.0)/10000.0}]
+#   }]!=0} {
+#       set ::meters ""
+#   }
+#}
+#
+#def calculate
+#  begin
+#     $meters.value = (0.3048*$pies*10000.0).round()/10000.0
+#  rescue
+#     $meters.value = ''
+#  end
+#end
+#
+#sub calculate {
+#   $meters = int(0.3048*$pies*10000.0+.5)/10000.0 || '';
+#}
+#
+#def calculate(*args):
+#    try:
+#        value = float(pies.get())
+#        meters.set((0.3048 * value * 10000.0 + 0.5)/10000.0)
+#    except ValueError:
+#        pass
+#
+#Here we define our calculate procedure, which is called either when the user presses the Calculate button, or hits the Return key. It performs the pies to meters calculation, taking the number of pies from our entry widget, and placing the result in our label widget.
+#
+#Say what? It doesn't look like we're doing anything with those widgets! Here's where the magic "textvariable" options we specified when creating the widgets come into play. We specified the global variable "pies" as the textvariable for the entry, which means that anytime the entry changes, Tk will automatically update the global variable pies. Similarly, if we explicitly change the value of a textvariable associated with a widget (as we're doing for "meters" which is attached to our label), the widget will automatically be updated with the current contents of the variable. Slick.
+#
+#Tk.mainloop
+#
+#This final line tells Tk to enter its event loop, which is needed to make everything run.
+#
+#Tkx::MainLoop();
+#
+#This final line tells Tk to enter its event loop, which is needed to make everything run.
+#
+#root.mainloop();
+#
+#This final line tells Tk to enter its event loop, which is needed to make everything run.
+#
+# 
+
+
+=== Resultado ===
+
+[[File:Input-10.png]]
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
