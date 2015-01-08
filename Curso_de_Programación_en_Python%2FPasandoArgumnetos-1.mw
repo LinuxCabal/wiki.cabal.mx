@@ -1,0 +1,40 @@
+__NOTOC__
+* [[:#PasandoArgumentos-1.py | PasandoArgumentos-1.py]]
+** [[:#Resultado | Resultado]]
+
+== PasandoArgumentos-1.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python
+#-*-coding: utf-8 -*-
+
+import sys
+
+print 'Recibimos', len(sys.argv), 'argumentos.'
+print 'Los argumentos son:', str(sys.argv)
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@pridd PythonClase]$ ./PasandoArgumentos-1.py 
+ Recibimos 1 argumentos.
+ Los argumentos son: ['./PasandoArgumentos-1.py']
+
+[rrc@pridd PythonClase]$ ./PasandoArgumentos-1.py Arg1 -h -i = Ingreso
+ Recibimos 6 argumentos.
+ Los argumentos son: ['./PasandoArgumentos-1.py', 'Arg1', '-h', '-i', '=', 'Ingreso']
+
+[rrc@pridd PythonClase]$ ./PasandoArgumentos-1.py Arg1 -h -i  Ingreso
+ Recibimos 5 argumentos.
+ Los argumentos son: ['./PasandoArgumentos-1.py', 'Arg1', '-h', '-i', 'Ingreso']
+[
+rrc@pridd PythonClase]$ ./PasandoArgumentos-1.py Arg1 -h -i=Ingreso
+ Recibimos 4 argumentos.
+ Los argumentos son: ['./PasandoArgumentos-1.py', 'Arg1', '-h', '-i=Ingreso']
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
