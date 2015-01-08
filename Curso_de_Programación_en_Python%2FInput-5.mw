@@ -1,0 +1,35 @@
+__NOTOC__
+* [[:#Input-5 | Input-5.py]]
+** [[:#Resultado | Resultado]]
+
+== Input-5.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+import tkinter
+from tkinter import ttk
+
+root = tkinter.Tk()
+
+style = ttk.Style()
+style.map( "C.TButton",
+    foreground=[('pressed', 'red'), ('active', 'blue')],
+    background=[('pressed', '!disabled', 'black'), ('active', 'white')]
+    )
+
+colored_btn = ttk.Button( text="Prueba", style="C.TButton" ).pack()
+
+root.mainloop()
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[[File:Input-5.png]]
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
