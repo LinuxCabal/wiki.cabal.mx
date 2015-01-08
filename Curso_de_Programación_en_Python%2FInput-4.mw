@@ -1,0 +1,33 @@
+__NOTOC__
+* [[:#Input-4 | Input-4.py]]
+** [[:#Resultado | Resultado]]
+
+== Input-4.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from tkinter import ttk
+import tkinter
+
+root = tkinter.Tk()
+
+ttk.Style().configure( "TButton", padding=6, relief="flat",
+   background="#c2c" )
+
+btn = ttk.Button( text="Ejemplo" )
+btn.pack()
+
+root.mainloop()
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[[File:Input-4.png]]
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
