@@ -1,0 +1,41 @@
+__NOTOC__
+* [[:#Input-6 | Input-6.py]]
+** [[:#Resultado | Resultado]]
+
+== Input-6.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+from tkinter import ttk
+import tkinter
+
+root = tkinter.Tk()
+
+style = ttk.Style()
+style.layout( "TMenubutton", [
+   ( "Menubutton.background", None ),
+   ( "Menubutton.button", {"children":
+       [( "Menubutton.focus", {"children":
+           [( "Menubutton.padding", {"children":
+               [( "Menubutton.label", {"side": "left", "expand": 1} )]
+           } )]
+       } )]
+   } ),
+] )
+
+mbtn = ttk.Menubutton( text='Mucho Texto' )
+mbtn.pack()
+root.mainloop()
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[[File:Input-6.png]]
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
