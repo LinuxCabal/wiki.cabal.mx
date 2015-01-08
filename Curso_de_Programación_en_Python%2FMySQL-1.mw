@@ -186,54 +186,6 @@ urpmi mysql-connector-python
   </tr>
 </table>
 
-<pre>
-Antes de iniciar, debemos crear el base de datos
-
-[rrc@Pridd PythonClase]$ mysql -p
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 13
-Server version: 10.0.22-MariaDB Mageia MariaDB Server
-
-Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-MariaDB [(none)]> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| mysql              |
-| performance_schema |
-+--------------------+
-3 rows in set (0.00 sec)
-
-MariaDB [(none)]> create database PythonClase;
-Query OK, 1 row affected (0.00 sec)
-
-MariaDB [(none)]> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| PythonClase        |
-| information_schema |
-| mysql              |
-| performance_schema |
-+--------------------+
-4 rows in set (0.00 sec)
-
-MariaDB [(none)]> show create database PythonClase;
-+-------------+----------------------------------------------------------------------------------------------+
-| Database    | Create Database                                                                              |
-+-------------+----------------------------------------------------------------------------------------------+
-| PythonClase | CREATE DATABASE `PythonClase` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ |
-+-------------+----------------------------------------------------------------------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> grant all on PythonClase.* to 'PythonClase'@'localhost' identified by 'Py800se';
-Query OK, 0 rows affected (0.00 sec)
-
-</pre>
 
 <syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -258,15 +210,6 @@ except mysql.connector.Error as err:
     print( err )
 else:
   Conn.close()
-
-pip3 install mysql-connector-python --allow-external mysql-connector-python  ----  NO SIRVE MÁS ----
-
-Descarga URL: http://cdn.mysql.com/Downloads/Connector-Python/mysql-connector-python-2.0.4.zip#md5=3df394d89300db95163f17c843ef49df 
-
-unzip
-
-python3 setup.py install
-
 
 </syntaxhighlight>
 
