@@ -1,0 +1,33 @@
+__NOTOC__
+* [[:#Dict-16 | Dict-16.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-16.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Llaves = [ "Ave", "Planta", "Piedra" ]
+Valores = [2, 4, 7] 
+
+DictNuevo = {}
+
+for i in range( 0, len( Valores )):
+  DictNuevo[Llaves[i]] = Valores[i] 
+
+print( "El DictNuevo:", DictNuevo )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-21.py 
+El DictNuevo: {'Piedra': 7, 'Planta': 4, 'Ave': 2}
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
