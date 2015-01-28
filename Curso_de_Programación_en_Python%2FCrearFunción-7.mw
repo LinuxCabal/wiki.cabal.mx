@@ -1,0 +1,63 @@
+__NOTOC__
+* [[:#CrearFunción-7.py | CrearFunción-7.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== CrearFunción-7.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+MiGlobal = 5
+
+print( "MiGlobal después de la asignación:", MiGlobal )
+
+def func1():
+    try:
+      print( "MiGlobal adentro de func1 antes de asignación():", MiGlobal )
+    except:
+      print( "No hay un MiGlobal aquí" )
+
+    MiGlobal = 42
+    print( "MiGlobal adentro de func1():", MiGlobal )
+
+def func2():
+    global MiGlobal
+    print( "MiGlobal adentro de func1 antes de asignación():", MiGlobal )
+    MiGlobal = 42
+
+def func3():
+	print( "MiGlobal in func3():", MiGlobal )
+
+func1()
+func3()
+print( "MiGlobal a fuera de las functiones:", MiGlobal )
+func2()
+func3()
+print( "MiGlobal al fin:", MiGlobal )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@www PythonClase]$ ./CrearFuncion-7.py 
+MiGlobal después de la asignación: 5
+No hay un MiGlobal aquí
+MiGlobal adentro de func1(): 42
+MiGlobal in func3(): 5
+MiGlobal a fuera de las functiones: 5
+MiGlobal adentro de func1 antes de asignación(): 5
+MiGlobal in func3(): 42
+MiGlobal al fin: 42
+</pre>
+
+=== Explicación ===
+
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
