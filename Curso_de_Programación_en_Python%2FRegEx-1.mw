@@ -12,7 +12,7 @@ que te guste. Puedes entonces hacer preguntas como "Esta cadena coincide con el 
 El lenguaje de la expresión regular es relativamente pequeño y restringido, así que 
 no todo el procesamiento de RegEX es  posible
 </pre>.
-=== RegEx Meta Caractares ===
+== RegEx Meta Caractares ==
 <pre>
 Los Meta Caractares son:
 
@@ -22,9 +22,7 @@ Los metacaracteres '[' y ']' son usados para especificar un clase de caracteres 
 quieres coincidir. Puedes especificar los caracteres individualmente o en rangos
 de caracteres.Entonces; [abc] coincide con algún de los 
 caracteres 'a', 'b', o 'c' y [a-c], es decir  el rango de caracteres 'a' a 'c'.
-Si quieres buscar solo caracteres minusculas puedes escribir [a-z]. Si quieres incluir
-un '-' en el expresion, debe ser el primer or final caracter en las corchetas. [-0-9]
-o [a-zA-Z0-9-]
+Si quieres buscar solo caracteres minusculas puedes escribir [a-z].
 
 Metacaracteres no son activos a dentro de clases, entonces; [akm$] coincide a algún de
 los caracteres 'a', 'k', 'm', or '$'. '$' normalmente es un metacaracter, pero adentro
@@ -48,116 +46,17 @@ Algunos de los sequencias especiales:
 \d    Algún digito decimal [0-9].
 \D    Ningún digito decimal [^0-9].
 \s    Algún caracter de espacio blanco [ \t\n\r\f\v].
-\S    Ningún caracter de espacio blanco [^ \t\n\r\f\v].
+\S    Ningún caracter de espacio blanco [ ^\t\n\r\f\v].
 \w    Algún caracter alfanumerico [a-zA-Z0-9_].
 \W    Ningún caracter alfanumerico [^a-zA-Z0-9_].
 
 Puedes incluir las sequencias de caracteres especiales en una clase por ejemplo:
 [\s,.] coresponde a algún caracter de espacio blanco, o ',' o '.'.
 
-La sequencia especial '.' coresponde a algún caracter con excepción de
-línea nueva. Existe también (re.DOTALL) que coresponde a algún caracter, línea nueva incluida.
-</pre>
-
-=== Repetición ===
-
-<pre>
-Puede especificar que partes de la RE se deben repetir un determinado número de veces.
-
-El primer metacaracter para repetir cosas que vamos a ver es *. * No coincide con el 
-caracter literal '*', se especifica que el caracter anterior se puede emparejar cero 
-o más veces, en lugar de una sola vez.
-
-Por ejemplo, ca*t coincidirá a ct; (0 a caracteres), cat; (1 a caracter), 
-caaat; (3 a caracteres ), y así sucesivamente. El motor RE tiene varias limitaciones 
-internas derivadas del tamaño del de C tipo int que evitar que se emparejan más de 
-2 mil millones a los patrones repitidos. Generalmente no se escriben para que coincida 
-con la cantidad de datos.
-
-Otra metacaracter de repetición es +, lo que coincide con una o más veces. Preste especial
-atención a la diferencia entre * y +; * Coincide con cero o más veces, entonces
-lo que sea que se repiten pueden no estar presentes en absoluto, mientras + requiere al menos un
-aparición. Para usar un ejemplo similar, ca + t coincidirá gato (un 1), caaat (3 de una),
-pero no coincidirá ct.
-
-Hay dos más calificadores de repetición. El carácter de signo de interrogación,?, Coincide
-ya sea una o cero veces; se puede pensar en ello como algo que marca como opcional.
-Por ejemplo, Hacer-?lo coincide a Hacer-lo y también Hacerlo.
-
-El más complicado calificador re repetición es {m, n}, donde m y n son números enteros decimales.
-Este calificativo significa que debe haber al menos m repeticiones, y como máximo n. Por ejemplo,
-a/{1,3}b coincidirá con a/b, a//b, y a///b. No va a coincidir con ab, que no tiene barras,
-o a////b, que tiene cuatro barras.
-
-Puede omitir cualquiera de m o n; en ese caso, un valor razonable se asume para el que falta
-valor. Omitiendo m es interpretado como un límite inferior de 0, mientras que omite n resulta en una
-límite superior del infinito - de hecho, el límite superior es el límite de 2 millones millones
-
-Los otros tres clasificados pueden ser todos
-expresado usando esta notación. {0,} es el mismo que '*', {1,} es equivalente a '+',
-y {0,1} es el mismo que '?'. Es mejor usar '*', '+', o '?' cuando se puede, simplemente porque
-son más cortos y fáciles de leer.
+La sequencia especial '..' coresponde a algún caracter con excepción de
+línea nueva.
 
 </pre>
-
-=== Coincidir con caracteres especiales ===
-
-<pre>
-Este módulo proporciona RegEx operaciones similares a las encontradas en Perl.
-Ambos patrones y cadenas a ser buscados pueden ser cadenas Unicode, así como cadenas de 8 bits.
-
-Las expresiones regulares utilizan el caracter de barra invertida ('\') para indicar las formas especiales o para permitir
-caracteres especiales para ser utilizados sin necesidad de invocar su significado especial. Esto choca con Python
-el uso del mismo caracter para el mismo propósito en los literales de cadena; por ejemplo, para que coincida con una
-barra invertida literal, uno podría tener que escribir '\\\\' como la cadena de modelo, ya que el normal
-expresión debe ser \\, y cada barra invertida debe ser expresado como \\ dentro de una cadena literal.
-
-La solución es utilizar la notación cadena raw de Python para patrones de expresiones regulares; barras invertidas
-no se manejan de un modo especial en una cadena literal con el prefijo "r". Así r"\n" es un caracter especial de dos
-caracteres que contiene '\' y 'n', mientras que "\n" es una cadena de un caracter que contiene una nueva línea. 
-Normalmente patrones se expresarán en código Python usando esta notación de cadena raw
-
-Es importante tener en cuenta que la mayoría de las operaciones de expresiones regulares están disponibles como funciones de nivel de módulo
-y los métodos RegexObject. Las funciones son atajos que no requieren para compilar un objeto de expresión regular
-primero, pero falta algunos parámetros de ajuste.
-
-</pre>
-
-<table border="1">
-  <tr>
-    <th>
-      Regular String
-    </th>
-    <th>
-      Raw string
-    </th>
-  </tr>
-  <tr>
-    <td>
-      &quot;ab*&quot;
-    </td>
-    <td>
-      r&quot;ab*&quot;
-    </td>
-  </tr>
-  <tr>
-    <td>
-      &quot;\\\\section&quot;
-    </td>
-    <td>
-      r&quot;\\section&quot;
-    </td>
-  </tr>
-  <tr>
-    <td>
-      &quot;\\w+\\s+\\1&quot;
-    </td>
-    <td>
-      r&quot;\w+\s+\1&quot;
-    </td>
-  </tr>
-</table>
-
 [[Category:Programación en Python]]
 [[Category:PythonCabal]]
 [[Category:CursoPython]]
