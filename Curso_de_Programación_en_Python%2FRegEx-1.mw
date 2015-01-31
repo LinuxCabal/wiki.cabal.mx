@@ -1,0 +1,62 @@
+= RegEx =
+<pre>
+Expresiones regulares (llamadas REs, o regexes o los patrones regex) son esencialmente un pequeño,
+lenguaje especializado de programación embebido dentro de Python y disponible a través del re módulo.
+Usando este lenguaje para especificar las reglas de posibles cadenas de caracteres que desea buscar;
+Este conjunto puede contener frases, o direcciones de correo electrónico, o comandos de TeX o algo
+que te guste. Puedes entonces hacer preguntas como "Esta cadena coincide con el patrón?", o 
+"Es un partido para el patrón en cualquier lugar de esta cadena?".
+
+ También puede utilizar REs a modificar una cadena o dividirlo en varias formas.
+
+El lenguaje de la expresión regular es relativamente pequeño y restringido, así que 
+no todo el procesamiento de RegEX es  posible
+</pre>.
+== RegEx Meta Caractares ==
+<pre>
+Los Meta Caractares son:
+
+                         . ^ $ * + ? { } [ ] \ | ( )
+
+Los metacaracteres '[' y ']' son usados para especificar un clase de caracteres que
+quieres coincidir. Puedes especificar los caracteres individualmente o en rangos
+de caracteres.Entonces; [abc] coincide con algún de los 
+caracteres 'a', 'b', o 'c' y [a-c], es decir  el rango de caracteres 'a' a 'c'.
+Si quieres buscar solo caracteres minusculas puedes escribir [a-z].
+
+Metacaracteres no son activos a dentro de clases, entonces; [akm$] coincide a algún de
+los caracteres 'a', 'k', 'm', or '$'. '$' normalmente es un metacaracter, pero adentro
+de la clase de caracteres, el pierde su caracteristicas de metacaracter.
+
+El caracter '^' usado como el primer caracter adentro de un class puede coincidir a
+caracteres no espesificados. Entonces [^5] coincede a algún caracter que no es '5'.
+
+Un metacaracter muy importante en Python RegEx es el diagonal; '\'. Asi cómo en literales
+de cadenas de Python, el '\' seguida con varios caracters indica sequencias de significos
+especiales. Se usa también para escapar otro metacaracters para utilizarlas en los patrones
+entoces puedes escribir '\[' para indicar el metacaracter '[' literalmente y 
+\\' para indicar el metacaracter '\' literalmente.
+
+Algúnas de las sequencias de caracteres especiales representan caracteres muy utiles como
+unidades de digitos o letras o espacio blanco, Por ejemplo '\w' coincide can algún caracter
+alfannumérico que puede representar con [a-zA-Z0-9_].
+
+Algunos de los sequencias especiales:
+
+\d    Algún digito decimal [0-9].
+\D    Ningún digito decimal [^0-9].
+\s    Algún caracter de espacio blanco [ \t\n\r\f\v].
+\S    Ningún caracter de espacio blanco [ ^\t\n\r\f\v].
+\w    Algún caracter alfanumerico [a-zA-Z0-9_].
+\W    Ningún caracter alfanumerico [^a-zA-Z0-9_].
+
+Puedes incluir las sequencias de caracteres especiales en una clase por ejemplo:
+[\s,.] coresponde a algún caracter de espacio blanco, o ',' o '.'.
+
+La sequencia especial '..' coresponde a algún caracter con excepción de
+línea nueva.
+
+</pre>
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
