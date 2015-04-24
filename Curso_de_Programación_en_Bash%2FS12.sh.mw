@@ -1,0 +1,52 @@
+__NOTOC__
+* [[:#S12.sh | S12.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S12.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/bash
+
+while :; do
+  echo -n "Habla conmigo ... "; read ENTRADA
+    case $ENTRADA in
+      hola | Hola | HOLA)
+        echo "¡Hola a tí!"
+      ;;
+      adios | Adios | ADIOS)
+        echo "¡Que te vaya bien!"; break
+      ;;
+      *)
+        echo "Lo siento, No te entiendo"
+      ;;
+    esac
+  done
+  echo; echo "¡Listo!"
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr BashClase]$ bash S12.sh 
+Habla conmigo ... Hola
+¡Hola a tí!
+Habla conmigo ... hola
+¡Hola a tí!
+Habla conmigo ... Cómo estas?
+Lo siento, No te entiendo
+Habla conmigo ... Quien de las dos palabras no entiendes?
+Lo siento, No te entiendo
+Habla conmigo ... adios
+¡Que te vaya bien!
+
+¡Listo!
+[rrc@Llawyr BashClase]$ 
+</pre>
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
