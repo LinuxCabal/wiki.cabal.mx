@@ -1,0 +1,74 @@
+__NOTOC__
+* [[:#S22.sh | S22.sh]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== S22.sh ==
+
+<syntaxhighlight lang="bash" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/bin/sh
+# Buscador archivos  SUID
+
+for match in $(find /usr/sbin -type f -perm /4000 -print)
+  do 
+    echo "\$match is: $match"
+    echo -e "\tEl dueño es: $(ls -al $match | cut -d ' ' -f 3)"
+    echo -e "\tEl grupo es: $(ls -al $match | cut -d ' ' -f 4)"
+    echo -e "\tSus derechos son: $(ls -al $match | cut -c 2-10)"
+    echo -e "\tEl tamaño es: $(ls -al $match | cut -d ' ' -f 5)"
+    echo
+done
+
+</syntaxhighlight>
+
+=== Resultado ===
+ 
+ [rrc@Pridd BashClase]$ ./S22.sh 
+ find: `/usr/sbin': Permission denied
+ [rrc@Pridd BashClase]$ su -
+ Password: 
+ [root@Pridd ~]# cd ~rrc/BashClase/
+ [root@Pridd BashClase]# ./S22.sh 
+ $match is: /usr/sbin/traceroute
+ 	El dueño es: root
+ 	El grupo es: ntools
+ 	Sus derechos son: rwsr-x---
+ 	El tamaño es: 47164
+ 
+ $match is: /usr/sbin/userhelper
+ 	El dueño es: root
+ 	El grupo es: root
+ 	Sus derechos son: rwsr-xr-x
+ 	El tamaño es: 34552
+ 
+ $match is: /usr/sbin/usernetctl
+ 	El dueño es: root
+ 	El grupo es: root
+ 	Sus derechos son: rwsr-xr-x
+ 	El tamaño es: 6736
+ 
+ $match is: /usr/sbin/fileshareset
+ 	El dueño es: root
+ 	El grupo es: root
+ 	Sus derechos son: rwsr-xr-x
+ 	El tamaño es: 10787
+ 
+ $match is: /usr/sbin/traceroute6
+ 	El dueño es: root
+ 	El grupo es: root
+ 	Sus derechos son: rwsr-xr-x
+ 	El tamaño es: 12436
+ 
+ $match is: /usr/sbin/pppd
+ 	El dueño es: root
+ 	El grupo es: root
+ 	Sus derechos son: rwsr-xr-t
+ 	El tamaño es: 322132
+  
+ [root@Pridd BashClase]#
+
+=== Explicación ===
+
+[[Category:Programación en Bash]]
+[[Category:CursoBash]]
