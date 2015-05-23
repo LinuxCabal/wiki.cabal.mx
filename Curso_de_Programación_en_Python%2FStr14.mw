@@ -1,0 +1,127 @@
+__NOTOC__
+* [[:#Str14 | Str14.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str14.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase1 = "Hola Mundo"
+Frase2 = "HolaMundo"
+Frase3 = "1234"
+Frase4 = "HOLA"
+Frase5 = "hola"
+Frase6 = "\t \n"
+Frase7 = "NIÑOSÁÉÍÓÚ"
+
+
+print( "\nEn la frase:\n\"", Frase1, "\"\n ", sep='' )
+print( "Usamos .isalnum() a ver si todos los caracteres son numéricos\n",
+        Frase1.isalnum() )
+print( "Usamos .isalpha() a ver si todos los caracteres son alphabeticos\n",
+        Frase1.isalpha() )
+print( "Usamos .isdigit() a ver si Frase1 tiene dígitos\n",
+        Frase1.isdigit() )
+print( "Usamos .istitle() a ver si Frase1 es un título\n",
+        Frase1.istitle() )
+print( "Usamos .isupper() a ver si Frase1 es todo en mayúsculas\n",
+        Frase1.isupper() )
+print( "Usamos .islower() a ver si Frase1 es todo en minúsculas\n",
+        Frase1.islower() )
+print( "Usamos .isspace() a ver si Frase1 es todo en espácios blancos\n",
+        Frase1.isspace() )
+
+print( "\nEn la frase:\n\"", Frase2, "\"\n ", sep='' )
+print( "Usamos .isalpha() a ver si todos los caracteres son alphabéticos\n",
+        Frase2.isalpha() )
+
+print( "\nEn la frase:\n\"", Frase3, "\"\n ", sep='' )
+print( "Usamos .isalnum() a ver si todos los caracteres son numéricos\n",
+        Frase3.isalnum() )
+print( "Usamos .isdigit() a ver si todos los caracteres son numéricos\n",
+        Frase3.isdigit() )
+
+print( "\nEn la frase:\n\"", Frase4, "\"\n ", sep='' )
+print( "Usamos .istitle() a ver si todos los caracteres son en mayúsculas\n",
+        Frase4.isupper() )
+
+print( "\nEn la frase:\n\"", Frase5, "\"\n ", sep='' )
+print( "Usamos .istitle() a ver si todos los caracteres son en minúsculas\n",
+        Frase5.islower() )
+
+print( "\nEn la frase:\n\"", Frase6, "\"\n ", sep='' )
+print( "Usamos .isspace() a ver si todas las caracteres son en espścios blancos\n",
+        Frase6.isspace() )
+print( "Usamos .isupper() a ver si todos los caracteres son en mayúsculas\n",
+                        Frase7.isupper() )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str14.py
+ 
+ En la frase:
+ "Hola Mundo"
+  
+ Usamos .isalnum() a ver si todos los caracteres son numéricos
+  False
+ Usamos .isalpha() a ver si todos los caracteres son alphabéticas
+  False
+ Usamos .isdigit() a ver si Frase1 tiene dígitos
+  False
+ Usamos .istitle() a ver si Frase1 es un título
+  True
+ Usamos .isupper() a ver si Frase1 es todo en mayúsculas
+  False
+ Usamos .islower() a ver si Frase1 es todo en minúsculas
+  False
+ Usamos .isspace() a ver si Frase1 es todo en espácios blancos
+  False
+ 
+ En la frase:
+ "HolaMundo"
+  
+ Usamos .isalpha() a ver si todos los caracteres son alphabéticos
+  True
+ 
+ En la frase:
+ "1234"
+  
+ Usamos .isalnum() a ver si todos los caracteres son numéricos
+  True
+ Usamos .isdigit() a ver si todos los caracteres son numŕricos
+  True
+ 
+ En la frase:
+ "HOLA"
+  
+ Usamos .istitle() a ver si todos los caracteres son en mayúsculas
+  True
+ 
+ En la frase:
+ "hola"
+  
+ Usamos .istitle() a ver si todos los caracteres son en minúsculas
+  True
+ 
+ En la frase:
+ "	 
+ "
+  
+ Usamos .isspace() a ver si todos los caracteres son en espácios blancos
+  True
+
+Usamos .isupper() a ver si todos los caracteres son en mayúsculas
+ True
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
