@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#Str10 | Str10.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str10.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Buenas tardes a todos"
+
+print( "\nEn la frase:\n\"", Frase, "\"\n ", sep='' )
+print( "Usamos .replace para cambiar \"tardes\" con \"noches\"\n",
+        Frase.replace( "tardes", "noches" ) )
+
+print( "Frase es {}" .format( Frase ) )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str10.py
+ 
+ En la frase:
+ "Buenas tardes a todos"
+  
+ Usamos .replace para cambiar "tardes" con "noches"
+  Buenas noches a todos
+ Frase es Buenas tardes a todos
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
