@@ -1,0 +1,39 @@
+__NOTOC__
+* [[:#Str13 | Str13.py]]
+** [[:#Resultado | Resultado]]
+** [[:#Explicación | Explicación]]
+
+== Str13.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Frase = "Hola Mundo"
+
+print( "\nEn la frase:\n\"", Frase, "\"\n ", sep='' )
+print( "Usamos print( \":\".join( Frase ) ) para seperar cada letra con \':\'" )
+print( ":".join( Frase ) )
+print( "\",\"".join( Frase ) )
+
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+[rrc@Llawyr PythonClase]$ ./Str13.py 
+ 
+ En la frase:
+ "Hola Mundo"
+  
+ Usamos print( ":".join( Frase ) ) para seperar cada letra con ':'
+ H:o:l:a: :M:u:n:d:o
+H","o","l","a"," ","M","u","n","d","o
+
+=== Explicación ===
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
