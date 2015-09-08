@@ -1,0 +1,376 @@
+'''PythonCabal''' es el grupo de usuarios de [http://python.org Python] en Guadalajara.  Nos reunimos el último lunes de cada mes de 19:00 a 21:00 horas en la cafetería de HP en Loma Bonita ([http://maps.google.com/maps/ms?msid=214712019379957164455.0004aa115be371a0f4073&msa=0&ll=20.636941,-103.408792&spn=0.007068,0.013797 mapa]).  ¡Los principantes son bienvenidos! - Python es [http://xkcd.com/353/ sencillo y fácil de aprender]
+
+Inscríbete en la [http://groups.google.com/group/pythoncabal lista de correos] para que recibas los avisos y puedas hacer preguntas.  Síguenos en [https://twitter.com/pythoncabalgdl twitter] y [https://plus.google.com/u/0/112819024385203685673/posts Google+]
+
+= Principiantes =
+
+Empieza aquí:
+*Lee el [http://docs.python.org/3/tutorial/index.html tutorial de Python3] oficial, explica desde cero y con bastantes ejemplos.  Existe el [http://docs.python.org.ar/tutorial/contenido.html tutorial de Python 2.7] en Español.
+
+Practica Python sin necesidad de instalarlo:
+*Haz los ejercicios en [http://codingbat.com/python CodingBat], solo necesitas un navegardor web.  Puedes crear una cuenta para ir guardando el avance entre sesiones.
+
+Instálalo en tu PC:
+*Instala [[Python 3#Instalar|Python 3]], descargas 10MB y toma no más de un minuto y hacer click unas tres veces en ''Ok'' para instalarlo.
+
+Practica con Python ya instalado:
+*Haz los [[Python Koans|Koans de Python]]
+
+Colabora con más participantes en PythonCabal, publica tu código para que otros lo conozcan y colaboren contigo:
+*Instala [[Instalación de Git|Git]] - una herramienta para el control de versiones
+*Crea una cuenta en [[GitHub]] - un lugar para compartir código y proyectos
+
+En caso de que tengas alguna duda, pregunta en la lista de correos.
+
+= Temas para siguientes reuniones =
+*[https://docs.google.com/document/d/1a8urS0S5h8E4U9YIZwRF3oSO1ZJ3Qzg0zSA61CVBf54/edit#heading=h.s2wwc772ieew Temas de interés para PythonCabal en 2014]
+
+= Reuniones anteriores =
+== 2015 ==
+=== Agosto 31 ===
+* Introducción a [https://micropython.org/ Micro Python], Python 3 ejecutando en microcontroladores, por Patricio.  Ejecutamos y modificamos varios de los ejemplos en [http://micropython.org/live/ Micro Python Live]. [http://slides.com/patriciopaez/micropython#/ Las láminas].
+* Mostrar un ejemplo de localización de cara en una imagen de la webcam usando [http://opencv.org/ OpenCV], por Sergio.
+[https://plus.google.com/u/0/b/112819024385203685673/events/cgdvndrn26j35kmbaliiok3arfg El hangout] de esta sesión.
+Asistimos Rafael, Sergio, Gerónimo, Beto, Patricio.
+
+=== Mayo 25 ===
+=== Abril 27 ===
+=== Marzo 30 ===
+=== Febrero 23 ===
+* Mostramos ejemplos de uso de [https://bitbucket.org/jurko/suds suds-jurko] con Python 3.4 en Fedora, para consumir servicios web.  Se utilizó http://www.webservicex.net/globalweather.asmx?WSDL que proporcionar información del clima por ciudad.
+* Repasamos los avances en [https://github.com/LinuxCabal/admin-cfdi admin-cfdi].
+**  Para usar los explicit waits de Selenium queremos ejercitar el método [https://github.com/LinuxCabal/admin-cfdi/blob/master/admincfdi.py#L377 _download_sat(data)] de Application, sin la intefase gráfica y usando pdb, para así poder realizar pruebas funcionales fácilmente.
+Asistimos Quetza, Miguel, Sergio, Patricio.
+
+=== Enero 26 ===
+* Presentamos [https://github.com/LinuxCabal/admin-cfdi admin-cfdi], el proyecto en el cual empezamos a colaborar.  Intentamos ejecutar admin-cfdi en un ambiente virtual con Python 3.3 en Fedora, pero tuvimos fallas.  Se creó el [https://github.com/LinuxCabal/admin-cfdi/issues/7 issue 7] en github al respecto.
+Asistimos Rafael, Sergio, Gabriel, Patricio.
+
+== 2014 ==
+=== Noviembre 24 ===
+* Widgets del módulo ttk de tkinter de la librería estándar, mostramos ejemplos de TreeView y NoteBook, mencionamos los demás widgets avanzados de ttk.
+* Comentamos ideas sobre cómo organizar un primer sprint.  Empezar por escoger un proyecto ya existente al cual podamos contribuirle documentación, corregir bugs, implementar mejoras, etc.
+Asistimos Miguel, Gabriel, Sergio, Patricio.
+=== Octubre 27 ===
+* Invitación al [http://coderetreat.mx/ Global Day of Coderetreat] que tendrá lugar el sábado 15 de noviembre en Guadalajara y Colima.
+* Introducción y demostración del manejo de Bluetooth desde Python 3 usando los módulos [https://pypi.python.org/pypi/PyBluez PyBluez] y [https://pypi.python.org/pypi/lightblue/0.2 lightblue], por Iván. Rafael participó conectado remotamente.
+* Introducción al módulo [https://docs.python.org/3/library/asyncio.html asyncio] para entrada/salida asíncrona, que se introdujo en la biblioteca estándar en Python 3.4 por Patricio.  Ver la [http://wiki.cabal.mx/wiki/Introducci%C3%B3n_a_asyncio referencia] que tenemos en el wiki de LinuxCabal.
+=== Septiembre 29 ===
+* Una demostración del módulo [https://docs.python.org/3/library/sqlite3.html sqlite3] de la biblioteca estándar.
+El [http://www.youtube.com/watch?v=gVwt2f7ZaxA video] en Youtube. 1 hora 17 minutos.  Asistieron Abraham, Gabriel y tres participantes más.
+=== Agosto 25 ===
+* Módulos útiles de la librería estándar de Python 3:
+** textwrap
+** traceback
+** urllib.request
+** tkinter
+** cmd
+El [https://www.youtube.com/watch?v=rVNDN1cnFYg video] en Youtube, 1 hora 14 minutos.  Asistieron Rafael, Abraham y Gabriel.
+
+=== Julio 28 ===
+* EuroPython en Berlín, terminó una semana antes, comentarios acerca de los temas presentados.
+* ''Flying high: OpenGL from Python'', mostrar este desarrollo de Jonathan Hartley para generar figuras usando pyglet y OpenGL.
+El [https://www.youtube.com/watch?v=R3ZWxeEHhR4 video] en YouTube, 40 minutos.  Durante la animación a partir del minuto 27, el audio se entrecorta.
+
+=== Junio 30 ===
+* Hackeando Open Stack por Gerónimo y Víctor
+* Tip sobre lectura de XML por Patricio
+El [https://www.youtube.com/watch?v=_RmejygsS60 video] en YouTube, 1 hora 53 minutos.
+
+=== Mayo 26 ===
+*Depurando fallas en Python con gdb.  Vimos un ejemplo en el que se produce un ''segmentation fault'' que termina el interpretador; en este caso [https://docs.python.org/3/library/pdb.html pdb] no nos puede ayudar.  Usando gdb, éste atrapa el ''segmentation fault'' y nos permite examinar el estado en que se encontraban tanto el interpretador como nuestro código de Python.  Usamos los paquetes python-dbg (Debian) o python-debuginfo (Redhat).<br>Ver:
+**El artículo [https://wiki.python.org/moin/DebuggingWithGdb DebuggingWithGdb] en el wiki de python.org.
+**La sección [http://scipy-lectures.github.io/advanced/debugging/index.html#debugging-segmentation-faults-using-gdb Debugging segmentation faults using gdb] en [http://scipy-lectures.github.io/index.html Python Scientific Lecture Notes]
+Usamos este ejemplo que produce el error:
+<source lang="python">
+class Clase:
+    def metodo(self):
+        from ctypes import string_at
+        string_at(0xffff0000)
+
+i = Clase()
+i.metodo()
+</source>
+Y estos comandos:
+ python3 segfault.py
+ python3 -m pdb segfault.py
+ gdb --args python3 segfault.py
+
+*Comentamos sobre el [http://www.raspberrypi.org/raspberry-pi-compute-module-new-product/ Compute Module] de Raspbery Pi, introducido en Abril de 2014.
+*Sugerimos ver el tema [https://www.youtube.com/watch?v=jzQmQDIii14&index=13&list=WL Best Practices for Software Engineers] (YouTube 1 hora y 20 minutos) presentado por Shannon -jj Behrens en la reunión de Bay Piggies de mayo de 2014.
+
+[https://www.youtube.com/watch?v=MQyvsmkdN8U El video] (33 minutos). Asistieron Rafael, Sergio e Iván.
+
+=== Abril 28 ===
+Resumen de PyCon 2014 por Patricio, [https://www.youtube.com/watch?v=8FEbhytlHzE el video] (YouTube 30 minutos) y [https://docs.google.com/presentation/d/1NHKNYjDd-hGiKsGtCBBuv7Q8qeifO09i54klonBzFpY/present#slide=id.p la presentación] con 12 láminas.  Tuvimos tres participantes.
+
+=== Marzo 31 ===
+Gerónimo y Víctor presentaron OpenStack. El video está [https://www.youtube.com/watch?v=r3kJGzvkMGM aquí] (YouTube).
+
+=== Febrero 24 ===
+Rafael nos presentó una introducción a Flask.  El video está [https://www.youtube.com/watch?v=prk0IMPKC6Q aquí] (YouTube 1 hora 6 minutos) Empieza a los 3 minutos 30 segundos y termina a los 44 minutos.  Rafael mostró:
+* Qué es un microframework
+* El ejemplo Hello world y cómo funciona.
+* El ejemplo ''días para el futuro'', similar al anterior pero hace un cálculo con fechas.
+* ToDo List, comenzando por las necesidades.
+** Uso del módulo sqlite3 para una base de datos sqlite.
+** El script ''todo.sql'' para crear la tabla
+** Las funciones de la capa para accesar la base de datos.
+** El uso de las plantillas con Jinja2, usando herencia, un ciclo y un filtro.
+** La operación de las tres funciones controladoras o vistas.
+
+Patricio compartió cómo usar algunas opciones de línea de comandos del interpretador de Python, y en qué casos son útiles.  Empieza en el minuto 49 con 15 segundos.
+* -V versión del interpretador
+* -c <commmando(s)>
+* -m <modulo>
+* -h
+* PYTHONENCODING=utf-8 útil en Python 2 para eliminar el error ''UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)'' en comandos print con cadenas unicode, como ''print u"á"''.
+* PYTHONPATH=. para utilizar módulos o paquetes sin instalarlos en un ambiente virtual o en el Python del sistema.
+
+Fuimos solamente tres participantes y cinco personas se conectaron al hangout.
+
+=== Enero 25 ===
+Fue en sábado y en las instalaciones de LinuxCabal A.C.  Mauricio Baeza, creador de [http://facturalibre.org/ Factura Libre], estuvo en Guadalajara y nos [https://www.youtube.com/watch?v=8P6HzRyfWns habló sobre esta aplicación] (YouTube 1 hora 47 minutos).  Es una extensión de Libre Office implementada en Python.
+
+== 2013 ==
+
+=== Octubre 28 ===
+No tuvimos asistentes a la reunión presencial.  No pudimos iniciar el hangout, debido a [https://productforums.google.com/d/msg/hangouts/vYsaeEnXJXs/ypZC2TxKzHMJ un problema conocido] en Debian.  Se resolvió después desinstalando el paquete <code>libudev0</code>
+
+=== Septiembre 30 ===
+Gabriel nos compartió cómo usó el módulo curses para mostrar resultados de medir transferencias de datos entre varios servidores  virtuales.  Vimos el código y los pasos principales.  Tuvimos 5 participantes.
+
+=== Agosto 26 ===
+*Programación en OpenGL con Python, por Sergio.
+*Procesando información con Python, por Patricio.  Usando módulos útiles de la biblioteca estándar de Python 3 para descargar, traducir y procesar datos disponibles en internet.
+Ver [http://www.youtube.com/watch?v=twsVXyzhFas el hangout], 1 hora.  Tuvimos 8 participantes.
+
+=== Julio 29 ===
+Introducción a [http://seleniumhq.org Selenium] para automatizar el navegador web.  El tutorial incluyó:
+*Conceptos básicos de Selenium
+*Crear un entorno virtual con Python 3
+*Instalar los bindings de Python para Selenium
+*Crear un ejemplo con Firefox para probar la página python.org y su función de búsqueda
+*Crear pruebas funcionales usando unittest
+Buena parte de la sesión fue depurar los primeros dos pasos para los principantes. Alberto encontró el código para usar un proxy en el Webdriver, y lo probamos con Chrome.  Tuvimos 8 participantes. Se puede ver la grabación de la reunión por hangout-youtube. Surgieron las dudas sobre la automatización por navegador. Se mostro el navegador que usa Selenium, así como los reportes que pudiéramos esperar del testing.
+
+El resumen del tema en 28 minutos está en [http://www.youtube.com/watch?v=4GgsuYswYDE este video] en youtube.com.
+
+=== Junio 24 ===
+Tuvimos una introducción a [http://ipython.org IPython] con Python 3, mostrando aspectos básicos del modo de consola, el modo gráfico y el modo de cuaderno HTML.  Mostramos [http://matplotlib.org/users/shell.html ejemplos] de crear gráficas con matplotlib.  En Debian/Ubuntu se tienen que instalar los paquetes:
+* ipython3
+* ipython3-qtconsole
+* ipython3-notebook
+* python3-matplotlib en Ubuntu 13.04 o Debian experimental
+El comando para terminal:
+ ipython
+Para consola gráfica con soporte de matplotlib:
+ ipython qtconsole --pylab
+Para cuaderno HTML con matplotlib:
+ ipython notebook --pylab
+
+Comentamos algunos trucos en el archivo <code>.vrimrc</code> de vim para editar programas de Python, y finalmente revisamos los trucos más relevantes del artículo [http://stackoverflow.com/questions/101268/hidden-features-of-python Hidden features of Python] en StackOverflow.com.
+
+Tuvimos 13 participantes, algunos de primera vez, y esta vez sí pedimos pizzas.
+
+=== Mayo 27===
+Hicimos el ejercicio ''Calc Stats'' de [http://www.cyber-dojo.com/ cyber-dojo] durante la sesión.  Sugerimos hacer la práctica en parejas en una misma PC, algunos lo hicieron en individual, y explicamos que lo importante es observar el proceso, no se trata de completar el ejercicios en el menor número de pasos.  Gracias a Miguel aprendimos que es posible renombrar los archivos iniciales <code>test_untitled.py</code> y <code>untitled.py</code>, por ejemplo a <code>test_stats.py</code> y <code>stats.py</code>, y también es posible crear archivos.
+
+Creamos la sesión [http://www.cyber-dojo.com/dashboard/show/9196D2 9196D2] que está disponible para repasarla: En la página principal teclear el codigo de la sesión en el campo ''practice-id'' y hacer click en ''Review''.  Escogimos uno de los ejercicios más sencillos, para así concentrarnos en el proceso de Test-Driven Development más que en el algoritmo del problema.  Los ejercicios más sencillos en cyber-dojo son:
+*''Calc Stats''
+*''Leap Years''
+*''Fizz Buzz''
+En el siguiente nivel en donde ya toma relevancia el algoritmo del problema, están los ejercicios:
+*''LCD Digits''
+*''100 Doors''
+*''Prime Factors''
+
+Rafael nos recomendó inscribirnos a estos dos boletines semanales con noticias sobre Python:
+*[http://pythonweekly.com Python Weekly]
+*[http://pycoders.com Pycoders]
+
+Asistimos 8 personas, de las cuales dos eran de primera vez.
+
+=== Abril 29 ===
+Practicamos con una Raspberry Pi modelo B, hicimos este ejemplo de [http://raspberry.io/projects/view/reading-and-writing-from-gpio-ports-from-python/ leer de y escribir a puertos con Python] usando el módulo GPIO.  Usamos un protoboard y [http://www.adafruit.com/products/794 cables] que en un extremo tienen plug para conectar a los pines del cabezal de entrada/salida en la Rasberry Pi, y en el otro extremo tienen punta para insertarse en el protobard.
+
+Logramos encender un LED conectado a la línea 25, pero la lectura del estado de un interruptor conectado en la línea 4 dió siempre 0.  La razón es que el otro extremo del interruptor estaba conectado a tierra.  La línea 4 se programa como entrada con una resistencia a tierra mediante el parámetro <code>pull_up_down=GPIO.PUD_DOWN</code> (ver el listado abajo), por lo que era necesario conectar el interruptor a 3V para que suba el voltaje de esa línea y la lectura reporte 1.
+<source lang="python">
+import RPi.GPIO as GPIO
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(4, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(25, GPIO.OUT, initial=GPIO.LOW)
+GPIO.add_event_detect(4, GPIO.BOTH)
+
+def my_callback():
+    GPIO.output(25, GPIO.input(4))
+GPIO.add_event_callback(4, my_callback)
+</source>
+También probamos un [http://www.adafruit.com/products/814 adaptador WiFi USB miniatura], se conectó a la red inalámbrica.
+Tuvimos 8 participantes en esta reunión.
+
+=== Marzo 25 ===
+El tema fue [https://us.pycon.org/2013/ PyCon 2013].  La conferencia se llevó a cabo del 15 al 17 de marzo en Santa Clara, California, una semana antes de la reunión, seguida de los sprints del 18 al 21 de marzo ahí mismo.  Dos de los participantes de PythonCabal asistieron a la conferencia y a los sprints, y compartieron sus impresiones.
+
+*Mostramos algunas imágenes del llenado por voluntarios de las 2,500 bolsas con promocionales antes de la conferencia, de la feria de empleos (había poco más de 50 empresas buscando programadores de Python), la sesión de posters y de los sprints.
+
+*Se comentaron las aportaciones durante los sprints:
+**Rafael contribuyó a CPython para cerrar el bug [http://bugs.python.org/issue17448 17448] ''test_sax should skip when no xml parsers are found''.  Rafael recomendó acercarse a hacer aportaciones en CPython, no es difícil y hay una [http://docs.python.org/devguide/#contributing Guía de cómo contribuir] muy bien explicada.
+**Patricio contribuyó en [https://pypi.python.org/pypi/deform/0.9.7 deform] (Un sistema para generación y validación de formas HTML) con el issue [https://github.com/Pylons/deform/issues/149 149] ''Sequence of simple types does not deserialize unless it has a name'': un usuario propuso un parche, pero faltaba inmplementar las pruebas unitarias; el issue [https://github.com/Pylons/deform/pull/142 142] ''Add support for html5 native time-related widgets'': un usuario propuso cambios, entonces se realizaron pruebas funcionales automatizadas en una instalación local de  [http://deformdemo.repoze.org/ deformdemo] usando [http://docs.seleniumhq.org/ Selenium] y se les dió visto bueno a los cambios.
+
+*Rafael comentó sobre la reunión de organizadores de grupos de usuarios de Python que hubo el viernes 15 de marzo.  Patricio mejoró las páginas wiki de [http://wiki.python.org/moin/LocalUserGroups Grupos de usuarios] e [http://wiki.python.org/moin/StartingYourUsersGroup Iniciar un grupo de usuarios de Python] durante los sprints.
+
+*Mostramos la página que lista los más de 100 [http://pyvideo.org/category/33/pycon-us-2013 videos de PyCon 2013]
+
+*Proyectamos el video de la presentación [http://pyvideo.org/video/1677/how-the-internet-works How the internet works] por Jessica McKellar del 15 de marzo.  Dura 30 minutos incluyendo la sesión de preguntas, está ameno y muestra ejemplos del uso de [http://www.secdev.org/projects/scapy/ scapy], un servidor HTTP echo con [http://twistedmatrix.com/trac/ twisted], un cliente HTTP con urllib2 y otros.
+
+Tuvimos 7 participantes en la reunión.  No hicimos hangout porque la WiFi nos dió problemas. ¡Gracias a Gabriel que logró conectar su laptop con Ubuntu y así pudimos navegar!.
+
+=== Febrero 25 ===
+Instalamos Pyramid en un ambiente virtual de Python 3.3, resolviendo algunos errores en el proceso, y corrimos las pruebas.  Después corrimos la aplicación más sencilla de un solo archivo, y quedó como tarea iniciar cada quien el tutorial del wiki con SQL Alchemy.  Los pasos están descritos en [[Cómo contribuir a Pyramid]]. Tuvimos 6 participantes, más Armando que se conectó al Hangout.
+=== Enero 26 ===
+Se mostró [[Cómo contribuir a StringTemplate]], un módulo de plantillas, empezando el trabajo para migrar la versión que funciona en Python 2 a Python 3.3.  Los pasos están descritos en [[Cómo contribuir a StringTemplate]].
+
+== 2012 ==
+=== Noviembre 26 ===
+Toño Sánchez nos presentó ''Uso de las funciones y decoradores de Python'' mediante varios ejemplos que preparó y explicó paso a paso.
+
+=== Octubre 29 ===
+Se mostró cómo usar el módulo [http://pypi.python.org/pypi/coverage coverage] para correr las pruebas y después reportar el porcentaje de cobertura.  Graph.py tenía 73% y vimos cómo agregando tres pruebas unitarias y pidiendo a coverage que ejercite la función main de Graph.py, se alcanzó el 100%.
+
+Vimos cómo usar [http://pypi.python.org/pypi/virtualenv virtualenv] (paquete ''python-virtualenv'' en Debian y Ubuntu) para crear instalaciones de Python locales, que no afectan a la instalación del sistema, y algunos casos de instalar paquetes usando easy_install y pip.  Mostramos el ejemplo de hacer un [https://github.com/LinuxCabal/Grafo-TDD/pull/1 Pull request] en github.com y aceptarlo en el repositorio Grafo-TDD de LinuxCabal para incorporar cambios.
+
+Usamos por primera vez una red local inalámbrica que nos permite compartir la pantalla de cualquier participante a los demás, y también nos da acceso a internet.  Fuimos 12 participantes.
+
+=== Septiembre 24 ===
+Miguel compartió cómo implementar una función sencilla, empezando por crear un módulo de pruebas y la primera prueba unitaria desde cero.  Se mostraron cómo usar el módulo ''unittest'', su clase ''TestCase'' y sus métodos ''assertEqual'' y ''assertTrue''.  Empezamos con el archivo de pruebas ''TestToolkit.py'' que contiene:
+<source lang="Python">
+import unittest
+
+class TestCase( unittest.TestCase ):
+    def test_suma( self ):
+        from toolkit import suma
+        result = suma( 2, 5 )
+        self.assertEquals( result, 7 )
+
+if __name__ == '__main__':
+    unittest.main()
+</source>
+
+Inicialmente la prueba da un error: toolkit y suma no existen.  Después creamos el módulo ''toolkit.py'', primero con una función suma que no hace nada.  La prueba ya no da error, ahora falla.  Enventualmente implementamos suma de forma que la prueba unitaria pasó:
+<source lang="Python">
+def suma( a, b ):
+    """ Regresa la suma de a + b """
+    return a + b
+</source>
+Las pruebas se corren así:
+ python3 TestToolkit.py
+También así:
+ python3 -m unittest TestToolkit
+y podemos especificar el caso y/o la prueba:
+ python3 -m unittest TestToolkit.TestCase.test_suma
+
+Al final de la reunión acordamos que para el siguiente mes escogeremos un proyecto y empezaremos su implementación usando la metodología Test Driven Development o TDD.
+
+=== Agosto 27 ===
+[https://github.com/arksega Sergio Gutiérrez] mostró un [https://github.com/arksega/Blender-scripts/blob/master/circular-graph.py ejemplo de Python] para crear una gráfica de pastel de 3D en Blender.  [http://www.blender.org/ Blender] hace modelado y animación en 3D, incluye una consola interactiva de Python 3 y un editor para escribir programas que creen objetos, texturas, animaciones y todo lo que puede hacer Blender.  Sergio explicó también conceptos y operaciones básicas de Blender.
+
+[[image:Ejemplo-sergio-thumb.png|center]]
+[http://wiki.cabal.mx/images/Ejemplo-sergio.png Ver imagen en tamaño original]
+
+=== Julio 30 ===
+Empezamos comentando sobre [https://github.com/gregmalcolm/python_koans/wiki Python Koans], el ejercicio que propusimos hacer en la reunión anterior.  Sergio nos mostró que incluye un caso que usa la metodología TDD, Test Driven Development:  se te dan ya elaboradas nueve pruebas unitarias que especifican una función, y uno tiene que escribir los comandos de la función para que satisfaga esas pruebas.
+
+Por alguna razón surgió el tema de cómo haces cuando aparece un error difícil de encontrar en un programa o sistema basado en Python?  Entonces mostramos una de las formas de usar [http://docs.python.org/py3k/library/pdb.html pdb], el depurador de Python que está incluído en la librería estándar, para correr tu programa y ver variables, ir paso a paso, ver subir o bajar en el stack, poner breakpoints, etc.
+
+Siguiendo el tema, despues vimos el video [http://www.youtube.com/watch?v=vfPtGsSJldg Introduction to PDB] que presentó Chris McDonough en la PyCon este año,  Dura 1/2 hora y está muy ilustrativo.  Como dice Chris al inicio de su presentación: es mejor conocer pdb y no usarlo, que necesitarlo y ni saber que existe ;)
+
+Esta vez tuvimos cinco participantes.  Georgina y Sandino nos compartieron unas botanas que llevaron, así que esta vez no pedimos pizzas.
+
+=== Junio 25 ===
+Acordamos hacer el Python Koans y comentar en la lista si hay dudas.
+
+=== Mayo 28 ===
+Mostramos un ejemplo de pygame con un ícono de una bola que se mueve, rebotando en los límites de la ventana.  Presentamos el módulo turtle de la librería estándar, cómo correr las demo y las demos en el módulo turtledemo.
+
+=== Abril 23 ===
+Vimos el video [http://www.youtube.com/watch?v=Xk6gQ6s2QjU Through The Ether And Back Again: What Happens To A Packet When You Send It] por Glyph Lefkowitz, fundador del proyecto [http://twistedmatrix.com/trac/ Twisted], un framework para escribir programas de red asíncronos en Python.  22 minutos más preguntas.
+
+= Cómo participar en este grupo =
+* En la sección '''Cosas por hacer''' más abajo hay algunas tareas en las que podrías ayudar. Algunas no requieren programar, sino simplemente buscar información, y le van a servir a todo el grupo.  Avisa en la lista si vas a realizar una tarea o si ya la terminaste.
+* Instala el '''software requerido''' en tu PC (Siguiente sección).  En la lista de correos te podemos ayudar si tienes algún problema instalando o utilizando esos programas.
+* En la sección '''Inmersión en Python''' hay tres tutoriales que te pueden introducir a Python y a Git si aún no los conoces.
+* En la sección '''Proyectos''' puedes conocer el primer proyecto que hicimos.  Si ya conoces un poco de Python y de Git, descarga el código de uno de los proyectos para que lo conozcas, y porqué no, podrías hacer alguna mejora para que sea agregada al código.
+
+= Software requerido =
+#Instala [[Python 3#Instalar|Python 3]]
+#Instala [[Instalación de Git|Git]]
+#Crea una cuenta en [[GitHub]]
+#Instala [[PyYAML]]
+
+= Inmersión en Python =
+* Esta serie de tres tutoriales en Español introduce control de versiones y lo básico de Python y gráficas con tkinter.
+# [http://www.linuxcabal.org/PythonCabal/tutorial-python3-git.html Tutorial de Python 3 y Git parte 1]
+# [http://www.linuxcabal.org/PythonCabal/tutorial-python3-git-II.html Tutorial de Python 3 y Git parte 2]
+# [http://www.linuxcabal.org/PythonCabal/graficas-python3-tkinter.html Gráficas con Python 3 y tkinter]
+
+* [http://www.khanacademy.org/science/computer-science Introduction to programming and computer science], videos en Inglés muestran conceptos básicos usando Python 3
+* [https://www.youtube.com/watch?v=Gp60Qp3GUBU A hands-on introduction to Python for beginning programmers], por Jessica McKellar, PyCon 2013 en Santa Clara, California, 3:54 horas.
+
+= Cosas por hacer =
+
+¿Te interesa ayudar en alguna de estas tareas?  ¡Adelante!
+
+Escoge una o más actividades y avisa en la lista para que te apoyemos si necesitas más información, y para que los demás sepan que ya hay alguien anotado:
+
+# Escribir en la página PyYAML las instrucciones para instalar el módulo PyYAML para Python 3 a partir del código fuente, cuando no está disponible en la distribución de Linux - tomar de un mensaje previo en el foro.
+# Escribir en la página Cómo participar en este grupo, los paquetes que debe instalar un nuevo participante para hacer aportaciones.  Incluir hiperenlaces a las páginas Instalación, Uso, Git, GitHub, PyYAML y Cosas por hacer, así como enlaces a los tres tutoriales de introducción a Python 3, Git y tkinter.
+# Escribir en la página GitHub cómo crear un repositorio público para compartir tu repositorio local, y cómo agregar los repositorios públicos de otros miembros del grupo - tomar de un mensaje previo del foro.
+# Agregar en la página Recursos los enlaces a tutoriales, libros, lineamientos de estilo y otros recursos que se han mencionado en el foro.
+# Agregar una sección Tips a la página Git, para incluir comandos frecuentes y/o trucos - tomar de algunos mensajes previos del foro en el tema Git.  Incluir recomendaciones para los commit: sobre los mensajes y hacer commit de una cosa a la vez, etc. encontrar notas en internet.
+# Escribir una guía sobre cómo hacer un tutorial para PythonCabal usando docutils.
+# Escribir un tutorial sobre el uso de diccionarios en Python 3.
+
+= Proyectos =
+[[BiblioCabal]] es el primero con el que empezamos.
+
+= Propuestas de proyectos =
+== Clasificador ==
+
+Agrupar elementos en categorías usando patrones de texto. Aplicar en BiblioCabal para generar automáticamente un índice por materias de los libros. Uso de expresiones regulares.
+
+*Estado: propuesta
+
+== Módulo de plantillas ==
+
+Extender el esquema de las plantillas que se empezó en BiblioCabal, para un uso general en otras aplicaciones. Comparar con los sistemas existentes y analizar los beneficios.
+
+*Estado: propuesta
+
+== Síntesis y análisis de música ==
+
+Explorar el uso del secuenciador de ALSA en GNU/Linux mediante un módulo de extensión para Python 3, para grabar ejecuciones en tiempo real y reproducirlas. Generar secuencias de notas y percusiones programáticamente.
+
+Explorar el análisis del ritmo, la armonía y la melodía en secuencias de notas.
+
+Crear un repositorio de secuencias rítmicas y arreglos de acompañamiento.
+
+Crear tutoriales para introducir al tema.
+
+Posible establecimiento de un taller o laboratorio para explorar estas áreas.
+
+*Estado: propuesta
+
+= Historia =
+Este grupo comenzó con reuniones semanales en las instalaciones de [[LinuxCabal]], A.C, La primera reunión fue el 14 de Junio de 2010.  Las reuniones semanales se suspendieron en Noviembre de 2010.  Se propusieron reuniones mensuales empezando en Agosto de 2011.
+
+= Ver también =
+* [[Compilar Python]]
+* [[Recursos de Python]]
+* [[Cómo usar Python en la web]]
+* [[Python en la música]]
+
+[[Category: PythonCabal]]
+[[Category: Python]]
+[[Category: Proyectos]]
