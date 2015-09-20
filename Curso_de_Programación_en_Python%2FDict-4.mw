@@ -1,0 +1,28 @@
+__NOTOC__
+* [[:#Dict-4 | Dict-4.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-4.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Verduras = { "Zanahoria" : 12, "Zuchinni" : 8 }
+
+print( "Len( Verduras ):", len( Verduras ) )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-4.py
+Len( Verduras ): 2
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
