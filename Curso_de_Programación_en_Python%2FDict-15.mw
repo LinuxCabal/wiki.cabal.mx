@@ -1,0 +1,30 @@
+__NOTOC__
+* [[:#Dict-15 | Dict-15.py]]
+** [[:#Resultado | Resultado]]
+
+== Dict-15.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python3
+#-*-coding: utf-8 -*-
+
+Mascotas = { "Halcón" : [3, 5], "Agaporni" : (7,3), "Zorrillo": [1,4] }
+
+for Mascota, Lechuga in Mascotas.items():
+    print( Mascota, Lechuga[1] )
+
+</syntaxhighlight>
+
+=== Resultado ===
+
+<pre>
+[rrc@Llawyr PythonClase]$ ./Dict-15.py 
+Halcón 5
+Agaporni 3
+Zorrillo 4
+</pre>
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
