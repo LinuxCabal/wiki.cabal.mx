@@ -1,0 +1,118 @@
+<hr />
+
+== Python Precedencia de operadores ==
+
+<table style="width:75%; text-align:left;">
+<tr>
+<th style="width:35%">
+Operador    
+</th>
+<th>
+Descripción
+</th>
+</tr>
+<tr>
+<td><strong>( )</strong>
+</td>
+<td>
+Paréntesis
+</td>
+</tr>
+<tr>
+<td><strong>**</strong>
+</td>
+<td>
+Exponenciación
+</td>
+</tr>
+<tr>
+<td>~, +, -
+</td>
+<td>
+Complemento, más y menos unario (nombres de metodos para más o menos unario son +@ and -@)
+</td>
+</tr>
+<tr>
+<td>*, /, %, //
+</td>
+<td>
+Multiplicación, división, modulo and floor división
+</td>
+</tr>
+<tr>
+<td>+, -
+</td>
+<td>
+Addición y substracción
+</td>
+</tr>
+<tr>
+<td>&gt;&gt;, &lt;&lt;
+</td>
+<td>
+bitwise shift a la derecha y a la izquierda
+</td>
+</tr>
+<tr>
+<td>&amp;
+</td>
+<td>
+Bitwise 'AND'
+</td>
+</tr>
+<tr>
+<td>^, |
+</td>
+<td>
+Bitwise exclusive&nbsp;`OR' y `OR'&nbsp;normal
+</td>
+</tr>
+<tr>
+<td>
+&lt;=, &lt;, &gt;, &gt;=
+</td>
+<td>
+Operadores de comparación
+</td>
+</tr>
+<tr>
+<td>&lt;, &gt;, ==, !=
+</td>
+<td>
+Operadores de igualdad
+</td>
+</tr>
+<tr>
+<td>=, %=, /=, //=, -=, +=, *=, **=
+</td>
+<td>
+Operadores de asignación
+</td>
+</tr>
+<tr>
+<td>is, is not
+</td>
+<td>
+Operadores de identidad
+</td>
+</tr>
+<tr>
+<td>in, not in
+</td>
+<td>
+Operadores de membrecia
+</td>
+</tr>
+<tr>
+<td>not, or, and
+</td>
+<td>
+Operadores lógicos
+</td>
+</tr>
+</table>
+<hr />
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
