@@ -1,0 +1,30 @@
+== Numeros ==
+
+=== Integers (enteros): Numeros, positivo o negativo, sin partes decimales ===
+ En Python 2.x existe long como 2L y normal enteros, en 3.x solo enteros 
+ que no podemos escribir con un 'L'
+ 1234, -434, 0
+
+=== Floating-point numeros: Numeros, positivo o negativo, con partes decimales ===
+  4.22, 5., -344.33, 34.44e6, 33.24e-3,  
+
+=== Octal, hex, y binary literales ===
+  0o173, 0xf3a5, 0b101101
+  en 2.X puedes escribir 0o173 como 0173
+
+=== Complex numeros ===
+  4+2j, 0+3.6j, 55j
+
+=== Sets: 2.X and 3.X construction forms ===
+  set( 'Lechuga' ) {1, 2, 3, 4}
+
+=== Decimales y fraction extensiones ===
+  Decimal('1.0'), Fraction(3, 4)
+
+=== Boolean y constantes ===
+  bool(Var), True, False
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
