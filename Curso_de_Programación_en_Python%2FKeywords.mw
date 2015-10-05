@@ -1,0 +1,15 @@
+<table cellspacing="10">
+<tr><th colspan="5">Python3 keywords</th></tr>
+<tr><td>False</td><td>class</td><td>finally</td><td>is</td><td>return</td></tr>
+<tr><td>None</td><td>continue</td><td>for</td><td>lambda</td><td>try</td></tr>
+<tr><td>True</td><td>def</td><td>from</td><td>nonlocal</td><td>while</td></tr>
+<tr><td>and</td><td>del</td><td>global</td><td>not</td><td>with</td></tr>
+<tr><td>as</td><td>elif</td><td>if</td><td>or</td><td>yield</td></tr>
+<tr><td>assert</td><td>else</td><td>import</td><td colspan="2">pass</td></tr>
+<tr><td>break</td><td>except</td><td>in</td><td colspan="2">raise</td></tr>
+</table>
+
+
+[[Category:Programación en Python]]
+[[Category:PythonCabal]]
+[[Category:CursoPython]]
