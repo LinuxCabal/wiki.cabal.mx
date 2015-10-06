@@ -1,0 +1,374 @@
+__NOTOC__
+* [[:#Iniciar | Iniciar]]
+* [[:#Asegurar la Instalación | Asegurar la Instalación]]
+* [[:#Entrar y Inspeccionar | Entrar y Inspeccionar]]
+* [[:#mysql-clients.cnf | /etc/my.cnf.d/my-sql-clients.cnf]]
+* [[ #/var/lib/mysql | /var/lib/mysql]]
+* [[ #/usr/lib64/mysql/plugin | /usr/lib64/mysql/plugin]]
+* [[ #/var/log/mysqld/mysqld.log ! /var/log/mysqld/mysqld.log]]
+* [[ #/var/run/mysqld/mysqld.pid | /var/run/mysqld/mysqld.pid]]
+
+== Iniciar ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[root@Pridd etc]# systemctl start mysqld
+[root@Pridd etc]# systemctl -l status mysqld
+● mysqld.service - MySQL database server
+   Loaded: loaded (/usr/lib/systemd/system/mysqld.service; disabled)
+   Active: active (running) since Mon 2015-10-05 23:12:56 CDT; 8s ago
+  Process: 29766 ExecStartPost=/usr/sbin/mysqld-wait-ready $MAINPID (code=exited, status=0/SUCCESS)
+  Process: 29541 ExecStart=/usr/bin/mysqld_safe --nowatch (code=exited, status=0/SUCCESS)
+  Process: 29426 ExecStartPre=/usr/sbin/mysqld-prepare-db-dir (code=exited, status=0/SUCCESS)
+ Main PID: 29765 (mysqld)
+   CGroup: /system.slice/mysqld.service
+           └─29765 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql/plugin --log-error=/var/log/mysqld/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/lib/mysql/mysql.sock --port=3306
+
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld-prepare-db-dir[29426]: You can test the MariaDB daemon with mariadb-bench package
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld-prepare-db-dir[29426]: Please report any problems at http://mariadb.org/jira
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld-prepare-db-dir[29426]: The latest information about MariaDB is available at http://mariadb.org/.
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld-prepare-db-dir[29426]: You can find additional information about the MySQL part at:
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld-prepare-db-dir[29426]: http://dev.mysql.com
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld-prepare-db-dir[29426]: Support MariaDB development by buying support/new features from MariaDB
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld-prepare-db-dir[29426]: Corporation Ab. You can contact us about this at sales@mariadb.com.
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld_safe[29541]: 151005 23:12:55 mysqld_safe Logging to '/var/log/mysqld/mysqld.log'.
+Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld_safe[29541]: 151005 23:12:55 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+Oct 05 23:12:56 Pridd.LinuxCabal.org systemd[1]: Started MySQL database server.
+</syntaxhighlight>
+
+=== Asegurar la Instalación ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[root@Pridd etc]# mysql_secure_installation 
+
+NOTE: RUNNING ALL PARTS OF THIS SCRIPT IS RECOMMENDED FOR ALL MariaDB
+      SERVERS IN PRODUCTION USE!  PLEASE READ EACH STEP CAREFULLY!
+
+In order to log into MariaDB to secure it, "we'll" need the current
+password for the root user.  If "you've" just installed MariaDB, and
+you "haven't" set the root password yet, the password will be blank,
+so you should just press enter here.
+
+Enter current password for root (enter for none): 
+OK, successfully used password, moving on...
+
+Setting the root password ensures that nobody can log into the MariaDB
+root user without the proper authorisation.
+
+Set root password? [Y/n] y
+New password: 
+Re-enter new password: 
+Password updated successfully!
+Reloading privilege tables..
+ ... Success!
+
+
+By default, a MariaDB installation has an anonymous user, allowing anyone
+to log into MariaDB without having to have a user account created for
+them.  This is intended only for testing, and to make the installation
+go a bit smoother.  You should remove them before moving into a
+production environment.
+
+Remove anonymous users? [Y/n] y
+ ... Success!
+
+Normally, root should only be allowed to connect from 'localhost'.  This
+ensures that someone cannot guess at the root password from the network.
+
+Disallow root login remotely? [Y/n] y
+ ... Success!
+
+By default, MariaDB comes with a database named 'test' that anyone can
+access.  This is also intended only for testing, and should be removed
+before moving into a production environment.
+
+Remove test database and access to it? [Y/n] y
+ - Dropping test database...
+ ... Success!
+ - Removing privileges on test database...
+ ... Success!
+
+Reloading the privilege tables will ensure that all changes made so far
+will take effect immediately.
+
+Reload privilege tables now? [Y/n] y
+ ... Success!
+
+Cleaning up...
+
+All done!  If "you've" completed all of the above steps, your MariaDB
+installation should now be secure.
+
+Thanks for using MariaDB!
+</syntaxhighlight>
+
+=== Entrar y Inspeccionar ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[root@Pridd etc]# mysql -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 12
+Server version: 10.0.21-MariaDB Mageia MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+3 rows in set (0.00 sec)
+
+MariaDB [(none)]> use mysql;
+Database changed
+MariaDB [mysql]> show tables;
++---------------------------+
+| Tables_in_mysql           |
++---------------------------+
+| column_stats              |
+| columns_priv              |
+| db                        |
+| event                     |
+| func                      |
+| general_log               |
+| gtid_slave_pos            |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| host                      |
+| index_stats               |
+| innodb_index_stats        |
+| innodb_table_stats        |
+| plugin                    |
+| proc                      |
+| procs_priv                |
+| proxies_priv              |
+| roles_mapping             |
+| servers                   |
+| slow_log                  |
+| table_stats               |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| user                      |
++---------------------------+
+30 rows in set (0.00 sec)
+
+MariaDB [mysql]> select * from user;
++-----------+------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+--------+-----------------------+------------------+---------+
+| Host      | User | Password                                  | Select_priv | Insert_priv | Update_priv | Delete_priv | Create_priv | Drop_priv | Reload_priv | Shutdown_priv | Process_priv | File_priv | Grant_priv | References_priv | Index_priv | Alter_priv | Show_db_priv | Super_priv | Create_tmp_table_priv | Lock_tables_priv | Execute_priv | Repl_slave_priv | Repl_client_priv | Create_view_priv | Show_view_priv | Create_routine_priv | Alter_routine_priv | Create_user_priv | Event_priv | Trigger_priv | Create_tablespace_priv | ssl_type | ssl_cipher | x509_issuer | x509_subject | max_questions | max_updates | max_connections | max_user_connections | plugin | authentication_string | password_expired | is_role |
++-----------+------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+--------+-----------------------+------------------+---------+
+| localhost | root | *89EEF332E6A9A097B13F4FC946A41797C8992276 | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 |        |                       | N                | N       |
+| 127.0.0.1 | root | *89EEF332E6A9A097B13F4FC946A41797C8992276 | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 |        |                       | N                | N       |
+| ::1       | root | *89EEF332E6A9A097B13F4FC946A41797C8992276 | Y           | Y           | Y           | Y           | Y           | Y         | Y           | Y             | Y            | Y         | Y          | Y               | Y          | Y          | Y            | Y          | Y                     | Y                | Y            | Y               | Y                | Y                | Y              | Y                   | Y                  | Y                | Y          | Y            | Y                      |          |            |             |              |             0 |           0 |               0 |                    0 |        |                       | N                | N       |
++-----------+------+-------------------------------------------+-------------+-------------+-------------+-------------+-------------+-----------+-------------+---------------+--------------+-----------+------------+-----------------+------------+------------+--------------+------------+-----------------------+------------------+--------------+-----------------+------------------+------------------+----------------+---------------------+--------------------+------------------+------------+--------------+------------------------+----------+------------+-------------+--------------+---------------+-------------+-----------------+----------------------+--------+-----------------------+------------------+---------+
+3 rows in set (0.00 sec)
+
+MariaDB [mysql]> select * from db;
+Empty set (0.00 sec)
+
+</syntaxhighlight>
+
+=== /var/lib/mysql ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[rrc@Pridd ~]$ ls -al /var/lib/mysql/
+total 86052
+drwxr-xr-x  4 mysql mysql     4096 Oct  5 23:18 ./
+drwxr-xr-x 46 root  root      4096 Oct  5 04:02 ../
+-rw-rw----  1 mysql mysql    16384 Oct  5 23:12 aria_log.00000001
+-rw-rw----  1 mysql mysql       52 Oct  5 23:12 aria_log_control
+-rw-rw----  1 mysql mysql 77594624 Oct  5 23:12 ibdata1
+-rw-rw----  1 mysql mysql  5242880 Oct  5 23:12 ib_logfile0
+-rw-rw----  1 mysql mysql  5242880 Oct  5 23:12 ib_logfile1
+-rw-rw----  1 mysql mysql        0 Oct  5 23:12 multi-master.info
+drwxr-xr-x  2 mysql mysql     4096 Oct  5 23:12 mysql/
+srwxrwxrwx  1 mysql mysql        0 Oct  5 23:12 mysql.sock=
+drwx------  2 mysql mysql     4096 Oct  5 23:12 performance_schema/
+-rw-rw----  1 mysql mysql        0 Oct  5 23:12 sql_errors.log
+
+[rrc@Pridd ~]$ ls -al /var/lib/mysql/mysql
+total 1104
+drwxr-xr-x 2 mysql mysql   4096 Oct  5 23:12 ./
+drwxr-xr-x 4 mysql mysql   4096 Oct  5 23:18 ../
+-rw-rw---- 1 mysql mysql   2110 Oct  5 23:12 columns_priv.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 columns_priv.MYD
+-rw-rw---- 1 mysql mysql   4096 Oct  5 23:12 columns_priv.MYI
+-rw-rw---- 1 mysql mysql   3624 Oct  5 23:12 column_stats.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 column_stats.MYD
+-rw-rw---- 1 mysql mysql   4096 Oct  5 23:12 column_stats.MYI
+-rw-rw---- 1 mysql mysql   2677 Oct  5 23:12 db.frm
+-rw-rw---- 1 mysql mysql   1264 Oct  5 23:18 db.MYD
+-rw-rw---- 1 mysql mysql   9216 Oct  5 23:18 db.MYI
+-rw-rw---- 1 mysql mysql   3695 Oct  5 23:12 event.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 event.MYD
+-rw-rw---- 1 mysql mysql   2048 Oct  5 23:12 event.MYI
+-rw-rw---- 1 mysql mysql   1582 Oct  5 23:12 func.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 func.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 func.MYI
+-rw-rw---- 1 mysql mysql     35 Oct  5 23:12 general_log.CSM
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 general_log.CSV
+-rw-rw---- 1 mysql mysql    804 Oct  5 23:12 general_log.frm
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 gtid_slave_pos.frm
+-rw-rw---- 1 mysql mysql  98304 Oct  5 23:12 gtid_slave_pos.ibd
+-rw-rw---- 1 mysql mysql   1706 Oct  5 23:12 help_category.frm
+-rw-rw---- 1 mysql mysql   1092 Oct  5 23:12 help_category.MYD
+-rw-rw---- 1 mysql mysql   3072 Oct  5 23:12 help_category.MYI
+-rw-rw---- 1 mysql mysql   1638 Oct  5 23:12 help_keyword.frm
+-rw-rw---- 1 mysql mysql  91408 Oct  5 23:12 help_keyword.MYD
+-rw-rw---- 1 mysql mysql  16384 Oct  5 23:12 help_keyword.MYI
+-rw-rw---- 1 mysql mysql    970 Oct  5 23:12 help_relation.frm
+-rw-rw---- 1 mysql mysql   9252 Oct  5 23:12 help_relation.MYD
+-rw-rw---- 1 mysql mysql  19456 Oct  5 23:12 help_relation.MYI
+-rw-rw---- 1 mysql mysql   1776 Oct  5 23:12 help_topic.frm
+-rw-rw---- 1 mysql mysql 405476 Oct  5 23:12 help_topic.MYD
+-rw-rw---- 1 mysql mysql  20480 Oct  5 23:12 help_topic.MYI
+-rw-rw---- 1 mysql mysql   1897 Oct  5 23:12 host.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 host.MYD
+-rw-rw---- 1 mysql mysql   2048 Oct  5 23:12 host.MYI
+-rw-rw---- 1 mysql mysql   1629 Oct  5 23:12 index_stats.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 index_stats.MYD
+-rw-rw---- 1 mysql mysql   4096 Oct  5 23:12 index_stats.MYI
+-rw-rw---- 1 mysql mysql   4998 Oct  5 23:12 innodb_index_stats.frm
+-rw-rw---- 1 mysql mysql  98304 Oct  5 23:12 innodb_index_stats.ibd
+-rw-rw---- 1 mysql mysql   1503 Oct  5 23:12 innodb_table_stats.frm
+-rw-rw---- 1 mysql mysql  98304 Oct  5 23:12 innodb_table_stats.ibd
+-rw-rw---- 1 mysql mysql   1518 Oct  5 23:12 plugin.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 plugin.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 plugin.MYI
+-rw-rw---- 1 mysql mysql   3418 Oct  5 23:12 proc.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 proc.MYD
+-rw-rw---- 1 mysql mysql   2048 Oct  5 23:12 proc.MYI
+-rw-rw---- 1 mysql mysql   2874 Oct  5 23:12 procs_priv.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 procs_priv.MYD
+-rw-rw---- 1 mysql mysql   4096 Oct  5 23:12 procs_priv.MYI
+-rw-rw---- 1 mysql mysql   2839 Oct  5 23:12 proxies_priv.frm
+-rw-rw---- 1 mysql mysql   2538 Oct  5 23:12 proxies_priv.MYD
+-rw-rw---- 1 mysql mysql  10240 Oct  5 23:12 proxies_priv.MYI
+-rw-rw---- 1 mysql mysql   1661 Oct  5 23:12 roles_mapping.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 roles_mapping.MYD
+-rw-rw---- 1 mysql mysql   4096 Oct  5 23:12 roles_mapping.MYI
+-rw-rw---- 1 mysql mysql   2703 Oct  5 23:12 servers.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 servers.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 servers.MYI
+-rw-rw---- 1 mysql mysql     35 Oct  5 23:12 slow_log.CSM
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 slow_log.CSV
+-rw-rw---- 1 mysql mysql   2339 Oct  5 23:12 slow_log.frm
+-rw-rw---- 1 mysql mysql   2957 Oct  5 23:12 tables_priv.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 tables_priv.MYD
+-rw-rw---- 1 mysql mysql   4096 Oct  5 23:12 tables_priv.MYI
+-rw-rw---- 1 mysql mysql   1374 Oct  5 23:12 table_stats.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 table_stats.MYD
+-rw-rw---- 1 mysql mysql   2048 Oct  5 23:12 table_stats.MYI
+-rw-rw---- 1 mysql mysql    973 Oct  5 23:12 time_zone.frm
+-rw-rw---- 1 mysql mysql    971 Oct  5 23:12 time_zone_leap_second.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 time_zone_leap_second.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 time_zone_leap_second.MYI
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 time_zone.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 time_zone.MYI
+-rw-rw---- 1 mysql mysql   1146 Oct  5 23:12 time_zone_name.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 time_zone_name.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 time_zone_name.MYI
+-rw-rw---- 1 mysql mysql   1013 Oct  5 23:12 time_zone_transition.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 time_zone_transition.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 time_zone_transition.MYI
+-rw-rw---- 1 mysql mysql   1079 Oct  5 23:12 time_zone_transition_type.frm
+-rw-rw---- 1 mysql mysql      0 Oct  5 23:12 time_zone_transition_type.MYD
+-rw-rw---- 1 mysql mysql   1024 Oct  5 23:12 time_zone_transition_type.MYI
+-rw-rw---- 1 mysql mysql   2879 Oct  5 23:12 user.frm
+-rw-rw---- 1 mysql mysql    556 Oct  5 23:18 user.MYD
+-rw-rw---- 1 mysql mysql   4096 Oct  5 23:18 user.MYI
+
+</syntaxhighlight>
+
+=== /usr/lib64/mysql/plugin ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[root@Pridd ~]# ls -al /usr/lib64/mysql/plugin
+total 728
+drwxr-xr-x 2 root root   4096 Sep 14 19:30 ./
+drwxr-xr-x 3 root root   4096 Aug  7 09:50 ../
+-rwxr-xr-x 1 root root  11760 Sep  4 13:36 auth_pam.so*
+-rwxr-xr-x 1 root root   7496 Sep  4 13:36 auth_socket.so*
+-rwxr-xr-x 1 root root  11480 Sep  4 13:36 dialog.so*
+-rwxr-xr-x 1 root root  84128 Sep  4 13:36 feedback.so*
+-rwxr-xr-x 1 root root  74064 Sep  4 13:36 ha_archive.so*
+-rwxr-xr-x 1 root root  45032 Sep  4 13:36 ha_blackhole.so*
+-rwxr-xr-x 1 root root 107384 Sep  4 13:36 ha_federatedx.so*
+-rwxr-xr-x 1 root root 174592 Sep  4 13:36 handlersocket.so*
+-rwxr-xr-x 1 root root  11976 Sep  4 13:36 locales.so*
+-rwxr-xr-x 1 root root  12040 Sep  4 13:35 metadata_lock_info.so*
+-rwxr-xr-x 1 root root   7304 Sep  4 13:36 mysql_clear_password.so*
+-rwxr-xr-x 1 root root  11920 Sep  4 13:36 query_cache_info.so*
+-rwxr-xr-x 1 root root  16432 Sep  4 13:36 query_response_time.so*
+-rwxr-xr-x 1 root root  42128 Sep  4 13:36 semisync_master.so*
+-rwxr-xr-x 1 root root  16296 Sep  4 13:36 semisync_slave.so*
+-rwxr-xr-x 1 root root  66040 Sep  4 13:36 server_audit.so*
+-rwxr-xr-x 1 root root  12048 Sep  4 13:36 sql_errlog.so*
+
+</syntaxhighlight>
+
+=== /var/log/mysqld/mysqld.log ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[root@Pridd ~]# cat /var/log/mysqld/mysqld.log
+151005 23:12:55 mysqld_safe Starting mysqld daemon with databases from /var/lib/mysql
+151005 23:12:55 [Note] /usr/sbin/mysqld (mysqld 10.0.21-MariaDB) starting as process 29765 ...
+2015-10-05 23:12:55 7f3918aab780 InnoDB: Warning: Using innodb_additional_mem_pool_size is DEPRECATED. This option may be removed in future releases, together with the option innodb_use_sys_malloc and with the "InnoDB's" internal memory allocator.
+151005 23:12:55 [Note] InnoDB: Using mutexes to ref count buffer pool pages
+151005 23:12:55 [Note] InnoDB: The InnoDB memory heap is disabled
+151005 23:12:55 [Note] InnoDB: Mutexes and rw_locks use GCC atomic builtins
+151005 23:12:55 [Note] InnoDB: Memory barrier is not used
+151005 23:12:55 [Note] InnoDB: Compressed tables use zlib 1.2.8
+151005 23:12:55 [Note] InnoDB: Using Linux native AIO
+151005 23:12:55 [Note] InnoDB: Using CPU crc32 instructions
+151005 23:12:55 [Note] InnoDB: Initializing buffer pool, size = 16.0M
+151005 23:12:55 [Note] InnoDB: Completed initialization of buffer pool
+151005 23:12:55 [Note] InnoDB: Highest supported file format is Barracuda.
+151005 23:12:55 [Note] InnoDB: 128 rollback segment(s) are active.
+151005 23:12:55 [Note] InnoDB: Waiting for purge to start
+151005 23:12:55 [Note] InnoDB:  Percona XtraDB (http://www.percona.com) 5.6.25-73.1 started; log sequence number 1616714
+handlersocket: initialized
+151005 23:12:55 server_audit: MariaDB Audit Plugin version 1.3.0 STARTED.
+151005 23:12:55 [Note] Event Scheduler: Loaded 0 events
+151005 23:12:55 [Note] /usr/sbin/mysqld: ready for connections.
+Version: '10.0.21-MariaDB'  socket: '/var/lib/mysql/mysql.sock'  port: 0  Mageia MariaDB Server
+151005 23:17:56 [Note] feedback plugin: report to 'https://mariadb.org/feedback_plugin/post' was sent
+151005 23:17:58 [Note] feedback plugin: server replied 'ok'
+
+</syntaxhighlight>
+
+=== /var/run/mysqld/mysqld.pid ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[root@Pridd ~]# ls -al /var/run/mysqld/mysqld.pid
+-rw-rw---- 1 mysql mysql 6 Oct  5 23:12 /var/run/mysqld/mysqld.pid
+
+[root@Pridd ~]# cat /var/run/mysqld/mysqld.pid
+29765
+
+[root@Pridd ~]# ps aux | grep mysqld
+root      2539  0.0  0.0  15500  2568 pts/0    S+   01:04   0:00 grep --color mysqld
+mysql    29765  0.0  1.4 526896 57844 ?        Sl   Oct05   0:02 /usr/sbin/mysqld --basedir=/usr --datadir=/var/lib/mysql --plugin-dir=/usr/lib64/mysql
+        /plugin --log-error=/var/log/mysqld/mysqld.log --pid-file=/var/run/mysqld/mysqld.pid --socket=/var/lib/mysql/mysql.sock --port=3306
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
