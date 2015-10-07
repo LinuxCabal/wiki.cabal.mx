@@ -1,0 +1,174 @@
+* [[:#Tipos de Datos | Tipos de Datos]]
+
+== Tipos de Datos ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+Estandar ANSI tipos de datos
+     
+Numerico:
+     
+INT[(M)] [UNSIGNED] [ZEROFILL]
+INTEGER[(M)] [UNSIGNED] [ZEROFILL]     2,147,483,648   a   2,147,483,647
+                                                       o
+                                             0   a   4,294,967,295
+    (SIGNED es el default). 
+    If a column has been set to ZEROFILL, all values will be prepended by zeros so that the INT value contains a number of M digits. 
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
+
+
+TINYINT[(M)] [UNSIGNED] [ZEROFILL]      -128   a   127
+                                               o
+                                           0       255
+    If a column has been set to ZEROFILL, all values will be prepended by zeros so that the 
+    TINYINT value contains a number of M digits.
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
+
+
+BOOLEAN          UnSigned Solemente             0        1    tinyint(1)
+     
+SMALLINT                             -32,768   a   32,767
+                                               o
+                                         0       65,535
+    If a column has been set to ZEROFILL, all values will be prepended by zeros so that the 
+    SMALLINT value contains a number of M digits.
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
+
+
+MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL]     -8,388,608   a   8,388,607
+                                                   o
+                                             0   a   16,777,215
+    If a column has been set to ZEROFILL, all values will be prepended by zeros to M digits.
+    ZEROFILL pads the integer with zeroes and assumes UNSIGNED (even if UNSIGNED is not specified).
+
+
+BIGINT[(M)] [UNSIGNED] [ZEROFILL]   -9,223,372,036,854,775,808   a   9,223,372,036,854,775,807 
+                                                           o
+                                               0   a   18,446,744,073,709,551,615
+    If a column has been set to ZEROFILL, all values will be prepended by zeros to M digits.
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
+    SERIAL is an alias for:   BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
+                                                                                                                                                                   
+FLOAT(M,D)      24      SIGNED Solemente      
+     10,2
+   small (single-precision) floating-point number (see DOUBLE for a regular-size floating point number). 
+   Allowable values are:      -3.402823466E+38  a  -1.175494351E-38
+                                                  o
+                                1.175494351E-38  a  3.402823466E+38. 
+    These are the theoretical limits, based on the IEEE standard. 
+    The actual range might be slightly smaller depending on your hardware or operating system.
+    M is the total number of digits and D is the number of digits following the decimal point. 
+    If M and D are omitted, values are stored to the limits allowed by the hardware. 
+    A single-precision floating-point number is accurate to approximately 7 decimal places.
+    UNSIGNED, if specified, disallows negative values.
+    Using FLOAT might give you some unexpected problems because all calculations in MariaDB are done with double precision. 
+    See Floating Point Accuracy.
+
+
+DOUBLE(M,D)     53      SIGNED Solemente      DOUBLE REAL === DOUBLE
+      16,4
+    A normal-size (double-precision) floating-point number (see FLOAT for a single-precision floating-point number).
+    Allowable values are:          -1.7976931348623157E+308   a  -2.2250738585072014E-308
+                                                          o
+                                     2.2250738585072014E-308  a  1.7976931348623157E+308 
+    These are the theoretical limits, based on the IEEE standard. 
+    The actual range might be slightly smaller depending on your hardware or operating system.
+    M is the total number of digits and D is the number of digits following the decimal point. 
+    If M and D are omitted, values are stored to the limits allowed by the hardware. 
+    A double-precision floating-point number is accurate to approximately 15 decimal places.
+    UNSIGNED, if specified, disallows negative values.
+    ZEROFILL, if specified, pads the number with zeros, up to the total number of digits specified by M.
+    REAL and DOUBLE PRECISION are synonyms, unless the REAL_AS_FLOAT SQL mode is enabled,
+    in which case REAL is a synonym for FLOAT rather than DOUBLE.
+     
+
+DECIMAL(M,D)    -       SIGNED Solemente      DECIMAL, NUMERIC, DEC, FIXED
+        10,0
+    A packed "exact" fixed-point number. M is the total number of digits (the precision) 
+    and D is the number of digits after the decimal point (the scale). 
+    The decimal point and (for negative numbers) the "-" sign are not counted in M. 
+    If D is 0, values have no decimal point or fractional part 
+    and on INSERT the value will be rounded to the nearest DECIMAL. 
+    The maximum number of digits (M) for DECIMAL is 65. 
+    The maximum number of supported decimals (D) is 30. 
+    If D is omitted, the default is 0. 
+    If M is omitted, the default is 10.
+
+
+BIT[(M)]
+    A bit-field type. M indicates the number of bits per value, from 1 to 64. 
+    The default is 1 if M is omitted.
+    Bit values can be inserted with b'value' notation, where value is the bit value in 0's and 1's.
+    Bit fields are automatically zero-padded from the left to the full length of the bit, 
+    so for example in a BIT(4) field, '10' is equivalent to '0010'.
+    Bits are returned as binary, so to display them, either add 0, 
+    or use a function such as HEX, OCT or BIN to convert them.
+
+All basic calculations (+, -, *, /) with DECIMAL columns are done with a precision of 65 digits.
+        x,y
+     
+     
+Fetcha y Tiempo:
+     
+Puedes usar Feb 31
+           1980-11-00   Mes Debe: 0 - 12        Dia Debe: 0 - 31
+     
+DATE            YYYY-MM-DD
+     
+DATETIME        YYYY-MM-DD HH:MM:SS     1000-01-01 00:00:00 -
+                                        9999-12-31 23:59:59
+     
+TIMESTAMP       YYYYMMDDHHMMSS        12:00AM 1970-01-01 - 2037
+             12 (YYMMDDHHMMSS)
+             8  (YYYYMMDD
+             6  (YYMMDD)
+     
+TIME            HH:MM:SS
+     
+YEAR            YYYY
+             2  (YY)                            1901 - 2155
+     
+     
+String:
+     
+CHAR (M)        PAD Derecha con Espacios
+    1 - 255
+    Default = 1
+     
+VARCHAR (M)
+    1 - 255
+    No Default
+     
+TEXT No Case Sensitivo con SORT   Puedes usar para Binarios o Textos datos
+    Max 65,535
+     
+BLOB Case Sensitvo con SORT       Puedes usar para Binarios o Textos datos 
+    Max 65,535
+     
+TINYTEXT
+    Max 255
+     
+TINYBLOB
+    Max 255
+     
+MEDIUMTEXT
+    Max 16,777,215
+     
+MEDIUMBLOB
+    Max 16,777,215
+     
+LONGTEXT
+    Max 4,294,967,295
+     
+LONGBLOB
+    Max 4,294,967,295
+     
+ENUM                 ENUM ( 'A', -77, 'VERDAD' ) o NULL
+    Max Fields 65,535
+
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
