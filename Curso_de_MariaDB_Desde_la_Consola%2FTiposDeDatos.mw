@@ -1,7 +1,6 @@
-__NOTOC__
 * [[:#Tipos de Datos | Tipos de Datos]]
 
-= Tipos de Datos =
+== Tipos de Datos ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -11,293 +10,142 @@ Estandar ANSI tipos de datos
 Numerico:
      
 INT[(M)] [UNSIGNED] [ZEROFILL]
-INTEGER[(M)] [UNSIGNED] [ZEROFILL]  
+INTEGER[(M)] [UNSIGNED] [ZEROFILL]     2,147,483,648   a   2,147,483,647
+                                                       o
+                                             0   a   4,294,967,295
+    (SIGNED es el default). 
+    If a column has been set to ZEROFILL, all values will be prepended by zeros so that the INT value contains a number of M digits. 
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
 
-    Un entero de tamaño normal. Cuando marcada UNSIGNED, oscila desde 
-                             0 hasta 4294967295, 
-    de lo contrario su gama se 
-                             -2147483648 a 2147483647 
-    (FIRMADO es el valor predeterminado). Si una columna se ha establecido en ZEROFILL, 
-    todos los valores se anteponen por ceros para que el valor INT contiene un número de 
-    dígitos M. INTEGER es un sinónimo de INT.
-
-    Nota: Si se ha especificado el atributo ZEROFILL, la columna se convertirá 
-    automáticamente en UNSIGNED
 
 TINYINT[(M)] [UNSIGNED] [ZEROFILL]      -128   a   127
                                                o
                                            0       255
+    If a column has been set to ZEROFILL, all values will be prepended by zeros so that the 
+    TINYINT value contains a number of M digits.
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
 
-    Un muy pequeño número entero. La gama firmado es 
-                                 -128 a 127. 
-    El rango sin signo es de 
-                                     0 a 25
-
-    Si una columna se ha establecido en ZEROFILL, todos los valores se anteponen por 
-    ceros para que el valor TINYINT contiene un número de dígitos M.
-
-    Nota: Si se ha especificado el atributo ZEROFILL, la columna se convertirá 
-    automáticamente en UNSIGNED. 
 
 BOOLEAN          UnSigned Solemente             0        1    tinyint(1)
+     
+SMALLINT                             -32,768   a   32,767
+                                               o
+                                         0       65,535
+    If a column has been set to ZEROFILL, all values will be prepended by zeros so that the 
+    SMALLINT value contains a number of M digits.
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
 
-    Estos tipos son sinónimos de TINYINT (1). Un valor de cero se considera falsa.
-    Valores distintos de cero se consideran verdaderas:
 
-SMALLINT                         
+MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL]     -8,388,608   a   8,388,607
+                                                   o
+                                             0   a   16,777,215
+    If a column has been set to ZEROFILL, all values will be prepended by zeros to M digits.
+    ZEROFILL pads the integer with zeroes and assumes UNSIGNED (even if UNSIGNED is not specified).
 
-    Un pequeño número entero. La gama firmado es 
-                             -32768 a 32767. 
-    El rango sin signo es de 
-                                 0 a 65535.
 
-    Si una columna se ha establecido en ZEROFILL, todos los valores se anteponen por 
-    ceros para que el valor SMALLINT contiene un número de dígitos M.
-
-    Nota: Si se ha especificado el atributo ZEROFILL, la columna se convertirá 
-    automáticamente en UNSIGNED. 
-
-MEDIUMINT[(M)] [UNSIGNED] [ZEROFILL] 
-
-    Un entero de tamaño mediano. La gama firmado es 
-                          -8388608 a 8388607. 
-    El rango sin signo es 
-                             0 a 16.777.215.
-
-    ZEROFILL rellena el número entero con ceros y asume UNSIGNED (incluso si UNSIGNED no 
-    se especifica
-
-BIGINT[(M)] [UNSIGNED] [ZEROFILL]
-
-    Un entero grande. La gama firmado es 
-                   -9223372036854775808 a 9223372036854775807 
-    El rango sin signo es 
-                            0 a 18446744073709551615
-
-    Si una columna se ha establecido en ZEROFILL, todos los valores se anteponen por 
-    ceros para que el valor SMALLINT contiene un número de dígitos M.
-
-    Nota: Si se ha especificado el atributo ZEROFILL, la columna se convertirá 
-    automáticamente en UNSIGNED.
-
-    SERIAL es un alias de: 
-                  BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE 
-
-                                                                         
+BIGINT[(M)] [UNSIGNED] [ZEROFILL]   -9,223,372,036,854,775,808   a   9,223,372,036,854,775,807 
+                                                           o
+                                               0   a   18,446,744,073,709,551,615
+    If a column has been set to ZEROFILL, all values will be prepended by zeros to M digits.
+    Note: If the ZEROFILL attribute has been specified, the column will automatically become UNSIGNED.
+    SERIAL is an alias for:   BIGINT UNSIGNED NOT NULL AUTO_INCREMENT UNIQUE
+                                                                                                                                                                   
 FLOAT(M,D)      24      SIGNED Solemente      
      10,2
+   small (single-precision) floating-point number (see DOUBLE for a regular-size floating point number). 
+   Allowable values are:      -3.402823466E+38  a  -1.175494351E-38
+                                                  o
+                                1.175494351E-38  a  3.402823466E+38. 
+    These are the theoretical limits, based on the IEEE standard. 
+    The actual range might be slightly smaller depending on your hardware or operating system.
+    M is the total number of digits and D is the number of digits following the decimal point. 
+    If M and D are omitted, values are stored to the limits allowed by the hardware. 
+    A single-precision floating-point number is accurate to approximately 7 decimal places.
+    UNSIGNED, if specified, disallows negative values.
+    Using FLOAT might give you some unexpected problems because all calculations in MariaDB are done with double precision. 
+    See Floating Point Accuracy.
 
-    A (precisión simple) pequeño número de coma flotante (ver DOBLE para un número de
-    punto flotante de tamaño regular). Los valores permitidos son:
-
-                   -3.402823466E + 38 a -1.175494351E-38
-                                    O
-                     1.175494351E-38 a 3.402823466E + 38. 
-
-    Estos son los límites teóricos, basados ​​en el estándar IEEE. El alcance real puede
-    ser ligeramente menor dependiendo de su hardware o sistema operativo.
-
-    M es el número total de dígitos y D es el número de dígitos después del punto
-    decimal. Si M y D se omiten, los valores se almacenan en los límites permitidos por
-    el hardware. Un número de coma flotante de precisión simple tiene una precisión de
-    aproximadamente 7 cifras decimales.
-
-    UNSIGNED, si se especifica, desautoriza valores negativos.
-
-    Usando FLOAT puede darle algunos problemas inesperados, porque todos los cálculos en
-    MariaDB se realizan con doble precisión. Ver punto flotante de precisión. 
 
 DOUBLE(M,D)     53      SIGNED Solemente      DOUBLE REAL === DOUBLE
       16,4
-
-    Una de tamaño normal (de doble precisión) número de coma flotante (ver FLOAT para un 
-    número de coma flotante de precisión simple).
-
-    Los valores permitidos son:
-
-              -1.7976931348623157E+308 a -2.2250738585072014E-308
-                                     o
-              2.2250738585072014E-308 a 1.7976931348623157E+308 
-
-    Estos son los límites teóricos, basados ​​en el estándar IEEE. El alcance real puede
-    ser ligeramente menor dependiendo de su hardware o sistema operativo.
-
-    M es el número total de dígitos y D es el número de dígitos después del punto 
-    decimal. Si M y D se omiten, los valores se almacenan en los límites permitidos por 
-    el hardware. Un número de coma flotante de doble precisión tiene una precisión de 
-    aproximadamente 15 cifras decimales.
-
-    UNSIGNED si se especifica, desautoriza valores negativos.
-
-    ZEROFILL si se especifica, rellena el número de ceros, hasta el número total de 
-    dígitos especificados por M
+    A normal-size (double-precision) floating-point number (see FLOAT for a single-precision floating-point number).
+    Allowable values are:          -1.7976931348623157E+308   a  -2.2250738585072014E-308
+                                                          o
+                                     2.2250738585072014E-308  a  1.7976931348623157E+308 
+    These are the theoretical limits, based on the IEEE standard. 
+    The actual range might be slightly smaller depending on your hardware or operating system.
+    M is the total number of digits and D is the number of digits following the decimal point. 
+    If M and D are omitted, values are stored to the limits allowed by the hardware. 
+    A double-precision floating-point number is accurate to approximately 15 decimal places.
+    UNSIGNED, if specified, disallows negative values.
+    ZEROFILL, if specified, pads the number with zeros, up to the total number of digits specified by M.
+    REAL and DOUBLE PRECISION are synonyms, unless the REAL_AS_FLOAT SQL mode is enabled,
+    in which case REAL is a synonym for FLOAT rather than DOUBLE.
+     
 
 DECIMAL(M,D)    -       SIGNED Solemente      DECIMAL, NUMERIC, DEC, FIXED
         10,0
-    Un lleno "exacta" de punto fijo número. M es el número total de dígitos (la 
-    precisión) y D es el número de dígitos después del punto decimal (la escala). El 
-    punto decimal y (para números negativos) el signo "-" no se cuentan en M Si D es 0 
-    los valores no tienen punto decimal o parte fraccional y en INSERT el valor se 
-    redondearán a la más cercana DECIMAL El número máximo de dígitos M para DECIMAL es 
-    65. El número máximo de decimales soportados D es 30 Si D se omite, el valor 
-    predeterminado es 0 Si M se omite, el valor predeterminado es 10
+    A packed "exact" fixed-point number. M is the total number of digits (the precision) 
+    and D is the number of digits after the decimal point (the scale). 
+    The decimal point and (for negative numbers) the "-" sign are not counted in M. 
+    If D is 0, values have no decimal point or fractional part 
+    and on INSERT the value will be rounded to the nearest DECIMAL. 
+    The maximum number of digits (M) for DECIMAL is 65. 
+    The maximum number of supported decimals (D) is 30. 
+    If D is omitted, the default is 0. 
+    If M is omitted, the default is 10.
 
-    UNSIGNED si se especifica, desautoriza valores negativos.
-
-    ZEROFILL si se especifica, rellena el número de ceros, hasta el número total de 
-    dígitos especificados por M
-
-    Todos los cálculos básicos (+, -, *, /) con DECIMAL columnas se realizan con una 
-    precisión de 65 dígitos. 
 
 BIT[(M)]
+    A bit-field type. M indicates the number of bits per value, from 1 to 64. 
+    The default is 1 if M is omitted.
+    Bit values can be inserted with b'value' notation, where value is the bit value in 0's and 1's.
+    Bit fields are automatically zero-padded from the left to the full length of the bit, 
+    so for example in a BIT(4) field, '10' is equivalent to '0010'.
+    Bits are returned as binary, so to display them, either add 0, 
+    or use a function such as HEX, OCT or BIN to convert them.
 
-    Un tipo poco campo. M indica el número de bits por valor, desde 1 a 64 El valor 
-    predeterminado es 1 si M se omite.
-
-    Valores de bits se pueden insertar con b'value' donde value es el valor de bit en 0 y 
-    1 de la.
-
-    Los campos de bits son automáticamente con relleno de ceros por la izquierda a la 
-    longitud de la broca, así por ejemplo en un (4) Campo BIT, '10' es equivalente a 
-    '0010'.
-
-    Los bits se devuelven como binario, por lo que para mostrarlos, agregue 0, o utilizar 
-    una función como HEX, octubre o BIN para convertirlos. 
+All basic calculations (+, -, *, /) with DECIMAL columns are done with a precision of 65 digits.
+        x,y
+     
      
 Fetcha y Tiempo:
      
+Puedes usar Feb 31
+           1980-11-00   Mes Debe: 0 - 12        Dia Debe: 0 - 31
+     
 DATE            YYYY-MM-DD
-
-    El rango admitido es 1000-01-01 a 9999-12-31 
-
-    MariaDB muestra DATE valores en YYYY-MM-DD formato, pero se le puede asignar fechas 
-    en formatos más flexibles, incluyendo cadenas o números, siempre y cuando tengan 
-    sentido. Estos incluyen un año corto, YY-MM-DD sin delimitadores, YYMMDD o cualquier 
-    otro delimitador aceptable, por ejemplo YYYY/MM/DD Para más detalles, ver la fecha y 
-    hora literales.
-    
-0000-00-00 es un valor especial permitido (cero fecha), a menos que el NO_ZERO_DATE 
-    sql_mode se utiliza. Además, los componentes individuales de una fecha se pueden 
-    ajustar a 0 (por ejemplo: 2015-00-12 a menos que el NO_ZERO_IN_DATE sql_mode se 
-    utiliza. En muchos casos, el resultado de la expresión en la participación de una 
-    fecha cero, o una fecha con cero-piezas, es NULL Si el ALLOW_INVALID_DATES sql_mode 
-    está activada, si la pieza día está en el rango entre 1 y 31, la fecha no produce 
-    cualquier error, incluso para los meses que tienen menos de 31 días
-
+     
 DATETIME        YYYY-MM-DD HH:MM:SS     1000-01-01 00:00:00 -
                                         9999-12-31 23:59:59
-
-    Una combinación fecha y hora. 
-    El rango admitido es 1000-01-01 00:00:00.000000 'a' 9999-12-31 23:59:59.999999. 
-    MariaDB muestra DATETIME valores en YYYY-MM-DD HH:MM:SS formato, pero permite la 
-    asignación de valores a DATETIME columnas usando cadenas o números. Para más 
-    detalles, ver la fecha y hora literales.
-
-    La precisión de microsegundos puede ser de 0-6. Si no se especifica 0 se utiliza. 
-    Microsegundos han estado disponibles desde MariaDB 5.3.
-
-    0000-00-00 es un valor especial permitido (cero fecha), a menos que el NO_ZERO_DATE 
-    sql_mode se utiliza. 
-
-    Además, los componentes individuales de una fecha se pueden ajustar a 0 (por ejemplo: 
-    2015-00-12 a menos que el NO_ZERO_IN_DATE sql_mode se utiliza. En muchos casos, el 
-    resultado de la expresión en la participación de una fecha cero, o una fecha con 
-    cero-piezas, es NULL Si el ALLOW_INVALID_DATES sql_mode está activada, si la pieza 
-    día está en el rango entre 1 y 31, la fecha no produce cualquier error, incluso para 
-    los meses que tienen menos de 31 días.
-
-    MariaDB comenzando con 10.0.1
-
-    Desde MariaDB 10.0.1, columnas DATETIME también aceptan CURRENT_TIMESTAMP como el 
-    valor predeterminado.
-
-    MariaDB comenzando con 10.1.2
-
-    MariaDB 10.1.2 presentará el --mysql56-temporal-formato opción, que permite MariaDB 
-    para almacenar DATETMEs utilizando el mismo formato de bajo nivel MySQL 5.6 usos. 
-
-    TIMESTAMP       YYYYMMDDHHMMSS        12:00AM 1970-01-01 - 2037
-                 12 (YYMMDDHHMMSS)
-                 8  (YYYYMMDD
-                 6  (YYMMDD)
      
-    TIME            HH:MM:SS
+TIMESTAMP       YYYYMMDDHHMMSS        12:00AM 1970-01-01 - 2037
+             12 (YYMMDDHHMMSS)
+             8  (YYYYMMDD
+             6  (YYMMDD)
      
-    YEAR            YYYY
-                 2  (YY)                            1901 - 2155
+TIME            HH:MM:SS
+     
+YEAR            YYYY
+             2  (YY)                            1901 - 2155
      
      
 String:
      
 CHAR (M)        PAD Derecha con Espacios
-    Una cadena de longitud fija que siempre tiene la razón acolchado con espacios hasta 
-    la longitud especificada cuando se almacena. M representa la longitud de la columna 
-    en caracteres. La gama de M es 0 a 255 Si M se omite, la longitud es 1
-
-    CHAR (0) columnas puede contener 2 valores: una cadena vacía o NULL. Tales columnas 
-    no pueden ser parte de un índice. El CONNECT motor de almacenamiento no es compatible 
-    con CHAR (0).
-
-    Nota: Los espacios finales se eliminan cuando CHAR se recuperan los valores a menos 
-    que el PAD_CHAR_TO_FULL_LENGTH modo SQL está habilitada. 
+    1 - 255
+    Default = 1
      
 VARCHAR (M)
-
-    TEXT Una cadena de longitud variable. M representa la longitud máxima de la columna 
-    en caracteres. La gama de M es de 0 a 65.535. La longitud máxima efectiva de un 
-    VARCHAR está sujeta al tamaño máximo de fila (65.535 bytes, que es compartida entre 
-    todas las columnas) y el conjunto de caracteres utilizado. Por ejemplo, caracteres 
-    utf8 pueden requerir hasta tres bytes por carácter, por lo que una columna VARCHAR 
-    que utiliza el juego de caracteres UTF-8 pueden ser declarado un máximo de 21.844 
-    caracteres.
-
-    Tiendas MariaDB valores VARCHAR como un byte o de dos bytes prefijo de longitud más 
-    datos. El prefijo de longitud indica el número de bytes en el valor. Una columna 
-    VARCHAR utiliza un byte de longitud si los valores no requieren más de 255 bytes, dos 
-    bytes de longitud si los valores pueden requerir más de 255 bytes.
-
-    Nota: MariaDB 5.1 y posteriormente seguir la especificación de SQL estándar, y no 
-    quite espacios finales de los valores VARCHAR.
-
-    VARCHAR (0) columnas puede contener 2 valores: una cadena vacía o NULL. Tales 
-    columnas no pueden ser parte de un índice. El CONNECT motor de almacenamiento no 
-    admite VARCHAR (0).
-
-    VARCHAR es la abreviatura para variar CARÁCTER. VARCHAR NACIONAL es la manera 
-    estándar de SQL para definir que una columna VARCHAR debe utilizar algún juego de 
-    caracteres predefinido. MariaDB utiliza utf8 como este juego de caracteres 
-    predefinido, al igual que MySQL 4.1 en adelante. NVARCHAR es la abreviatura de 
-    VARCHAR NACIONAL. o Case Sensitivo con SORT   Puedes usar para Binarios o Textos datos
-
+    1 - 255
+    No Default
+     
+TEXT No Case Sensitivo con SORT   Puedes usar para Binarios o Textos datos
     Max 65,535
      
 BLOB Case Sensitvo con SORT       Puedes usar para Binarios o Textos datos 
     Max 65,535
      
-TEXT Case INSensitvo con SORT       Puedes usar para Textos datos
-    Max 65,535
-
-    Un BLOB es un objeto binario grande que puede contener una cantidad variable de
-    datos. Los cuatro BLOB tipos son
-
-        TINYBLOB,
-        BLOB,
-        MEDIUMBLOB, y
-        LONGBLOB. 
-
-    Estos sólo se diferencian en la longitud máxima de los valores que pueden tener.
-
-    Los cuatro TEXT tipos son
-
-        TINYTEXT,  
-        TEXT,
-        MEDIUMTEXT, y
-        LONGTEXT. 
-
-    Estos corresponden a los cuatro BLOB tipos y tienen la misma longitud máxima y los
-    requisitos de almacenamiento. 
-
 TINYTEXT
     Max 255
      
@@ -310,12 +158,6 @@ MEDIUMTEXT
 MEDIUMBLOB
     Max 16,777,215
      
-BLOB
-    Max 65,535
-
-TEXT
-    Max 65,535
-
 LONGTEXT
     Max 4,294,967,295
      
@@ -324,51 +166,6 @@ LONGBLOB
      
 ENUM                 ENUM ( 'A', -77, 'VERDAD' ) o NULL
     Max Fields 65,535
-
-    Una enumeración. Un objeto de cadena que puede tener sólo un valor, elegido de la
-    lista de valores 'valor1', 'valor2', ..., NULL o el '' valor de error especial. En 
-    teoría, un ENUM columna puede tener un máximo de 65.535 valores distintos; en la 
-    práctica, el verdadero máximo depende de muchos factores. ENUM valores se representan 
-    internamente como enteros.
-
-    Los espacios finales se eliminan automáticamente de los valores ENUM de creación de 
-    la tabla.
-
-    ENUM requieren relativamente poco espacio de almacenamiento en comparación con las 
-    cadenas, ya sea uno o dos bytes, dependiendo del número de valores de la enumeración. 
-
-    Valores NULL y vacías
-
-    Un ENUM también puede contener valores NULL y vacías. Si la columna ENUM se declara 
-    para permitir valores NULL, NULL se convierte en un valor válido, así como el valor 
-    por defecto (ver más abajo). Si el modo estricto SQL no está habilitado, y un valor 
-    no válido se inserta en un ENUM, una cadena vacía especial, con un valor de índice de 
-    cero (ver índice numérico, más adelante), se inserta, con una advertencia. Esto puede 
-    ser confuso, porque la cadena vacía es también un valor posible, y la única 
-    diferencia si que en este caso su índice no es 0. Inserción fallará con un error si 
-    el modo estricto está activo.
-
-    Si un DEFAULT cláusula no se encuentra, el valor por defecto será:
-
-    NULL es la columna es anulable;
-    de lo contrario, el primer valor en el enumaration. 
-
-    Índice Numérico
-
-    Valores ENUM son indexados numéricamente en el orden en que se definen, y la 
-    clasificación se llevarán a cabo en este orden numérico. No sugerimos usando ENUM 
-    para almacenar números, ya que hay poco o ningún beneficio espacio de almacenamiento, 
-    y es fácil confundir el entero enumeración con el valor numeral enumeración dejando 
-    fuera las comillas.
-
-    Un ENUM define como ENUM ('manzana', 'naranja', 'pera') tendría los siguientes 
-    valores del índice:
-            Índice        Valor
-             NULL         NULL
-              0            ''
-              1         'manzana'
-              2         'Naranja'
-              3          'Pera'
 
 
 </syntaxhighlight>
