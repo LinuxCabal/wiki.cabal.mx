@@ -1,0 +1,12 @@
+Tips y trucos para adecuar el entorno a necesidades específicas.
+
+= Terminal =
+Si se desean desactivar las teclas de atajo predeterminadas de Xfce, por ejemplo para que sean usadas en alguna aplicación, se editan o crean uno o ambos archivos de configuración:
+* ''~/.config/xfce/terminal/accels.scm'', desactivar F1 y F11:
+ (gtk_accel_path "<Actions>/terminal-window/contents" "")
+ (gtk_accel_path "<Actions>/terminal-window/fullscreen" "")
+* ''~/.config/xfce/terminal/terminalrc'', desactivar F10:
+ ShortcutsNoMenukey=TRUE
+*[http://superuser.com/questions/562069/disable-f1-on-xfce-terminal Disable F1 on xfce terminal]
+
+[[Category: HowTos]]
