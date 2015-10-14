@@ -170,7 +170,7 @@ DATE            YYYY-MM-DD
 
     El rango admitido es 1000-01-01 a 9999-12-31 
 
-    MariaDB muestra DATE valores en YYYY-MM-DD formato ", pero se le puede asignar fechas 
+    MariaDB muestra DATE valores en YYYY-MM-DD formato, pero se le puede asignar fechas 
     en formatos más flexibles, incluyendo cadenas o números, siempre y cuando tengan 
     sentido. Estos incluyen un año corto, YY-MM-DD sin delimitadores, YYMMDD o cualquier 
     otro delimitador aceptable, por ejemplo YYYY/MM/DD Para más detalles, ver la fecha y 
