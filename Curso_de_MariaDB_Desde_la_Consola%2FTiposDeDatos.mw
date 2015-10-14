@@ -188,7 +188,7 @@ DATETIME        YYYY-MM-DD HH:MM:SS     1000-01-01 00:00:00 -
                                         9999-12-31 23:59:59
 
     Una combinación fecha y hora. 
-    El rango admitido es 1000-01-01 00:00:00.000000 'a' 9999-12-31 23:59:59.999999 '. 
+    El rango admitido es 1000-01-01 00:00:00.000000 'a' 9999-12-31 23:59:59.999999. 
     MariaDB muestra DATETIME valores en YYYY-MM-DD HH:MM:SS formato, pero permite la 
     asignación de valores a DATETIME columnas usando cadenas o números. Para más 
     detalles, ver la fecha y hora literales.
