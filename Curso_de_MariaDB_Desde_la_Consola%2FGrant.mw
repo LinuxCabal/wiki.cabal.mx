@@ -167,6 +167,7 @@ para toda la tabla.
 
 Utilizando el WITH GRANT OPTION cláusula equivale a lista 
 GRANT OPTION como un privilegio.
+
 Privilegios Global
 
 La siguiente tabla muestra los privilegios que se pueden conceder 
@@ -249,7 +250,8 @@ LOCK TABLES  Adquirir bloqueos explícitos utilizando el LOCK TABLES
              declaración; también necesita tener el SELECT privilegio sobre 
              una mesa, con el fin de bloquearla.
 
-Privilegios de tabla
+Privilegios de table
+
 Privilege 	Descripción
 ALTER       Cambiar la estructura de una tabla existente utilizando la 
             ALTER TABLE comunicado.
@@ -290,95 +292,183 @@ UPDATE      Actualización de filas existentes en una tabla utilizando el
 
 Privilegios Columna
 
-Algunos privilegios de tabla se pueden establecer para columnas individuales de una tabla. Para utilizar los privilegios de columna, especifique la tabla de forma explícita y proporcionar una lista de nombres de columna después de que el tipo de privilegio. Por ejemplo, la siguiente declaración permitiría al usuario leer los nombres y cargos de los empleados, pero no otra información de la misma tabla, tales como salarios.
+Algunos privilegios de tabla se pueden establecer para columnas individuales 
+de una tabla. Para utilizar los privilegios de columna, especifique la table 
+de forma explícita y proporcionar una lista de nombres de columna después de 
+que el tipo de privilegio. Por ejemplo, la siguiente declaración permitiría 
+al usuario leer los nombres y cargos de los empleados, pero no otra 
+información de la misma tabla, tales como salarios.
 
-  GRANT SELECT (nombre, cargo) de los Empleados de 'jeffrey' @ 'localhost'; 
+  GRANT SELECT (name, position) on Employee to 'jeffrey'@'localhost';
 
 Privilege 	Descripción
-INSERT (column_list) 	Añadir filas especificando los valores en las columnas utilizando el INSERT comunicado. Si sólo tiene a nivel de la columna INSERT privilegios, debe especificar las columnas que está configurando en el INSERT comunicado. Todas las demás columnas se ajustarán a sus valores predeterminados, o NULL
-REFERENCES (column_list) 	Sin usar.
-SELECT (column_list) 	Leer valores de las columnas utilizando el SELECT comunicado. No puede acceder o consultar cualquier columna para el que no tiene SELECT privilegios, incluyendo en WHERE ON GROUP BY y ORDER BY cláusulas.
-UPDATE (column_list) 	Actualizar los valores de las columnas de las filas existentes utilizando el UPDATE comunicado. UPDATE declaraciones generalmente incluyen una WHERE cláusula de actualización sólo ciertas filas. Debe tener SELECT privilegios en la tabla o las columnas correspondientes para el WHERE cláusula.
+
+INSERT (column_list)  Añadir filas especificando los valores en las columnas 
+                      utilizando el INSERT comunicado. Si sólo tiene a nivel 
+                      de la columna INSERT privilegios, debe especificar las 
+                      columnas que está configurando en el INSERT comunicado. 
+                      Todas las demás columnas se ajustarán a sus valores 
+                      predeterminados, o NULL
+REFERENCES (column_list)  Sin usar.
+SELECT (column_list)  Leer valores de las columnas utilizando el SELECT 
+                      comunicado. No puede acceder o consultar cualquier 
+                      columna para el que no tiene SELECT privilegios, 
+                      incluyendo en WHERE ON GROUP BY y ORDER BY cláusulas.
+UPDATE (column_list)  Actualizar los valores de las columnas de las filas 
+                      existentes utilizando el UPDATE comunicado. UPDATE 
+                      declaraciones generalmente incluyen una WHERE cláusula 
+                      de actualización sólo ciertas filas. Debe tener SELECT 
+                      privilegios en la tabla o las columnas correspondientes 
+                      para el WHERE cláusula.
+
 Privilegios de función
+
 Privilege 	Descripción
-ALTER ROUTINE 	Cambiar las características de una función almacenada utilizando la ALTER FUNCTION comunicado.
-EXECUTE 	Utilice una función almacenada. Es necesario SELECT privilegios para ninguna tabla o columnas que se accede por la función.
-GRANT OPTION 	Conceder privilegios de función. Sólo se puede conceder privilegios que usted tiene.
+
+ALTER ROUTINE   Cambiar las características de una función almacenada 
+                utilizando la ALTER FUNCTION comunicado.
+EXECUTE         Utilice una función almacenada. Es necesario SELECT privilegios 
+                para ninguna table o columnas que se accede por la función.
+GRANT OPTION    Conceder privilegios de función. Sólo se puede conceder 
+                privilegios que usted tiene.
+
 Privilegios Procedimiento
+
 Privilege 	Descripción
-ALTER ROUTINE 	Cambiar las características de un procedimiento almacenado utilizando el ALTER PROCEDURE comunicado.
-EXECUTE 	Ejecutar un procedimiento almacenado utilizando la CALL comunicado. El privilegio de llamar a un procedimiento puede permitir llevar a cabo las acciones que de otro modo no ser capaz de hacer, como filas de inserción en una tabla.
-GRANT OPTION 	Conceder privilegios de procedimiento. Sólo se puede conceder privilegios que usted tiene.
+ALTER ROUTINE  Cambiar las características de un procedimiento almacenado 
+               utilizando el ALTER PROCEDURE comunicado.
+EXECUTE        Ejecutar un procedimiento almacenado utilizando la CALL 
+               comunicado. El privilegio de llamar a un procedimiento puede 
+               permitir llevar a cabo las acciones que de otro modo no ser 
+               capaz de hacer, como filas de inserción en una tabla.
+GRANT OPTION   Conceder privilegios de procedimiento. Sólo se puede conceder 
+               privilegios que usted tiene.
+
 Privilegios proxy
+
 Privilege 	Descripción
-PROXY 	Permite un usuario como un proxy para otro.
+
+PROXY    Permite un usuario como un proxy para otro.
 
 Por ejemplo:
 
-  GRANT proxy en 'marijana' @ 'somehost' A 'barrfhionn' @ 'somehost'; 
+  GRANT proxy on 'marijana' @ 'somehost' TO 'barrfhionn' @ 'somehost'; 
 
 Límites de recursos configuración por cuenta
 
-Es posible ajustar un límite por accout para los recursos del servidor que se pueden utilizar. La siguiente tabla muestra los valores que se pueden establecer por cada cuenta:
+Es posible ajustar un límite por accout para los recursos del servidor 
+que se pueden utilizar. La siguiente tabla muestra los valores que se 
+pueden establecer por cada cuenta:
+
 Limitar Tipo 	Decription
-MAX_QUERIES_PER_HOUR 	Número de declaraciones de que la cuenta puede emitir por hora (incluyendo actualizaciones)
-MAX_UPDATES_PER_HOUR 	Número de cambios (no consultas) que la cuenta puede emitir por hora
-MAX_CONNECTIONS_PER_HOUR 	Número de conexiones que la cuenta puede comenzar por hora
-MAX_USER_CONNECTIONS 	Número de conexiones simultáneas que se pueden aceptar desde la misma cuenta; si es 0, max_connections su lugar se utilizará; si max_connections es 0, no hay límite para las conexiones simultáneas de esta cuenta.
 
-Si el valor de 0 se ajusta para cualquiera de estos límites, se retira el límite.
+MAX_QUERIES_PER_HOUR   Número de declaraciones de que la cuenta puede emitir 
+                       por hora (incluyendo actualizaciones)
+MAX_UPDATES_PER_HOUR   Número de cambios (no consultas) que la cuenta puede 
+                       emitir por hora
+MAX_CONNECTIONS_PER_HOUR  Número de conexiones que la cuenta puede comenzar 
+                          por hora
+MAX_USER_CONNECTIONS   Número de conexiones simultáneas que se pueden aceptar 
+                       desde la misma cuenta; si es 0, max_connections su 
+                       lugar se utilizará; si max_connections es 0, no hay 
+                       límite para las conexiones simultáneas de esta cuenta.
 
-Para establecer los límites de recursos para una cuenta, si usted no desea cambiar los privilegios de esa cuenta, puede emitir un GRANT declaración con la USAGE privilegio, que no tiene ningún significado. La declaración puede nombrar algunos o todos los tipos de carrera, en cualquier orden.
+Si el valor de 0 se ajusta para cualquiera de estos límites, se retira 
+el límite.
+
+Para establecer los límites de recursos para una cuenta, si usted no desea 
+cambiar los privilegios de esa cuenta, puede emitir un GRANT declaración 
+con la USAGE privilegio, que no tiene ningún significado. La declaración 
+puede nombrar algunos o todos los tipos de carrera, en cualquier orden.
 
 He aquí un ejemplo que muestra cómo configurar más de un límite:
 
-  CONCESIÓN DE USO *. * A 'e.zapata'@'localhost' CON
-     MAX_USER_CONNECTIONS 0
-     MAX_QUERIES_PER_HOUR 200; 
+  GRANT USAGE ON *.* TO 'e.zapata'@'localhost' WITH
+    MAX_USER_CONNECTIONS 0
+    MAX_QUERIES_PER_HOUR 200;
 
-El uso de la cuenta de recursos se hace por cuenta, lo que significa 'usuario' @ 'servidor'; no por usuario o por conexión.
+El uso de la cuenta de recursos se hace por cuenta, lo que significa 
+'usuario' @ 'servidor'; no por usuario o por conexión.
 
-El recuento se puede restablecer a todos los usuarios que utilizan USER_RESOURCES FLUSH, FLUSH PRIVILEGES o mysqladmin reload.
+El recuento se puede restablecer a todos los usuarios que utilizan 
+USER_RESOURCES FLUSH, FLUSH PRIVILEGES o mysqladmin reload.
 
-Por cuenta de los límites de recursos se almacenan en el usuario la tabla, en el mysql base de datos. Las columnas utilizadas para los límites de recursos son nombrados max_questions max_updates max_connections (por MAX_CONNECTIONS_PER_HOUR y max_user_connections (por MAX_USER_CONNECTIONS
+Por cuenta de los límites de recursos se almacenan en el usuario 
+la tabla, en el mysql base de datos. Las columnas utilizadas para los 
+límites de recursos son nombrados max_questions max_updates 
+max_connections (por MAX_CONNECTIONS_PER_HOUR y max_user_connections 
+(por MAX_USER_CONNECTIONS
+
 Por-Account Options SSL
 
-Por defecto, MariaDB utiliza conexiones no cifradas para todas las comunicaciones cliente / servidor. Para utilizar SSL, OpenSSL o yaSSL deben estar presentes en su sistema. Además, el servidor MariaDB necesita ser construido con soporte SSL y estar correctamente configurado para utilizar uno de ellos.
+Por defecto, MariaDB utiliza conexiones no cifradas para todas las 
+comunicaciones cliente / servidor. Para utilizar SSL, OpenSSL o yaSSL 
+deben estar presentes en su sistema. Además, el servidor MariaDB necesita 
+ser construido con soporte SSL y estar correctamente configurado para 
+utilizar uno de ellos.
 
-Puede requerir conexiones SSL en función de cada cuenta, utilizando el REQUIRE cláusula. Las siguientes opciones están disponibles,:
+Puede requerir conexiones SSL en función de cada cuenta, utilizando 
+el REQUIRE cláusula. Las siguientes opciones están disponibles,:
+
 Opción 	Descripción
-REQUIRE NONE 	SSL no es necesaria para esta cuenta, pero todavía se puede utilizar.
-REQUIRE SSL 	La cuenta debe utilizar SSL, pero no se requiere certificado X509 válido.
-REQUIRE X509 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido.
-REQUIRE ISSUER 'issuer' 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido. Además, la autoridad de certificación debe ser el especificado a través de la cadena de issuer
-REQUIRE SUBJECT 'subject' 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido. También, del certificado Sin perjuicio debe ser el especificado a través de la cadena de subject
-REQUIRE CIPHER 'cipher' 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido. Además, el cifrado utilizado para la conexión debe utilizar uno de los métodos especificados en la cadena de cipher
 
-Si usted requiere un certificado X509, REQUIRE SSL está implícito. El ISSUER SUBJECT y CIPHER opciones se pueden combinar en cualquier orden, y si se utiliza cualquiera de ellos REQUIRE X509 es implícito.
+REQUIRE NONE    SSL no es necesaria para esta cuenta, pero todavía se 
+                puede utilizar.
+REQUIRE SSL     La cuenta debe utilizar SSL, pero no se requiere 
+                certificado X509 válido.
+REQUIRE X509    La cuenta debe utilizar SSL y debe tener un certificado 
+                X509 válido.
+REQUIRE ISSUER 'issuer'   La cuenta debe utilizar SSL y debe tener un 
+                          certificado X509 válido. Además, la autoridad 
+                          de certificación debe ser el especificado a través 
+                          de la cadena de issuer
+REQUIRE SUBJECT 'subject'   La cuenta debe utilizar SSL y debe tener un 
+                            certificado X509 válido. También, del certificado 
+                            Sin perjuicio debe ser el especificado a través 
+                            de la cadena de subject
+REQUIRE CIPHER 'cipher'   La cuenta debe utilizar SSL y debe tener un 
+                          certificado X509 válido. Además, el cifrado 
+                          utilizado para la conexión debe utilizar uno de 
+                          los métodos especificados en la cadena de cipher
 
-El REQUIRE palabra clave debe ser usada sólo una vez para todas las opciones especificadas, y de la AND de palabras clave se puede utilizar para separar opciones individuales (a su elección).
+Si usted requiere un certificado X509, REQUIRE SSL está implícito. 
+El ISSUER SUBJECT y CIPHER opciones se pueden combinar en cualquier orden, 
+y si se utiliza cualquiera de ellos REQUIRE X509 es implícito.
+
+El REQUIRE palabra clave debe ser usada sólo una vez para todas las opciones especificadas, y de la AND de palabras clave se puede utilizar para separar 
+opciones individuales (a su elección).
 
 Aquí hay un ejemplo:
 
-  USO DE SUBVENCIÓN DE *. * A 'alguien' @ 'localhost'
-     REQUERIR SUJETO '/CN=www.mydom.com/O=My Dom, Inc. / C = US / ST = Oregon / L = Portland'
-     Y EMISOR '/ C = FI / ST = En alguna parte / L = Ciudad / O = Algunos Empresa / CN = Peter Parker/emailAddress=p.parker@marvel.com'
-     Y CIPHER 'SHA-DES-CBC3-EDH-RSA'; 
+    GRANT USAGE ON *.* TO 'someone'@'localhost'
+        REQUIRE SUBJECT '/CN=www.mydom.com/O=My Dom, Inc./C=US/ST=Oregon/L=Portland'
+        AND ISSUER '/C=FI/ST=Somewhere/L=City/ O=Some Company/CN=Peter
+                    Parker/emailAddress=p.parker@marvel.com'
+        AND CIPHER 'SHA-DES-CBC3-EDH-RSA';
 
 Roles
+
 MariaDB comenzando con 10.0.5
 
 Roles se introdujeron en MariaDB 10.0.5.
+
 Sintaxis
 
-  Papel GRANT [, Role2 ...] A concesionario [, grantee2 ...]
- [CON OPCIÓN ADMIN] 
+  GRANT role [, role2 ... ] TO grantee [, grantee2 ... ]
+  [ WITH ADMIN OPTION ]
 
-La sentencia GRANT también se utiliza para conceder el uso de una o más funciones a uno o más usuarios. Con el fin de poder otorgar un papel, el otorgante hacerlo debe tener permiso para hacerlo (véase CON ADMIN en el CREATE ROLE artículo).
+La sentencia GRANT también se utiliza para conceder el uso de una o más 
+funciones a uno o más usuarios. Con el fin de poder otorgar un papel, 
+el otorgante hacerlo debe tener permiso para hacerlo (véase CON ADMIN 
+en el CREATE ROLE artículo).
 
-Especificación del WITH ADMIN OPTION permite al concesionario a su vez otorgar el papel a otro.
+Especificación del WITH ADMIN OPTION permite al concesionario a su vez 
+otorgar el papel a otro.
 
-Si un usuario se ha concedido un papel, no obtienen automáticamente todos los permisos asociados a ese papel. Estos permisos sólo están en uso cuando el usuario activa la función con el SET PAPEL comunicado. 
+Si un usuario se ha concedido un papel, no obtienen automáticamente 
+todos los permisos asociados a ese papel. Estos permisos sólo están 
+en uso cuando el usuario activa la función con el SET PAPEL comunicado. 
+
 </syntaxhighlight>
 
 === Ejemplo ===
