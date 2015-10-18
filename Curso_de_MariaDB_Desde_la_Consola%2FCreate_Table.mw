@@ -26,36 +26,39 @@ En su forma más básica, el CREATE TABLE declaración proporciona un nombre de
 table seguido por una lista de columnas, índices y restricciones. 
 Por defecto, la table se crea en la base de datos. 
 Especifique una base de datos con db_name . tbl_name 
-Si usted cita el nombre de la table, se debe citar el nombre de la base de datos
-y el nombre de table por separado como ` db_name `.` tbl_name ` 
-Esto es particularmente útil para CREATE TABLE ... SELECT ya que permite crear 
-una table en una base de datos, que contiene datos de otras bases de datos.
+Si usted cita el nombre de la table, se debe citar el nombre de la base de 
+datos y el nombre de table por separado como ` db_name `.` tbl_name ` 
+Esto es particularmente útil para CREATE TABLE ... SELECT ya que permite 
+crear una table en una base de datos, que contiene datos de otras bases 
+de datos.
 
-Si existe una table con el mismo nombre, error 1050 resultados. Utilice IF NOT EXISTS
-suprimir este error y emitir una nota en su lugar. 
+Si existe una table con el mismo nombre, error 1050 resultados. Utilice 
+IF NOT EXISTS suprimir este error y emitir una nota en su lugar. 
 Utilice SHOW WARNINGS para ver las notas.
 
-Utilice la TEMPORARY palabra clave para crear una table temporal que sólo está 
-disponible para la sesión actual. Las tables temporales se eliminan cuando 
-finaliza la sesión. 
-Nombres de tables temporales son específicos de su sesión. Ellos pueden entrar en
-conflicto con otras tables temporales de otras sesiones o nombres sombra de tables no temporales. 
-Una table temporal puede tener el mismo nombre que una table no temporal que se 
-encuentra en la misma base de datos. En ese caso, su nombre hará referencia a la 
-table temporal cuando se utiliza en las sentencias SQL. 
-Debe tener el CREATE TEMPORARY TABLES privilegio en la base de datos para crear 
-tables temporales.
+Utilice la TEMPORARY palabra clave para crear una table temporal que sólo 
+está disponible para la sesión actual. Las tables temporales se eliminan 
+cuando finaliza la sesión. 
+Nombres de tables temporales son específicos de su sesión. Ellos pueden 
+entrar en conflicto con otras tables temporales de otras sesiones o nombres 
+sombra de tables no temporales. 
+Una table temporal puede tener el mismo nombre que una table no temporal 
+que se encuentra en la misma base de datos. En ese caso, su nombre hará 
+referencia a la table temporal cuando se utiliza en las sentencias SQL. 
+Debe tener el CREATE TEMPORARY TABLES privilegio en la base de datos para 
+crear tables temporales.
 
-Utilice el LIKE cláusula en lugar de una definición de la table completa para crear 
-una table con la misma definición que otra table, incluidas las columnas, índices y
-opciones de table.
+Utilice el LIKE cláusula en lugar de una definición de la table completa 
+para crear una table con la misma definición que otra table, incluidas las 
+columnas, índices y opciones de table.
 
 El CREATE TABLE declaración compromete automáticamente la transacción actual, 
 excepto cuando se utiliza el TEMPORARY palabra clave.
 MariaDB comenzando con 5,3
 
-Precisión de microsegundos puede estar entre 0-6. Si no se especifica la precisión 
-que se supone que es 0, por razones de compatibilidad hacia atrás.
+Precisión de microsegundos puede estar entre 0-6. Si no se especifica 
+la precisión que se supone que es 0, por razones de compatibilidad hacia 
+atrás.
 MariaDB empezando 10.0.8
 
 El OR REPLACE sintaxis se añadió en 10.0.8. 
