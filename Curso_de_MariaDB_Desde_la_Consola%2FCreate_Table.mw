@@ -94,7 +94,12 @@ MariaDB [Prueba1]> create table inven (
     ->   );
 Query OK, 0 rows affected (0.63 sec)
 
-MariaDB [Prueba1]> 
+MariaDB [Prueba1]> show errors;
+Empty set (0.00 sec)
+
+MariaDB [Prueba1]> show warnings;
+Empty set (0.00 sec)
+
 MariaDB [Prueba1]> show tables;
 +-------------------+
 | Tables_in_Prueba1 |
@@ -117,7 +122,7 @@ MariaDB [Prueba1]> describe inven;
 
 MariaDB [Prueba1]> show create table inven;
 +-------+--------------------------------------------------------+
-| Table | Create Table                                                                                                                                                                                                                                                                                                  |
+| Table | Create Table                                           |
 +-------+--------------------------------------------------------+
 | inven | CREATE TABLE `inven` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -130,7 +135,19 @@ MariaDB [Prueba1]> show create table inven;
 +-------+--------------------------------------------------------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> 
+MariaDB [Prueba1]> quit
+
+MariaDB [Prueba1]> quit
+Bye
+
+[rrc@Pridd ~]$ su -c "ls -al /var/lib/mysql/Prueba1"
+Password: 
+total 112
+drwx------ 2 mysql mysql  4096 Oct 18 07:29 .
+drwxr-xr-x 5 mysql mysql  4096 Oct 18 07:00 ..
+-rw-rw---- 1 mysql mysql    61 Oct 18 07:00 db.opt
+-rw-rw---- 1 mysql mysql  1190 Oct 18 07:29 inven.frm
+-rw-rw---- 1 mysql mysql 98304 Oct 18 07:29 inven.ibd
 
 </syntaxhighlight>
 
