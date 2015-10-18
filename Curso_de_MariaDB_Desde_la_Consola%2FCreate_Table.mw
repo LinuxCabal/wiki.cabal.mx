@@ -1,0 +1,135 @@
+* [[:#Create Table | Create Table]]
+* [[:#Sintaxis | Sintaxis]]
+* [[:#Ejemplo | Ejemplo]]
+
+== Create Table ==
+=== Sintaxis ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+CREATE [OR REPLACE] [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
+    (create_definition,...) [table_options    ]... [partition_options]
+CREATE [OR REPLACE] [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
+    [(create_definition,...)] [table_options   ]... [partition_options]
+    select_statement
+CREATE [OR REPLACE] [TEMPORARY] TABLE [IF NOT EXISTS] tbl_name
+   { LIKE old_table_name | (LIKE old_table_name) }
+
+select_statement:
+    [IGNORE | REPLACE] [AS] SELECT ...   (Some legal select statement)
+
+Utilice el CREATE TABLE instrucción para crear una tabla con el nombre
+tbl_name. Debe tener el CREATE privilegio para la table o en la base de 
+datos para crear una table.
+
+En su forma más básica, el CREATE TABLE declaración proporciona un nombre de 
+table seguido por una lista de columnas, índices y restricciones. 
+Por defecto, la table se crea en la base de datos. 
+Especifique una base de datos con db_name . tbl_name 
+Si usted cita el nombre de la table, se debe citar el nombre de la base de datos
+y el nombre de table por separado como ` db_name `.` tbl_name ` 
+Esto es particularmente útil para CREATE TABLE ... SELECT ya que permite crear 
+una table en una base de datos, que contiene datos de otras bases de datos.
+
+Si existe una table con el mismo nombre, error 1050 resultados. Utilice IF NOT EXISTS
+suprimir este error y emitir una nota en su lugar. 
+Utilice SHOW WARNINGS para ver las notas.
+
+Utilice la TEMPORARY palabra clave para crear una table temporal que sólo está 
+disponible para la sesión actual. Las tables temporales se eliminan cuando 
+finaliza la sesión. 
+Nombres de tables temporales son específicos de su sesión. Ellos pueden entrar en
+conflicto con otras tables temporales de otras sesiones o nombres sombra de tables no temporales. 
+Una table temporal puede tener el mismo nombre que una table no temporal que se 
+encuentra en la misma base de datos. En ese caso, su nombre hará referencia a la 
+table temporal cuando se utiliza en las sentencias SQL. 
+Debe tener el CREATE TEMPORARY TABLES privilegio en la base de datos para crear 
+tables temporales.
+
+Utilice el LIKE cláusula en lugar de una definición de la table completa para crear 
+una table con la misma definición que otra table, incluidas las columnas, índices y
+opciones de table.
+
+El CREATE TABLE declaración compromete automáticamente la transacción actual, 
+excepto cuando se utiliza el TEMPORARY palabra clave.
+MariaDB comenzando con 5,3
+
+Precisión de microsegundos puede estar entre 0-6. Si no se especifica la precisión 
+que se supone que es 0, por razones de compatibilidad hacia atrás.
+MariaDB empezando 10.0.8
+
+El OR REPLACE sintaxis se añadió en 10.0.8. 
+
+</syntaxhighlight>
+
+=== Ejemplo ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[rrc@Pridd ~]$ mysql -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 6
+Server version: 10.0.21-MariaDB Mageia MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use Prueba1;
+Database changed
+MariaDB [Prueba1]> show tables;
+Empty set (0.02 sec)
+
+MariaDB [Prueba1]> 
+MariaDB [Prueba1]> create table inven (
+    ->   id int not null primary key auto_increment,
+    ->   nombre varchar (50) not null,
+    ->   descrip text,
+    ->   precio float not null,
+    ->   cantidad int not null
+    ->   );
+Query OK, 0 rows affected (0.63 sec)
+
+MariaDB [Prueba1]> 
+MariaDB [Prueba1]> show tables;
++-------------------+
+| Tables_in_Prueba1 |
++-------------------+
+| inven             |
++-------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> describe inven;
++----------+-------------+------+-----+---------+----------------+
+| Field    | Type        | Null | Key | Default | Extra          |
++----------+-------------+------+-----+---------+----------------+
+| id       | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nombre   | varchar(50) | NO   |     | NULL    |                |
+| descrip  | text        | YES  |     | NULL    |                |
+| precio   | float       | NO   |     | NULL    |                |
+| cantidad | int(11)     | NO   |     | NULL    |                |
++----------+-------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> show create table inven;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                  |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| inven | CREATE TABLE `inven` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `descrip` text COLLATE utf8_unicode_ci,
+  `precio` float NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> 
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
