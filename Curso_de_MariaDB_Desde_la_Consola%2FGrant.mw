@@ -435,7 +435,8 @@ Si usted requiere un certificado X509, REQUIRE SSL está implícito.
 El ISSUER SUBJECT y CIPHER opciones se pueden combinar en cualquier orden, 
 y si se utiliza cualquiera de ellos REQUIRE X509 es implícito.
 
-El REQUIRE palabra clave debe ser usada sólo una vez para todas las opciones especificadas, y de la AND de palabras clave se puede utilizar para separar 
+El REQUIRE palabra clave debe ser usada sólo una vez para todas las opciones
+especificadas, y de la AND de palabras clave se puede utilizar para separar
 opciones individuales (a su elección).
 
 Aquí hay un ejemplo:
