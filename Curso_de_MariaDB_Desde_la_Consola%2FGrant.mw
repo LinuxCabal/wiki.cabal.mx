@@ -202,36 +202,92 @@ SHOW DATABASES       Enumere todas las bases de datos utilizando el
                      privilegio, aún puede emitir el SHOW DATABASES 
                      declaración, pero sólo va a listar las bases de datos 
                      que contienen las tablas en las que tiene privilegios.
-SHUTDOWN 	Apague el servidor utilizando SHUTDOWN el o mysqladmin shutdown command.
-SUPER 	Ejecutar sentencias de superusuario: CHANGE MASTER TO, MATAR (usuarios que no tienen este privilegio sólo puede KILL a sus propios hilos), REGISTROS PURGA, las variables de configuración del sistema mundial, o la depuración mysqladmin comandos. Además, este permiso permite al usuario escribir datos incluso si el read_only opción de inicio está establecido, habilitar o deshabilitar el registro, habilitar o deshabilitar la replicación de esclavos, especifique un DEFINER para los estados que apoyan esa cláusula, conecte una vez después de alcanzar los MAX_CONNECTIONS Si se ha especificado una declaración para la-init connect opción mysqld, ese comando no se ejecutará cuando un usuario con SUPER privilegios se conecta al servidor.
+SHUTDOWN     Apague el servidor utilizando SHUTDOWN el o mysqladmin 
+             shutdown command.
+SUPER        Ejecutar sentencias de superusuario: CHANGE MASTER TO, MATAR
+            (usuarios que no tienen este privilegio sólo puede KILL a sus 
+            propios hilos), REGISTROS PURGA, las variables de configuración 
+            del sistema mundial, o la depuración mysqladmin comandos. Además, 
+            este permiso permite al usuario escribir datos incluso si el 
+            read_only opción de inicio está establecido, habilitar o 
+            deshabilitar el registro, habilitar o deshabilitar la replicación 
+            de esclavos, especifique un DEFINER para los estados que apoyan 
+            esa cláusula, conecte una vez después de alcanzar los 
+            MAX_CONNECTIONS Si se ha especificado una declaración para la-init 
+            connect opción mysqld, ese comando no se ejecutará cuando un 
+            usuario con SUPER privilegios se conecta al servidor.
+
 Privilegios de base de datos
 
-La siguiente tabla muestra los privilegios que se pueden conceder en el nivel de base de datos. También puede conceder todos los privilegios de tabla y de función en el nivel de base de datos. Tabla de funciones y privilegios en una base de datos se aplican a todas las tablas o funciones en esa base de datos, incluidos los creados después.
+La siguiente tabla muestra los privilegios que se pueden conceder en el nivel 
+de base de datos. También puede conceder todos los privilegios de tabla y de 
+función en el nivel de base de datos. Tabla de funciones y privilegios en 
+una base de datos se aplican a todas las tablas o funciones en esa base de 
+datos, incluidos los creados después.
 
-Para establecer un privilegio para una base de datos, especifique la base de datos utilizando db_name.* Para priv_level, o simplemente utilizar * para especificar la base de datos predeterminada.
+Para establecer un privilegio para una base de datos, especifique la base 
+de datos utilizando db_name.* Para priv_level, o simplemente utilizar * para 
+especificar la base de datos predeterminada.
 Privilege 	Descripción
-CREATE 	Crear una base de datos utilizando el CREATE DATABASE declaración, cuando se concede el privilegio de una base de datos. Puede conceder el CREATE privilegio en bases de datos que aún no existen. Esto también otorga al CREATE privilegio en todas las tablas de la base de datos.
-CREATE ROUTINE 	Crear programas almacenados utilizando el CREATE PROCEDURE y CREATE FUNCTION declaraciones.
-CREATE TEMPORARY TABLES 	Crear tablas temporales con el CREATE TEMPORARY TABLE comunicado.
-DROP 	Caída de una base de datos utilizando el DROP DATABASE declaración, cuando se concede el privilegio de una base de datos. Esto también otorga al DROP privilegio en todas las tablas de la base de datos.
-EVENT 	Crear, eliminar y alterar EVENT s. Añadido en MySQL 5.1.6.
-GRANT OPTION 	Conceder privilegios de base de datos. Sólo se puede conceder privilegios que usted tiene.
-LOCK TABLES 	Adquirir bloqueos explícitos utilizando el LOCK TABLES declaración; también necesita tener el SELECT privilegio sobre una mesa, con el fin de bloquearla.
+CREATE       Crear una base de datos utilizando el CREATE DATABASE 
+             declaración, cuando se concede el privilegio de una base 
+             de datos. Puede conceder el CREATE privilegio en bases de 
+             datos que aún no existen. Esto también otorga al CREATE 
+             privilegio en todas las tablas de la base de datos.
+CREATE ROUTINE  Crear programas almacenados utilizando el CREATE PROCEDURE 
+                y CREATE FUNCTION declaraciones.
+CREATE TEMPORARY TABLES   Crear tablas temporales con el 
+                          CREATE TEMPORARY TABLE comunicado.
+DROP         Caída de una base de datos utilizando el DROP DATABASE 
+             declaración, cuando se concede el privilegio de una base de 
+             datos. Esto también otorga al DROP privilegio en todas las 
+             tablas de la base de datos.
+EVENT        Crear, eliminar y alterar EVENT s. Añadido en MySQL 5.1.6.
+GRANT OPTION Conceder privilegios de base de datos. Sólo se puede conceder 
+             privilegios que usted tiene.
+LOCK TABLES  Adquirir bloqueos explícitos utilizando el LOCK TABLES 
+             declaración; también necesita tener el SELECT privilegio sobre 
+             una mesa, con el fin de bloquearla.
+
 Privilegios de tabla
 Privilege 	Descripción
-ALTER 	Cambiar la estructura de una tabla existente utilizando la ALTER TABLE comunicado.
-CREATE 	Crear una tabla utilizando el CREATE TABLE comunicado. Puede conceder el CREATE privilegio en las tablas que aún no existen.
-CREATE VIEW 	Cree una vista utilizando el CREATE_VIEW comunicado.
-DELETE 	Eliminar filas de una tabla utilizando el DELETE comunicado.
-DROP 	Caída de una tabla utilizando el DROP TABLE declaración o una vista utilizando el DROP VIEW comunicado.
-GRANT OPTION 	Conceder privilegios de tabla. Sólo se puede conceder privilegios que usted tiene.
-INDEX 	Crear un índice en una tabla utilizando el CREATE INDEX comunicado. Sin el INDEX privilegio, todavía puede crear índices al crear una tabla utilizando el CREATE TABLE declaración si el que tiene el CREATE privilegio, y usted puede crear índices utilizando el ALTER TABLE declaración si usted tiene la ALTER privilegio.
-INSERT 	Añadir filas a una tabla utilizando el INSERT comunicado. El INSERT privilegio también se puede establecer en columnas individuales; ver Privilegios columna los detalles a continuación.
-REFERENCES 	Sin usar.
-SELECT 	Leer datos de una tabla utilizando el SELECT comunicado. El SELECT privilegio también se puede establecer en columnas individuales; ver Privilegios columna los detalles a continuación.
-SHOW VIEW 	Mostrar el CREATE VIEW declaración para crear una vista utilizando el SHOW CREATE VIEW comunicado.
-TRIGGER 	Ejecutar disparadores asociados a las tablas de actualizar, ejecutar la CREATE TRIGGER y DROP TRIGGER declaraciones. Usted todavía será capaz de ver los factores desencadenantes.
-UPDATE 	Actualización de filas existentes en una tabla utilizando el UPDATE comunicado. UPDATE declaraciones generalmente incluyen una WHERE cláusula de actualización sólo ciertas filas. Debe tener SELECT privilegios en la tabla o las columnas correspondientes para el WHERE cláusula. La UPDATE privilegio también se puede establecer en columnas individuales; ver Privilegios columna los detalles a continuación.
+ALTER       Cambiar la estructura de una tabla existente utilizando la 
+            ALTER TABLE comunicado.
+CREATE      Crear una tabla utilizando el CREATE TABLE comunicado. 
+            Puede conceder el CREATE privilegio en las tablas que aún 
+            no existen.
+CREATE VIEW Cree una vista utilizando el CREATE_VIEW comunicado.
+DELETE      Eliminar filas de una tabla utilizando el DELETE comunicado.
+DROP        Caída de una tabla utilizando el DROP TABLE declaración o una 
+            vista utilizando el DROP VIEW comunicado.
+GRANT OPTION  Conceder privilegios de tabla. Sólo se puede conceder 
+              privilegios que usted tiene.
+INDEX       Crear un índice en una tabla utilizando el CREATE INDEX 
+            comunicado. Sin el INDEX privilegio, todavía puede crear índices 
+            al crear una tabla utilizando el CREATE TABLE declaración si el 
+            que tiene el CREATE privilegio, y usted puede crear índices 
+            utilizando el ALTER TABLE declaración si usted tiene la ALTER 
+            privilegio.
+INSERT      Añadir filas a una tabla utilizando el INSERT comunicado. 
+            El INSERT privilegio también se puede establecer en columnas 
+            individuales; ver Privilegios columna los detalles a continuación.
+REFERENCES  Sin usar.
+SELECT      Leer datos de una tabla utilizando el SELECT comunicado. 
+            El SELECT privilegio también se puede establecer en columnas 
+            individuales; ver Privilegios columna los detalles a continuación.
+SHOW VIEW   Mostrar el CREATE VIEW declaración para crear una vista utilizando 
+            el SHOW CREATE VIEW comunicado.
+TRIGGER     Ejecutar disparadores asociados a las tablas de actualizar, 
+            ejecutar la CREATE TRIGGER y DROP TRIGGER declaraciones. Usted 
+            todavía será capaz de ver los factores desencadenantes.
+UPDATE      Actualización de filas existentes en una tabla utilizando el 
+            UPDATE comunicado. UPDATE declaraciones generalmente incluyen una 
+            WHERE cláusula de actualización sólo ciertas filas. Debe tener 
+            SELECT privilegios en la tabla o las columnas correspondientes 
+            para el WHERE cláusula. La UPDATE privilegio también se puede 
+            establecer en columnas individuales; ver Privilegios columna los 
+            detalles a continuación.
+
 Privilegios Columna
 
 Algunos privilegios de tabla se pueden establecer para columnas individuales de una tabla. Para utilizar los privilegios de columna, especifique la tabla de forma explícita y proporcionar una lista de nombres de columna después de que el tipo de privilegio. Por ejemplo, la siguiente declaración permitiría al usuario leer los nombres y cargos de los empleados, pero no otra información de la misma tabla, tales como salarios.
