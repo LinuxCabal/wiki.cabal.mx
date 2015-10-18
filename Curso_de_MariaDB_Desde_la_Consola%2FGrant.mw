@@ -1,0 +1,260 @@
+* [[:#Grant | Grant]]
+* [[:#Sintaxis | Sintaxis]]
+* [[:#Descripción | Descripción]]
+* [[:#Niveles de privilegios | Niveles de privilegios]]
+* [[:#Ejemplo | Ejemplo]]
+
+== Grant ==
+=== Sintaxis ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+GRANT
+    priv_type [(column_list)]
+      [, priv_type [(column_list)]] ...
+    ON [object_type] priv_level
+    TO user  [IDENTIFIED [BY [PASSWORD] 'password']
+        |{VIA|WITH} plugin_name 
+           [{USING|AS} 'plugin_option']] user_options
+        [, user [IDENTIFIED [BY [PASSWORD] 'password']
+        |{VIA|WITH} plugin_name] 
+           [{USING|AS} 'plugin_option']] user_options...
+
+GRANT PROXY ON user_specification
+    TO user_specification [, user_specification] ...
+    [WITH GRANT OPTION]
+
+user_options:
+    [REQUIRE {NONE | ssl_option [[AND] ssl_option] ...}]
+    [WITH with_option [with_option] ...]
+
+object_type:
+    TABLE
+  | FUNCTION
+  | PROCEDURE
+
+priv_level:
+    *
+  | *.*
+  | db_name.*
+  | db_name.tbl_name
+  | tbl_name
+  | db_name.routine_name
+
+with_option:
+    GRANT OPTION
+  | MAX_QUERIES_PER_HOUR count
+  | MAX_UPDATES_PER_HOUR count
+  | MAX_CONNECTIONS_PER_HOUR count
+  | MAX_USER_CONNECTIONS count
+
+ssl_option:
+    SSL
+  | X509
+  | CIPHER 'cipher'
+  | ISSUER 'issuer'
+  | SUBJECT 'subject'
+
+==== Descripción ====
+
+El GRANT declaración le permite crear cuentas de usuario MariaDB
+y conceder privilegios (o roles - ver sección abajo) a las cuentas. 
+Para usar GRANT debe tener el GRANT OPTION privilegio, y debe tener 
+los privilegios que el usuario garantiza.
+
+Si el NO_AUTO_CREATE_USER sql_mode se establece, los usuarios sólo 
+pueden crearse con un CREATE USER comunicado. En este caso GRANT 
+producirá un error cuando no existe el usuario especificado.
+
+El argumento usuario y el IDENTIFIED BY cláusula son los mismos que 
+para el CREATE USER comunicado. Si la cuenta de usuario aún no existe, 
+se creará de forma implícita. Usted debe tener los privilegios necesarios 
+para el CREATE USER instrucción para crear implícitamente un usuario con 
+GRANT. Si existe la cuenta de usuario y le proporcionará la IDENTIFIED BY 
+cláusula, se cambiará la contraseña del usuario. Al especificar el 
+IDENTIFIED VIA|WITH cláusula, la contraseña de la cuenta de usuario 
+existente se puede ajustar usando el plugin especificado. Algunos plugins 
+requieren un plugin_option Usted debe tener los privilegios necesarios para 
+el SET PASSWORD declaración para cambiar la contraseña de un usuario con 
+GRANT.
+
+Utilice el REVOKE declaración de revocar privilegios concedidos con el 
+GRANT declaración.
+
+Utilice el SHOW GRANTS declaración para determinar qué privilegios tiene 
+una cuenta.
+
+==== Niveles de privilegios ====
+
+Privilegios se pueden establecer a nivel mundial, para una base de datos completa, para una tabla o de rutina, o para las columnas individuales en una tabla. Ciertos privilegios sólo se pueden establecer en ciertos niveles.
+
+    Privilegios globales son otorgados mediante *.* Para priv_level. Privilegios globales incluyen privilegios para administrar la base de datos y administrar cuentas de usuario, así como privilegios para todas las tablas, funciones y procedimientos. Privilegios globales se almacenan en la tabla mysql.user.
+    Privilegios de base de datos se otorgan utilizando db_name.* Para priv_level, o usando sólo * para utilizar la base de datos por defecto. Privilegios de base de datos incluyen privilegios para crear tablas y funciones, así como privilegios para todas las tablas, funciones y procedimientos en la base de datos. Privilegios de base de datos se almacenan en la tabla mysql.db.
+    Privilegios de tabla se conceden utilizando db_name.tbl_name para priv_level, o usando sólo tbl_name para especificar una tabla en la base de datos por defecto. La TABLE palabra clave es opcional. Privilegios Tabla incluyen la capacidad para seleccionar y cambiar los datos en la tabla. Ciertos privilegios de tabla se pueden conceder para las columnas individuales.
+    Privilegios de columna se otorgan mediante la especificación de una mesa para priv_level y proporcionar una lista de columnas después de que el tipo de privilegio. Ellos le permiten controlar exactamente qué columnas en una tabla de usuarios pueden seleccionar y cambiar.
+    Privilegios de función se conceden utilizando FUNCTION db_name.routine_name para priv_level, o usando sólo FUNCTION routine_name para especificar una función en la base de datos por defecto.
+    Procedimiento privilegios se conceden utilizando PROCEDURE db_name.routine_name para priv_level, o usando sólo PROCEDURE routine_name especificar un procedimiento en la base de datos por defecto. 
+
+La USAGE Privilege
+
+La USAGE privilegio otorga privilegios reales. El SHOW GRANTS declaración mostrará un mundial USAGE privilegio para un usuario recién creado. Puede utilizar USAGE con el GRANT declaración para cambiar opciones como GRANT OPTION y MAX_USER_CONNECTIONS sin cambiar los privilegios de la cuenta.
+El ALL PRIVILEGES Privilegio
+
+El ALL PRIVILEGES privilegio otorga todos los privilegios disponibles. La concesión de todos los privilegios sólo afecta el nivel de privilegio dado. Por ejemplo, la concesión de todos los privilegios en una mesa no otorga ningún privilegio en la base de datos o el mundo.
+
+Usando ALL PRIVILEGES no concede la especial GRANT OPTION privilegio.
+
+Puede usar ALL en lugar de ALL PRIVILEGES
+El GRANT OPTION Privilege
+
+Utilice la WITH GRANT OPTION cláusula para dar a los usuarios la capacidad de conceder privilegios a otros usuarios a nivel de privilegio dado. Los usuarios con el GRANT OPTION privilegio sólo pueden otorgar privilegios que tienen. No pueden otorgar privilegios a un nivel de privilegio más alto que ellos tienen el GRANT OPTION privilegio.
+
+El GRANT OPTION privilegio no se puede ajustar para las columnas individuales. Si utiliza WITH GRANT OPTION al especificar privilegios de columna, el GRANT OPTION se concederá privilegio para toda la tabla.
+
+Utilizando el WITH GRANT OPTION cláusula equivale a lista GRANT OPTION como un privilegio.
+Privilegios Global
+
+La siguiente tabla muestra los privilegios que se pueden conceder a nivel mundial. También puede conceder todos los privilegios de base de datos, tablas y funciones a nivel mundial. Cuando otorgado a nivel global, estos privilegios se aplican a todas las bases de datos, tablas o funciones, incluyendo los creados después.
+
+Para establecer un privilegio global, utilice *.* Para priv_level.
+Privilege 	Descripción
+CREATE USER 	Crear un usuario mediante el CREATE USER declaración, o implícitamente crear un usuario con el GRANT declaración.
+FILE 	Leer y escribir archivos en el servidor, utilizando frases como LOAD DATA INFILE o funciones como LOAD_FILE (). También se necesita para crear CONNECT mesas exteriores. Servidor MariaDB debe tener los permisos para acceder a esos archivos.
+GRANT OPTION 	Conceder privilegios globales. Sólo se puede conceder privilegios que usted tiene.
+PROCESS 	Mostrar información sobre los procesos activos, a través de SHOW PROCESSLIST o processlist mysqladmin.
+RELOAD 	Ejecutar FLUSH declaraciones o equivalentes mysqladmin commands.
+REPLICATION CLIENT 	Ejecutar SHOW MASTER STATUS y SHOW STATUS ESCLAVO declaraciones informativas.
+REPLICATION SLAVE 	Cuentas utilizadas por los servidores esclavos en el maestro necesitan este privilegio. Esto es necesario para obtener las actualizaciones realizadas en el maestro.
+SHOW DATABASES 	Enumere todas las bases de datos utilizando el SHOW DATABASES comunicado. Sin el SHOW DATABASES privilegio, aún puede emitir el SHOW DATABASES declaración, pero sólo va a listar las bases de datos que contienen las tablas en las que tiene privilegios.
+SHUTDOWN 	Apague el servidor utilizando SHUTDOWN el o mysqladmin shutdown command.
+SUPER 	Ejecutar sentencias de superusuario: CHANGE MASTER TO, MATAR (usuarios que no tienen este privilegio sólo puede KILL a sus propios hilos), REGISTROS PURGA, las variables de configuración del sistema mundial, o la depuración mysqladmin comandos. Además, este permiso permite al usuario escribir datos incluso si el read_only opción de inicio está establecido, habilitar o deshabilitar el registro, habilitar o deshabilitar la replicación de esclavos, especifique un DEFINER para los estados que apoyan esa cláusula, conecte una vez después de alcanzar los MAX_CONNECTIONS Si se ha especificado una declaración para la-init connect opción mysqld, ese comando no se ejecutará cuando un usuario con SUPER privilegios se conecta al servidor.
+Privilegios de base de datos
+
+La siguiente tabla muestra los privilegios que se pueden conceder en el nivel de base de datos. También puede conceder todos los privilegios de tabla y de función en el nivel de base de datos. Tabla de funciones y privilegios en una base de datos se aplican a todas las tablas o funciones en esa base de datos, incluidos los creados después.
+
+Para establecer un privilegio para una base de datos, especifique la base de datos utilizando db_name.* Para priv_level, o simplemente utilizar * para especificar la base de datos predeterminada.
+Privilege 	Descripción
+CREATE 	Crear una base de datos utilizando el CREATE DATABASE declaración, cuando se concede el privilegio de una base de datos. Puede conceder el CREATE privilegio en bases de datos que aún no existen. Esto también otorga al CREATE privilegio en todas las tablas de la base de datos.
+CREATE ROUTINE 	Crear programas almacenados utilizando el CREATE PROCEDURE y CREATE FUNCTION declaraciones.
+CREATE TEMPORARY TABLES 	Crear tablas temporales con el CREATE TEMPORARY TABLE comunicado.
+DROP 	Caída de una base de datos utilizando el DROP DATABASE declaración, cuando se concede el privilegio de una base de datos. Esto también otorga al DROP privilegio en todas las tablas de la base de datos.
+EVENT 	Crear, eliminar y alterar EVENT s. Añadido en MySQL 5.1.6.
+GRANT OPTION 	Conceder privilegios de base de datos. Sólo se puede conceder privilegios que usted tiene.
+LOCK TABLES 	Adquirir bloqueos explícitos utilizando el LOCK TABLES declaración; también necesita tener el SELECT privilegio sobre una mesa, con el fin de bloquearla.
+Privilegios de tabla
+Privilege 	Descripción
+ALTER 	Cambiar la estructura de una tabla existente utilizando la ALTER TABLE comunicado.
+CREATE 	Crear una tabla utilizando el CREATE TABLE comunicado. Puede conceder el CREATE privilegio en las tablas que aún no existen.
+CREATE VIEW 	Cree una vista utilizando el CREATE_VIEW comunicado.
+DELETE 	Eliminar filas de una tabla utilizando el DELETE comunicado.
+DROP 	Caída de una tabla utilizando el DROP TABLE declaración o una vista utilizando el DROP VIEW comunicado.
+GRANT OPTION 	Conceder privilegios de tabla. Sólo se puede conceder privilegios que usted tiene.
+INDEX 	Crear un índice en una tabla utilizando el CREATE INDEX comunicado. Sin el INDEX privilegio, todavía puede crear índices al crear una tabla utilizando el CREATE TABLE declaración si el que tiene el CREATE privilegio, y usted puede crear índices utilizando el ALTER TABLE declaración si usted tiene la ALTER privilegio.
+INSERT 	Añadir filas a una tabla utilizando el INSERT comunicado. El INSERT privilegio también se puede establecer en columnas individuales; ver Privilegios columna los detalles a continuación.
+REFERENCES 	Sin usar.
+SELECT 	Leer datos de una tabla utilizando el SELECT comunicado. El SELECT privilegio también se puede establecer en columnas individuales; ver Privilegios columna los detalles a continuación.
+SHOW VIEW 	Mostrar el CREATE VIEW declaración para crear una vista utilizando el SHOW CREATE VIEW comunicado.
+TRIGGER 	Ejecutar disparadores asociados a las tablas de actualizar, ejecutar la CREATE TRIGGER y DROP TRIGGER declaraciones. Usted todavía será capaz de ver los factores desencadenantes.
+UPDATE 	Actualización de filas existentes en una tabla utilizando el UPDATE comunicado. UPDATE declaraciones generalmente incluyen una WHERE cláusula de actualización sólo ciertas filas. Debe tener SELECT privilegios en la tabla o las columnas correspondientes para el WHERE cláusula. La UPDATE privilegio también se puede establecer en columnas individuales; ver Privilegios columna los detalles a continuación.
+Privilegios Columna
+
+Algunos privilegios de tabla se pueden establecer para columnas individuales de una tabla. Para utilizar los privilegios de columna, especifique la tabla de forma explícita y proporcionar una lista de nombres de columna después de que el tipo de privilegio. Por ejemplo, la siguiente declaración permitiría al usuario leer los nombres y cargos de los empleados, pero no otra información de la misma tabla, tales como salarios.
+
+  GRANT SELECT (nombre, cargo) de los Empleados de 'jeffrey' @ 'localhost'; 
+
+Privilege 	Descripción
+INSERT (column_list) 	Añadir filas especificando los valores en las columnas utilizando el INSERT comunicado. Si sólo tiene a nivel de la columna INSERT privilegios, debe especificar las columnas que está configurando en el INSERT comunicado. Todas las demás columnas se ajustarán a sus valores predeterminados, o NULL
+REFERENCES (column_list) 	Sin usar.
+SELECT (column_list) 	Leer valores de las columnas utilizando el SELECT comunicado. No puede acceder o consultar cualquier columna para el que no tiene SELECT privilegios, incluyendo en WHERE ON GROUP BY y ORDER BY cláusulas.
+UPDATE (column_list) 	Actualizar los valores de las columnas de las filas existentes utilizando el UPDATE comunicado. UPDATE declaraciones generalmente incluyen una WHERE cláusula de actualización sólo ciertas filas. Debe tener SELECT privilegios en la tabla o las columnas correspondientes para el WHERE cláusula.
+Privilegios de función
+Privilege 	Descripción
+ALTER ROUTINE 	Cambiar las características de una función almacenada utilizando la ALTER FUNCTION comunicado.
+EXECUTE 	Utilice una función almacenada. Es necesario SELECT privilegios para ninguna tabla o columnas que se accede por la función.
+GRANT OPTION 	Conceder privilegios de función. Sólo se puede conceder privilegios que usted tiene.
+Privilegios Procedimiento
+Privilege 	Descripción
+ALTER ROUTINE 	Cambiar las características de un procedimiento almacenado utilizando el ALTER PROCEDURE comunicado.
+EXECUTE 	Ejecutar un procedimiento almacenado utilizando la CALL comunicado. El privilegio de llamar a un procedimiento puede permitir llevar a cabo las acciones que de otro modo no ser capaz de hacer, como filas de inserción en una tabla.
+GRANT OPTION 	Conceder privilegios de procedimiento. Sólo se puede conceder privilegios que usted tiene.
+Privilegios proxy
+Privilege 	Descripción
+PROXY 	Permite un usuario como un proxy para otro.
+
+Por ejemplo:
+
+  GRANT proxy en 'marijana' @ 'somehost' A 'barrfhionn' @ 'somehost'; 
+
+Límites de recursos configuración por cuenta
+
+Es posible ajustar un límite por accout para los recursos del servidor que se pueden utilizar. La siguiente tabla muestra los valores que se pueden establecer por cada cuenta:
+Limitar Tipo 	Decription
+MAX_QUERIES_PER_HOUR 	Número de declaraciones de que la cuenta puede emitir por hora (incluyendo actualizaciones)
+MAX_UPDATES_PER_HOUR 	Número de cambios (no consultas) que la cuenta puede emitir por hora
+MAX_CONNECTIONS_PER_HOUR 	Número de conexiones que la cuenta puede comenzar por hora
+MAX_USER_CONNECTIONS 	Número de conexiones simultáneas que se pueden aceptar desde la misma cuenta; si es 0, max_connections su lugar se utilizará; si max_connections es 0, no hay límite para las conexiones simultáneas de esta cuenta.
+
+Si el valor de 0 se ajusta para cualquiera de estos límites, se retira el límite.
+
+Para establecer los límites de recursos para una cuenta, si usted no desea cambiar los privilegios de esa cuenta, puede emitir un GRANT declaración con la USAGE privilegio, que no tiene ningún significado. La declaración puede nombrar algunos o todos los tipos de carrera, en cualquier orden.
+
+He aquí un ejemplo que muestra cómo configurar más de un límite:
+
+  CONCESIÓN DE USO *. * A 'e.zapata'@'localhost' CON
+     MAX_USER_CONNECTIONS 0
+     MAX_QUERIES_PER_HOUR 200; 
+
+El uso de la cuenta de recursos se hace por cuenta, lo que significa 'usuario' @ 'servidor'; no por usuario o por conexión.
+
+El recuento se puede restablecer a todos los usuarios que utilizan USER_RESOURCES FLUSH, FLUSH PRIVILEGES o mysqladmin reload.
+
+Por cuenta de los límites de recursos se almacenan en el usuario la tabla, en el mysql base de datos. Las columnas utilizadas para los límites de recursos son nombrados max_questions max_updates max_connections (por MAX_CONNECTIONS_PER_HOUR y max_user_connections (por MAX_USER_CONNECTIONS
+Por-Account Options SSL
+
+Por defecto, MariaDB utiliza conexiones no cifradas para todas las comunicaciones cliente / servidor. Para utilizar SSL, OpenSSL o yaSSL deben estar presentes en su sistema. Además, el servidor MariaDB necesita ser construido con soporte SSL y estar correctamente configurado para utilizar uno de ellos.
+
+Puede requerir conexiones SSL en función de cada cuenta, utilizando el REQUIRE cláusula. Las siguientes opciones están disponibles,:
+Opción 	Descripción
+REQUIRE NONE 	SSL no es necesaria para esta cuenta, pero todavía se puede utilizar.
+REQUIRE SSL 	La cuenta debe utilizar SSL, pero no se requiere certificado X509 válido.
+REQUIRE X509 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido.
+REQUIRE ISSUER 'issuer' 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido. Además, la autoridad de certificación debe ser el especificado a través de la cadena de issuer
+REQUIRE SUBJECT 'subject' 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido. También, del certificado Sin perjuicio debe ser el especificado a través de la cadena de subject
+REQUIRE CIPHER 'cipher' 	La cuenta debe utilizar SSL y debe tener un certificado X509 válido. Además, el cifrado utilizado para la conexión debe utilizar uno de los métodos especificados en la cadena de cipher
+
+Si usted requiere un certificado X509, REQUIRE SSL está implícito. El ISSUER SUBJECT y CIPHER opciones se pueden combinar en cualquier orden, y si se utiliza cualquiera de ellos REQUIRE X509 es implícito.
+
+El REQUIRE palabra clave debe ser usada sólo una vez para todas las opciones especificadas, y de la AND de palabras clave se puede utilizar para separar opciones individuales (a su elección).
+
+Aquí hay un ejemplo:
+
+  USO DE SUBVENCIÓN DE *. * A 'alguien' @ 'localhost'
+     REQUERIR SUJETO '/CN=www.mydom.com/O=My Dom, Inc. / C = US / ST = Oregon / L = Portland'
+     Y EMISOR '/ C = FI / ST = En alguna parte / L = Ciudad / O = Algunos Empresa / CN = Peter Parker/emailAddress=p.parker@marvel.com'
+     Y CIPHER 'SHA-DES-CBC3-EDH-RSA'; 
+
+Roles
+MariaDB comenzando con 10.0.5
+
+Roles se introdujeron en MariaDB 10.0.5.
+Sintaxis
+
+  Papel GRANT [, Role2 ...] A concesionario [, grantee2 ...]
+ [CON OPCIÓN ADMIN] 
+
+La sentencia GRANT también se utiliza para conceder el uso de una o más funciones a uno o más usuarios. Con el fin de poder otorgar un papel, el otorgante hacerlo debe tener permiso para hacerlo (véase CON ADMIN en el CREATE ROLE artículo).
+
+Especificación del WITH ADMIN OPTION permite al concesionario a su vez otorgar el papel a otro.
+
+Si un usuario se ha concedido un papel, no obtienen automáticamente todos los permisos asociados a ese papel. Estos permisos sólo están en uso cuando el usuario activa la función con el SET PAPEL comunicado. 
+</syntaxhighlight>
+
+=== Ejemplo ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+[
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
