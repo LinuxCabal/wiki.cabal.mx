@@ -1,13 +1,3 @@
-__NOTOC__
-* [[:#Create Database | Create Database]]
-* [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
-* [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
-
-= Create Database =
-== Sintaxis ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 CREATE [OR REPLACE] {DATABASE | SCHEMA} [IF NOT EXISTS] db_name
     [create_specification] ...
 
@@ -24,61 +14,3 @@ O REEMPLAZAR
 MariaDB comenzando con 10.1.3
 
 El OR REPLACE cláusula se añadió en MariaDB 10.1.3
-
-</syntaxhighlight>
-
-== Ejemplo ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-[rrc@Pridd ~]$ systemctl start mysqld
-[rrc@Pridd ~]$ mysql -p
-Enter password: 
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 4
-Server version: 10.0.21-MariaDB Mageia MariaDB Server
-
-Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-MariaDB [(none)]> create database Prueba1;
-Query OK, 1 row affected (0.22 sec)
-
-MariaDB [(none)]> show create database Prueba1;
-+----------+------------------------------------------------------------------------------------------+
-| Database | Create Database                                                                          |
-+----------+------------------------------------------------------------------------------------------+
-| Prueba1  | CREATE DATABASE `Prueba1` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */ |
-+----------+------------------------------------------------------------------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> ^d
-
-[root@Pridd ~]# ls -al /var/lib/mysql/
-total 86060
-drwxr-xr-x  5 mysql mysql     4096 Oct 18 07:00 ./
-drwxr-xr-x 46 root  root      4096 Oct 18 04:02 ../
--rw-rw----  1 mysql mysql    16384 Oct  6 01:11 aria_log.00000001
--rw-rw----  1 mysql mysql       52 Oct  6 01:11 aria_log_control
--rw-rw----  1 mysql mysql 77594624 Oct 18 06:59 ibdata1
--rw-rw----  1 mysql mysql  5242880 Oct 18 06:59 ib_logfile0
--rw-rw----  1 mysql mysql  5242880 Oct  5 23:12 ib_logfile1
--rw-rw----  1 mysql mysql        0 Oct  5 23:12 multi-master.info
-drwxr-xr-x  2 mysql mysql     4096 Oct  5 23:12 mysql/
-srwxrwxrwx  1 mysql mysql        0 Oct 18 06:59 mysql.sock=
-drwx------  2 mysql mysql     4096 Oct  5 23:12 performance_schema/
-drwx------  2 mysql mysql     4096 Oct 18 07:00 Prueba1/
--rw-rw----  1 mysql mysql      154 Oct 18 06:59 sql_errors.log
-
-[root@Pridd ~]# ls -al /var/lib/mysql/Prueba1/
-total 12
-drwx------ 2 mysql mysql 4096 Oct 18 07:00 ./
-drwxr-xr-x 5 mysql mysql 4096 Oct 18 07:00 ../
--rw-rw---- 1 mysql mysql   61 Oct 18 07:00 db.opt
-[root@Pridd ~]# 
-
-</syntaxhighlight>
-
-[[Category:MariaDB Desde la Consola]]
-[[Category: CursoMatiaDB]]
