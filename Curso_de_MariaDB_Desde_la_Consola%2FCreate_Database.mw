@@ -1,0 +1,16 @@
+CREATE [OR REPLACE] {DATABASE | SCHEMA} [IF NOT EXISTS] db_name
+    [create_specification] ...
+
+create_specification:
+    [DEFAULT] CHARACTER SET [=] charset_name
+  | [DEFAULT] COLLATE [=] collation_name
+
+CREATE DATABASE crea una base de datos con el nombre db_name. 
+Para utilizar esta declaración, se necesita el privilegio CREATE
+para la base de datos. CREATE SCHEMA es sinónimo de CREATE DATABASE. 
+Si el IF NOT EXISTS se utiliza la cláusula, una advertencia será 
+devuelto si ya existe la base de datos, en lugar de un error.
+O REEMPLAZAR
+MariaDB comenzando con 10.1.3
+
+El OR REPLACE cláusula se añadió en MariaDB 10.1.3
