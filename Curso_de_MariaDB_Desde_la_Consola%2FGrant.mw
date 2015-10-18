@@ -55,7 +55,11 @@ ssl_option:
   | ISSUER 'issuer'
   | SUBJECT 'subject'
 
+</syntaxhighlight>
+
 ==== Descripción ====
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 El GRANT declaración le permite crear cuentas de usuario MariaDB
 y conceder privilegios (o roles - ver sección abajo) a las cuentas. 
@@ -81,10 +85,11 @@ GRANT.
 Utilice el REVOKE declaración de revocar privilegios concedidos con el 
 GRANT declaración.
 
-Utilice el SHOW GRANTS declaración para determinar qué privilegios tiene 
-una cuenta.
+</syntaxhighlight>
 
 ==== Niveles de privilegios ====
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 Privilegios se pueden establecer a nivel mundial, para una base de datos completa, para una tabla o de rutina, o para las columnas individuales en una tabla. Ciertos privilegios sólo se pueden establecer en ciertos niveles.
 
