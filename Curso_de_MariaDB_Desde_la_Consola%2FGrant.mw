@@ -91,46 +91,117 @@ GRANT declaración.
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-Privilegios se pueden establecer a nivel mundial, para una base de datos completa, para una tabla o de rutina, o para las columnas individuales en una tabla. Ciertos privilegios sólo se pueden establecer en ciertos niveles.
+Privilegios se pueden establecer a nivel Globalmente, para una 
+base de datos completa, para una tabla o de rutina, o para las 
+columnas individuales en una tabla. Ciertos privilegios sólo 
+se pueden establecer en ciertos niveles.
 
-    Privilegios globales son otorgados mediante *.* Para priv_level. Privilegios globales incluyen privilegios para administrar la base de datos y administrar cuentas de usuario, así como privilegios para todas las tablas, funciones y procedimientos. Privilegios globales se almacenan en la tabla mysql.user.
-    Privilegios de base de datos se otorgan utilizando db_name.* Para priv_level, o usando sólo * para utilizar la base de datos por defecto. Privilegios de base de datos incluyen privilegios para crear tablas y funciones, así como privilegios para todas las tablas, funciones y procedimientos en la base de datos. Privilegios de base de datos se almacenan en la tabla mysql.db.
-    Privilegios de tabla se conceden utilizando db_name.tbl_name para priv_level, o usando sólo tbl_name para especificar una tabla en la base de datos por defecto. La TABLE palabra clave es opcional. Privilegios Tabla incluyen la capacidad para seleccionar y cambiar los datos en la tabla. Ciertos privilegios de tabla se pueden conceder para las columnas individuales.
-    Privilegios de columna se otorgan mediante la especificación de una mesa para priv_level y proporcionar una lista de columnas después de que el tipo de privilegio. Ellos le permiten controlar exactamente qué columnas en una tabla de usuarios pueden seleccionar y cambiar.
-    Privilegios de función se conceden utilizando FUNCTION db_name.routine_name para priv_level, o usando sólo FUNCTION routine_name para especificar una función en la base de datos por defecto.
-    Procedimiento privilegios se conceden utilizando PROCEDURE db_name.routine_name para priv_level, o usando sólo PROCEDURE routine_name especificar un procedimiento en la base de datos por defecto. 
+Privilegios globales son otorgados mediante *.* Para priv_level. 
+Privilegios globales incluyen privilegios para administrar 
+la base de datos y administrar cuentas de usuario, así como 
+privilegios para todas las tablas, funciones y procedimientos. 
+Privilegios globales se almacenan en la tabla mysql.user.
+
+Privilegios de base de datos se otorgan utilizando db_name.* 
+Para priv_level, o usando sólo * para utilizar la base de datos 
+por defecto. Privilegios de base de datos incluyen privilegios 
+para crear tablas y funciones, así como privilegios para todas 
+las tablas, funciones y procedimientos en la base de datos. 
+Privilegios de base de datos se almacenan en la tabla mysql.db.
+
+Privilegios de tabla se conceden utilizando db_name.tbl_name 
+para priv_level, o usando sólo tbl_name para especificar una 
+tabla en la base de datos por defecto. La TABLE palabra clave 
+es opcional. Privilegios Table incluyen la capacidad para 
+seleccionar y cambiar los datos en la table. Ciertos privilegios 
+de table se pueden conceder para las columnas individuales.
+
+Privilegios de columna se otorgan mediante la especificación 
+de una mesa para priv_level y proporcionar una lista de columnas 
+después de que el tipo de privilegio. Ellos le permiten controlar 
+exactamente qué columnas en una tabla de usuarios pueden 
+seleccionar y cambiar.
+
+Privilegios de función se conceden utilizando FUNCTION 
+db_name.routine_name para priv_level, o usando sólo FUNCTION 
+routine_name para especificar una función en la base de datos 
+por defecto.
+
+Procedimiento privilegios se conceden utilizando PROCEDURE 
+db_name.routine_name para priv_level, o usando sólo PROCEDURE 
+routine_name especificar un procedimiento en la base de datos 
+por defecto. 
 
 La USAGE Privilege
 
-La USAGE privilegio otorga privilegios reales. El SHOW GRANTS declaración mostrará un mundial USAGE privilegio para un usuario recién creado. Puede utilizar USAGE con el GRANT declaración para cambiar opciones como GRANT OPTION y MAX_USER_CONNECTIONS sin cambiar los privilegios de la cuenta.
+La USAGE privilegio otorga privilegios reales. El SHOW GRANTS 
+declaración mostrará un mundial USAGE privilegio para un usuario 
+recién creado. Puede utilizar USAGE con el GRANT declaración para 
+cambiar opciones como GRANT OPTION y MAX_USER_CONNECTIONS sin 
+cambiar los privilegios de la cuenta.
+
 El ALL PRIVILEGES Privilegio
 
-El ALL PRIVILEGES privilegio otorga todos los privilegios disponibles. La concesión de todos los privilegios sólo afecta el nivel de privilegio dado. Por ejemplo, la concesión de todos los privilegios en una mesa no otorga ningún privilegio en la base de datos o el mundo.
+El ALL PRIVILEGES privilegio otorga todos los privilegios 
+disponibles. La concesión de todos los privilegios sólo afecta 
+el nivel de privilegio dado. Por ejemplo, la concesión de todos 
+los privilegios en una mesa no otorga ningún privilegio en la 
+base de datos o el mundo.
 
 Usando ALL PRIVILEGES no concede la especial GRANT OPTION privilegio.
 
 Puede usar ALL en lugar de ALL PRIVILEGES
 El GRANT OPTION Privilege
 
-Utilice la WITH GRANT OPTION cláusula para dar a los usuarios la capacidad de conceder privilegios a otros usuarios a nivel de privilegio dado. Los usuarios con el GRANT OPTION privilegio sólo pueden otorgar privilegios que tienen. No pueden otorgar privilegios a un nivel de privilegio más alto que ellos tienen el GRANT OPTION privilegio.
+Utilice la WITH GRANT OPTION cláusula para dar a los usuarios 
+la capacidad de conceder privilegios a otros usuarios a nivel 
+de privilegio dado. Los usuarios con el GRANT OPTION privilegio 
+sólo pueden otorgar privilegios que tienen. No pueden otorgar 
+privilegios a un nivel de privilegio más alto que ellos tienen 
+el GRANT OPTION privilegio.
 
-El GRANT OPTION privilegio no se puede ajustar para las columnas individuales. Si utiliza WITH GRANT OPTION al especificar privilegios de columna, el GRANT OPTION se concederá privilegio para toda la tabla.
+El GRANT OPTION privilegio no se puede ajustar para las columnas 
+individuales. Si utiliza WITH GRANT OPTION al especificar 
+privilegios de columna, el GRANT OPTION se concederá privilegio 
+para toda la tabla.
 
-Utilizando el WITH GRANT OPTION cláusula equivale a lista GRANT OPTION como un privilegio.
+Utilizando el WITH GRANT OPTION cláusula equivale a lista 
+GRANT OPTION como un privilegio.
 Privilegios Global
 
-La siguiente tabla muestra los privilegios que se pueden conceder a nivel mundial. También puede conceder todos los privilegios de base de datos, tablas y funciones a nivel mundial. Cuando otorgado a nivel global, estos privilegios se aplican a todas las bases de datos, tablas o funciones, incluyendo los creados después.
+La siguiente tabla muestra los privilegios que se pueden conceder 
+a nivel mundial. También puede conceder todos los privilegios de 
+base de datos, tablas y funciones a nivel global. Cuando otorgado 
+a nivel global, estos privilegios se aplican a todas las bases de 
+datotabless, tables o funciones, incluyendo los creados después.
 
 Para establecer un privilegio global, utilice *.* Para priv_level.
-Privilege 	Descripción
-CREATE USER 	Crear un usuario mediante el CREATE USER declaración, o implícitamente crear un usuario con el GRANT declaración.
-FILE 	Leer y escribir archivos en el servidor, utilizando frases como LOAD DATA INFILE o funciones como LOAD_FILE (). También se necesita para crear CONNECT mesas exteriores. Servidor MariaDB debe tener los permisos para acceder a esos archivos.
-GRANT OPTION 	Conceder privilegios globales. Sólo se puede conceder privilegios que usted tiene.
-PROCESS 	Mostrar información sobre los procesos activos, a través de SHOW PROCESSLIST o processlist mysqladmin.
-RELOAD 	Ejecutar FLUSH declaraciones o equivalentes mysqladmin commands.
-REPLICATION CLIENT 	Ejecutar SHOW MASTER STATUS y SHOW STATUS ESCLAVO declaraciones informativas.
-REPLICATION SLAVE 	Cuentas utilizadas por los servidores esclavos en el maestro necesitan este privilegio. Esto es necesario para obtener las actualizaciones realizadas en el maestro.
-SHOW DATABASES 	Enumere todas las bases de datos utilizando el SHOW DATABASES comunicado. Sin el SHOW DATABASES privilegio, aún puede emitir el SHOW DATABASES declaración, pero sólo va a listar las bases de datos que contienen las tablas en las que tiene privilegios.
+Privilege       Descripción
+CREATE USER     Crear un usuario mediante el CREATE USER declaración, 
+                o implícitamente crear un usuario con el GRANT 
+                declaración.
+FILE            Leer y escribir archivos en el servidor, utilizando 
+                frases como LOAD DATA INFILE o funciones como 
+                LOAD_FILE (). También se necesita para crear CONNECT
+                mesas exteriores. Servidor MariaDB debe tener los 
+                permisos para acceder a esos archivos.
+GRANT OPTION    Conceder privilegios globales. Sólo se puede conceder 
+                privilegios que usted tiene.
+PROCESS         Mostrar información sobre los procesos activos, a través 
+                de SHOW PROCESSLIST o processlist mysqladmin.
+RELOAD 	        Ejecutar FLUSH declaraciones o equivalentes mysqladmin 
+                commands.
+REPLICATION CLIENT   Ejecutar SHOW MASTER STATUS y SHOW STATUS ESCLAVO 
+                     declaraciones informativas.
+REPLICATION SLAVE    Cuentas utilizadas por los servidores esclavos en 
+                     el maestro necesitan este privilegio. Esto es 
+                     necesario para obtener las actualizaciones realizadas 
+                     en el maestro.
+SHOW DATABASES       Enumere todas las bases de datos utilizando el 
+                     SHOW DATABASES comunicado. Sin el SHOW DATABASES 
+                     privilegio, aún puede emitir el SHOW DATABASES 
+                     declaración, pero sólo va a listar las bases de datos 
+                     que contienen las tablas en las que tiene privilegios.
 SHUTDOWN 	Apague el servidor utilizando SHUTDOWN el o mysqladmin shutdown command.
 SUPER 	Ejecutar sentencias de superusuario: CHANGE MASTER TO, MATAR (usuarios que no tienen este privilegio sólo puede KILL a sus propios hilos), REGISTROS PURGA, las variables de configuración del sistema mundial, o la depuración mysqladmin comandos. Además, este permiso permite al usuario escribir datos incluso si el read_only opción de inicio está establecido, habilitar o deshabilitar el registro, habilitar o deshabilitar la replicación de esclavos, especifique un DEFINER para los estados que apoyan esa cláusula, conecte una vez después de alcanzar los MAX_CONNECTIONS Si se ha especificado una declaración para la-init connect opción mysqld, ese comando no se ejecutará cuando un usuario con SUPER privilegios se conecta al servidor.
 Privilegios de base de datos
