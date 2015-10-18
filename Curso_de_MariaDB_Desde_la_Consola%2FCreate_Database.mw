@@ -52,7 +52,30 @@ MariaDB [(none)]> show create database Prueba1;
 +----------+------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
-MariaDB [(none)]> 
+MariaDB [(none)]> ^d
+
+[root@Pridd ~]# ls -al /var/lib/mysql/
+total 86060
+drwxr-xr-x  5 mysql mysql     4096 Oct 18 07:00 ./
+drwxr-xr-x 46 root  root      4096 Oct 18 04:02 ../
+-rw-rw----  1 mysql mysql    16384 Oct  6 01:11 aria_log.00000001
+-rw-rw----  1 mysql mysql       52 Oct  6 01:11 aria_log_control
+-rw-rw----  1 mysql mysql 77594624 Oct 18 06:59 ibdata1
+-rw-rw----  1 mysql mysql  5242880 Oct 18 06:59 ib_logfile0
+-rw-rw----  1 mysql mysql  5242880 Oct  5 23:12 ib_logfile1
+-rw-rw----  1 mysql mysql        0 Oct  5 23:12 multi-master.info
+drwxr-xr-x  2 mysql mysql     4096 Oct  5 23:12 mysql/
+srwxrwxrwx  1 mysql mysql        0 Oct 18 06:59 mysql.sock=
+drwx------  2 mysql mysql     4096 Oct  5 23:12 performance_schema/
+drwx------  2 mysql mysql     4096 Oct 18 07:00 Prueba1/
+-rw-rw----  1 mysql mysql      154 Oct 18 06:59 sql_errors.log
+
+[root@Pridd ~]# ls -al /var/lib/mysql/Prueba1/
+total 12
+drwx------ 2 mysql mysql 4096 Oct 18 07:00 ./
+drwxr-xr-x 5 mysql mysql 4096 Oct 18 07:00 ../
+-rw-rw---- 1 mysql mysql   61 Oct 18 07:00 db.opt
+[root@Pridd ~]# 
 
 </syntaxhighlight>
 
