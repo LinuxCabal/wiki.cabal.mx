@@ -1,3 +1,11 @@
+* [[:#Create Database | Create Database]]
+* [[:#Sintaxis | Sintaxis]]
+
+== Create Database ==
+=== Sintaxis ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
 CREATE [OR REPLACE] {DATABASE | SCHEMA} [IF NOT EXISTS] db_name
     [create_specification] ...
 
