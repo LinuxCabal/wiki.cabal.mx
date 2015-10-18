@@ -1,10 +1,9 @@
-__NOTOC__
 * [[:#Create Table | Create Table]]
-* [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
-* [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
+* [[:#Sintaxis | Sintaxis]]
+* [[:#Ejemplo | Ejemplo]]
 
-= Create Table =
-== Sintaxis ==
+== Create Table ==
+=== Sintaxis ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -27,46 +26,43 @@ En su forma más básica, el CREATE TABLE declaración proporciona un nombre de
 table seguido por una lista de columnas, índices y restricciones. 
 Por defecto, la table se crea en la base de datos. 
 Especifique una base de datos con db_name . tbl_name 
-Si usted cita el nombre de la table, se debe citar el nombre de la base de 
-datos y el nombre de table por separado como ` db_name `.` tbl_name ` 
-Esto es particularmente útil para CREATE TABLE ... SELECT ya que permite 
-crear una table en una base de datos, que contiene datos de otras bases 
-de datos.
+Si usted cita el nombre de la table, se debe citar el nombre de la base de datos
+y el nombre de table por separado como ` db_name `.` tbl_name ` 
+Esto es particularmente útil para CREATE TABLE ... SELECT ya que permite crear 
+una table en una base de datos, que contiene datos de otras bases de datos.
 
-Si existe una table con el mismo nombre, error 1050 resultados. Utilice 
-IF NOT EXISTS suprimir este error y emitir una nota en su lugar. 
+Si existe una table con el mismo nombre, error 1050 resultados. Utilice IF NOT EXISTS
+suprimir este error y emitir una nota en su lugar. 
 Utilice SHOW WARNINGS para ver las notas.
 
-Utilice la TEMPORARY palabra clave para crear una table temporal que sólo 
-está disponible para la sesión actual. Las tables temporales se eliminan 
-cuando finaliza la sesión. 
-Nombres de tables temporales son específicos de su sesión. Ellos pueden 
-entrar en conflicto con otras tables temporales de otras sesiones o nombres 
-sombra de tables no temporales. 
-Una table temporal puede tener el mismo nombre que una table no temporal 
-que se encuentra en la misma base de datos. En ese caso, su nombre hará 
-referencia a la table temporal cuando se utiliza en las sentencias SQL. 
-Debe tener el CREATE TEMPORARY TABLES privilegio en la base de datos para 
-crear tables temporales.
+Utilice la TEMPORARY palabra clave para crear una table temporal que sólo está 
+disponible para la sesión actual. Las tables temporales se eliminan cuando 
+finaliza la sesión. 
+Nombres de tables temporales son específicos de su sesión. Ellos pueden entrar en
+conflicto con otras tables temporales de otras sesiones o nombres sombra de tables no temporales. 
+Una table temporal puede tener el mismo nombre que una table no temporal que se 
+encuentra en la misma base de datos. En ese caso, su nombre hará referencia a la 
+table temporal cuando se utiliza en las sentencias SQL. 
+Debe tener el CREATE TEMPORARY TABLES privilegio en la base de datos para crear 
+tables temporales.
 
-Utilice el LIKE cláusula en lugar de una definición de la table completa 
-para crear una table con la misma definición que otra table, incluidas las 
-columnas, índices y opciones de table.
+Utilice el LIKE cláusula en lugar de una definición de la table completa para crear 
+una table con la misma definición que otra table, incluidas las columnas, índices y
+opciones de table.
 
 El CREATE TABLE declaración compromete automáticamente la transacción actual, 
 excepto cuando se utiliza el TEMPORARY palabra clave.
 MariaDB comenzando con 5,3
 
-Precisión de microsegundos puede estar entre 0-6. Si no se especifica 
-la precisión que se supone que es 0, por razones de compatibilidad hacia 
-atrás.
+Precisión de microsegundos puede estar entre 0-6. Si no se especifica la precisión 
+que se supone que es 0, por razones de compatibilidad hacia atrás.
 MariaDB empezando 10.0.8
 
 El OR REPLACE sintaxis se añadió en 10.0.8. 
 
 </syntaxhighlight>
 
-== Ejemplo ==
+=== Ejemplo ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -80,12 +76,13 @@ Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> USE Prueba1;
+MariaDB [(none)]> use Prueba1;
 Database changed
-MariaDB [Prueba1]> SHOW TABLES;
+MariaDB [Prueba1]> show tables;
 Empty set (0.02 sec)
 
-MariaDB [Prueba1]> CREATE TABLE inven (
+MariaDB [Prueba1]> 
+MariaDB [Prueba1]> create table inven (
     ->   id int not null primary key auto_increment,
     ->   nombre varchar (50) not null,
     ->   descrip text,
@@ -94,13 +91,8 @@ MariaDB [Prueba1]> CREATE TABLE inven (
     ->   );
 Query OK, 0 rows affected (0.63 sec)
 
-MariaDB [Prueba1]> SHOW ERRORS;
-Empty set (0.00 sec)
-
-MariaDB [Prueba1]> SHOW WARNINGS;
-Empty set (0.00 sec)
-
-MariaDB [Prueba1]> SHOW TABLES;
+MariaDB [Prueba1]> 
+MariaDB [Prueba1]> show tables;
 +-------------------+
 | Tables_in_Prueba1 |
 +-------------------+
@@ -108,7 +100,7 @@ MariaDB [Prueba1]> SHOW TABLES;
 +-------------------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> DESCRIBE inven;
+MariaDB [Prueba1]> describe inven;
 +----------+-------------+------+-----+---------+----------------+
 | Field    | Type        | Null | Key | Default | Extra          |
 +----------+-------------+------+-----+---------+----------------+
@@ -120,10 +112,10 @@ MariaDB [Prueba1]> DESCRIBE inven;
 +----------+-------------+------+-----+---------+----------------+
 5 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> SHOW CREATE TABLE inven;
-+-------+--------------------------------------------------------+
-| Table | Create Table                                           |
-+-------+--------------------------------------------------------+
+MariaDB [Prueba1]> show create table inven;
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table | Create Table                                                                                                                                                                                                                                                                                                  |
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | inven | CREATE TABLE `inven` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -132,20 +124,10 @@ MariaDB [Prueba1]> SHOW CREATE TABLE inven;
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
-+-------+--------------------------------------------------------+
++-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> quit
-Bye
-
-[rrc@Pridd ~]$ su -c "ls -al /var/lib/mysql/Prueba1"
-Password: 
-total 112
-drwx------ 2 mysql mysql  4096 Oct 18 07:29 .
-drwxr-xr-x 5 mysql mysql  4096 Oct 18 07:00 ..
--rw-rw---- 1 mysql mysql    61 Oct 18 07:00 db.opt
--rw-rw---- 1 mysql mysql  1190 Oct 18 07:29 inven.frm
--rw-rw---- 1 mysql mysql 98304 Oct 18 07:29 inven.ibd
+MariaDB [Prueba1]> 
 
 </syntaxhighlight>
 
