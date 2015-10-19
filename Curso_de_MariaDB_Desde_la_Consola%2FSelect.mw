@@ -1,10 +1,10 @@
 __NOTOC__
 * [[:#Select | Select]]
-* [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
-* [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
+* [[:#Sintaxis | Sintaxis]]
+* [[:#Ejemplo | Ejemplo]]
 
-= Select =
-== Sintaxis ==
+== Select ==
+=== Sintaxis ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 SELECT
@@ -38,13 +38,13 @@ export_options:
     ]
 
 SELECT se utiliza para recuperar filas seleccionados de una 
-o más tables, y puede incluir UNION declaraciones y subconsultas.
+o más tablas, y puede incluir UNIÓN declaraciones y subconsultas.
 
 Cada expresión select_expr indica una columna o datos que desea 
-recuperar. Usted debe tener al menos una expresión de SELECT. 
-Ver Select Expresions continuación. 
+recuperar. Usted debe tener al menos una expresión de selección. 
+Ver Seleccione Expresiones continuación. 
 
-La FROM cláusula indica la table o tables desde las que recuperar 
+La FROM cláusula indica la tabla o tablas desde las que recuperar 
 filas. Utilice un solo nombre de tabla o un JOIN expresión. 
 Ver JOIN para más detalles. Si no hay ninguna tabla está 
 involucrado, FROM DUAL puede ser especificado. 
@@ -52,11 +52,13 @@ involucrado, FROM DUAL puede ser especificado.
 MariaDB comenzando con 10,0
 
 La cláusula PARTITION se introdujo en MariaDB 10.0. 
+Ver Poda partición y Selección para más detalles.
 
-Cada tabla también se puede especificar como db_name . tabl_name 
-Cada columna también se puede especificar como tbl_name . col_name 
-o incluso db_name . tbl_name . col_name Esto permite escribir
-consultas que implican varias bases de datos.
+Cada tabla también se puede especificar como db_name tabl_name 
+Cada columna también se puede especificar como tbl_name col_name 
+o incluso db_name tbl_name col_name Esto permite escribir consultas 
+que implican varias bases de datos. Ver Identificador Eliminatorias 
+para detalles de sintaxis. 
 
 El WHERE cláusula, si se da, indica la condición o condiciones que 
 cada registro debe cumplir para ser seleccionados. where_condition 
@@ -66,7 +68,8 @@ cláusula WHERE.
 
 En el WHERE cláusula, puede utilizar cualquiera de las funciones 
 y operadores que MariaDB apoya, a excepción de las funciones de 
-agregación (resumen). 
+agregación (resumen). Ver Funciones y Operadores y Funciones y 
+modificadores para su uso con GROUP BY (agregado). 
 
 Utilice el ORDER BY cláusula para ordenar los resultados. 
 
@@ -76,27 +79,30 @@ sólo un cierto número de filas, opcionalmente con un desplazamiento.
 Utilice el GROUP BY y HAVING cláusulas a las filas del grupo juntos 
 cuando tienen columnas o valores calculados en común. 
 
-SELECT también se puede utilizar para recuperar filas computados sin 
-referencia a ninguna table.
+SELECT también se puede utilizar para recuperar filas computados sin referencia a ninguna table.
 
 Consejos Optimizer
 
 Algunas opciones están disponibles para afectar el plan de ejecución.
-HIGH PRIORITY
+
+ALTA PRIORIDAD
 
 HIGH_PRIORITY da la declaración de mayor prioridad. Si la table está
-bloqueada, HIGH PRIORITY SELECTs se ejecutará tan pronto como se 
-libera el bloqueo, incluso si otros estados están en queue. HIGH_PRIORITY 
+bloqueada, alta prioridad SELECT s se ejecutará tan pronto como se 
+libera el bloqueo, incluso si otros estados están en cola. HIGH_PRIORITY 
 se aplica sólo si el motor de almacenamiento sólo es compatible con 
-bloqueo a nivel de table (MyISAM, MEMORY, MERGE).
+bloqueo a nivel de table MyISAM MEMORY MERGE Ver HIGH_PRIORITY y 
+LOW_PRIORITY cláusulas para más detalles.
 
 SQL_CACHE / SQL_NO_CACHE
 
 Si el query_cache_type variable del sistema se establece en 2 o DEMAND 
 y el estado actual es cacheable, SQL_CACHE hace que la consulta para 
 ser almacenado en caché y SQL_NO_CACHE hace que la consulta no debe 
-ser almacenado en caché. Para UNIONs, SQL_CACHE o SQL_NO_CACHE deben
-especificarse para la primera consulta.
+ser almacenado en caché. Para UNION s, SQL_CACHE o SQL_NO_CACHE deben
+especificarse para la primera consulta. Ver también La caché de 
+consultas para obtener más información y una lista de los tipos de 
+declaraciones que no son cacheable.
 
 SQL_BUFFER_RESULT
 
@@ -116,9 +122,9 @@ o evitar la tabla temporal utilizando SQL_BIG_RESULT
 
 STRAIGHT_JOIN
 
-STRAIGHT_JOIN aplica a los JOIN consultas, y le dice al optimizador 
+STRAIGHT_JOIN aplica a los UNIRSE consultas, y le dice al optimizador 
 que las tablas deben leerse en el orden en que aparecen en el SELECT 
-Para const y system table de esta opción es a veces ignorados.
+Para const y system mesa de esta opción es a veces ignorados.
 
 SQL_CALC_FOUND_ROWS
 
@@ -127,15 +133,15 @@ Si se utiliza esta opción, MariaDB contará cuántas filas se
 correspondería con la consulta, sin el LIMIT cláusula. Ese número puede 
 ser recuperada en la próxima consulta, utilizando FOUND_ROWS ().
 
-USE / FORCE / IGNORE ÍNDEX
+USO / FUERZA / IGNORE ÍNDICE
 
 USE INDEX FORCE INDEX y IGNORE INDEX restringen la planificación 
 consulta a un índice específico.
 
-Select Expresiones
+Seleccione Expresiones
 
-Un SELECT declaración debe contener uno o más select expresiones, 
-separadas por comas. Cada expresión de select puede ser uno de 
+Un SELECT declaración debe contener uno o más selectas expresiones, 
+separadas por comas. Cada expresión de selección puede ser uno de 
 los siguientes:
 
     El nombre de una columna.
@@ -149,16 +155,16 @@ Al especificar una columna, puede utilizar sólo el nombre de la
 columna o calificar el nombre de la columna con el nombre de la 
 table con tbl_name.col_name La forma calificada es útil si se está 
 uniendo a varias tablas en el FROM cláusula. Si usted no califica 
-los nombres de columna al seleccionar de varias tables, MariaDB 
-tratará de encontrar la columna en cada table. Es un error si 
-existe ese nombre de columna en varias tables.
+los nombres de columna al seleccionar de varias tablas, MariaDB 
+tratará de encontrar la columna en cada tabla. Es un error si 
+existe ese nombre de columna en varias tablas.
 
-Puede citar nombres de columna utilizando back ticks. 
+Puede citar nombres de columna utilizando acentos abiertos. 
 Si usted está calificando nombres de columna con los nombres de 
 table, cita cada parte por separado como `tbl_name`.`col_name`
 
 Si utiliza las funciones de agrupación en cualquiera de las 
-expresiones select, todas las filas de sus resultados se 
+expresiones seleccionadas, todas las filas de sus resultados se 
 agrupan de forma implícita, como si se hubiera usado 
 GROUP BY NULL
 
@@ -169,7 +175,7 @@ todas las filas se recuperan, incluso cuando sus valores son los
 mismos. Para especificar explícitamente que quiere recuperar filas 
 idénticas, utilice el ALL opción. Si desea duplicados para ser 
 retirados del conjunto de resultados, utilice el DISTINCT opción. 
-DISTINCTROW es sinónimo de DISTINCT.
+DISTINCTROW es sinónimo de DISTINCT Véase también recuento diferente.
 
 INTO
 
@@ -198,8 +204,7 @@ segunda expresión si tienen el mismo valor para la primera, y así
 sucesivamente.
 
 Puede utilizar la palabra clave ASC y DESC después de cada expresión 
-de ordenar a la fuerza ese ordenamiento ser ascendente o descendente, 
-respectivamente. Orden está ascendiendo de forma predeterminada.
+de ordenar a la fuerza ese ordenamiento ser ascendente o descendente, respectivamente. Orden está ascendiendo de forma predeterminada.
 
 También puede utilizar un solo entero como la expresión de pedido. 
 Si utiliza un entero n, los resultados se ordenarán por la enésima 
@@ -223,8 +228,8 @@ para controlar qué filas son lo primero. También puede
 seleccionar un número de filas después de un desplazamiento 
 utilizando cualquiera de los siguientes:
 
-    LIMIT offset, row_count
-    LIMIT row_count OFFSET offset
+  Desplazamiento LÍMITE, row_count
+  Row_count LÍMITE Offset Offset 
 
 Cuando usted proporciona un m compensado con un límite de n, 
 los primeros m filas serán ignorados, y se devolverán los 
@@ -262,7 +267,7 @@ espacios en blanco y puede normalizar personajes e ignorar caso,
 dependiendo de la colación en uso.
 
 Puede utilizar cualquiera de las funciones de agrupación en su 
-select expresión. Sus valores se calcularán sobre la base de todas 
+selecto expresión. Sus valores se calcularán sobre la base de todas 
 las filas que han sido agrupados por cada fila de resultados. Si 
 selecciona una columna no agrupado o un valor calculado a partir de 
 una columna no agrupados, que no está definido qué fila el valor 
@@ -303,266 +308,9 @@ descripción completa con ejemplos, vea SELECT con ROLLUP.
 
 </syntaxhighlight>
 
-== Ejemplo ==
+=== Ejemplo ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-MariaDB [Prueba1]> insert into inven
-    ->         ( id, nombre, descrip, precio, cantidad )
-    ->         values
-    ->         ( 1, 'Manzanas', 'Mediano Granny-Smith.', 0.25, 1000 );
-Query OK, 1 row affected (0.32 sec)
-
-MariaDB [Prueba1]> select * from inven;
-+----+----------+-----------------------+--------+----------+
-| id | nombre   | descrip               | precio | cantidad |
-+----+----------+-----------------------+--------+----------+
-|  1 | Manzanas | Mediano Granny-Smith. |   0.25 |     1000 |
-+----+----------+-----------------------+--------+----------+
-1 row in set (0.00 sec)
-
-MariaDB [Prueba1]> insert into inven values ( 2, 'Uvas', 'Sin Semillas', 2.99, 500 );
-Query OK, 1 row affected (0.03 sec)
-
-MariaDB [Prueba1]> select * from inven;
-+----+----------+-----------------------+--------+----------+
-| id | nombre   | descrip               | precio | cantidad |
-+----+----------+-----------------------+--------+----------+
-|  1 | Manzanas | Mediano Granny-Smith. |   0.25 |     1000 |
-|  2 | Uvas     | Sin Semillas          |   2.99 |      500 |
-+----+----------+-----------------------+--------+----------+
-2 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> insert into inven values
-    ->        ( 'Agua', 'Bot. - 250 ml.' , 0.89, 259 );
-ERROR 1136 (21S01): Column count doesn"'"t match value count at row 1
-
-MariaDB [Prueba1]> insert into inven values
-    ->        ( '', 'Agua', 'Bot. - 250 ml.' , 0.89, 259 );
-Query OK, 1 row affected, 1 warning (0.07 sec)
-
-MariaDB [Prueba1]> insert into inven
-    ->         ( nombre, descrip, precio, cantidad )
-    ->         values ( 'AguaMineral', 'Bot. - 600 ml.' , 0.50, 350 );
-Query OK, 1 row affected (0.07 sec)
-
-MariaDB [Prueba1]> select * from inven;
-+----+-------------+-----------------------+--------+----------+
-| id | nombre      | descrip               | precio | cantidad |
-+----+-------------+-----------------------+--------+----------+
-|  1 | Manzanas    | Mediano Granny-Smith. |   0.25 |     1000 |
-|  2 | Uvas        | Sin Semillas          |   2.99 |      500 |
-|  3 | Agua        | Bot. - 250 ml.        |   0.89 |      259 |
-|  4 | AguaMineral | Bot. - 600 ml.        |    0.5 |      350 |
-+----+-------------+-----------------------+--------+----------+
-4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select id, nombre, cantidad from inven;
-+----+-------------+----------+
-| id | nombre      | cantidad |
-+----+-------------+----------+
-|  1 | Manzanas    |     1000 |
-|  2 | Uvas        |      500 |
-|  3 | Agua        |      259 |
-|  4 | AguaMineral |      350 |
-+----+-------------+----------+
-4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select id, nombre, cantidad from inven
-    ->         order by nombre;
-+----+-------------+----------+
-| id | nombre      | cantidad |
-+----+-------------+----------+
-|  3 | Agua        |      259 |
-|  4 | AguaMineral |      350 |
-|  1 | Manzanas    |     1000 |
-|  2 | Uvas        |      500 |
-+----+-------------+----------+
-4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select id, nombre, cantidad from inven
-    ->         order by cantidad;
-+----+-------------+----------+
-| id | nombre      | cantidad |
-+----+-------------+----------+
-|  3 | Agua        |      259 |
-|  4 | AguaMineral |      350 |
-|  2 | Uvas        |      500 |
-|  1 | Manzanas    |     1000 |
-+----+-------------+----------+
-4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select id, nombre, cantidad from inven
-    ->         order by cantidad
-    ->         limit 3;
-+----+-------------+----------+
-| id | nombre      | cantidad |
-+----+-------------+----------+
-|  3 | Agua        |      259 |
-|  4 | AguaMineral |      350 |
-|  2 | Uvas        |      500 |
-+----+-------------+----------+
-3 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select id, nombre, cantidad from inven
-    ->         order by cantidad
-    ->         limit 0, 3;
-+----+-------------+----------+
-| id | nombre      | cantidad |
-+----+-------------+----------+
-|  3 | Agua        |      259 |
-|  4 | AguaMineral |      350 |
-|  2 | Uvas        |      500 |
-+----+-------------+----------+
-3 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select id, nombre, cantidad from inven
-    ->         order by cantidad
-    ->         limit 2, 3;
-+----+----------+----------+
-| id | nombre   | cantidad |
-+----+----------+----------+
-|  2 | Uvas     |      500 |
-|  1 | Manzanas |     1000 |
-+----+----------+----------+
-2 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select id, nombre, cantidad from inven
-    ->         order by cantidad
-    ->         limit 5, 3;
-Empty set (0.00 sec)
-
-MariaDB [Prueba1]> 
-
-Considere la siguiente table que registra el número de veces 
-que cada usuario ha jugado y ganado un partido:
-
-MariaDB [Prueba1]> CREATE TABLE Competiciones 
-                     ( Nomber VARCHAR(16), 
-                       Competiciones MediumINT, 
-                       Triumfos MediumINT );
-Query OK, 0 rows affected (0.25 sec)
-
-MariaDB [Prueba1]> INSERT INTO Competiciones VALUES 
-                     ("Juan", 20, 5), 
-                     ("Roberto", 22, 8), 
-                     ("Wanda", 32, 8), 
-                     ("Susana", 17, 3);
-Query OK, 4 rows affected (0.06 sec)
-Records: 4  Duplicates: 0  Warnings: 0
-
-MariaDB [Prueba1]> select * from Competiciones;
-+---------+---------------+----------+
-| Nomber  | Competiciones | Triumfos |
-+---------+---------------+----------+
-| Juan    |            20 |        5 |
-| Roberto |            22 |        8 |
-| Wanda   |            32 |        8 |
-| Susana  |            17 |        3 |
-+---------+---------------+----------+
-4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select * from Competiciones order by Triumfos;
-+---------+---------------+----------+
-| Nomber  | Competiciones | Triumfos |
-+---------+---------------+----------+
-| Susana  |            17 |        3 |
-| Juan    |            20 |        5 |
-| Roberto |            22 |        8 |
-| Wanda   |            32 |        8 |
-+---------+---------------+----------+
-4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select * from Competiciones 
-                     order by Triumfos DESC;
-+---------+---------------+----------+
-| Nomber  | Competiciones | Triumfos |
-+---------+---------------+----------+
-| Roberto |            22 |        8 |
-| Wanda   |            32 |        8 |
-| Juan    |            20 |        5 |
-| Susana  |            17 |        3 |
-+---------+---------------+----------+
-4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select * from Competiciones 
-                     WHERE Competiciones > 20 
-                     order by Triumfos DESC;
-+---------+---------------+----------+
-| Nomber  | Competiciones | Triumfos |
-+---------+---------------+----------+
-| Roberto |            22 |        8 |
-| Wanda   |            32 |        8 |
-+---------+---------------+----------+
-2 rows in set (0.00 sec)
-
-Obtener una lista de cuentas ganadoras junto con 
-un recuento: 
-
-MariaDB [Prueba1]> SELECT Competiciones, COUNT(*) 
-                     FROM Competiciones 
-                     GROUP BY Triumfos;
-+---------------+----------+
-| Competiciones | COUNT(*) |
-+---------------+----------+
-|            17 |        1 |
-|            20 |        1 |
-|            22 |        2 |
-+---------------+----------+
-3 rows in set (0.00 sec)
-
-El GROUP BY expresión puede ser un valor calculado, 
-y se puede hacer referencia a un identificador 
-especificado con AS Obtenga una lista de los promedios 
-del triunfo junto con un recuento:
-
-MariaDB [Prueba1]> SELECT ( Triumfos / Competiciones) AS Promedia, 
-                          COUNT(*) FROM Competiciones 
-                          GROUP BY Promedia;
-+----------+----------+
-| Promedia | COUNT(*) |
-+----------+----------+
-|   0.1765 |        1 |
-|   0.2500 |        2 |
-|   0.3636 |        1 |
-+----------+----------+
-3 rows in set (0.00 sec)
-
-Se puede utilizar cualquier función de la agrupación en la 
-expresión de selección. Por cada victoria promedio que el 
-anterior, obtener una lista de la cuenta promedio de juego 
-necesario para conseguir que la media:
-
-MariaDB [Prueba1]> SELECT (Triumfos / Competiciones) AS Promedia, 
-                           AVG(Competiciones) FROM Competiciones 
-                           GROUP BY Promedia;
-+----------+--------------------+
-| Promedia | AVG(Competiciones) |
-+----------+--------------------+
-|   0.1765 |            17.0000 |
-|   0.2500 |            26.0000 |
-|   0.3636 |            22.0000 |
-+----------+--------------------+
-3 rows in set (0.03 sec)
-
-Puedes realizar un filtrado de la información agregada mediante 
-el HAVING cláusula. El HAVING cláusula se aplica después de 
-GROUP BY y le permite filtrar los datos agregados que no está 
-disponible a la WHERE cláusula. Restringir el ejemplo anterior 
-con los resultados que implican un número promedio de más 
-de 20 jugadas:
-
-MariaDB [Prueba1]> SELECT (Triumfos / Competiciones) AS Promedia, 
-                     AVG(Competiciones) 
-                     FROM Competiciones 
-                     GROUP BY Promedia HAVING AVG(Competiciones) > 20;
-+----------+--------------------+
-| Promedia | AVG(Competiciones) |
-+----------+--------------------+
-|   0.2500 |            26.0000 |
-|   0.3636 |            22.0000 |
-+----------+--------------------+
-2 rows in set (0.00 sec)
 
 
 </syntaxhighlight>
