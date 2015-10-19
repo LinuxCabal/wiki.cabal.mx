@@ -223,8 +223,8 @@ para controlar qué filas son lo primero. También puede
 seleccionar un número de filas después de un desplazamiento 
 utilizando cualquiera de los siguientes:
 
-  Desplazamiento LÍMITE, row_count
-  Row_count LÍMITE Offset Offset 
+    LIMIT offset, row_count
+    LIMIT row_count OFFSET offset
 
 Cuando usted proporciona un m compensado con un límite de n, 
 los primeros m filas serán ignorados, y se devolverán los 
@@ -262,7 +262,7 @@ espacios en blanco y puede normalizar personajes e ignorar caso,
 dependiendo de la colación en uso.
 
 Puede utilizar cualquiera de las funciones de agrupación en su 
-selecto expresión. Sus valores se calcularán sobre la base de todas 
+select expresión. Sus valores se calcularán sobre la base de todas 
 las filas que han sido agrupados por cada fila de resultados. Si 
 selecciona una columna no agrupado o un valor calculado a partir de 
 una columna no agrupados, que no está definido qué fila el valor 
