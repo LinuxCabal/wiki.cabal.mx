@@ -307,6 +307,133 @@ descripción completa con ejemplos, vea SELECT con ROLLUP.
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
+MariaDB [Prueba1]> insert into inven
+    ->         ( id, nombre, descrip, precio, cantidad )
+    ->         values
+    ->         ( 1, 'Manzanas', 'Mediano Granny-Smith.', 0.25, 1000 );
+Query OK, 1 row affected (0.32 sec)
+
+MariaDB [Prueba1]> select * from inven;
++----+----------+-----------------------+--------+----------+
+| id | nombre   | descrip               | precio | cantidad |
++----+----------+-----------------------+--------+----------+
+|  1 | Manzanas | Mediano Granny-Smith. |   0.25 |     1000 |
++----+----------+-----------------------+--------+----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> insert into inven values ( 2, 'Uvas', 'Sin Semillas', 2.99, 500 );
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [Prueba1]> select * from inven;
++----+----------+-----------------------+--------+----------+
+| id | nombre   | descrip               | precio | cantidad |
++----+----------+-----------------------+--------+----------+
+|  1 | Manzanas | Mediano Granny-Smith. |   0.25 |     1000 |
+|  2 | Uvas     | Sin Semillas          |   2.99 |      500 |
++----+----------+-----------------------+--------+----------+
+2 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> insert into inven values
+    ->        ( 'Agua', 'Bot. - 250 ml.' , 0.89, 259 );
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+
+MariaDB [Prueba1]> insert into inven values
+    ->        ( '', 'Agua', 'Bot. - 250 ml.' , 0.89, 259 );
+Query OK, 1 row affected, 1 warning (0.07 sec)
+
+MariaDB [Prueba1]> insert into inven
+    ->         ( nombre, descrip, precio, cantidad )
+    ->         values ( 'AguaMineral', 'Bot. - 600 ml.' , 0.50, 350 );
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [Prueba1]> select * from inven;
++----+-------------+-----------------------+--------+----------+
+| id | nombre      | descrip               | precio | cantidad |
++----+-------------+-----------------------+--------+----------+
+|  1 | Manzanas    | Mediano Granny-Smith. |   0.25 |     1000 |
+|  2 | Uvas        | Sin Semillas          |   2.99 |      500 |
+|  3 | Agua        | Bot. - 250 ml.        |   0.89 |      259 |
+|  4 | AguaMineral | Bot. - 600 ml.        |    0.5 |      350 |
++----+-------------+-----------------------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select id, nombre, cantidad from inven;
++----+-------------+----------+
+| id | nombre      | cantidad |
++----+-------------+----------+
+|  1 | Manzanas    |     1000 |
+|  2 | Uvas        |      500 |
+|  3 | Agua        |      259 |
+|  4 | AguaMineral |      350 |
++----+-------------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select id, nombre, cantidad from inven
+    ->         order by nombre;
++----+-------------+----------+
+| id | nombre      | cantidad |
++----+-------------+----------+
+|  3 | Agua        |      259 |
+|  4 | AguaMineral |      350 |
+|  1 | Manzanas    |     1000 |
+|  2 | Uvas        |      500 |
++----+-------------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select id, nombre, cantidad from inven
+    ->         order by cantidad;
++----+-------------+----------+
+| id | nombre      | cantidad |
++----+-------------+----------+
+|  3 | Agua        |      259 |
+|  4 | AguaMineral |      350 |
+|  2 | Uvas        |      500 |
+|  1 | Manzanas    |     1000 |
++----+-------------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select id, nombre, cantidad from inven
+    ->         order by cantidad
+    ->         limit 3;
++----+-------------+----------+
+| id | nombre      | cantidad |
++----+-------------+----------+
+|  3 | Agua        |      259 |
+|  4 | AguaMineral |      350 |
+|  2 | Uvas        |      500 |
++----+-------------+----------+
+3 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select id, nombre, cantidad from inven
+    ->         order by cantidad
+    ->         limit 0, 3;
++----+-------------+----------+
+| id | nombre      | cantidad |
++----+-------------+----------+
+|  3 | Agua        |      259 |
+|  4 | AguaMineral |      350 |
+|  2 | Uvas        |      500 |
++----+-------------+----------+
+3 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select id, nombre, cantidad from inven
+    ->         order by cantidad
+    ->         limit 2, 3;
++----+----------+----------+
+| id | nombre   | cantidad |
++----+----------+----------+
+|  2 | Uvas     |      500 |
+|  1 | Manzanas |     1000 |
++----+----------+----------+
+2 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select id, nombre, cantidad from inven
+    ->         order by cantidad
+    ->         limit 5, 3;
+Empty set (0.00 sec)
+
+MariaDB [Prueba1]> 
+
 Considere la siguiente table que registra el número de veces 
 que cada usuario ha jugado y ganado un partido:
 
