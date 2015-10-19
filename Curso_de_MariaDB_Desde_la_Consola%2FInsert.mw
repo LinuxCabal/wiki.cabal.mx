@@ -146,10 +146,12 @@ MariaDB [Prueba1]> CREATE TABLE personas (
     ->   ApellidoMaterno varchar(15) DEFAULT NULL );
 Query OK, 0 rows affected (0.26 sec)
 
-MariaDB [Prueba1]> INSERT INTO personas ( Nombre, ApellidoPaterno ) VALUES ( 'Marco', 'Gómez' );
+MariaDB [Prueba1]> INSERT INTO personas ( Nombre, ApellidoPaterno ) 
+        VALUES ( 'Marco', 'Gómez' );
 Query OK, 1 row affected (0.32 sec)
 
-MariaDB [Prueba1]> INSERT INTO personas VALUES ( 'Raul', 'Montenegro', 'Hernandez' );
+MariaDB [Prueba1]> INSERT INTO personas 
+        VALUES ( 'Raul', 'Montenegro', 'Hernandez' );
 Query OK, 1 row affected (0.31 sec)
 
 MariaDB [Prueba1]> INSERT INTO personas SET 
