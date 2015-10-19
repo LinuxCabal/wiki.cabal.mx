@@ -38,13 +38,13 @@ export_options:
     ]
 
 SELECT se utiliza para recuperar filas seleccionados de una 
-o más tablas, y puede incluir UNIÓN declaraciones y subconsultas.
+o más tables, y puede incluir UNION declaraciones y subconsultas.
 
 Cada expresión select_expr indica una columna o datos que desea 
-recuperar. Usted debe tener al menos una expresión de selección. 
-Ver Seleccione Expresiones continuación. 
+recuperar. Usted debe tener al menos una expresión de SELECT. 
+Ver Select Expresions continuación. 
 
-La FROM cláusula indica la tabla o tablas desde las que recuperar 
+La FROM cláusula indica la table o tables desde las que recuperar 
 filas. Utilice un solo nombre de tabla o un JOIN expresión. 
 Ver JOIN para más detalles. Si no hay ninguna tabla está 
 involucrado, FROM DUAL puede ser especificado. 
@@ -52,12 +52,11 @@ involucrado, FROM DUAL puede ser especificado.
 MariaDB comenzando con 10,0
 
 La cláusula PARTITION se introdujo en MariaDB 10.0. 
-Ver Poda partición y Selección para más detalles.
 
-Cada tabla también se puede especificar como db_name tabl_name 
-Cada columna también se puede especificar como tbl_name col_name 
-o incluso db_name tbl_name col_name Esto permite escribir consultas 
-que implican varias bases de datos. Ver Identificador Eliminatorias 
+Cada tabla también se puede especificar como db_name . tabl_name 
+Cada columna también se puede especificar como tbl_name . col_name 
+o incluso db_name . tbl_name . col_name Esto permite escribir 
+consultas que implican varias bases de datos. Ver Identificador Eliminatorias 
 para detalles de sintaxis. 
 
 El WHERE cláusula, si se da, indica la condición o condiciones que 
