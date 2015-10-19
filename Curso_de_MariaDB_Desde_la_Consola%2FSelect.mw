@@ -205,7 +205,8 @@ segunda expresión si tienen el mismo valor para la primera, y así
 sucesivamente.
 
 Puede utilizar la palabra clave ASC y DESC después de cada expresión 
-de ordenar a la fuerza ese ordenamiento ser ascendente o descendente, respectivamente. Orden está ascendiendo de forma predeterminada.
+de ordenar a la fuerza ese ordenamiento ser ascendente o descendente, 
+respectivamente. Orden está ascendiendo de forma predeterminada.
 
 También puede utilizar un solo entero como la expresión de pedido. 
 Si utiliza un entero n, los resultados se ordenarán por la enésima 
