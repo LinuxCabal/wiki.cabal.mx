@@ -1,0 +1,319 @@
+__NOTOC__
+* [[:#Select | Select]]
+* [[:#Sintaxis | Sintaxis]]
+* [[:#Ejemplo | Ejemplo]]
+
+== Select ==
+=== Sintaxis ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+SELECT
+    [ALL | DISTINCT | DISTINCTROW]
+    [HIGH_PRIORITY]
+    [STRAIGHT_JOIN]
+    [SQL_SMALL_RESULT] [SQL_BIG_RESULT] [SQL_BUFFER_RESULT]
+    [SQL_CACHE | SQL_NO_CACHE] [SQL_CALC_FOUND_ROWS]
+    select_expr [, select_expr ...]
+    [ FROM table_references [PARTITION (partition_list)]
+      [{USE|FORCE|IGNORE} INDEX [FOR {JOIN|ORDER BY|GROUP BY}] ([index_list]) ]
+      [WHERE where_condition]
+      [GROUP BY {col_name | expr | position} [ASC | DESC], ... [WITH ROLLUP]]
+      [HAVING where_condition]
+      [ORDER BY {col_name | expr | position} [ASC | DESC], ...]
+      [LIMIT {[offset,] row_count | row_count OFFSET offset}]
+      [PROCEDURE procedure_name(argument_list)]
+      [INTO OUTFILE 'file_name' [CHARACTER SET charset_name] [export_options]
+         | INTO DUMPFILE 'file_name' | INTO var_name [, var_name] ]
+      [FOR UPDATE | LOCK IN SHARE MODE] ]
+
+export_options:
+    [{FIELDS | COLUMNS}
+        [TERMINATED BY 'string']
+        [[OPTIONALLY] ENCLOSED BY 'char']
+        [ESCAPED BY 'char']
+    ]
+    [LINES
+        [STARTING BY 'string']
+        [TERMINATED BY 'string']
+    ]
+
+SELECT se utiliza para recuperar filas seleccionados de una 
+o más tablas, y puede incluir UNIÓN declaraciones y subconsultas.
+
+Cada expresión select_expr indica una columna o datos que desea 
+recuperar. Usted debe tener al menos una expresión de selección. 
+Ver Seleccione Expresiones continuación. 
+
+La FROM cláusula indica la tabla o tablas desde las que recuperar 
+filas. Utilice un solo nombre de tabla o un JOIN expresión. 
+Ver JOIN para más detalles. Si no hay ninguna tabla está 
+involucrado, FROM DUAL puede ser especificado. 
+
+MariaDB comenzando con 10,0
+
+La cláusula PARTITION se introdujo en MariaDB 10.0. 
+Ver Poda partición y Selección para más detalles.
+
+Cada tabla también se puede especificar como db_name tabl_name 
+Cada columna también se puede especificar como tbl_name col_name 
+o incluso db_name tbl_name col_name Esto permite escribir consultas 
+que implican varias bases de datos. Ver Identificador Eliminatorias 
+para detalles de sintaxis. 
+
+El WHERE cláusula, si se da, indica la condición o condiciones que 
+cada registro debe cumplir para ser seleccionados. where_condition 
+es una expresión que se evalúa como verdadera para cada fila a 
+seleccionar. La declaración selecciona todas las filas si no hay 
+cláusula WHERE.
+
+En el WHERE cláusula, puede utilizar cualquiera de las funciones 
+y operadores que MariaDB apoya, a excepción de las funciones de 
+agregación (resumen). Ver Funciones y Operadores y Funciones y 
+modificadores para su uso con GROUP BY (agregado). 
+
+Utilice el ORDER BY cláusula para ordenar los resultados. 
+
+Utilice el LIMIT cláusula le permite restringir los resultados de 
+sólo un cierto número de filas, opcionalmente con un desplazamiento. 
+
+Utilice el GROUP BY y HAVING cláusulas a las filas del grupo juntos 
+cuando tienen columnas o valores calculados en común. 
+
+SELECT también se puede utilizar para recuperar filas computados sin referencia a ninguna table.
+
+Consejos Optimizer
+
+Algunas opciones están disponibles para afectar el plan de ejecución.
+
+ALTA PRIORIDAD
+
+HIGH_PRIORITY da la declaración de mayor prioridad. Si la table está
+bloqueada, alta prioridad SELECT s se ejecutará tan pronto como se 
+libera el bloqueo, incluso si otros estados están en cola. HIGH_PRIORITY 
+se aplica sólo si el motor de almacenamiento sólo es compatible con 
+bloqueo a nivel de table MyISAM MEMORY MERGE Ver HIGH_PRIORITY y 
+LOW_PRIORITY cláusulas para más detalles.
+
+SQL_CACHE / SQL_NO_CACHE
+
+Si el query_cache_type variable del sistema se establece en 2 o DEMAND 
+y el estado actual es cacheable, SQL_CACHE hace que la consulta para 
+ser almacenado en caché y SQL_NO_CACHE hace que la consulta no debe 
+ser almacenado en caché. Para UNION s, SQL_CACHE o SQL_NO_CACHE deben
+especificarse para la primera consulta. Ver también La caché de 
+consultas para obtener más información y una lista de los tipos de 
+declaraciones que no son cacheable.
+
+SQL_BUFFER_RESULT
+
+SQL_BUFFER_RESULT obliga al optimizador de utilizar una tabla temporal 
+para procesar el resultado. Esto es útil para cerraduras libres tan 
+pronto como sea posible.
+
+SQL_SMALL_RESULT / SQL_BIG_RESULT
+
+SQL_SMALL_RESULT y SQL_BIG_RESULT dicen al optimizador si el resultado 
+es muy grande o no. Por lo general, GROUP BY y DISTINCT operaciones se 
+realizan utilizando una tabla temporal. Sólo si el resultado es muy 
+grande, usando una tabla temporal no es conveniente. El optimizador 
+sabe automáticamente si el resultado es demasiado grande, pero puede 
+forzar al optimizador a utilizar una tabla temporal con SQL_SMALL_RESULT 
+o evitar la tabla temporal utilizando SQL_BIG_RESULT
+
+STRAIGHT_JOIN
+
+STRAIGHT_JOIN aplica a los UNIRSE consultas, y le dice al optimizador 
+que las tablas deben leerse en el orden en que aparecen en el SELECT 
+Para const y system mesa de esta opción es a veces ignorados.
+
+SQL_CALC_FOUND_ROWS
+
+SQL_CALC_FOUND_ROWS se aplica sólo cuando se utiliza el LIMIT cláusula. 
+Si se utiliza esta opción, MariaDB contará cuántas filas se 
+correspondería con la consulta, sin el LIMIT cláusula. Ese número puede 
+ser recuperada en la próxima consulta, utilizando FOUND_ROWS ().
+
+USO / FUERZA / IGNORE ÍNDICE
+
+USE INDEX FORCE INDEX y IGNORE INDEX restringen la planificación 
+consulta a un índice específico.
+
+Seleccione Expresiones
+
+Un SELECT declaración debe contener uno o más selectas expresiones, 
+separadas por comas. Cada expresión de selección puede ser uno de 
+los siguientes:
+
+    El nombre de una columna.
+    Cualquier expresión usando funciones y operadores.
+    * Para seleccionar todas las columnas de todas las tablas en 
+      el FROM cláusula.
+      tbl_name.* para seleccionar todas las columnas de sólo el 
+      tbl_name table. 
+
+Al especificar una columna, puede utilizar sólo el nombre de la 
+columna o calificar el nombre de la columna con el nombre de la 
+table con tbl_name.col_name La forma calificada es útil si se está 
+uniendo a varias tablas en el FROM cláusula. Si usted no califica 
+los nombres de columna al seleccionar de varias tablas, MariaDB 
+tratará de encontrar la columna en cada tabla. Es un error si 
+existe ese nombre de columna en varias tablas.
+
+Puede citar nombres de columna utilizando acentos abiertos. 
+Si usted está calificando nombres de columna con los nombres de 
+table, cita cada parte por separado como `tbl_name`.`col_name`
+
+Si utiliza las funciones de agrupación en cualquiera de las 
+expresiones seleccionadas, todas las filas de sus resultados se 
+agrupan de forma implícita, como si se hubiera usado 
+GROUP BY NULL
+
+DISTINCT
+
+Una consulta puede producir algunas filas idénticas. Por defecto, 
+todas las filas se recuperan, incluso cuando sus valores son los 
+mismos. Para especificar explícitamente que quiere recuperar filas 
+idénticas, utilice el ALL opción. Si desea duplicados para ser 
+retirados del conjunto de resultados, utilice el DISTINCT opción. 
+DISTINCTROW es sinónimo de DISTINCT Véase también recuento diferente.
+
+INTO
+
+El INTO cláusula se utiliza para especificar que los resultados de 
+la consulta deben ser escritos en un archivo o variable.
+
+    SELECT INTO OUTFILE - formatear y escribir el resultado en un 
+                          archivo externo.
+    SELECT INTO DUMPFILE - escritura binaria de fallos de los 
+                           resultados sin formato a un archivo externo.
+    SELECT INTO Variable - la selección y definición de variables. 
+
+El reverso de SELECT INTO OUTFILE es LOAD DATA.
+
+ORDER BY
+
+Utilice el ORDER BY cláusula para ordenar los resultados que se 
+devuelven de un SELECT comunicado. Puede especificar sólo una 
+columna o utilizar cualquier expresión con funciones. Si está 
+utilizando el GROUP BY cláusula, puede utilizar las funciones 
+de agrupación en ORDER BY Orden se realiza después de la agrupación.
+
+Puede utilizar varias expresiones de pedidos, separados por comas. 
+Las filas se ordenarán por la primera expresión, y luego por la 
+segunda expresión si tienen el mismo valor para la primera, y así 
+sucesivamente.
+
+Puede utilizar la palabra clave ASC y DESC después de cada expresión 
+de ordenar a la fuerza ese ordenamiento ser ascendente o descendente, respectivamente. Orden está ascendiendo de forma predeterminada.
+
+También puede utilizar un solo entero como la expresión de pedido. 
+Si utiliza un entero n, los resultados se ordenarán por la enésima 
+columna en la expresión de selección.
+
+Cuando se comparan los valores de cadena, se comparan como si por el 
+STRCMP función. STRCMP ignora espacios en blanco y puede normalizar 
+personajes e ignorar caso, dependiendo de la colación en uso.
+
+MariaDB empezando 05/05/35
+
+A partir de MariaDB 05/05/35 duplican entradas en el ORDER BY cláusula 
+se eliminan. MySQL 5.6 también elimina campos duplicados.
+
+LIMIT
+
+Utilice el LIMIT cláusula para restringir el número de filas 
+devueltas. Cuando se utiliza un único entero n con LIMIT se 
+devolverán las primeras n filas. Utilice el ORDER BY cláusula 
+para controlar qué filas son lo primero. También puede 
+seleccionar un número de filas después de un desplazamiento 
+utilizando cualquiera de los siguientes:
+
+  Desplazamiento LÍMITE, row_count
+  Row_count LÍMITE Offset Offset 
+
+Cuando usted proporciona un m compensado con un límite de n, 
+los primeros m filas serán ignorados, y se devolverán los 
+siguientes n filas.
+
+Actualizaciones con el LIMIT cláusula no son seguros para la 
+replicación.
+
+MariaDB empezando 10.0.11
+
+Desde MariaDB 10.0.11, LIMIT 0 ha sido una excepción a esta 
+regla (ver MDEV-6170).
+
+MariaDB a partir de 05/05/21
+
+A partir de MariaDB 5/5/21, hay un LIMIT ROWS EXAMINED 
+optimización que proporciona los medios para poner fin a la 
+ejecución de SELECT declaraciones que examinan demasiadas filas, 
+y por lo tanto utilizar demasiados recursos. Ver las 
+LIMIT ROWS EXAMINED página para obtener más detalles.
+
+GROUP BY
+
+Utilice el GROUP BY cláusula para agrupar filas que tienen el 
+mismo valor en una o más columnas, o el mismo valor calculado 
+utilizando expresiones con las funciones y operadores, excepto 
+las funciones de agrupación. Cuando se utiliza un GROUP BY 
+cláusula, obtendrá una fila de resultado individual para cada 
+grupo de filas que tienen el mismo valor para la expresión dada 
+en GROUP BY
+
+Al agrupar las filas, los valores de agrupación se comparan como 
+si por el = operador. Para valores de cadena, el = operador ignora 
+espacios en blanco y puede normalizar personajes e ignorar caso, 
+dependiendo de la colación en uso.
+
+Puede utilizar cualquiera de las funciones de agrupación en su 
+selecto expresión. Sus valores se calcularán sobre la base de todas 
+las filas que han sido agrupados por cada fila de resultados. Si 
+selecciona una columna no agrupado o un valor calculado a partir de 
+una columna no agrupados, que no está definido qué fila el valor 
+devuelto es tomado de. Esto no se permite si el 
+ONLY_FULL_GROUP_BY sql_mode se utiliza.
+
+Puede utilizar varias expresiones en el GROUP BY cláusula, separados 
+por comas. Las filas se agrupan si coinciden en cada una de las 
+expresiones.
+
+También puede utilizar un solo entero como la expresión de agrupación. 
+Si utiliza un entero n, los resultados se agrupan por la enésima 
+columna en la expresión de selección.
+
+El WHERE cláusula se aplica antes del GROUP BY cláusula. Filtra filas 
+no agregados antes de que las filas se agrupan. Para filtrar filas 
+agrupadas basado en valores agregados, utilice el HAVING cláusula. 
+El HAVING cláusula toma cualquier expresión y lo evalúa como un valor 
+lógico, al igual que el WHERE cláusula. Puede utilizar las funciones de 
+agrupación en el HAVING cláusula. Al igual que con la expresión de 
+selección, si hace referencia a columnas no agrupados en el HAVING 
+cláusula, el comportamiento es indefinido.
+
+Por defecto, si un GROUP BY cláusula está presente, las filas en la 
+salida se ordenarán por las expresiones utilizadas en el GROUP BY 
+También puede especificar ASC o DESC (ascendente, descendente) después 
+de esas expresiones, como en ORDER BY El valor predeterminado es ASC
+
+Si desea que las filas que se pueden ordenar por otro campo, se puede 
+añadir una explícita ORDER BY Si no desea que el resultado que se 
+ordenó, usted puede agregar ORDER BY NULL
+
+CON ROLLUP
+
+El WITH ROLLUP modificador agrega filas adicionales para el conjunto de 
+resultados que representan resúmenes super-agregados. Para una 
+descripción completa con ejemplos, vea SELECT con ROLLUP.
+
+</syntaxhighlight>
+
+=== Ejemplo ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
