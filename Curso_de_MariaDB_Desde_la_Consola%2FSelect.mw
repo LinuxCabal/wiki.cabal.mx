@@ -79,7 +79,8 @@ sólo un cierto número de filas, opcionalmente con un desplazamiento.
 Utilice el GROUP BY y HAVING cláusulas a las filas del grupo juntos 
 cuando tienen columnas o valores calculados en común. 
 
-SELECT también se puede utilizar para recuperar filas computados sin referencia a ninguna table.
+SELECT también se puede utilizar para recuperar filas computados sin 
+referencia a ninguna table.
 
 Consejos Optimizer
 
