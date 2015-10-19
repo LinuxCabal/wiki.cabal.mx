@@ -55,9 +55,8 @@ La cláusula PARTITION se introdujo en MariaDB 10.0.
 
 Cada tabla también se puede especificar como db_name . tabl_name 
 Cada columna también se puede especificar como tbl_name . col_name 
-o incluso db_name . tbl_name . col_name Esto permite escribir 
-consultas que implican varias bases de datos. Ver Identificador Eliminatorias 
-para detalles de sintaxis. 
+o incluso db_name . tbl_name . col_name Esto permite escribir
+consultas que implican varias bases de datos.
 
 El WHERE cláusula, si se da, indica la condición o condiciones que 
 cada registro debe cumplir para ser seleccionados. where_condition 
@@ -67,8 +66,7 @@ cláusula WHERE.
 
 En el WHERE cláusula, puede utilizar cualquiera de las funciones 
 y operadores que MariaDB apoya, a excepción de las funciones de 
-agregación (resumen). Ver Funciones y Operadores y Funciones y 
-modificadores para su uso con GROUP BY (agregado). 
+agregación (resumen). 
 
 Utilice el ORDER BY cláusula para ordenar los resultados. 
 
@@ -84,25 +82,21 @@ referencia a ninguna table.
 Consejos Optimizer
 
 Algunas opciones están disponibles para afectar el plan de ejecución.
-
-ALTA PRIORIDAD
+HIGH PRIORITY
 
 HIGH_PRIORITY da la declaración de mayor prioridad. Si la table está
-bloqueada, alta prioridad SELECT s se ejecutará tan pronto como se 
-libera el bloqueo, incluso si otros estados están en cola. HIGH_PRIORITY 
+bloqueada, HIGH PRIORITY SELECTs se ejecutará tan pronto como se 
+libera el bloqueo, incluso si otros estados están en queue. HIGH_PRIORITY 
 se aplica sólo si el motor de almacenamiento sólo es compatible con 
-bloqueo a nivel de table MyISAM MEMORY MERGE Ver HIGH_PRIORITY y 
-LOW_PRIORITY cláusulas para más detalles.
+bloqueo a nivel de table (MyISAM, MEMORY, MERGE).
 
 SQL_CACHE / SQL_NO_CACHE
 
 Si el query_cache_type variable del sistema se establece en 2 o DEMAND 
 y el estado actual es cacheable, SQL_CACHE hace que la consulta para 
 ser almacenado en caché y SQL_NO_CACHE hace que la consulta no debe 
-ser almacenado en caché. Para UNION s, SQL_CACHE o SQL_NO_CACHE deben
-especificarse para la primera consulta. Ver también La caché de 
-consultas para obtener más información y una lista de los tipos de 
-declaraciones que no son cacheable.
+ser almacenado en caché. Para UNIONs, SQL_CACHE o SQL_NO_CACHE deben
+especificarse para la primera consulta.
 
 SQL_BUFFER_RESULT
 
@@ -122,9 +116,9 @@ o evitar la tabla temporal utilizando SQL_BIG_RESULT
 
 STRAIGHT_JOIN
 
-STRAIGHT_JOIN aplica a los UNIRSE consultas, y le dice al optimizador 
+STRAIGHT_JOIN aplica a los JOIN consultas, y le dice al optimizador 
 que las tablas deben leerse en el orden en que aparecen en el SELECT 
-Para const y system mesa de esta opción es a veces ignorados.
+Para const y system table de esta opción es a veces ignorados.
 
 SQL_CALC_FOUND_ROWS
 
@@ -133,15 +127,15 @@ Si se utiliza esta opción, MariaDB contará cuántas filas se
 correspondería con la consulta, sin el LIMIT cláusula. Ese número puede 
 ser recuperada en la próxima consulta, utilizando FOUND_ROWS ().
 
-USO / FUERZA / IGNORE ÍNDICE
+USE / FORCE / IGNORE ÍNDEX
 
 USE INDEX FORCE INDEX y IGNORE INDEX restringen la planificación 
 consulta a un índice específico.
 
-Seleccione Expresiones
+Select Expresiones
 
-Un SELECT declaración debe contener uno o más selectas expresiones, 
-separadas por comas. Cada expresión de selección puede ser uno de 
+Un SELECT declaración debe contener uno o más select expresiones, 
+separadas por comas. Cada expresión de select puede ser uno de 
 los siguientes:
 
     El nombre de una columna.
@@ -155,16 +149,16 @@ Al especificar una columna, puede utilizar sólo el nombre de la
 columna o calificar el nombre de la columna con el nombre de la 
 table con tbl_name.col_name La forma calificada es útil si se está 
 uniendo a varias tablas en el FROM cláusula. Si usted no califica 
-los nombres de columna al seleccionar de varias tablas, MariaDB 
-tratará de encontrar la columna en cada tabla. Es un error si 
-existe ese nombre de columna en varias tablas.
+los nombres de columna al seleccionar de varias tables, MariaDB 
+tratará de encontrar la columna en cada table. Es un error si 
+existe ese nombre de columna en varias tables.
 
-Puede citar nombres de columna utilizando acentos abiertos. 
+Puede citar nombres de columna utilizando back ticks. 
 Si usted está calificando nombres de columna con los nombres de 
 table, cita cada parte por separado como `tbl_name`.`col_name`
 
 Si utiliza las funciones de agrupación en cualquiera de las 
-expresiones seleccionadas, todas las filas de sus resultados se 
+expresiones select, todas las filas de sus resultados se 
 agrupan de forma implícita, como si se hubiera usado 
 GROUP BY NULL
 
@@ -175,7 +169,7 @@ todas las filas se recuperan, incluso cuando sus valores son los
 mismos. Para especificar explícitamente que quiere recuperar filas 
 idénticas, utilice el ALL opción. Si desea duplicados para ser 
 retirados del conjunto de resultados, utilice el DISTINCT opción. 
-DISTINCTROW es sinónimo de DISTINCT Véase también recuento diferente.
+DISTINCTROW es sinónimo de DISTINCT.
 
 INTO
 
