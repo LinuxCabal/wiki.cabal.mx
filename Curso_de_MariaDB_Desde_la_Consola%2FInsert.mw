@@ -1,14 +1,3 @@
-__NOTOC__
-* [[:#Insert | Insert]]
-* [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
-* [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
-
-
-= Insert =
-== Sintaxis ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
  [INTO] tbl_name [PARTITION (partition_list)] [(col,...)]
  {VALUES | VALUE} ({expr | DEFAULT},...),(...),...
@@ -16,7 +5,7 @@ INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
    col=expr
      [, col=expr] ... ]
 
-O:
+Or:
 
 INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
     [INTO] tbl_name [PARTITION (partition_list)]
@@ -25,7 +14,7 @@ INSERT [LOW_PRIORITY | DELAYED | HIGH_PRIORITY] [IGNORE]
       col=expr
         [, col=expr] ... ]
 
-O:
+Or:
 
 INSERT [LOW_PRIORITY | HIGH_PRIORITY] [IGNORE]
     [INTO] tbl_name [PARTITION (partition_list)] [(col,...)]
@@ -33,151 +22,3 @@ INSERT [LOW_PRIORITY | HIGH_PRIORITY] [IGNORE]
     [ ON DUPLICATE KEY UPDATE
       col=expr
         [, col=expr] ... ]
-
-INSERT inserta nuevas filas en una tabla existente. 
-Los INSERT ... VALUES y INSERT ... SET formas de las filas de 
-inserción declaración en base a los valores especificados 
-explícitamente. El INSERT ... SELECT forma inserta filas 
-seleccionados de otra tabla o tablas.
-
-El nombre de la tabla se puede especificar en forma 
-db_name . tbl_name o, si se selecciona una base de datos por 
-defecto, en la forma tbl_name. Esto permite utilizar 
-INSERT ... SELECT para copiar filas entre las diferentes 
-bases de datos.
-
-MariaDB comenzando con 10,0
-
-La cláusula PARTITION se introdujo en MariaDB 10.0. Se puede 
-utilizar tanto en el insert y la parte SELECT.
-
-La lista de columnas es opcional. Especifica que se insertan 
-de forma explícita los valores, y en qué orden. Si no se 
-especifica esta cláusula, todos los valores se deben 
-especificar de forma explícita, en el mismo orden en que se 
-enumeran en la definición de la tabla.
-
-La lista de valor siga las VALUES o VALUE palabra clave 
-(que son intercambiables, sin importar la cantidad de valores 
-que desea insertar), y está envuelto por paréntesis. Los 
-valores deben estar inscritos en el mismo orden que la lista 
-de columnas. Es posible especificar más de una lista para 
-insertar más de un filas con una sola sentencia. Si se insertan 
-muchas filas, esta es una optimización de la velocidad.
-
-Para las declaraciones de una sola fila, el SET cláusula puede 
-ser más sencillo, ya que no es necesario recordar el orden 
-columnas. Todos los valores se especifican en forma col = expr
-
-Los valores también pueden especificarse en forma de una 
-expresión SQL o subconsulta. Sin embargo, la subconsulta no 
-puede acceder a la misma tabla que se denomina en el INTO cláusula.
-
-Si utiliza el LOW_PRIORITY palabra clave, la ejecución del 
-INSERT se retrasa hasta que no haya otros clientes leyendo de 
-la table. Si utiliza el HIGH_PRIORITY palabra clave, la declaración 
-tiene la misma prioridad que SELECTs. Esto afecta a los motores de 
-almacenamiento únicas que sólo utilizan bloqueo a nivel de table 
-(MyISAM, MEMORIA, MERGE). Sin embargo, si se especifica una de 
-estas palabras clave, inserciones concurrentes no se pueden utilizar.
-
-Si el SQL_MODE contiene STRICT_TRANS_TABLES y usted está insertando 
-en una tabla transaccional (como InnoDB), o si el sql_mode contiene 
-STRICT_ALL_TABLES todos NOT NULL columnas que no tienen un DEFAULT 
-valor (y no es AUTO_INCREMENT) debe hacer referencia explícita en 
-INSERT declaraciones. En caso contrario, se produce un error como este:
-
-    ERROR 1364 (HY000): Field 'col' doesn"'"t have a default value
-
-En todos los demás casos, si un NOT NULL columna sin DEFAULT valor 
-no se hace referencia, se insertará un valor vacío (por ejemplo, 
-0 para INTEGER columnas y '' para CHAR columnas).
-
-Si un NOT NULL columna que tiene un DEFAULT valor no se hace referencia, 
-NULL se inserta.
-
-Si un NULL columna que tiene un DEFAULT valor no se hace referencia, 
-se insertará su valor predeterminado. También es posible asignar 
-explícitamente el valor por defecto utilizando el DEFAULT palabra clave 
-o la DEFAULT() función.
-
-Si el DEFAULT palabra clave se utiliza pero la columna no tiene 
-un DEFAULT valor, se produce un error como este:
-
-  ERROR 1364 (HY000): Field 'col' doesn"'"t have a default value
-
-Los valores duplicados
-
-Por defecto, si se intenta insertar una fila duplicada y hay una 
-UNIQUE índice, INSERT se detiene y se produce un error como este:
-
-  ERROR 1062 (23000): Duplicate entry 'dup_value' for key 'col'
-
-Para manejar los duplicados puede utilizar el IGNORE cláusula 
-INSERT ON DUPLICATE KEY UPDATE o REPLACE declaración.
-
-Haciendo caso omiso de los errores
-
-Normalmente INSERT paradas y deshace cuando se encuentra un error.
-
-Al utilizar el IGNORE palabra clave todos los errores se convierten 
-en advertencias, que no paran de inserciones de filas adicionales.
-
-</syntaxhighlight>
-
-== Ejemplo ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-[rrc@Pridd ~]$ mysql -u rrc -p
-Enter password: 
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 5
-Server version: 10.0.21-MariaDB Mageia MariaDB Server
-
-Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
-MariaDB [(none)]> use Prueba1;
-Database changed
-MariaDB [Prueba1]> CREATE TABLE personas (
-    ->   Nombre varchar(15) NOT NULL,
-    ->   ApellidoPaterno varchar(15) NOT NULL,
-    ->   ApellidoMaterno varchar(15) DEFAULT NULL );
-Query OK, 0 rows affected (0.26 sec)
-
-MariaDB [Prueba1]> INSERT INTO personas ( Nombre, ApellidoPaterno ) 
-        VALUES ( 'Marco', 'Gómez' );
-Query OK, 1 row affected (0.32 sec)
-
-MariaDB [Prueba1]> INSERT INTO personas 
-        VALUES ( 'Raul', 'Montenegro', 'Hernandez' );
-Query OK, 1 row affected (0.31 sec)
-
-MariaDB [Prueba1]> INSERT INTO personas SET 
-    .> Nombre = 'Raul',
-    -> ApellidoPaterno = 'Montoya';
-Query OK, 1 row affected (0.32 sec)
-
-
-MariaDB [Prueba1]> create table Log ( id int not null primary key auto_increment,
-    ->                      Fecha datetime not null,
-    ->                      nombre varchar (15) not null );
-Query OK, 0 rows affected (0.29 sec)
-
-MariaDB [Prueba1]> insert into Log values ( NULL, NOW(), 'jruiz' );
-Query OK, 1 row affected (0.05 sec)
-
-MariaDB [Prueba1]> select * from Log;
-+----+---------------------+--------+
-| id | Fecha               | nombre |
-+----+---------------------+--------+
-|  1 | 2015-10-23 12:20:21 | jruiz  |
-+----+---------------------+--------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-[[Category:MariaDB Desde la Consola]]
-[[Category: CursoMatiaDB]]
