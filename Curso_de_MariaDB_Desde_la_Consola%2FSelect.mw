@@ -307,6 +307,136 @@ descripción completa con ejemplos, vea SELECT con ROLLUP.
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
+Considere la siguiente table que registra el número de veces 
+que cada usuario ha jugado y ganado un partido:
+
+MariaDB [Prueba1]> CREATE TABLE Competiciones 
+                     ( Nomber VARCHAR(16), 
+                       Competiciones MediumINT, 
+                       Triumfos MediumINT );
+Query OK, 0 rows affected (0.25 sec)
+
+MariaDB [Prueba1]> INSERT INTO Competiciones VALUES 
+                     ("Juan", 20, 5), 
+                     ("Roberto", 22, 8), 
+                     ("Wanda", 32, 8), 
+                     ("Susana", 17, 3);
+Query OK, 4 rows affected (0.06 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+MariaDB [Prueba1]> select * from Competiciones;
++---------+---------------+----------+
+| Nomber  | Competiciones | Triumfos |
++---------+---------------+----------+
+| Juan    |            20 |        5 |
+| Roberto |            22 |        8 |
+| Wanda   |            32 |        8 |
+| Susana  |            17 |        3 |
++---------+---------------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select * from Competiciones order by Triumfos;
++---------+---------------+----------+
+| Nomber  | Competiciones | Triumfos |
++---------+---------------+----------+
+| Susana  |            17 |        3 |
+| Juan    |            20 |        5 |
+| Roberto |            22 |        8 |
+| Wanda   |            32 |        8 |
++---------+---------------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select * from Competiciones 
+                     order by Triumfos DESC;
++---------+---------------+----------+
+| Nomber  | Competiciones | Triumfos |
++---------+---------------+----------+
+| Roberto |            22 |        8 |
+| Wanda   |            32 |        8 |
+| Juan    |            20 |        5 |
+| Susana  |            17 |        3 |
++---------+---------------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select * from Competiciones 
+                     WHERE Competiciones > 20 
+                     order by Triumfos DESC;
++---------+---------------+----------+
+| Nomber  | Competiciones | Triumfos |
++---------+---------------+----------+
+| Roberto |            22 |        8 |
+| Wanda   |            32 |        8 |
++---------+---------------+----------+
+2 rows in set (0.00 sec)
+
+Obtener una lista de cuentas ganadoras junto con 
+un recuento: 
+
+MariaDB [Prueba1]> SELECT Competiciones, COUNT(*) 
+                     FROM Competiciones 
+                     GROUP BY Triumfos;
++---------------+----------+
+| Competiciones | COUNT(*) |
++---------------+----------+
+|            17 |        1 |
+|            20 |        1 |
+|            22 |        2 |
++---------------+----------+
+3 rows in set (0.00 sec)
+
+El GROUP BY expresión puede ser un valor calculado, 
+y se puede hacer referencia a un identificador 
+especificado con AS Obtenga una lista de los promedios 
+del triunfo junto con un recuento:
+
+MariaDB [Prueba1]> SELECT ( Triumfos / Competiciones) AS Promedia, 
+                          COUNT(*) FROM Competiciones 
+                          GROUP BY Promedia;
++----------+----------+
+| Promedia | COUNT(*) |
++----------+----------+
+|   0.1765 |        1 |
+|   0.2500 |        2 |
+|   0.3636 |        1 |
++----------+----------+
+3 rows in set (0.00 sec)
+
+Se puede utilizar cualquier función de la agrupación en la 
+expresión de selección. Por cada victoria promedio que el 
+anterior, obtener una lista de la cuenta promedio de juego 
+necesario para conseguir que la media:
+
+MariaDB [Prueba1]> SELECT (Triumfos / Competiciones) AS Promedia, 
+                           AVG(Competiciones) FROM Competiciones 
+                           GROUP BY Promedia;
++----------+--------------------+
+| Promedia | AVG(Competiciones) |
++----------+--------------------+
+|   0.1765 |            17.0000 |
+|   0.2500 |            26.0000 |
+|   0.3636 |            22.0000 |
++----------+--------------------+
+3 rows in set (0.03 sec)
+
+Puedes realizar un filtrado de la información agregada mediante 
+el HAVING cláusula. El HAVING cláusula se aplica después de 
+GROUP BY y le permite filtrar los datos agregados que no está 
+disponible a la WHERE cláusula. Restringir el ejemplo anterior 
+con los resultados que implican un número promedio de más 
+de 20 jugadas:
+
+MariaDB [Prueba1]> SELECT (Triumfos / Competiciones) AS Promedia, 
+                     AVG(Competiciones) 
+                     FROM Competiciones 
+                     GROUP BY Promedia HAVING AVG(Competiciones) > 20;
++----------+--------------------+
+| Promedia | AVG(Competiciones) |
++----------+--------------------+
+|   0.2500 |            26.0000 |
+|   0.3636 |            22.0000 |
++----------+--------------------+
+2 rows in set (0.00 sec)
+
 
 </syntaxhighlight>
 
