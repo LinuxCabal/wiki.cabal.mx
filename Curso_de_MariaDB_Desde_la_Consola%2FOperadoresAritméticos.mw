@@ -6,7 +6,7 @@ __NOTOC__
 * [[:#Operador de Modulo | Operador  de Modulo]]
 * [[:#Operador de Multiplicación| Operador de Multiplicación]]
 
-== Operadores aritméticos ==
+== Operadores Aritméticos ==
 === Operador de Adición ===
  
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
