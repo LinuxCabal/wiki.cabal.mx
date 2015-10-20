@@ -5,6 +5,7 @@ __NOTOC__
 * [[:#Operador de División | Operador de División]]
 * [[:#Operador de Modulo | Operador  de Modulo]]
 * [[:#Operador de Multiplicación| Operador de Multiplicación]]
+* [[:#Operador de Sustracción| Operador de Sustracción]]
 
 == Operadores Aritméticos ==
 === Operador de Adición ===
@@ -171,10 +172,16 @@ MariaDB [Prueba1]> SELECT 1234567890*9876543210;
 ERROR 1690 (22003): BIGINT value is out of range 
                     in '(1234567890 * 9876543210)'
 
-- 
+</syntaxhighlight>
 
-Operador de Substracción. También se utiliza el operador 
-            como el unario menos para el cambio de signo.
+* [[:#Operador de Sustracción | Operador de Sustracción]]
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+-
+
+Operador de Sustracción también se utiliza  como el operador 
+unario menos para el cambio de signo.
 Si ambos operandos son enteros, el resultado se calcula 
 con precisión BIGINT. Si cualquier número entero sin signo, 
 el resultado también es un entero sin signo, a menos que el 
@@ -211,6 +218,8 @@ MariaDB [Prueba1]>  SELECT - (3+5);
 
 </syntaxhighlight>
 
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 
 </syntaxhighlight>
