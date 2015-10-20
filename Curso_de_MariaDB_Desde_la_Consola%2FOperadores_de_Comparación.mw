@@ -1,27 +1,9 @@
 __NOTOC__
 * [[:#Operadores de comparación | Operadores de comparación]] 
-* [[:#Operadores No igual | &nbsp;&nbsp;&nbsp;&nbsp;Operadores No igual]] 
-* [[:#Operador Menor que o igual | &nbsp;&nbsp;&nbsp;&nbsp;Operador Menor que o igual]]
-* [[:#Operador NULL-Safe igual | &nbsp;&nbsp;&nbsp;&nbsp;Operador NULL-Safe igual]]
-* [[:#Operador Igualdad | &nbsp;&nbsp;&nbsp;&nbsp;Operadore Igualdad]] 
-* [[:#Operador Mayor que | &nbsp;&nbsp;&nbsp;&nbsp;Operador Mayor que]]
-* [[:#Operador Mayor que o igual | &nbsp;&nbsp;&nbsp;&nbsp;Operador Mayor que o igual]]
-* [[:#Operador BETWEEN | &nbsp;&nbsp;&nbsp;&nbsp;Operador BETWEEN]]
-* [[:#Operador COALESCE | &nbsp;&nbsp;&nbsp;&nbsp;Operador COALESCE]]
-* [[:#Operador GREATEST | &nbsp;&nbsp;&nbsp;&nbsp;Operador GREATEST]]
-* [[:#Operador IN | &nbsp;&nbsp;&nbsp;&nbsp;Operador IN]]
-* [[:#Operador INTERVAL | &nbsp;&nbsp;&nbsp;&nbsp;Operador INTERVAL]]
-* [[:#Operador IS | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS]]
-* [[:#Operador IS NOT | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NOT]]
-* [[:#Operador IS NOT NULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NOT NULL]]
-* [[:#Operador IS NULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NULL]]
-* [[:#Operador ISNULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador ISNULL]]
-* [[:#Operador LEAST | &nbsp;&nbsp;&nbsp;&nbsp;Operador LEAST]]
-* [[:#Operador NOT BETWEEN | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT BETWEEN]]
-* [[:#Operador NOT IN | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT IN]]
+* [[:#Operadores <> y != | Operadores <> y !=]] 
 
-= Operadores de comparación =
-== Operadores No igual ==
+== Operadores de comparación ==
+=== Operadores <> y != ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -30,7 +12,7 @@ MariaDB [Prueba1]> SELECT '.01' <> '0.01';
 | '.01' <> '0.01' |
 +-----------------+
 |               1 |
-+-------------- ---+
++-----------------+
 1 row in set (0.00 sec)
 
 MariaDB [Prueba1]> SELECT .01 <> '0.01';
@@ -65,11 +47,9 @@ MariaDB [Prueba1]> SELECT @x != @y;
 +----------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
+<
 
-== Operador Menor que ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+Operador Menor que
 
 MariaDB [Prueba1]> SELECT @x < @y;
 +---------+
@@ -119,11 +99,9 @@ MariaDB [Prueba1]> SELECT 'A'<'a';
 +---------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
+<=
 
-== Operador Menor que o igual ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+Operador Menor que o igual
 
 MariaDB [Prueba1]> SELECT @x <= @y;
 +----------+
@@ -157,11 +135,9 @@ MariaDB [Prueba1]> SELECT 'a'<='A';
 +----------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
+<=>
 
-== Operador NULL-Safe igual ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+Operador NULL-Safe igual
 
 Este operador realiza una comparación de igualdad 
 como el operador =, pero devuelve un valor de 1 
@@ -185,11 +161,9 @@ MariaDB [Prueba1]> SELECT 1 = 1, NULL = NULL, 1 = NULL;
 +-------+-------------+----------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
+=
 
-== Operador Igualdad ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+Operador de igualidad
 
 Evalúa ambas expresiones SQL y devuelve 1 si son 
 iguales, 0 si no son iguales, 
@@ -272,11 +246,9 @@ MariaDB [Prueba1]> SELECT NULL <=> NULL;
 +---------------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
+>
 
-== Operador Mayor que ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+Operador Mayor que
 
 MariaDB [Prueba1]> SELECT 2 > 2;
 +-------+
@@ -302,11 +274,9 @@ MariaDB [Prueba1]> SELECT 'a' > 'b';
 +-----------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
+>=
 
-== Operador Mayor que o igual ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+Operador Mayor que o igual
 
 MariaDB [Prueba1]> SELECT 2 >= 2;
 +--------+
@@ -348,13 +318,9 @@ MariaDB [Prueba1]> SELECT -4 >= 2;
 +---------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
-
-== Operador BETWEEN ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 expr BETWEEN min AND max
+
+Operador BETWEEN
 
 Si expr es mayor o igual que min y 
 expr es menor o igual que max, ENTRE devuelve 1, 
@@ -414,13 +380,9 @@ MariaDB [Prueba1]> SELECT 1 BETWEEN 1 AND NULL;
 +----------------------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
-
-== Operador COALESCE ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 COALESCE(value,...)
+
+Operador COALESCE
 
 Devuelve el primer valor no NULL de la lista 
 o NULL si no hay valores no NULL. Debe pasar 
@@ -453,13 +415,9 @@ MariaDB [Prueba1]> SELECT COALESCE(@a, @b), IFNULL(@a, @b);
 +------------------+----------------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
-
-== Operador GREATEST ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 GREATEST(val1,val2,...)
+
+Operador GREATEST
 
 Con dos o más argumentos, retorna el argumento 
 mayor (valor máximo). Los argumentos se comparan 
@@ -489,13 +447,9 @@ MariaDB [Prueba1]> SELECT GREATEST('B','A','C') ;
 +-----------------------+
 1 row in set (0.01 sec)
 
-</syntaxhighlight>
-
-== Operador IN ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 expr IN (value,...)
+
+Operador IN
 
 Devuelve 1 si expr es igual a cualquiera de 
 los valores en la lista de IN, de lo contrario 
@@ -562,336 +516,6 @@ MariaDB [Prueba1]> SELECT 5 IN (1, 2, NULL);
 +-------------------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
-
-== Operador INTERVAL ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-INTERVAL(N,N1,N2,N3,...)
-
-Devuelve el índice del último argumento que es menor que el primer 
-argumento o es NULL. Devuelve 0 si N < N1, 1 si N < N2, 2 si N  < N3 
-y así sucesivamente o -1 si N es NULL. Todos los argumentos se 
-tratan como enteros. Es necesario que el N1 < N2 < N3 < ... < Nn 
-para que esta función funcione correctamente. Esto es porque una 
-rápida búsqueda binaria se utiliza.
-
-MariaDB [(none)]> SELECT INTERVAL(23, 1, 15, 17, 30, 44, 200);
-+--------------------------------------+
-| INTERVAL(23, 1, 15, 17, 30, 44, 200) |
-+--------------------------------------+
-|                                    3 |
-+--------------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT INTERVAL(10, 1, 10, 100, 1000);
-+--------------------------------+
-| INTERVAL(10, 1, 10, 100, 1000) |
-+--------------------------------+
-|                              2 |
-+--------------------------------+
-1 row in set (0.01 sec)
-
-MariaDB [(none)]> SELECT INTERVAL(22, 23, 30, 44, 200);
-+-------------------------------+
-| INTERVAL(22, 23, 30, 44, 200) |
-+-------------------------------+
-|                             0 |
-+-------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT INTERVAL(10, 2, NULL);
-+-----------------------+
-| INTERVAL(10, 2, NULL) |
-+-----------------------+
-|                     2 |
-+-----------------------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador IS ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-IS valor boolean
-
-Pruebas de un valor contra un valor booleano, donde valor booleano 
-puede ser TRUE, FALSE o UNKNOWN.
-Hay una diferencia importante entre usar IS TRUE o comparar un valor 
-contra TRUE usando =. Cuando se usa =, sólo 1 es igual a TRUE. Pero 
-cuando se usa IS TRUE, todos los valores que son lógicamente 
-verdaderos (como un número > 1) devolución verdadero.
-
-MariaDB [(none)]> SELECT 1 IS TRUE, 0 IS FALSE, NULL IS UNKNOWN;
-+-----------+------------+-----------------+
-| 1 IS TRUE | 0 IS FALSE | NULL IS UNKNOWN |
-+-----------+------------+-----------------+
-|         1 |          1 |               1 |
-+-----------+------------+-----------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT 2 = TRUE, 2 IS TRUE;
-+----------+-----------+
-| 2 = TRUE | 2 IS TRUE |
-+----------+-----------+
-|        0 |         1 |
-+----------+-----------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador IS NOT ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-IS NOT boolean_value
-
-Pruebas de un valor contra un valor booleano, donde valor 
-booleano puede ser TRUE, FALSE o UNKNOWN.
-
-MariaDB [(none)]> SELECT 1 IS NOT UNKNOWN, 0 IS NOT UNKNOWN, NULL IS NOT UNKNOWN;
-+------------------+------------------+---------------------+
-| 1 IS NOT UNKNOWN | 0 IS NOT UNKNOWN | NULL IS NOT UNKNOWN |
-+------------------+------------------+---------------------+
-|                1 |                1 |                   0 |
-+------------------+------------------+---------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT NULL IS NOT TRUE, NULL IS NOT FALSE;
-+------------------+-------------------+
-| NULL IS NOT TRUE | NULL IS NOT FALSE |
-+------------------+-------------------+
-|                1 |                 1 |
-+------------------+-------------------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador IS NOT NULL ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-Comprueba si un valor no es NULL.
-
-MariaDB [(none)]> SELECT 1 IS NOT NULL, 0 IS NOT NULL, NULL IS NOT NULL;
-+---------------+---------------+------------------+
-| 1 IS NOT NULL | 0 IS NOT NULL | NULL IS NOT NULL |
-+---------------+---------------+------------------+
-|             1 |             1 |                0 |
-+---------------+---------------+------------------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador IS NULL ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-Comprueba si un valor es NULL.
-
-MariaDB [(none)]> SELECT 1 IS NULL, 0 IS NULL, NULL IS NULL;
-+-----------+-----------+--------------+
-| 1 IS NULL | 0 IS NULL | NULL IS NULL |
-+-----------+-----------+--------------+
-|         0 |         0 |            1 |
-+-----------+-----------+--------------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador ISNULL ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-ISNULL(expr)
-
-Comprueba si un expresión es NULL. Si es NULL devuelve 1
-de lo contrario devuelve 0.
-MariaDB [(none)]> SELECT ISNULL(1+1);
-+-------------+
-| ISNULL(1+1) |
-+-------------+
-|           0 |
-+-------------+
-1 row in set (0.01 sec)
-
-MariaDB [(none)]> SELECT ISNULL(1/0);
-+-------------+
-| ISNULL(1/0) |
-+-------------+
-|           1 |
-+-------------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador LEAST ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-LEAST(val1,val2,...)
-
-Con dos o más argumentos, retorna el argumento menor 
-(valor mínimo). Los argumentos se comparan usando las 
-siguientes reglas:
-    Si el valor devuelto se utiliza en un contexto INTEGER 
-    o todos los argumentos son valores enteros, se comparan 
-    como enteros.
-
-    Si el valor devuelto se utiliza en un contexto REAL 
-    o todos los argumentos son valores de real, se comparan 
-    como reales.
-
-    Si algún argumento es una cadena sensible a minúsculas 
-    y mayúsculas, la comparación de cadenas entre honora 
-    mayúsculas y minúsculas.
-
-    En los demás casos, los argumentos se comparan como cadenas 
-    de caracteres insensibles a mayúsculas y minúsculas.
-
-    Least() retorna NULL si algún argumento es NULL.
-
-MariaDB [(none)]> SELECT LEAST(2,0);
-+------------+
-| LEAST(2,0) |
-+------------+
-|          0 |
-+------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,767.0);
-+---------------------------+
-| LEAST(34.0,3.0,5.0,767.0) |
-+---------------------------+
-|                       3.0 |
-+---------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT LEAST('B','A','C');
-+--------------------+
-| LEAST('B','A','C') |
-+--------------------+
-| A                  |
-+--------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT LEAST('B', 'a', 'A','C');
-+--------------------------+
-| LEAST('B', 'a', 'A','C') |
-+--------------------------+
-| a                        |
-+--------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,'',767.0);
-+------------------------------+
-| LEAST(34.0,3.0,5.0,'',767.0) |
-+------------------------------+
-| 0                            |
-+------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,NULL,767.0);
-+--------------------------------+
-| LEAST(34.0,3.0,5.0,NULL,767.0) |
-+--------------------------------+
-|                           NULL |
-+--------------------------------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador NOT BETWEEN ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-expr NOT BETWEEN min AND max
-
-Esto es lo mismo que NOT (expr BETWEEN min y max).
-
-MariaDB [(none)]> SELECT 1 NOT BETWEEN 2 AND 3;
-+-----------------------+
-| 1 NOT BETWEEN 2 AND 3 |
-+-----------------------+
-|                     1 |
-+-----------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT 'b' NOT BETWEEN 'a' AND 'c';
-+-----------------------------+
-| 'b' NOT BETWEEN 'a' AND 'c' |
-+-----------------------------+
-|                           0 |
-+-----------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT 1 NOT BETWEEN 1 AND NULL;
-+--------------------------+
-| 1 NOT BETWEEN 1 AND NULL |
-+--------------------------+
-|                     NULL |
-+--------------------------+
-1 row in set (0.00 sec)
-
-</syntaxhighlight>
-
-== Operador NOT IN ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-expr NOT IN (value,...)
-
-Lo mismo que NOT (expr IN (val1, val2, ...)).
-
-MariaDB [(none)]> SELECT 2 NOT IN (0,3,5,7);
-+--------------------+
-| 2 NOT IN (0,3,5,7) |
-+--------------------+
-|                  1 |
-+--------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT 'wefwf' NOT IN ('wee','wefwf','weg');
-+--------------------------------------+
-| 'wefwf' NOT IN ('wee','wefwf','weg') |
-+--------------------------------------+
-|                                    0 |
-+--------------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT 1 NOT IN ('1', '2', '3');
-+--------------------------+
-| 1 NOT IN ('1', '2', '3') |
-+--------------------------+
-|                        0 |
-+--------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT NULL NOT IN (1, 2, 3);
-+-----------------------+
-| NULL NOT IN (1, 2, 3) |
-+-----------------------+
-|                  NULL |
-+-----------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT 1 NOT IN (1, 2, NULL);
-+-----------------------+
-| 1 NOT IN (1, 2, NULL) |
-+-----------------------+
-|                     0 |
-+-----------------------+
-1 row in set (0.00 sec)
-
-MariaDB [(none)]> SELECT 5 NOT IN (1, 2, NULL);
-+-----------------------+
-| 5 NOT IN (1, 2, NULL) |
-+-----------------------+
-|                  NULL |
-+-----------------------+
-1 row in set (0.00 sec)
 
 </syntaxhighlight>
 
