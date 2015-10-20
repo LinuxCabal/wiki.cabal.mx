@@ -479,9 +479,13 @@ MariaDB [Prueba1]> SELECT GREATEST('B','A','C') ;
 +-----------------------+
 1 row in set (0.01 sec)
 
-expr IN (value,...)
+</syntaxhighlight>
 
-Operador IN
+=== Operador IN ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+expr IN (value,...)
 
 Devuelve 1 si expr es igual a cualquiera de 
 los valores en la lista de IN, de lo contrario 
