@@ -442,9 +442,13 @@ MariaDB [Prueba1]> SELECT COALESCE(@a, @b), IFNULL(@a, @b);
 +------------------+----------------+
 1 row in set (0.00 sec)
 
-GREATEST(val1,val2,...)
+</syntaxhighlight>
 
-Operador GREATEST
+=== Operador GREATEST ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+GREATEST(val1,val2,...)
 
 Con dos o más argumentos, retorna el argumento 
 mayor (valor máximo). Los argumentos se comparan 
