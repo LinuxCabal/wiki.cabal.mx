@@ -3,7 +3,7 @@ __NOTOC__
 * [[:#Operador de asignación ':=' | Operador de asignación ':=']] 
 
 == Operadores de Asignación ==
-=== Operador de asignación ':=' ===
+=== Operador de asignación := ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
