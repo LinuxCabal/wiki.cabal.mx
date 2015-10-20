@@ -9,6 +9,7 @@ __NOTOC__
 * [[:#Operador BETWEEN | &nbsp;&nbsp;&nbsp;&nbsp;Operador BETWEEN]]
 * [[:#Operador COALESCE | &nbsp;&nbsp;&nbsp;&nbsp;Operador COALESCE]]
 * [[:#Operador GREATEST | &nbsp;&nbsp;&nbsp;&nbsp;Operador GREATEST]]
+* [[:#Operador IN | &nbsp;&nbsp;&nbsp;&nbsp;Operador IN]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
