@@ -1,0 +1,16 @@
+__NOTOC__
+* [[:#Operadores Lógicos |  Operadores Lógicos]]
+* [[:#Operador de asignación := | &nbsp;&nbsp;&nbsp;&nbsp;Operador de asignación :=]] 
+* [[:#Operador de asignación = | &nbsp;&nbsp;&nbsp;&nbsp;Operador de asignación =]] 
+
+== Operadores Lógicos ==
+=== Operador de asignación := ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+</syntaxhighlight>
+
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
