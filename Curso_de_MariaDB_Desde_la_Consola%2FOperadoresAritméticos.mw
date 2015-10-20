@@ -1,14 +1,13 @@
 __NOTOC__
-* [[:#Operadores Aritméticos | Operadores Aritméticos]]
-* [[:#Operador de Adición| &nbsp;&nbsp;&nbsp;&nbsp;Operador de Adición]]
-* [[:#Operador División de enteros | &nbsp;&nbsp;&nbsp;&nbsp;Operador División de enteros]]
-* [[:#Operador de División | &nbsp;&nbsp;&nbsp;&nbsp;Operador de División]]
-* [[:#Operador de Modulo | &nbsp;&nbsp;&nbsp;&nbsp;Operador  de Modulo]]
-* [[:#Operador de Multiplicación | &nbsp;&nbsp;&nbsp;&nbsp;Operador de Multiplicación]]
-* [[:#Operador de Sustracción | &nbsp;&nbsp;&nbsp;&nbsp;Operador de Sustracción]]
+* [[:#OperadoresAritméticos | Operadores Aritméticos]]
+* [[:#Operador de Adición/Sum| Operador de Adición/Sum]]
+* [[:#Operador División de enteros | Operador División de enteros]]
+* [[:#Operador de División | Operador de División]]
+* [[:#Operador de Modulo | Operador  de Modulo]]
+* [[:#Operador de Multiplicación| Operador de Multiplicación]]
 
-= Operadores Aritméticos =
-== Operador de Adición ==
+== Operadores aritméticos ==
+=== Operador de Adición/Suma ===
  
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -30,7 +29,7 @@ MariaDB [Prueba1]> SELECT 3+5;
 
 </syntaxhighlight>
 
-== Operador División de enteros ==
+=== Operador División de enteros === 
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -63,7 +62,7 @@ MariaDB [Prueba1]> SELECT 300 DIV 0;
 
 </syntaxhighlight>
 
-== Operador de División ==
+=== Operador de División === 
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -107,7 +106,7 @@ MOD(N,M), N % M, N MOD M
 
 </syntaxhighlight>
 
-== Operador de Modulo ==
+=== Operador de Modulo ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -146,7 +145,7 @@ MariaDB [Prueba1]> SELECT 29 MOD 9;
 
 </syntaxhighlight>
 
-== Operador de Multiplicación ==
+=== Operador de Multiplicación ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -172,16 +171,10 @@ MariaDB [Prueba1]> SELECT 1234567890*9876543210;
 ERROR 1690 (22003): BIGINT value is out of range 
                     in '(1234567890 * 9876543210)'
 
-</syntaxhighlight>
+- 
 
-== Operador de Sustracción ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
--
-
-Operador de Sustracción también se utiliza  como el operador 
-unario menos para el cambio de signo.
+Operador de Substracción. También se utiliza el operador 
+            como el unario menos para el cambio de signo.
 Si ambos operandos son enteros, el resultado se calcula 
 con precisión BIGINT. Si cualquier número entero sin signo, 
 el resultado también es un entero sin signo, a menos que el 
@@ -218,8 +211,6 @@ MariaDB [Prueba1]>  SELECT - (3+5);
 
 </syntaxhighlight>
 
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 
 </syntaxhighlight>
