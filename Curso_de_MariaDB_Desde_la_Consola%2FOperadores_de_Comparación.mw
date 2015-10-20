@@ -688,11 +688,11 @@ MariaDB [(none)]> SELECT 1 IS NOT NULL, 0 IS NOT NULL, NULL IS NOT NULL;
 Comprueba si un valor es NULL.
 
 MariaDB [(none)]> SELECT 1 IS NULL, 0 IS NULL, NULL IS NULL;
-+---------------+---------------+------------------+
-| 1 IS NOT NULL | 0 IS NOT NULL | NULL IS NOT NULL |
-+---------------+---------------+------------------+
-|             0 |             0 |                1 |
-+---------------+---------------+------------------+
++-----------+-----------+--------------+
+| 1 IS NULL | 0 IS NULL | NULL IS NULL |
++-----------+-----------+--------------+
+|         0 |         0 |            1 |
++-----------+-----------+--------------+
 1 row in set (0.00 sec)
 
 </syntaxhighlight>
