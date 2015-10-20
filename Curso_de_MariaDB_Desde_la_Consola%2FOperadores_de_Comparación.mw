@@ -16,6 +16,7 @@ __NOTOC__
 * [[:#Operador IS NOT NULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NOT NULL]]
 * [[:#Operador IS NULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NULL]]
 * [[:#Operador ISNULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador ISNULL]]
+* [[:#Operador LEAST | &nbsp;&nbsp;&nbsp;&nbsp;Operador LEAST]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -722,7 +723,80 @@ MariaDB [(none)]> SELECT ISNULL(1/0);
 +-------------+
 1 row in set (0.00 sec)
 
+</syntaxhighlight>
 
+=== Operador LEAST ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+LEAST(val1,val2,...)
+
+Con dos o más argumentos, retorna el argumento menor 
+(valor mínimo). Los argumentos se comparan usando las 
+siguientes reglas:
+    Si el valor devuelto se utiliza en un contexto INTEGER 
+    o todos los argumentos son valores enteros, se comparan 
+    como enteros.
+
+    Si el valor devuelto se utiliza en un contexto REAL 
+    o todos los argumentos son valores de real, se comparan 
+    como reales.
+
+    Si algún argumento es una cadena sensible a minúsculas 
+    y mayúsculas, la comparación de cadenas entre honora 
+    mayúsculas y minúsculas.
+
+    En los demás casos, los argumentos se comparan como cadenas 
+    de caracteres insensibles a mayúsculas y minúsculas.
+
+    Least() retorna NULL si algún argumento es NULL.
+MariaDB [(none)]> SELECT LEAST(2,0);
++------------+
+| LEAST(2,0) |
++------------+
+|          0 |
++------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,767.0);
++---------------------------+
+| LEAST(34.0,3.0,5.0,767.0) |
++---------------------------+
+|                       3.0 |
++---------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT LEAST('B','A','C');
++--------------------+
+| LEAST('B','A','C') |
++--------------------+
+| A                  |
++--------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT LEAST('B', 'a', 'A','C');
++--------------------------+
+| LEAST('B', 'a', 'A','C') |
++--------------------------+
+| a                        |
++--------------------------+
+1 row in set (0.00 sec)
+
+  MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,'',767.0);
+  +------------------------------+
+  | LEAST(34.0,3.0,5.0,'',767.0) |
+  +------------------------------+
+  | 0                            |
+  +------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,NULL,767.0);
++--------------------------------+
+| LEAST(34.0,3.0,5.0,NULL,767.0) |
++--------------------------------+
+|                           NULL |
++--------------------------------+
+1 row in set (0.00 sec)
 
 
 
