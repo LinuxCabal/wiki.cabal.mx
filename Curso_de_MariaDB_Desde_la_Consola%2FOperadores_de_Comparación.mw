@@ -1,9 +1,11 @@
 __NOTOC__
 * [[:#Operadores de comparación | Operadores de comparación]] 
-* [[:#Operadores <> y != | Operadores <> y !=]] 
+* [[:#Operadores No igual | Operadores No igual]] 
+* [[:#Operador Menor que o igual | Operador Menor que o igual]]
+* [[:#Operador NULL-Safe igual | Operador NULL-Safe igual]]
 
 == Operadores de comparación ==
-=== Operadores <> y != ===
+=== Operadores No igual ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -47,9 +49,11 @@ MariaDB [Prueba1]> SELECT @x != @y;
 +----------+
 1 row in set (0.00 sec)
 
-<
+</syntaxhighlight>
 
-Operador Menor que
+=== Operador Menor que ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 MariaDB [Prueba1]> SELECT @x < @y;
 +---------+
@@ -99,9 +103,11 @@ MariaDB [Prueba1]> SELECT 'A'<'a';
 +---------+
 1 row in set (0.00 sec)
 
-<=
+</syntaxhighlight>
 
-Operador Menor que o igual
+=== Operador Menor que o igual ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 MariaDB [Prueba1]> SELECT @x <= @y;
 +----------+
@@ -135,9 +141,11 @@ MariaDB [Prueba1]> SELECT 'a'<='A';
 +----------+
 1 row in set (0.00 sec)
 
-<=>
+</syntaxhighlight>
 
-Operador NULL-Safe igual
+=== Operador NULL-Safe igual ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 Este operador realiza una comparación de igualdad 
 como el operador =, pero devuelve un valor de 1 
