@@ -11,6 +11,7 @@ __NOTOC__
 * [[:#Operador GREATEST | &nbsp;&nbsp;&nbsp;&nbsp;Operador GREATEST]]
 * [[:#Operador IN | &nbsp;&nbsp;&nbsp;&nbsp;Operador IN]]
 * [[:#Operador INTERVAL | &nbsp;&nbsp;&nbsp;&nbsp;Operador INTERVAL]]
+* [[:#Operador IS | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -569,16 +570,6 @@ tratan como enteros. Es necesario que el N1 < N2 < N3 < ... < Nn
 para que esta función funcione correctamente. Esto es porque una 
 rápida búsqueda binaria se utiliza.
 
-[rrc@Pridd ~]$ mysql -u rrc -p
-Enter password: 
-Welcome to the MariaDB monitor.  Commands end with ; or \g.
-Your MariaDB connection id is 7
-Server version: 10.0.21-MariaDB Mageia MariaDB Server
-
-Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
-
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-
 MariaDB [(none)]> SELECT INTERVAL(23, 1, 15, 17, 30, 44, 200);
 +--------------------------------------+
 | INTERVAL(23, 1, 15, 17, 30, 44, 200) |
@@ -609,6 +600,37 @@ MariaDB [(none)]> SELECT INTERVAL(10, 2, NULL);
 +-----------------------+
 |                     2 |
 +-----------------------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador IS ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+IS valor boolean
+
+Pruebas de un valor contra un valor booleano, donde valor booleano 
+puede ser TRUE, FALSE o UNKNOWN.
+Hay una diferencia importante entre usar IS TRUE o comparar un valor 
+contra TRUE usando =. Cuando se usa =, sólo 1 es igual a TRUE. Pero 
+cuando se usa IS TRUE, todos los valores que son lógicamente 
+verdaderos (como un número > 1) devolución verdadero.
+
+MariaDB [(none)]> SELECT 1 IS TRUE, 0 IS FALSE, NULL IS UNKNOWN;
++-----------+------------+-----------------+
+| 1 IS TRUE | 0 IS FALSE | NULL IS UNKNOWN |
++-----------+------------+-----------------+
+|         1 |          1 |               1 |
++-----------+------------+-----------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 2 = TRUE, 2 IS TRUE;
++----------+-----------+
+| 2 = TRUE | 2 IS TRUE |
++----------+-----------+
+|        0 |         1 |
++----------+-----------+
 1 row in set (0.00 sec)
 
 </syntaxhighlight>
