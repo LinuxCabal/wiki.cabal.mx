@@ -3,6 +3,8 @@ __NOTOC__
 * [[:#Operadores No igual | Operadores No igual]] 
 * [[:#Operador Menor que o igual | Operador Menor que o igual]]
 * [[:#Operador NULL-Safe igual | Operador NULL-Safe igual]]
+* [[:#Operador Igualdad | Operadore Igualdad]] 
+* [[:#Operador Mayor que | Operador Mayor que]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -169,9 +171,11 @@ MariaDB [Prueba1]> SELECT 1 = 1, NULL = NULL, 1 = NULL;
 +-------+-------------+----------+
 1 row in set (0.00 sec)
 
-=
+</syntaxhighlight>
 
-Operador de igualidad
+=== Operador Igualdad ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 Evalúa ambas expresiones SQL y devuelve 1 si son 
 iguales, 0 si no son iguales, 
@@ -254,9 +258,11 @@ MariaDB [Prueba1]> SELECT NULL <=> NULL;
 +---------------+
 1 row in set (0.00 sec)
 
->
+</syntaxhighlight>
 
-Operador Mayor que
+=== Operador Mayor que ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 MariaDB [Prueba1]> SELECT 2 > 2;
 +-------+
