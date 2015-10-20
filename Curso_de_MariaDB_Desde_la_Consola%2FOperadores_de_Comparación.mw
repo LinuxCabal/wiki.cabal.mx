@@ -1,5 +1,5 @@
 __NOTOC__
-* [[:#Operadores de comparación | Operadores de comparación]] 
+* [[:#Operadores de comparación |\t Operadores de comparación]] 
 * [[:#Operadores No igual | Operadores No igual]] 
 * [[:#Operador Menor que o igual | Operador Menor que o igual]]
 * [[:#Operador NULL-Safe igual | Operador NULL-Safe igual]]
@@ -8,6 +8,7 @@ __NOTOC__
 * [[:#Operador Mayor que o igual | Operador Mayor que o igual]]
 * [[:#Operador BETWEEN | Operador BETWEEN]]
 * [[:#Operador COALESCE | Operador COALESCE]]
+* [[:#Operador GREATEST | Operador GREATEST]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
