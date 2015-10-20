@@ -1,0 +1,104 @@
+__NOTOC__
+* [[:#Operadores de Asignación |  Operadores de Asignación]]
+
+=== Operadores de Asignación ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+Operador de asignación para asignar un valor. 
+
+El valor a la derecha se asigna a la variable izquierda.
+A diferencia de la = operador := puede ser usada para 
+asignar un valor a una variable.
+Este operador trabaja con variables locales y variables 
+definidas por el usuario.
+Cuando se asigna el mismo valor a varias variables, 
+último VALUE() puede ser útil.
+
+MariaDB [Prueba1]>  SELECT @x := 10;
++----------+
+| @x := 10 |
++----------+
+|       10 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT @x, @y := @x;
++------+----------+
+| @x   | @y := @x |
++------+----------+
+|   10 |       10 |
++------+----------+
+1 row in set (0.00 sec)
+
+identificador = expr
+
+El signo igual se utiliza como un operador 
+de asignación en ciertos contextos y como 
+un operador de comparación. Cuando se utiliza 
+como operador de asignación, el valor de la 
+derecha se asigna a la variable 
+(o columna, en algunos contextos) en la izquierda.
+Puesto que su uso puede ser ambigua, a diferencia 
+de la := operador de asignación, el = asignación 
+de operador no se puede utilizar en todos los 
+contextos y sólo es válido como parte de una 
+instrucción SET o la cláusula SET de una 
+instrucción UPDATE
+Este operador trabaja con variables locales y 
+variables definidas por el usuario.
+
+MariaDB [Prueba1]> select * from inven;
++----+-------------+-----------------------+--------+----------+
+| id | nombre      | descrip               | precio | cantidad |
++----+-------------+-----------------------+--------+----------+
+|  1 | Manzanas    | Mediano Granny-Smith. |   0.25 |     1000 |
+|  2 | Uvas        | Sin Semillas          |   2.99 |      500 |
+|  3 | Agua        | Bot. - 250 ml.        |   0.89 |      259 |
+|  4 | AguaMineral | Bot. - 600 ml.        |    0.5 |      350 |
++----+-------------+-----------------------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> insert into inven set id='', 
+                                         nombre = 'Platanos', 
+                                         descrip = 'Machos', 
+                                         precio = 6.0, 
+                                         cantidad = 25;
+Query OK, 1 row affected, 1 warning (0.06 sec)
+
+MariaDB [Prueba1]> select * from inven;
++----+-------------+-----------------------+--------+----------+
+| id | nombre      | descrip               | precio | cantidad |
++----+-------------+-----------------------+--------+----------+
+|  1 | Manzanas    | Mediano Granny-Smith. |   0.25 |     1000 |
+|  2 | Uvas        | Sin Semillas          |   2.99 |      500 |
+|  3 | Agua        | Bot. - 250 ml.        |   0.89 |      259 |
+|  4 | AguaMineral | Bot. - 600 ml.        |    0.5 |      350 |
+|  5 | Platanos    | Machos                |      6 |       25 |
++----+-------------+-----------------------+--------+----------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> SET @x = 1, @y := 2;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [Prueba1]> select @x;
++------+
+| @x   |
++------+
+|    1 |
++------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> select @y;
++------+
+| @y   |
++------+
+|    2 |
++------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
