@@ -18,6 +18,7 @@ __NOTOC__
 * [[:#Operador ISNULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador ISNULL]]
 * [[:#Operador LEAST | &nbsp;&nbsp;&nbsp;&nbsp;Operador LEAST]]
 * [[:#Operador NOT BETWEEN | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT BETWEEN]]
+* [[:#Operador NOT IN | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT IN]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -834,8 +835,63 @@ MariaDB [(none)]> SELECT 1 NOT BETWEEN 1 AND NULL;
 +--------------------------+
 1 row in set (0.00 sec)
 
+</syntaxhighlight>
 
+=== Operador NOT IN ===
 
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+expr NOT IN (value,...)
+
+Lo mismo que NOT (expr IN (val1, val2, ...)).
+
+MariaDB [(none)]> SELECT 2 NOT IN (0,3,5,7);
++--------------------+
+| 2 NOT IN (0,3,5,7) |
++--------------------+
+|                  1 |
++--------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 'wefwf' NOT IN ('wee','wefwf','weg');
++--------------------------------------+
+| 'wefwf' NOT IN ('wee','wefwf','weg') |
++--------------------------------------+
+|                                    0 |
++--------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 NOT IN ('1', '2', '3');
++--------------------------+
+| 1 NOT IN ('1', '2', '3') |
++--------------------------+
+|                        0 |
++--------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT NULL NOT IN (1, 2, 3);
++-----------------------+
+| NULL NOT IN (1, 2, 3) |
++-----------------------+
+|                  NULL |
++-----------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 NOT IN (1, 2, NULL);
++-----------------------+
+| 1 NOT IN (1, 2, NULL) |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 5 NOT IN (1, 2, NULL);
++-----------------------+
+| 5 NOT IN (1, 2, NULL) |
++-----------------------+
+|                  NULL |
++-----------------------+
+1 row in set (0.00 sec)
 
 </syntaxhighlight>
 
