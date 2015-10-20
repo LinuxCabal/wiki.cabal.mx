@@ -3,7 +3,7 @@ __NOTOC__
 * [[:#Operadores NOT y ! | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT y !]] 
 * [[:#Operadores AND y && | &nbsp;&nbsp;&nbsp;&nbsp;Operadores AND y &&]] 
 * [[:#Operador XOR | &nbsp;&nbsp;&nbsp;&nbsp;Operador XOR]] 
-* [[:#Operador OR y || | &nbsp;&nbsp;&nbsp;&nbsp;Operador OR y ||]] 
+* [[:#Operador OR y '||' | &nbsp;&nbsp;&nbsp;&nbsp;Operador OR y '||']] 
 
 == Operadores Lógicos ==
 === Operadores NOT y ! ===
