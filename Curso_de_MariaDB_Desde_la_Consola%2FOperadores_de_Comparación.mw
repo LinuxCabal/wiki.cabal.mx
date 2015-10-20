@@ -7,6 +7,7 @@ __NOTOC__
 * [[:#Operador Mayor que | Operador Mayor que]]
 * [[:#Operador Mayor que o igual | Operador Mayor que o igual]]
 * [[:#Operador BETWEEN | Operador BETWEEN]]
+* [[:#Operador COALESCE | Operador COALESCE]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
