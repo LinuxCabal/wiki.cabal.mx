@@ -159,7 +159,7 @@ MariaDB [(none)]> SELECT 1 XOR 1 XOR 1;
 
 </syntaxhighlight>
 
-=== Operadores OR y || ===
+=== Operadores OR y '||' ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
