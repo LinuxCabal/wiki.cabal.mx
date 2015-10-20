@@ -1,16 +1,173 @@
 __NOTOC__
 * [[:#Operadores Lógicos |  Operadores Lógicos]]
-* [[:#Operador de asignación := | &nbsp;&nbsp;&nbsp;&nbsp;Operador de asignación :=]] 
-* [[:#Operador de asignación = | &nbsp;&nbsp;&nbsp;&nbsp;Operador de asignación =]] 
+* [[:#Operadores NOT y ! | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT y !]] 
+* [[:#Operadores AND y && | &nbsp;&nbsp;&nbsp;&nbsp;Operadores AND y &&]] 
+* [[:#Operador XOR | &nbsp;&nbsp;&nbsp;&nbsp;Operador XOR]] 
+* [[:#Operador OR y || | &nbsp;&nbsp;&nbsp;&nbsp;Operador OR y ||]] 
 
 == Operadores Lógicos ==
-=== Operador de asignación := ===
+=== Operadores NOT y ! ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+NO lógico. Evalúa a 1 si el operando es de 0 a 0 si el operando 
+es diferente a cero, y  NULL, devuelve NULL. De forma predeterminada, 
+el ! operador tiene una prioridad más alta. Si el 
+HIGH_NOT_PRECEDENCE indicador está establecido, 
+NO y ! Tienen la misma precedencia.
+
+MariaDB [(none)]> SELECT NOT 10;
++--------+
+| NOT 10 |
++--------+
+|      0 |
++--------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT NOT 0;
++-------+
+| NOT 0 |
++-------+
+|     1 |
++-------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT NOT NULL;
++----------+
+| NOT NULL |
++----------+
+|     NULL |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT ! (1+1);
++---------+
+| ! (1+1) |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT ! 1+1;
++-------+
+| ! 1+1 |
++-------+
+|     1 |
++-------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT ! (1-1);
++---------+
+| ! (1-1) |
++---------+
+|       1 |
++---------+
+1 row in set (0.00 sec)
 
 
 </syntaxhighlight>
 
+=== Operadores AND y && ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+Lógico AND se evalúa a 1 si los operandos son distintos de cero 
+y no NULL, 0 si uno o más operandos son 0, 
+de lo contrario se devuelve NULL.
+
+MariaDB [(none)]> SELECT 1 && 1;
++--------+
+| 1 && 1 |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 && 0;
++--------+
+| 1 && 0 |
++--------+
+|      0 |
++--------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 && NULL;
++-----------+
+| 1 && NULL |
++-----------+
+|      NULL |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 0 && NULL;
++-----------+
+| 0 && NULL |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT NULL && 0;
++-----------+
+| NULL && 0 |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador XOR ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+XOR significa OR exclusiv. Devuelve NULL si cualquier operando 
+es NULL. Para los no-NULL operandos, evalúa a 1 si un y solo un número 
+impar de los operandos es distinto de cero, de lo contrario se devuelve 0.
+
+MariaDB [(none)]> SELECT 1 XOR 1;
++---------+
+| 1 XOR 1 |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 XOR 0;
++---------+
+| 1 XOR 0 |
++---------+
+|       1 |
++---------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 XOR NULL;
++------------+
+| 1 XOR NULL |
++------------+
+|       NULL |
++------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 XOR 1 XOR 1;
++---------------+
+| 1 XOR 1 XOR 1 |
++---------------+
+|             1 |
++---------------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operadores OR y || ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+
+
+
+</syntaxhighlight>
 
 [[Category:MariaDB Desde la Consola]]
-[[Category: CursoMatiaDB]]
+[[Category: CursoMatiaDB]
