@@ -1,0 +1,523 @@
+__NOTOC__
+* [[:#Operadores de comparación | Operadores de comparación]] 
+* [[:#Operadores <> y != | Operadores <> y !=]] 
+
+== Operadores de comparación ==
+=== Operadores <> y != ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+MariaDB [Prueba1]> SELECT '.01' <> '0.01';
++-----------------+
+| '.01' <> '0.01' |
++-----------------+
+|               1 |
++-----------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT .01 <> '0.01';
++---------------+
+| .01 <> '0.01' |
++---------------+
+|             0 |
++---------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'zapp' <> 'zappp';
++-------------------+
+| 'zapp' <> 'zappp' |
++-------------------+
+|                 1 |
++-------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT @x != @x;
++----------+
+| @x != @x |
++----------+
+|        0 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT @x != @y;
++----------+
+| @x != @y |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+<
+
+Operador Menor que
+
+MariaDB [Prueba1]> SELECT @x < @y;
++---------+
+| @x < @y |
++---------+
+|       1 |
++---------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT @y < @x;
++---------+
+| @y < @x |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 2 < 2;
++-------+
+| 2 < 2 |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 3<'4';
++-------+
+| 3<'4' |
++-------+
+|     1 |
++-------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'a'<'A';
++---------+
+| 'a'<'A' |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'A'<'a';
++---------+
+| 'A'<'a' |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+<=
+
+Operador Menor que o igual
+
+MariaDB [Prueba1]> SELECT @x <= @y;
++----------+
+| @x <= @y |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT @y <= @x;
++----------+
+| @y <= @x |
++----------+
+|        0 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 0.1 <= 2;
++----------+
+| 0.1 <= 2 |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'a'<='A';
++----------+
+| 'a'<='A' |
++----------+
+|        1 |
++----------+
+1 row in set (0.00 sec)
+
+<=>
+
+Operador NULL-Safe igual
+
+Este operador realiza una comparación de igualdad 
+como el operador =, pero devuelve un valor de 1 
+en lugar de NULL si ambos operandos son NULL, 
+y 0 en vez de NULL si uno de los operandos es NULL. 
+un a <=> b es equivalente a a = b O a ES NULL Y b es NULL).
+
+MariaDB [Prueba1]> SELECT 1 <=> 1, NULL <=> NULL, 1 <=> NULL;
++---------+---------------+------------+
+| 1 <=> 1 | NULL <=> NULL | 1 <=> NULL |
++---------+---------------+------------+
+|       1 |             1 |          0 |
++---------+---------------+------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 1 = 1, NULL = NULL, 1 = NULL;
++-------+-------------+----------+
+| 1 = 1 | NULL = NULL | 1 = NULL |
++-------+-------------+----------+
+|     1 |        NULL |     NULL |
++-------+-------------+----------+
+1 row in set (0.00 sec)
+
+=
+
+Operador de igualidad
+
+Evalúa ambas expresiones SQL y devuelve 1 si son 
+iguales, 0 si no son iguales, 
+NULL si cualquiera expresión es NULL. 
+Si las expresiones devolución diferentes tipos de 
+datos (por ejemplo, un número y una cadena), se 
+realiza una conversión de tipo.
+También puede ser utilizado como un operador de 
+asignación.
+
+MariaDB [Prueba1]> SELECT 1 = 0;
++-------+
+| 1 = 0 |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT '0' = 0;
++---------+
+| '0' = 0 |
++---------+
+|       1 |
++---------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT '0.0' = 0;
++-----------+
+| '0.0' = 0 |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT '0.01' = 0;
++------------+
+| '0.01' = 0 |
++------------+
+|          0 |
++------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT '.01' = 0.01;
++--------------+
+| '.01' = 0.01 |
++--------------+
+|            1 |
++--------------+
+1 row in set (0.01 sec)
+
+MariaDB [Prueba1]> SELECT (5 * 2) = CONCAT('1', '0');
++----------------------------+
+| (5 * 2) = CONCAT('1', '0') |
++----------------------------+
+|                          1 |
++----------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 1 = NULL;
++----------+
+| 1 = NULL |
++----------+
+|     NULL |
++----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT NULL = NULL;
++-------------+
+| NULL = NULL |
++-------------+
+|        NULL |
++-------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT NULL <=> NULL;
++---------------+
+| NULL <=> NULL |
++---------------+
+|             1 |
++---------------+
+1 row in set (0.00 sec)
+
+>
+
+Operador Mayor que
+
+MariaDB [Prueba1]> SELECT 2 > 2;
++-------+
+| 2 > 2 |
++-------+
+|     0 |
++-------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'b' > 'a';
++-----------+
+| 'b' > 'a' |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'a' > 'b'; 
++-----------+
+| 'a' > 'b' |
++-----------+
+|         0 |
++-----------+
+1 row in set (0.00 sec)
+
+>=
+
+Operador Mayor que o igual
+
+MariaDB [Prueba1]> SELECT 2 >= 2;
++--------+
+| 2 >= 2 |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'A' >= 'a';
++------------+
+| 'A' >= 'a' |
++------------+
+|          1 |
++------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT NULL >= NULL;
++--------------+
+| NULL >= NULL |
++--------------+
+|         NULL |
++--------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 4 >= 2;
++--------+
+| 4 >= 2 |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT -4 >= 2;
++---------+
+| -4 >= 2 |
++---------+
+|       0 |
++---------+
+1 row in set (0.00 sec)
+
+expr BETWEEN min AND max
+
+Operador BETWEEN
+
+Si expr es mayor o igual que min y 
+expr es menor o igual que max, ENTRE devuelve 1, 
+de lo contrario, devuelve 0. 
+Esto es equivalente a la expresión 
+(min <= expr AND expr <= max) si todos los 
+argumentos son del mismo tipo. De lo contrario, 
+escriba conversión se realiza de acuerdo con 
+las normas descritas en conversión de tipos, 
+sino que se aplicaba a todos los tres argumentos.
+
+MariaDB [Prueba1]> SELECT 1 BETWEEN 2 AND 3;
++-------------------+
+| 1 BETWEEN 2 AND 3 |
++-------------------+
+|                 0 |
++-------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'b' BETWEEN 'a' AND 'c';
++-------------------------+
+| 'b' BETWEEN 'a' AND 'c' |
++-------------------------+
+|                       1 |
++-------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 2 BETWEEN 2 AND '3';
++---------------------+
+| 2 BETWEEN 2 AND '3' |
++---------------------+
+|                   1 |
++---------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 2 BETWEEN 2 AND 'x-3';
++-----------------------+
+| 2 BETWEEN 2 AND 'x-3' |
++-----------------------+
+|                     0 |
++-----------------------+
+1 row in set, 1 warning (0.00 sec)
+
+MariaDB [Prueba1]> show warnings;
++---------+------+-----------------------------------------+
+| Level   | Code | Message                                 |
++---------+------+-----------------------------------------+
+| Warning | 1292 | Truncated incorrect DOUBLE value: 'x-3' |
++---------+------+-----------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 1 BETWEEN 1 AND NULL;
++----------------------+
+| 1 BETWEEN 1 AND NULL |
++----------------------+
+|                 NULL |
++----------------------+
+1 row in set (0.00 sec)
+
+COALESCE(value,...)
+
+Operador COALESCE
+
+Devuelve el primer valor no NULL de la lista 
+o NULL si no hay valores no NULL. Debe pasar 
+al menos un parámetro.
+
+MariaDB [Prueba1]> SELECT COALESCE(NULL,1);
++------------------+
+| COALESCE(NULL,1) |
++------------------+
+|                1 |
++------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT COALESCE(NULL,NULL,NULL);
++--------------------------+
+| COALESCE(NULL,NULL,NULL) |
++--------------------------+
+|                     NULL |
++--------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SET @a=NULL, @b=10;
+Query OK, 0 rows affected (0.00 sec)
+
+MariaDB [Prueba1]> SELECT COALESCE(@a, @b), IFNULL(@a, @b);
++------------------+----------------+
+| COALESCE(@a, @b) | IFNULL(@a, @b) |
++------------------+----------------+
+| 10               | 10             |
++------------------+----------------+
+1 row in set (0.00 sec)
+
+GREATEST(val1,val2,...)
+
+Operador GREATEST
+
+Con dos o más argumentos, retorna el argumento 
+mayor (valor máximo). Los argumentos se comparan 
+usando las mismas reglas que para LEAST().
+
+MariaDB [Prueba1]> SELECT GREATEST(2,0);
++---------------+
+| GREATEST(2,0) |
++---------------+
+|             2 |
++---------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT GREATEST(34.0,3.0,5.0,767.0);
++------------------------------+
+| GREATEST(34.0,3.0,5.0,767.0) |
++------------------------------+
+|                        767.0 |
++------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT GREATEST('B','A','C') ;
++-----------------------+
+| GREATEST('B','A','C') |
++-----------------------+
+| C                     |
++-----------------------+
+1 row in set (0.01 sec)
+
+expr IN (value,...)
+
+Operador IN
+
+Devuelve 1 si expr es igual a cualquiera de 
+los valores en la lista de IN, de lo contrario 
+devuelve 0. Si todos los valores son constantes, 
+son evaluados según el tipo de expr y ordenados. 
+La búsqueda para el artículo a continuación se 
+realiza usando una búsqueda binaria. Esto 
+significa que es muy rápido si la lista de 
+valores IN consiste enteramente de constantes. 
+De lo contrario, conversión de tipos tiene lugar 
+según las reglas descritas en el tipo de conversión, 
+pero aplicado a todos los argumentos.
+Si expr es NULL, en siempre devuelve NULL. 
+Si al menos uno de los valores en la lista es NULL, 
+y una de las comparaciones es true, el resultado es 1. 
+Si al menos uno de los valores en la lista es nulo y 
+ninguna de las comparaciones es true, el resultado es NULL.
+
+MariaDB [Prueba1]> SELECT 2 IN (0,3,5,7);
++----------------+
+| 2 IN (0,3,5,7) |
++----------------+
+|              0 |
++----------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 'wefwf' IN ('wee','wefwf','weg');
++----------------------------------+
+| 'wefwf' IN ('wee','wefwf','weg') |
++----------------------------------+
+|                                1 |
++----------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 1 IN ('1', '2', '3');
++----------------------+
+| 1 IN ('1', '2', '3') |
++----------------------+
+|                    1 |
++----------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT NULL IN (1, 2, 3);
++-------------------+
+| NULL IN (1, 2, 3) |
++-------------------+
+|              NULL |
++-------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 1 IN (1, 2, NULL);
++-------------------+
+| 1 IN (1, 2, NULL) |
++-------------------+
+|                 1 |
++-------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 5 IN (1, 2, NULL);
++-------------------+
+| 5 IN (1, 2, NULL) |
++-------------------+
+|              NULL |
++-------------------+
+1 row in set (0.00 sec)
+
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
