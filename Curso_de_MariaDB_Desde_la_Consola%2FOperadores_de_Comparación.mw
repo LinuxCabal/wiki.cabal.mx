@@ -336,9 +336,13 @@ MariaDB [Prueba1]> SELECT -4 >= 2;
 +---------+
 1 row in set (0.00 sec)
 
-expr BETWEEN min AND max
+</syntaxhighlight>
 
-Operador BETWEEN
+=== Operador BETWEEN ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+expr BETWEEN min AND max
 
 Si expr es mayor o igual que min y 
 expr es menor o igual que max, ENTRE devuelve 1, 
