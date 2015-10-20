@@ -17,6 +17,7 @@ __NOTOC__
 * [[:#Operador IS NULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NULL]]
 * [[:#Operador ISNULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador ISNULL]]
 * [[:#Operador LEAST | &nbsp;&nbsp;&nbsp;&nbsp;Operador LEAST]]
+* [[:#Operador NOT BETWEEN | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT BETWEEN]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -798,6 +799,41 @@ MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,NULL,767.0);
 |                           NULL |
 +--------------------------------+
 1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador NOT BETWEEN ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+expr NOT BETWEEN min AND max
+
+Esto es lo mismo que NOT (expr BETWEEN min y max).
+
+MariaDB [(none)]> SELECT 1 NOT BETWEEN 2 AND 3;
++-----------------------+
+| 1 NOT BETWEEN 2 AND 3 |
++-----------------------+
+|                     1 |
++-----------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 'b' NOT BETWEEN 'a' AND 'c';
++-----------------------------+
+| 'b' NOT BETWEEN 'a' AND 'c' |
++-----------------------------+
+|                           0 |
++-----------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 NOT BETWEEN 1 AND NULL;
++--------------------------+
+| 1 NOT BETWEEN 1 AND NULL |
++--------------------------+
+|                     NULL |
++--------------------------+
+1 row in set (0.00 sec)
+
 
 
 
