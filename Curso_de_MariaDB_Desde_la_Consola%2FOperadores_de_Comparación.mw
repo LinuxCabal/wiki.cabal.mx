@@ -402,9 +402,13 @@ MariaDB [Prueba1]> SELECT 1 BETWEEN 1 AND NULL;
 +----------------------+
 1 row in set (0.00 sec)
 
-COALESCE(value,...)
+</syntaxhighlight>
 
-Operador COALESCE
+=== Operador COALESCE ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+COALESCE(value,...)
 
 Devuelve el primer valor no NULL de la lista 
 o NULL si no hay valores no NULL. Debe pasar 
