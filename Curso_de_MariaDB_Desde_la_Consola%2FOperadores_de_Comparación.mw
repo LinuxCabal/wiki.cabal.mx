@@ -12,6 +12,7 @@ __NOTOC__
 * [[:#Operador IN | &nbsp;&nbsp;&nbsp;&nbsp;Operador IN]]
 * [[:#Operador INTERVAL | &nbsp;&nbsp;&nbsp;&nbsp;Operador INTERVAL]]
 * [[:#Operador IS | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS]]
+* [[:#Operador IS NOT | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NOT]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -631,6 +632,33 @@ MariaDB [(none)]> SELECT 2 = TRUE, 2 IS TRUE;
 +----------+-----------+
 |        0 |         1 |
 +----------+-----------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador IS NOT ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+IS NOT boolean_value
+
+Pruebas de un valor contra un valor booleano, donde valor 
+booleano puede ser TRUE, FALSE o UNKNOWN.
+
+MariaDB [(none)]> SELECT 1 IS NOT UNKNOWN, 0 IS NOT UNKNOWN, NULL IS NOT UNKNOWN;
++------------------+------------------+---------------------+
+| 1 IS NOT UNKNOWN | 0 IS NOT UNKNOWN | NULL IS NOT UNKNOWN |
++------------------+------------------+---------------------+
+|                1 |                1 |                   0 |
++------------------+------------------+---------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT NULL IS NOT TRUE, NULL IS NOT FALSE;
++------------------+-------------------+
+| NULL IS NOT TRUE | NULL IS NOT FALSE |
++------------------+-------------------+
+|                1 |                 1 |
++------------------+-------------------+
 1 row in set (0.00 sec)
 
 </syntaxhighlight>
