@@ -1,0 +1,219 @@
+__NOTOC__
+* [[:#OperadoresAritméticos | Operadores Aritméticos]]
+* [[:#Operador de Adición/Sum| Operador de Adición/Sum]]
+* [[:#Operador División de enteros | Operador División de enteros]]
+* [[:#Operador de División | Operador de División]]
+* [[:#Operador de Modulo | Operador  de Modulo]]
+* [[:#Operador de Multiplicación| Operador de Multiplicación]]
+
+== Operadores aritméticos ==
+=== Operador de Adición/Suma ===
+ 
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
++ 
+
+Si ambos operandos son enteros, el resultado se calcula con 
+precisión BIGINT. Si cualquier número entero sin signo, el 
+resultado también es un entero sin signo.
+Para operandos reales o de cadena, operando con la máxima 
+precisión determina la precisión del resultado.
+
+MariaDB [Prueba1]> SELECT 3+5;
++-----+
+| 3+5 |
++-----+
+|   8 |
++-----+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador División de enteros === 
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+DIV
+
+Similar a FLOOR(), pero es seguro 
+con valores BIGINT. Resultados incorrectos pueden ocurrir 
+para operandos no enteros que exceden la gama BIGINT.
+Si se utiliza el ERROR de división por cero modo SQL, 
+una división por cero produce un error. De lo contrario, 
+devuelve NULL.
+El resto de una división puede obtenerse usando el 
+operador MOD.
+
+MariaDB [Prueba1]> SELECT 300 DIV 7;
++-----------+
+| 300 DIV 7 |
++-----------+
+|        42 |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 300 DIV 0;
++-----------+
+| 300 DIV 0 |
++-----------+
+|      NULL |
++-----------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador de División === 
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+/
+
+Dividir por cero, devolverá NULL. 
+De forma predeterminada, devuelve cuatro dígitos 
+después del decimal. Esto está determinado por el 
+incremento de precisión de div variable de sistema 
+de servidor que por defecto es cuatro. 
+Puede ajustarse de 0 a 30.
+Si se utiliza el ERROR de división por cero modo SQL, 
+una división por cero produce un error. 
+De lo contrario, devuelve NULL.
+
+MariaDB [Prueba1]> SELECT 4/5;
++--------+
+| 4/5    |
++--------+
+| 0.8000 |
++--------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 300/(2-2);
++-----------+
+| 300/(2-2) |
++-----------+
+|      NULL |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 300/7;
++---------+
+| 300/7   |
++---------+
+| 42.8571 |
++---------+
+1 row in set (0.00 sec)
+
+MOD(N,M), N % M, N MOD M
+
+</syntaxhighlight>
+
+=== Operador de Modulo ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+ %, MOD
+
+Devuelve el resto de N dividido por M.
+Si se utiliza el ERROR de división por cero 
+modo SQL, cualquier módulo número cero produce 
+un error. De lo contrario, devuelve NULL.
+La parte entera de una división puede obtenerse 
+utilizando DIV.
+
+MariaDB [Prueba1]> SELECT 1042 % 50;
++-----------+
+| 1042 % 50 |
++-----------+
+|        42 |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT MOD(234, 10);
++--------------+
+| MOD(234, 10) |
++--------------+
+|            4 |
++--------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 29 MOD 9;
++----------+
+| 29 MOD 9 |
++----------+
+|        2 |
++----------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador de Multiplicación ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+*
+
+MariaDB [Prueba1]> SELECT 7*6;
++-----+
+| 7*6 |
++-----+
+|  42 |
++-----+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> select 32.55 * -3.55 ;
++---------------+
+| 32.55 * -3.55 |
++---------------+
+|     -115.5525 |
++---------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 1234567890*9876543210;
+ERROR 1690 (22003): BIGINT value is out of range 
+                    in '(1234567890 * 9876543210)'
+
+- 
+
+Operador de Substracción. También se utiliza el operador 
+            como el unario menos para el cambio de signo.
+Si ambos operandos son enteros, el resultado se calcula 
+con precisión BIGINT. Si cualquier número entero sin signo, 
+el resultado también es un entero sin signo, a menos que el 
+modo de SQL de resta sin firmar NO está habilitado, en cuyo 
+caso el resultado siempre es firmado.
+Para operandos reales o de cadena, operando con la máxima 
+precisión determina la precisión del resultado.
+
+MariaDB [Prueba1]> SELECT 96-9;
++------+
+| 96-9 |
++------+
+|   87 |
++------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT 15-17;
++-------+
+| 15-17 |
++-------+
+|    -2 |
++-------+
+1 row in set (0.00 sec)
+
+Usado como operador Unario
+
+MariaDB [Prueba1]>  SELECT - (3+5);
++---------+
+| - (3+5) |
++---------+
+|      -8 |
++---------+
+1 row in set (0.01 sec)
+
+</syntaxhighlight>
+
+
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
