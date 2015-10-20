@@ -1,14 +1,14 @@
 __NOTOC__
-* [[:#Operadores de comparación | &nbsp;&nbsp;&nbsp;&nbsp;Operadores de comparación]] 
-* [[:#Operadores No igual | Operadores No igual]] 
-* [[:#Operador Menor que o igual | Operador Menor que o igual]]
-* [[:#Operador NULL-Safe igual | Operador NULL-Safe igual]]
-* [[:#Operador Igualdad | Operadore Igualdad]] 
-* [[:#Operador Mayor que | Operador Mayor que]]
-* [[:#Operador Mayor que o igual | Operador Mayor que o igual]]
-* [[:#Operador BETWEEN | Operador BETWEEN]]
-* [[:#Operador COALESCE | Operador COALESCE]]
-* [[:#Operador GREATEST | Operador GREATEST]]
+* [[:#Operadores de comparación | Operadores de comparación]] 
+* [[:#Operadores No igual | &nbsp;&nbsp;&nbsp;&nbsp;Operadores No igual]] 
+* [[:#Operador Menor que o igual | &nbsp;&nbsp;&nbsp;&nbsp;Operador Menor que o igual]]
+* [[:#Operador NULL-Safe igual | &nbsp;&nbsp;&nbsp;&nbsp;Operador NULL-Safe igual]]
+* [[:#Operador Igualdad | &nbsp;&nbsp;&nbsp;&nbsp;Operadore Igualdad]] 
+* [[:#Operador Mayor que | &nbsp;&nbsp;&nbsp;&nbsp;Operador Mayor que]]
+* [[:#Operador Mayor que o igual | &nbsp;&nbsp;&nbsp;&nbsp;Operador Mayor que o igual]]
+* [[:#Operador BETWEEN | &nbsp;&nbsp;&nbsp;&nbsp;Operador BETWEEN]]
+* [[:#Operador COALESCE | &nbsp;&nbsp;&nbsp;&nbsp;Operador COALESCE]]
+* [[:#Operador GREATEST | &nbsp;&nbsp;&nbsp;&nbsp;Operador GREATEST]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
