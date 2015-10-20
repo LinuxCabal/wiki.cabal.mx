@@ -5,6 +5,7 @@ __NOTOC__
 * [[:#Operador NULL-Safe igual | Operador NULL-Safe igual]]
 * [[:#Operador Igualdad | Operadore Igualdad]] 
 * [[:#Operador Mayor que | Operador Mayor que]]
+* [[:#Operador Mayor que o igual | Operador Mayor que o igual]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -16,7 +17,7 @@ MariaDB [Prueba1]> SELECT '.01' <> '0.01';
 | '.01' <> '0.01' |
 +-----------------+
 |               1 |
-+-----------------+
++-------------- ---+
 1 row in set (0.00 sec)
 
 MariaDB [Prueba1]> SELECT .01 <> '0.01';
@@ -288,9 +289,11 @@ MariaDB [Prueba1]> SELECT 'a' > 'b';
 +-----------+
 1 row in set (0.00 sec)
 
->=
+</syntaxhighlight>
 
-Operador Mayor que o igual
+=== Operador Mayor que o igual ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 MariaDB [Prueba1]> SELECT 2 >= 2;
 +--------+
