@@ -15,6 +15,7 @@ __NOTOC__
 * [[:#Operador IS NOT | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NOT]]
 * [[:#Operador IS NOT NULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NOT NULL]]
 * [[:#Operador IS NULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador IS NULL]]
+* [[:#Operador ISNULL | &nbsp;&nbsp;&nbsp;&nbsp;Operador ISNULL]]
 
 == Operadores de comparación ==
 === Operadores No igual ===
@@ -694,6 +695,36 @@ MariaDB [(none)]> SELECT 1 IS NULL, 0 IS NULL, NULL IS NULL;
 |         0 |         0 |            1 |
 +-----------+-----------+--------------+
 1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+=== Operador ISNULL ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+ISNULL(expr)
+
+Comprueba si un expresión es NULL. Si es NULL devuelve 1
+de lo contrario devuelve 0.
+MariaDB [(none)]> SELECT ISNULL(1+1);
++-------------+
+| ISNULL(1+1) |
++-------------+
+|           0 |
++-------------+
+1 row in set (0.01 sec)
+
+MariaDB [(none)]> SELECT ISNULL(1/0);
++-------------+
+| ISNULL(1/0) |
++-------------+
+|           1 |
++-------------+
+1 row in set (0.00 sec)
+
+
+
+
 
 </syntaxhighlight>
 
