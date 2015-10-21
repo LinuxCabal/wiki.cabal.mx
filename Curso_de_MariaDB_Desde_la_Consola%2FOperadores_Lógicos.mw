@@ -3,7 +3,7 @@ __NOTOC__
 * [[:#Operadores NOT y ! | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT y !]] 
 * [[:#Operadores AND y && | &nbsp;&nbsp;&nbsp;&nbsp;Operadores AND y &&]] 
 * [[:#Operador XOR | &nbsp;&nbsp;&nbsp;&nbsp;Operador XOR]] 
-* [[:#Operador OR y '||' | &nbsp;&nbsp;&nbsp;&nbsp;Operador OR y '||']] 
+* [[:#Operadores OR  | &nbsp;&nbsp;&nbsp;&nbsp;Operadores OR]] 
 
 == Operadores Lógicos ==
 === Operadores NOT y ! ===
@@ -159,13 +159,58 @@ MariaDB [(none)]> SELECT 1 XOR 1 XOR 1;
 
 </syntaxhighlight>
 
-=== Operadores OR y '||' ===
+=== Operadores OR ===
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
+OR lógico. Cuando ambos operandos no NULL, el resultado es 
+1 si cualquier operando es 1 y 0 en caso que los dos operandos
+son 0. Con un operando NULL el resultado es 1 si el otro operando 
+no es cero y NULL en caso contrario. Si ambos operandos son NULL, 
+el resultado es NULL.
+Tenga en cuenta que, si se establece el modo de SQL de PIPES_AS_CONCAT
+se utiliza como un operador de concatenación de cadena. 
+Esto significa que un  a || b es igual a CONCAT(a,b). 
 
+MariaDB [(none)]> SELECT 1 || 1;
++--------+
+| 1 || 1 |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
 
+MariaDB [(none)]> SELECT 1 || 0;
++--------+
+| 1 || 0 |
++--------+
+|      1 |
++--------+
+1 row in set (0.00 sec)
 
+MariaDB [(none)]> SELECT 0 || 0;
++--------+
+| 0 || 0 |
++--------+
+|      0 |
++--------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 0 || NULL;
++-----------+
+| 0 || NULL |
++-----------+
+|      NULL |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT 1 || NULL;
++-----------+
+| 1 || NULL |
++-----------+
+|         1 |
++-----------+
+1 row in set (0.00 sec)
 
 </syntaxhighlight>
 
