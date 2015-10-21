@@ -63,9 +63,9 @@ y x(). Además, los operandos de la derecha de BETWEEN
 no se evalúan si el operando del izquierda es NULL, pero en los demás 
 casos se evalúan todos los operandos.
 
-This is a speed optimization. Also, since functions can have side-effects, 
-this behavior can be used to choose whether execute them or not using a 
-concise syntax:
+Esto es una optimización de la velocidad. También, puesto que las funciones 
+pueden tener efectos secundarios, este comportamiento se puede utilizar para 
+elegir si ejecutar ellos o no usando un sintaxis concisa:
 
 SELECT alguna_funcción() OR log_error();
 
