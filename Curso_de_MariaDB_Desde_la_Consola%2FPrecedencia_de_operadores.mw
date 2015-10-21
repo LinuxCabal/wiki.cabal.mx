@@ -37,7 +37,7 @@ the PIPES_AS_CONCAT SQL_MODE flag: if it is on, || can be used to
 concatenate strings (like the CONCAT() function) and has a higher 
 precedence.
 
-The = operator's precedence depends on the context - it is higher 
+The = operator"'"s precedence depends on the context - it is higher 
 when = is used as a comparison operator.
 
 Parenthesis can be used to modify the operators precedence in an 
