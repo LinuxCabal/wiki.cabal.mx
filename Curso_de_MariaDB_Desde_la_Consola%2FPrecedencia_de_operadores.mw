@@ -1,9 +1,8 @@
-__NOTOC__
-* [[:#Precedencia de operadores | Precedencia de operadores]]
 
-= Precedencia de operdores =
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+The precedence is the order in which the SQL operators are evaluated.
+
+The following list shows the SQL operator precedence. Operators that appear first in the list have a higher precedence. Operators which are listed together have the same precedence.
 
     INTERVAL
     BINARY, COLLATE
@@ -24,33 +23,20 @@ __NOTOC__
     || (logical or), OR
     = (assignment), := 
 
-Precedencia de las funciones es siempre superior a la precedencia 
-de los operadores.
+Functions precedence is always higher than operators precedence.
 
-En esta página el CASE se refiere al operador CASE, no al 
-Declaración del CASE.
+In this page CASE refers to the CASE operator, not to the CASE statement.
 
-Si el HIGH_NOT_PRECEDENCE SQL_MODE se establece,
-NOT tiene la misma precedencia como '!'.
+If the HIGH_NOT_PRECEDENCE SQL_MODE is set, NOT has the same precedence as !.
 
-La precedencia del || operador, así como su significado, depende de
-la bandera de PIPES_AS_CONCAT SQL_MODE: Si está encendido, || se puede 
-utilizar para concatenar cadenas (como la función CONCAT()) y tiene 
-una mayor prioridad.
+The || operator's precedence, as well as its meaning, depends on the PIPES_AS_CONCAT SQL_MODE flag: if it is on, || can be used to concatenate strings (like the CONCAT() function) and has a higher precedence.
 
-Pueden utilizar paréntesis para modificar la precedencia de los 
-operadores en una expresión.
+The = operator's precedence depends on the context - it is higher when = is used as a comparison operator.
 
-La precedencia del '=' operador depende del contexto: 
-es mayor cuando '=' se utiliza como un operador de comparación.
-
+Parenthesis can be used to modify the operators precedence in an expression.
 Short-circuit evaluation
 
-Los AND, OR, && y || operadores soportan evaluación de short-circuit.
-Esto significa que, en algunos casos, la expresión a la derecha de los
-operadores no se evalúa, porque su resultado no puede afectar el resultado.
-Evaluación de short-circuit sw utiliza en los siguientes casos 
-y x() no es evaluado:
+The AND, OR, && and || operators support short-circuit evaluation. This means that, in some cases, the expression on the right of those operators is not evaluated, because its result cannot affect the result. In the following cases, short-circuit evaluation is used and x() is not evaluated:
 
     FALSE AND x()
     FALSE && x()
@@ -58,18 +44,8 @@ y x() no es evaluado:
     TRUE || x()
     NULL BETWEEN x() AND x() 
 
-Nota sin embargo que la evaluación de short-circuit no se aplica a NULL
-y x(). Además, los operandos de la derecha de BETWEEN
-no se evalúan si el operando del izquierda es NULL, pero en los demás 
-casos se evalúan todos los operandos.
+Note however that the short-circuit evaluation does not apply to NULL AND x(). Also, BETWEEN's right operands are not evaluated if the left operand is NULL, but in all other cases all the operands are evaluated.
 
-Esto es una optimización de la velocidad. También, puesto que las funciones 
-pueden tener efectos secundarios, este comportamiento se puede utilizar para 
-elegir si ejecutar ellos o no usando un sintaxis concisa:
+This is a speed optimization. Also, since functions can have side-effects, this behavior can be used to choose whether execute them or not using a concise syntax:
 
-SELECT alguna_funcción() OR log_error();
-
-</syntaxhighlight>
-
-[[Category:MariaDB Desde la Consola]]
-[[Category: CursoMatiaDB]]
+SELECT some_function() OR log_error();
