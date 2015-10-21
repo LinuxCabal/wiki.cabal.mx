@@ -24,32 +24,33 @@ __NOTOC__
     || (logical or), OR
     = (assignment), := 
 
-Functions precedence is always higher than operators precedence.
+Precedencia de las funciones es siempre superior a la precedencia 
+de los operadores.
 
-In this page CASE refers to the CASE operator, not to the 
-CASE statement.
+En esta página el CASE se refiere al operador CASE, no al 
+Declaración del CASE.
 
-If the HIGH_NOT_PRECEDENCE SQL_MODE is set, 
-NOT has the same precedence as !.
+Si el HIGH_NOT_PRECEDENCE SQL_MODE se establece,
+NOT tiene la misma precedencia como '!'.
 
-The || operator"'"s precedence, as well as its meaning, depends on 
-the PIPES_AS_CONCAT SQL_MODE flag: if it is on, || can be used to 
-concatenate strings (like the CONCAT() function) and has a higher 
-precedence.
+La precedencia del || operador, así como su significado, depende de
+la bandera de PIPES_AS_CONCAT SQL_MODE: Si está encendido, || se puede 
+utilizar para concatenar cadenas (como la función CONCAT()) y tiene 
+una mayor prioridad.
 
-The = operator"'"s precedence depends on the context - it is higher 
-when = is used as a comparison operator.
+Pueden utilizar paréntesis para modificar la precedencia de los 
+operadores en una expresión.
 
-Parenthesis can be used to modify the operators precedence in an 
-expression. 
+La precedencia del '=' operador depende del contexto: 
+es mayor cuando '=' se utiliza como un operador de comparación.
 
 Short-circuit evaluation
 
-The AND, OR, && and || operators support short-circuit evaluation. 
-This means that, in some cases, the expression on the right of those 
-operators is not evaluated, because its result cannot affect the result. 
-In the following cases, short-circuit evaluation is used and x() is not 
-evaluated:
+Los AND, OR, && y || operadores soportan evaluación de short-circuit.
+Esto significa que, en algunos casos, la expresión a la derecha de los
+operadores no se evalúa, porque su resultado no puede afectar el resultado.
+Evaluación de short-circuit sw utiliza en los siguientes casos 
+y x() no es evaluado:
 
     FALSE AND x()
     FALSE && x()
@@ -57,15 +58,16 @@ evaluated:
     TRUE || x()
     NULL BETWEEN x() AND x() 
 
-Note however that the short-circuit evaluation does not apply to NULL 
-AND x(). Also, BETWEEN"'"s right operands are not evaluated if the left 
-operand is NULL, but in all other cases all the operands are evaluated.
+Nota sin embargo que la evaluación de short-circuit no se aplica a NULL
+y x(). Además, los operandos de la derecha de BETWEEN
+no se evalúan si el operando del izquierda es NULL, pero en los demás 
+casos se evalúan todos los operandos.
 
 This is a speed optimization. Also, since functions can have side-effects, 
 this behavior can be used to choose whether execute them or not using a 
 concise syntax:
 
-SELECT some_function() OR log_error();
+SELECT alguna_funcción() OR log_error();
 
 </syntaxhighlight>
 
