@@ -58,7 +58,7 @@ evaluated:
     NULL BETWEEN x() AND x() 
 
 Note however that the short-circuit evaluation does not apply to NULL 
-AND x(). Also, BETWEEN's right operands are not evaluated if the left 
+AND x(). Also, BETWEEN"'"s right operands are not evaluated if the left 
 operand is NULL, but in all other cases all the operands are evaluated.
 
 This is a speed optimization. Also, since functions can have side-effects, 
