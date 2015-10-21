@@ -32,7 +32,7 @@ CASE statement.
 If the HIGH_NOT_PRECEDENCE SQL_MODE is set, 
 NOT has the same precedence as !.
 
-The || operator's precedence, as well as its meaning, depends on 
+The || operator"'"s precedence, as well as its meaning, depends on 
 the PIPES_AS_CONCAT SQL_MODE flag: if it is on, || can be used to 
 concatenate strings (like the CONCAT() function) and has a higher 
 precedence.
