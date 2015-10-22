@@ -3,8 +3,8 @@ __NOTOC__
 * [[:#Operador de asignación := | &nbsp;&nbsp;&nbsp;&nbsp;Operador de asignación :=]] 
 * [[:#Operador de asignación = | &nbsp;&nbsp;&nbsp;&nbsp;Operador de asignación =]] 
 
-== Operadores de Asignación ==
-=== Operador de asignación := ===
+= Operadores de Asignación =
+== Operador de asignación := ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -36,7 +36,7 @@ MariaDB [Prueba1]> SELECT @x, @y := @x;
 
 </syntaxhighlight>
 
-=== Operador de asignación = ===
+== Operador de asignación = ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
