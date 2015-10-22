@@ -19,7 +19,7 @@ __NOTOC__
 * [[:#query_cache_info.cnf | /etc/my.cnf.d/sql_errlog.cnf]]
 * [[:#sql_errlog.cnf | /etc/my.cnf.d/sql_errlog.cnf]]
 
-== my.cnf ==
+= my.cnf =
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -210,7 +210,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 
 </syntaxhighlight>
 
-=== server.cnf ===
+== server.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 [rrc@myrddin ~]$ cat /etc/my.cnf.d/server.cnf 
@@ -241,7 +241,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 [mariadb-10.0]
 </syntaxhighlight>
 
-=== client.cnf ===
+== client.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 [rrc@myrddin ~]$ cat /etc/my.cnf.d/client.cnf 
@@ -258,7 +258,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 [client-mariadb]
 </syntaxhighlight>
 
-=== mysql-clients.cnf ===
+== mysql-clients.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 [rrc@myrddin ~]$ cat /etc/my.cnf.d/mysql-clients.cnf 
@@ -286,7 +286,7 @@ pid-file=/var/run/mysqld/mysqld.pid
 [mysqlslap]
 </syntaxhighlight>
 
-=== auth_pam.cnf ===
+== auth_pam.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -297,7 +297,7 @@ plugin-load-add=auth_pam.so
 
 </syntaxhighlight>
 
-=== ha_federatedx.cnf ===
+== ha_federatedx.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -311,7 +311,7 @@ federated
 
 </syntaxhighlight>
 
-=== query_response_time.cnf ===
+== query_response_time.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -323,7 +323,7 @@ plugin-load-add=query_response_time.so
 
 </syntaxhighlight>
 
-=== auth_socket.cnf  ===
+== auth_socket.cnf  ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -334,7 +334,7 @@ plugin-load-add=auth_socket.so
 
 </syntaxhighlight>
 
-=== handlersocket.cnf ===
+== handlersocket.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -356,7 +356,7 @@ plugin-load-add=semisync_master.so
 
 </syntaxhighlight>
 
-=== locales.cnf ===
+== locales.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -367,7 +367,7 @@ plugin-load-add=locales.so
 
 </syntaxhighlight>
 
-=== semisync_slave.cnf ===
+== semisync_slave.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -378,7 +378,7 @@ plugin-load-add=semisync_slave.so
 
 </syntaxhighlight>
 
-=== feedback.cnf ===
+== feedback.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -389,7 +389,7 @@ plugin-load-add=feedback.so
 
 </syntaxhighlight>
 
-=== metadata_lock_info.cnf ===
+== metadata_lock_info.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -400,7 +400,7 @@ plugin-load-add=metadata_lock_info.so
 
 </syntaxhighlight>
 
-=== server_audit.cnf ===
+== server_audit.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -411,7 +411,7 @@ plugin-load-add=server_audit.so
 
 </syntaxhighlight>
 
-=== ha_archive.cnf ===
+== ha_archive.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -422,7 +422,7 @@ plugin-load-add=ha_archive.so
 
 </syntaxhighlight>
 
-=== ha_blackhole.cnf ===
+== ha_blackhole.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -433,7 +433,7 @@ plugin-load-add=ha_blackhole.so
 
 </syntaxhighlight>
 
-=== query_cache_info.cnf ===
+== query_cache_info.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -444,7 +444,7 @@ plugin-load-add=query_cache_info.so
 
 </syntaxhighlight>
 
-=== sql_errlog.cnf ===
+== sql_errlog.cnf ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
