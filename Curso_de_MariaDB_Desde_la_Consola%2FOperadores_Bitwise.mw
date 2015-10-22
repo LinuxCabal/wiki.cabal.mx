@@ -1,0 +1,15 @@
+__NOTOC__
+* [[:#Operadores Bitwise | Operadores Bitwise]]
+* [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
+* [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
+
+== Operadores Bitwise ==
+=== Sintaxis ===
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
