@@ -2,6 +2,11 @@ __NOTOC__
 * [[:#Operadores Bitwise | Operadores Bitwise]]
 * [[:#Bitwise AND | &nbsp;&nbsp;&nbsp;&nbsp;Bitwise AND]]
 * [[:#Shift izquierda | &nbsp;&nbsp;&nbsp;&nbsp;Shift izquierda]]
+* [[:#Shift derecha | &nbsp;&nbsp;&nbsp;&nbsp;Shift derecha]]
+* [[:#Shift BIG_COUNT | &nbsp;&nbsp;&nbsp;&nbsp;Shift BIG_COUNT]]
+* [[:#Bitwise XOR | &nbsp;&nbsp;&nbsp;&nbsp;Bitwise XOR]]
+* [[:#Bitwise OR | &nbsp;&nbsp;&nbsp;&nbsp;Bitwise OR]]
+* [[:#Bitwise NOT | &nbsp;&nbsp;&nbsp;&nbsp;Bitwise NOT]]
 
 == Operadores Bitwise ==
 === Bitwise AND ===
