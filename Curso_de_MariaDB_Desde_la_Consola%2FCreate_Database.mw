@@ -3,8 +3,8 @@ __NOTOC__
 * [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
 * [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
 
-== Create Database ==
-=== Sintaxis ===
+= Create Database =
+== Sintaxis ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -27,7 +27,7 @@ El OR REPLACE cláusula se añadió en MariaDB 10.1.3
 
 </syntaxhighlight>
 
-=== Ejemplo ===
+== Ejemplo ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
