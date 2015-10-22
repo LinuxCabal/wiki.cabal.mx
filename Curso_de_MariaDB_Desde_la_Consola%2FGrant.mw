@@ -473,7 +473,7 @@ en uso cuando el usuario activa la función con el SET PAPEL comunicado.
 
 </syntaxhighlight>
 
-=== Ejemplo ===
+== Ejemplo ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
