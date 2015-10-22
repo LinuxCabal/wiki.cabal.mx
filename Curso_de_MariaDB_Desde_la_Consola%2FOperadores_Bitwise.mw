@@ -8,8 +8,8 @@ __NOTOC__
 * [[:#Bitwise OR | &nbsp;&nbsp;&nbsp;&nbsp;Bitwise OR]]
 * [[:#Bitwise NOT | &nbsp;&nbsp;&nbsp;&nbsp;Bitwise NOT]]
 
-== Operadores Bitwise ==
-=== Bitwise AND ===
+= Operadores Bitwise =
+== Bitwise AND ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -45,7 +45,7 @@ MariaDB [(none)]> SELECT 29 & 15;
 
 </syntaxhighlight>
 
-=== Shift izquierda ===
+== Shift izquierda ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -72,7 +72,7 @@ MariaDB [(none)]> SELECT 2 << 2;
 
 </syntaxhighlight>
 
-=== Shift derecha ===
+== Shift derecha ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -99,7 +99,7 @@ MariaDB [(none)]> SELECT 5 >> 2;
 
 </syntaxhighlight>
 
-=== BIT_COUNT ===
+== BIT_COUNT ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -125,7 +125,7 @@ MariaDB [(none)]> SELECT BIT_COUNT(b'1'), BIT_COUNT(b'10'), BIT_COUNT(b'11'), BI
 
 </syntaxhighlight>
 
-=== Bitwise XOR ===
+== Bitwise XOR ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -161,7 +161,7 @@ MariaDB [(none)]> SELECT 11 ^ 3;
 
 </syntaxhighlight>
 
-=== Bitwise OR ===
+== Bitwise OR ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -189,7 +189,7 @@ MariaDB [(none)]> SELECT 29 | 15;
 
 </syntaxhighlight>
 
-=== Bitwise NOT ===
+== Bitwise NOT ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
