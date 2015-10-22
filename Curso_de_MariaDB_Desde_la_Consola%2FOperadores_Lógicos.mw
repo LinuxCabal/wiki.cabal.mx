@@ -188,7 +188,7 @@ MariaDB [(none)]> SELECT 1 || 1;
 +--------+
 1 row in set (0.00 sec)
 
-MariaDB [(none)]> SELECT 1 || 0;
+MariaDB [(none)]> SELECT 1 OR 0;
 +--------+
 | 1 OR 0 |
 +--------+
