@@ -20,8 +20,8 @@ __NOTOC__
 * [[:#Operador NOT BETWEEN | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT BETWEEN]]
 * [[:#Operador NOT IN | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT IN]]
 
-== Operadores de comparación ==
-=== Operadores No igual ===
+= Operadores de comparación =
+== Operadores No igual ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -67,7 +67,7 @@ MariaDB [Prueba1]> SELECT @x != @y;
 
 </syntaxhighlight>
 
-=== Operador Menor que ===
+== Operador Menor que ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -121,7 +121,7 @@ MariaDB [Prueba1]> SELECT 'A'<'a';
 
 </syntaxhighlight>
 
-=== Operador Menor que o igual ===
+== Operador Menor que o igual ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -159,7 +159,7 @@ MariaDB [Prueba1]> SELECT 'a'<='A';
 
 </syntaxhighlight>
 
-=== Operador NULL-Safe igual ===
+== Operador NULL-Safe igual ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -187,7 +187,7 @@ MariaDB [Prueba1]> SELECT 1 = 1, NULL = NULL, 1 = NULL;
 
 </syntaxhighlight>
 
-=== Operador Igualdad ===
+== Operador Igualdad ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -274,7 +274,7 @@ MariaDB [Prueba1]> SELECT NULL <=> NULL;
 
 </syntaxhighlight>
 
-=== Operador Mayor que ===
+== Operador Mayor que ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -304,7 +304,7 @@ MariaDB [Prueba1]> SELECT 'a' > 'b';
 
 </syntaxhighlight>
 
-=== Operador Mayor que o igual ===
+== Operador Mayor que o igual ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -350,7 +350,7 @@ MariaDB [Prueba1]> SELECT -4 >= 2;
 
 </syntaxhighlight>
 
-=== Operador BETWEEN ===
+== Operador BETWEEN ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -416,7 +416,7 @@ MariaDB [Prueba1]> SELECT 1 BETWEEN 1 AND NULL;
 
 </syntaxhighlight>
 
-=== Operador COALESCE ===
+== Operador COALESCE ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -455,7 +455,7 @@ MariaDB [Prueba1]> SELECT COALESCE(@a, @b), IFNULL(@a, @b);
 
 </syntaxhighlight>
 
-=== Operador GREATEST ===
+== Operador GREATEST ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -491,7 +491,7 @@ MariaDB [Prueba1]> SELECT GREATEST('B','A','C') ;
 
 </syntaxhighlight>
 
-=== Operador IN ===
+== Operador IN ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -564,7 +564,7 @@ MariaDB [Prueba1]> SELECT 5 IN (1, 2, NULL);
 
 </syntaxhighlight>
 
-=== Operador INTERVAL ===
+== Operador INTERVAL ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -611,7 +611,7 @@ MariaDB [(none)]> SELECT INTERVAL(10, 2, NULL);
 
 </syntaxhighlight>
 
-=== Operador IS ===
+== Operador IS ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -642,7 +642,7 @@ MariaDB [(none)]> SELECT 2 = TRUE, 2 IS TRUE;
 
 </syntaxhighlight>
 
-=== Operador IS NOT ===
+== Operador IS NOT ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -669,7 +669,7 @@ MariaDB [(none)]> SELECT NULL IS NOT TRUE, NULL IS NOT FALSE;
 
 </syntaxhighlight>
 
-=== Operador IS NOT NULL ===
+== Operador IS NOT NULL ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -685,7 +685,7 @@ MariaDB [(none)]> SELECT 1 IS NOT NULL, 0 IS NOT NULL, NULL IS NOT NULL;
 
 </syntaxhighlight>
 
-=== Operador IS NULL ===
+== Operador IS NULL ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -701,7 +701,7 @@ MariaDB [(none)]> SELECT 1 IS NULL, 0 IS NULL, NULL IS NULL;
 
 </syntaxhighlight>
 
-=== Operador ISNULL ===
+== Operador ISNULL ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -727,7 +727,7 @@ MariaDB [(none)]> SELECT ISNULL(1/0);
 
 </syntaxhighlight>
 
-=== Operador LEAST ===
+== Operador LEAST ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -803,7 +803,7 @@ MariaDB [(none)]> SELECT LEAST(34.0,3.0,5.0,NULL,767.0);
 
 </syntaxhighlight>
 
-=== Operador NOT BETWEEN ===
+== Operador NOT BETWEEN ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -837,7 +837,7 @@ MariaDB [(none)]> SELECT 1 NOT BETWEEN 1 AND NULL;
 
 </syntaxhighlight>
 
-=== Operador NOT IN ===
+== Operador NOT IN ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
