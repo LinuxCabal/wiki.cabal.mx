@@ -7,8 +7,8 @@ __NOTOC__
 * [[:#Operador de Multiplicación | &nbsp;&nbsp;&nbsp;&nbsp;Operador de Multiplicación]]
 * [[:#Operador de Sustracción | &nbsp;&nbsp;&nbsp;&nbsp;Operador de Sustracción]]
 
-== Operadores Aritméticos ==
-=== Operador de Adición ===
+= Operadores Aritméticos =
+== Operador de Adición ==
  
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -30,7 +30,7 @@ MariaDB [Prueba1]> SELECT 3+5;
 
 </syntaxhighlight>
 
-=== Operador División de enteros === 
+== Operador División de enteros ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -63,7 +63,7 @@ MariaDB [Prueba1]> SELECT 300 DIV 0;
 
 </syntaxhighlight>
 
-=== Operador de División === 
+== Operador de División ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -107,7 +107,7 @@ MOD(N,M), N % M, N MOD M
 
 </syntaxhighlight>
 
-=== Operador de Modulo ===
+== Operador de Modulo ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -146,7 +146,7 @@ MariaDB [Prueba1]> SELECT 29 MOD 9;
 
 </syntaxhighlight>
 
-=== Operador de Multiplicación ===
+== Operador de Multiplicación ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -174,7 +174,7 @@ ERROR 1690 (22003): BIGINT value is out of range
 
 </syntaxhighlight>
 
-=== Operador de Sustracción ===
+== Operador de Sustracción ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
