@@ -3,7 +3,8 @@ __NOTOC__
 * [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
 * [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
 
-== Insert ==
+
+= Insert =
 == Sintaxis ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
