@@ -8,13 +8,13 @@ __NOTOC__
 * [[ #/var/log/mysqld/mysqld.log ! /var/log/mysqld/mysqld.log]]
 * [[ #/var/run/mysqld/mysqld.pid | /var/run/mysqld/mysqld.pid]]
 
-== Iniciar ==
+= Iniciar =
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 [root@Pridd etc]# systemctl start mysqld
 [root@Pridd etc]# systemctl -l status mysqld
-● mysqld.service - MySQL database server
+ mysqld.service - MySQL database server
    Loaded: loaded (/usr/lib/systemd/system/mysqld.service; disabled)
    Active: active (running) since Mon 2015-10-05 23:12:56 CDT; 8s ago
   Process: 29766 ExecStartPost=/usr/sbin/mysqld-wait-ready $MAINPID (code=exited, status=0/SUCCESS)
@@ -36,7 +36,7 @@ Oct 05 23:12:55 Pridd.LinuxCabal.org mysqld_safe[29541]: 151005 23:12:55 mysqld_
 Oct 05 23:12:56 Pridd.LinuxCabal.org systemd[1]: Started MySQL database server.
 </syntaxhighlight>
 
-=== Asegurar la Instalación ===
+== Asegurar la Instalación ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -103,7 +103,7 @@ installation should now be secure.
 Thanks for using MariaDB!
 </syntaxhighlight>
 
-=== Entrar y Inspeccionar ===
+== Entrar y Inspeccionar ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -181,7 +181,7 @@ Empty set (0.00 sec)
 
 </syntaxhighlight>
 
-=== /var/lib/mysql ===
+== /var/lib/mysql ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -294,7 +294,7 @@ drwxr-xr-x 4 mysql mysql   4096 Oct  5 23:18 ../
 
 </syntaxhighlight>
 
-=== /usr/lib64/mysql/plugin ===
+== /usr/lib64/mysql/plugin ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -322,7 +322,7 @@ drwxr-xr-x 3 root root   4096 Aug  7 09:50 ../
 
 </syntaxhighlight>
 
-=== /var/log/mysqld/mysqld.log ===
+== /var/log/mysqld/mysqld.log ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -353,7 +353,7 @@ Version: '10.0.21-MariaDB'  socket: '/var/lib/mysql/mysql.sock'  port: 0  Mageia
 
 </syntaxhighlight>
 
-=== /var/run/mysqld/mysqld.pid ===
+== /var/run/mysqld/mysqld.pid ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
