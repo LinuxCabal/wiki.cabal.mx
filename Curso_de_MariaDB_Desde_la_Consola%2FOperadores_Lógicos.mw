@@ -1,14 +1,16 @@
 __NOTOC__
 * [[:#Operadores Lógicos |  Operadores Lógicos]]
-* [[:#Operadores NOT y ! | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT y !]] 
-* [[:#Operadores AND y && | &nbsp;&nbsp;&nbsp;&nbsp;Operadores AND y &&]] 
+* [[:#Operadores NOT | &nbsp;&nbsp;&nbsp;&nbsp;Operador NOT]] 
+* [[:#Operadores AND | &nbsp;&nbsp;&nbsp;&nbsp;Operadores AND]] 
 * [[:#Operador XOR | &nbsp;&nbsp;&nbsp;&nbsp;Operador XOR]] 
 * [[:#Operadores OR  | &nbsp;&nbsp;&nbsp;&nbsp;Operadores OR]] 
 
-== Operadores Lógicos ==
-=== Operadores NOT y ! ===
+= Operadores Lógicos =
+== Operadores NOT ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+NOT n  o  !n
 
 NO lógico. Evalúa a 1 si el operando es de 0 a 0 si el operando 
 es diferente a cero, y  NULL, devuelve NULL. De forma predeterminada, 
@@ -67,9 +69,11 @@ MariaDB [(none)]> SELECT ! (1-1);
 
 </syntaxhighlight>
 
-=== Operadores AND y && ===
+== Operadores AND ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+m && n   o    m AND n
 
 Lógico AND se evalúa a 1 si los operandos son distintos de cero 
 y no NULL, 0 si uno o más operandos son 0, 
@@ -117,9 +121,11 @@ MariaDB [(none)]> SELECT NULL && 0;
 
 </syntaxhighlight>
 
-=== Operador XOR ===
+== Operador XOR ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+m XOR n
 
 XOR significa OR exclusiv. Devuelve NULL si cualquier operando 
 es NULL. Para los no-NULL operandos, evalúa a 1 si un y solo un número 
@@ -159,9 +165,11 @@ MariaDB [(none)]> SELECT 1 XOR 1 XOR 1;
 
 </syntaxhighlight>
 
-=== Operadores OR ===
+== Operadores OR ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+m OR n    o    m || n
 
 OR lógico. Cuando ambos operandos no NULL, el resultado es 
 1 si cualquier operando es 1 y 0 en caso que los dos operandos
@@ -182,7 +190,7 @@ MariaDB [(none)]> SELECT 1 || 1;
 
 MariaDB [(none)]> SELECT 1 || 0;
 +--------+
-| 1 || 0 |
+| 1 OR 0 |
 +--------+
 |      1 |
 +--------+
