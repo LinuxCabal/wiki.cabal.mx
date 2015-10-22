@@ -3,8 +3,8 @@ __NOTOC__
 * [[:#Sintaxis | &nbsp;&nbsp;&nbsp;&nbsp;Sintaxis]]
 * [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
 
-== Select ==
-=== Sintaxis ===
+= Select =
+== Sintaxis ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 SELECT
@@ -303,7 +303,7 @@ descripción completa con ejemplos, vea SELECT con ROLLUP.
 
 </syntaxhighlight>
 
-=== Ejemplo ===
+== Ejemplo ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
