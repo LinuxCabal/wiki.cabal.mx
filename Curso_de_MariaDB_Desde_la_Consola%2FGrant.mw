@@ -5,8 +5,8 @@ __NOTOC__
 * [[:#Niveles de privilegios | &nbsp;&nbsp;&nbsp;&nbsp;Niveles de privilegios]]
 * [[:#Ejemplo | &nbsp;&nbsp;&nbsp;&nbsp;Ejemplo]]
 
-== Grant ==
-=== Sintaxis ===
+= Grant =
+== Sintaxis ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -58,7 +58,7 @@ ssl_option:
 
 </syntaxhighlight>
 
-==== Descripción ====
+== Descripción ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -88,7 +88,7 @@ GRANT declaración.
 
 </syntaxhighlight>
 
-==== Niveles de privilegios ====
+== Niveles de privilegios ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
