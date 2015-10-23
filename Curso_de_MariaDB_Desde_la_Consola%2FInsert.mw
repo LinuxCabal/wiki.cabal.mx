@@ -160,6 +160,23 @@ MariaDB [Prueba1]> INSERT INTO personas SET
     -> ApellidoPaterno = 'Montoya';
 Query OK, 1 row affected (0.32 sec)
 
+
+MariaDB [Prueba1]> create table Log ( id int not null primary key auto_increment,
+    ->                      Fecha datetime not null,
+    ->                      nombre varchar (15) not null );
+Query OK, 0 rows affected (0.29 sec)
+
+MariaDB [Prueba1]> insert into Log values ( NULL, NOW(), 'jruiz' );
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [Prueba1]> select * from Log;
++----+---------------------+--------+
+| id | Fecha               | nombre |
++----+---------------------+--------+
+|  1 | 2015-10-23 12:20:21 | jruiz  |
++----+---------------------+--------+
+1 row in set (0.00 sec)
+
 </syntaxhighlight>
 
 [[Category:MariaDB Desde la Consola]]
