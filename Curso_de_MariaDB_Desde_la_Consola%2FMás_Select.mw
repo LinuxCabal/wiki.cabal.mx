@@ -263,23 +263,6 @@ MariaDB [Prueba1]> select * from Est_fruta;
 +----+----------+--------+
 5 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> select * from Inv_fruta;
-ERROR 1146 (42S02): Table 'Prueba1.Inv_fruta' doesn't exist
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> update Inv_fruta set cantidad = cantidad - 1 where id = 1;
-ERROR 1146 (42S02): Table 'Prueba1.Inv_fruta' doesn't exist
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> select * from Inv_fruta;
-ERROR 1146 (42S02): Table 'Prueba1.Inv_fruta' doesn't exist
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> replace into Inv_fruta values ( 3, 'Uvas', 'Purple', 12.0, 15 );
-ERROR 1146 (42S02): Table 'Prueba1.Inv_fruta' doesn't exist
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> select * from Inv_fruta;
-ERROR 1146 (42S02): Table 'Prueba1.Inv_fruta' doesn't exist
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> replace into Inv_fruta values ( 5, 'Manzanas', 'Verde', 5.0, 60 );
-ERROR 1146 (42S02): Table 'Prueba1.Inv_fruta' doesn't exist
 MariaDB [Prueba1]> create table Inv_fruta ( id int not null primary key auto_increment,
     ->                      nombre varchar (50) not null,
     ->                      color varchar (15) not null,
