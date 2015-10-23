@@ -1,0 +1,229 @@
+__NOTOC__
+* [[:#Update Replace | Update Replace]]
+
+= Update Replace =
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+MariaDB [Prueba1]> show databases;
++--------------------+I
+| Database           |
++--------------------+
+| Prueba1            |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.01 sec)
+
+MariaDB [Prueba1]> show tables;
++-------------------+
+| Tables_in_Prueba1 |
++-------------------+
+| Competiciones     |
+| inven             |
+| personas          |
++-------------------+
+3 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> create table Est_fruta ( id int not null primary key auto_increment,
+    ->                      nombre varchar (50) not null,
+    ->                      estado varchar (15) not null );
+Query OK, 0 rows affected (0.22 sec)
+
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Manzanas', 'Maduro' );
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Naranjas' , 'Podrido' );
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Uvas' , 'Maduro' );
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Platanos' , 'Podrido' );
+Query OK, 1 row affected (0.06 sec)
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+---------+
+| id | nombre   | estado  |
++----+----------+---------+
+|  1 | Manzanas | Maduro  |
+|  2 | Naranjas | Podrido |
+|  3 | Uvas     | Maduro  |
+|  4 | Platanos | Podrido |
++----+----------+---------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> update Est_fruta set estado = 'Maduro';
+Query OK, 0 rows affected (0.03 sec)
+Rows matched: 4  Changed: 0  Warnings: 0
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
++----+----------+--------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Sandilla' , 'Maduro' );
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandilla | Maduro |
++----+----------+--------+
+5 rows in set (0.01 sec)
+
+MariaDB [Prueba1]> update Est_fruta set nombre = 'Sandia' where nombre = 'Sandilla'; 
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandia   | Maduro |
++----+----------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> create table Inv_fruta ( id int not null primary key auto_increment,
+    ->                      nombre varchar (50) not null,
+    ->                      color varchar (15) not null,
+    ->                      precio float not null,
+    ->                      cantidad int not null );
+Query OK, 0 rows affected (0.26 sec)
+
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Manzanas', 'Rojo', 5.0, 25 );
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Naranjas' , 'Anaranja' , 7.5, 44 );
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Uvas' , 'Verde' , 12.5, 15 );
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Platanos' , 'Amarillo' , 1.5, 36 );
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [Prueba1]> select * from Inv_fruta;
++----+----------+----------+--------+----------+
+| id | nombre   | color    | precio | cantidad |
++----+----------+----------+--------+----------+
+|  1 | Manzanas | Rojo     |      5 |       25 |
+|  2 | Naranjas | Anaranja |    7.5 |       44 |
+|  3 | Uvas     | Verde    |   12.5 |       15 |
+|  4 | Platanos | Amarillo |    1.5 |       36 |
++----+----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> update Inv_fruta set cantidad = cantidad - 1 where id = 1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [Prueba1]> select * from Inv_fruta;
++----+----------+----------+--------+----------+
+| id | nombre   | color    | precio | cantidad |
++----+----------+----------+--------+----------+
+|  1 | Manzanas | Rojo     |      5 |       24 |
+|  2 | Naranjas | Anaranja |    7.5 |       44 |
+|  3 | Uvas     | Verde    |   12.5 |       15 |
+|  4 | Platanos | Amarillo |    1.5 |       36 |
++----+----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> replace into Inv_fruta values ( 3, 'Uvas', 'Purple', 12.0, 15 );
+Query OK, 2 rows affected (0.05 sec)
+
+REPLACE no es ANSI
+
+MariaDB [Prueba1]> select * from Inv_fruta;
++----+----------+----------+--------+----------+
+| id | nombre   | color    | precio | cantidad |
++----+----------+----------+--------+----------+
+|  1 | Manzanas | Rojo     |      5 |       24 |
+|  2 | Naranjas | Anaranja |    7.5 |       44 |
+|  3 | Uvas     | Purple   |     12 |       15 |
+|  4 | Platanos | Amarillo |    1.5 |       36 |
++----+----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> replace into Inv_fruta values ( 5, 'Manzanas', 'Verde', 5.0, 60 );
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [Prueba1]> select * from color;
++----+----------+
+| id | nombre   |
++----+----------+
+|  1 | Rojo     |
+|  2 | naranja  |
+|  3 | Purpura  |
+|  4 | Amarillo |
++----+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> delete from color;
+Query OK, 4 rows affected (0.07 sec)
+
+MariaDB [Prueba1]> select * from color;
+Empty set (0.00 sec)
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandia   | Maduro |
++----+----------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> update Est_fruta set estado = 'Podrido' where id = 3;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+---------+
+| id | nombre   | estado  |
++----+----------+---------+
+|  1 | Manzanas | Maduro  |
+|  2 | Naranjas | Maduro  |
+|  3 | Uvas     | Podrido |
+|  4 | Platanos | Maduro  |
+|  5 | Sandia   | Maduro  |
++----+----------+---------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> delete from Est_fruta where estado = 'Podrido';
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [Prueba1]> seMariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandia   | Maduro |
++----+----------+--------+
+4 rows in set (0.00 sec)
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
