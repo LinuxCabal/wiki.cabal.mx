@@ -1,290 +1,401 @@
 __NOTOC__
-* [[:#JOINs | JOINs]]
+* [[:#Más Select | M'as Select]]
 
-= JOINs =
+= Más Select =
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-JOINs son manera para consultar datos de dos o más tablas relacionadas.
+MariaDB [Prueba1]> show databases;
++--------------------+I
+| Database           |
++--------------------+
+| Prueba1            |
+| information_schema |
+| mysql              |
+| performance_schema |
++--------------------+
+4 rows in set (0.01 sec)
 
-CREATE TABLE Cursos ( ID smallint unsigned NOT NULL AUTO_INCREMENT,
-                      Nombre varchar(50) NOT NULL,
-                      PRIMARY KEY (ID)
-);
-
-MariaDB [Prueba1]> INSERT INTO Cursos values ( '', 'HTML5' ),
-                                             ( '', 'CSS3' ),
-                                             ( '', 'JavaScript' ),
-                                             ( '', 'PHP' ),
-                                             ( '', 'MariaDB' );
-Query OK, 5 rows affected, 5 warnings (0.03 sec)
-Records: 5  Duplicates: 0  Warnings: 5
-
-MariaDB [Prueba1]> insert into Cursos values ( '',  'Python' );
-Query OK, 1 row affected, 1 warning (0.03 sec)
-
-MariaDB [Prueba1]> SHOW CREATE TABLE Cursos;
-+--------+-------------------------------------------------------------------------+
-| Table  | Create Table                                                            |
-+--------+-------------------------------------------------------------------------+
-| Cursos | CREATE TABLE `Cursos` (
-  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci      |
-+--------+-------------------------------------------------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [Prueba1]> DESCRIBE Cursos;
-+--------+----------------------+------+-----+---------+----------------+
-| Field  | Type                 | Null | Key | Default | Extra          |
-+--------+----------------------+------+-----+---------+----------------+
-| ID     | smallint(5) unsigned | NO   | PRI | NULL    | auto_increment |
-| Nombre | varchar(50)          | NO   |     | NULL    |                |
-+--------+----------------------+------+-----+---------+----------------+
-2 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> SELECT * FROM Cursos;
-+----+------------+
-| ID | Nombre     |
-+----+------------+
-|  1 | HTML5      |
-|  2 | CSS3       |
-|  3 | JavaScript |
-|  4 | PHP        |
-|  5 | MariaDB    |
-|  6 | Python     |
-+----+------------+
-5 rows in set (0.00 sec)
-
-El número del curso se refiere a un tema en la table de Cursos
-
-CREATE TABLE Usuarios ( ID smallint unsigned NOT NULL AUTO_INCREMENT,
-                        Nombre varchar(30) NOT NULL,
-                        Curso smallint unsigned,
-                        PRIMARY KEY (ID),
-                        KEY Curso (Curso),
-                        CONSTRAINT Usuarios_ibfk_1 
-                        FOREIGN KEY (Curso) REFERENCES Cursos (ID) );
-Query OK, 0 rows affected (0.36 sec)
-
-
-MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
-+----------+-------------------------------------------------------------------------+
-| Table    | Create Table                                                            |
-+----------+-------------------------------------------------------------------------+
-| Usuarios | CREATE TABLE `Usuarios` (
-  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `Curso` smallint(5) unsigned,
-  PRIMARY KEY (`ID`),
-  KEY `Curso` (`Curso`),
-  CONSTRAINT `Usuarios_ibfk_1` FOREIGN KEY (`Curso`) REFERENCES `Cursos` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci       |
-+----------+-------------------------------------------------------------------------+
-1 row in set (0.00 sec)
-
-MariaDB [Prueba1]> DESCRIBE Usuarios;
-+--------+----------------------+------+-----+---------+----------------+
-| Field  | Type                 | Null | Key | Default | Extra          |
-+--------+----------------------+------+-----+---------+----------------+
-| ID     | smallint(5) unsigned | NO   | PRI | NULL    | auto_increment |
-| Nombre | varchar(30)          | NO   |     | NULL    |                |
-| Curso  | smallint(5) unsigned | YES  | UNI | NULL    |                |
-+--------+----------------------+------+-----+---------+----------------+
+MariaDB [Prueba1]> show tables;
++-------------------+
+| Tables_in_Prueba1 |
++-------------------+
+| Competiciones     |
+| inven             |
+| personas          |
++-------------------+
 3 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Ana', 2 ), 
-                       ( '', 'Roberto', 1 ), ( '', 'Angel', 5 ), 
-                       ( '', 'Laura', 3 ),  ( '', 'Ricardo', 4 );
-Query OK, 5 rows affected, 5 warnings (0.04 sec)
-Records: 5  Duplicates: 0  Warnings: 5
+MariaDB [Prueba1]> select * from inven;
++----+-------------+-----------------------+--------+----------+
+| id | nombre      | descrip               | precio | cantidad |
++----+-------------+-----------------------+--------+----------+
+|  1 | Manzanas    | Mediano Granny-Smith. |   0.25 |     1000 |
+|  2 | Uvas        | Sin Semillas          |   2.99 |      500 |
+|  3 | Agua        | Bot. - 250 ml.        |   0.89 |      259 |
+|  4 | AguaMineral | Bot. - 600 ml.        |    0.5 |      350 |
+|  5 | Platanos    | Machos                |      6 |       25 |
++----+-------------+-----------------------+--------+----------+
+5 rows in set (0.02 sec)
 
-MariaDB [Prueba1]> show warnings;
-+---------+------+------------------------------------------------------+
-| Level   | Code | Message                                              |
-+---------+------+------------------------------------------------------+
-| Warning | 1366 | Incorrect integer value: '' for column 'ID' at row 1 |
-| Warning | 1366 | Incorrect integer value: '' for column 'ID' at row 2 |
-| Warning | 1366 | Incorrect integer value: '' for column 'ID' at row 3 |
-| Warning | 1366 | Incorrect integer value: '' for column 'ID' at row 4 |
-| Warning | 1366 | Incorrect integer value: '' for column 'ID' at row 5 |
-+---------+------+------------------------------------------------------+
+MariaDB [Prueba1]> select * from inven where precio
+    ->         between 1.0 and 3.00;
++----+--------+--------------+--------+----------+
+| id | nombre | descrip      | precio | cantidad |
++----+--------+--------------+--------+----------+
+|  2 | Uvas   | Sin Semillas |   2.99 |      500 |
++----+--------+--------------+--------+----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> select * from inven where precio
+    ->         between 1 and 3;
++----+--------+--------------+--------+----------+
+| id | nombre | descrip      | precio | cantidad |
++----+--------+--------------+--------+----------+
+|  2 | Uvas   | Sin Semillas |   2.99 |      500 |
++----+--------+--------------+--------+----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> select * from inven where nombre like 'M%';
++----+----------+-----------------------+--------+----------+
+| id | nombre   | descrip               | precio | cantidad |
++----+----------+-----------------------+--------+----------+
+|  1 | Manzanas | Mediano Granny-Smith. |   0.25 |     1000 |
++----+----------+-----------------------+--------+----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> select * from inven where nombre like 'm%';
++----+----------+-----------------------+--------+----------+
+| id | nombre   | descrip               | precio | cantidad |
++----+----------+-----------------------+--------+----------+
+|  1 | Manzanas | Mediano Granny-Smith. |   0.25 |     1000 |
++----+----------+-----------------------+--------+----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> create table fruta ( id int not null primary key auto_increment,
+    ->                      nombre varchar (50) not null );
+Query OK, 0 rows affected (0.26 sec)
+
+MariaDB [Prueba1]> insert into fruta values ( NULL, 'Manzanas' );
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [Prueba1]> insert into fruta values ( NULL, 'Naranjas' );
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [Prueba1]> insert into fruta values ( NULL, 'Uvas' );
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [Prueba1]> insert into fruta values ( NULL, 'Platanos' );
+Query OK, 1 row affected (0.07 sec)
+
+MariaDB [Prueba1]> select * from fruta;
++----+----------+
+| id | nombre   |
++----+----------+
+|  1 | Manzanas |
+|  2 | Naranjas |
+|  3 | Uvas     |
+|  4 | Platanos |
++----+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> create table color ( id int not null primary key auto_increment,
+    ->                      nombre varchar (50) not null );
+Query OK, 0 rows affected (0.25 sec)
+
+MariaDB [Prueba1]> show tables;
++-------------------+
+| Tables_in_Prueba1 |
++-------------------+
+| Competiciones     |
+| color             |
+| fruta             |
+| inven             |
+| personas          |
++-------------------+
 5 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Mia', 2 );
-Query OK, 1 row affected, 1 warning (0.08 sec)
+MariaDB [Prueba1]> insert into color values ( NULL, 'Rojo' );
+Query OK, 1 row affected (0.06 sec)
 
-MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Leo', 4 );
-Query OK, 1 row affected, 1 warning (0.08 sec)
+MariaDB [Prueba1]> insert into color values ( NULL, 'naranja' );
+Query OK, 1 row affected (0.04 sec)
 
-MariaDB [Prueba1]> INSERT INTO Usuarios ( ID, Nombre ) values ( '', 'Mauricio');
-Query OK, 1 row affected, 1 warning (0.08 sec)
+MariaDB [Prueba1]> insert into color values ( NULL, 'Purpura' );
+Query OK, 1 row affected (0.07 sec)
 
+MariaDB [Prueba1]> insert into color values ( NULL, 'Amarillo' );
+Query OK, 1 row affected (0.07 sec)
 
-MariaDB [Prueba1]> SELECT * FROM Usuarios;
-+----+---------+--------+
-| ID | Nombre  | Curso  |
-+----+---------+--------+
-| 1  | Ana     |      2 |
-| 1  | Roberto |      1 |
-| 3  | Angel   |      5 |
-| 4  | Laura   |      3 |
-| 5  | Ricardo |      4 |
-| 6  | Mia     |      2 |
-| 7  | Leo     |      4 |
-| 8  | Mauricio |  NULL |
-+----+---------+--------+
-7 rows in set (0.00 sec)
+MariaDB [Prueba1]> select * from color;
++----+----------+
+| id | nombre   |
++----+----------+
+|  1 | Rojo     |
+|  2 | naranja  |
+|  3 | Purpura  |
+|  4 | Amarillo |
++----+----------+
+4 rows in set (0.00 sec)
 
-JOINs nos permite consultar estos datos en varios maneras.
+MariaDB [Prueba1]> select * from fruta;
++----+----------+
+| id | nombre   |
++----+----------+
+|  1 | Manzanas |
+|  2 | Naranjas |
+|  3 | Uvas     |
+|  4 | Platanos |
++----+----------+
+4 rows in set (0.00 sec)
 
-INNER JOIN
+MariaDB [Prueba1]> select * from fruta, color;
++----+----------+----+----------+
+| id | nombre   | id | nombre   |
++----+----------+----+----------+
+|  1 | Manzanas |  1 | Rojo     |
+|  2 | Naranjas |  1 | Rojo     |
+|  3 | Uvas     |  1 | Rojo     |
+|  4 | Platanos |  1 | Rojo     |
+|  1 | Manzanas |  2 | naranja  |
+|  2 | Naranjas |  2 | naranja  |
+|  3 | Uvas     |  2 | naranja  |
+|  4 | Platanos |  2 | naranja  |
+|  1 | Manzanas |  3 | Purpura  |
+|  2 | Naranjas |  3 | Purpura  |
+|  3 | Uvas     |  3 | Purpura  |
+|  4 | Platanos |  3 | Purpura  |
+|  1 | Manzanas |  4 | Amarillo |
+|  2 | Naranjas |  4 | Amarillo |
+|  3 | Uvas     |  4 | Amarillo |
+|  4 | Platanos |  4 | Amarillo |
++----+----------+----+----------+
+16 rows in set (0.00 sec)
 
-La cláusula más frecuente es INNER JOIN. Esto produce
-un conjunto de registros que coinciden con los usuarios 
-y tables de Cursos, es decir, todos los Usuarios que están
-inscritos en un curso:
+MariaDB [Prueba1]> select fruta.id, fruta.nombre, color.nombre from fruta, color
+    ->          where fruta.id = color.id;
++----+----------+----------+
+| id | nombre   | nombre   |
++----+----------+----------+
+|  1 | Manzanas | Rojo     |
+|  2 | Naranjas | naranja  |
+|  3 | Uvas     | Purpura  |
+|  4 | Platanos | Amarillo |
++----+----------+----------+
+4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Usuarios`
-                   INNER JOIN `Cursos` on 
-                   Usuarios.Curso = Cursos.ID;
-+---------+------------+
-| Nombre  | Nombre     |
-+---------+------------+
-| Ana     | CSS3       |
-| Roberto | HTML5      |
-| Angel   | MariaDB    |
-| Laura   | JavaScript |
-| Ricardo | PHP        |
-| Mia     | CSS3       |
-| Leo     | PHP        |
-+---------+------------+
-7 rows in set (0.00 sec)
+MariaDB [Prueba1]> create table Est_fruta ( id int not null primary key auto_increment,
+    ->                      nombre varchar (50) not null,
+    ->                      estado varchar (15) not null );
+Query OK, 0 rows affected (0.22 sec)
 
-¿Qué pasa si necesitamos una lista de todos los estudiantes y sus 
-cursos incluso si no estás inscrito en uno? Un LEFT JOIN produce el
-conjunto de registros que coincide con cada entrada en la tabla
-izquierda (Usuarios) sin importar ninguna entrada coincidente en la 
-tabla derecha (Cursos):
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Manzanas', 'Maduro' );
+Query OK, 1 row affected (0.04 sec)
 
-MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
-       FROM `Usuarios`
-       LEFT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
-+----------+------------+
-| Nombre   | Nombre     |
-+----------+------------+
-| Ana      | CSS3       |
-| Roberto  | HTML5      |
-| Angel    | MariaDB    |
-| Laura    | JavaScript |
-| Ricardo  | PHP        |
-| Mia      | CSS3       |
-| Leo      | PHP        |
-| Mauricio | NULL       |
-+----------+------------+
-8 rows in set (0.00 sec)
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Naranjas' , 'Podrido' );
+Query OK, 1 row affected (0.03 sec)
 
-RIGHT JOIN
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Uvas' , 'Maduro' );
+Query OK, 1 row affected (0.07 sec)
 
-Tal vez necesitamos una lista de todos los cursos y estudiantes 
-incluso si nadie se ha inscrito? Un RIGHT JOIN produce un conjunto
-de registros que coincide con cada entrada en la tabla de la 
-derecha (Cursos) independientemente de cualquier entrada 
-coincidente en la tabla de la izquierda (Usuarios):
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Platanos' , 'Podrido' );
+Query OK, 1 row affected (0.06 sec)
 
-MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
-       FROM `Usuarios`
-       RIGHT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
-+---------+------------+
-| Nombre  | Nombre     |
-+---------+------------+
-| Roberto | HTML5      |
-| Ana     | CSS3       |
-| Mia     | CSS3       |
-| Laura   | JavaScript |
-| Ricardo | PHP        |
-| Leo     | PHP        |
-| Angel   | MariaDB    |
-| NULL    | Python     |
-+---------+------------+
-7 rows in set (0.00 sec)
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+---------+
+| id | nombre   | estado  |
++----+----------+---------+
+|  1 | Manzanas | Maduro  |
+|  2 | Naranjas | Podrido |
+|  3 | Uvas     | Maduro  |
+|  4 | Platanos | Podrido |
++----+----------+---------+
+4 rows in set (0.00 sec)
 
-RGHT JOINs are rarely used since you can express the same result using a LEFT JOIN. This can be more efficient and quicker for the database to parse:
-RGHT JOINs rara vez se utiliza ya que se puede expresar 
-el mismo resultado utilizando un LEFT JOIN. Esto puede 
-ser más eficiente y más rápido para la base de datos para 
-analizar:
+MariaDB [Prueba1]> update Est_fruta set estado = 'Maduro';
+Query OK, 0 rows affected (0.03 sec)
+Rows matched: 4  Changed: 0  Warnings: 0
 
-MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre 
-                     FROM Cursos 
-                   LEFT JOIN Usuarios on Usuarios.Curso = Cursos.ID;
-+---------+------------+
-| Nombre  | Nombre     |
-+---------+------------+
-| Roberto | HTML5      |
-| Ana     | CSS3       |
-| Mia     | CSS3       |
-| Laura   | JavaScript |
-| Ricardo | PHP        |
-| Leo     | PHP        |
-| Angel   | MariaDB    |
-| NULL    | Python     |
-+---------+------------+
-7 rows in set (0.00 sec)
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
++----+----------+--------+
+4 rows in set (0.00 sec)
 
-Podríamos contar el número de alumnos inscribiendos en cada curso:
+MariaDB [Prueba1]> insert into Est_fruta values ( NULL, 'Sandilla' , 'Maduro' );
+Query OK, 1 row affected (0.05 sec)
 
-MariaDB [Prueba1]> SELECT Cursos.Nombre, COUNT(Usuarios.Nombre)
-                     FROM Cursos
-                   LEFT JOIN Usuarios ON Usuarios.Curso = Cursos.ID
-                   GROUP BY Cursos.ID;
-+------------+------------------------+
-| Nombre     | COUNT(Usuarios.Nombre) |
-+------------+------------------------+
-| HTML5      |                      1 |
-| CSS3       |                      2 |
-| JavaScript |                      1 |
-| PHP        |                      2 |
-| MariaDB    |                      1 |
-| Python     |                      0 |
-+------------+------------------------+
-6 rows in set (0.00 sec)
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandilla | Maduro |
++----+----------+--------+
+5 rows in set (0.01 sec)
 
-OUTER JOIN (or FULL OUTER JOIN)
+MariaDB [Prueba1]> update Est_fruta set nombre = 'Sandia' where nombre = 'Sandilla'; 
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-Nuestra última opción es la OUTER JOIN que devuelve todos 
-los registros en ambas tablas, independientemente de cualquier 
-partido. Cuando no existe coincidencia, el lado que falta 
-contendrá NULL.
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandia   | Maduro |
++----+----------+--------+
+5 rows in set (0.00 sec)
 
-OUTER JOIN es menos útil que INNER LEFT o RIGHT y no se implementó en MySQL. 
-Sin embargo, puede evitar esta restricción mediante la unión de 
-un LEFT y RIGHT JOIN, por ejemplo,
+MariaDB [Prueba1]> create table Inv_fruta ( id int not null primary key auto_increment,
+    ->                      nombre varchar (50) not null,
+    ->                      color varchar (15) not null,
+    ->                      precio float not null,
+    ->                      cantidad int not null );
+Query OK, 0 rows affected (0.26 sec)
 
-SELECT Usuarios.Nombre, Cursos.Nombre 
-         FROM Usuarios 
-       LEFT JOIN Cursos 
-         ON Usuarios.Curso = Cursos.ID 
-UNION SELECT Usuarios.Nombre, Cursos.Nombre 
-         FROM Usuarios 
-       RIGHT JOIN Cursos 
-         ON Usuarios.Curso = Cursos.ID;
-+----------+------------+
-| Nombre   | Nombre     |
-+----------+------------+
-| Ana      | CSS3       |
-| Roberto  | HTML5      |
-| Angel    | MariaDB    |
-| Laura    | JavaScript |
-| Ricardo  | PHP        |
-| Mia      | CSS3       |
-| Leo      | PHP        |
-| Mauricio | NULL       |
-| NULL     | Python     |
-+----------+------------+
-9 rows in set (0.00 sec)
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Manzanas', 'Rojo', 5.0, 25 );
+Query OK, 1 row affected (0.04 sec)
 
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Naranjas' , 'Anaranja' , 7.5, 44 );
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Uvas' , 'Verde' , 12.5, 15 );
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Platanos' , 'Amarillo' , 1.5, 36 );
+Query OK, 1 row affected (0.09 sec)
+
+MariaDB [Prueba1]> select * from Inv_fruta;
++----+----------+----------+--------+----------+
+| id | nombre   | color    | precio | cantidad |
++----+----------+----------+--------+----------+
+|  1 | Manzanas | Rojo     |      5 |       25 |
+|  2 | Naranjas | Anaranja |    7.5 |       44 |
+|  3 | Uvas     | Verde    |   12.5 |       15 |
+|  4 | Platanos | Amarillo |    1.5 |       36 |
++----+----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> update Inv_fruta set cantidad = cantidad - 1 where id = 1;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [Prueba1]> select * from Inv_fruta;
++----+----------+----------+--------+----------+
+| id | nombre   | color    | precio | cantidad |
++----+----------+----------+--------+----------+
+|  1 | Manzanas | Rojo     |      5 |       24 |
+|  2 | Naranjas | Anaranja |    7.5 |       44 |
+|  3 | Uvas     | Verde    |   12.5 |       15 |
+|  4 | Platanos | Amarillo |    1.5 |       36 |
++----+----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> replace into Inv_fruta values ( 3, 'Uvas', 'Purple', 12.0, 15 );
+Query OK, 2 rows affected (0.05 sec)
+
+REPLACE no es ANSI
+
+MariaDB [Prueba1]> select * from Inv_fruta;
++----+----------+----------+--------+----------+
+| id | nombre   | color    | precio | cantidad |
++----+----------+----------+--------+----------+
+|  1 | Manzanas | Rojo     |      5 |       24 |
+|  2 | Naranjas | Anaranja |    7.5 |       44 |
+|  3 | Uvas     | Purple   |     12 |       15 |
+|  4 | Platanos | Amarillo |    1.5 |       36 |
++----+----------+----------+--------+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> replace into Inv_fruta values ( 5, 'Manzanas', 'Verde', 5.0, 60 );
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [Prueba1]> select * from color;
++----+----------+
+| id | nombre   |
++----+----------+
+|  1 | Rojo     |
+|  2 | naranja  |
+|  3 | Purpura  |
+|  4 | Amarillo |
++----+----------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> delete from color;
+Query OK, 4 rows affected (0.07 sec)
+
+MariaDB [Prueba1]> select * from color;
+Empty set (0.00 sec)
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandia   | Maduro |
++----+----------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> update Est_fruta set estado = 'Podrido' where id = 3;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+---------+
+| id | nombre   | estado  |
++----+----------+---------+
+|  1 | Manzanas | Maduro  |
+|  2 | Naranjas | Maduro  |
+|  3 | Uvas     | Podrido |
+|  4 | Platanos | Maduro  |
+|  5 | Sandia   | Maduro  |
++----+----------+---------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> delete from Est_fruta where estado = 'Podrido';
+Query OK, 1 row affected (0.03 sec)
+
+MariaDB [Prueba1]> seMariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandia   | Maduro |
++----+----------+--------+
+4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> create table Log ( id int not null primary key auto_increment,
+    ->                      Fecha datetime not null,
+    ->                      nombre varchar (15) not null );
+Query OK, 0 rows affected (0.29 sec)
+
+MariaDB [Prueba1]> insert into Log values ( NULL, NOW(), 'jruiz' );
+Query OK, 1 row affected (0.05 sec)
+
+MariaDB [Prueba1]> select * from Log;
++----+---------------------+--------+
+| id | Fecha               | nombre |
++----+---------------------+--------+
+|  1 | 2015-10-23 12:20:21 | jruiz  |
++----+---------------------+--------+
+1 row in set (0.00 sec)
 
 </syntaxhighlight>
 
