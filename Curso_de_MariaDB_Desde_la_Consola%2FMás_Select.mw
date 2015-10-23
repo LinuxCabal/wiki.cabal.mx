@@ -1,13 +1,65 @@
 __NOTOC__
-* [[:#Más Select | M'as Select]]
+* [[:#Más Select | Más Select]]
 
 = Más Select =
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-MariaDB [Prueba1]> show databases;
-+--------------------+I
-| Database           |
+
+expr LIKE pat [ESCAPE 'escape char']
+expr NOT LIKE pat [ESCAPE 'escape char']
+
+Comprueba si expr coincide con pat patrón. 
+Devuelve 1 (verdadero) o 0 (falso). Expr y pat pueden ser cualquier 
+expresión válida y se evalúan a las cadenas. Los patrones pueden 
+utilizar los siguientes caracteres comodín:
+
+  '%' coincide con cualquier número de caracteres, incluyendo cero.
+  '_' coincide con cualquier carácter único.
+
+Usa NOT LIKE para probar si una cadena no coincide con un patrón. 
+Esto es equivalente a usar el operador NOT en el entero LIKE expresión.
+
+Si la expresión o el patrón es NULL, el resultado es NULL.
+
+LIKE realiza partidos de subcadena entre mayúsculas y minúsculas si la 
+colación para la expresión y patrón es entre mayúsculas y minúsculas. 
+Para los partidos entre mayúsculas y minúsculas, declarar cualquier 
+argumento para utilizar una intercalación binaria usando intercalar o 
+obligar a cualquiera de ellos en una cadena binaria mediante fundición. 
+
+Use SHOW COLLATION para obtener una lista de intercalaciones disponibles. 
+Colaciones en bin distinguen mayúsculas de minúsculas.
+
+Argumentos numéricos son presionados en cadenas binarias.
+
+El comodín coincide con un carácter individual, no bytes. Sólo igualará 
+un carácter de múltiples byte si es válido en el conjunto de caracteres 
+de la expresión. 
+Por ejemplo, coincidirá con el utf8 "€", pero no coincidirán latin1 "€" 
+porque el símbolo del Euro no es un carácter válido latin1. Si es necesario, 
+utilice a convertir para utilizar la expresión en un conjunto de caracteres 
+diferentes.
+
+Si usted necesita para que coincida con los caracteres o %, usted debe huir 
+de ellos. Por defecto, usted puede prefijo los caracteres comodín el caracter 
+de barra invertida \ escapar de ellos. La barra invertida se usa tanto para 
+codificar caracteres especiales como saltos de línea cuando se analiza una 
+cadena así como para escapar caracteres comodín en un patrón después de análisis. 
+Así, para que coincida con una barra invertida real, a veces necesita escapar de 
+doble como "FTP".
+
+Para evitar dificultades con el carácter de barra invertida, puede cambiar el 
+carácter de escape de comodín en una expresión como de ESCAPE. El argumento 
+de ESCAPE debe ser una cadena de caracteres individuales.
+
+Para búsquedas en columnas de texto, con resultados ordenados por relevancia, 
+ver los índices de texto completo.
+
+Para búsquedas más complejas y las operaciones en las cuerdas, puede usar 
+expresiones regulares, que han mejorado en MariaDB 10.
+
+MariaDB [Prueba1]> SHOW DATABASES;           |
 +--------------------+
 | Prueba1            |
 | information_schema |
@@ -16,7 +68,7 @@ MariaDB [Prueba1]> show databases;
 +--------------------+
 4 rows in set (0.01 sec)
 
-MariaDB [Prueba1]> show tables;
+MariaDB [Prueba1]> SHOW TABLES;
 +-------------------+
 | Tables_in_Prueba1 |
 +-------------------+
@@ -26,7 +78,7 @@ MariaDB [Prueba1]> show tables;
 +-------------------+
 3 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> select * from inven;
+MariaDB [Prueba1]> SELECT * FROM inven;
 +----+-------------+-----------------------+--------+----------+
 | id | nombre      | descrip               | precio | cantidad |
 +----+-------------+-----------------------+--------+----------+
@@ -38,8 +90,8 @@ MariaDB [Prueba1]> select * from inven;
 +----+-------------+-----------------------+--------+----------+
 5 rows in set (0.02 sec)
 
-MariaDB [Prueba1]> select * from inven where precio
-    ->         between 1.0 and 3.00;
+MariaDB [Prueba1]> SELECT * FROM inven
+    ->         WHERE precio BETWEEN 1.0 and 3.00;
 +----+--------+--------------+--------+----------+
 | id | nombre | descrip      | precio | cantidad |
 +----+--------+--------------+--------+----------+
@@ -47,8 +99,8 @@ MariaDB [Prueba1]> select * from inven where precio
 +----+--------+--------------+--------+----------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> select * from inven where precio
-    ->         between 1 and 3;
+MariaDB [Prueba1]> SELECT * FROM inven
+    ->        WHERE precio BETWEEN 1 and 3;
 +----+--------+--------------+--------+----------+
 | id | nombre | descrip      | precio | cantidad |
 +----+--------+--------------+--------+----------+
@@ -56,7 +108,10 @@ MariaDB [Prueba1]> select * from inven where precio
 +----+--------+--------------+--------+----------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> select * from inven where nombre like 'M%';
+'%' coincide con cualquier número de caracteres, incluyendo cero.
+'_' coincide con cualquier carácter único.
+
+MariaDB [Prueba1]> SELECT * FROM inven WHERE nombre LIKE 'M%';
 +----+----------+-----------------------+--------+----------+
 | id | nombre   | descrip               | precio | cantidad |
 +----+----------+-----------------------+--------+----------+
