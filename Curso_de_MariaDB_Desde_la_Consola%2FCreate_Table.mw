@@ -80,13 +80,12 @@ Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
 
 Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-MariaDB [(none)]> use Prueba1;
+MariaDB [(none)]> USE Prueba1;
 Database changed
-MariaDB [Prueba1]> show tables;
+MariaDB [Prueba1]> SHOW TABLES;
 Empty set (0.02 sec)
 
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> create table inven (
+MariaDB [Prueba1]> CREATE TABLE inven (
     ->   id int not null primary key auto_increment,
     ->   nombre varchar (50) not null,
     ->   descrip text,
@@ -95,13 +94,13 @@ MariaDB [Prueba1]> create table inven (
     ->   );
 Query OK, 0 rows affected (0.63 sec)
 
-MariaDB [Prueba1]> show errors;
+MariaDB [Prueba1]> SHOW ERRORS;
 Empty set (0.00 sec)
 
-MariaDB [Prueba1]> show warnings;
+MariaDB [Prueba1]> SHOW WARNINGS;
 Empty set (0.00 sec)
 
-MariaDB [Prueba1]> show tables;
+MariaDB [Prueba1]> SHOW TABLES;
 +-------------------+
 | Tables_in_Prueba1 |
 +-------------------+
@@ -109,7 +108,7 @@ MariaDB [Prueba1]> show tables;
 +-------------------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> describe inven;
+MariaDB [Prueba1]> DESCRIBE inven;
 +----------+-------------+------+-----+---------+----------------+
 | Field    | Type        | Null | Key | Default | Extra          |
 +----------+-------------+------+-----+---------+----------------+
@@ -121,7 +120,7 @@ MariaDB [Prueba1]> describe inven;
 +----------+-------------+------+-----+---------+----------------+
 5 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> show create table inven;
+MariaDB [Prueba1]> SHOW CREATE TABLE inven;
 +-------+--------------------------------------------------------+
 | Table | Create Table                                           |
 +-------+--------------------------------------------------------+
@@ -135,8 +134,6 @@ MariaDB [Prueba1]> show create table inven;
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
 +-------+--------------------------------------------------------+
 1 row in set (0.00 sec)
-
-MariaDB [Prueba1]> quit
 
 MariaDB [Prueba1]> quit
 Bye
