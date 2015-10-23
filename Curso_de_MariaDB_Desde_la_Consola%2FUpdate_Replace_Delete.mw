@@ -1,7 +1,9 @@
 __NOTOC__
-* [[:#Update Replace | Update Replace]]
+* [[:#Update | Update]]
+* [[:#Replace | Replace]]
+* [[:#Delete | Delete]]
 
-= Update Replace =
+= Update =
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -109,7 +111,7 @@ MariaDB [Prueba1]> select * from Inv_fruta;
 +----+----------+----------+--------+----------+
 4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> update Inv_fruta set cantidad = cantidad - 1 where id = 1;
+MariaDB [Prueba1]> UPDATE Inv_fruta SET cantidad = cantidad - 1 where id = 1;
 Query OK, 1 row affected (0.04 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
@@ -123,6 +125,28 @@ MariaDB [Prueba1]> select * from Inv_fruta;
 |  4 | Platanos | Amarillo |    1.5 |       36 |
 +----+----------+----------+--------+----------+
 4 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> select * from Est_fruta;
++----+----------+--------+
+| id | nombre   | estado |
++----+----------+--------+
+|  1 | Manzanas | Maduro |
+|  2 | Naranjas | Maduro |
+|  3 | Uvas     | Maduro |
+|  4 | Platanos | Maduro |
+|  5 | Sandia   | Maduro |
++----+----------+--------+
+5 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> update Est_fruta set estado = 'Podrido' where id = 3;
+Query OK, 1 row affected (0.07 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+</syntaxhighlight>
+
+= Replace =
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 MariaDB [Prueba1]> replace into Inv_fruta values ( 3, 'Uvas', 'Purple', 12.0, 15 );
 Query OK, 2 rows affected (0.05 sec)
@@ -143,6 +167,24 @@ MariaDB [Prueba1]> select * from Inv_fruta;
 MariaDB [Prueba1]> replace into Inv_fruta values ( 5, 'Manzanas', 'Verde', 5.0, 60 );
 Query OK, 1 row affected (0.04 sec)
 
+MariaDB [Prueba1]> select * from Inv_fruta;
++----+----------+----------+--------+----------+
+| id | nombre   | color    | precio | cantidad |
++----+----------+----------+--------+----------+
+|  1 | Manzanas | Rojo     |      5 |       24 |
+|  2 | Naranjas | Anaranja |    7.5 |       44 |
+|  3 | Uvas     | Purple   |     12 |       15 |
+|  4 | Platanos | Amarillo |    1.5 |       36 |
+|  5 | Manzanas | Verde    |      5 |       60 |
++----+----------+----------+--------+----------+
+5 rows in set (0.00 sec)
+
+</syntaxhighlight>
+
+= Delete =
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
 MariaDB [Prueba1]> select * from color;
 +----+----------+
 | id | nombre   |
@@ -159,22 +201,6 @@ Query OK, 4 rows affected (0.07 sec)
 
 MariaDB [Prueba1]> select * from color;
 Empty set (0.00 sec)
-
-MariaDB [Prueba1]> select * from Est_fruta;
-+----+----------+--------+
-| id | nombre   | estado |
-+----+----------+--------+
-|  1 | Manzanas | Maduro |
-|  2 | Naranjas | Maduro |
-|  3 | Uvas     | Maduro |
-|  4 | Platanos | Maduro |
-|  5 | Sandia   | Maduro |
-+----+----------+--------+
-5 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> update Est_fruta set estado = 'Podrido' where id = 3;
-Query OK, 1 row affected (0.07 sec)
-Rows matched: 1  Changed: 1  Warnings: 0
 
 MariaDB [Prueba1]> select * from Est_fruta;
 +----+----------+---------+
