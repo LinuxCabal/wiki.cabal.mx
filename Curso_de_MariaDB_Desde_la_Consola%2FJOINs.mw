@@ -5,10 +5,8 @@ __NOTOC__
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-“JOIN” is an SQL keyword used to query data from two or more related tables. Unfortunately, the concept is regularly explained using abstract terms or differs between database systems. It often confuses me. Developers cope with enough confusion, so this is my attempt to explain JOINs briefly and succinctly to myself and anyone who’s interested.
-Related Tables
+“JOIN” is an SQL keyword used to query data from two or more related tables. 
 
-MySQL, PostgreSQL, Firebird, SQLite, SQL Server and Oracle are relational database systems. A well-designed database will provide a number of tables containing related data. A very simple example would be users (students) and course enrollments:
 
 ‘user’ table:
 id 	name 	course
