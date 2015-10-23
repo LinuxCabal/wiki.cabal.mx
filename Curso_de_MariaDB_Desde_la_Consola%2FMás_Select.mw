@@ -216,7 +216,8 @@ MariaDB [Prueba1]> SELECT * FROM fruta, color;
 +----+----------+----+----------+
 16 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> SELECT fruta.id, fruta.nombre, color.nombre FROM fruta, color
+MariaDB [Prueba1]> SELECT fruta.id, fruta.nombre, color.nombre 
+    ->          FROM fruta, color
     ->          WHERE fruta.id = color.id;
 +----+----------+----------+
 | id | nombre   | nombre   |
