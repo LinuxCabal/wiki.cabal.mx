@@ -214,10 +214,6 @@ MariaDB [Prueba1]> select * from Est_fruta;
 4 rows in set (0.00 sec)
 
 MariaDB [Prueba1]> update Est_fruta set estado = 'Maduro';
-Query OK, 2 rows affected (0.06 sec)
-Rows matched: 4  Changed: 2  Warnings: 0
-
-MariaDB [Prueba1]> update Est_fruta set estado = 'Maduro';
 Query OK, 0 rows affected (0.03 sec)
 Rows matched: 4  Changed: 0  Warnings: 0
 
@@ -270,7 +266,6 @@ MariaDB [Prueba1]> create table Inv_fruta ( id int not null primary key auto_inc
     ->                      cantidad int not null );
 Query OK, 0 rows affected (0.26 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Manzanas', 'Rojo', 5.0, 25 );
 Query OK, 1 row affected (0.04 sec)
 
@@ -283,7 +278,6 @@ Query OK, 1 row affected (0.09 sec)
 MariaDB [Prueba1]> insert into Inv_fruta values ( NULL, 'Platanos' , 'Amarillo' , 1.5, 36 );
 Query OK, 1 row affected (0.09 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> select * from Inv_fruta;
 +----+----------+----------+--------+----------+
 | id | nombre   | color    | precio | cantidad |
@@ -295,12 +289,10 @@ MariaDB [Prueba1]> select * from Inv_fruta;
 +----+----------+----------+--------+----------+
 4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> update Inv_fruta set cantidad = cantidad - 1 where id = 1;
 Query OK, 1 row affected (0.04 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> select * from Inv_fruta;
 +----+----------+----------+--------+----------+
 | id | nombre   | color    | precio | cantidad |
@@ -312,11 +304,11 @@ MariaDB [Prueba1]> select * from Inv_fruta;
 +----+----------+----------+--------+----------+
 4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> replace into Inv_fruta values ( 3, 'Uvas', 'Purple', 12.0, 15 );
 Query OK, 2 rows affected (0.05 sec)
 
-MariaDB [Prueba1]> 
+REPLACE no es ANSI
+
 MariaDB [Prueba1]> select * from Inv_fruta;
 +----+----------+----------+--------+----------+
 | id | nombre   | color    | precio | cantidad |
@@ -328,7 +320,6 @@ MariaDB [Prueba1]> select * from Inv_fruta;
 +----+----------+----------+--------+----------+
 4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> replace into Inv_fruta values ( 5, 'Manzanas', 'Verde', 5.0, 60 );
 Query OK, 1 row affected (0.04 sec)
 
@@ -343,16 +334,12 @@ MariaDB [Prueba1]> select * from color;
 +----+----------+
 4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> delete from color;
 Query OK, 4 rows affected (0.07 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> select * from color;
 Empty set (0.00 sec)
 
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> select * from Est_fruta;
 MariaDB [Prueba1]> select * from Est_fruta;
 +----+----------+--------+
 | id | nombre   | estado |
@@ -365,8 +352,6 @@ MariaDB [Prueba1]> select * from Est_fruta;
 +----+----------+--------+
 5 rows in set (0.00 sec)
 
-
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> update Est_fruta set estado = 'Podrido' where id = 3;
 Query OK, 1 row affected (0.07 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
@@ -383,11 +368,9 @@ MariaDB [Prueba1]> select * from Est_fruta;
 +----+----------+---------+
 5 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> delete from Est_fruta where estado = 'Podrido';
 Query OK, 1 row affected (0.03 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> seMariaDB [Prueba1]> select * from Est_fruta;
 +----+----------+--------+
 | id | nombre   | estado |
@@ -399,19 +382,14 @@ MariaDB [Prueba1]> seMariaDB [Prueba1]> select * from Est_fruta;
 +----+----------+--------+
 4 rows in set (0.00 sec)
 
-
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> create table Log ( id int not null primary key auto_increment,
     ->                      Fecha datetime not null,
     ->                      nombre varchar (15) not null );
 Query OK, 0 rows affected (0.29 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> insert into Log values ( NULL, NOW(), 'jruiz' );
 Query OK, 1 row affected (0.05 sec)
 
-MariaDB [Prueba1]> 
 MariaDB [Prueba1]> select * from Log;
 +----+---------------------+--------+
 | id | Fecha               | nombre |
@@ -419,7 +397,6 @@ MariaDB [Prueba1]> select * from Log;
 |  1 | 2015-10-23 12:20:21 | jruiz  |
 +----+---------------------+--------+
 1 row in set (0.00 sec)
-
 
 </syntaxhighlight>
 
