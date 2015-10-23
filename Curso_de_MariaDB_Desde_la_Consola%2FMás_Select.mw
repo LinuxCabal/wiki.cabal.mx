@@ -119,7 +119,7 @@ MariaDB [Prueba1]> SELECT * FROM inven WHERE nombre LIKE 'M%';
 +----+----------+-----------------------+--------+----------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> select * from inven where nombre like 'm%';
+MariaDB [Prueba1]> SELECT * FROM inven WHERE nombre LIKE 'm%';
 +----+----------+-----------------------+--------+----------+
 | id | nombre   | descrip               | precio | cantidad |
 +----+----------+-----------------------+--------+----------+
@@ -127,23 +127,23 @@ MariaDB [Prueba1]> select * from inven where nombre like 'm%';
 +----+----------+-----------------------+--------+----------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> create table fruta ( id int not null primary key auto_increment,
+MariaDB [Prueba1]> CREATE TABLE fruta ( id int not null primary key auto_increment,
     ->                      nombre varchar (50) not null );
 Query OK, 0 rows affected (0.26 sec)
 
-MariaDB [Prueba1]> insert into fruta values ( NULL, 'Manzanas' );
+MariaDB [Prueba1]> INSERT INTO fruta VALUES ( NULL, 'Manzanas' );
 Query OK, 1 row affected (0.05 sec)
 
-MariaDB [Prueba1]> insert into fruta values ( NULL, 'Naranjas' );
+MariaDB [Prueba1]> INSERT INTO fruta VALUES ( NULL, 'Naranjas' );
 Query OK, 1 row affected (0.03 sec)
 
-MariaDB [Prueba1]> insert into fruta values ( NULL, 'Uvas' );
+MariaDB [Prueba1]> INSERT INTO fruta VALUES ( NULL, 'Uvas' );
 Query OK, 1 row affected (0.07 sec)
 
-MariaDB [Prueba1]> insert into fruta values ( NULL, 'Platanos' );
+MariaDB [Prueba1]> INSERT INTO fruta VALUES ( NULL, 'Platanos' );
 Query OK, 1 row affected (0.07 sec)
 
-MariaDB [Prueba1]> select * from fruta;
+MariaDB [Prueba1]> SELECT * FROM fruta;
 +----+----------+
 | id | nombre   |
 +----+----------+
@@ -154,11 +154,11 @@ MariaDB [Prueba1]> select * from fruta;
 +----+----------+
 4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> create table color ( id int not null primary key auto_increment,
+MariaDB [Prueba1]> CREATE TABLE color ( id int not null primary key auto_increment,
     ->                      nombre varchar (50) not null );
 Query OK, 0 rows affected (0.25 sec)
 
-MariaDB [Prueba1]> show tables;
+MariaDB [Prueba1]> SHOW TABLES;
 +-------------------+
 | Tables_in_Prueba1 |
 +-------------------+
@@ -170,19 +170,19 @@ MariaDB [Prueba1]> show tables;
 +-------------------+
 5 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> insert into color values ( NULL, 'Rojo' );
+MariaDB [Prueba1]> INSERT INTO color VALUES ( NULL, 'Rojo' );
 Query OK, 1 row affected (0.06 sec)
 
-MariaDB [Prueba1]> insert into color values ( NULL, 'naranja' );
+MariaDB [Prueba1]> INSERT INTO color VALUES ( NULL, 'naranja' );
 Query OK, 1 row affected (0.04 sec)
 
-MariaDB [Prueba1]> insert into color values ( NULL, 'Purpura' );
+MariaDB [Prueba1]> INSERT INTO color VALUES ( NULL, 'Purpura' );
 Query OK, 1 row affected (0.07 sec)
 
-MariaDB [Prueba1]> insert into color values ( NULL, 'Amarillo' );
+MariaDB [Prueba1]> INSERT INTO color VALUES ( NULL, 'Amarillo' );
 Query OK, 1 row affected (0.07 sec)
 
-MariaDB [Prueba1]> select * from color;
+MariaDB [Prueba1]> SELECT * FROM color;
 +----+----------+
 | id | nombre   |
 +----+----------+
@@ -193,7 +193,7 @@ MariaDB [Prueba1]> select * from color;
 +----+----------+
 4 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> select * from fruta, color;
+MariaDB [Prueba1]> SELECT * FROM fruta, color;
 +----+----------+----+----------+
 | id | nombre   | id | nombre   |
 +----+----------+----+----------+
@@ -216,8 +216,8 @@ MariaDB [Prueba1]> select * from fruta, color;
 +----+----------+----+----------+
 16 rows in set (0.00 sec)
 
-MariaDB [Prueba1]> select fruta.id, fruta.nombre, color.nombre from fruta, color
-    ->          where fruta.id = color.id;
+MariaDB [Prueba1]> SELECT fruta.id, fruta.nombre, color.nombre FROM fruta, color
+    ->          WHERE fruta.id = color.id;
 +----+----------+----------+
 | id | nombre   | nombre   |
 +----+----------+----------+
@@ -227,19 +227,6 @@ MariaDB [Prueba1]> select fruta.id, fruta.nombre, color.nombre from fruta, color
 |  4 | Platanos | Amarillo |
 +----+----------+----------+
 4 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select fruta.id, fruta.nombre, color.nombre from fruta, color
-    ->          where fruta.id = color.id;
-+----+----------+----------+
-| id | nombre   | nombre   |
-+----+----------+----------+
-|  1 | Manzanas | Rojo     |
-|  2 | Naranjas | naranja  |
-|  3 | Uvas     | Purpura  |
-|  4 | Platanos | Amarillo |
-+----+----------+----------+
-4 rows in set (0.00 sec)
-
 
 </syntaxhighlight>
 
