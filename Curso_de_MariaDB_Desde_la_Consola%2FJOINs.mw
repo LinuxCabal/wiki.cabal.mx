@@ -21,9 +21,9 @@ Query OK, 5 rows affected, 5 warnings (0.03 sec)
 Records: 5  Duplicates: 0  Warnings: 5
 
 MariaDB [Prueba1]> SHOW CREATE TABLE Cursos;
-+--------+--------------------------------------------------------+
-| Table  | Create Table                                                                                                                                                                                                                             |
-+--------+--------------------------------------------------------+
++--------+-------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                                  |
++--------+-------------------------------------------------------------------------+
 | Cursos | CREATE TABLE `Cursos` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -71,9 +71,9 @@ Query OK, 5 rows affected, 5 warnings (0.04 sec)
 Records: 5  Duplicates: 0  Warnings: 5
 
 MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
-+----------+----------------------------------------------------------------------+
-| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                          |
-+----------+---------------------------------------------------------------------+
++----------+-------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                        |
++----------+-------------------------------------------------------------------------+
 | Usuarios | CREATE TABLE `Usuarios` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
