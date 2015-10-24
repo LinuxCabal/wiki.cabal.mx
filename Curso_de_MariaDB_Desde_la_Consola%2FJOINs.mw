@@ -59,7 +59,7 @@ CREATE TABLE Usuarios ( ID smallint unsigned NOT NULL AUTO_INCREMENT,
                         Nombre varchar(30) NOT NULL,
                         Curso smallint unsigned NOT NULL,
                         PRIMARY KEY (ID),
-                        UNIQUE KEY Curso (Curso),
+                        KEY Curso (Curso),
                         CONSTRAINT Usuarios_ibfk_1 
                         FOREIGN KEY (Curso) REFERENCES Cursos (ID) );
 
@@ -70,6 +70,12 @@ MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Ana', 2 ),
 Query OK, 5 rows affected, 5 warnings (0.04 sec)
 Records: 5  Duplicates: 0  Warnings: 5
 
+MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Mia', 2 );
+Query OK, 1 row affected, 1 warning (0.08 sec)
+
+MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Leo', 4 );
+
+
 MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
 +----------+-------------------------------------------------------------------------+
 | Table    | Create Table                                                            |
@@ -79,13 +85,13 @@ MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
   `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `Curso` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`ID`),
-  UNIQUE KEY `Curso` (`Curso`),
+  KEY `Curso` (`Curso`),
   CONSTRAINT `Usuarios_ibfk_1` FOREIGN KEY (`Curso`) REFERENCES `Cursos` (`ID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci       |
 +----------+-------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> describe Usuarios;
+MariaDB [Prueba1]> DESCRIBE Usuarios;
 +--------+----------------------+------+-----+---------+----------------+
 | Field  | Type                 | Null | Key | Default | Extra          |
 +--------+----------------------+------+-----+---------+----------------+
@@ -99,16 +105,15 @@ MariaDB [Prueba1]> SELECT * FROM Usuarios;
 +----+---------+-------+
 | ID | Nombre  | Curso |
 +----+---------+-------+
-| 14 | Ana     |     2 |
-| 15 | Roberto |     1 |
-| 16 | Angel   |     5 |
-| 17 | Laura   |     3 |
-| 18 | Ricardo |     4 |
+|  8 | Ana     |     2 |
+|  9 | Roberto |     1 |
+| 10 | Angel   |     5 |
+| 11 | Laura   |     3 |
+| 12 | Ricardo |     4 |
+| 13 | Mia     |     2 |
+| 14 | Leo     |     4 |
 +----+---------+-------+
-5 rows in set (0.00 sec)
-
-
-
+7 rows in set (0.00 sec)
 
 JOINs nos permite consultar estos datos en varios maneras.
 
@@ -119,12 +124,36 @@ un conjunto de registros que coinciden con los usuarios
 y tables de Cursoa, es decir, todos los Usuarios que están
 inscritos en un curso:
 
-SELECT Usuarios.Nombre, Curso.Nombre
-FROM `Usuarios`
-INNER JOIN `Curso` on Usuarios.Curso.course = Cursos.ID;
+MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Usuarios`
+                   INNER JOIN `Cursos` on 
+                   Usuarios.Curso = Cursos.ID;
++---------+------------+
+| Nombre  | Nombre     |
++---------+------------+
+| Ana     | CSS3       |
+| Roberto | HTML5      |
+| Angel   | MariaDB    |
+| Laura   | JavaScript |
+| Ricardo | PHP        |
+| Mia     | CSS3       |
+| Leo     | PHP        |
++---------+------------+
+7 rows in set (0.00 sec)
+
+
+
+
+
 
 
 What if we require a list of all students and their courses even if they’re not enrolled on one? A LEFT JOIN produces a set of records which matches every entry in the left table (Usuarios) regardless of any matching entry in the right table (Cursos):
+
+¿Qué pasa si necesitamos una lista de todos los estudiantes y sus 
+cursos incluso si no estás inscrito en uno? Un LEFT JOIN produce el
+conjunto de registros que coincide con cada entrada en la tabla
+izquierda (Usuarios) sin importar ninguna entrada coincidente en la 
+tabla derecha (Cursos):
+
 
 
 SELECT Usuarios.Nombre, Cursos.Nombre
