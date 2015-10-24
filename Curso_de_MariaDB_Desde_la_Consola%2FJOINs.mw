@@ -22,13 +22,13 @@ Records: 5  Duplicates: 0  Warnings: 5
 
 MariaDB [Prueba1]> SHOW CREATE TABLE Cursos;
 +--------+-------------------------------------------------------------------------+
-| Table  | Create Table                                                             |
+| Table  | Create Table                                                            |
 +--------+-------------------------------------------------------------------------+
 | Cursos | CREATE TABLE `Cursos` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci                      |
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci          |
 +--------+-------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
