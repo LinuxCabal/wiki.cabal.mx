@@ -81,7 +81,7 @@ MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Curso` (`Curso`),
   CONSTRAINT `Usuarios_ibfk_1` FOREIGN KEY (`Curso`) REFERENCES `Cursos` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci        |
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci       |
 +----------+-------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
