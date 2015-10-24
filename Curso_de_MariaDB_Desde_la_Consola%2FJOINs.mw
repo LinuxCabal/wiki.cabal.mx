@@ -20,6 +20,9 @@ MariaDB [Prueba1]> INSERT INTO Cursos values ( '', 'HTML5' ),
 Query OK, 5 rows affected, 5 warnings (0.03 sec)
 Records: 5  Duplicates: 0  Warnings: 5
 
+MariaDB [Prueba1]> insert into Cursos values ( '',  'Python' );
+Query OK, 1 row affected, 1 warning (0.03 sec)
+
 MariaDB [Prueba1]> SHOW CREATE TABLE Cursos;
 +--------+-------------------------------------------------------------------------+
 | Table  | Create Table                                                            |
@@ -50,6 +53,7 @@ MariaDB [Prueba1]> SELECT * FROM Cursos;
 |  3 | JavaScript |
 |  4 | PHP        |
 |  5 | MariaDB    |
+|  6 | Python     |
 +----+------------+
 5 rows in set (0.00 sec)
 
@@ -151,8 +155,8 @@ izquierda (Usuarios) sin importar ninguna entrada coincidente en la
 tabla derecha (Cursos):
 
 MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
-    -> FROM `Usuarios`
-    -> LEFT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
+       FROM `Usuarios`
+       LEFT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
 +----------+------------+
 | Nombre   | Nombre     |
 +----------+------------+
@@ -191,6 +195,7 @@ MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
 | Ricardo | PHP        |
 | Leo     | PHP        |
 | Angel   | MariaDB    |
+| NULL    | Python     |
 +---------+------------+
 7 rows in set (0.00 sec)
 
@@ -207,15 +212,16 @@ MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Cursos` LEFT JOIN
 | Ricardo | PHP        |
 | Leo     | PHP        |
 | Angel   | MariaDB    |
+| NULL    | Python     |
 +---------+------------+
 7 rows in set (0.00 sec)
 
 We could, for example, count the number of students enrolled on each course:
 
 MariaDB [Prueba1]> SELECT Cursos.Nombre, COUNT(Usuarios.Nombre)
-    -> FROM `Cursos`
-    -> LEFT JOIN `Usuarios` ON Usuarios.Curso = Cursos.ID
-    -> GROUP BY Cursos.ID;
+       FROM `Cursos`
+       LEFT JOIN `Usuarios` ON Usuarios.Curso = Cursos.ID
+       GROUP BY Cursos.ID;
 +------------+------------------------+
 | Nombre     | COUNT(Usuarios.Nombre) |
 +------------+------------------------+
@@ -224,8 +230,9 @@ MariaDB [Prueba1]> SELECT Cursos.Nombre, COUNT(Usuarios.Nombre)
 | JavaScript |                      1 |
 | PHP        |                      2 |
 | MariaDB    |                      1 |
+| Python     |                      0 |
 +------------+------------------------+
-5 rows in set (0.02 sec)
+6 rows in set (0.00 sec)
 
 OUTER JOIN (or FULL OUTER JOIN)
 
