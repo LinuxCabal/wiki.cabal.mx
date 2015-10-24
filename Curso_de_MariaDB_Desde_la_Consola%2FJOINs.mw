@@ -5,7 +5,7 @@ __NOTOC__
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-“JOIN” is an SQL keyword used to query data from two or more related tables. 
+JOINs son manera para consultar datos de dos o más tablas.
 
 CREATE TABLE `Usuarios` (
 	`ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
