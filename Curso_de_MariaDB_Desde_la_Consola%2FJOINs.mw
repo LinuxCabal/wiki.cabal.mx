@@ -5,31 +5,119 @@ __NOTOC__
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-JOINs son manera para consultar datos de dos o más tablas.
+JOINs son manera para consultar datos de dos o más tablas relacionadas.
 
-CREATE TABLE `Usuarios` (
-	`ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-	`Nombre` varchar(30) NOT NULL,
-	`Curso` smallint(5) unsigned DEFAULT NULL,
-	PRIMARY KEY (`ID`)
+CREATE TABLE Cursos ( ID smallint unsigned NOT NULL AUTO_INCREMENT,
+                      Nombre varchar(50) NOT NULL,
+                      PRIMARY KEY (ID)
 );
 
-The course number relates to a subject being taken in a course table…
+MariaDB [Prueba1]> INSERT INTO Cursos values ( '', 'HTML5' ),
+                                             ( '', 'CSS3' ),
+                                             ( '', 'JavaScript' ),
+                                             ( '', 'PHP' ),
+                                             ( '', 'MariaDB' );
+Query OK, 5 rows affected, 5 warnings (0.03 sec)
+Records: 5  Duplicates: 0  Warnings: 5
 
-CREATE TABLE `CURSOS` (
-	`ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-	`Nombre` varchar(50) NOT NULL,
-	PRIMARY KEY (`ID`)
-);
+MariaDB [Prueba1]> SHOW CREATE TABLE Cursos;
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table  | Create Table                                                                                                                                                                                                                             |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Cursos | CREATE TABLE `Cursos` (
+  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
 
-JOINs allow us to query this data in a number of ways.
+MariaDB [Prueba1]> DESCRIBE Cursos;
++--------+----------------------+------+-----+---------+----------------+
+| Field  | Type                 | Null | Key | Default | Extra          |
++--------+----------------------+------+-----+---------+----------------+
+| ID     | smallint(5) unsigned | NO   | PRI | NULL    | auto_increment |
+| Nombre | varchar(50)          | NO   |     | NULL    |                |
++--------+----------------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
 
-INNER JOIN (or just JOIN)
+MariaDB [Prueba1]> SELECT * FROM Cursos;
++----+------------+
+| ID | Nombre     |
++----+------------+
+|  1 | HTML5      |
+|  2 | CSS3       |
+|  3 | JavaScript |
+|  4 | PHP        |
+|  5 | MariaDB    |
++----+------------+
+5 rows in set (0.00 sec)
 
-The most frequently used clause is INNER JOIN. This produces 
-a set of records which match in both the user and course tables, 
-i.e. all users who are enrolled on a course:
+El número del curso se refiere a un tema en la table de Cursos
 
+CREATE TABLE Usuarios ( ID smallint unsigned NOT NULL AUTO_INCREMENT,
+                        Nombre varchar(30) NOT NULL,
+                        Curso smallint unsigned NOT NULL,
+                        PRIMARY KEY (ID),
+                        UNIQUE KEY Curso (Curso),
+                        CONSTRAINT Usuarios_ibfk_1 
+                        FOREIGN KEY (Curso) REFERENCES Cursos (ID) );
+
+
+MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Ana', 2 ), 
+                       ( '', 'Roberto', 1 ), ( '', 'Angel', 5 ), 
+                       ( '', 'Laura', 3 ),  ( '', 'Ricardo', 4 );
+Query OK, 5 rows affected, 5 warnings (0.04 sec)
+Records: 5  Duplicates: 0  Warnings: 5
+
+MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
++----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                          |
++----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Usuarios | CREATE TABLE `Usuarios` (
+  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Curso` smallint(5) unsigned NOT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `Curso` (`Curso`),
+  CONSTRAINT `Usuarios_ibfk_1` FOREIGN KEY (`Curso`) REFERENCES `Cursos` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
++----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> describe Usuarios;
++--------+----------------------+------+-----+---------+----------------+
+| Field  | Type                 | Null | Key | Default | Extra          |
++--------+----------------------+------+-----+---------+----------------+
+| ID     | smallint(5) unsigned | NO   | PRI | NULL    | auto_increment |
+| Nombre | varchar(30)          | NO   |     | NULL    |                |
+| Curso  | smallint(5) unsigned | NO   | UNI | NULL    |                |
++--------+----------------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT * FROM Usuarios;
++----+---------+-------+
+| ID | Nombre  | Curso |
++----+---------+-------+
+| 14 | Ana     |     2 |
+| 15 | Roberto |     1 |
+| 16 | Angel   |     5 |
+| 17 | Laura   |     3 |
+| 18 | Ricardo |     4 |
++----+---------+-------+
+5 rows in set (0.00 sec)
+
+
+
+
+JOINs nos permite consultar estos datos en varios maneras.
+
+INNER JOIN
+
+La cláusula más frecuente es INNER JOIN. Esto produce
+un conjunto de registros que coinciden con los usuarios 
+y tables de Cursoa, es decir, todos los Usuarios que están
+inscritos en un curso:
 
 SELECT Usuarios.Nombre, Curso.Nombre
 FROM `Usuarios`
