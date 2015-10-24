@@ -74,7 +74,10 @@ MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Mia', 2 );
 Query OK, 1 row affected, 1 warning (0.08 sec)
 
 MariaDB [Prueba1]> INSERT INTO Usuarios values ( '', 'Leo', 4 );
+Query OK, 1 row affected, 1 warning (0.08 sec)
 
+MariaDB [Prueba1]> INSERT INTO Usuarios ( ID, Nombre ) values ( '', 'Mauricio');
+Query OK, 1 row affected, 1 warning (0.08 sec)
 
 MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
 +----------+-------------------------------------------------------------------------+
@@ -102,17 +105,18 @@ MariaDB [Prueba1]> DESCRIBE Usuarios;
 3 rows in set (0.00 sec)
 
 MariaDB [Prueba1]> SELECT * FROM Usuarios;
-+----+---------+-------+
-| ID | Nombre  | Curso |
-+----+---------+-------+
-|  8 | Ana     |     2 |
-|  9 | Roberto |     1 |
-| 10 | Angel   |     5 |
-| 11 | Laura   |     3 |
-| 12 | Ricardo |     4 |
-| 13 | Mia     |     2 |
-| 14 | Leo     |     4 |
-+----+---------+-------+
++----+---------+--------+
+| ID | Nombre  | Curso  |
++----+---------+--------+
+|  8 | Ana     |      2 |
+|  9 | Roberto |      1 |
+| 10 | Angel   |      5 |
+| 11 | Laura   |      3 |
+| 12 | Ricardo |      4 |
+| 13 | Mia     |      2 |
+| 14 | Leo     |      4 |
+| 15 | Mauricio |  NULL |
++----+---------+--------+
 7 rows in set (0.00 sec)
 
 JOINs nos permite consultar estos datos en varios maneras.
@@ -140,25 +144,28 @@ MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Usuarios`
 +---------+------------+
 7 rows in set (0.00 sec)
 
-
-
-
-
-
-
-What if we require a list of all students and their courses even if they’re not enrolled on one? A LEFT JOIN produces a set of records which matches every entry in the left table (Usuarios) regardless of any matching entry in the right table (Cursos):
-
 ¿Qué pasa si necesitamos una lista de todos los estudiantes y sus 
 cursos incluso si no estás inscrito en uno? Un LEFT JOIN produce el
 conjunto de registros que coincide con cada entrada en la tabla
 izquierda (Usuarios) sin importar ninguna entrada coincidente en la 
 tabla derecha (Cursos):
 
-
-
-SELECT Usuarios.Nombre, Cursos.Nombre
-FROM `Usuarios`
-LEFT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
+MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
+    -> FROM `Usuarios`
+    -> LEFT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
++----------+------------+
+| Nombre   | Nombre     |
++----------+------------+
+| Ana      | CSS3       |
+| Roberto  | HTML5      |
+| Angel    | MariaDB    |
+| Laura    | JavaScript |
+| Ricardo  | PHP        |
+| Mia      | CSS3       |
+| Leo      | PHP        |
+| Mauricio | NULL       |
++----------+------------+
+8 rows in set (0.00 sec)
 
 RIGHT JOIN
 
@@ -171,21 +178,54 @@ SELECT Usuarios.Nombre, Cursos.Nombre
 FROM `Usuarios`
 RIGHT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
 
+MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
+    -> FROM `Usuarios`
+    -> RIGHT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
++---------+------------+
+| Nombre  | Nombre     |
++---------+------------+
+| Roberto | HTML5      |
+| Ana     | CSS3       |
+| Mia     | CSS3       |
+| Laura   | JavaScript |
+| Ricardo | PHP        |
+| Leo     | PHP        |
+| Angel   | MariaDB    |
++---------+------------+
+7 rows in set (0.00 sec)
 
-RIGHT JOINs are rarely used since you can express the same result using a LEFT JOIN. This can be more efficient and quicker for the database to parse:
+RGHT JOINs are rarely used since you can express the same result using a LEFT JOIN. This can be more efficient and quicker for the database to parse:
 
-
-SELECT Usuarios.Nombre, Cursos.Nombre
-FROM `Cursos`
-LEFT JOIN `Usuarios` on Usuarios.Curso = Curso-ID;
+MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Cursos` LEFT JOIN `Usuarios` on Usuarios.Curso = Cursos.ID;
++---------+------------+
+| Nombre  | Nombre     |
++---------+------------+
+| Roberto | HTML5      |
+| Ana     | CSS3       |
+| Mia     | CSS3       |
+| Laura   | JavaScript |
+| Ricardo | PHP        |
+| Leo     | PHP        |
+| Angel   | MariaDB    |
++---------+------------+
+7 rows in set (0.00 sec)
 
 We could, for example, count the number of students enrolled on each course:
 
-
-SELECT Cursos.Nombre, COUNT(Usuarios.Nombre)
-FROM `Cursos`
-LEFT JOIN `Usuarios` ON Usuarios.Curso = Cursos.ID
-GROUP BY Cursos.ID;
+MariaDB [Prueba1]> SELECT Cursos.Nombre, COUNT(Usuarios.Nombre)
+    -> FROM `Cursos`
+    -> LEFT JOIN `Usuarios` ON Usuarios.Curso = Cursos.ID
+    -> GROUP BY Cursos.ID;
++------------+------------------------+
+| Nombre     | COUNT(Usuarios.Nombre) |
++------------+------------------------+
+| HTML5      |                      1 |
+| CSS3       |                      2 |
+| JavaScript |                      1 |
+| PHP        |                      2 |
+| MariaDB    |                      1 |
++------------+------------------------+
+5 rows in set (0.02 sec)
 
 OUTER JOIN (or FULL OUTER JOIN)
 
