@@ -22,7 +22,7 @@ Records: 5  Duplicates: 0  Warnings: 5
 
 MariaDB [Prueba1]> SHOW CREATE TABLE Cursos;
 +--------+-------------------------------------------------------------------------+
-| Table  | Create Table                                                                                                                                                                                                                                  |
+| Table  | Create Table                                                                              |
 +--------+-------------------------------------------------------------------------+
 | Cursos | CREATE TABLE `Cursos` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
@@ -72,7 +72,7 @@ Records: 5  Duplicates: 0  Warnings: 5
 
 MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
 +----------+-------------------------------------------------------------------------+
-| Table    | Create Table                                                                                                                                                                                                                                                                                                                                                                                        |
+| Table    | Create Table                                                                                                                                                          |
 +----------+-------------------------------------------------------------------------+
 | Usuarios | CREATE TABLE `Usuarios` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
