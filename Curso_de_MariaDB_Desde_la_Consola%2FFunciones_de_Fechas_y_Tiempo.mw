@@ -28,8 +28,8 @@ Las siguientes unidades son válidas:
 
 <table>
   <tr>
-    <th style="text-align:center;">Undad</th>
-    <th>Descripción</th>
+    <th style="text-align:left;">Undad</th>
+    <th style="text-align:left;">Descripción</th>
   </tr>
   <tr>
     <td><code>MICROSECOND</code></td>
