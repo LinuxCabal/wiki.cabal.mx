@@ -6,23 +6,25 @@ __NOTOC__
 = Funciones de Fechas y Tiempo =
 == Interval ==
 
-
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 El directivo INTERVAL se puede utilizar para añadir o restar un 
 intervalo de tiempo a un DATETIME, DATE o TIME valor.
-La sintaxis es:<br /><br /> 
+La sintaxis es: 
 
-INTERVAL time_quantity Time_unit<br /><br />
+INTERVAL time_quantity Time_unit
 
-MariaDB [(none)]> select '2015-10-21 12:15:30' +  INTERVAL 4 day;<br />
-+-----------------------------------------+<br />
-| '2015-10-21 12:15:30' +  INTERVAL 4 day |<br />
-+-----------------------------------------+<br />
-| 2015-10-25 12:15:30                     |<br />
-+-----------------------------------------+<br />
-1 row in set (0.01 sec)<br /><br />
+MariaDB [(none)]> select '2015-10-21 12:15:30' +  INTERVAL 4 day;
++-----------------------------------------+
+| '2015-10-21 12:15:30' +  INTERVAL 4 day |
++-----------------------------------------+
+| 2015-10-25 12:15:30                     |
++-----------------------------------------+
+1 row in set (0.01 sec)
 
-Las siguientes unidades son válidas:<br /><br />
+Las siguientes unidades son válidas:
+
+</syntaxhighlight>
 
 <table>
   <tr>
