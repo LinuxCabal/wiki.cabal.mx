@@ -90,7 +90,7 @@ MariaDB [Prueba1]> DESCRIBE Usuarios;
 +--------+----------------------+------+-----+---------+----------------+
 | ID     | smallint(5) unsigned | NO   | PRI | NULL    | auto_increment |
 | Nombre | varchar(30)          | NO   |     | NULL    |                |
-| Curso  | smallint(5) unsigned | NO   | UNI | NULL    |                |
+| Curso  | smallint(5) unsigned | YES  | UNI | NULL    |                |
 +--------+----------------------+------+-----+---------+----------------+
 3 rows in set (0.00 sec)
 
