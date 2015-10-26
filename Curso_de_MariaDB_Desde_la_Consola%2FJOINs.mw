@@ -61,7 +61,7 @@ El número del curso se refiere a un tema en la table de Cursos
 
 CREATE TABLE Usuarios ( ID smallint unsigned NOT NULL AUTO_INCREMENT,
                         Nombre varchar(30) NOT NULL,
-                        Curso smallint unsigned NOT NULL,
+                        Curso smallint unsigned,
                         PRIMARY KEY (ID),
                         KEY Curso (Curso),
                         CONSTRAINT Usuarios_ibfk_1 
