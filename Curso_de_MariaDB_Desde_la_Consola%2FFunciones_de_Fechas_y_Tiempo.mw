@@ -1,0 +1,79 @@
+__NOTOC__
+* [[:#Funciones de Fechas y Tiempo | Funciones de Fechas y Tiempo]]
+* [[:#Intervaal | Interval]]
+* [[:#Delete | Delete]]
+
+= Funciones de Fechas y Tiempo =
+== Interval ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+El directivo INTERVAL se puede utilizar para añadir o restar un 
+intervalo de tiempo a un DATETIME, DATE o TIME valor.
+La sintaxis es: 
+
+INTERVAL time_quantity Time_unit
+
+MariaDB [(none)]> select '2015-10-21 12:15:30' +  INTERVAL 4 day;
++-----------------------------------------+
+| '2015-10-21 12:15:30' +  INTERVAL 4 day |
++-----------------------------------------+
+| 2015-10-25 12:15:30                     |
++-----------------------------------------+
+1 row in set (0.01 sec)
+
+Las siguientes unidades son válidas:
+
+<table>
+  <tr>
+    <th>Unit</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><code>MICROSECOND</code></td>
+    <td>Microseconds</td>
+  </tr>
+  <tr>
+    <td><code>SECOND</code></td>
+    <td>Seconds</td>
+  </tr>
+  <tr>
+    <td><code>MINUTE</code></td>
+    <td>Minutes</td>
+  </tr>
+  <tr>
+    <td><code>HOUR</code></td>
+    <td>Hours</td>
+  </tr>
+  <tr>
+    <td><code>DAY</code></td>
+    <td>Days</td>
+  </tr>
+  <tr>
+    <td><code>WEEK</code></td>
+    <td>Weeks</td>
+  </tr>
+  <tr>
+    <td><code>MONTH</code></td>
+    <td>Months</td>
+  </tr>
+<tr><td><code>QUARTER</code></td><td>Quarters</td></tr>
+<tr><td><code>YEAR</code></td><td>Years</td></tr>
+<tr><td><code>SECOND_MICROSECOND</code></td><td>Seconds.Microseconds</td></tr>
+<tr><td><code>MINUTE_MICROSECOND</code></td><td>Minutes.Seconds.Microseconds</td></tr>
+<tr><td><code>MINUTE_SECOND</code></td><td>Minutes.Seconds</td></tr>
+<tr><td><code>HOUR_MICROSECOND</code></td><td>Hours.Minutes.Seconds.Microseconds</td></tr>
+<tr><td><code>HOUR_SECOND</code></td><td>Hours.Minutes.Seconds</td></tr>
+<tr><td><code>HOUR_MINUTE</code></td><td>Hours.Minutes</td></tr>
+<tr><td><code>DAY_MICROSECOND</code></td><td>Days Hours.Minutes.Seconds.Microseconds</td></tr>
+<tr><td><code>DAY_SECOND</code></td><td>Days Hours.Minutes.Seconds</td></tr>
+<tr><td><code>DAY_MINUTE</code></td><td>Days Hours.Minutes</td></tr>
+<tr><td><code>DAY_HOUR</code></td><td>Days Hours</td></tr>
+<tr><td><code>YEAR_MONTH</code></td><td>Years-Months</td></tr>
+</table>
+
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
