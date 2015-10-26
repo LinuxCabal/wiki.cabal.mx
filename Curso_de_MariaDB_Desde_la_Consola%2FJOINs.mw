@@ -76,7 +76,7 @@ MariaDB [Prueba1]> SHOW CREATE TABLE Usuarios;
 | Usuarios | CREATE TABLE `Usuarios` (
   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `Curso` smallint(5) unsigned NOT NULL,
+  `Curso` smallint(5) unsigned,
   PRIMARY KEY (`ID`),
   KEY `Curso` (`Curso`),
   CONSTRAINT `Usuarios_ibfk_1` FOREIGN KEY (`Curso`) REFERENCES `Cursos` (`ID`)
