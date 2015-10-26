@@ -26,7 +26,7 @@ Las siguientes unidades son válidas:
 
 </syntaxhighlight>
 
-<table border=1 cellspacing=10>
+<table border=1 cellpadding=3>
   <tr>
     <th style="text-align:left;">Undad</th>
     <th style="text-align:left;">Descripción</th>
@@ -59,9 +59,12 @@ Las siguientes unidades son válidas:
     <td><code>MONTH</code></td>
     <td>Months</td>
   </tr>
-<tr><td><code>QUARTER</code></td><td>Quarters</td></tr>
-<tr><td><code>YEAR</code></td><td>Years</td></tr>
-<tr><td><code>SECOND_MICROSECOND</code></td><td>Seconds.Microseconds</td></tr>
+  <tr>
+    <td><code>QUARTER</code></td>
+    <td>Quarters</td>
+  </tr>
+  <tr><td><code>YEAR</code></td><td>Years</td></tr>
+  <tr><td><code>SECOND_MICROSECOND</code>  </td><td>Seconds.Microseconds</td></tr>
 <tr><td><code>MINUTE_MICROSECOND</code></td><td>Minutes.Seconds.Microseconds</td></tr>
 <tr><td><code>MINUTE_SECOND</code></td><td>Minutes.Seconds</td></tr>
 <tr><td><code>HOUR_MICROSECOND</code></td><td>Hours.Minutes.Seconds.Microseconds</td></tr>
