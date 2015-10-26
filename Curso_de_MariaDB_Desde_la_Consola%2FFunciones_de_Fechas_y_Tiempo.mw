@@ -6,7 +6,7 @@ __NOTOC__
 = Funciones de Fechas y Tiempo =
 == Interval ==
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+<syntaxhighlight lang="html" line="GESHI_FANCY_LINE_NUMBERS">
 
 El directivo INTERVAL se puede utilizar para añadir o restar un 
 intervalo de tiempo a un DATETIME, DATE o TIME valor.
