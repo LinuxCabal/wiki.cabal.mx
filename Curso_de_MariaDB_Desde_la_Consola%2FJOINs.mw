@@ -143,7 +143,7 @@ INNER JOIN
 
 La cláusula más frecuente es INNER JOIN. Esto produce
 un conjunto de registros que coinciden con los usuarios 
-y tables de Cursoa, es decir, todos los Usuarios que están
+y tables de Cursos, es decir, todos los Usuarios que están
 inscritos en un curso:
 
 MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Usuarios`
@@ -187,18 +187,15 @@ MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
 
 RIGHT JOIN
 
-Perhaps we require a list all courses and students even 
-if no one has been enrolled? A RIGHT JOIN produces a set 
-of records which matches every entry in the right table (Cursos) regardless of any matching entry in the left table (Usuarios):
-
-
-SELECT Usuarios.Nombre, Cursos.Nombre
-FROM `Usuarios`
-RIGHT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
+Tal vez necesitamos una lista de todos los cursos y estudiantes 
+incluso si nadie se ha inscrito? Un RIGHT JOIN produce un conjunto
+de registros que coincide con cada entrada en la tabla de la 
+derecha (Cursos) independientemente de cualquier entrada 
+coincidente en la tabla de la izquierda (Usuarios):
 
 MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
-    -> FROM `Usuarios`
-    -> RIGHT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
+       FROM `Usuarios`
+       RIGHT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
 +---------+------------+
 | Nombre  | Nombre     |
 +---------+------------+
@@ -214,8 +211,14 @@ MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre
 7 rows in set (0.00 sec)
 
 RGHT JOINs are rarely used since you can express the same result using a LEFT JOIN. This can be more efficient and quicker for the database to parse:
+RGHT JOINs rara vez se utiliza ya que se puede expresar 
+el mismo resultado utilizando un LEFT JOIN. Esto puede 
+ser más eficiente y más rápido para la base de datos para 
+analizar:
 
-MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Cursos` LEFT JOIN `Usuarios` on Usuarios.Curso = Cursos.ID;
+MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre 
+                     FROM Cursos 
+                   LEFT JOIN Usuarios on Usuarios.Curso = Cursos.ID;
 +---------+------------+
 | Nombre  | Nombre     |
 +---------+------------+
@@ -230,12 +233,12 @@ MariaDB [Prueba1]> SELECT Usuarios.Nombre, Cursos.Nombre FROM `Cursos` LEFT JOIN
 +---------+------------+
 7 rows in set (0.00 sec)
 
-We could, for example, count the number of students enrolled on each course:
+Podríamos contar el número de alumnos inscribiendos en cada curso:
 
 MariaDB [Prueba1]> SELECT Cursos.Nombre, COUNT(Usuarios.Nombre)
-       FROM `Cursos`
-       LEFT JOIN `Usuarios` ON Usuarios.Curso = Cursos.ID
-       GROUP BY Cursos.ID;
+                     FROM Cursos
+                   LEFT JOIN Usuarios ON Usuarios.Curso = Cursos.ID
+                   GROUP BY Cursos.ID;
 +------------+------------------------+
 | Nombre     | COUNT(Usuarios.Nombre) |
 +------------+------------------------+
@@ -250,20 +253,38 @@ MariaDB [Prueba1]> SELECT Cursos.Nombre, COUNT(Usuarios.Nombre)
 
 OUTER JOIN (or FULL OUTER JOIN)
 
-Our last option is the OUTER JOIN which returns all records in both tables regardless of any match. Where no match exists, the missing side will contain NULL.
+Nuestra última opción es la OUTER JOIN que devuelve todos 
+los registros en ambas tablas, independientemente de cualquier 
+partido. Cuando no existe coincidencia, el lado que falta 
+contendrá NULL.
 
-OUTER JOIN is less useful than INNER, LEFT or RIGHT and it’s not implemented in MySQL. However, you can work around this restriction using the UNION of a LEFT and RIGHT JOIN, e.g.
+OUTER JOIN es menos útil que INNER LEFT o RIGHT y no se implementó en MySQL. 
+Sin embargo, puede evitar esta restricción mediante la unión de 
+un LEFT y RIGHT JOIN, por ejemplo,
 
+SELECT Usuarios.Nombre, Cursos.Nombre 
+         FROM Usuarios 
+       LEFT JOIN Cursos 
+         ON Usuarios.Curso = Cursos.ID 
+UNION SELECT Usuarios.Nombre, Cursos.Nombre 
+         FROM Usuarios 
+       RIGHT JOIN Cursos 
+         ON Usuarios.Curso = Cursos.ID;
++----------+------------+
+| Nombre   | Nombre     |
++----------+------------+
+| Ana      | CSS3       |
+| Roberto  | HTML5      |
+| Angel    | MariaDB    |
+| Laura    | JavaScript |
+| Ricardo  | PHP        |
+| Mia      | CSS3       |
+| Leo      | PHP        |
+| Mauricio | NULL       |
+| NULL     | Python     |
++----------+------------+
+9 rows in set (0.00 sec)
 
-SELECT Usuarios.Nombre, Cursos.Nombre
-FROM `Usuarios`
-LEFT JOIN `Cursos` on Usuarios.Cursos = Curso.ID
-
-UNION
-
-SELECT Usuarios.Nombre, Cusros.Nombre
-FROM `Usuarios`
-RIGHT JOIN `Cursos` on Usuarios.Curso = Cursos.ID;
 
 </syntaxhighlight>
 
