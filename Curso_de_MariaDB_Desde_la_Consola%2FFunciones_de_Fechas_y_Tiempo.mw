@@ -289,22 +289,6 @@ MariaDB [Prueba1]> SELECT CURDATE();
 +------------+
 1 row in set (0.00 sec)
 
-MariaDB [Prueba1]> SELECT CURDATE() + 0;
-+---------------+
-| CURDATE() + 0 |
-+---------------+
-|      20151026 |
-+---------------+
-1 row in set (0.00 sec)
-
-MariaDB [Prueba1]> SELECT CURDATE() + 10;
-+----------------+
-| CURDATE() + 10 |
-+----------------+
-|       20151036 |
-+----------------+
-1 row in set (0.00 sec)
-
 MariaDB [Prueba1]> SELECT CURDATE() + 50;
 +----------------+
 | CURDATE() + 50 |
