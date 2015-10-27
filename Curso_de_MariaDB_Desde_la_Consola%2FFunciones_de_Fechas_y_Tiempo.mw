@@ -1,7 +1,8 @@
 __NOTOC__
 * [[:#Funciones de Fechas y Tiempo | Funciones de Fechas y Tiempo]]
 * [[:#Intervaal | Interval]]
-* [[:#Delete | Delete]]
+* [[:#DATE_ADD ADDDATE | DATE_ADD ADDDATE ==]]
+* [[:#ADDTIME | ADDTIME ==]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
@@ -14,13 +15,21 @@ La sintaxis es:
 
 INTERVAL time_quantity Time_unit
 
-MariaDB [(none)]> select '2015-10-21 12:15:30' +  INTERVAL 4 day;
+MariaDB [(none)]> SELECT '2015-10-21 12:15:30' +  INTERVAL 4 day;
 +-----------------------------------------+
 | '2015-10-21 12:15:30' +  INTERVAL 4 day |
 +-----------------------------------------+
 | 2015-10-25 12:15:30                     |
 +-----------------------------------------+
 1 row in set (0.01 sec)
+
+MariaDB [(none)]> SELECT '2014-05-17 08:44:21' - INTERVAL '7 1' DAY_HOUR;
++-------------------------------------------------+
+| '2014-05-17 08:44:21' - INTERVAL '7 1' DAY_HOUR |
++-------------------------------------------------+
+| 2014-05-10 07:44:21                             |
++-------------------------------------------------+
+1 row in set (0.00 sec)
 
 Las siguientes unidades son válidas:
 
@@ -63,22 +72,246 @@ Las siguientes unidades son válidas:
     <td><code>QUARTER</code></td>
     <td>Quarters</td>
   </tr>
-  <tr><td><code>YEAR</code></td><td>Years</td></tr>
-  <tr><td><code>SECOND_MICROSECOND</code>  </td><td>Seconds.Microseconds</td></tr>
-<tr><td><code>MINUTE_MICROSECOND</code></td><td>Minutes.Seconds.Microseconds</td></tr>
-<tr><td><code>MINUTE_SECOND</code></td><td>Minutes.Seconds</td></tr>
-<tr><td><code>HOUR_MICROSECOND</code></td><td>Hours.Minutes.Seconds.Microseconds</td></tr>
-<tr><td><code>HOUR_SECOND</code></td><td>Hours.Minutes.Seconds</td></tr>
-<tr><td><code>HOUR_MINUTE</code></td><td>Hours.Minutes</td></tr>
-<tr><td><code>DAY_MICROSECOND</code></td><td>Days Hours.Minutes.Seconds.Microseconds</td></tr>
-<tr><td><code>DAY_SECOND</code></td><td>Days Hours.Minutes.Seconds</td></tr>
-<tr><td><code>DAY_MINUTE</code></td><td>Days Hours.Minutes</td></tr>
-<tr><td><code>DAY_HOUR</code></td><td>Days Hours</td></tr>
-<tr><td><code>YEAR_MONTH</code></td><td>Years-Months</td></tr>
+  <tr>
+    <td><code>YEAR</code></td><td>Years</td>
+  </tr>
+  <tr>
+    <td><code>SECOND_MICROSECOND</code></td><td>Seconds.Microseconds</td>
+  </tr>
+  <tr>
+    <td><code>MINUTE_MICROSECOND</code></td><td>Minutes.Seconds.Microseconds</td>
+  </tr>
+  <tr>
+    <td><code>MINUTE_SECOND</code></td><td>Minutes.Seconds</td>
+  </tr>
+  <tr>
+    <td><code>HOUR_MICROSECOND</code></td><td>Hours.Minutes.Seconds.Microseconds</td>
+  </tr>
+  <tr>
+    <td><code>HOUR_SECOND</code></td><td>Hours.Minutes.Seconds</td>
+  </tr>
+  <tr>
+    <td><code>HOUR_MINUTE</code></td><td>Hours.Minutes</td>
+  </tr>
+  <tr>
+    <td><code>DAY_MICROSECOND</code></td><td>Days Hours.Minutes.Seconds.Microseconds</td>
+  </tr>
+  <tr>
+    <td><code>DAY_SECOND</code></td><td>Days Hours.Minutes.Seconds</td>
+  </tr>
+  <tr>
+    <td><code>DAY_MINUTE</code></td><td>Days Hours.Minutes</td>
+  </tr>
+  <tr>
+    <td><code>DAY_HOUR</code></td><td>Days Hours</td>
+  </tr>
+  <tr>
+    <td><code>YEAR_MONTH</code></td><td>Years-Months</td>
+  </tr>
 </table>
 
+== DATE_ADD ADDDATE ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+Cuando se invoca con la forma INTERVAL del segundo argumento, ADDDATE () 
+es sinónimo de DATE_ADD (). Cuando se invoca con la forma DAY del segundo 
+argumento, MariaDB lo trata como un número entero de días a añadir a expr.
 
 </syntaxhighlight>
+
+MariaDB [(none)]> SELECT DATE_ADD('2015-10-25', INTERVAL 31 DAY);
++-----------------------------------------+
+| DATE_ADD('2015-10-25', INTERVAL 31 DAY) |
++-----------------------------------------+
+| 2015-11-25                              |
++-----------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT ADDDATE('2015-10-25', INTERVAL 31 DAY);
++----------------------------------------+
+| ADDDATE('2015-10-25', INTERVAL 31 DAY) |
++----------------------------------------+
+| 2015-11-25                             |
++----------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> SELECT ADDDATE('2015-10-25', 31);
++---------------------------+
+| ADDDATE('2015-10-25', 31) |
++---------------------------+
+| 2015-11-25                |
++---------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [(none)]> use Prueba1
+Database changed
+
+MariaDB [Prueba1]> CREATE TABLE t1 (d DATETIME);
+Query OK, 0 rows affected (0.25 sec)
+
+MariaDB [Prueba1]> INSERT INTO t1 VALUES
+    ->     ("2007-01-30 21:31:07"),
+    ->     ("1983-10-15 06:42:51"),
+    ->     ("2011-04-21 12:34:56"),
+    ->     ("2011-10-30 06:31:41"),
+    ->     ("2011-01-30 14:03:25"),
+    ->     ("2004-10-07 11:19:34");
+Query OK, 6 rows affected (0.08 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [Prueba1]> SELECT d, ADDDATE(d, 10) from t1;
++---------------------+---------------------+
+| d                   | ADDDATE(d, 10)      |
++---------------------+---------------------+
+| 2007-01-30 21:31:07 | 2007-02-09 21:31:07 |
+| 1983-10-15 06:42:51 | 1983-10-25 06:42:51 |
+| 2011-04-21 12:34:56 | 2011-05-01 12:34:56 |
+| 2011-10-30 06:31:41 | 2011-11-09 06:31:41 |
+| 2011-01-30 14:03:25 | 2011-02-09 14:03:25 |
+| 2004-10-07 11:19:34 | 2004-10-17 11:19:34 |
++---------------------+---------------------+
+6 rows in set (0.01 sec)
+
+MariaDB [Prueba1]> SELECT d, ADDDATE(d, INTERVAL 10 HOUR) from t1;
++---------------------+------------------------------+
+| d                   | ADDDATE(d, INTERVAL 10 HOUR) |
++---------------------+------------------------------+
+| 2007-01-30 21:31:07 | 2007-01-31 07:31:07          |
+| 1983-10-15 06:42:51 | 1983-10-15 16:42:51          |
+| 2011-04-21 12:34:56 | 2011-04-21 22:34:56          |
+| 2011-10-30 06:31:41 | 2011-10-30 16:31:41          |
+| 2011-01-30 14:03:25 | 2011-01-31 00:03:25          |
+| 2004-10-07 11:19:34 | 2004-10-07 21:19:34          |
++---------------------+------------------------------+
+6 rows in set (0.00 sec)
+
+== ADDTIME ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+ADDTIME(expr1,expr2)
+
+ADDTIME () añade expr2 a expr1 y devuelve el resultado. 
+expr1 es una expresión de tiempo o de fecha y hora, y 
+expr2 es una expresión de tiempo.
+
+<syntaxhighlight>
+MariaDB [Prueba1]> SELECT ADDTIME('2007-12-31 23:59:59.999999', '1 1:1:1.000002');
++---------------------------------------------------------+
+| ADDTIME('2007-12-31 23:59:59.999999', '1 1:1:1.000002') |
++---------------------------------------------------------+
+| 2008-01-02 01:01:01.000001                              |
++---------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT ADDTIME('01:00:00.999999', '02:00:00.999998');
++-----------------------------------------------+
+| ADDTIME('01:00:00.999999', '02:00:00.999998') |
++-----------------------------------------------+
+| 03:00:01.999997                               |
++-----------------------------------------------+
+1 row in set (0.00 sec)
+
+== CONVERT_TZ ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+CONVERT_TZ(dt,from_tz,to_tz)
+
+CONVERT_TZ () convierte un valor datetime dt de la zona de tiempo dado por from_tz 
+a la zona horaria dada por to_tz y devuelve el valor resultante. Esta función 
+devuelve NULL si los argumentos no son válidos.
+
+<syntaxhighlight>
+
+MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','+00:00','+10:00');
++-----------------------------------------------------+
+| CONVERT_TZ('2004-01-01 12:00:00','+00:00','+10:00') |
++-----------------------------------------------------+
+| 2004-01-01 22:00:00                                 |
++-----------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','+00:00','CDT');
++--------------------------------------------------+
+| CONVERT_TZ('2004-01-01 12:00:00','+00:00','CDT') |
++--------------------------------------------------+
+| NULL                                             |
++--------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','+00:00','+CDT');
++---------------------------------------------------+
+| CONVERT_TZ('2004-01-01 12:00:00','+00:00','+CDT') |
++---------------------------------------------------+
+| NULL                                              |
++---------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','+00:00','CST');
++--------------------------------------------------+
+| CONVERT_TZ('2004-01-01 12:00:00','+00:00','CST') |
++--------------------------------------------------+
+| NULL                                             |
++--------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','-6:00','+4:00');
++---------------------------------------------------+
+| CONVERT_TZ('2004-01-01 12:00:00','-6:00','+4:00') |
++---------------------------------------------------+
+| 2004-01-01 22:00:00                               |
++---------------------------------------------------+
+1 row in set (0.00 sec)
+
+== CURRDATE ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+CURRDATE
+
+Devuelve la fecha actual como valor en formato 'YYYY-MM-DD' 
+o el formato AAAAMMDD, dependiendo de si la función se utiliza 
+en una cadena o contexto numérico.
+
+CURRENT_DATE y CURRENT_DATE () son sinónimos de CURDATE ().
+
+<syntaxhighlight>
+
+MariaDB [Prueba1]> SELECT CURDATE();
++------------+
+| CURDATE()  |
++------------+
+| 2015-10-26 |
++------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CURDATE() + 0;
++---------------+
+| CURDATE() + 0 |
++---------------+
+|      20151026 |
++---------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CURDATE() + 10;
++----------------+
+| CURDATE() + 10 |
++----------------+
+|       20151036 |
++----------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CURDATE() + 50;
++----------------+
+| CURDATE() + 50 |
++----------------+
+|       20151076 |
++----------------+
+1 row in set (0.00 sec)
+
+
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
