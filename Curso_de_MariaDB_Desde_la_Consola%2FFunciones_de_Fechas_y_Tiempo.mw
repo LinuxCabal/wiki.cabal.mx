@@ -3,7 +3,9 @@ __NOTOC__
 * [[:#Intervaal | Interval]]
 * [[:#DATE_ADD ADDDATE | DATE_ADD ADDDATE]]
 * [[:#ADDTIME | ADDTIME]]
-* [[:#CURRDATE | CURRDATE]]
+* [[:#CONVERT_TZ | CONVERT_TZ]]
+* [[:#CURDATE | CURDATE]]
+* [[:#CURTIME | CURTIME]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
@@ -267,11 +269,11 @@ MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','-6:00','+4:00');
 
 </syntaxhighlight>
 
-== CURRDATE ==
+== CURDATE ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-CURRDATE
+CURDATE()
 
 Devuelve la fecha actual como valor en formato 'YYYY-MM-DD' 
 o el formato AAAAMMDD, dependiendo de si la función se utiliza 
@@ -313,6 +315,35 @@ MariaDB [Prueba1]> SELECT CURDATE() + 50;
 
 </syntaxhighlight>
 
+== CURTIME ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+CURTIME()
+
+Devuelve la hora actual como un valor en 'HH: MM: SS' o el formato HHMMSS.uuuuuu, 
+dependiendo de si la función se utiliza en una cadena o contexto numérico. 
+El valor se expresa en la zona horaria actual.
+
+CURRENT_TIME y CURRENT_TIME () son sinónimos de CURTIME ().
+
+MariaDB [Prueba1]> SELECT CURTIME();
++-----------+
+| CURTIME() |
++-----------+
+| 23:36:26  |
++-----------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT CURTIME() + 55;
++----------------+
+| CURTIME() + 55 |
++----------------+
+|         233693 |
++----------------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
