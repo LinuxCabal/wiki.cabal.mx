@@ -118,8 +118,6 @@ Cuando se invoca con la forma INTERVAL del segundo argumento, ADDDATE ()
 es sinónimo de DATE_ADD (). Cuando se invoca con la forma DAY del segundo 
 argumento, MariaDB lo trata como un número entero de días a añadir a expr.
 
-</syntaxhighlight>
-
 MariaDB [(none)]> SELECT DATE_ADD('2015-10-25', INTERVAL 31 DAY);
 +-----------------------------------------+
 | DATE_ADD('2015-10-25', INTERVAL 31 DAY) |
@@ -186,6 +184,8 @@ MariaDB [Prueba1]> SELECT d, ADDDATE(d, INTERVAL 10 HOUR) from t1;
 +---------------------+------------------------------+
 6 rows in set (0.00 sec)
 
+</syntaxhighlight>
+
 == ADDTIME ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
@@ -196,7 +196,6 @@ ADDTIME () añade expr2 a expr1 y devuelve el resultado.
 expr1 es una expresión de tiempo o de fecha y hora, y 
 expr2 es una expresión de tiempo.
 
-<syntaxhighlight>
 MariaDB [Prueba1]> SELECT ADDTIME('2007-12-31 23:59:59.999999', '1 1:1:1.000002');
 +---------------------------------------------------------+
 | ADDTIME('2007-12-31 23:59:59.999999', '1 1:1:1.000002') |
@@ -213,6 +212,8 @@ MariaDB [Prueba1]> SELECT ADDTIME('01:00:00.999999', '02:00:00.999998');
 +-----------------------------------------------+
 1 row in set (0.00 sec)
 
+<syntaxhighlight>
+
 == CONVERT_TZ ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
@@ -222,8 +223,6 @@ CONVERT_TZ(dt,from_tz,to_tz)
 CONVERT_TZ () convierte un valor datetime dt de la zona de tiempo dado por from_tz 
 a la zona horaria dada por to_tz y devuelve el valor resultante. Esta función 
 devuelve NULL si los argumentos no son válidos.
-
-<syntaxhighlight>
 
 MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','+00:00','+10:00');
 +-----------------------------------------------------+
@@ -265,6 +264,8 @@ MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','-6:00','+4:00');
 +---------------------------------------------------+
 1 row in set (0.00 sec)
 
+<syntaxhighlight>
+
 == CURRDATE ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
@@ -276,8 +277,6 @@ o el formato AAAAMMDD, dependiendo de si la función se utiliza
 en una cadena o contexto numérico.
 
 CURRENT_DATE y CURRENT_DATE () son sinónimos de CURDATE ().
-
-<syntaxhighlight>
 
 MariaDB [Prueba1]> SELECT CURDATE();
 +------------+
@@ -311,6 +310,7 @@ MariaDB [Prueba1]> SELECT CURDATE() + 50;
 +----------------+
 1 row in set (0.00 sec)
 
+<syntaxhighlight>
 
 
 [[Category:MariaDB Desde la Consola]]
