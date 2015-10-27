@@ -4,8 +4,8 @@ __NOTOC__
 * [[:#DATE_ADD ADDDATE | DATE_ADD ADDDATE]]
 * [[:#ADDTIME | ADDTIME]]
 * [[:#CONVERT_TZ | CONVERT_TZ]]
-* [[:#CURDATE | CURDATE]]
-* [[:#CURTIME | CURTIME]]
+* [[:#CURDATE | CURDATE y CURRENT_DATE]]
+* [[:#CURTIME | CURTIME y CURRENT_TIME]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
