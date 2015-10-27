@@ -7,6 +7,7 @@ __NOTOC__
 * [[:#CURDATE | CURDATE y CURRENT_DATE]]
 * [[:#CURTIME | CURTIME y CURRENT_TIME]]
 * [[:#DATE | DATE]]
+* [[:#DATEDIFF | DATE]DIFF]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
@@ -348,6 +349,68 @@ MariaDB [Prueba1]> SELECT DATE('2015-10-25 12:21:32');
 | 2015-10-25                  |
 +-----------------------------+
 1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+== DATEDIFF ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+DATEDIFF(expr1,expr2)
+
+DATEDIFF () devuelve (Expr1 - expr2) expresados como un valor en días 
+de una fecha a la otra. expr1 y expr2 son de fecha o de expresiones DATE y tiempo 
+de expresiones. Sólo las partes de fecha de los valores se utilizan en el cálculo.
+
+MariaDB [Prueba1]> SELECT DATEDIFF('2007-12-31 23:59:59','2007-12-30');
++----------------------------------------------+
+| DATEDIFF('2007-12-31 23:59:59','2007-12-30') |
++----------------------------------------------+
+|                                            1 |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT DATEDIFF('2010-11-30 23:59:59','2010-12-31');
++----------------------------------------------+
+| DATEDIFF('2010-11-30 23:59:59','2010-12-31') |
++----------------------------------------------+
+|                                          -31 |
++----------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> CREATE TABLE t2 (d DATETIME);
+Query OK, 0 rows affected (0.23 sec)
+
+MariaDB [Prueba1]> INSERT INTO t2 values
+           ("2007-01-30 21:31:07"),
+           ("1983-10-15 06:42:51"),
+           ("2011-04-21 12:34:56"),
+           ("2011-10-30 06:31:41"),
+           ("2011-01-30 14:03:25"),
+           ("2004-10-07 11:19:34");
+Query OK, 6 rows affected (0.04 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [Prueba1]> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2015-10-26 23:59:32 |
++---------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT d, DATEDIFF(NOW(),d) FROM t2;
++---------------------+-------------------+
+| d                   | DATEDIFF(NOW(),d) |
++---------------------+-------------------+
+| 2007-01-30 21:31:07 |              3191 |
+| 1983-10-15 06:42:51 |             11699 |
+| 2011-04-21 12:34:56 |              1649 |
+| 2011-10-30 06:31:41 |              1457 |
+| 2011-01-30 14:03:25 |              1730 |
+| 2004-10-07 11:19:34 |              4036 |
++---------------------+-------------------+
+6 rows in set (0.00 sec)
 
 </syntaxhighlight>
 
