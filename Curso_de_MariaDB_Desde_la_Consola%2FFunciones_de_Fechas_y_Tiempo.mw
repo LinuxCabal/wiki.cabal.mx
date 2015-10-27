@@ -7,7 +7,7 @@ __NOTOC__
 * [[:#CURDATE | CURDATE y CURRENT_DATE]]
 * [[:#CURTIME | CURTIME y CURRENT_TIME]]
 * [[:#DATE | DATE]]
-* [[:#DATEDIFF | DATE]DIFF]
+* [[:#DATEDIFF | DATEDIFF]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
