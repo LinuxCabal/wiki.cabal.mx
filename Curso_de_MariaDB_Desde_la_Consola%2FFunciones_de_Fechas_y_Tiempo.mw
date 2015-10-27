@@ -39,6 +39,7 @@ Las siguientes unidades son válidas:
 
 </syntaxhighlight>
 
+<p style="text-align:center;">
 <table border=1 cellpadding=3>
   <tr>
     <th style="text-align:left;">Undad</th>
@@ -113,6 +114,7 @@ Las siguientes unidades son válidas:
     <td><code>YEAR_MONTH</code></td><td>Years-Months</td>
   </tr>
 </table>
+</p>
 
 == DATE_ADD ADDDATE ==
 
