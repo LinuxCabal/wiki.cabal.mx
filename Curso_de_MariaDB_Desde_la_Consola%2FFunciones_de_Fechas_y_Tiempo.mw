@@ -443,6 +443,65 @@ de la variable de sistema lc_time_names. Ver la configuración
 regional del servidor para más información sobre los entornos 
 locales soportados. Las opciones que se pueden utilizar por 
 DATE_FORMAT(), así como su inversa STR_TO_DATE() y el 
+
+lc_time_names
+
+La configuración regional que determina el idioma utilizado para la fecha 
+y hora funciones DAYNAME (), MONTHNAME () y DATE_FORMAT (). Nombres Locale 
+son de idioma y región subetiquetas, por ejemplo 'en_ZA' (Inglés - Sudáfrica) 
+o 'es_US: Español - Estados Unidos'. El valor por defecto es siempre "en-US",
+independientemente de la configuración regional del sistema. Ver la 
+configuración regional del servidor para obtener una lista completa de 
+los entornos locales soportados. 
+
+MariaDB [Prueba1]> SELECT DATE_FORMAT('2009-10-04 22:23:00', '%W %M %Y');
++------------------------------------------------+
+| DATE_FORMAT('2009-10-04 22:23:00', '%W %M %Y') |
++------------------------------------------------+
+| Sunday October 2009                            |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT DATE_FORMAT('2007-10-04 22:23:00', '%H:%i:%s');
++------------------------------------------------+
+| DATE_FORMAT('2007-10-04 22:23:00', '%H:%i:%s') |
++------------------------------------------------+
+| 22:23:00                                       |
++------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT DATE_FORMAT('1900-10-04 22:23:00', '%D %y %a %d %m %b %j');
++------------------------------------------------------------+
+| DATE_FORMAT('1900-10-04 22:23:00', '%D %y %a %d %m %b %j') |
++------------------------------------------------------------+
+| 4th 00 Thu 04 10 Oct 277                                   |
++------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT DATE_FORMAT('1997-10-04 22:23:00', '%H %k %I %r %T %S %w');
++------------------------------------------------------------+
+| DATE_FORMAT('1997-10-04 22:23:00', '%H %k %I %r %T %S %w') |
++------------------------------------------------------------+
+| 22 22 10 10:23:00 PM 22:23:00 00 6                         |
++------------------------------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT DATE_FORMAT('1999-01-01', '%X %V');
++------------------------------------+
+| DATE_FORMAT('1999-01-01', '%X %V') |
++------------------------------------+
+| 1998 52                            |
++------------------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> SELECT DATE_FORMAT('2006-06-00', '%d');
++---------------------------------+
+| DATE_FORMAT('2006-06-00', '%d') |
++---------------------------------+
+| 00                              |
++---------------------------------+
+1 row in set (0.00 sec)
+
 FROM_UNIXTIME() función, son los siguientes:
 
 </syntaxhighlight>
@@ -466,7 +525,7 @@ FROM_UNIXTIME() función, son los siguientes:
   </tr>
   <tr>
     <td><code>%M</code></td>
-    <td>Full month name in current locale (Variable <a href="/kb/en/server-system-variables/#lc_time_names">lc_time_names</a>).</td>
+    <td>Full month name in current locale (Variable lc_time_names).</td>
   </tr>
   <tr>
     <td><code>%S</code></td>
@@ -486,7 +545,7 @@ FROM_UNIXTIME() función, son los siguientes:
   </tr>
   <tr>
     <td><code>%W</code></td>
-    <td>Full weekday name in current locale (Variable <a href="/kb/en/server-system-variables/#lc_time_names">lc_time_names</a>).</td>
+    <td>Full weekday name in current locale (Variable lc_time_names).</td>
   </tr>
   <tr>
     <td><code>%X</code></td>
@@ -498,7 +557,7 @@ FROM_UNIXTIME() función, son los siguientes:
   </tr>
   <tr>
     <td><code>%a</code></td>
-    <td>Short weekday name in current locale (Variable <a href="/kb/en/server-system-variables/#lc_time_names">lc_time_names</a>).</td>
+    <td>Short weekday name in current locale (Variable lc_time_names).</td>
   </tr>
   <tr>
     <td><code>%b</code></td>
@@ -546,7 +605,7 @@ FROM_UNIXTIME() función, son los siguientes:
   </tr>
   <tr>
     <td><code>%p</code></td>
-    <td>AM/PM according to current locale (Variable <a href="/kb/en/server-system-variables/#lc_time_names">lc_time_names</a>).</td>
+    <td>AM/PM according to current locale (Variable lc_time_names).</td>
   </tr>
   <tr>
     <td><code>%r</code></td>
@@ -578,21 +637,22 @@ FROM_UNIXTIME() función, son los siguientes:
   </tr>
   <tr>
     <td><code>#</code></td>
-    <td>For <a href="/kb/en/str_to_date/">str_to_date</a>(), skip all numbers.</td>
+    <td>For str_to_date(), skip all numbers.</td>
   </tr>
   <tr>
     <td><code>.</code></td>
-    <td>For <a href="/kb/en/str_to_date/">str_to_date</a>(), skip all punctation characters.</td>
+    <td>For str_to_date(), skip all punctation characters.</td>
   </tr>
   <tr>
     <td><code>@</code></td>
-    <td>For <a href="/kb/en/str_to_date/">str_to_date</a>(), skip all alpha characters.</td>
+    <td>For str_to_date(), skip all alpha characters.</td>
   </tr>
   <tr>
     <td><code>%%</code></td>
     <td>A literal <code>%</code> character.</td>
   </tr>
 </table>
+
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
