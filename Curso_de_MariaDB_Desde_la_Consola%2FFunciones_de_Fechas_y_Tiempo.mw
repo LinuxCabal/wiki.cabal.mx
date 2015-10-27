@@ -444,16 +444,6 @@ regional del servidor para más información sobre los entornos
 locales soportados. Las opciones que se pueden utilizar por 
 DATE_FORMAT(), así como su inversa STR_TO_DATE() y el 
 
-lc_time_names
-
-La configuración regional que determina el idioma utilizado para la fecha 
-y hora funciones DAYNAME (), MONTHNAME () y DATE_FORMAT (). Nombres Locale 
-son de idioma y región subetiquetas, por ejemplo 'en_ZA' (Inglés - Sudáfrica) 
-o 'es_US: Español - Estados Unidos'. El valor por defecto es siempre "en-US",
-independientemente de la configuración regional del sistema. Ver la 
-configuración regional del servidor para obtener una lista completa de 
-los entornos locales soportados. 
-
 MariaDB [Prueba1]> SELECT DATE_FORMAT('2009-10-04 22:23:00', '%W %M %Y');
 +------------------------------------------------+
 | DATE_FORMAT('2009-10-04 22:23:00', '%W %M %Y') |
@@ -501,6 +491,16 @@ MariaDB [Prueba1]> SELECT DATE_FORMAT('2006-06-00', '%d');
 | 00                              |
 +---------------------------------+
 1 row in set (0.00 sec)
+
+lc_time_names
+
+La configuración regional que determina el idioma utilizado para la fecha 
+y hora funciones DAYNAME (), MONTHNAME () y DATE_FORMAT (). Nombres Locale 
+son de idioma y región subetiquetas, por ejemplo 'en_ZA' (Inglés - Sudáfrica) 
+o 'es_US: Español - Estados Unidos'. El valor por defecto es siempre "en-US",
+independientemente de la configuración regional del sistema. Ver la 
+configuración regional del servidor para obtener una lista completa de 
+los entornos locales soportados. 
 
 FROM_UNIXTIME() función, son los siguientes:
 
