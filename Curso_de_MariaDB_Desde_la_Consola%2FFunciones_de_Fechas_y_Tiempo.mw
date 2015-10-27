@@ -329,5 +329,26 @@ MariaDB [Prueba1]> SELECT CURTIME() + 55;
 
 </syntaxhighlight>
 
+== DATE ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+DATE( expr )
+
+Extrae la parte de fecha de la fecha o la fecha y hora expresión expr.
+
+Hasta MariaDB 05/05/32, algunas versiones de MariaDB regresaron 0000-00-00 
+cuando se pasa una fecha no válida. Desde 05/05/32, NULL se devuelve.
+
+MariaDB [Prueba1]> SELECT DATE('2015-10-25 12:21:32');
++-----------------------------+
+| DATE('2015-10-25 12:21:32') |
++-----------------------------+
+| 2015-10-25                  |
++-----------------------------+
+1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
