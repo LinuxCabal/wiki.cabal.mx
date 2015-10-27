@@ -1,8 +1,9 @@
 __NOTOC__
 * [[:#Funciones de Fechas y Tiempo | Funciones de Fechas y Tiempo]]
 * [[:#Intervaal | Interval]]
-* [[:#DATE_ADD ADDDATE | DATE_ADD ADDDATE ==]]
-* [[:#ADDTIME | ADDTIME ==]]
+* [[:#DATE_ADD ADDDATE | DATE_ADD ADDDATE]]
+* [[:#ADDTIME | ADDTIME]]
+* [[:#CURRDATE | CURRDATE]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
