@@ -6,6 +6,7 @@ __NOTOC__
 * [[:#CONVERT_TZ | CONVERT_TZ]]
 * [[:#CURDATE | CURDATE y CURRENT_DATE]]
 * [[:#CURTIME | CURTIME y CURRENT_TIME]]
+* [[:#DATE | DATE]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
