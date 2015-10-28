@@ -4,6 +4,7 @@ __NOTOC__
 * [[:#DATE_ADD ADDDATE | DATE_ADD ADDDATE]]
 * [[:#ADDTIME | ADDTIME]]
 * [[:#CONVERT_TZ | CONVERT_TZ]]
+* []:#NOW | NOW]]
 * [[:#CURDATE | CURDATE y CURRENT_DATE]]
 * [[:#CURTIME | CURTIME y CURRENT_TIME]]
 * [[:#DATE | DATE]]
@@ -285,6 +286,44 @@ MariaDB [Prueba1]> SELECT CONVERT_TZ('2004-01-01 12:00:00','-6:00','+4:00');
 | 2004-01-01 22:00:00                               |
 +---------------------------------------------------+
 1 row in set (0.00 sec)
+
+</syntaxhighlight>
+
+== NOW ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+NOW(), CURRENT_TIMESTAMP, CURRENT_TIMESTAMP(),
+LOCALTIME, LOCALTIME(), LOCALTIMESTAMP, LOCALTIMESTAMP()
+
+Devuelve la fecha y la hora actual como valor en formato 'YYYY-MM-DD HH: MM: SS' 
+o el formato YYYYMMDDHHMMSS.uuuuuu, dependiendo de si la función se utiliza en 
+una cadena o contexto numérico. El valor se expresa en la zona horaria actual.
+
+NOW () (o sus sinónimos) se puede usar como el valor predeterminado para columnas 
+TIMESTAMP, así como, desde MariaDB 10.0.1, columnas DATETIME. Antes MariaDB 10,0.1, 
+sólo era posible que una sola columna TIMESTAMP por mesa para contener 
+la CURRENT_TIMESTAMP como su defecto.
+
+LOCALTIME and LOCALTIME() are synonyms for NOW().
+LOCALTIMESTAMP and LOCALTIMESTAMP() are synonyms for NOW().
+CURRENT_TIMESTAMP and CURRENT_TIMESTAMP() are synonyms for NOW().
+
+MariaDB [(none)]> SELECT NOW();
++---------------------+
+| NOW()               |
++---------------------+
+| 2015-10-27 18:07:00 |
++---------------------+
+1 row in set (0.01 sec)
+
+MariaDB [(none)]> SELECT NOW() + 0;
++----------------+
+| NOW() + 0      |
++----------------+
+| 20151027180709 |
++----------------+
+1 row in set (0.02 sec)
 
 </syntaxhighlight>
 
