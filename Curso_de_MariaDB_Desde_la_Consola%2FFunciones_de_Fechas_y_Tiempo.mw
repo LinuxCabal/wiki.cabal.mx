@@ -305,9 +305,9 @@ TIMESTAMP, así como, desde MariaDB 10.0.1, columnas DATETIME. Antes MariaDB 10,
 sólo era posible que una sola columna TIMESTAMP por mesa para contener 
 la CURRENT_TIMESTAMP como su defecto.
 
-LOCALTIME and LOCALTIME() are synonyms for NOW().
-LOCALTIMESTAMP and LOCALTIMESTAMP() are synonyms for NOW().
-CURRENT_TIMESTAMP and CURRENT_TIMESTAMP() are synonyms for NOW().
+LOCALTIME and LOCALTIME() son sinónimos para NOW().
+LOCALTIMESTAMP and LOCALTIMESTAMP() son sinónimos para NOW().
+CURRENT_TIMESTAMP and CURRENT_TIMESTAMP() son sinónimos para NOW().
 
 MariaDB [(none)]> SELECT NOW();
 +---------------------+
