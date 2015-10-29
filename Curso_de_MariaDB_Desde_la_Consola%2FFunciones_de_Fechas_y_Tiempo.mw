@@ -11,8 +11,8 @@ __NOTOC__
 * [[:#DATEDIFF | DATEDIFF]]
 * [[:#DATE_FORMAT | DATE_FORMAT]]
 * [[:#DATE_SUB | DATE_SUB]]
-* [[:#DATENAME | DATENAME]]
-* [[:#DAYOFMONTH | DAOFMONTH]]
+* [[:#DAYNAME | DAYNAME]]
+* [[:#DAYOFMONTH | DAYOFMONTH]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
