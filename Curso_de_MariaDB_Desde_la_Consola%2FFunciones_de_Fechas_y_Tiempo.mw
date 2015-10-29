@@ -716,7 +716,7 @@ MariaDB [(none)]> SELECT DATE_SUB('2015-10-28', INTERVAL 31 DAY);
 +-----------------------------------------+
 1 row in set (0.06 sec)
 
-</syntaxhigh>
+</syntaxhighlight>
 
 == DAYNAME ==
 
@@ -776,7 +776,7 @@ MariaDB [Prueba1]> SELECT d, DAYNAME(d) FROM t3;
 +---------------------+------------+
 6 rows in set (0.00 sec)
 
-</syntaxhigh>
+</syntaxhighlight>
 
 == DAYOFMONTH ==
 
