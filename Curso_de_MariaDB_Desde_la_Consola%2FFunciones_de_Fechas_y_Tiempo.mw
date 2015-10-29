@@ -10,6 +10,9 @@ __NOTOC__
 * [[:#DATE | DATE]]
 * [[:#DATEDIFF | DATEDIFF]]
 * [[:#DATE_FORMAT | DATE_FORMAT]]
+* [[:#DATE_SUB | DATE_SUB]]
+* [[:#DATENAME | DATENAME]]
+* [[:#DAYOFMONTH | DAOFMONTH]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
@@ -691,6 +694,141 @@ FROM_UNIXTIME() función, son los siguientes:
     <td>A literal <code>%</code> character.</td>
   </tr>
 </table>
+
+== DATE_SUB ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+DATE_SUB(date,INTERVAL expr unit)
+
+Realiza fecha aritmética. El argumento date especifica la fecha o 
+la fecha y hora valor inicial. expr es una expresión que especifica 
+el valor de intervalo a añadir o restar de la fecha de inicio. 
+expr es una cadena; puede comenzar con un "-" para intervalos 
+negativos. unit es un operador que indica las unidades en las que 
+la expresión debe interpretarse. 
+
+MariaDB [(none)]> SELECT DATE_SUB('2015-10-28', INTERVAL 31 DAY);
++-----------------------------------------+
+| DATE_SUB('2015-10-28', INTERVAL 31 DAY) |
++-----------------------------------------+
+| 2015-09-27                              |
++-----------------------------------------+
+1 row in set (0.06 sec)
+
+</syntaxhigh>
+
+== DAYNAME ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+DAYNAME(date)
+
+Devuelve el nombre del día de la semana de la fecha. El lenguaje utilizado 
+para el nombre es controlado por el valor de la variable de sistema
+lc_time_names.
+
+MariaDB [(none)]> SELECT DAYNAME('1951-09-04');
++-----------------------+
+| DAYNAME('1951-09-04') |
++-----------------------+
+| Tuesday               |
++-----------------------+
+1 row in set (0.03 sec)
+
+MariaDB [(none)]> SELECT DAYNAME('1951-09-04');
++-----------------------+
+| DAYNAME('1951-09-04') |
++-----------------------+
+| Tuesday               |
++-----------------------+
+1 row in set (0.03 sec)
+
+MariaDB [(none)]> use Prueba1;
+Database changed
+
+MariaDB [Prueba1]> CREATE TABLE t3 (d DATETIME);
+Query OK, 0 rows affected (0.48 sec)
+
+MariaDB [Prueba1]> INSERT INTO t3 VALUES
+           ("2007-01-30 21:31:07"),
+           ("1983-10-15 06:42:51"),
+           ("2011-04-21 12:34:56"),
+           ("2011-10-30 06:31:41"),
+           ("2011-01-30 14:03:25"),
+           ("2004-10-07 11:19:34");
+Query OK, 6 rows affected (0.07 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [Prueba1]> SET lc_time_names = 'es_MX';
+Query OK, 0 rows affected (0.02 sec)
+
+MariaDB [Prueba1]> SELECT d, DAYNAME(d) FROM t3;
++---------------------+------------+
+| d                   | DAYNAME(d) |
++---------------------+------------+
+| 2007-01-30 21:31:07 | martes     |
+| 1983-10-15 06:42:51 | sábado     |
+| 2011-04-21 12:34:56 | jueves     |
+| 2011-10-30 06:31:41 | domingo    |
+| 2011-01-30 14:03:25 | domingo    |
+| 2004-10-07 11:19:34 | jueves     |
++---------------------+------------+
+6 rows in set (0.00 sec)
+
+</syntaxhigh>
+
+== DAYOFMONTH ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+DAYOFMONTH(date)
+
+Devuelve el día del mes para la fecha, en el rango de 1 a 31, 
+o 0 para fechas como '0000-00-00' o '2008-00-00', que tiene 
+una parte de cero días.
+
+MariaDB [Prueba1]> SELECT DAYOFMONTH('2007-02-03');
++--------------------------+
+| DAYOFMONTH('2007-02-03') |
++--------------------------+
+|                        3 |
++--------------------------+
+1 row in set (0.00 sec)
+
+MariaDB [Prueba1]> CREATE TABLE t4 (d DATETIME);
+Query OK, 0 rows affected (0.31 sec)
+
+MariaDB [Prueba1]> INSERT INTO t4 values
+    -> ("2007-01-30 21:31:07"),
+    ->     ("1983-10-15 06:42:51"),
+    ->     ("2011-04-21 12:34:56"),
+    ->     ("2011-10-30 06:31:41"),
+    ->     ("2011-01-30 14:03:25"),
+    ->     ("2004-10-07 11:19:34");
+Query OK, 6 rows affected (0.11 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [Prueba1]> SELECT d FROM t4 where DAYOFMONTH(d) = 30;
++---------------------+
+| d                   |
++---------------------+
+| 2007-01-30 21:31:07 |
+| 2011-10-30 06:31:41 |
+| 2011-01-30 14:03:25 |
++---------------------+
+3 rows in set (0.00 sec)
+
+</syntaxhigh>
+
+==  ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+
+
+
 
 
 [[Category:MariaDB Desde la Consola]]
