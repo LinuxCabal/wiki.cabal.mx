@@ -13,6 +13,7 @@ __NOTOC__
 * [[:#DATE_SUB | DATE_SUB]]
 * [[:#DAYNAME | DAYNAME]]
 * [[:#DAYOFMONTH | DAYOFMONTH]]
+* [[:#DAYOFWEEK | DAYOFWEEK]]
 
 = Funciones de Fechas y Tiempo =
 == Interval ==
@@ -823,14 +824,54 @@ MariaDB [Prueba1]> SELECT d FROM t4 where DAYOFMONTH(d) = 30;
 
 </syntaxhigh>
 
-==  ==
+== DAYOFWEEK ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
+DAYOFWEEK(date)
 
+Devuelve el indice del día de la semana para la fecha 
+(1 = Domingo, 2 = Lunes, ..., 7 = Sábado). Estos valores de índice 
+se corresponden con el estándar ODBC. 
+Esto contrasta con WEEKDAY() que sigue una numeración índice diferente 
+(0 = Lunes, 1 = martes ... 6 = domingo).
 
+MariaDB [Prueba1]> SELECT DAYOFWEEK('2007-02-03');
++-------------------------+
+| DAYOFWEEK('2007-02-03') |
++-------------------------+
+|                       7 |
++-------------------------+
+1 row in set (0.00 sec)
 
+MariaDB [Prueba1]> CREATE TABLE t5 (d DATETIME);
+Query OK, 0 rows affected (0.39 sec)
 
+MariaDB [Prueba1]> INSERT INTO t5 VALUES
+    -> 
+    -> ("2007-01-30 21:31:07"),
+    ->     ("1983-10-15 06:42:51"),
+    ->     ("2011-04-21 12:34:56"),
+    ->     ("2011-10-30 06:31:41"),
+    ->     ("2011-01-30 14:03:25"),
+    ->     ("2004-10-07 11:19:34");
+Query OK, 6 rows affected (0.06 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+MariaDB [Prueba1]> SELECT d, DAYNAME(d), DAYOFWEEK(d), WEEKDAY(d) from t5;
++---------------------+------------+--------------+------------+
+| d                   | DAYNAME(d) | DAYOFWEEK(d) | WEEKDAY(d) |
++---------------------+------------+--------------+------------+
+| 2007-01-30 21:31:07 | martes     |            3 |          1 |
+| 1983-10-15 06:42:51 | sábado     |            7 |          5 |
+| 2011-04-21 12:34:56 | jueves     |            5 |          3 |
+| 2011-10-30 06:31:41 | domingo    |            1 |          6 |
+| 2011-01-30 14:03:25 | domingo    |            1 |          6 |
+| 2004-10-07 11:19:34 | jueves     |            5 |          3 |
++---------------------+------------+--------------+------------+
+6 rows in set (0.00 sec)
+
+</syntaxhighlight>
 
 
 [[Category:MariaDB Desde la Consola]]
