@@ -788,6 +788,8 @@ Devuelve el día del mes para la fecha, en el rango de 1 a 31,
 o 0 para fechas como '0000-00-00' o '2008-00-00', que tiene 
 una parte de cero días.
 
+DAY() es sinónimo para DAYOFMONTH().
+
 MariaDB [Prueba1]> SELECT DAYOFMONTH('2007-02-03');
 +--------------------------+
 | DAYOFMONTH('2007-02-03') |
