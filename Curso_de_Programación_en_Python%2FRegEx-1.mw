@@ -78,8 +78,8 @@ this RE against the string abcbd.
 
 </pre>
 
-<table border="1">
-  <tr blahh>
+<table>
+  <tr>
     <th>
       Step
     </th>
@@ -140,7 +140,7 @@ this RE against the string abcbd.
       matches one less character.
     </td>
   </tr>
-  <tr
+  <tr>
     <td>
       5
     </td>
@@ -181,13 +181,15 @@ this RE against the string abcbd.
     </td>
   </tr>
 </table>
+
 <pre>
-<p>The end of the RE has now been reached, and it has matched abcb.  This
+
+The end of the RE has now been reached, and it has matched abcb.  This
 demonstrates how the matching engine goes as far as it can at first, and if no
 match is found it will then progressively back up and retry the rest of the RE
 again and again.  It will back up until it has tried zero matches for
 [bcd]*, and if that subsequently fails, the engine will conclude that the
-string doesn't match the RE at all.</p>
+string doesn't match the RE at all.
 
 
 </pre>
