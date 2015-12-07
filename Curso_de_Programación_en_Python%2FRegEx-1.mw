@@ -66,18 +66,20 @@ El primer metacaracter para repetir cosas que vamos a ver es *. * No coincide co
 
 Por ejemplo, ca * t coincidirá a ct; (0 a caracteres), cat; (1 a caracter), caaat; (3 a caracteres ), y así sucesivamente. El motor RE tiene varias limitaciones internas derivadas del tamaño del de C tipo int que evitar que se emparejan más de 2 mil millones a los patrones repitidos. Generalmente no se escriben para que coincida con la cantidad de datos.
 
-<p>Repetitions such as * are greedy; when repeating a RE, the matching
+Repetitions such as * are greedy; when repeating a RE, the matching
 engine will try to repeat it as many times as possible. If later portions of the
 pattern don't match, the matching engine will then back up and try again with
-few repetitions.</p>
-<p>A step-by-step example will make this more obvious.  Let's consider the
+few repetitions.
+
+A step-by-step example will make this more obvious.  Let's consider the
 expression a[bcd]*b.  This matches the letter 'a', zero or more letters
 from the class [bcd], and finally ends with a 'b'.  Now imagine matching
-this RE against the string abcbd.</p>
+this RE against the string abcbd.
 
 </pre>
+
 <table border="1">
-  <tr>
+  <tr blahh>
     <th>
       Step
     </th>
