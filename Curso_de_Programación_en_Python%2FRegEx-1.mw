@@ -74,6 +74,7 @@ few repetitions.</p>
 expression a[bcd]*b.  This matches the letter 'a', zero or more letters
 from the class [bcd], and finally ends with a 'b'.  Now imagine matching
 this RE against the string abcbd.</p>
+
 </pre>
 <table border="1">
   <tr>
