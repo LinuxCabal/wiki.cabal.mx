@@ -55,9 +55,11 @@ Puedes incluir las sequencias de caracteres especiales en una clase por ejemplo:
 
 La sequencia especial '.' coresponde a algún caracter con excepción de
 línea nueva. Existe también (re.DOTALL) que coresponde a algún caracter, línea nueva incluida.
+</pre>
 
 === Repetición ===
 
+<pre>
 Puede especificar que partes de la RE se deben repetir un determinado número de veces.
 
 El primer metacaracter para repetir cosas que vamos a ver es *. * No coincide con el caracter literal '*', se especifica que el caracter anterior se puede emparejar cero o más veces, en lugar de una sola vez.
