@@ -12,7 +12,7 @@ que te guste. Puedes entonces hacer preguntas como "Esta cadena coincide con el 
 El lenguaje de la expresión regular es relativamente pequeño y restringido, así que 
 no todo el procesamiento de RegEX es  posible
 </pre>.
-== RegEx Meta Caractares ==
+=== RegEx Meta Caractares ===
 <pre>
 Los Meta Caractares son:
 
