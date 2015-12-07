@@ -46,7 +46,7 @@ Algunos de los sequencias especiales:
 \d    Algún digito decimal [0-9].
 \D    Ningún digito decimal [^0-9].
 \s    Algún caracter de espacio blanco [ \t\n\r\f\v].
-\S    Ningún caracter de espacio blanco [ ^\t\n\r\f\v].
+\S    Ningún caracter de espacio blanco [^ \t\n\r\f\v].
 \w    Algún caracter alfanumerico [a-zA-Z0-9_].
 \W    Ningún caracter alfanumerico [^a-zA-Z0-9_].
 
