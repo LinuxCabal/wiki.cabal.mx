@@ -62,135 +62,25 @@ línea nueva. Existe también (re.DOTALL) que coresponde a algún caracter, lín
 <pre>
 Puede especificar que partes de la RE se deben repetir un determinado número de veces.
 
-El primer metacaracter para repetir cosas que vamos a ver es *. * No coincide con el caracter literal '*', se especifica que el caracter anterior se puede emparejar cero o más veces, en lugar de una sola vez.
+El primer metacaracter para repetir cosas que vamos a ver es *. * No coincide con el 
+caracter literal '*', se especifica que el caracter anterior se puede emparejar cero 
+o más veces, en lugar de una sola vez.
 
-Por ejemplo, ca * t coincidirá a ct; (0 a caracteres), cat; (1 a caracter), caaat; (3 a caracteres ), y así sucesivamente. El motor RE tiene varias limitaciones internas derivadas del tamaño del de C tipo int que evitar que se emparejan más de 2 mil millones a los patrones repitidos. Generalmente no se escriben para que coincida con la cantidad de datos.
+Por ejemplo, ca * t coincidirá a ct; (0 a caracteres), cat; (1 a caracter), 
+caaat; (3 a caracteres ), y así sucesivamente. El motor RE tiene varias limitaciones 
+internas derivadas del tamaño del de C tipo int que evitar que se emparejan más de 
+2 mil millones a los patrones repitidos. Generalmente no se escriben para que coincida 
+con la cantidad de datos.
 
-Repetitions such as * are greedy; when repeating a RE, the matching
-engine will try to repeat it as many times as possible. If later portions of the
-pattern don't match, the matching engine will then back up and try again with
-few repetitions.
+Another repeating metacharacter is +, which matches one or more times. Pay careful attention to the difference between * and +; * matches zero or more times, so whatever’s being repeated may not be present at all, while + requires at least one occurrence. To use a similar example, ca+t will match cat (1 a), caaat (3 a‘s), but won’t match ct.
 
-A step-by-step example will make this more obvious.  Let's consider the
-expression a[bcd]*b.  This matches the letter 'a', zero or more letters
-from the class [bcd], and finally ends with a 'b'.  Now imagine matching
-this RE against the string abcbd.
+There are two more repeating qualifiers. The question mark character, ?, matches either once or zero times; you can think of it as marking something as being optional. For example, home-?brew matches either homebrew or home-brew.
 
-</pre>
+The most complicated repeated qualifier is {m,n}, where m and n are decimal integers. This qualifier means there must be at least m repetitions, and at most n. For example, a/{1,3}b will match a/b, a//b, and a///b. It won’t match ab, which has no slashes, or a////b, which has four.
 
-<table>
-  <tr>
-    <th>
-      Step
-    </th>
-    <th>
-      Matched
-    </th>
-    <th>
-      Explanation
-    </th>
-  </tr>
-  <tr>
-    <td>
-      1
-    </td>
-    <td>
-      a
-    </td>
-    <td>
-      The 'a' in the RE matches.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      2
-    </td>
-    <td>
-      abcbd
-    </td>
-    <td>
-      The engine matches [bcd]*,
-      going as far as it can, which
-      is to the end of the string.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      3
-    </td>
-    <td>
-      Failure
-    </td>
-    <td>
-      The engine tries to match
-      'b', but the current position
-       is at the end of the string, so
-       it fails.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      4
-    </td>
-    <td>
-      abcb
-    </td>
-    <td>
-      Back up, so that [bcd]*
-      matches one less character.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      5
-    </td>
-    <td>
-      Failure
-    </td>
-    <td>
-      Try 'b' again, but the
-      current position is at the last
-      character, which is a 'd'.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      6
-    </td>
-    <td>
-      abc
-    </td>
-    <td>
-      Back up again, so that
-      [bcd]* is only matching
-      bc.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      6
-    </td>
-    <td>
-      abcb
-    </td>
-    <td>
-      Try 'b' again. This time
-      the character at the
-      current position is 'b', so
-      it succeeds.
-    </td>
-  </tr>
-</table>
+You can omit either m or n; in that case, a reasonable value is assumed for the missing value. Omitting m is interpreted as a lower limit of 0, while omitting n results in an upper bound of infinity — actually, the upper bound is the 2-billion limit mentioned earlier, but that might as well be infinity.
 
-<pre>
-
-The end of the RE has now been reached, and it has matched abcb.  This
-demonstrates how the matching engine goes as far as it can at first, and if no
-match is found it will then progressively back up and retry the rest of the RE
-again and again.  It will back up until it has tried zero matches for
-[bcd]*, and if that subsequently fails, the engine will conclude that the
-string doesn't match the RE at all.
-
+Readers of a reductionist bent may notice that the three other qualifiers can all be expressed using this notation. {0,} is the same as *, {1,} is equivalent to +, and {0,1} is the same as ?. It’s better to use *, +, or ? when you can, simply because they’re shorter and easier to read.
 
 </pre>
 [[Category:Programación en Python]]
