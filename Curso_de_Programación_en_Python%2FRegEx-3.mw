@@ -6,9 +6,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> import re
 >>> Texto = "El es un Canadiense llamando Couture."
 >>> if re.search(r"Cou[stu].[rst]e",Texto):
-...    print("Descubrí uno!")
-    else:
-...    print("No hay un Couture aquí!")
+...    print("Descubri uno!")
 ... 
-Descubrí uno!
+Descubri uno!
 </pre>
