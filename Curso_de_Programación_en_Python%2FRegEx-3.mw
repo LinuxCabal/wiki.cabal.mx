@@ -1,0 +1,12 @@
+<pre>
+[rrc@Pridd ~]$ python3
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> Texto = "El es un Canadiense llamando Couture."
+>>> if re.search(r"Cou[stu].[rst]e",Texto):
+...    print("Descubri uno!")
+... 
+Descubri uno!
+</pre>
