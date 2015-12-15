@@ -1,0 +1,19 @@
+<pre>
+We have learnt how to match the beginning of a string. What about the end? Of course that's possible to. The dollar sign "$" is used as a metacharacter for this purpose. '$' matches the end of a string or just before the newline at the end of the string. If in MULTILINE mode, it also matches before a newline. We demonstrate the usage of the "$" character in the following example:
+
+[rrc@Pridd ~]$ python3
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> print(re.search(r"Python\.$","A mi me gusta Python."))
+<_sre.SRE_Match object; span=(14, 21), match='Python.'>
+>>> print(re.search(r"Python\.$","A mi me gusta Python y C."))
+None
+>>> print(re.search(r"Python\.$","A mi me gusta Python.\nOtros prefieron Ruby."))
+None
+>>> print(re.search(r"Python\.$","A mi me gusta Python.\nOtros prefieron Ruby.", re.M))
+<_sre.SRE_Match object; span=(14, 21), match='Python.'>
+>>> 
+
+</pre>
