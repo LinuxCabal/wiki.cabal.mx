@@ -1,7 +1,7 @@
 <pre>
 Pero, si queremos que coincida con una expresión regular en el comienzo de una cadena y sólo al principio?
-El módulo re de Python proporciona dos funciones para que coincida con las expresiones regulares. Nos hemos encontrado ya uno de ellos,
-es decir, la search(). El otro tiene en nuestra opinión un nombre engañoso: match()
+El módulo re de Python proporciona dos funciones para que coincida con las expresiones regulares. Nos hemos encontrado 
+ya uno de ellos, es decir, la search(). El otro tiene en nuestra opinión un nombre engañoso: match()
 Fraudulenta, porque match(re_str, s) comprueba si re_str simplemente en el principio de la cadena.
 Pero de todos modos, match() es la solución a nuestra pregunta, como podemos ver en el siguiente ejemplo:
 
@@ -26,7 +26,8 @@ Por lo tanto, esta es una manera para que coincida con el inicio de una cadena, 
 es decir, no se puede utilizar en otros lenguajes como Perl, AWK y así sucesivamente. No es una solución general que 
 es un estándar para las expresiones regulares:
 
-El acento circunflejo '^' coincide con el principio de la cadena, y en MULTILINE (se explicará más abajo) modo también coincide inmediatamente después de cada nueva línea, que el método Python match() no hace.
+El acento circunflejo '^' coincide con el principio de la cadena, y en MULTILINE (se explicará más abajo) modo también 
+coincide inmediatamente después de cada nueva línea, que el método Python match() no hace.
 El '^' tiene que ser el primer caracter de una expresión regular:
 
 >>> print( re.search( r"^P..o", Str1 ) )
