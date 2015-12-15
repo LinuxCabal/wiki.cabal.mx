@@ -118,6 +118,32 @@ patterns will be expressed in Python code using this raw string notation.
 It is important to note that most regular expression operations are available as module-level functions 
 and RegexObject methods. The functions are shortcuts that don’t require you to compile a regex object 
 first, but miss some fine-tuning parameters.
+
+<table border="1" class="docutils">
+<colgroup>
+<col width="51%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Regular String</th>
+<th class="head">Raw string</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&quot;ab*&quot;</span></code></td>
+<td><code class="docutils literal"><span class="pre">r&quot;ab*&quot;</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">&quot;\\\\section&quot;</span></code></td>
+<td><code class="docutils literal"><span class="pre">r&quot;\\section&quot;</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">&quot;\\w+\\s+\\1&quot;</span></code></td>
+<td><code class="docutils literal"><span class="pre">r&quot;\w+\s+\1&quot;</span></code></td>
+</tr>
+</tbody>
+</table>
+
+
+
 </pre>
 
 
