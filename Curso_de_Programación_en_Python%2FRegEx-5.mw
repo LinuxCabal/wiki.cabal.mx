@@ -1,5 +1,8 @@
 <pre>
-We have learnt how to match the beginning of a string. What about the end? Of course that's possible to. The dollar sign "$" is used as a metacharacter for this purpose. '$' matches the end of a string or just before the newline at the end of the string. If in MULTILINE mode, it also matches before a newline. We demonstrate the usage of the "$" character in the following example:
+We have learnt how to match the beginning of a string. What about the end? Of course that's possible to. 
+The dollar sign "$" is used as a metacharacter for this purpose. '$' matches the end of a string or just 
+before the newline at the end of the string. If in MULTILINE mode, it also matches before a newline. We 
+demonstrate the usage of the "$" character in the following example:
 
 [rrc@Pridd ~]$ python3
 Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
