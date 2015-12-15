@@ -1,4 +1,4 @@
-
+<pre>
 But what, if we want to match a regular expression at the beginning of a string and only at the beginning?
 The re module of Python provides two functions to match regular expressions. We have met already one of them, 
 i.e. search(). The other has in our opinion a misleading name: match()
@@ -56,3 +56,4 @@ None
 
 The previous example also shows that the multiline mode doesn't affect the match method. match() never 
 checks anything but the beginning of the string for a match.
+</pre>
