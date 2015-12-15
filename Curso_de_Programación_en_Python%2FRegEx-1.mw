@@ -121,27 +121,39 @@ first, but miss some fine-tuning parameters.
 
 </pre>
 
-<table border="1" class="docutils">
-<colgroup>
-<col width="51%" />
-<col width="49%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Regular String</th>
-<th class="head">Raw string</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&quot;ab*&quot;</span></code></td>
-<td><code class="docutils literal"><span class="pre">r&quot;ab*&quot;</span></code></td>
-</tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">&quot;\\\\section&quot;</span></code></td>
-<td><code class="docutils literal"><span class="pre">r&quot;\\section&quot;</span></code></td>
-</tr>
-<tr class="row-even"><td><code class="docutils literal"><span class="pre">&quot;\\w+\\s+\\1&quot;</span></code></td>
-<td><code class="docutils literal"><span class="pre">r&quot;\w+\s+\1&quot;</span></code></td>
-</tr>
-</tbody>
+<table border="1">
+  <tr>
+    <th>
+      Regular String
+    </th>
+    <th>
+      Raw string
+    </th>
+  </tr>
+  <tr>
+    <td>
+      &quot;ab*&quot;
+    </td>
+    <td>
+      r&quot;ab*&quot;
+    </td>
+  </tr>
+  <tr>
+    <td>
+      &quot;\\\\section&quot;
+    </td>
+    <td>
+      r&quot;\\section&quot;
+    </td>
+  </tr>
+  <tr>
+    <td>
+      &quot;\\w+\\s+\\1&quot;
+    </td>
+    <td>
+      r&quot;\w+\s+\1&quot;
+    </td>
+  </tr>
 </table>
 
 [[Category:Programación en Python]]
