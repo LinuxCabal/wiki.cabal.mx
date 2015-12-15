@@ -20,7 +20,7 @@ Frase7 = "NIÑOSÁÉÍÓÚ"
 
 
 print( "\nEn la frase:\n\"", Frase1, "\"\n ", sep='' )
-print( "Usamos .isalnum() a ver si todos los caracteres son numéricos\n",
+print( "Usamos .isalnum() a ver si todos los caracteres son alpha-numéricos\n",
         Frase1.isalnum() )
 print( "Usamos .isalpha() a ver si todos los caracteres son alphabeticos\n",
         Frase1.isalpha() )
@@ -36,11 +36,11 @@ print( "Usamos .isspace() a ver si Frase1 es todo en espácios blancos\n",
         Frase1.isspace() )
 
 print( "\nEn la frase:\n\"", Frase2, "\"\n ", sep='' )
-print( "Usamos .isalpha() a ver si todos los caracteres son alphabéticos\n",
+print( "Usamos .isalpha() a ver si todos los caracteres son alpha-numéricos\n",
         Frase2.isalpha() )
 
 print( "\nEn la frase:\n\"", Frase3, "\"\n ", sep='' )
-print( "Usamos .isalnum() a ver si todos los caracteres son numéricos\n",
+print( "Usamos .isalnum() a ver si todos los caracteres son alpha-numéricos\n",
         Frase3.isalnum() )
 print( "Usamos .isdigit() a ver si todos los caracteres son numéricos\n",
         Frase3.isdigit() )
