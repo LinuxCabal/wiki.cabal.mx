@@ -22,7 +22,9 @@ Los metacaracteres '[' y ']' son usados para especificar un clase de caracteres 
 quieres coincidir. Puedes especificar los caracteres individualmente o en rangos
 de caracteres.Entonces; [abc] coincide con algún de los 
 caracteres 'a', 'b', o 'c' y [a-c], es decir  el rango de caracteres 'a' a 'c'.
-Si quieres buscar solo caracteres minusculas puedes escribir [a-z].
+Si quieres buscar solo caracteres minusculas puedes escribir [a-z]. Si quieres incluir
+un '-' en el expresion, debe ser el primer or final caracter en las corchetas. [-0-9]
+o [a-zA-Z0-9-]
 
 Metacaracteres no son activos a dentro de clases, entonces; [akm$] coincide a algún de
 los caracteres 'a', 'k', 'm', or '$'. '$' normalmente es un metacaracter, pero adentro
