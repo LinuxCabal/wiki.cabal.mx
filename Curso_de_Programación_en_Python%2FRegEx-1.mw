@@ -74,30 +74,30 @@ internas derivadas del tamaño del de C tipo int que evitar que se emparejan má
 2 mil millones a los patrones repitidos. Generalmente no se escriben para que coincida 
 con la cantidad de datos.
 
-Another repeating metacharacter is +, which matches one or more times. Pay careful 
-attention to the difference between * and +; * matches zero or more times, so 
-whatever’s being repeated may not be present at all, while + requires at least one 
-occurrence. To use a similar example, ca+t will match cat (1 a), caaat (3 a‘s), 
-but won’t match ct.
+Otra metacaracter de repetición es +, lo que coincide con una o más veces. Preste especial
+atención a la diferencia entre * y +; * Coincide con cero o más veces, entonces
+lo que sea que se repiten pueden no estar presentes en absoluto, mientras + requiere al menos un
+aparición. Para usar un ejemplo similar, ca + t coincidirá gato (un 1), caaat (3 de una),
+pero no coincidirá ct.
 
-There are two more repeating qualifiers. The question mark character, ?, matches 
-either once or zero times; you can think of it as marking something as being optional. 
-For example, home-?brew matches either homebrew or home-brew.
+Hay dos más calificadores de repetición. El carácter de signo de interrogación,?, Coincide
+ya sea una o cero veces; se puede pensar en ello como algo que marca como opcional.
+Por ejemplo, Hacer-?lo coincide a Hacer-lo y también Hacerlo.
 
-The most complicated repeated qualifier is {m,n}, where m and n are decimal integers. 
-This qualifier means there must be at least m repetitions, and at most n. For example, 
-a/{1,3}b will match a/b, a//b, and a///b. It won’t match ab, which has no slashes, 
-or a////b, which has four.
+El más complicado calificador re repetición es {m, n}, donde m y n son números enteros decimales.
+Este calificativo significa que debe haber al menos m repeticiones, y como máximo n. Por ejemplo,
+a/{1,3}b coincidirá con a/b, a//b, y a///b. No va a coincidir con ab, que no tiene barras,
+o a////b, que tiene cuatro barras.
 
-You can omit either m or n; in that case, a reasonable value is assumed for the missing 
-value. Omitting m is interpreted as a lower limit of 0, while omitting n results in an 
-upper bound of infinity — actually, the upper bound is the 2-billion limit mentioned 
-earlier, but that might as well be infinity.
+Puede omitir cualquiera de m o n; en ese caso, un valor razonable se asume para el que falta
+valor. Omitiendo m es interpretado como un límite inferior de 0, mientras que omite n resulta en una
+límite superior del infinito - de hecho, el límite superior es el límite de 2 millones millones
 
-Readers of a reductionist bent may notice that the three other qualifiers can all be 
-expressed using this notation. {0,} is the same as *, {1,} is equivalent to +, 
-and {0,1} is the same as ?. It’s better to use *, +, or ? when you can, simply because 
-they’re shorter and easier to read.
+Los otros tres clasificados pueden ser todos
+expresado usando esta notación. {0,} es el mismo que '*', {1,} es equivalente a '+',
+y {0,1} es el mismo que '?'. Es mejor usar '*', '+', o '?' cuando se puede, simplemente porque
+son más cortos y fáciles de leer.
+
 </pre>
 
 === Coincidir con caracteres especiales ===
