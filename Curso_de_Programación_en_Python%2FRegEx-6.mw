@@ -1,4 +1,3 @@
-<pre>
 Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
 [GCC 4.9.2] on linux
 Type "help", "copyright", "credits" or "license" for more information.
@@ -12,8 +11,5 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> print( Resultado )
 <_sre.SRE_Match object; span=(15, 18), match='Sep'>
 >>> 
-
-Estamos usando el metacaracter '?' para coincidir a Septiembre escribo
+Estmoas usando el metacaracter '?' para coincidir a Septiembre escribo
 en forma larga y tambien en forma corta. El '?' coincide por 0 o mas veces.
-
-</pre>
