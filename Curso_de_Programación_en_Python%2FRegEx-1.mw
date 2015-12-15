@@ -119,6 +119,8 @@ It is important to note that most regular expression operations are available as
 and RegexObject methods. The functions are shortcuts that don’t require you to compile a regex object 
 first, but miss some fine-tuning parameters.
 
+</pre>
+
 <table border="1" class="docutils">
 <colgroup>
 <col width="51%" />
@@ -141,11 +143,6 @@ first, but miss some fine-tuning parameters.
 </tr>
 </tbody>
 </table>
-
-
-
-</pre>
-
 
 [[Category:Programación en Python]]
 [[Category:PythonCabal]]
