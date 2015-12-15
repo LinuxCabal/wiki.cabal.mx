@@ -1,10 +1,9 @@
 <pre>
-But what, if we want to match a regular expression at the beginning of a string and only at the beginning?
-The re module of Python provides two functions to match regular expressions. We have met already one of them, 
-i.e. search(). The other has in our opinion a misleading name: match()
-Misleading, because match(re_str, s) checks for a match of re_str merely at the beginning of the string.
-But anyway, match() is the solution to our question, as we can see in the following example:
-
+Pero, si queremos que coincida con una expresión regular en el comienzo de una cadena y sólo al principio?
+El módulo re de Python proporciona dos funciones para que coincida con las expresiones regulares. Nos hemos encontrado ya uno de ellos,
+es decir, la search(). El otro tiene en nuestra opinión un nombre engañoso: match()
+Fraudulenta, porque match(re_str, s) comprueba si re_str simplemente en el principio de la cadena.
+Pero de todos modos, match() es la solución a nuestra pregunta, como podemos ver en el siguiente ejemplo:
 
 [rrc@Pridd ~]$ python3
 Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
