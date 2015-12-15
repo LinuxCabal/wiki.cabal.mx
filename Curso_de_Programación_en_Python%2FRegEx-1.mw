@@ -103,23 +103,23 @@ son más cortos y fáciles de leer.
 === Coincidir con caracteres especiales ===
 
 <pre>
-This module provides regular expression matching operations similar to those found in Perl. 
-Both patterns and strings to be searched can be Unicode strings as well as 8-bit strings.
+Este módulo proporciona RegEx operaciones similares a las encontradas en Perl.
+Ambos patrones y cadenas a ser buscados pueden ser cadenas Unicode, así como cadenas de 8 bits.
 
-Regular expressions use the backslash character ('\') to indicate special forms or to allow 
-special characters to be used without invoking their special meaning. This collides with Python’s 
-usage of the same character for the same purpose in string literals; for example, to match a 
-literal backslash, one might have to write '\\\\' as the pattern string, because the regular 
-expression must be \\, and each backslash must be expressed as \\ inside a regular Python string literal.
+Las expresiones regulares utilizan el caracter de barra invertida ('\') para indicar las formas especiales o para permitir
+caracteres especiales para ser utilizados sin necesidad de invocar su significado especial. Esto choca con Python
+el uso del mismo caracter para el mismo propósito en los literales de cadena; por ejemplo, para que coincida con una
+barra invertida literal, uno podría tener que escribir '\\\\' como la cadena de modelo, ya que el normal
+expresión debe ser \\, y cada barra invertida debe ser expresado como \\ dentro de una cadena literal.
 
-The solution is to use Python’s raw string notation for regular expression patterns; backslashes 
-are not handled in any special way in a string literal prefixed with 'r'. So r"\n" is a two-character 
-string containing '\' and 'n', while "\n" is a one-character string containing a newline. Usually 
-patterns will be expressed in Python code using this raw string notation.
+La solución es utilizar la notación cadena raw de Python para patrones de expresiones regulares; barras invertidas
+no se manejan de un modo especial en una cadena literal con el prefijo "r". Así r"\n" es un caracter especial de dos
+caracteres que contiene '\' y 'n', mientras que "\n" es una cadena de un caracter que contiene una nueva línea. 
+Normalmente patrones se expresarán en código Python usando esta notación de cadena raw
 
-It is important to note that most regular expression operations are available as module-level functions 
-and RegexObject methods. The functions are shortcuts that don’t require you to compile a regex object 
-first, but miss some fine-tuning parameters.
+Es importante tener en cuenta que la mayoría de las operaciones de expresiones regulares están disponibles como funciones de nivel de módulo
+y los métodos RegexObject. Las funciones son atajos que no requieren para compilar un objeto de expresión regular
+primero, pero falta algunos parámetros de ajuste.
 
 </pre>
 
