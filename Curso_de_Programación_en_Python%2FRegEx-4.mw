@@ -22,28 +22,30 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> print( re.match( r"P..o", Str2 ) )
 None
 
-So, this is a way to match the start of a string, but it's a Python specific method, i.e. it can't be used in other languages like Perl, AWK and so on. There is a general solution which is a standard for regular expressions:
+Por lo tanto, esta es una manera para que coincida con el inicio de una cadena, pero es un método específico Python, 
+es decir, no se puede utilizar en otros lenguajes como Perl, AWK y así sucesivamente. No es una solución general que 
+es un estándar para las expresiones regulares:
 
-The caret '^' Matches the start of the string, and in MULTILINE (will be explained further down) mode also matches immediately after each newline, which the Python method match() doesn't do.
-The caret has to be the first character of a regular expression:
+El acento circunflejo '^' coincide con el principio de la cadena, y en MULTILINE (se explicará más abajo) modo también coincide inmediatamente después de cada nueva línea, que el método Python match() no hace.
+El '^' tiene que ser el primer caracter de una expresión regular:
 
 >>> print( re.search( r"^P..o", Str1 ) )
 <_sre.SRE_Match object; span=(0, 4), match='Paco'>
 >>> print( re.search( r"^P..o", Str2 ) )
 None
 
-But what happens if we concatenate the two strings s1 and s2 in the following way:
+Pero, ¿qué pasa si se concatena las dos cadenas Str1 y Str2 de la siguiente manera:
 
 Str3 = Str2 + "\n" + Str1
 
-Now the string doesn't start with a Maier of any kind, but the name is following a newline character:
+Ahora la cadena no se inicia con un Paco de cualquier tipo, pero el nombre es después de un caracter de nueva línea:
 
 >>> Str3 = Str2 + "\n" + Str1
 >>> print( re.search( r"^P..o", Str3 ) )
 None
 
-The name hasn't been found, because only the beginning of the string is checked. It changes, if we use 
-the multiline mode, which can be activated by adding the following third parameters to search:
+El nombre no se ha encontrado, porque sólo el principio de la cadena está chequeando. Se Cambia, si utilizamos
+el modo de MULTILINE, que puede ser activado mediante la adición de los siguientes terceros parámetros de búsqueda:
 
 >>> print( re.search( r"^P..o", Str3, re.MULTILINE ) )
 <_sre.SRE_Match object; span=(36, 40), match='Paco'>
@@ -53,6 +55,7 @@ the multiline mode, which can be activated by adding the following third paramet
 None
 >>> 
 
-The previous example also shows that the multiline mode doesn't affect the match method. match() never 
-checks anything but the beginning of the string for a match.
+El ejemplo anterior también muestra que el modo MULTILINE no afecta el método de match(). match() Nunca
+comprueba nada, pero el principio de la cadena para un coincidencia.
+
 </pre>
