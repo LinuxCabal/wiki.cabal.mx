@@ -1,9 +1,10 @@
-<pre>
-Pero, si queremos que coincida con una expresión regular en el comienzo de una cadena y sólo al principio?
-El módulo re de Python proporciona dos funciones para que coincida con las expresiones regulares. Nos hemos encontrado 
-ya uno de ellos, es decir, la search(). El otro tiene en nuestra opinión un nombre engañoso: match()
-Fraudulenta, porque match(re_str, s) comprueba si re_str simplemente en el principio de la cadena.
-Pero de todos modos, match() es la solución a nuestra pregunta, como podemos ver en el siguiente ejemplo:
+
+But what, if we want to match a regular expression at the beginning of a string and only at the beginning?
+The re module of Python provides two functions to match regular expressions. We have met already one of them, 
+i.e. search(). The other has in our opinion a misleading name: match()
+Misleading, because match(re_str, s) checks for a match of re_str merely at the beginning of the string.
+But anyway, match() is the solution to our question, as we can see in the following example:
+
 
 [rrc@Pridd ~]$ python3
 Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
@@ -11,7 +12,7 @@ Python 3.4.3 (default, Jul  1 2015, 18:38:11)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import re
 >>> Str1 = "Paco es un nombre muy común"
->>> Str2 = "Se llamo Paco pero no es Mexicano"
+>>> Str2 = "Se llamo Paco pero no está Mexicano"
 >>> print( re.search( r"P..o", Str1 ) )
 <_sre.SRE_Match object; span=(0, 4), match='Paco'>
 >>> 
@@ -22,31 +23,28 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> print( re.match( r"P..o", Str2 ) )
 None
 
-Por lo tanto, esta es una manera para que coincida con el inicio de una cadena, pero es un método específico Python, 
-es decir, no se puede utilizar en otros lenguajes como Perl, AWK y así sucesivamente. No es una solución general que 
-es un estándar para las expresiones regulares:
+So, this is a way to match the start of a string, but it's a Python specific method, i.e. it can't be used in other languages like Perl, AWK and so on. There is a general solution which is a standard for regular expressions:
 
-El acento circunflejo '^' coincide con el principio de la cadena, y en MULTILINE (se explicará más abajo) modo también 
-coincide inmediatamente después de cada nueva línea, que el método Python match() no hace.
-El '^' tiene que ser el primer caracter de una expresión regular:
+The caret '^' Matches the start of the string, and in MULTILINE (will be explained further down) mode also matches immediately after each newline, which the Python method match() doesn't do.
+The caret has to be the first character of a regular expression:
 
 >>> print( re.search( r"^P..o", Str1 ) )
 <_sre.SRE_Match object; span=(0, 4), match='Paco'>
 >>> print( re.search( r"^P..o", Str2 ) )
 None
 
-Pero, ¿qué pasa si se concatena las dos cadenas Str1 y Str2 de la siguiente manera:
+But what happens if we concatenate the two strings s1 and s2 in the following way:
 
 Str3 = Str2 + "\n" + Str1
 
-Ahora la cadena no se inicia con un Paco de cualquier tipo, pero el nombre es después de un caracter de nueva línea:
+Now the string doesn't start with a Maier of any kind, but the name is following a newline character:
 
 >>> Str3 = Str2 + "\n" + Str1
 >>> print( re.search( r"^P..o", Str3 ) )
 None
 
-El nombre no se ha encontrado, porque sólo el principio de la cadena está chequeando. Se Cambia, si utilizamos
-el modo de MULTILINE, que puede ser activado mediante la adición de los siguientes terceros parámetros de búsqueda:
+The name hasn't been found, because only the beginning of the string is checked. It changes, if we use 
+the multiline mode, which can be activated by adding the following third parameters to search:
 
 >>> print( re.search( r"^P..o", Str3, re.MULTILINE ) )
 <_sre.SRE_Match object; span=(36, 40), match='Paco'>
@@ -56,7 +54,5 @@ el modo de MULTILINE, que puede ser activado mediante la adición de los siguien
 None
 >>> 
 
-El ejemplo anterior también muestra que el modo MULTILINE no afecta el método de match(). match() Nunca
-comprueba nada, pero el principio de la cadena para un coincidencia.
-
-</pre>
+The previous example also shows that the multiline mode doesn't affect the match method. match() never 
+checks anything but the beginning of the string for a match.
