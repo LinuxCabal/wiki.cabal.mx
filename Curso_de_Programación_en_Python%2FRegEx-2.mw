@@ -16,6 +16,9 @@ None
 Algún tipo de gato se descubrió
 >>> if re.search( 'vaca', 'Un gato y una rata no pueden ser amigos.' ):
 ...   print( "Algún tipo de gato se descubrió" )
-... 
+... else:
+...   print( "No hay vacas aquí" )
+...
+No hay vacas aquí
 >>> 
 </pre>
