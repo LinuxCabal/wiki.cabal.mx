@@ -219,7 +219,7 @@ with open( 'NuevoArchivo3.txt', 'w', encoding='utf-8' ) as f:
 </syntaxhighlight>
 
 === Resultado ===
-<pre
+<pre>
 [rrc@Llawyr PythonClase]$ ./CrearArchivo-2.py 
 [rrc@Llawyr PythonClase]$ ls -al NuevoArchivo3.txt 
 -rw------- 1 rrc rrc 197 Oct  3 15:29 NuevoArchivo3.txt
