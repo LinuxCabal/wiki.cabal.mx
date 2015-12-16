@@ -272,14 +272,27 @@ print( "classmethod( math.cos ) es:   ", classmethod( math.cos ) )
 
 <syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
 
-#!/usr/bin/python3
-#-*-coding: utf-8 -*-
+Este función es flujo, mejor usar py_compile
 
-with open( 'Fabs.py' ) as f:
-  contents = f.read()
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import py_compile
+>>> py_compile.compile('CompileMe.py')
+'__pycache__/CompileMe.cpython-34.pyc'
+[rrc@Pridd PythonClase]$ ls -al __pycache__/
+total 12
+drwx------ 2 rrc rrc 4096 Dec 16 08:13 ./
+drwxr-x--- 3 rrc rrc 4096 Dec 16 08:14 ../
+-rw------- 1 rrc rrc  333 Dec 16 08:13 CompileMe.cpython-34.pyc
+[rrc@Pridd PythonClase]$ file __pycache__/CompileMe.cpython-34.pyc 
+__pycache__/CompileMe.cpython-34.pyc: data
 
-code_obj = compile( contents, 'Fabs.py', 'exec')
-exec(code_obj)
+
+Ve también 
+python -m compileall -h
+para compilar todos los archivos en una carpeta desde la línea de comando
+
 
 </syntaxhighlight>
 
