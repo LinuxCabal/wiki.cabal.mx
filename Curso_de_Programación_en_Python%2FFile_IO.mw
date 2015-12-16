@@ -250,32 +250,27 @@ print( data )
 ['Estamos escibiendo en NuevoArchivo3 Usando with.\n', 'No está necesario usar f.close cuando uasas with.\n', 'El sabe a cerrar el archivo sin instrucción, y se obtiene mejor sintaxis y manejo de excepciones']
 </pre>
 
-== Leer los contenidos de un archivo en una lista usando with - LeerArchivo-6.py ==
+== Leer los contenidos de un archivo en una lista usando with - LeerArchivo-6a.py ==
 
 <syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
 
 #!/usr/bin/python3
 #-*-coding: utf-8 -*-
 
+with open( 'UniCodeArchivo.txt', 'r', encoding='utf-8' ) as ArchivoALeer:
+  print( ArchivoALeer.read( 12 ) )
 with open( 'UniCodeArchivo.txt', 'rb' ) as ArchivoALeer:
-
-print( ArchivoALeer.read( 12 ) )
-ArchivoALeer.close()
-
+  print( ArchivoALeer.read( 12 ) )
 </syntaxhighlight>
 
 === Resultado ===
 <pre>
-
-
+[rrc@Pridd PythonClase]$ ./LeerArchivo-6a.py 
+á é í ó ú ñ Á É Í 
+b'\xc3\xa1 \xc3\xa9 \xc3\xad \xc3\xb3 \xc3\xba \xc3\xb1 '
 </pre>
 
-== Leer archivo en modo binary - LeerArchivo-6a.py ==
-
-
-
-
-
+== Leer archivo en modo binary - LeerArchivo-7.py ==
 
 <syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
 
