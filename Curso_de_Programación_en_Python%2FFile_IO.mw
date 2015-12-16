@@ -213,13 +213,13 @@ si todo sirve cómo pensamos
 
 with open( 'NuevoArchivo3.txt', 'w', encoding='utf-8' ) as f:
   f.write( "Estamos escibiendo en NuevoArchivo3 " )
-  f.write( "Usando with.\nNo está necesario usar f.close cuando uasas with.\n" )
-  f.write( "El sabe a cerrar el archivo sin instrucción, " )
+  f.write( "Usando with.\nNo está necesario usar f.close cuando usas with.\n" )
+  f.write( "El sabe cómo cerrar el archivo sin instrucción, " )
   f.write( "y se obtiene mejor sintaxis y manejo de excepciones" )
 </syntaxhighlight>
 
 === Resultado ===
-<pre>
+<pre
 [rrc@Llawyr PythonClase]$ ./CrearArchivo-2.py 
 [rrc@Llawyr PythonClase]$ ls -al NuevoArchivo3.txt 
 -rw------- 1 rrc rrc 197 Oct  3 15:29 NuevoArchivo3.txt
