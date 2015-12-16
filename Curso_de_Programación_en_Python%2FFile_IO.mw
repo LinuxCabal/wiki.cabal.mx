@@ -277,7 +277,7 @@ b'\xc3\xa1 \xc3\xa9 \xc3\xad \xc3\xb3 \xc3\xba \xc3\xb1 '
 #!/usr/bin/python3
 #-*-coding: utf-8 -*-
 
-with open( 'UniCodeArchivo.txt', 'rb' ) as f:
+with open( 'NuevoArchivo.txt', encoding='utf-8' ) as f:
   data = f.readlines()
 
 for line in data:
