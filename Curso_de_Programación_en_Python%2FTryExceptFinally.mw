@@ -205,7 +205,7 @@ finally:
 ==== Resultado ====
 
 <pre>
-[rrc@Llawyr PythonClase]$ ./Try3.py 
+[rrc@Llawyr PythonClase]$ ./Try5.py 
 Ilegal dividir por cero!
 vamos cambiar y a 2 y re-ejecutar
 Código que se ejecuta con o sin excepciones
