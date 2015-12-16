@@ -302,27 +302,16 @@ for line in data:
 #!/usr/bin/python3
 #-*-coding: utf-8 -*-
 
-fh = open( "SeekArchivo.txt", encoding='utf-8')
-
-print( "fh.tell() nos da:", fh.tell() )
-
-print( "fh.read(8) nos da:", fh.read(8) )
-
-print( "fh.tell() nos da:", fh.tell() )
-
-print( "fh.seek( fh.tell() + 1 ) nos da:", fh.seek( fh.tell() + 1 ) )
-
-print( "fh.tell() nos da:", fh.tell() )
-
-print( "fh.read() nos da:", fh.read() )
-
-print( "fh.tell() nos da:", fh.tell() )
-
-print( "fh.seek( fh.tell() - 18 ) nos da:", fh.seek( fh.tell() - 18 ) )
-
-print( "fh.read( 6 ) nos da:", fh.read( 6 ) )
-
-fh.close()
+with open( "SeekArchivo.txt", encoding='utf-8') as fh:
+  print( "fh.tell() nos da:", fh.tell() )
+  print( "fh.read(8) nos da:", fh.read(8) )
+  print( "fh.tell() nos da:", fh.tell() )
+  print( "fh.seek( fh.tell() + 1 ) nos da:", fh.seek( fh.tell() + 1 ) )
+  print( "fh.tell() nos da:", fh.tell() )
+  print( "fh.read() nos da:", fh.read() )
+  print( "fh.tell() nos da:", fh.tell() )
+  print( "fh.seek( fh.tell() - 18 ) nos da:", fh.seek( fh.tell() - 18 ) )
+  print( "fh.read( 6 ) nos da:", fh.read( 6 ) )
 
 </syntaxhighlight>
 
