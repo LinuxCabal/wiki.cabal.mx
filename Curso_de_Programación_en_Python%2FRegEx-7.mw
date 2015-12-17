@@ -1,0 +1,38 @@
+<pre>
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> Str1 = "8 El número 8"
+>>> Str2 = "10 El número 10"
+>>> Str3 = "100 El número 100"
+>>> Str4 = "4a El Número 4 pegado con letra 'a'"
+>>> Str5 = "4334900345 El Número 4334900345"
+>>>
+>>> Resultado = re.search( r"^[0-9][0-9]* ", Str1 )
+>>> print( Resultado )
+<_sre.SRE_Match object; span=(0, 2), match='8 '>
+>>>
+>>> Resultado = re.search( r"^[0-9][0-9]* ", Str2 )
+>>> print( Resultado )
+<_sre.SRE_Match object; span=(0, 3), match='10 '>
+>>>
+>>> Resultado = re.search( r"^[0-9][0-9]* ", Str3 )
+>>> print( Resultado )
+<_sre.SRE_Match object; span=(0, 4), match='100 '>
+>>>
+>>> Resultado = re.search( r"^[0-9][0-9]* ", Str4 )
+>>> print( Resultado )
+None
+>>>
+>>> Resultado = re.search( r"^[0-9][0-9]* ", Str5 )
+>>> print( Resultado )
+<_sre.SRE_Match object; span=(0, 11), match='4334900345 '>
+>>> 
+
+
+Estamos usando el metacaracter '*' para coincidir a 0 o mas digitos después
+de un digito obligatorio en posición [0] y un espacio después de los digitos
+en la cadena
+
+</pre>
