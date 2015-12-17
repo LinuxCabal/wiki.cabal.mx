@@ -5,8 +5,8 @@
 #!/usr/bin/python3
 #-*-coding: utf-8 -*-
 
-print( "\nPodemos combinar las funciones sort() y reverse() si usamos sort()
-          antes de reverse(). Si usamos reverse() antes de sort(), sort() 
+print( "\nPodemos combinar las funciones sort() y reverse() si usamos sort()  \
+          antes de reverse(). Si usamos reverse() antes de sort(), sort()     \
           eliminará los cambios realizados por resverse()." )
 
 Nums = [400, 500, 100, 2000]
