@@ -5,18 +5,25 @@ Python 3.4.3 (default, Jul  1 2015, 18:38:11)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import re
 >>>
->>> MathObject2 = re.search("([0-9]+).*: (.*)", "Número de Cliente: 234321, Fecha: 26 Noviembre, 2015" )
+>>> MatchObject2 = re.search("([0-9]+).*: (.*)", "Número de Cliente: 234321, Fecha: 26 Noviembre, 2015" )
 >>> 
->>> MathObject2.group()
+>>> MatchObject2.group()
 '234321, Fecha: 26 Noviembre, 2015'
 >>> 
->>> MathObject2.group(1)
+>>> MatchObject2.group(1)
 '234321'
 >>> 
->>> MathObject2.group(2)
+>>> MatchObject2.group(2)
 '26 Noviembre, 2015'
 >>> 
->>> MathObject2.group(1,2)
+>>> MatchObject2.group(1,2)
 ('234321', '26 Noviembre, 2015')
 >>> 
 </pre>
+
+Estamos buscando por 1 o más digitos, seguido por 0 o más caracteres, sequidos por ': ' y 
+seguido por 0 o más caracteres.
+
+Las parentahses en el re.search son para guardar especialmente certos partes del busquedo
+para usar mas tarde. ([0-9]+) va a guardar '234321' en MatchObject2.group(1) y
+(.*) va a guardar '26 Noviembre, 2015' en MatchObject2.group(2).
