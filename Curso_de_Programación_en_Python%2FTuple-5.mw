@@ -12,7 +12,7 @@ print( "\nUsando max() a calcular el ultimo nombre por orden alfabético:\n{}"
           .format( max( Amigos ) ) )
 
 print( "\nUsando min() a calcular el primer nombre por orden alfabético:\n{}"
-          .format( min( Amigos ) ) 
+          .format( min( Amigos ) ) )
 
 Ganancias = ( 1000, 2000, 500, 4000 )
 
