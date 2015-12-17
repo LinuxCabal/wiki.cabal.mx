@@ -1,5 +1,22 @@
 <pre>
-
-
-
+[rrc@Pridd ~]$ python3
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>>
+MathObject1 = re.search("[0-9]+", "Número de Cliente: 234321, Fecha: 26 Noviembre, 2015" )
+>>> MathObject1.group()
+'234321'
+>>> 
+>>> MathObject1.span()
+(19, 25)
+>>> MathObject1.start()
+19
+>>> MathObject1.end()
+25
+>>> MathObject1.span()[0]
+19
+>>> MathObject1.span()[1]
+25
 </pre>
