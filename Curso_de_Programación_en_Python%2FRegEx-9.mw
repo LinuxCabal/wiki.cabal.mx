@@ -10,8 +10,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>> re.match( r"[0-9]{5} [A-Za-z]+", Str1 )
 <_sre.SRE_Match object; span=(0, 10), match='41445 Blah'>
 >>>
->>> re.match( r"[0-9]{5} [A-Za-z]+", Str2 )
->>>
+>>> re.match( r"[0-9]{5} [A-Za-z]+", Str1 )
+<_sre.SRE_Match object; span=(0, 10), match='41445 Blah'>
 
 
 
