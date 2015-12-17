@@ -1,0 +1,27 @@
+<pre>
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> Str1 = "8 El número 8"
+>>> Str2 = "10 El número 10"
+>>> Str3 = "100 El número 100"
+>>> Str4 = "4a El Número 4 pegado con letra 'a'"
+>>> Str5 = "4334900345 El Número 4334900345"
+>>>
+>>> re.search( r"^[0-9]+ ", Str1 )
+<_sre.SRE_Match object; span=(0, 2), match='8 '>
+>>> re.search( r"^[0-9]+ ", Str2 )
+<_sre.SRE_Match object; span=(0, 3), match='10 '>
+>>> re.search( r"^[0-9]+ ", Str3 )
+<_sre.SRE_Match object; span=(0, 4), match='100 '>
+>>> re.search( r"^[0-9]+ ", Str4 )
+>>>
+>>> re.search( r"^[0-9]+ ", Str5 )
+<_sre.SRE_Match object; span=(0, 11), match='4334900345 '>
+>>>
+
+Estamos usando el metacaracter '+' para coincidir a 1 o mas digitos 
+al inicio dela cadena con un espacio después de los digitos.
+
+</pre>
