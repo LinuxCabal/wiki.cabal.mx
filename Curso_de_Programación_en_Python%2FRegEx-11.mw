@@ -27,3 +27,5 @@ seguido por 0 o más caracteres.
 Las parentahses en el re.search son para guardar especialmente certos partes del busquedo
 para usar mas tarde. ([0-9]+) va a guardar '234321' en MatchObject2.group(1) y
 (.*) va a guardar '26 Noviembre, 2015' en MatchObject2.group(2).
+
+cuando solicitamos MatchObject2.group(1,2) se regresa un tuple con grupo 1 y 2 con su miembros.
