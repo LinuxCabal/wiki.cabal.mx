@@ -1,0 +1,22 @@
+<pre>
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>>
+>>> Str1 = "41445 Blah Blah"
+>>> Str2 = "23234 56 nuevos cosas"
+>>>
+>>> re.match( r"[0-9]{5} [A-Za-z]+", Str1 )
+<_sre.SRE_Match object; span=(0, 10), match='41445 Blah'>
+>>>
+>>> re.match( r"[0-9]{5} [A-Za-z]+", Str1 )
+<_sre.SRE_Match object; span=(0, 10), match='41445 Blah'>
+
+
+
+Estamos usando el metacaracter '{5}' para coincidir a 5 digitos 
+al inicio dela cadena con un espacio después de los digitos seguido
+con minimo de una letra.
+
+</pre>
