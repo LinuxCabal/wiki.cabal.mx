@@ -1,4 +1,4 @@
-= re.findall() =
+= findall =
 
 <pre>
 [rrc@Pridd ~]$ python3
@@ -6,7 +6,7 @@ Python 3.4.3 (default, Jul  1 2015, 18:38:11)
 [GCC 4.9.2] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import re
->>> Str = "A fat cat doesn't eat oats but a rat eats bats."
+>>> Str = "A fat cat doesn't eat oat but a rat eats bats."
 >>> MatchedObject = re.findall( "[force]at", Str )
 >>> print( MatchedObject )
 ['fat', 'cat', 'eat', 'oat', 'rat', 'eat']
