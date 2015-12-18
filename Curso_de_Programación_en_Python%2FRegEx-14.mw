@@ -1,0 +1,18 @@
+<pre>
+Back reference por nombres:
+
+>>> import re
+>>> s = "Sun Oct 14 13:47:03 CEST 2012"
+>>> expr = r"\b(?P<hours>\d\d):(?P<minutes>\d\d):(?P<seconds>\d\d)\b"
+>>> x = re.search(expr,s)
+>>> x.group('hours')
+'13'
+>>> x.group('minutes')
+'47'
+>>> x.start('minutes')
+14
+>>> x.end('minutes')
+16
+>>> x.span('seconds')
+(17, 19)
+>>>
