@@ -1,6 +1,5 @@
-= Search y Replace con re.sub() y re.subn() =
+= Search y Replace con sub() y subn() =
 
-<pre>
 [rrc@Pridd ~]$ python3
 Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
 [GCC 4.9.2] on linux
@@ -14,4 +13,3 @@ no, dije no y no voy hacerlo.
 >>> res = re.subn("[sS]i","no", str)
 >>> print(res)
 ('no, dije no y no voy hacerlo.', 3)
-</pre>
