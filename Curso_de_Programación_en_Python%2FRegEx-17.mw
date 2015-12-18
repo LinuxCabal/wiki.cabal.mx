@@ -1,0 +1,15 @@
+= Search y Replace con sub() y subn() =
+
+[rrc@Pridd ~]$ python3
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> str = "Si, dije si y si voy hacerlo."
+>>> res = re.sub("[sS]i","no", str)
+>>> print(res)
+no, dije no y no voy hacerlo.
+>>> 
+>>> res = re.subn("[sS]i","no", str)
+>>> print(res)
+('no, dije no y no voy hacerlo.', 3)
