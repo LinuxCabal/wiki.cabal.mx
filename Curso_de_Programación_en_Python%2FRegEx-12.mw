@@ -1,6 +1,3 @@
-= Más back reference por posición =
-
-<pre>
 Usamos 3 back references en este ejemple.
 Tenemos una list de contactos, algunos sin teléfonos.
 Si existe un número telefono el es al inicio del registro
@@ -32,4 +29,4 @@ Luisa Elezabeth Muñoz Ortego 3332435264
 Alfonso Abel Garcia Herera 4564756654
 >>> 
 
-</pre>
+<pre>
