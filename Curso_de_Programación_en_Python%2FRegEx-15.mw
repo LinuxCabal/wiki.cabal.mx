@@ -1,4 +1,4 @@
-= findall =
+= re.findall() =
 
 <pre>
 [rrc@Pridd ~]$ python3
