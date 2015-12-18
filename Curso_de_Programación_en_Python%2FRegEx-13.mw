@@ -1,5 +1,3 @@
-= Más back reference por posición =
-
 <pre>
 tenemos un archivo con etiquetas:
 [rrc@Pridd ~]$ cat Etiquetas.xml 
