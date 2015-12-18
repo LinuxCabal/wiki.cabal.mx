@@ -1,3 +1,10 @@
+
+
+
+
+
+
+
 <pre>
 [rrc@Pridd ~]$ python3
 Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
@@ -20,6 +27,10 @@ MatchObject1 = re.search("[0-9]+", "Número de Cliente: 234321, Fecha: 26 Noviem
 >>> MatchObject1.span()[1]
 25
 
-A match object contains the methods group(), span(), start() and end(), as can be seen in the following application: 
+Un match object contiene los metodos group(), 
+                                     span(), 
+                                     start() 
+                                     y end(), 
+cómo puedes ver aquí 
 
 </pre>
