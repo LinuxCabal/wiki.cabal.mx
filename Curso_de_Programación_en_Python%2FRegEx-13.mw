@@ -1,0 +1,26 @@
+<pre>
+tenemos un archivo con etiquetas:
+[rrc@Pridd ~]$ cat Etiquetas.xml 
+
+<composer>Wolfgang Amadeus Mozart</composer>
+<author>Orson Scott Card</author>
+<city>Guadalajara</city>
+<maestro>Richard Couture</maestro>
+
+que quieremos presentar en la forma:
+Etiqueta: Valor
+
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>> fh = open("Etiquetas.xml")
+>>> for i in fh:
+...   res = re.search(r"<([a-z]+)>(.*)</\1>",i)
+...   print(res.group(1) + ": " + res.group(2))
+... 
+composer: Wolfgang Amadeus Mozart
+author: Orson Scott Card
+city: Guadalajara
+maestro: Richard Couture
+>>>
