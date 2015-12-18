@@ -1,6 +1,5 @@
+= Back reference por nombre =
 <pre>
-Back reference por nombres:
-
 
 [rrc@Pridd ~]$ python3
 Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
