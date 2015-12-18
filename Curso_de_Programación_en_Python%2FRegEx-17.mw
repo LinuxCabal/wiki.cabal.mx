@@ -1,4 +1,4 @@
-= Search y Replace con sub() y subn() =
+= Search y Replace con re.sub() y re.subn() =
 
 <pre>
 [rrc@Pridd ~]$ python3
