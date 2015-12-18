@@ -1,0 +1,16 @@
+= re.split =
+
+<pre>
+
+Si Queremos obtener una list de los caracteres alfabéticos, unidos por palabra,
+sin espacios o caracteres de puntuación, podemos usar el re.split
+
+>>> import re
+>>>
+>>> Metamorphoses = "OF bodies chang'd to various forms, I sing: \
+... Ye Gods, from whom these miracles did spring, Inspire my \
+... numbers with coelestial heat;"
+>>> 
+>>> re.split( "\W+", Metamorphoses )
+['OF', 'bodies', 'chang', 'd', 'to', 'various', 'forms', 'I', 'sing', 'Ye', 'Gods', 'from', 'whom', 'these', 'miracles', 'did', 'spring', 'Inspire', 'my', 'numbers', 'with', 'coelestial', 'heat', '']
+>>>
