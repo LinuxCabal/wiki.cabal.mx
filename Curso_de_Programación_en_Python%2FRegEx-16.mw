@@ -14,3 +14,18 @@ sin espacios o caracteres de puntuación, podemos usar el re.split
 >>> re.split( "\W+", Metamorphoses )
 ['OF', 'bodies', 'chang', 'd', 'to', 'various', 'forms', 'I', 'sing', 'Ye', 'Gods', 'from', 'whom', 'these', 'miracles', 'did', 'spring', 'Inspire', 'my', 'numbers', 'with', 'coelestial', 'heat', '']
 >>>
+
+Si tienes una lista de personas con sus profesiones y quieres presentarlos: 
+
+Python 3.4.3 (default, Jul  1 2015, 18:38:11) 
+[GCC 4.9.2] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import re
+>>>
+>>> Personas = [ "ApellidoPaterno: Couture, Nombre: Richard, Profesión: ingeniero de redes", "ApellidoPaterno: Ramírez, Nombre: Able, Profesión; Vendedor" ]
+>>>
+>>> for line in Personas:
+...   re.split(",* *\w*: ", line)[1:]
+... 
+['Couture', 'Richard', 'ingeniero de redes']
+['Ramírez', 'Able, Profesión; Vendedor']
