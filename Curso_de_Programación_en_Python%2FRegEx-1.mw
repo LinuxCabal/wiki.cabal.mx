@@ -68,7 +68,7 @@ El primer metacaracter para repetir cosas que vamos a ver es *. * No coincide co
 caracter literal '*', se especifica que el caracter anterior se puede emparejar cero 
 o más veces, en lugar de una sola vez.
 
-Por ejemplo, ca * t coincidirá a ct; (0 a caracteres), cat; (1 a caracter), 
+Por ejemplo, ca*t coincidirá a ct; (0 a caracteres), cat; (1 a caracter), 
 caaat; (3 a caracteres ), y así sucesivamente. El motor RE tiene varias limitaciones 
 internas derivadas del tamaño del de C tipo int que evitar que se emparejan más de 
 2 mil millones a los patrones repitidos. Generalmente no se escriben para que coincida 
