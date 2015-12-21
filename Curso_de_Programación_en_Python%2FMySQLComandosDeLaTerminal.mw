@@ -1,4 +1,6 @@
-    <pre>
+= Comandos de la consola de MySQL/MariaDB =
+
+<pre>
      
 mysql -p
 
