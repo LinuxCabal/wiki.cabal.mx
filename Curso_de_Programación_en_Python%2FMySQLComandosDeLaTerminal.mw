@@ -1,0 +1,223 @@
+    <pre>
+     
+mysql -p
+
+create database MyTest1;
+grant all on MyTest1.* to 'clase'@'localhost' identified by 'password';
+use mysql
+select * from user;
+select * from db;
+exit
+
+mysql -u clase -p
+
+show databases;
+show tables;
+
+use MyTest1;
+
+show create database MyTest1;
+show tables;
+
+create table inven (
+  id int not null primary key auto_increment,
+  nombre varchar (50) not null,
+  descrip text,
+  precio float not null,
+  cantidad int not null
+  );
+
+show tables;
+describe inven;
+show create table inven;
+
+select * from inven;
+
+insert into inven
+        ( id, nombre, descrip, precio, cantidad )
+        values
+        ( 1, 'Manzanas', 'Mediano Granny-Smith.', 0.25, 1000 );
+
+select * from inven;
+
+insert into inven values ( 2, 'Uvas', 'Sin Semillas', 2.99, 500 );
+
+select * from inven;
+
+insert into inven values
+       ( 'Agua', 'Bot. - 250 ml.' , 0.89, 259 );
+
+insert into inven values
+       ( '', 'Agua', 'Bot. - 250 ml.' , 0.89, 259 );
+
+insert into inven
+        ( nombre, descrip, precio, cantidad )
+        values ( 'AguaMineral', 'Bot. - 600 ml.' , 0.50, 350 );
+
+select * from inven;
+
+select id, nombre, cantidad from inven;
+
+select id, nombre, cantidad from inven
+        order by nombre;
+
+select id, nombre, cantidad from inven
+        order by cantidad;
+
+select id, nombre, cantidad from inven
+        order by cantidad
+        limit 3;
+
+select id, nombre, cantidad from inven
+        order by cantidad
+        limit 0, 3;
+
+select id, nombre, cantidad from inven
+        order by cantidad
+        limit 2, 3;
+
+select id, nombre, cantidad from inven
+        order by cantidad
+        limit 5, 3;
+
+La cláusula LIMIT puede usarse para restringir el número de registros retornados por el comando SELECT. LIMIT tiene uno o dos argumentos numéricos, que deben ser enteros positivos (incluyendo cero).
+
+Con dos argumentos, el primer argumento especifica el desplazamiento del primer registro a retornar. El desplazamiento del registro inicial es 0 (no 1):
+
+mysql> SELECT * FROM table LIMIT 5,10;  # Retrieve rows 6-15
+
+Por compatibilidad con PostgreSQL, MySQL también soporta la sintaxis LIMIT row_count OFFSET offset.
+
+Para recibir todos los registros de un desplazamiento hasta el final del conjunto de resultados, puede usar algún número grande para el segundo parámetro. Ete comando recibe todos los registros desde el 96th hasta el último:
+
+mysql> SELECT * FROM table LIMIT 95,18446744073709551615;
+
+Con un argumento, el valor especifica el número de registros a retornar desde el comienzo del conjunto de resultados:
+
+mysql> SELECT * FROM table LIMIT 5;     # Retrieve first 5 rows
+
+En otras palabras, LIMIT n es equivalente a LIMIT 0,n. 
+
+
+select * from inven where cantidad = 500;
+
+
+OPERATORS para where:   =, !=, &lt;=, &lt;, &gt;, &gt;=, and, or, between, like (%,_)
+
+select * from inven where precio
+        between 1.0 and 3.00;
+        
+select * from inven where precio
+        between 1 and 3;
+
+
+select * from inven where nombre like 'M%';
+select * from inven where nombre like 'm%';
+
+create table fruta ( id int not null primary key auto_increment,
+                     nombre varchar (50) not null );
+
+insert into fruta values ( NULL, 'Manzanas' );
+insert into fruta values ( NULL, 'Naranjas' );
+insert into fruta values ( NULL, 'Uvas' );
+insert into fruta values ( NULL, 'Platanos' );
+
+select * from fruta;
+
+create table color ( id int not null primary key auto_increment,
+                     nombre varchar (50) not null );
+
+show tables;
+
+insert into color values ( NULL, 'Rojo' );
+insert into color values ( NULL, 'naranja' );
+insert into color values ( NULL, 'Purpura' );
+insert into color values ( NULL, 'Amarillo' );
+
+select * from color;
+
+select * from fruta, color;
+
+select fruta.id, fruta.nombre, color.nombre from fruta, color
+         where fruta.id = color.id;
+
+select fruta.id, fruta.nombre, color.nombre from fruta, color
+         where fruta.id = color.id;
+Esta es 'INNER JOIN'
+
+select fruta.nombre, color.nombre from fruta inner join color on
+         fruta.id = color.id;
+
+ON es como where dentro un JOIN
+
+create table Est_fruta ( id int not null primary key auto_increment,
+                     nombre varchar (50) not null,
+                     estado varchar (15) not null );
+
+insert into Est_fruta values ( NULL, 'Manzanas', 'Maduro' );
+insert into Est_fruta values ( NULL, 'Naranjas' , 'Podrido' );
+insert into Est_fruta values ( NULL, 'Uvas' , 'Maduro' );
+insert into Est_fruta values ( NULL, 'Platanos' , 'Podrido' );
+
+update Est_fruta set estado = 'Maduro';
+
+insert into Est_fruta values ( NULL, 'Sandilla' , 'Maduro' );
+
+select * from Est_fruta;
+
+update Est_fruta set nombre = 'Sandia' where nombre = 'Sandilla'; 
+
+select * from Est_fruta;
+
+
+create table Inv_fruta ( id int not null primary key auto_increment,
+                     nombre varchar (50) not null,
+                     color varchar (15) not null,
+                     precio float not null,
+                     cantidad int not null );
+
+insert into Inv_fruta values ( NULL, 'Manzanas', 'Rojo', 5.0, 25 );
+insert into Inv_fruta values ( NULL, 'Naranjas' , 'Anaranja' , 7.5, 44 );
+insert into Inv_fruta values ( NULL, 'Uvas' , 'Verde' , 12.5, 15 );
+insert into Inv_fruta values ( NULL, 'Platanos' , 'Amarillo' , 1.5, 36 );
+
+select * from Inv_fruta;
+
+update Inv_fruta set cantidad = cantidad - 1 where id = 1;
+
+select * from Inv_fruta;
+
+replace into Inv_fruta values ( 3, 'Uvas', 'Purple', 12.0, 15 );
+
+select * from Inv_fruta;
+
+replace into Inv_fruta values ( 5, 'Manzanas', 'Verde', 5.0, 60 );
+
+MySQL Especifico - NO ANSI
+
+select * from color;
+
+delete from color;
+
+select * from color;
+
+select * fron Est_fruta;
+
+update Est_fruta set estado = 'Podrido' where id = 3;
+
+select * fron Est_fruta;
+
+delete from Est_fruta where estado = 'Podrido';
+
+select * fron Est_fruta;
+
+
+create table Log ( id int not null primary key auto_increment,
+                     Fecha datetime not null,
+                     nombre varchar (15) not null );
+
+insert into Log values ( NULL, NOW(), 'jruiz' );
+
+select * from Log;
+
+</pre>
