@@ -1,0 +1,73 @@
+__NOTOC__
+* [[:#MySQL-2 | MySQL-2.py]]
+
+== MySQL-2.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+#!/usr/bin/python
+#-*-coding: utf-8 -*-
+
+import mysql.connector
+from mysql.connector import errorcode
+
+config = {
+  'user': 'PythonClase',
+  'password': 'Py800se',
+  'host': '127.0.0.1',
+  'database': 'PythonClase',
+  'raise_on_warnings': True,
+  'unix_socket': '/var/lib/mysql/mysql.sock'
+}
+
+try:
+  Conn = mysql.connector.connect(**config)
+except mysql.connector.Error as err:
+  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
+    print( "UsuarioNombre o Contraseña incorrecto" )
+  elif err.errno == errorcode.ER_BAD_DB_ERROR:
+    print( "Base de Datos no existe" )
+  else:
+    print( err )
+
+Cursor = Conn.cursor()   
+
+Query = "INSERT INTO TablaDePrueba ( CampoDePueba ) values ( 'Valor 1' )";
+
+Cursor.execute( Query )
+
+Conn.commit()
+
+Conn.close()
+
+print( "Mira en la TablaDePrueba a ver el registro nuevo" )
+
+</syntaxhighlight>
+
+
+=== Resultado ===
+<pre>
+[rrc@Pridd PythonClase]$ mysql -u PythonClase -pPy800se
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 27
+Server version: 10.0.22-MariaDB Mageia MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use PythonClase
+Database changed
+MariaDB [PythonClase]> select * from TablaDePrueba;
++----+--------------+
+| id | CampoDePueba |
++----+--------------+
+|  1 | Valor 1      |
++----+--------------+
+1 row in set (0.00 sec)
+
+MariaDB [PythonClase]> 
+
+</pre>
+
+</pre>
