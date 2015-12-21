@@ -165,3 +165,4 @@ MariaDB [PythonClase]> show tables
 #for i in *.dump; do mysql -pPy800se -u PythonClase  < $i; done
 
 </pre>
+# [ftp://ftp.linuxcabal.org/pub/employees_db-dump-files-1.0.5.tar.bz2 Archivo de datos del curso]
