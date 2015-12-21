@@ -120,9 +120,10 @@ for name, ddl in TABLES.items():
 Cursor.close()
 Conn.close()
 
-<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+</syntaxhighlight>
 
 == Resultado ==
+
 <pre>
 
 #tar xzf employees_db-dump-files-1.0.5.tar.bz2
