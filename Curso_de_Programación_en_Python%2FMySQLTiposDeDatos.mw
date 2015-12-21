@@ -1,8 +1,9 @@
-    <pre>
+= Estandar ANSI tipos de datos =
      
-Estandar ANSI tipos de datos
+== Numerico ==
+
+<pre>
      
-Numerico:
      
                         Signed                     UnSigned
      
@@ -25,10 +26,13 @@ DOUBLE(M,D)     53      SIGNED Solemente      DOUBLE REAL === DOUBLE
      
 DECIMAL(M,D)    -       SIGNED Solemente      DECIMAL === NUMERIC
         x,y
+
+</pre>     
      
+== Fetcha y Tiempo ==
      
-Fetcha y Tiempo:
-     
+<pre>
+
 Puedes usar Feb 31
            1980-11-00   Mes Debe: 0 - 12        Dia Debe: 0 - 31
      
@@ -47,8 +51,11 @@ TIME            HH:MM:SS
 YEAR            YYYY
              2  (YY)                            1901 - 2155
      
+</pre>
      
-String:
+== String ==
+
+<pre>
      
 CHAR (M)        PAD Derecha con Espacios
     1 - 255
@@ -84,4 +91,5 @@ LONGBLOB
      
 ENUM                 ENUM ( 'A', -77, 'VERDAD' ) o NULL
     Max Fields 65,535
+
 </pre>
