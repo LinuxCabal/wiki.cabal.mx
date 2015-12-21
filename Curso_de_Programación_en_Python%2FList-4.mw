@@ -17,7 +17,7 @@ if "Hortencia" not in Amigos:
 </syntaxhighlight>
 
 === Resultado ===
-[
+
 rrc@Llawyr PythonClase]$ ./List-4.py
  
  La list Amigos es:
