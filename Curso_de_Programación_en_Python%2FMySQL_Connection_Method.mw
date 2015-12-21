@@ -1,0 +1,51 @@
+= connection.MySQLConnection() Constructor =
+<pre>
+MySQLConnection.close() Method
+MySQLConnection.commit() Method
+MySQLConnection.config() Method
+MySQLConnection.connect() Method
+MySQLConnection.cursor() Method
+MySQLConnection.cmd_change_user() Method
+MySQLConnection.cmd_debug() Method
+MySQLConnection.cmd_init_db() Method
+MySQLConnection.cmd_ping() Method
+MySQLConnection.cmd_process_info() Method
+MySQLConnection.cmd_process_kill() Method
+MySQLConnection.cmd_query() Method
+MySQLConnection.cmd_query_iter() Method
+MySQLConnection.cmd_quit() Method
+MySQLConnection.cmd_refresh() Method
+MySQLConnection.cmd_reset_connection() Method
+MySQLConnection.cmd_shutdown() Method
+MySQLConnection.cmd_statistics() Method
+MySQLConnection.disconnect() Method
+MySQLConnection.get_row() Method
+MySQLConnection.get_rows() Method
+MySQLConnection.get_server_info() Method
+MySQLConnection.get_server_version() Method
+MySQLConnection.is_connected() Method
+MySQLConnection.isset_client_flag() Method
+MySQLConnection.ping() Method
+MySQLConnection.reconnect() Method
+MySQLConnection.reset_session() Method
+MySQLConnection.rollback() Method
+MySQLConnection.set_charset_collation() Method
+MySQLConnection.set_client_flags() Method
+MySQLConnection.shutdown() Method
+MySQLConnection.start_transaction() Method
+MySQLConnection.autocommit Property
+MySQLConnection.charset_name Property
+MySQLConnection.collation_name Property
+MySQLConnection.connection_id Property
+MySQLConnection.database Property
+MySQLConnection.get_warnings Property
+MySQLConnection.in_transaction Property
+MySQLConnection.raise_on_warnings Property
+MySQLConnection.server_host Property
+MySQLConnection.server_port Property
+MySQLConnection.sql_mode Property
+MySQLConnection.time_zone Property
+MySQLConnection.unix_socket Property
+MySQLConnection.user Property
+
+</pre>
