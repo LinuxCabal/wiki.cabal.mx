@@ -1,3 +1,10 @@
+__NOTOC__
+* [[:#MySQL-2 | MySQL-2.py]]
+
+== MySQL-5.py ==
+
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
 #!/usr/bin/python3
 #-*-coding: utf-8 -*-
 
@@ -113,6 +120,11 @@ for name, ddl in TABLES.items():
 Cursor.close()
 Conn.close()
 
+<syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
+
+== Resultado ==
+<pre>
+
 #tar xzf employees_db-dump-files-1.0.5.tar.bz2
 #cd employees_db
 #mysql employees < load_employees.dump
@@ -123,3 +135,5 @@ Conn.close()
 #mysql employees < load_dept_manager.dump
 # o mejor
 #for i in *.dump; do mysql -pPy800se -u PythonClase  < $i; done
+
+</pre>
