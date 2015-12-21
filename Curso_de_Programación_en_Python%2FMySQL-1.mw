@@ -230,7 +230,7 @@ MariaDB [(none)]> show create database PythonClase;
 +-------------+----------------------------------------------------------------------------------------------+
 1 row in set (0.00 sec)
 
-MariaDB [(none)]> grant all on PythonClase.* to 'PythonClase'@'localhost' identified by 'Py800es';
+MariaDB [(none)]> grant all on PythonClase.* to 'PythonClase'@'localhost' identified by 'Py800se';
 Query OK, 0 rows affected (0.00 sec)
 
 </pre>
