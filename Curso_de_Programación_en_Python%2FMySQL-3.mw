@@ -46,3 +46,33 @@ print( "Mira en to carpeta para ver que tienen ustedes una table nueva" )
 print( "el mysql console para verlo" );
 
 </syntaxhighlight>
+
+
+=== Resultado ===
+<pre>
+[rrc@Pridd PythonClase]$ ./MySQL-3.py 
+Mira en to carpeta para ver que tienen ustedes una table nueva
+el mysql console para verlo
+
+[rrc@Pridd PythonClase]$ mysql -pPy800se -u PythonClase
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 13
+Server version: 10.0.22-MariaDB Mageia MariaDB Server
+
+Copyright (c) 2000, 2015, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use PythonClase;
+Database changed
+MariaDB [PythonClase]> show tables;
++-----------------------+
+| Tables_in_PythonClase |
++-----------------------+
+| TablaDePrueba         |
++-----------------------+
+1 row in set (0.00 sec)
+
+MariaDB [PythonClase]> 
+
+</pre>
