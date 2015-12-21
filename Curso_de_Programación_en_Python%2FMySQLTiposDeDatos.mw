@@ -1,0 +1,87 @@
+    <pre>
+     
+Estandar ANSI tipos de datos
+     
+Numerico:
+     
+                        Signed                     UnSigned
+     
+INT         -2,147,483,648 2,147,483,648        0       4,294,967,295
+     
+TINYINT         -128            127             0       255
+     
+SMALLINT       -32,768         32,767           0       65,535
+     
+MEDIUMINT     -8,388,608      8,388,607         0       16,777,215
+     
+BIGINT  -9,223,372,036,854,775,808         0    18,446,744,073,709,551,615
+         9,223,372,036,854,775,805
+     
+FLOAT(M,D)      24      SIGNED Solemente      
+     10,2
+     
+DOUBLE(M,D)     53      SIGNED Solemente      DOUBLE REAL === DOUBLE
+      16,4
+     
+DECIMAL(M,D)    -       SIGNED Solemente      DECIMAL === NUMERIC
+        x,y
+     
+     
+Fetcha y Tiempo:
+     
+Puedes usar Feb 31
+           1980-11-00   Mes Debe: 0 - 12        Dia Debe: 0 - 31
+     
+DATE            YYYY-MM-DD
+     
+DATETIME        YYYY-MM-DD HH:MM:SS     1000-01-01 00:00:00 -
+                                        9999-12-31 23:59:59
+     
+TIMESTAMP       YYYYMMDDHHMMSS        12:00AM 1970-01-01 - 2037
+             12 (YYMMDDHHMMSS)
+             8  (YYYYMMDD
+             6  (YYMMDD)
+     
+TIME            HH:MM:SS
+     
+YEAR            YYYY
+             2  (YY)                            1901 - 2155
+     
+     
+String:
+     
+CHAR (M)        PAD Derecha con Espacios
+    1 - 255
+    Default = 1
+     
+VARCHAR (M)
+    1 - 255
+    No Default
+     
+TEXT No Case Sensitivo con SORT   Puedes usar para Binarios o Textos datos
+    Max 65,535
+     
+BLOB Case Sensitvo con SORT       Puedes usar para Binarios o Textos datos 
+    Max 65,535
+     
+TINYTEXT
+    Max 255
+     
+TINYBLOB
+    Max 255
+     
+MEDIUMTEXT
+    Max 16,777,215
+     
+MEDIUMBLOB
+    Max 16,777,215
+     
+LONGTEXT
+    Max 4,294,967,295
+     
+LONGBLOB
+    Max 4,294,967,295
+     
+ENUM                 ENUM ( 'A', -77, 'VERDAD' ) o NULL
+    Max Fields 65,535
+</pre>
