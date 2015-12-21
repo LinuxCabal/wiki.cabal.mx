@@ -1,11 +1,11 @@
 __NOTOC__
-* [[:#MySQL-4 | MySQL-4.py]]
+* [[:#MySQL-2 | MySQL-2.py]]
 
-== MySQL-4.py ==
+== MySQL-2.py ==
 
 <syntaxhighlight lang="python" line="GESHI_FANCY_LINE_NUMBERS">
 
-#!/usr/bin/python3
+#!/usr/bin/python
 #-*-coding: utf-8 -*-
 
 import mysql.connector
@@ -32,13 +32,7 @@ except mysql.connector.Error as err:
 
 Cursor = Conn.cursor()   
 
-Query = "INSERT INTO TablaDePrueba values ( NULL, 'Valor 1' )";
-
-Cursor.execute( Query )
-
-Conn.commit()
-
-Query = "INSERT INTO TablaDePrueba ( CampoDePueba ) values ( 'Valor 2' )";
+Query = "INSERT INTO TablaDePrueba ( CampoDePueba ) values ( 'Valor 1' )";
 
 Cursor.execute( Query )
 
@@ -46,7 +40,7 @@ Conn.commit()
 
 Conn.close()
 
-print( "Mira en la TablaDePrueba a ver los registros nuevos" )
+print( "Mira en la TablaDePrueba a ver el registro nuevo" )
 
 </syntaxhighlight>
 
@@ -69,10 +63,11 @@ MariaDB [PythonClase]> select * from TablaDePrueba;
 | id | CampoDePueba |
 +----+--------------+
 |  1 | Valor 1      |
-|  2 | Valor 2      |
 +----+--------------+
 1 row in set (0.00 sec)
 
 MariaDB [PythonClase]> 
+
+</pre>
 
 </pre>
