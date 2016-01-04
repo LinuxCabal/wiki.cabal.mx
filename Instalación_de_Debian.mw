@@ -6,8 +6,8 @@ Debian ofrece también varios entornos de escritorio para escoger, siendo Gnome,
 
 Además ponemos de ejemplo la instalación de la versión ''testing'', que es adecuada para una computadora de escritorio o portátil y contiene versiones más recientes de los paquetes, que la versión ''stable''.
 
-=Preparación del medio de arranque=
-== Método rápido ==
+== Preparación del medio de arranque ==
+=== Método rápido ===
 *Descargar el archivo ISO ''netinst.iso'' para la arquitectura deseada.  Usando wget, estos son los comandos para descargar el archivo para arquitectura de PC Intel de 32 y 64 bits:
  wget http://cdimage.debian.org/cdimage/wheezy_di_beta3/i386/iso-cd/debian-wheezy-DI-b3-i386-netinst.iso
  wget http://cdimage.debian.org/cdimage/wheezy_di_beta3/ia64/iso-cd/debian-wheezy-DI-b3-ia64-netinst.iso
@@ -19,7 +19,7 @@ La escritura puede tomar unos pocos minutos.  Estos comados son tomados de la se
 
 Si la computadora tiene una tarjea de red que necesita firmware, descárgalo antes de [http://cdimage.debian.org/cdimage/unofficial/non-free/firmware/squeeze/current/ aquí] y cópialo en un llavero USB.
 
-== Método flexible ==
+=== Método flexible ===
 #Descargar los archivos vmlinuz y initrd.gz.
 #Descargar el archivo del CD (640MB).
 #Formatear el dispositivo USB. Seguir pasos en la seccion [https://www.debian.org/releases/stable/amd64/ch04s03.html.en#usb-copy-flexible 4.3.3.1. Partitioning the USB stick] del manual de instalación.
@@ -29,7 +29,7 @@ Si la computadora tiene una tarjea de red que necesita firmware, descárgalo ant
  wget http://d-i.debian.org/daily-images/amd64/daily/hd-media/initrd.gz
  wget http://cdimage.debian.org/cdimage/weekly-builds/amd64/iso-cd/debian-testing-amd64-xfce-CD-1.iso
 
-=Instalación=
+== Instalación ==
 #Inserta la memoria USB en la PC a instalar
 #Arrancar la PC, presionando F9 para ver el menú de opciones de arranque y escoger la memoria
 #Después de unos momentos aparecerá el menú del instalador de Debian
@@ -39,20 +39,20 @@ Si la computadora tiene una tarjea de red que necesita firmware, descárgalo ant
 #Seleccionar solamente entorno de escritorio y herramientas del sistema.
 #Aceptar GRUB en el sector de aranque,
 
-=Después de la instalación=
+== Después de la instalación ==
 Algunos paquetes y/o configuraciones que se recomienda agregar para mejorar la funcionalidad.
 
-== Combinaciones de teclas ==
+=== Combinaciones de teclas ===
 xfce usa ''ctrl+alt+del'' para poner candado a la sesión, puedes cambiar a ''ctrl+alt+L'' que es la combinación estándar en Gnome.  En ''Settings -> Keyboard''.
 
-== gvfs ==
+=== gvfs ===
 Con control+L en Thunnar podemos desplegar carpetas y archivos de una PC remota accesando mediante SSH, por ejemplo:
  ssh://usuario@servidor/una-ruta/
 Despueś de proporcionar la contrasena, se abrirá una ventana.  Si hacemos clic en un documento HTML remoto, para que el navegador pueda abrirlo mediante un recurso montado en ~/.gvfs/, hay que ejecutar como root:
  apt-get install gvfs-fuse
  gpasswd -a ${USERNAME} fuse
 
-== Tarjeta de sonido predeterminada ==
+=== Tarjeta de sonido predeterminada ===
 Si no funciona el sonido, tal vez hace falta declarar a ALSA el dispositivo predeterminado a utilizar, si es diferente de 0.  Primero hay que listar los dispositivos de sonido:
  $ aplay -l
 Ahora crear un archivo ''/etc/asound.conf'' o ''~/.asoundrc''. Este es un ejemplo en el que se indica la segunda tarjeta (la primera es 0):
@@ -60,31 +60,31 @@ Ahora crear un archivo ''/etc/asound.conf'' o ''~/.asoundrc''. Este es un ejempl
  defaults.pcm.device 0
  defaults.ctl.card 1
 
-== Tarjeta de red inalámbrica Intel Pro 2200BG ==
+=== Tarjeta de red inalámbrica Intel Pro 2200BG ===
 Se necesita descargar el firmware y seguir las instrucciones en [http://wiki.debian.org/ipw2200 Intel PRO/Wireless 2100, 2200 and 2915 devices] en el wiki.
 
 == Tarjeta de red inalámbrica Broadcom ==
 El artículo general de WiFi en Debian.org (Ver enlace abajo) tiene el enlace al artículo específico [http://wiki.debian.org/bcm43xx bcm43xx].  Hay que instalar el paquete <code>firmware-b43-installer</code> que obtiene el firmware necesario para el chipset.  Ese paquete avisa si es necesario <code>firmware-b43-lpphy-installer</code> para dispositivos ''low power''.
 
-== Synaptics Touchpad ==
+=== Synaptics Touchpad ===
 Funciona pero no detecta clics porque han sido deshabilitados por los desarrolladores del driver.  Leer el artículo (Ver enlace abajo).  Estos comandos habilitan temporalmente:
  synclient TapButton1=1
  synclient TapButton2=2
  synclient TapButton3=3
 
-== Impresoras ==
+=== Impresoras ===
 Instalar el paquete <code>cups</code>.  Visitar la página http://localhost:631 para agregar impresoras, ver la lista de tareas de impresión y administrar.
 Para usar impresoras HP InkJet or LaserJet, instalar estos paquetes:
 * hplip
 * ifhp para impresoras LaserJet.  Ejecutar <code>hp-setup -i</code> en una terminal, el cual descarga un plug-in binario que es necesario.  Si falta este plug-in binario, los jobs de impresión a una impresora LaserJet se detienen por ''Filter Error''.  Ver [http://hplipopensource.com/node/309 What is the HPLIP Binary Plug-In and How Do I Install It?]
 
-= Solución a problemas =
-== Wired connection not managed ==
+== Solución a problemas ==
+=== Wired connection not managed ===
 ;Problema: Network Manager reporta que la interfase alámbrica no es administrada.
 ;Causa: Network Manager no administra interfases declaradas en /etc/network/interfaces: [https://wiki.debian.org/NetworkManager#Wired_Networks_are_Unmanaged Wired Networks are unmanaged] en [https://wiki.debian.org/NetworkManager Network Manager]
 ;Solución: Ver la sección ''Enabling Interface Management''.
 
-== Failed to add a new connection ==
+=== Failed to add a new connection ===
 ;Problema: NetworkManager no permite agregar conexiones WiFi.
 ;Causa: Aún no bien identificada, relacionada con permisos.
 ;Solución: Crear el siguiente archivo, para permitir que el grupo netdev tenga permisos:
@@ -102,12 +102,12 @@ Referencias:
 * http://math.umons.ca.be/an/W510/ en la sección Network Manager.
 * [https://bugs.debian.org/643028 network-manager-gnome: refuses to join new wireless networks]
 
-== Faltan barras de título ==
+=== Faltan barras de título ===
 ;Problema: Faltan las barras de título. No es posible cambiar entre ventanas: no funciona Alt-Tab.  No es posible escribir en una terminal.
 ;Causa: xfwm4 no corre al iniciar la sesión, porque una sesión anterior se cerró inadecuadamente. Quedan uno o más archivos xfce4* en ~/.cache/sessions/.
 ;Solución: Borrar los archivos xfce4* y reiniciar la sesión ([http://forum.xfce.org/viewtopic.php?pid=21520#p21520 ver]).
 
-== Kernel no econtrado ==
+=== Kernel no econtrado ===
 ;Problema: Durante la instalación del sistema base:
  No installable kernel was found in the defined APT sources
 ;Solución: Continuar la intalación, al llegar al paso de instalar el arrancador (GRUB):
@@ -116,7 +116,7 @@ Referencias:
 # apt-get install linux-image-amd64
 # exit
 
-= Instalación automática =
+== Instalación automática ==
 #Generar un archivo ''preseed.cfg''
 ##Instalar un sistema manualmente
 ##Generar un listado de las selecciones que se usaron
@@ -153,7 +153,7 @@ Agregar la opción en los menús, agregar a txt.cfg:
        kernel linux
        append vga=788 initrd=initrd.gz '''auto-install/enable=true file=/hd-media/preseed.cfg''' -- quiet
 
-= Enlaces externos =
+== Enlaces externos ==
 * [http://wiki.ubuntuusers.de/gvfs-mount gvfs-mount] en ubuntusers.de
 * [https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture#Set_the_default_sound_card  Set the default sound card], en la sección ''Set the default sound card'' de ''Advanced Linux Sound Architecture'' en wiki.archlinux.org.
 * [http://forum.xfce.org/viewtopic.php?id=5932 xfwm4 problem - Solved]
