@@ -1,0 +1,66 @@
+= Instalación de pygame =
+
+== Python 2 ==
+Las distribuciones de GNU/Linux ya incluyen un paquete que se llama '''python-pygame''' en Debian/Ubuntu, solo hay que instalarlo.
+
+== Python 3 ==
+Las distribuciones no incluyen un paquete, es necesario instalarlo del código fuente.  Las instrucciones para varias distribuciones están [http://pygame.org/wiki/Compilation aquí].
+
+#Instalar las dependencias
+#Descargar
+#Aplicar un parche para decir que la librería porttime está contenida en portmidi
+#Compilar e instalar
+
+Para instalar pygame en un ambiente virtual de Python, se siguen las mismas instrucciones, pero además es necesario:
+* Modificar la carpeta ''env/include/python3.3''.  El comando virtualenv crea un enlace simbólico a /usr/include/python3.3, y el instalador de pygame quiere agregar un archivo pygame.h ahí.  Una solución es remover el enlace simbólico, crear la carpeta y copiarle el contenido de /usr/include/python3.3m.
+
+Para instalar los paquetes de desarrollo requeridos por pygame para compilar:
+ yum-builddep pygame
+ yum install python3-devel
+
+Para compilar e instalar:
+ hg clone https://bitbucket.org/pygame/pygame
+ cd pygame
+ patch -p1 ../patch-porttime.patch
+ python setup.py install
+ cd ..
+
+El parche pygame-porttime.patch:
+
+ diff -r e3ae850caa1e Setup.in
+ --- a/Setup.in Mon Nov 03 00:54:48 2014 +0000
+ +++ b/Setup.in Sun Dec 07 11:11:30 2014 -0600
+ @@ -16,7 +16,7 @@
+  JPEG = -ljpeg
+  SCRAP = -lX11
+  PORTMIDI = -lportmidi
+ -PORTTIME = -lporttime
+ +PORTTIME =
+  FREETYPE = -lfreetype
+  AVFORMAT = -lavformat 
+  SWSCALE = -lswscale 
+ diff -r e3ae850caa1e config_unix.py
+ --- a/config_unix.py   Mon Nov 03 00:54:48 2014 +0000
+ +++ b/config_unix.py   Sun Dec 07 11:11:30 2014 -0600
+ @@ -188,7 +188,7 @@
+          Dependency('JPEG', 'jpeglib.h', 'libjpeg', ['jpeg']),
+          Dependency('SCRAP', '', 'libX11', ['X11']),
+          Dependency('PORTMIDI', 'portmidi.h', 'libportmidi.so', ['portmidi']),
+ -        Dependency('PORTTIME', 'porttime.h', 'libporttime.so', ['porttime']),
+ +        Dependency('PORTTIME', 'porttime.h', 'libportmidi.so', ['portmidi']),
+          FFMPEGDependency('AVFORMAT', 'libavformat/avformat.h', 'libavformat.a', ['avformat'], ['/include', '/include/ffmpeg']),
+          FFMPEGDependency('SWSCALE', 'libswscale/swscale.h', 'libswscale.a', ['swscale'], ['/include', '/include/ffmpeg']),
+          DependencyProg('FREETYPE', 'FREETYPE_CONFIG', 'freetype-config', '2.0', ['freetype'], '--ftversion'),
+
+== Solucionar problemas ==
+Si se usa el archivo tar.gz, la compilación y la instalación terminan, pero al importar puede dar este error:
+ undefined symbol: PyCObject_Check
+En este caso la solución es usar la versión de desarrollo clonando el repositorio con git.
+
+== Ejemplos ==
+Para comprobar la instalación se pueden correr los ejemplos que se encuentran en la carpeta fuente <code>pygame/examples</code>:
+ python -m pygame.examples.eventlist
+ python -m pygame.examples.chimp
+
+
+[[Category: HowTos]]
