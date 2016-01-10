@@ -13,7 +13,7 @@ Las referencias son a Digitalife en Guadalajara, Jalisco y los precios se consul
 * Combo teclado y mouse inalambrico
 
 = Selección =
-La tarjeta madre se escogió por el tamaño reducido mini-ITX y por el chipset det consumo bajo, que permite la operación sin un ventilador. Requiere un conector de 24 contactos para alimentación y fuente de poder que cumpla el estándar TFX12V o SFX12V.
+La tarjeta madre se escogió por el tamaño reducido mini-ITX, por el chipset det consumo bajo que permite la operación sin un ventilador, y porque [http://kmuto.jp/debian/hcl/Intel/D425KT existen drivers] para los dispositivos. Requiere un conector de 24 contactos para alimentación y fuente de poder que cumpla el estándar TFX12V o SFX12V.
 
 == Memoria ==
 La tarjeta de memoria debe ser [http://en.wikipedia.org/wiki/SODIMM SODIMM] de 204 contactos.  La organización de los módulos de memoria en la tarjeta de memoria debe ser compatible con lo que espera la tarjeta madre.  Para saber esto, es necesario consultar la especificación de la [http://www.intel.com/support/motherboards/desktop/d425kt/sb/CS-031614.htm tarjeta madre] y la de la tarjeta de memoria.  Por favor consulta [[Cómo escoger un módulo de memoria]] para conocer los conceptos básicos que son necesarios.
