@@ -11,7 +11,7 @@ Python 3.4.3 (default, Jul  1 2015, 18:38:11)
 Type "help", "copyright", "credits" or "license" for more information.
 >>> import re
 >>> Str1 = "Paco es un nombre muy común"
->>> Str2 = "Se llamo Paco pero no está Mexicano"
+>>> Str2 = "Se llamo Paco pero no es Mexicano"
 >>> print( re.search( r"P..o", Str1 ) )
 <_sre.SRE_Match object; span=(0, 4), match='Paco'>
 >>> 
