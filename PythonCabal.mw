@@ -27,6 +27,9 @@ En caso de que tengas alguna duda, pregunta en la lista de correos.
 
 = Reuniones anteriores =
 == 2015 ==
+=== Octubre 26 ===
+* Uso the [http://libvirt.org/ libvirt] desde Python para el manejo de máquinas virtuales, por Jaime García. [https://www.youtube.com/watch?v=wEl7WqXDh_I El hangout].
+
 === Agosto 31 ===
 * Introducción a [https://micropython.org/ Micro Python], Python 3 ejecutando en microcontroladores, por Patricio.  Ejecutamos y modificamos varios de los ejemplos en [http://micropython.org/live/ Micro Python Live]. [http://slides.com/patriciopaez/micropython#/ Las láminas].
 * Mostrar un ejemplo de localización de cara en una imagen de la webcam usando [http://opencv.org/ OpenCV], por Sergio.
