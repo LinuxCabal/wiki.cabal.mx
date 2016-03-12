@@ -152,17 +152,4 @@ MariaDB [PythonClase]> show tables
 +-----------------------+
 7 rows in set (0.00 sec)
 
-
-#tar xzf employees_db-dump-files-1.0.5.tar.bz2
-#cd employees_db
-#mysql employees < load_employees.dump
-#mysql employees < load_titles.dump
-#mysql employees < load_departments.dump
-#mysql employees < load_salaries.dump
-#mysql employees < load_dept_emp.dump
-#mysql employees < load_dept_manager.dump
-# o mejor
-#for i in *.dump; do mysql -pPy800se -u PythonClase  < $i; done
-
 </pre>
-# [ftp://ftp.linuxcabal.org/pub/employees_db-dump-files-1.0.5.tar.bz2 Archivo de datos del curso]
