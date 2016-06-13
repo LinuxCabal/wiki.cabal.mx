@@ -7,13 +7,11 @@ __NOTOC__
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-
 </syntaxhighlight>
 
 == BINLOG_GTID_POS ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 
 </syntaxhighlight>
 
@@ -76,7 +74,6 @@ __NOTOC__
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 </syntaxhighlight>
-
 
 == ROW_COUNT ==
 
