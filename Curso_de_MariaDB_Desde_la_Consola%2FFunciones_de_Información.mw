@@ -1,5 +1,22 @@
 __NOTOC__
 * [[:#Funciones de Información | Funciones de Información]]
+* [[:#BENCHMARK | BENCHMARK]]
+* [[:#BINLOG_GTID_POS]]
+* [[:#CHARSET | CHARSET]]
+* [[:#COERCIBILITY | COERCIBILITY]]
+* [[:#COLLATION | COLLATION]]
+* [[:#CONNECTION_ID | CONNECTION_ID]]
+* [[:#CURRENT_ROLE | CURRENT_ROLE]]
+* [[:#CURRENT_USER | CURRENT_USER]]
+* [[:#DATABASE | DATABASE]]
+* [[:#DECODE_HISTOGRAM | DECODE_HISTOGRAM]]
+* [[:#FOUND_ROWS | FOUND_ROWS]]
+* [[:#LAST_USER_ID | LAST_USER_ID]]
+* [[:#ROW_COUNT | ROW_COUNT]]
+* [[:#SCHEMA | SCHEMA]]
+* [[:#SESSION_USER | SESSION_USER]]
+* [[:#USER | USER]]
+* [[:#VERSION | VERSION]]
 
 = Funciones de Información =
 
