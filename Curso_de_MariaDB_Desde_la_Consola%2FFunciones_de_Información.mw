@@ -1,0 +1,111 @@
+__NOTOC__
+* [[:#Funciones de Información | Funciones de Información]]
+
+= Funciones de Información =
+
+== BENCHMARK ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+</syntaxhighlight>
+
+== BINLOG_GTID_POS ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+</syntaxhighlight>
+
+== CHARSET ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== COERCIBILITY ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== COLLATION ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== CONNECTION_ID ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== CURRENT_ROLE ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== CURRENT_USER ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== DATABASE ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== DECODE_HISTOGRAM ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== FOUND_ROWS ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== LAST_INSERT_ID ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhigh>
+
+== ROW_COUNT ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== SCHEMA ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== SESSION_USER ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== USER ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== VERSION ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
