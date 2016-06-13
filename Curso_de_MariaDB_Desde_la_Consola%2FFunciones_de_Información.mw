@@ -1,562 +1,111 @@
 __NOTOC__
 * [[:#Funciones de Información | Funciones de Información]]
-* [[:#BENCHMARK | BENCHMARK]]
-* [[:#CHARSET | CHARSET]]
-* [[:#COLLATION | COLLATION]]
-* [[:#CONNECTION_ID | CONNECTION_ID]]
-* [[:#CURRENT_USER | CURRENT_USER]]
-* [[:#DATABASE | DATABASE]]
-* [[:#FOUND_ROWS | FOUND_ROWS]]
-* [[:#LAST_INSERT_ID | LAST_INSERT_ID]]
-* [[:#ROW_COUNT | ROW_COUNT]]
-* [[:#VERSION | VERSION]]
 
 = Funciones de Información =
 
 == BENCHMARK ==
 
- <b>Syntax:</b>
- 
- BENCHMARK( count, expr )
- 
- <b>Descripción;</b>
- 
- La función BENCHMARK() ejecuta la expresión expr repetidamente count veces.
- Se puede utilizar en cuando la rapidez MariaDB procesa la expresión. 
- El valor del resultado es siempre 0. El uso previsto es desde el cliente de MySQL,
- que informa de los tiempos de ejecución de la consulta.
- 
- <b>Ejemplo;</b>
- 
- MariaDB [(none)]> SELECT BENCHMARK( 500000, MD5( "La frase que vamos encryptar" ) );
- +------------------------------------------------------------+
- | BENCHMARK( 500000, MD5( "La frase que vamos encryptar" ) ) |
- +------------------------------------------------------------+
- |                                                          0 |
- +------------------------------------------------------------+
- 1 row in set (0.23 sec)
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+</syntaxhighlight>
+
+== BINLOG_GTID_POS ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+
+</syntaxhighlight>
 
 == CHARSET ==
 
- <b>Syntax:</b>
- 
- CHARSET( str )
- 
- <b>Descripción;</b>
- 
- Devuelve el conjunto de caracteres del argumento de cadena.
- Si str no es una cadena, se considera como una cadena binaria
- (por lo que se devuelve la función binaria ''). 
- Esto se aplica a NULL, también.
- El valor de retorno es una cadena en el conjunto de caracteres UTF-8.
- 
- <b>Ejemplos;</b>
- 
- MariaDB [(none)]> SELECT CHARSET( 'El DEFAUT del sistema' );
- +------------------------------------+
- | CHARSET( 'El DEFAUT del sistema' ) |
- +------------------------------------+
- | utf8                               |
- +------------------------------------+
- 1 row in set (0.00 sec)
- 
- 
- MariaDB [(none)]> SELECT CHARSET( CONVERT( 'también' USING latin1 ) );
- +-----------------------------------------------+
- | CHARSET( CONVERT( 'también' USING latin1 ) )  |
- +-----------------------------------------------+
- | latin1                                        |
- +-----------------------------------------------+
- 1 row in set (0.00 sec)
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== COERCIBILITY ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
 
 == COLLATION ==
 
- <b>Syntax:</b>
- 
- COLLATION( str )
- 
- <b>Descripción;</b>
- 
- Devuelve la colation de la cadena. Si str no es una cadena, se considera como una cadena binaria
- (por lo que se devuelve la función binaria '').
- Esto se aplica a NULL, también. 
- El valor de retorno es una cadena en el conjunto de caracteres UTF-8.
- 
- <b>Ejemplos;</b>
- 
- MariaDB [(none)]> SELECT COLLATION( 'El default de nuesto sistema' );
- +--------------------------------------------+
- | COLLATION( 'El default de nuesto sistema' ) |
- +--------------------------------------------+
- | utf8_general_ci                            |
- +--------------------------------------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [(none)]> SELECT COLLATION( _latin1 'abc' );
- +----------------------------+
- | COLLATION( _latin1 'abc' ) |
- +----------------------------+
- | latin1_swedish_ci          |
- +----------------------------+
- 1 row in set (0.00 sec)
- 
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
 == CONNECTION_ID ==
 
- <b>Syntax:</b>
- 
- CONNECTION_ID()
- 
- <b>Descripción;</b>
- Devuelve el identificador de conexión (ID del hilo) para la conexión.
- Cada hilo (incluyendo eventos) tiene un identificador que es único 
- entre el conjunto de clientes conectados actualmente.
- 
- <b>Ejemplo;</b>
- 
- MariaDB [(none)]> SELECT CONNECTION_ID();
- +-----------------+
- | CONNECTION_ID() |
- +-----------------+
- |               4 |
- +-----------------+
- 1 row in set (0.00 sec)
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== CURRENT_ROLE ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
 
 == CURRENT_USER ==
 
- <b>Syntax:</b>
- 
- CURRENT_USER, CURRENT_USER()
- 
- <b>Descripción;</b>
- 
- Devuelve el nombre de usuario y nombre de host de la cuenta en MariaDB
- que el servidor utiliza para autenticar el cliente actual. Esta cuenta 
- determina sus privilegios de acceso. 
- El valor de retorno es una cadena en el conjunto de caracteres UTF-8.
- 
- El valor de CURRENT_USER() puede ser diferente del valor de USER(). 
- CURRENT_ROLE() devuelve el role activo actual. (Nuevo en 10.0.5)
- 
- <b>Ejemplos;</b>
- 
- MariaDB [(none)]> SELECT CURRENT_USER, CURRENT_USER();
- +---------------+----------------+
- | CURRENT_USER  | CURRENT_USER() |
- +---------------+----------------+
- | rrc@localhost | rrc@localhost  |
- +---------------+----------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [(none)]> select user(),current_user();
- +---------------+----------------+
- | user()        | current_user() |
- +---------------+----------------+
- | rrc@localhost | rrc@localhost  |
- +---------------+----------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [(none)]> SELECT CURRENT_USER, CURRENT_USER(), CURRENT_ROLE();
- +---------------+----------------+----------------+
- | CURRENT_USER  | CURRENT_USER() | CURRENT_ROLE() |
- +---------------+----------------+----------------+
- | rrc@localhost | rrc@localhost  | NULL           |
- +---------------+----------------+----------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [mysql]> SELECT * FROM INFORMATION_SCHEMA.ENABLED_ROLES;
- +-----------+
- | ROLE_NAME |
- +-----------+
- | NULL      |
- +-----------+
- 1 row in set (0.00 sec)
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
 
 == DATABASE ==
 
- <b>Syntax:</b>
- 
- DATABASE()
- 
- <b>Descripción;</b>
- 
- Devuelve el valor del Nombre de la base de datos seleccionada 
- como una cadena en el conjunt de caracteres UTF-8. Si no hay 
- una base de datos predeterminada, BASE DE DATOS() devuelve NULL. 
- Dentro de una rutina almacenada, la base de datos por defecto es 
- la base de datos que la rutina se asocia con, que no es necesariamente 
- la misma que la base de datos que es el valor predeterminado en el 
- contexto de llamada.
- 
- Para seleccionar una base de datos por defecto, la sentencia USE se 
- puede ejecutar. Otra forma de establecer la base de datos por defecto 
- está especificando su nombre al iniciar el cliente de línea de 
- comandos mysql.
- 
- <b>Ejemplos;</b>
- 
- MariaDB [(none)]> SELECT DATABASE();
- +------------+
- | DATABASE() |
- +------------+
- | NULL       |
- +------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [(none)]> use Prueba1;
- Database changed
- MariaDB [Prueba1]> SELECT DATABASE();
- +------------+
- | DATABASE() |
- +------------+
- | Prueba1    |
- +------------+
- 1 row in set (0.00 sec)
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== DECODE_HISTOGRAM ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
 
 == FOUND_ROWS ==
 
- <b>Syntax:</b>
- 
- FOUND_ROWS()
- 
- <b>Descripción;</b>
- 
- Una instrucción SELECT puede incluir una cláusula LIMIT para restringir el número de filas el servidor
- devuelve al cliente. En algunos casos, es deseable saber cuántos registros habría retornado el comando
- sin el límite, pero sin correr el comunicado de nuevo. Para obtener este número de filas, incluir una
- opción SQL_CALC_FOUND_ROWS en la instrucción SELECT, y luego invocar FOUND_ROWS () después.
- 
- También puede utilizar FOUND_ROWS () para obtener el número de filas devueltas por una instrucción SELECT
- que no contienen una cláusula LIMIT. En este caso no es necesario utilizar la opción SQL_CALC_FOUND_ROWS.
- Esto puede ser útil por ejemplo en un procedimiento almacenado.
- 
- Además, esta función trabaja con algunas otras declaraciones que devuelven un conjunto de resultados,
- incluyendo SHOW, DESC y ayuda. Para ELIMINAR ... Volviendo se debe utilizar ROW_COUNT (). También funciona
- como una declaración preparada, o después de la ejecución de una declaración preparada.
- 
- Declaraciones que no devuelven ningún resultado no afectan FOUND_ROWS () - todavía será devuelto el valor anterior.
- 
- Advertencia: Cuando se utiliza después de una sentencia CALL, esta función devuelve el número de filas
- seleccionadas por la última consulta en el procedimiento, no por la totalidad del procedimiento.
- 
- Declaraciones Uso de la función () FOUND_ROWS no son seguros para la replicación.
- 
- <b>Ejemplos;</b>
- 
- MariaDB [(none)]> show engines;
- +--------------------+---------+----------------------------------------------------------------------------+
- | Engine             | Support | Comment                                                                    |
- +--------------------+---------+----------------------------------------------------------------------------+
- | CSV                | YES     | CSV storage engine                                                         |
- | MRG_MyISAM         | YES     | Collection of identical MyISAM tables                                      |
- | MyISAM             | YES     | MyISAM storage engine                                                      |
- | BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears)             |
- | PERFORMANCE_SCHEMA | YES     | Performance Schema                                                         |
- | MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables                  |
- | ARCHIVE            | YES     | Archive storage engine                                                     |
- | Aria               | YES     | Crash-safe tables with MyISAM heritage                                     |
- | FEDERATED          | YES     | FederatedX pluggable storage engine                                        |
- | InnoDB             | DEFAULT | Percona-XtraDB, Supports transactions, row-level locking, and foreign keys |
- +--------------------+---------+----------------------------------------------------------------------------+
- 10 rows in set (0.05 sec)
- 
- MariaDB [(none)]> select found_rows();
- +--------------+
- | found_rows() |
- +--------------+
- |           10 |
- +--------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [(none)]> use Prueba1;
- Database changed
- MariaDB [Prueba1]> show tables;
- +-------------------+
- | Tables_in_Prueba1 |
- +-------------------+
- | Competiciones     |
- | Cursos            |
- | Est_fruta         |
- | Inv_fruta         |
- | Log               |
- | Usuarios          |
- | color             |
- | fruta             |
- | inven             |
- | personas          |
- | t1                |
- +-------------------+
- 11 rows in set (0.02 sec) 
- 
- MariaDB [Prueba1]> SELECT  * FROM Cursos limit 3;
- +----+------------+
- | ID | Nombre     |
- +----+------------+
- |  1 | HTML5      |
- |  2 | CSS3       |
- |  3 | JavaScript |
- +----+------------+
- 3 rows in set (0.00 sec)
- 
- MariaDB [Prueba1]> select FOUND_ROWS();
- +--------------+
- | FOUND_ROWS() |
- +--------------+
- |            3 |
- +--------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [Prueba1]> SELECT SQL_CALC_FOUND_ROWS * FROM Cursos limit 3;
- +----+------------+
- | ID | Nombre     |
- +----+------------+
- |  1 | HTML5      |
- |  2 | CSS3       |
- |  3 | JavaScript |
- +----+------------+
- 3 rows in set (0.00 sec)  
- 
- MariaDB [Prueba1]> select FOUND_ROWS();
- +--------------+
- | FOUND_ROWS() |
- +--------------+
- |            6 |
- +--------------+
- 1 row in set (0.00 sec)
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
 
 == LAST_INSERT_ID ==
- 
- <b>Syntax</b>
- 
- LAST_INSERT_ID(), LAST_INSERT_ID(expr)
- 
- <b>Description</b>
- 
- LAST_INSERT_ID() (sin argumentos) devuelve el primer valor generado automáticamente insertado
- con éxito para una columna AUTO_INCREMENT como resultado de la instrucción INSERT ejecutada más
- recientemente. El valor de LAST_INSERT_ID() permanece sin cambios si no hay filas se insertan
- correctamente.
- 
- También puede usar LAST_INSERT_ID() para eliminar la última fila insertada.
- 
- En MySQL 5.1.11 y anteriores, LAST_INSERT_ID() (sin argumentos) devuelve el primer valor generado
- de forma automática si las filas se insertan o actualizan correctamente. Esto significa que el
- valor devuelto puede ser un valor que no se ha insertado correctamente en la tabla. Si no hay
- filas se insertaron con éxito, LAST_INSERT_ID() devuelve 0.
- 
- El valor de LAST_INSERT_ID() será consistente en todas las versiones, si todas las filas de la
- instrucción INSERT o UPDATE tuvieron éxito.
- 
- Si una tabla contiene una columna AUTO_INCREMENT e INSERT ... EN DUPLICADO actualizaciones de
- actualización de la clave (en lugar de inserciones) una fila, el valor de LAST_INSERT_ID() no
- es significativa antes de MySQL 5.1.12.
- 
- La declaración se está ejecutando actualmente no afecta al valor de LAST_INSERT_ID().
- Supongamos que usted genera un valor AUTO_INCREMENT con una declaración y, a continuación,
- se refieren a LAST_INSERT_ID () en una instrucción INSERT de varias filas que inserta filas en
- una tabla con su propia columna AUTO_INCREMENT. El valor de LAST_INSERT_ID() se mantendrá
- estable en la segunda sentencia; su valor para la segunda y posteriores filas no se ve afectada
- por las inserciones de filas anteriores. (Sin embargo, si se mezclan referencias a LAST_INSERT_ID()
- y LAST_INSERT_ID(expr), el efecto es indefinido.)
- 
- Si la sentencia anterior devuelve un error, el valor de LAST_INSERT_ID() es indefinido. Para las
- tablas transaccionales, si la sentencia se revierte debido a un error, el valor de LAST_INSERT_ID()
- se deja sin definir. Para ROLLBACK manual, el valor de LAST_INSERT_ID() no se restablece a que antes
- de la transacción; sigue siendo como lo era en el momento de la restitución.
- 
- Dentro del cuerpo de una rutina almacenada (procedimiento o función) o un disparador, el valor
- de LAST_INSERT_ID() cambia de la misma manera como para instrucciones ejecutadas fuera del cuerpo
- de este tipo de objetos. El efecto de una rutina de activación o almacenado en el valor
- de LAST_INSERT_ID() que es visto por las declaraciones siguientes depende del tipo de rutina:
- 
- Si un procedimiento almacenado se ejecuta sentencias que cambian el valor de LAST_INSERT_ID(),
- el nuevo valor será visto por los estados que siguen la llamada de procedimiento.
- 
- Para stored funciones y triggers que cambian el valor almacenado, el valor se restablece cuando
- termina la función o activación, por lo siguientes afirmaciones no verán un valor modificado.
- 
- <b>ejemplos</b>
- 
- MariaDB [Prueba1]> select LAST_INSERT_ID();
- +------------------+
- | LAST_INSERT_ID() |
- +------------------+
- |                0 |
- +------------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [Prueba1]> show create table Cursos;
- +--------+--------------------------------------------------------------------+
- | Table  | Create Table                                                       |
- +--------+--------------------------------------------------------------------+
- | Cursos | CREATE TABLE `Cursos` (
-   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-   `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-   PRIMARY KEY (`ID`)
- ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
- +--------+--------------------------------------------------------------------+
- 1 row in set (0.20 sec)
- 
- MariaDB [Prueba1]> insert into Cursos values ( NULL, 'Ruby' );
- Query OK, 1 row affected (0.34 sec)
- 
- MariaDB [Prueba1]> select LAST_INSERT_ID();
- +------------------+
- | LAST_INSERT_ID() |
- +------------------+
- |                7 |
- +------------------+
- 1 row in set (0.00 sec) 
- 
- MariaDB [Prueba1]> select * from Cursos;
- +----+------------+
- | ID | Nombre     |
- +----+------------+
- |  1 | HTML5      |
- |  2 | CSS3       |
- |  3 | JavaScript |
- |  4 | PHP        |
- |  5 | MariaDB    |
- |  6 | Python     |
- |  7 | Ruby       |
- +----+------------+
- 7 rows in set (0.00 sec)
- 
- MariaDB [Prueba1]> delete from Cursos where ID = LAST_INSERT_ID();
- Query OK, 1 row affected (0.13 sec)
- 
- MariaDB [Prueba1]> select LAST_INSERT_ID();
- +------------------+
- | LAST_INSERT_ID() |
- +------------------+
- |                7 |
- +------------------+
- 1 row in set (0.00 sec) 
- 
- MariaDB [Prueba1]> select * from Cursos;
- +----+------------+
- | ID | Nombre     |
- +----+------------+
- |  1 | HTML5      |
- |  2 | CSS3       |
- |  3 | JavaScript |
- |  4 | PHP        |
- |  5 | MariaDB    |
- |  6 | Python     |
- +----+------------+
- 6 rows in set (0.00 sec)
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhigh>
 
 == ROW_COUNT ==
- 
- <b>Sintaxis</b>
- 
- ROW_COUNT()
- 
- <b>Descripción</b>
- 
- ROW_COUNT () devuelve el número de registros actualizados, insertados o eliminados por
- la declaración anterior. Este es el mismo que el número de registros que muestra el
- cliente mysql y el valor de los mysql_affected_rows() de la API C.
- 
- En general:
- 
- Para las sentencias que devuelven un conjunto de resultados (como SELECT, SHOW, DESC o HELP),
- devuelve -1, incluso cuando el conjunto de resultados está vacío. Esto también es cierto para
- las declaraciones administrativas, tales como optimizar.
- Para las sentencias DML que no sean SELECT y ALTER TABLE, devuelve el número de filas afectadas.
- Para las sentencias DDL (incluyendo TRUNCATE) y para otros estados que no devuelve ningún conjunto
- de resultados (como el uso, DO, señal o DEALLOCATE PREPARE), devuelve 0.
- 
- Para REPLACE, también se cuentan las filas eliminadas. Por lo tanto, si Reemplazar elimina una
- fila y añade una nueva fila, ROW_COUNT () devuelve 2.
- 
- Para INSERT ... EN clave duplicados, registros actualizados se cuentan dos veces. Por lo tanto,
- si INSERT añade una nueva filas y modifica otra fila, ROW_COUNT () devuelve 3.
- 
- ROW_COUNT() no tiene en cuenta las filas que no se eliminan directamente / actualizados por la
- última declaración. Esto significa que las filas eliminadas por las teclas o desencadenantes
- extranjeros no se cuentan.
- 
- Advertencia: Puede utilizar ROW_COUNT() con declaraciones preparadas, pero hay que llamarlo
- después de EXECUTE, no después de DEALLOCATE PREPARE, porque el número de filas para asignar
- prepararse es siempre 0.
- 
- Advertencia: Cuando se utiliza después de una sentencia CALL, esta función devuelve el número de
- filas afectadas por la última instrucción en el procedimiento, no por la totalidad del procedimiento.
- 
- Advertencia: Después de RETRASADO INSERT, ROW_COUNT () devuelve el número de filas que las
- intentado insertar, no el número de las escrituras de éxito.
- 
- Esta información también se puede encontrar en el área de diagnóstico.
- 
- Declaraciones usando la función ROW_COUNT () no son seguros para la replicación.
- 
- <b>Ejemplos</b>
- 
- MariaDB [Prueba1]> CREATE TABLE t (A INT);
- Query OK, 0 rows affected (1.26 sec)
- 
- MariaDB [Prueba1]> INSERT INTO t VALUES(1),(2),(3);
- Query OK, 3 rows affected (0.55 sec)
- Records: 3  Duplicates: 0  Warnings: 0
- 
- MariaDB [Prueba1]> SELECT ROW_COUNT();
- +-------------+
- | ROW_COUNT() |
- +-------------+
- |           3 |
- +-------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [Prueba1]> select * from t;
- +------+
- | A    |
- +------+
- |    1 |
- |    2 |
- |    3 |
- +------+
- 3 rows in set (0.00 sec)
- 
- MariaDB [Prueba1]> DELETE FROM t WHERE A IN(1,2);
- Query OK, 2 rows affected (0.10 sec)
- 
- MariaDB [Prueba1]> SELECT ROW_COUNT(); 
- +-------------+
- | ROW_COUNT() |
- +-------------+
- |           2 |
- +-------------+
- 1 row in set (0.00 sec)
- 
- MariaDB [Prueba1]> select * from t;
- +------+
- | A    |
- +------+
- |    3 |
- +------+
- 1 row in set (0.00 sec)
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== SCHEMA ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== SESSION_USER ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
+== USER ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
 
 == VERSION ==
- 
- <b>Syntax
- 
- VERSION()
- 
- <b>Description</b>
-  
- Devuelve una cadena que indica la versión del servidor MariaDB.
- La cadena utiliza el juego de caracteres UTF-8.
- 
- <b>Examples</b>
- 
- MariaDB [Prueba1]> select VERSION();
- +-----------------+
- | VERSION()       |
- +-----------------+
- | 10.0.25-MariaDB |
- +-----------------+
- 1 row in set (0.00 sec)
- 
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
