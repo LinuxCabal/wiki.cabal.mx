@@ -86,7 +86,7 @@ __NOTOC__
 
 </syntaxhighlight>
 
-==LAST_INSERT_ID ==
+== LAST_INSERT_ID ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
