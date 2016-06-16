@@ -26,14 +26,14 @@ __NOTOC__
  
  BENCHMARK( count, expr )
  
- Descripción;
+ <b>Descripción;</b>
  
  La función BENCHMARK() ejecuta la expresión expr repetidamente count veces.
  Se puede utilizar en cuando la rapidez MariaDB procesa la expresión. 
  El valor del resultado es siempre 0. El uso previsto es desde el cliente de MySQL,
  que informa de los tiempos de ejecución de la consulta.
  
- Ejemplo;
+ <b>Ejemplo;</b>
  
  MariaDB [(none)]> SELECT BENCHMARK( 500000, MD5( "La frase que vamos encryptar" ) );
  +------------------------------------------------------------+
