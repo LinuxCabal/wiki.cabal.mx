@@ -177,9 +177,46 @@ __NOTOC__
 
 == DATABASE ==
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+ <b>Syntax:</b>
+ 
+ DATABASE()
+ 
+ <b>Descripción;</b>
+ 
+ Devuelve el valor del Nombre de la base de datos seleccionada 
+ como una cadena en el conjunt de caracteres UTF-8. Si no hay 
+ una base de datos predeterminada, BASE DE DATOS() devuelve NULL. 
+ Dentro de una rutina almacenada, la base de datos por defecto es 
+ la base de datos que la rutina se asocia con, que no es necesariamente 
+ la misma que la base de datos que es el valor predeterminado en el 
+ contexto de llamada.
+ 
+ ESQUEMA() es sinónimo de base de datos().
+ 
+ Para seleccionar una base de datos por defecto, la sentencia USE se 
+ puede ejecutar. Otra forma de establecer la base de datos por defecto 
+ está especificando su nombre al iniciar el cliente de línea de 
+ comandos mysql.
+ 
+ <b>Ejemplos;</b>
+ 
+ MariaDB [(none)]> SELECT DATABASE();
+ +------------+
+ | DATABASE() |
+ +------------+
+ | NULL       |
+ +------------+
+ 1 row in set (0.00 sec)
 
-</syntaxhighlight>
+ MariaDB [(none)]> use Prueba1;
+ Database changed
+ MariaDB [Prueba1]> SELECT DATABASE();
+ +------------+
+ | DATABASE() |
+ +------------+
+ | Prueba1    |
+ +------------+
+ 1 row in set (0.00 sec)
 
 == DECODE_HISTOGRAM ==
 
