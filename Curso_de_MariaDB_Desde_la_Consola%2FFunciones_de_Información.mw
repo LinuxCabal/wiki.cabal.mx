@@ -43,12 +43,6 @@ __NOTOC__
  +------------------------------------------------------------+
  1 row in set (0.23 sec)
 
-== BINLOG_GTID_POS ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
-
 == CHARSET ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
