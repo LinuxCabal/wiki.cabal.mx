@@ -24,7 +24,9 @@ __NOTOC__
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
-<h1> Syntax </h1>
+<p style="font-size: 14pt;">
+  Syntax
+</p>
 
 BENCHMARK(count,expr)
  
