@@ -22,7 +22,7 @@ __NOTOC__
 
 == BENCHMARK ==
 
- Syntax;
+ <b>Syntax:</b>
  
  BENCHMARK( count, expr )
  
