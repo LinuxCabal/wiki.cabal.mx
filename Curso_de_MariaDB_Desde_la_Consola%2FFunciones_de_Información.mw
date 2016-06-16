@@ -107,9 +107,24 @@ __NOTOC__
  
 == CONNECTION_ID ==
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
+ <b>Syntax:</b>
+ 
+ CONNECTION_ID()
+ 
+ <b>Descripción;</b>
+ Devuelve el identificador de conexión (ID del hilo) para la conexión.
+ Cada hilo (incluyendo eventos) tiene un identificador que es único 
+ entre el conjunto de clientes conectados actualmente.
+ 
+ <b>Ejemplo;</b>
+ 
+ MariaDB [(none)]> SELECT CONNECTION_ID();
+ +-----------------+
+ | CONNECTION_ID() |
+ +-----------------+
+ |               4 |
+ +-----------------+
+ 1 row in set (0.00 sec)
 
 == CURRENT_ROLE ==
 
