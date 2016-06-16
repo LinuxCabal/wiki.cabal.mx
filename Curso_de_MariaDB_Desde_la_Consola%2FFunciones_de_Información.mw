@@ -132,17 +132,17 @@ __NOTOC__
  CURRENT_USER, CURRENT_USER()
  
  <b>Descripción;</b>
-
+ 
  Devuelve el nombre de usuario y nombre de host de la cuenta en MariaDB
  que el servidor utiliza para autenticar el cliente actual. Esta cuenta 
  determina sus privilegios de acceso. 
  El valor de retorno es una cadena en el conjunto de caracteres UTF-8.
-
+ 
  El valor de CURRENT_USER() puede ser diferente del valor de USER(). 
  CURRENT_ROLE() devuelve el role activo actual. (Nuevo en 10.0.5)
  
  <b>Ejemplos;</b>
-
+ 
  MariaDB [(none)]> SELECT CURRENT_USER, CURRENT_USER();
  +---------------+----------------+
  | CURRENT_USER  | CURRENT_USER() |
