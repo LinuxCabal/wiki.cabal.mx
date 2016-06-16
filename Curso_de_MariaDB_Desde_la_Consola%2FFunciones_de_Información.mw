@@ -191,8 +191,6 @@ __NOTOC__
  la misma que la base de datos que es el valor predeterminado en el 
  contexto de llamada.
  
- ESQUEMA() es sinónimo de base de datos().
- 
  Para seleccionar una base de datos por defecto, la sentencia USE se 
  puede ejecutar. Otra forma de establecer la base de datos por defecto 
  está especificando su nombre al iniciar el cliente de línea de 
