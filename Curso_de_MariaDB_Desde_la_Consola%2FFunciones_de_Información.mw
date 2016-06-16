@@ -23,7 +23,7 @@ __NOTOC__
 == BENCHMARK ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
- Syntax
+ __bold__Syntax
  
  BENCHMARK( count, expr )
  
