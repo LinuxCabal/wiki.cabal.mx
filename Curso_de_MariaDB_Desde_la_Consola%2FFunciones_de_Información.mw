@@ -2,7 +2,6 @@ __NOTOC__
 * [[:#Funciones de Información | Funciones de Información]]
 * [[:#BENCHMARK | BENCHMARK]]
 * [[:#CHARSET | CHARSET]]
-* [[:#COERCIBILITY | COERCIBILITY]]
 * [[:#COLLATION | COLLATION]]
 * [[:#CONNECTION_ID | CONNECTION_ID]]
 * [[:#CURRENT_ROLE | CURRENT_ROLE]]
@@ -77,10 +76,35 @@ __NOTOC__
 
 == COLLATION ==
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
-
+ <b>Syntax:</b>
+ 
+ COLLATION( str )
+ 
+ <b>Descripción;</b>
+ 
+ Devuelve la colation de la cadena. Si str no es una cadena, se considera como una cadena binaria
+ (por lo que se devuelve la función binaria '').
+ Esto se aplica a NULL, también. 
+ El valor de retorno es una cadena en el conjunto de caracteres UTF-8.
+ 
+ <b>Ejemplos;</b>
+ 
+ MariaDB [(none)]> SELECT COLLATION( 'El default de nuesto sistema' );
+ +--------------------------------------------+
+ | COLLATION( 'El default de nuesto sistema' ) |
+ +--------------------------------------------+
+ | utf8_general_ci                            |
+ +--------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT COLLATION( _latin1 'abc' );
+ +----------------------------+
+ | COLLATION( _latin1 'abc' ) |
+ +----------------------------+
+ | latin1_swedish_ci          |
+ +----------------------------+
+ 1 row in set (0.00 sec)
+ 
 == CONNECTION_ID ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
