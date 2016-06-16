@@ -21,29 +21,24 @@ __NOTOC__
 = Funciones de Información =
 
 == BENCHMARK ==
-
-<span style="font-size:14pt;">
-  Syntax
-</span>
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-BENCHMARK(count,expr)
+ Syntax
  
-Descripción
-
+ BENCHMARK(count,expr)
  
-La función BENCHMARK() ejecuta la expresión expr repetidamente count veces. Se puede utilizar en cuando la rapidez MariaDB procesa la expresión. El valor del resultado es siempre 0. El uso previsto es desde el cliente de MySQL, que informa de los tiempos de ejecución de la consulta.
+ Descripción
  
-=== Ejemplo ===
-
-
-MariaDB [(none)]> SELECT BENCHMARK( 500000, MD5( "La frase que vamos encryptar" ) );
-+------------------------------------------------------------+
-| BENCHMARK( 500000, MD5( "La frase que vamos encryptar" ) ) |
-+------------------------------------------------------------+
-|                                                          0 |
-+------------------------------------------------------------+
-1 row in set (0.23 sec)
+ La función BENCHMARK() ejecuta la expresión expr repetidamente count veces. Se puede utilizar en cuando la rapidez MariaDB procesa la expresión. El valor del resultado es siempre 0. El uso previsto es desde el cliente de MySQL, que informa de los tiempos de ejecución de la consulta.
+ 
+ === Ejemplo ===
+ 
+ MariaDB [(none)]> SELECT BENCHMARK( 500000, MD5( "La frase que vamos encryptar" ) );
+ +------------------------------------------------------------+
+ | BENCHMARK( 500000, MD5( "La frase que vamos encryptar" ) ) |
+ +------------------------------------------------------------+
+ |                                                          0 |
+ +------------------------------------------------------------+
+ 1 row in set (0.23 sec) 
 
 </syntaxhighlight>
 
