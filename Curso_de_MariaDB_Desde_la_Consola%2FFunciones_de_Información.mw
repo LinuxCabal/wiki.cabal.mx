@@ -22,7 +22,6 @@ __NOTOC__
 
 == BENCHMARK ==
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
  Syntax;
  
  BENCHMARK( count, expr )
@@ -42,9 +41,7 @@ __NOTOC__
  +------------------------------------------------------------+
  |                                                          0 |
  +------------------------------------------------------------+
- 1 row in set (0.23 sec) 
-
-</syntaxhighlight>
+ 1 row in set (0.23 sec)
 
 == BINLOG_GTID_POS ==
 
