@@ -21,14 +21,18 @@ __NOTOC__
 = Funciones de Información =
 
 == BENCHMARK ==
+
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
  Syntax
  
- BENCHMARK(count,expr)
+ BENCHMARK( count, expr )
  
  Descripción
  
- La función BENCHMARK() ejecuta la expresión expr repetidamente count veces. Se puede utilizar en cuando la rapidez MariaDB procesa la expresión. El valor del resultado es siempre 0. El uso previsto es desde el cliente de MySQL, que informa de los tiempos de ejecución de la consulta.
+ La función BENCHMARK() ejecuta la expresión expr repetidamente count veces.
+ Se puede utilizar en cuando la rapidez MariaDB procesa la expresión. 
+ El valor del resultado es siempre 0. El uso previsto es desde el cliente de MySQL,
+ que informa de los tiempos de ejecución de la consulta.
  
  === Ejemplo ===
  
