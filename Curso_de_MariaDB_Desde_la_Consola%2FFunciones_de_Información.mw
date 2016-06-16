@@ -1,7 +1,6 @@
 __NOTOC__
 * [[:#Funciones de Información | Funciones de Información]]
 * [[:#BENCHMARK | BENCHMARK]]
-* [[:#BINLOG_GTID_POS | BINLOG_GTID_POS]]
 * [[:#CHARSET | CHARSET]]
 * [[:#COERCIBILITY | COERCIBILITY]]
 * [[:#COLLATION | COLLATION]]
@@ -45,9 +44,38 @@ __NOTOC__
 
 == CHARSET ==
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
+ <b>Syntax:</b>
+ 
+ CHARSET( str )
+ 
+ <b>Descripción;</b>
+ 
+ Devuelve el conjunto de caracteres del argumento de cadena.
+ Si str no es una cadena, se considera como una cadena binaria
+ (por lo que se devuelve la función binaria ''). 
+ Esto se aplica a NULL, también.
+ El valor de retorno es una cadena en el conjunto de caracteres UTF-8.
+ 
+ <b>Ejemplo;</b>
+ 
+ MariaDB [(none)]> SELECT CHARSET( 'El DEFAUT del sistema' );
+ +------------------------------------+
+ | CHARSET( 'El DEFAUT del sistema' ) |
+ +------------------------------------+
+ | utf8                               |
+ +------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ 
+ MariaDB [(none)]> SELECT CHARSET( CONVERT( 'también' USING latin1 ) );
+ +-----------------------------------------------+
+ | CHARSET( CONVERT( 'también' USING latin1 ) )  |
+ +-----------------------------------------------+
+ | latin1                                        |
+ +-----------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ 
 
 == COERCIBILITY ==
 
