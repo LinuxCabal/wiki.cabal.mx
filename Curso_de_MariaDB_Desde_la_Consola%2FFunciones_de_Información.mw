@@ -4,7 +4,6 @@ __NOTOC__
 * [[:#CHARSET | CHARSET]]
 * [[:#COLLATION | COLLATION]]
 * [[:#CONNECTION_ID | CONNECTION_ID]]
-* [[:#CURRENT_ROLE | CURRENT_ROLE]]
 * [[:#CURRENT_USER | CURRENT_USER]]
 * [[:#DATABASE | DATABASE]]
 * [[:#DECODE_HISTOGRAM | DECODE_HISTOGRAM]]
@@ -128,9 +127,45 @@ __NOTOC__
 
 == CURRENT_USER ==
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+ <b>Syntax:</b>
+ 
+ CURRENT_USER, CURRENT_USER()
+ 
+ <b>Descripción;</b>
 
-</syntaxhighlight>
+ Devuelve el nombre de usuario y nombre de host de la cuenta en MariaDB
+ que el servidor utiliza para autenticar el cliente actual. Esta cuenta 
+ determina sus privilegios de acceso. 
+ El valor de retorno es una cadena en el conjunto de caracteres UTF-8.
+
+ El valor de CURRENT_USER() puede ser diferente del valor de USER(). 
+ CURRENT_ROLE() devuelve el role activo actual. (Nuevo en 10.0.5)
+ 
+ <b>Ejemplos;</b>
+
+ MariaDB [(none)]> SELECT CURRENT_USER, CURRENT_USER();
+ +---------------+----------------+
+ | CURRENT_USER  | CURRENT_USER() |
+ +---------------+----------------+
+ | rrc@localhost | rrc@localhost  |
+ +---------------+----------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> select user(),current_user();
+ +---------------+----------------+
+ | user()        | current_user() |
+ +---------------+----------------+
+ | rrc@localhost | rrc@localhost  |
+ +---------------+----------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT CURRENT_USER, CURRENT_USER(), CURRENT_ROLE();
+ +---------------+----------------+----------------+
+ | CURRENT_USER  | CURRENT_USER() | CURRENT_ROLE() |
+ +---------------+----------------+----------------+
+ | rrc@localhost | rrc@localhost  | NULL           |
+ +---------------+----------------+----------------+
+ 1 row in set (0.00 sec)
 
 == DATABASE ==
 
