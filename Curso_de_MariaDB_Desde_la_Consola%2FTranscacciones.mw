@@ -1,0 +1,17 @@
+__NOTOC__
+* [[:#Start Transaction | Start Transacton]]
+* [[:#Commit | Commit]]
+* [[:#Rollback | Rollback]
+
+= Transacciones =
+
+== Start Transaction ==
+
+== Commit ==
+
+== Rollback ==
+
+</syntaxhighlight>
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
