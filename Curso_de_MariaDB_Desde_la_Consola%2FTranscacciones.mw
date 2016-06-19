@@ -1,15 +1,25 @@
 __NOTOC__
 * [[:#Start Transaction | Start Transacton]]
 * [[:#Commit | Commit]]
-* [[:#Rollback | Rollback]
+* [[:#Rollback | Rollback]]
 
 = Transacciones =
 
 == Start Transaction ==
 
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
 == Commit ==
 
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
 == Rollback ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
 </syntaxhighlight>
 
