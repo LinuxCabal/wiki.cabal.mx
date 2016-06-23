@@ -1,8 +1,7 @@
 __NOTOC__
 * [[:#Transacciones | Transacciones]]
+* [[:#SET autocommit | SET autocommit]]
 * [[:#Start Transaction | Start Transaction]]
-* [[:#Commit | Commit]]
-* [[:#Rollback | Rollback]]
 
 = Transacciones =
 
@@ -36,7 +35,7 @@ MariaDB [Prueba1]> show create table Usuarios;
 
 </pre>
 
-== Set autocommit ==
+== SET autocommit ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
