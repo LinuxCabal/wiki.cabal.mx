@@ -6,6 +6,42 @@ __NOTOC__
 
 = Transacciones =
 
+<pre>
+MariaDB [Prueba1]> show create table Cursos;
++--------+--------------------------------------------------------------------+
+| Table  | Create Table                                                       |
++--------+--------------------------------------------------------------------+
+| Cursos | CREATE TABLE `Cursos` (
+  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
++--------+--------------------------------------------------------------------+
+1 row in set (0.06 sec)
+
+MariaDB [Prueba1]> show create table Usuarios;
++----------+------------------------------------------------------------------+
+| Table    | Create Table                                                     |
++----------+------------------------------------------------------------------+
+| Usuarios | CREATE TABLE `Usuarios` (
+  `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Curso` smallint(5) unsigned DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `Curso` (`Curso`),
+  CONSTRAINT `Usuarios_ibfk_1` FOREIGN KEY (`Curso`) REFERENCES `Cursos` (`ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
++----------+------------------------------------------------------------------+
+1 row in set (0.19 sec)
+
+</pre>
+
+== Commit ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+</syntaxhighlight>
+
 == Start Transaction ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
