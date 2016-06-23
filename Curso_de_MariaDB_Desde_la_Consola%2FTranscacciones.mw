@@ -36,7 +36,87 @@ MariaDB [Prueba1]> show create table Usuarios;
 
 </pre>
 
-== Commit ==
+== Set autocommit ==
+
+<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+
+MariaDB [Prueba1]> SELECT * from Usuarios;
++----+----------+-------+
+| ID | Nombre   | Curso |
++----+----------+-------+
+|  1 | Ana      |     2 |
+|  2 | Roberto  |     1 |
+|  3 | Angel    |     5 |
+|  4 | Laura    |     3 |
+|  5 | Ricardo  |     4 |
+|  6 | Mia      |     2 |
+|  7 | Leo      |     4 |
+|  8 | Mauricio |  NULL |
+|  9 | Adrian   |     4 |
++----+----------+-------+
+9 rows in set (0.00 sec)
+
+MariaDB [Prueba1]> insert into Usuarios values ( NULL, 'Adrian', 4 );
+Query OK, 1 row affected (0.04 sec)
+
+MariaDB [Prueba1]> SELECT * from Usuarios;
++----+----------+-------+
+| ID | Nombre   | Curso |
++----+----------+-------+
+|  1 | Ana      |     2 |
+|  2 | Roberto  |     1 |
+|  3 | Angel    |     5 |
+|  4 | Laura    |     3 |
+|  5 | Ricardo  |     4 |
+|  6 | Mia      |     2 |
+|  7 | Leo      |     4 |
+|  8 | Mauricio |  NULL |
+| 11 | Adrian   |     4 |
++----+----------+-------+
+9 rows in set (0.00 sec)
+
+
+MariaDB [Prueba1]> quit
+Bye
+
+[rrc@Pwyr ~]$ mysql -u rrc -p
+Enter password: 
+
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 6
+Server version: 10.0.24-MariaDB Mageia MariaDB Server
+
+Copyright (c) 2000, 2016, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use Prueba1;
+Database changed
+
+MariaDB [Prueba1]> SELECT * from Usuarios;
++----+----------+-------+
+| ID | Nombre   | Curso |
++----+----------+-------+
+|  1 | Ana      |     2 |
+|  2 | Roberto  |     1 |
+|  3 | Angel    |     5 |
+|  4 | Laura    |     3 |
+|  5 | Ricardo  |     4 |
+|  6 | Mia      |     2 |
+|  7 | Leo      |     4 |
+|  8 | Mauricio |  NULL |
++----+----------+-------+
+8 rows in set (0.00 sec)
+
+
+
+
+
+
+
+</syntaxhighlight>
+
+== Start Transaction ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
