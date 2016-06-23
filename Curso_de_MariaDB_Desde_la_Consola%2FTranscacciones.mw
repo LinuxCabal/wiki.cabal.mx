@@ -327,27 +327,8 @@ MariaDB [Prueba1]> insert into Usuarios values ( NULL, 'Roberto', 5 );Query OK, 
 MariaDB [Prueba1]> Commit;
 Query OK, 0 rows affected (0.09 sec)
 
-
-
 </syntaxhighlight>
 
-== Start Transaction ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
-
-== Commit ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
-
-== Rollback ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
