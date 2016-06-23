@@ -52,7 +52,6 @@ MariaDB [Prueba1]> SELECT * from Usuarios;
 |  6 | Mia      |     2 |
 |  7 | Leo      |     4 |
 |  8 | Mauricio |  NULL |
-|  9 | Adrian   |     4 |
 +----+----------+-------+
 9 rows in set (0.00 sec)
 
@@ -74,7 +73,6 @@ MariaDB [Prueba1]> SELECT * from Usuarios;
 | 11 | Adrian   |     4 |
 +----+----------+-------+
 9 rows in set (0.00 sec)
-
 
 MariaDB [Prueba1]> quit
 Bye
