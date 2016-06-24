@@ -255,6 +255,116 @@ Query OK, 0 rows affected (0.10 sec)
 </syntaxhighlight>
 
 == Start Transaction ==
+=== Syntax ===
+ 
+ START TRANSACTION [transaction_property [, transaction_property] ...] | BEGIN [WORK]
+ COMMIT [WORK] [AND [NO] CHAIN] [[NO] RELEASE]
+ ROLLBACK [WORK] [AND [NO] CHAIN] [[NO] RELEASE]
+ SET autocommit = {0 | 1}
+ 
+ transaction_property:
+     WITH CONSISTENT SNAPSHOT
+   | READ WRITE
+   | READ ONLY
+
+=== Descripción ===
+ 
+ El START TRANSACTION o BEGIN inicia una nueva transacción. 
+ 
+ COMMIT confirma la transacción actual, por lo que sus cambios
+ sean permanentes. 
+ 
+ ROLLBACK deshace la transacción actual, cancelar sus cambios. 
+ La sentencia SET autocommit desactiva o activa el modo de commit
+ automática para la sesión actual.
+ 
+ La palabra opcional TRABAJO es compatible con COMMIT y ROLLBACK,
+ como son las cláusulas de CHAIN y RELEASE. CHAIN y RELEASE se pueden
+ utilizar para un control adicional sobre la finalización de la
+ transacción. El valor de la variable de sistema completion_type determina
+ el comportamiento de finalización predeterminado.
+ 
+ La cláusula AND CHAIN causa una nueva transacción para comenzar
+ tan pronto como termine el actual, y la nueva transacción tiene
+ el mismo nivel de aislamiento ya que la transacción simplemente
+ terminado. La cláusula RELEASE hace que el servidor de desconectar
+ la sesión actual del cliente después de terminar la transacción
+ actual. Incluyendo la palabra NO suprime CHAIN y RELEASE lo cual
+ puede ser útil si la variable de sistema completion_type se establece
+ en el encadenamiento de causar CHAINing o RELEASE finalización de
+ forma predeterminada.
+
+=== Modo de acceso ===
+  
+ Estas cláusulas aparecieron en MariaDB 10.0.
+ 
+ El modo de acceso especifica si se permite que la transacción para
+ escribir datos o no. De forma predeterminada, las transacciones son
+ en modo READ WRITE (véase la variable de sistema tx_read_only). el modo de
+ READ ONLY permite que el motor de almacenamiento para aplicar
+ optimizaciones que no se pueden utilizar para las operaciones que
+ escriben datos. La única excepción a esta regla es la registrada
+ sólo las transacciones pueden llevar a cabo sentencias DDL en
+ tablas temporales.
+ 
+ No está permitido especificar tanto READ WRITE y READ ONLY en el
+ mismo comunicado.
+ 
+ READ WRITE  y READ ONLY también puede especificarse en la sentencia
+ SET TRANSACTION, en cuyo caso el modo especificado es válido para 
+ todas las sesiones, o para toda transacción posterior utilizado por
+ la sesión actual.
+
+=== autocommit ===
+ 
+ De forma predeterminada, MariaDB se ejecuta con el modo de confirmación
+ automática habilitada. Esto significa que tan pronto como se ejecuta 
+ una sentencia que actualice (modifique) una table, tiendas MariaDB
+ la actualización en el disco para que sea permanente. Para desactivar
+ el modo de autocommit, utilice la siguiente instrucción:
+ 
+ SET autocommit = 0;
+ 
+ Después de desactivar el modo de autocommit estableciendo la variable
+ de autocommit a cero, los cambios en tablas transaccionales (como los
+ de InnoDB o NDBCLUSTER) no se hacen permanentes inmediatamente. Debe
+ usar COMMIT para almacenar los cambios en disco o ROLLBACK para ignorar
+ los cambios.
+ 
+ Para desactivar el modo de autocommit para una serie única de comandos,
+ utilice la instrucción START TRANSACTION.
+
+=== DDL ===
+ 
+ Comandos DDL (CREATE, ALTER, DROP) y las declaraciones administrativas
+ (FLUSH, RESET, OPTIMIZE, ANALYZE, CHECK, REPAIR, CACHE INDEX), y 
+ LOAD DATA INFILE, causan un COMMIT implícito y empezar una nueva transacción.
+ Una excepción a esta regla son el DDL que operan en tablas temporales:
+ se pueden CREATE, ALTER y DROP sin causar ningún COMMIT, pero esas acciones
+ no se puede ROLLBACK. Esto significa que si usted llama ROLLBACK, las tablas
+ temporales que ha creado en la transacción se mantendrán,
+ mientras que el resto de la transacción se ROLLBACK.
+ 
+ Transacciones no se pueden utilizar en STORED FUNCTIONS o TRIGGERS.
+ BEGIN ne se permite en STORED PROCEEDURES y EVENTS, por lo que debe
+ utilizar START TRANSACTION.
+ 
+ Una transacción adquiere un bloqueo de metadatos en cada tabla tiene
+ acceso para evitar que otras conexiones de alterar su estructura. El
+ bloqueo se libera al final de la transacción. Esto sucede incluso
+ con motores de almacenamiento no transaccionales (como MEMORY o CONNECT),
+ por lo que tiene sentido utilizar transacciones con tablas no transaccionales.
+ in_transaction
+ 
+ La variable de sistema in_transaction apareció en MariaDB 5.3.
+ 
+=== WITH CONSISTENT SNAPSHOT ===
+ 
+ La opción WITH CONSISTENT SNAPSHOT inicia una lectura consistente en motores
+ de almacenamiento tales como XtraDB e InnoDB que puedan hacerlo, lo mismo que
+ si se emitió una TRANSACCIÓN START seguida de un SELECT desde cualquier tabla InnoDB.
+ 
+ MariaDB 5.3 introduce mejoras para esta función. Mejoras para START TRANSACTION WITH CONSISTENT SNAPSHOT.
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
 
