@@ -482,7 +482,7 @@ __NOTOC__
  Advertencia: Puede utilizar ROW_COUNT() con declaraciones preparadas, pero hay que llamarlo
  después de EXECUTE, no después de DEALLOCATE PREPARE, porque el número de filas para asignar
  prepararse es siempre 0.
-
+ 
  Advertencia: Cuando se utiliza después de una sentencia CALL, esta función devuelve el número de
  filas afectadas por la última instrucción en el procedimiento, no por la totalidad del procedimiento.
  
@@ -494,6 +494,50 @@ __NOTOC__
  Declaraciones usando la función ROW_COUNT () no son seguros para la replicación.
 
  <b>Ejemplos</b>
+ 
+ MariaDB [Prueba1]> CREATE TABLE t (A INT);
+ Query OK, 0 rows affected (1.26 sec)
+ 
+ MariaDB [Prueba1]> INSERT INTO t VALUES(1),(2),(3);
+ Query OK, 3 rows affected (0.55 sec)
+ Records: 3  Duplicates: 0  Warnings: 0
+ 
+ MariaDB [Prueba1]> SELECT ROW_COUNT();
+ +-------------+
+ | ROW_COUNT() |
+ +-------------+
+ |           3 |
+ +-------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> select * from t;
+ +------+
+ | A    |
+ +------+
+ |    1 |
+ |    2 |
+ |    3 |
+ +------+
+ 3 rows in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> DELETE FROM t WHERE A IN(1,2);
+ Query OK, 2 rows affected (0.10 sec)
+ 
+ MariaDB [Prueba1]> SELECT ROW_COUNT(); 
+ +-------------+
+ | ROW_COUNT() |
+ +-------------+
+ |           2 |
+ +-------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> select * from t;
+ +------+
+ | A    |
+ +------+
+ |    3 |
+ +------+
+ 1 row in set (0.00 sec)
 
 == SCHEMA ==
 
