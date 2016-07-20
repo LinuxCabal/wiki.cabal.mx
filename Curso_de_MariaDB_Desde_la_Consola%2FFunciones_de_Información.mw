@@ -492,7 +492,7 @@ __NOTOC__
  Esta información también se puede encontrar en el área de diagnóstico.
  
  Declaraciones usando la función ROW_COUNT () no son seguros para la replicación.
-
+ 
  <b>Ejemplos</b>
  
  MariaDB [Prueba1]> CREATE TABLE t (A INT);
