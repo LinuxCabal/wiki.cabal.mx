@@ -327,10 +327,57 @@ __NOTOC__
  1 row in set (0.00 sec)
 
 == LAST_INSERT_ID ==
+ 
+ <b>Syntax</b>
+ 
+ LAST_INSERT_ID(), LAST_INSERT_ID(expr)
+ 
+ <b>Description</b>
+ 
+ LAST_INSERT_ID() (sin argumentos) devuelve el primer valor generado automáticamente insertado
+ con éxito para una columna AUTO_INCREMENT como resultado de la instrucción INSERT ejecutada más
+ recientemente. El valor de LAST_INSERT_ID() permanece sin cambios si no hay filas se insertan
+ correctamente.
+ 
+ También puede usar LAST_INSERT_ID() para eliminar la última fila insertada.
+ 
+ En MySQL 5.1.11 y anteriores, LAST_INSERT_ID() (sin argumentos) devuelve el primer valor generado
+ de forma automática si las filas se insertan o actualizan correctamente. Esto significa que el
+ valor devuelto puede ser un valor que no se ha insertado correctamente en la tabla. Si no hay
+ filas se insertaron con éxito, LAST_INSERT_ID() devuelve 0.
+ 
+ El valor de LAST_INSERT_ID() será consistente en todas las versiones, si todas las filas de la
+ instrucción INSERT o UPDATE tuvieron éxito.
+ 
+ Si una tabla contiene una columna AUTO_INCREMENT e INSERT ... EN DUPLICADO actualizaciones de
+ actualización de la clave (en lugar de inserciones) una fila, el valor de LAST_INSERT_ID() no
+ es significativa antes de MySQL 5.1.12.
+ 
+ La declaración se está ejecutando actualmente no afecta al valor de LAST_INSERT_ID().
+ Supongamos que usted genera un valor AUTO_INCREMENT con una declaración y, a continuación,
+ se refieren a LAST_INSERT_ID () en una instrucción INSERT de varias filas que inserta filas en
+ una tabla con su propia columna AUTO_INCREMENT. El valor de LAST_INSERT_ID() se mantendrá
+ estable en la segunda sentencia; su valor para la segunda y posteriores filas no se ve afectada
+ por las inserciones de filas anteriores. (Sin embargo, si se mezclan referencias a LAST_INSERT_ID()
+ y LAST_INSERT_ID(expr), el efecto es indefinido.)
+ 
+ Si la sentencia anterior devuelve un error, el valor de LAST_INSERT_ID() es indefinido. Para las
+ tablas transaccionales, si la sentencia se revierte debido a un error, el valor de LAST_INSERT_ID()
+ se deja sin definir. Para ROLLBACK manual, el valor de LAST_INSERT_ID() no se restablece a que antes
+ de la transacción; sigue siendo como lo era en el momento de la restitución.
+ 
+ Dentro del cuerpo de una rutina almacenada (procedimiento o función) o un disparador, el valor
+ de LAST_INSERT_ID() cambia de la misma manera como para instrucciones ejecutadas fuera del cuerpo
+ de este tipo de objetos. El efecto de una rutina de activación o almacenado en el valor
+ de LAST_INSERT_ID() que es visto por las declaraciones siguientes depende del tipo de rutina:
+ 
+ Si un procedimiento almacenado se ejecuta sentencias que cambian el valor de LAST_INSERT_ID(),
+ el nuevo valor será visto por los estados que siguen la llamada de procedimiento.
+ 
+ Para stored funciones y triggers que cambian el valor almacenado, el valor se restablece cuando
+ termina la función o activación, por lo siguientes afirmaciones no verán un valor modificado.
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
+ <b>ejemplos</b>
 
 == ROW_COUNT ==
 
