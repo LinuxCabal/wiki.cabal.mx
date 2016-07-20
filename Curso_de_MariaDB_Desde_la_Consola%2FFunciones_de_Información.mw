@@ -236,6 +236,31 @@ Advertencia: Cuando se utiliza después de una sentencia CALL, esta función dev
 Declaraciones Uso de la función () FOUND_ROWS no son seguros para la replicación.
  <b>Ejemplos;</b>
 
+MariaDB [(none)]> show engines;
++--------------------+---------+----------------------------------------------------------------------------+--------------+------+------------+
+| Engine             | Support | Comment                                                                    | Transactions | XA   | Savepoints |
++--------------------+---------+----------------------------------------------------------------------------+--------------+------+------------+
+| CSV                | YES     | CSV storage engine                                                         | NO           | NO   | NO         |
+| MRG_MyISAM         | YES     | Collection of identical MyISAM tables                                      | NO           | NO   | NO         |
+| MyISAM             | YES     | MyISAM storage engine                                                      | NO           | NO   | NO         |
+| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears)             | NO           | NO   | NO         |
+| PERFORMANCE_SCHEMA | YES     | Performance Schema                                                         | NO           | NO   | NO         |
+| MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables                  | NO           | NO   | NO         |
+| ARCHIVE            | YES     | Archive storage engine                                                     | NO           | NO   | NO         |
+| Aria               | YES     | Crash-safe tables with MyISAM heritage                                     | NO           | NO   | NO         |
+| FEDERATED          | YES     | FederatedX pluggable storage engine                                        | YES          | NO   | YES        |
+| InnoDB             | DEFAULT | Percona-XtraDB, Supports transactions, row-level locking, and foreign keys | YES          | YES  | YES        |
++--------------------+---------+----------------------------------------------------------------------------+--------------+------+------------+
+10 rows in set (0.05 sec)
+
+MariaDB [(none)]> select found_rows();
++--------------+
+| found_rows() |
++--------------+
+|           10 |
++--------------+
+1 row in set (0.00 sec)
+
 == LAST_INSERT_ID ==
 
 <syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
