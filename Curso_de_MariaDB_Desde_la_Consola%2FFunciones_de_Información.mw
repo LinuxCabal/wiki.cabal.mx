@@ -423,6 +423,30 @@ __NOTOC__
  |  7 | Ruby       |
  +----+------------+
  7 rows in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> delete from Cursos where ID = LAST_INSERT_ID();
+ Query OK, 1 row affected (0.13 sec)
+ 
+ MariaDB [Prueba1]> select LAST_INSERT_ID();
+ +------------------+
+ | LAST_INSERT_ID() |
+ +------------------+
+ |                7 |
+ +------------------+
+ 1 row in set (0.00 sec) 
+ 
+ MariaDB [Prueba1]> select * from Cursos;
+ +----+------------+
+ | ID | Nombre     |
+ +----+------------+
+ |  1 | HTML5      |
+ |  2 | CSS3       |
+ |  3 | JavaScript |
+ |  4 | PHP        |
+ |  5 | MariaDB    |
+ |  6 | Python     |
+ +----+------------+
+ 6 rows in set (0.00 sec)
 
 == ROW_COUNT ==
 
