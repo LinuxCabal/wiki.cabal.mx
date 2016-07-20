@@ -376,8 +376,53 @@ __NOTOC__
  
  Para stored funciones y triggers que cambian el valor almacenado, el valor se restablece cuando
  termina la función o activación, por lo siguientes afirmaciones no verán un valor modificado.
-
+ 
  <b>ejemplos</b>
+ 
+ MariaDB [Prueba1]> select LAST_INSERT_ID();
+ +------------------+
+ | LAST_INSERT_ID() |
+ +------------------+
+ |                0 |
+ +------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> show create table Cursos;
+ +--------+----------------------------------------------------------+
+ | Table  | Create Table                                             |
+ +--------+----------------------------------------------------------+
+ | Cursos | CREATE TABLE `Cursos` (
+   `ID` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+   `Nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+   PRIMARY KEY (`ID`)
+ ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci |
+ +--------+--------------------------------------------------------------------+
+ 1 row in set (0.20 sec)
+ 
+ MariaDB [Prueba1]> insert into Cursos values ( NULL, 'Ruby' );
+ Query OK, 1 row affected (0.34 sec)
+ 
+ MariaDB [Prueba1]> select LAST_INSERT_ID();
+ +------------------+
+ | LAST_INSERT_ID() |
+ +------------------+
+ |                7 |
+ +------------------+
+ 1 row in set (0.00 sec) 
+ 
+ MariaDB [Prueba1]> select * from Cursos;
+ +----+------------+
+ | ID | Nombre     |
+ +----+------------+
+ |  1 | HTML5      |
+ |  2 | CSS3       |
+ |  3 | JavaScript |
+ |  4 | PHP        |
+ |  5 | MariaDB    |
+ |  6 | Python     |
+ |  7 | Ruby       |
+ +----+------------+
+ 7 rows in set (0.00 sec)
 
 == ROW_COUNT ==
 
