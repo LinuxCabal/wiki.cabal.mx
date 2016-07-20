@@ -449,10 +449,51 @@ __NOTOC__
  6 rows in set (0.00 sec)
 
 == ROW_COUNT ==
+ 
+ <b>Sintaxis</b>
+ 
+ ROW_COUNT()
+ 
+ <b>Descripción</b>
+ 
+ ROW_COUNT () devuelve el número de registros actualizados, insertados o eliminados por
+ la declaración anterior. Este es el mismo que el número de registros que muestra el
+ cliente mysql y el valor de los mysql_affected_rows() de la API C.
+ 
+ En general:
+ 
+ Para las sentencias que devuelven un conjunto de resultados (como SELECT, SHOW, DESC o HELP),
+ devuelve -1, incluso cuando el conjunto de resultados está vacío. Esto también es cierto para
+ las declaraciones administrativas, tales como optimizar.
+ Para las sentencias DML que no sean SELECT y ALTER TABLE, devuelve el número de filas afectadas.
+ Para las sentencias DDL (incluyendo TRUNCATE) y para otros estados que no devuelve ningún conjunto
+ de resultados (como el uso, DO, señal o DEALLOCATE PREPARE), devuelve 0.
+ 
+ Para REPLACE, también se cuentan las filas eliminadas. Por lo tanto, si Reemplazar elimina una
+ fila y añade una nueva fila, ROW_COUNT () devuelve 2.
+ 
+ Para INSERT ... EN clave duplicados, registros actualizados se cuentan dos veces. Por lo tanto,
+ si INSERT añade una nueva filas y modifica otra fila, ROW_COUNT () devuelve 3.
+ 
+ ROW_COUNT() no tiene en cuenta las filas que no se eliminan directamente / actualizados por la
+ última declaración. Esto significa que las filas eliminadas por las teclas o desencadenantes
+ extranjeros no se cuentan.
+ 
+ Advertencia: Puede utilizar ROW_COUNT() con declaraciones preparadas, pero hay que llamarlo
+ después de EXECUTE, no después de DEALLOCATE PREPARE, porque el número de filas para asignar
+ prepararse es siempre 0.
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+ Advertencia: Cuando se utiliza después de una sentencia CALL, esta función devuelve el número de
+ filas afectadas por la última instrucción en el procedimiento, no por la totalidad del procedimiento.
+ 
+ Advertencia: Después de RETRASADO INSERT, ROW_COUNT () devuelve el número de filas que las
+ intentado insertar, no el número de las escrituras de éxito.
+ 
+ Esta información también se puede encontrar en el área de diagnóstico.
+ 
+ Declaraciones usando la función ROW_COUNT () no son seguros para la replicación.
 
-</syntaxhighlight>
+ <b>Ejemplos</b>
 
 == SCHEMA ==
 
