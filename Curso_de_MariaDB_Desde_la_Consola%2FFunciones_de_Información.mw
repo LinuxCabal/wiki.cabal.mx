@@ -223,43 +223,52 @@ __NOTOC__
  
  <b>Descripción;</b>
  
- Una instrucción SELECT puede incluir una cláusula LIMIT para restringir el número de filas el servidor devuelve al cliente. En algunos casos, es deseable saber cuántos registros habría retornado el comando sin el límite, pero sin correr el comunicado de nuevo. Para obtener este número de filas, incluir una opción SQL_CALC_FOUND_ROWS en la instrucción SELECT, y luego invocar FOUND_ROWS () después.
+ Una instrucción SELECT puede incluir una cláusula LIMIT para restringir el número de filas el servidor
+ devuelve al cliente. En algunos casos, es deseable saber cuántos registros habría retornado el comando
+ sin el límite, pero sin correr el comunicado de nuevo. Para obtener este número de filas, incluir una
+ opción SQL_CALC_FOUND_ROWS en la instrucción SELECT, y luego invocar FOUND_ROWS () después.
+ 
+ También puede utilizar FOUND_ROWS () para obtener el número de filas devueltas por una instrucción SELECT
+ que no contienen una cláusula LIMIT. En este caso no es necesario utilizar la opción SQL_CALC_FOUND_ROWS.
+ Esto puede ser útil por ejemplo en un procedimiento almacenado.
+ 
+ Además, esta función trabaja con algunas otras declaraciones que devuelven un conjunto de resultados,
+ incluyendo SHOW, DESC y ayuda. Para ELIMINAR ... Volviendo se debe utilizar ROW_COUNT (). También funciona
+ como una declaración preparada, o después de la ejecución de una declaración preparada.
+ 
+ Declaraciones que no devuelven ningún resultado no afectan FOUND_ROWS () - todavía será devuelto el valor anterior.
+ 
+ Advertencia: Cuando se utiliza después de una sentencia CALL, esta función devuelve el número de filas
+ seleccionadas por la última consulta en el procedimiento, no por la totalidad del procedimiento.
+ 
+ Declaraciones Uso de la función () FOUND_ROWS no son seguros para la replicación.
 
-También puede utilizar FOUND_ROWS () para obtener el número de filas devueltas por una instrucción SELECT que no contienen una cláusula LIMIT. En este caso no es necesario utilizar la opción SQL_CALC_FOUND_ROWS. Esto puede ser útil por ejemplo en un procedimiento almacenado.
-
-Además, esta función trabaja con algunas otras declaraciones que devuelven un conjunto de resultados, incluyendo SHOW, DESC y ayuda. Para ELIMINAR ... Volviendo se debe utilizar ROW_COUNT (). También funciona como una declaración preparada, o después de la ejecución de una declaración preparada.
-
-Declaraciones que no devuelven ningún resultado no afectan FOUND_ROWS () - todavía será devuelto el valor anterior.
-
-Advertencia: Cuando se utiliza después de una sentencia CALL, esta función devuelve el número de filas seleccionadas por la última consulta en el procedimiento, no por la totalidad del procedimiento.
-
-Declaraciones Uso de la función () FOUND_ROWS no son seguros para la replicación.
  <b>Ejemplos;</b>
 
-MariaDB [(none)]> show engines;
-+--------------------+---------+----------------------------------------------------------------------------+
-| Engine             | Support | Comment                                                                    |
-+--------------------+---------+----------------------------------------------------------------------------+
-| CSV                | YES     | CSV storage engine                                                         |
-| MRG_MyISAM         | YES     | Collection of identical MyISAM tables                                      |
-| MyISAM             | YES     | MyISAM storage engine                                                      |
-| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears)             |
-| PERFORMANCE_SCHEMA | YES     | Performance Schema                                                         |
-| MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables                  |
-| ARCHIVE            | YES     | Archive storage engine                                                     |
-| Aria               | YES     | Crash-safe tables with MyISAM heritage                                     |
-| FEDERATED          | YES     | FederatedX pluggable storage engine                                        |
-| InnoDB             | DEFAULT | Percona-XtraDB, Supports transactions, row-level locking, and foreign keys |
-+--------------------+---------+----------------------------------------------------------------------------+
-10 rows in set (0.05 sec)
-
-MariaDB [(none)]> select found_rows();
-+--------------+
-| found_rows() |
-+--------------+
-|           10 |
-+--------------+
-1 row in set (0.00 sec)
+ MariaDB [(none)]> show engines;
+ +--------------------+---------+----------------------------------------------------------------------------+
+ | Engine             | Support | Comment                                                                    |
+ +--------------------+---------+----------------------------------------------------------------------------+
+ | CSV                | YES     | CSV storage engine                                                         |
+ | MRG_MyISAM         | YES     | Collection of identical MyISAM tables                                      |
+ | MyISAM             | YES     | MyISAM storage engine                                                      |
+ | BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears)             |
+ | PERFORMANCE_SCHEMA | YES     | Performance Schema                                                         |
+ | MEMORY             | YES     | Hash based, stored in memory, useful for temporary tables                  |
+ | ARCHIVE            | YES     | Archive storage engine                                                     |
+ | Aria               | YES     | Crash-safe tables with MyISAM heritage                                     |
+ | FEDERATED          | YES     | FederatedX pluggable storage engine                                        |
+ | InnoDB             | DEFAULT | Percona-XtraDB, Supports transactions, row-level locking, and foreign keys |
+ +--------------------+---------+----------------------------------------------------------------------------+
+ 10 rows in set (0.05 sec)
+ 
+ MariaDB [(none)]> select found_rows();
+ +--------------+
+ | found_rows() |
+ +--------------+
+ |           10 |
+ +--------------+
+ 1 row in set (0.00 sec)
 
 == LAST_INSERT_ID ==
 
