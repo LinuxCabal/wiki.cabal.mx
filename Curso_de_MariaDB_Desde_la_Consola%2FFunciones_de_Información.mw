@@ -269,44 +269,62 @@ __NOTOC__
  |           10 |
  +--------------+
  1 row in set (0.00 sec)
-
-MariaDB [(none)]> use Prueba1;
-Database changed
-MariaDB [Prueba1]> show tables;
-+-------------------+
-| Tables_in_Prueba1 |
-+-------------------+
-| Competiciones     |
-| Cursos            |
-| Est_fruta         |
-| Inv_fruta         |
-| Log               |
-| Usuarios          |
-| color             |
-| fruta             |
-| inven             |
-| personas          |
-| t1                |
-+-------------------+
-11 rows in set (0.02 sec)
-
-MariaDB [Prueba1]> SELECT SQL_CALC_FOUND_ROWS * FROM Cursos limit 3;
-+----+------------+
-| ID | Nombre     |
-+----+------------+
-|  1 | HTML5      |
-|  2 | CSS3       |
-|  3 | JavaScript |
-+----+------------+
-3 rows in set (0.00 sec)
-
-MariaDB [Prueba1]> select FOUND_ROWS();
-+--------------+
-| FOUND_ROWS() |
-+--------------+
-|            6 |
-+--------------+
-1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> use Prueba1;
+ Database changed
+ MariaDB [Prueba1]> show tables;
+ +-------------------+
+ | Tables_in_Prueba1 |
+ +-------------------+
+ | Competiciones     |
+ | Cursos            |
+ | Est_fruta         |
+ | Inv_fruta         |
+ | Log               |
+ | Usuarios          |
+ | color             |
+ | fruta             |
+ | inven             |
+ | personas          |
+ | t1                |
+ +-------------------+
+ 11 rows in set (0.02 sec) 
+ 
+ MariaDB [Prueba1]> SELECT  * FROM Cursos limit 3;
+ +----+------------+
+ | ID | Nombre     |
+ +----+------------+
+ |  1 | HTML5      |
+ |  2 | CSS3       |
+ |  3 | JavaScript |
+ +----+------------+
+ 3 rows in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> select FOUND_ROWS();
+ +--------------+
+ | FOUND_ROWS() |
+ +--------------+
+ |            3 |
+ +--------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT SQL_CALC_FOUND_ROWS * FROM Cursos limit 3;
+ +----+------------+
+ | ID | Nombre     |
+ +----+------------+
+ |  1 | HTML5      |
+ |  2 | CSS3       |
+ |  3 | JavaScript |
+ +----+------------+
+ 3 rows in set (0.00 sec)  
+ 
+ MariaDB [Prueba1]> select FOUND_ROWS();
+ +--------------+
+ | FOUND_ROWS() |
+ +--------------+
+ |            6 |
+ +--------------+
+ 1 row in set (0.00 sec)
 
 == LAST_INSERT_ID ==
 
