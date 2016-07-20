@@ -9,9 +9,6 @@ __NOTOC__
 * [[:#FOUND_ROWS | FOUND_ROWS]]
 * [[:#LAST_INSERT_ID | LAST_INSERT_ID]]
 * [[:#ROW_COUNT | ROW_COUNT]]
-* [[:#SCHEMA | SCHEMA]]
-* [[:#SESSION_USER | SESSION_USER]]
-* [[:#USER | USER]]
 * [[:#VERSION | VERSION]]
 
 = Funciones de Información =
@@ -538,24 +535,6 @@ __NOTOC__
  |    3 |
  +------+
  1 row in set (0.00 sec)
-
-== SCHEMA ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
-
-== SESSION_USER ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
-
-== USER ==
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
-</syntaxhighlight>
 
 == VERSION ==
 
