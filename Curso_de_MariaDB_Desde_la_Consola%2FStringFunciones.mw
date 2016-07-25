@@ -64,7 +64,12 @@ __NOTOC__
 
 = String Funciones =
 == ASCII ==
-
+ <b>Syntax</b>
+ 
+ ASCII(str)
+ 
+ <b>Description</b>
+ 
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
