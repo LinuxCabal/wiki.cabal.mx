@@ -1,22 +1,4 @@
 __NOTOC__
-* [[:#Funciones de Fechas y Tiempo | Funciones de Fechas y Tiempo]]
-* [[:#Intervaal | Interval]]
-* [[:#DATE_ADD ADDDATE | DATE_ADD ADDDATE]]
-* [[:#ADDTIME | ADDTIME]]
-* [[:#CONVERT_TZ | CONVERT_TZ]]
-* [[:#NOW | NOW]]
-* [[:#CURDATE | CURDATE y CURRENT_DATE]]
-* [[:#CURTIME | CURTIME y CURRENT_TIME]]
-* [[:#DATE | DATE]]
-* [[:#DATEDIFF | DATEDIFF]]
-* [[:#DATE_FORMAT | DATE_FORMAT]]
-* [[:#DATE_SUB | DATE_SUB]]
-* [[:#DAYNAME | DAYNAME]]
-* [[:#DAYOFMONTH | DAYOFMONTH]]
-* [[:#DAYOFWEEK | DAYOFWEEK]]
-* [[:#WEEKDAY | WEEKDAY]]
-* [[:#DAYOFYEAR | DAYOFYEAR]]
-
 * [[:#String Funciones | String Funciones]]
 * [[:#ASCII | ASCII]]
 * [[:#BIN | BIN]]
@@ -81,3 +63,8 @@ __NOTOC__
 * [[:#WEIGHT_STRING | WEIGHT_STRING]]
 
 = String Funciones =
+== ASCII ==
+
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
