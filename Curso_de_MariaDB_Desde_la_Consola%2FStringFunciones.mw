@@ -69,7 +69,13 @@ __NOTOC__
  ASCII(str)
  
  <b>Description</b>
+ Devuelve el valor ASCII carácter más a la izquierda en la cadena str.
+ Devuelve 0 si str está vacía y NULL si str es NULL.
  
+ ASCII () funciona de caracteres de 8 bits.
+ 
+ <b>Ejemplos</b>
+
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
