@@ -1,0 +1,126 @@
+
+    ASCII
+    Numeric ASCII value of leftmost character
+    BIN
+    Returns binary value
+    BINARY OPERATOR
+    Casts to a binary string
+    BIT_LENGTH
+    Returns the length of a string in bits
+    CAST
+    Casts a value of one type to another type
+    CHAR Function
+    Returns string based on the integer values
+    CHARACTER_LENGTH
+    Synonym for CHAR_LENGTH()
+    CHAR_LENGTH
+    Length of the string in characters
+    CONCAT
+    Returns concatenated string
+    CONCAT_WS
+    Concatenate with separator
+    CONVERT
+    Convert a value from one type to another type
+    Dynamic Columns Functions
+    Dynamic columns is a feature that allows one to store different sets of col...
+    ELT
+    Returns the N'th element from a set of strings
+    EXPORT_SET
+    Returns a string such that for every bit set in the value bits, you get an ...
+    EXTRACTVALUE
+    Returns the text of the first text node matched by the XPath expression
+    FIELD
+    Returns the index position of a string in a list
+    1
+    FIND_IN_SET
+    Returns the position of a string in a set of strings
+    FORMAT
+    Formats a number
+    2
+    HEX
+    Returns hexadecimal value
+    INSERT Function
+    Replaces a part of a string with another string
+    INSTR
+    Returns the position of a string withing a string
+    LCASE
+    Synonym for [LOWER()
+    LEFT
+    Returns the leftmost characters from a string
+    LENGTH
+    Length of the string in bytes
+    LIKE
+    Whether expression matches a pattern
+    LOAD_FILE
+    Returns file contents as a string
+    LOCATE
+    Returns the position of a substring in a string
+    LOWER
+    Syntax LOWER(str) Description Returns the string str with all characters c...
+    LPAD
+    Returns the string left-padded with another string to a given length
+    LTRIM
+    Returns the string with leading space characters removed
+    MAKE_SET
+    Make a set of strings that matches a bitmask
+    MATCH AGAINST
+    Perform a fulltext search on a fulltext index.
+    Stopwords
+    Default list of stopwords used by MATCH...AGAINST
+    MID
+    Synonym for SUBSTRING(str,pos,len)
+    NOT LIKE
+    Same as NOT(expr LIKE pat [ESCAPE 'escape_char'])
+    NOT REGEXP
+    Same as NOT (expr REGEXP pat)
+    OCTET_LENGTH
+    Syntax: OCTET_LENGTH(str) Description: OCTET_LENGTH() is a synonym for LENGTH().
+    ORD
+    Return ASCII or character code
+    POSITION
+    Returns the position of a substring in a string
+    QUOTE
+    Returns quoted, properly escaped string
+    REPEAT Function
+    Returns a string repeated a number of times
+    REPLACE Function
+    Replace occurrences of a string
+    REVERSE
+    Reverses the order of a string
+    RIGHT
+    Returns the rightmost N characters from a string
+    RPAD
+    Returns the string right-padded with another string to a given length
+    RTRIM
+    Returns the string with trailing space characters removed
+    SOUNDEX
+    Returns a string based on how the string sounds
+    SOUNDS LIKE
+    SOUNDEX(expr1) = SOUNDEX(expr2)
+    SPACE
+    Returns a string of space characters
+    STRCMP
+    Compares two strings in sort order
+    SUBSTR
+    Returns a substring from string starting at a given position
+    SUBSTRING
+    Returns a substring from string starting at a given position
+    1
+    SUBSTRING_INDEX
+    Returns the substring from string before count occurrences of a delimiter
+    TRIM
+    Returns a string with all given prefixes or suffixes removed
+    UCASE
+    Synonym for UPPER]]()
+    UNHEX
+    Interprets pairs of hex digits as a number and converts to the character represented by the number
+    UPDATEXML
+    Replace XML
+    UPPER
+    Changes string to uppercase
+    FROM_BASE64
+    Given a base-64 encoded string, returns the decoded result as a binary string
+    TO_BASE64
+    Converts a string to its base-64 encoded form
+    WEIGHT_STRING
+    Weight of the input string
