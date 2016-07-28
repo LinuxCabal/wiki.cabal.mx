@@ -256,7 +256,7 @@ __NOTOC__
  comparación sea sensible a mayúsculas incluso si la columna no se define
  como binario o BLOB. BINARIO también provoca que los espacios finales
  sea significativa.
-
+ 
  <b>Ejemplos</b>
  
  MariaDB [(none)]> SELECT 'a' = 'A';
@@ -290,7 +290,7 @@ __NOTOC__
  |                 0 |
  +-------------------+
  1 row in set (0.00 sec)
- 
+
 == BIT_LENGTH ==
  <b>Sintaxis</b>
  
