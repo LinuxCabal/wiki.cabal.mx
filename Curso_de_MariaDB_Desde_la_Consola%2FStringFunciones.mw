@@ -464,6 +464,50 @@ __NOTOC__
  +---------+------+-------------------------------------------+
  1 row in set (0.00 sec)
 
+== CHARACTER_LENGTH ==
+ <b>Sintaxis</b>
+ 
+ CHARACTER_LENGTH( str )
+ 
+ <b>Descripción<b>
+ 
+ CHARACTER_LENGTH() es sinónimo de CHAR_LENGTH().
+
+== CHAR_LENGTH ==
+ <b>Sintaxis</b>
+ 
+ CHAR_LENGTH( str )
+ 
+ <Dexcripción</b>
+ 
+ Devuelve la longitud de la cadena str, medida en caracteres.
+ Un carácter multi-byte cuenta como un solo carácter. Esto significa que para
+ una cadena que contiene cinco caracteres de dos bytes, LENGTH() retorna 10,
+ mientras que CHAR_LENGTH() devuelve 5. Si el argumento es NULL, devuelve NULL.
+ 
+ Si str no es un valor de cadena, se convierte en una cadena.
+ 
+ CHARACTER_LENGTH () es un sinónimo.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [Prueba1]> SELECT CHAR_LENGTH('MariaDB');
+ +------------------------+
+ | CHAR_LENGTH('MariaDB') |
+ +------------------------+
+ |                      7 |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT CHAR_LENGTH('Cómo');
+ +----------------------+
+ | CHAR_LENGTH('Cómo')  |
+ +----------------------+
+ |                    4 |
+ +----------------------+
+ 1 row in set (0.01 sec)
+
+
 
 
 
