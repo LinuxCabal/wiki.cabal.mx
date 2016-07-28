@@ -296,7 +296,7 @@ __NOTOC__
  
  BIT_LENGTH( str )
  
- <Dexcripción</b>
+ <b>Dexcripción</b>
  
  Devuelve la longitud de la cadena str en bits.
  Si str no es una cadena, se convierte en cadena.
