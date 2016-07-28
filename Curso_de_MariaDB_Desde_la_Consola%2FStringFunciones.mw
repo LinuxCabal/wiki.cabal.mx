@@ -292,7 +292,7 @@ __NOTOC__
  1 row in set (0.00 sec)
  
 == BIT_LENGTH ==
- <b>Syntax<&b>
+ <b>Syntax</b>
  
  BIT_LENGTH( str )
  
