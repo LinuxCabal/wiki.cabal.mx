@@ -64,7 +64,7 @@ __NOTOC__
 
 = String Funciones =
 == ASCII ==
- <b>Syntax</b>
+ <b>Sintaxis</b>
  
  ASCII(str)
  
@@ -195,7 +195,7 @@ __NOTOC__
        077   63    3F    ?                           177   127   7F    DEL
 
 == BIN ==
- <b>Syntax</b>
+ <b>Sintaxis</b>
  
  BIN( N )
  
@@ -244,7 +244,7 @@ __NOTOC__
  1 row in set (0.00 sec)
 
 == BINARY ==
- <b>Syntax</b>
+ <b>Sintaxis</b>
  
  BINARY
  
@@ -292,7 +292,7 @@ __NOTOC__
  1 row in set (0.00 sec)
  
 == BIT_LENGTH ==
- <b>Syntax</b>
+ <b>Sintaxis</b>
  
  BIT_LENGTH( str )
  
@@ -337,7 +337,7 @@ __NOTOC__
  1 row in set (0.00 sec)
  
 == CAST ==
- <b>Syntax</b>
+ <b>Sintaxis</b>
  
  CAST( expr AS type )
  
@@ -415,27 +415,54 @@ __NOTOC__
  4 rows in set (0.00 sec)
 
 == CHAR ==
- <b>Syntax</b>
+ <b>Sintaxis</b>
  
  CHAR( N, ... [USING charset_name] )
  
  <b>Dexcripción</b>
+  
+ CHAR() interpreta cada argumento como enteros y devuelve una cadena
+ formada por los caracteres dados por los códigos de tales enteros.
+ Los valores NULL se omiten. De forma predeterminada, CHAR() devuelve
+ una cadena binaria. Para producir una cadena en un conjunto de caracteres
+ dada, utilice la cláusula USING opcional:
  
- Translate
-Turn off instant translation
-CHAR () interpreta cada argumento como enteros y devuelve una cadena formada por los caracteres dados por los códigos de tales enteros. Los valores NULL se omiten. De forma predeterminada, CHAR () devuelve una cadena binaria. Para producir una cadena en un conjunto de caracteres dada, utilice la cláusula USING opcional:
-
-SELECT CHARSET (CHAR (0x65)), tabla de caracteres (CHAR (0x65 utf8 USAR));
-+ --------------------- + --------------------------- ----- +
-| CHARSET (CHAR (0x65)) | CHARSET (CHAR (0x65 USANDO UTF-8)) |
-+ --------------------- + --------------------------- ----- +
-| binaria | utf8 |
-+ --------------------- + --------------------------- ----- +
-
-Si se administra usando y la cadena resultante es ilegal que el conjunto de caracteres dado, se emite una advertencia. Además, si está activado el modo SQL estricto, el resultado de CHAR () se convierte en NULL.
-Google Translate for Business:Translator ToolkitWebsite TranslatorGlobal Market Finder
-About Google TranslateCommunityMobile
-About GooglePrivacy & TermsHelpSend feedback
+ SELECT CHARSET( CHAR( 0x65 ) ), CHARSET( CHAR( 0x65 USING utf8 ) );
+ +-------------------------+------------------------------------+
+ | CHARSET( CHAR( 0x65 ) ) | CHARSET( CHAR( 0x65 USING utf8 ) ) |
+ +-------------------------+------------------------------------+
+ | binary                  | utf8                               |
+ +-------------------------+------------------------------------+
+ 
+ Si se administra usando y la cadena resultante es ilegal que el conjunto
+ de caracteres dado, se emite una advertencia. Además, si está activado el
+ strict SQL mode, el resultado de CHAR() se convierte en NULL.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [Prueba1]> SELECT CHAR( 77, 97, 114, '105', 97, '68', 66 );
+ +------------------------------------------+
+ | CHAR( 77, 97, 114, '105', 97, '68', 66 ) |
+ +------------------------------------------+
+ | MariaDB                                  |
+ +------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT CHAR( 77, 77.3, '77.3' );
+ +--------------------------+
+ | CHAR( 77, 77.3, '77.3' ) |
+ +--------------------------+
+ | MMM                      |
+ +--------------------------+
+ 1 row in set, 1 warning (0.00 sec)
+ 
+ MariaDB [Prueba1]> show warnings;
+ +---------+------+-------------------------------------------+
+ | Level   | Code | Message                                   |
+ +---------+------+-------------------------------------------+
+ | Warning | 1292 | Truncated incorrect INTEGER value: '77.3' |
+ +---------+------+-------------------------------------------+
+ 1 row in set (0.00 sec)
 
 
 
