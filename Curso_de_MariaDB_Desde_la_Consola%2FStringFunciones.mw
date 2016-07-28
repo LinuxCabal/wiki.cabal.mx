@@ -193,6 +193,59 @@ __NOTOC__
        075   61    3D    =                           175   125   7D    }
        076   62    3E    >                           176   126   7E    ~
        077   63    3F    ?                           177   127   7F    DEL
+
+== BIN ==
+ <b>Syntax</b>
+ 
+ BIN( N )
+ 
+ <b>Description</b>
+ 
+ Devuelve una cadena que representa el valor binario de N, 
+ donde N es un número longlong (BIGINT). Esto es equivalente
+ a CONV( N, 10,2 ). 
+ N debe ser positivo. Si N es un float, se truncará. 
+ Retorna NULL si N es NULL.
+ 
+ <b>Ejemplos</b>
+ MariaDB [(none)]> SELECT BIN( 12 );
+ +-----------+
+ | BIN( 12 ) |
+ +-----------+
+ | 1100      |
+ +-----------+
+ 1 row in set (0.02 sec)
+ 
+ MariaDB [(none)]> SELECT BIN( 12.3 );
+ +-------------+
+ | BIN( 12.3 ) |
+ +-------------+
+ | 1100        |
+ +-------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT BIN( -12.3 );
+ +------------------------------------------------------------------+
+ | BIN( -12.3 )                                                     |
+ +------------------------------------------------------------------+
+ | 1111111111111111111111111111111111111111111111111111111111110100 |
+ +------------------------------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT BIN(  );
+ ERROR 1582 (42000): Incorrect parameter count in the call to native function 'BIN'
+ 
+ MariaDB [(none)]> SELECT BIN( NULL );
+ +-------------+
+ | BIN( NULL ) |
+ +-------------+
+ | NULL        |
+ +-------------+
+ 1 row in set (0.00 sec)
+
+
+
+
  
 
 [[Category:MariaDB Desde la Consola]]
