@@ -291,8 +291,56 @@ __NOTOC__
  +-------------------+
  1 row in set (0.00 sec)
  
-
+== BIT_LENGTH ==
+ <b>Syntax<&b>
  
+ BIT_LENGTH( str )
+ 
+ <Dexcripción</b>
+ 
+ Devuelve la longitud de la cadena str en bits.
+ Si str no es una cadena, se convierte en cadena.
+ Si str es NULL, devuelve NULL.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT BIT_LENGTH('texto');
+ +---------------------+
+ | BIT_LENGTH('texto') |
+ +---------------------+
+ |                  40 |
+ +---------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT BIT_LENGTH('Como');
+ +--------------------+
+ | BIT_LENGTH('Como') |
+ +--------------------+
+ |                 32 |
+ +--------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT BIT_LENGTH('Cómo');
+ +---------------------+
+ | BIT_LENGTH('Cómo')  |
+ +---------------------+
+ |                  40 |
+ +---------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT BIT_LENGTH('¿Cómo están ustedes');
+ +--------------------------------------+
+ | BIT_LENGTH('¿Cómo están ustedes')    |
+ +--------------------------------------+
+ |                                  176 |
+ +--------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+
+
+
+
+
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
