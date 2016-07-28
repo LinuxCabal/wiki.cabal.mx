@@ -469,7 +469,7 @@ __NOTOC__
  
  CHARACTER_LENGTH( str )
  
- <b>Descripción<b>
+ <b>Descripción</b>
  
  CHARACTER_LENGTH() es sinónimo de CHAR_LENGTH().
 
