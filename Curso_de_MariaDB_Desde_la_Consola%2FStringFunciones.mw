@@ -414,7 +414,28 @@ __NOTOC__
  +------------+
  4 rows in set (0.00 sec)
 
+== CHAR ==
+ <b>Syntax</b>
+ 
+ CHAR( N, ... [USING charset_name] )
+ 
+ <b>Dexcripción</b>
+ 
+ Translate
+Turn off instant translation
+CHAR () interpreta cada argumento como enteros y devuelve una cadena formada por los caracteres dados por los códigos de tales enteros. Los valores NULL se omiten. De forma predeterminada, CHAR () devuelve una cadena binaria. Para producir una cadena en un conjunto de caracteres dada, utilice la cláusula USING opcional:
 
+SELECT CHARSET (CHAR (0x65)), tabla de caracteres (CHAR (0x65 utf8 USAR));
++ --------------------- + --------------------------- ----- +
+| CHARSET (CHAR (0x65)) | CHARSET (CHAR (0x65 USANDO UTF-8)) |
++ --------------------- + --------------------------- ----- +
+| binaria | utf8 |
++ --------------------- + --------------------------- ----- +
+
+Si se administra usando y la cadena resultante es ilegal que el conjunto de caracteres dado, se emite una advertencia. Además, si está activado el modo SQL estricto, el resultado de CHAR () se convierte en NULL.
+Google Translate for Business:Translator ToolkitWebsite TranslatorGlobal Market Finder
+About Google TranslateCommunityMobile
+About GooglePrivacy & TermsHelpSend feedback
 
 
 
