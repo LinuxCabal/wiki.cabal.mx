@@ -478,7 +478,7 @@ __NOTOC__
  
  CHAR_LENGTH( str )
  
- <Dexcripción</b>
+ <b>Dexcripción</b>
  
  Devuelve la longitud de la cadena str, medida en caracteres.
  Un carácter multi-byte cuenta como un solo carácter. Esto significa que para
