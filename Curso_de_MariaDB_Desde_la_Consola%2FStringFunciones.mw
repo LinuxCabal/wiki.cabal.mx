@@ -243,8 +243,54 @@ __NOTOC__
  +-------------+
  1 row in set (0.00 sec)
 
+== BINARY ==
+ <b>Syntax</b>
+ 
+ BINARY
+ 
+ <b>Descripción</b>
+ 
+ El operador BINARY casts la cadena que sigue a una cadena binaria.
+ Esta es una manera fácil de forzar una comparación columna para hacerse
+ byte por byte en lugar de caracter por caracter. Esto hace que la
+ comparación sea sensible a mayúsculas incluso si la columna no se define
+ como binario o BLOB. BINARIO también provoca que los espacios finales
+ sea significativa.
 
-
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT 'a' = 'A';
+ +-----------+
+ | 'a' = 'A' |
+ +-----------+
+ |         1 |
+ +-----------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT BINARY 'a' = 'A';
+ +------------------+
+ | BINARY 'a' = 'A' |
+ +------------------+
+ |                0 |
+ +------------------+
+ 1 row in set (0.01 sec)
+ 
+ MariaDB [(none)]> SELECT 'a' = 'a ';
+ +------------+
+ | 'a' = 'a ' |
+ +------------+
+ |          1 |
+ +------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT BINARY 'a' = 'a ';
+ +-------------------+
+ | BINARY 'a' = 'a ' |
+ +-------------------+
+ |                 0 |
+ +-------------------+
+ 1 row in set (0.00 sec)
+ 
 
  
 
