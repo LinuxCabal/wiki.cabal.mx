@@ -336,6 +336,83 @@ __NOTOC__
  +--------------------------------------+
  1 row in set (0.00 sec)
  
+== CAST ==
+ <b>Syntax</b>
+ 
+ CAST( expr AS type )
+ 
+ <b>Descripción</b>
+ 
+ La función CAST() toma un valor de un tipo y produce un valor de otro tipo,
+ similar a CONVERT().
+ 
+ La principal diferencia entre el CAST() y CONVERT() es que CONVERT( expr, tipo )
+ es la sintaxis ODBC mientras CAST( expr como tipo ) y CONVERT(... USING ...)
+ están SQL92 sintaxis.
+ 
+ Hasta MariaDB 05/05/31, X'HHHH ', la sintaxis SQL estándar para cadenas literales
+ binarios, erróneamente trabajado de la misma manera como 0xHHHH. En 5.5.31 se cambió
+ intencionadamente a comportarse como una cadena en todos los contextos (y nunca como un número).
+ 
+ Esto introduce una incompatibilidad con las versiones anteriores de MariaDB, y todas las
+ versiones de MySQL (véase el ejemplo a continuación).
+ 
+ <b>Ejemplo</b>
+ 
+ MariaDB [(none)]> SELECT CAST("abc" as binary);
+ +-----------------------+
+ | CAST("abc" as binary) |
+ +-----------------------+
+ | abc                   |
+ +-----------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT CAST("1" as unsigned integer);
+ +-------------------------------+
+ | CAST("1" as unsigned integer) |
+ +-------------------------------+
+ |                             1 |
+ +-------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT CAST("-1" as unsigned integer);
+ +--------------------------------+
+ | CAST("-1" as unsigned integer) |
+ +--------------------------------+
+ |           18446744073709551615 |
+ +--------------------------------+
+ 1 row in set, 1 warning (0.00 sec)
+ 
+ El uso de CAST() para ordenar un campo ENUM como CHAR en lugar del valor numérico interno:
+ 
+ MariaDB [Prueba1]> CREATE TABLE enum_list (enum_field enum('c','a','b'));
+ Query OK, 0 rows affected (0.92 sec)
+ 
+ MariaDB [Prueba1]> INSERT INTO enum_list (enum_field) VALUES('c'),('a'),('c'),('b');
+ Query OK, 4 rows affected (0.11 sec)
+ Records: 4  Duplicates: 0  Warnings: 0
+ 
+ MariaDB [Prueba1]> SELECT * FROM enum_list ORDER BY enum_field;
+ +------------+
+ | enum_field |
+ +------------+
+ | c          |
+ | c          |
+ | a          |
+ | b          |
+ +------------+
+ 4 rows in set (0.03 sec)
+ 
+ MariaDB [Prueba1]> SELECT * FROM enum_list ORDER BY CAST(enum_field AS CHAR);
+ +------------+
+ | enum_field |
+ +------------+
+ | a          |
+ | b          |
+ | c          |
+ | c          |
+ +------------+
+ 4 rows in set (0.00 sec)
 
 
 
