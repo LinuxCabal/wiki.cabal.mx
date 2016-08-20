@@ -770,7 +770,217 @@ __NOTOC__
  +------------------------------------------------+
  1 row in set (0.00 sec)
  
+== FINDIN_DET ==
+ <b>Sintaxis</b>
  
+ FIND_IN_SET( str, strlist )
+ 
+ <b>Descripción</b>
+ 
+ Devuelve un valor en el rango de 1 a N si la cadena str está en la lista de
+ cadenas strlist que consiste en N subcadenas. Una lista de cadenas es una cadena
+ compuesta de subcadenas separadas por "," caracteres. Si el primer argumento es una
+ cadena constante y la segunda es una columna de tipo SET, la función FIND_IN_SET()
+ está optimizado para usar la bit aritmétic. Devuelve 0 si str no está en strlist o
+ si strlist es la cadena vacía. Retorna NULL 
+ 
+ si cualquier argumento es NULL. Esta función no funciona correctamente si el primer
+ argumento contiene una (",") carácter de coma.
+ 
+ <b>Ejemplos</b>
+ 
+  MariaDB [(none)]> SELECT FIND_IN_SET('b','a,b,c,d');
+ +----------------------------+
+ | FIND_IN_SET('b','a,b,c,d') |
+ +----------------------------+
+ |                          2 |
+ +----------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FIND_IN_SET('l','a,b,c,d');
+ +----------------------------+
+ | FIND_IN_SET('l','a,b,c,d') |
+ +----------------------------+
+ |                          0 |
+ +----------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FIND_IN_SET('l','a,NULL,c,d');
+ +-------------------------------+
+ | FIND_IN_SET('l','a,NULL,c,d') |
+ +-------------------------------+
+ |                             0 |
+ +-------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FIND_IN_SET('c','a,NULL,c,d');
+ +-------------------------------+
+ | FIND_IN_SET('c','a,NULL,c,d') |
+ +-------------------------------+
+ |                             3 |
+ +-------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FIND_IN_SET('c','a,"",c,d');
+ +-----------------------------+
+ | FIND_IN_SET('c','a,"",c,d') |
+ +-----------------------------+
+ |                           3 |
+ +-----------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FIND_IN_SET('c','a,",",c,d');
+ +------------------------------+
+ | FIND_IN_SET('c','a,",",c,d') |
+ +------------------------------+
+ |                            4 |
+ +------------------------------+
+ 1 row in set (0.00 sec)
+
+== FORMAT ==
+ <b>Sintaxis</b>
+ 
+ FORMAT( X, D )
+ 
+ <b>Descripción</b>
+ 
+ Formatos del número X de un formato como '###, ###, ###. ###',
+ Redondeado a D decimales, y devuelve el resultado como una cadena.
+ Si D es 0, el resultado no tiene punto decimal o parte fraccionaria.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT FORMAT(1234567890.09876543210, 4);
+ +-----------------------------------+
+ | FORMAT(1234567890.09876543210, 4) |
+ +-----------------------------------+
+ | 1,234,567,890.0988                |
+ +-----------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FORMAT( 1234567890.09876543210, 4 );
+ +-------------------------------------+
+ | FORMAT( 1234567890.09876543210, 4 ) |
+ +-------------------------------------+
+ | 1,234,567,890.0988                  |
+ +-------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FORMAT(1234567.89, 4);
+ +-----------------------+
+ | FORMAT(1234567.89, 4) |
+ +-----------------------+
+ | 1,234,567.8900        |
+ +-----------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT FORMAT( 1234567.89, 0 );
+ +-------------------------+
+ | FORMAT( 1234567.89, 0 ) |
+ +-------------------------+
+ | 1,234,568               |
+ +-------------------------+
+ 1 row in set (0.00 sec)
+ 
+== HEX ==
+ <b>Sintaxis</b>
+ 
+ HEX( N_or_S )
+ 
+ <b>Descripción</b>
+ 
+ Si N_OR_S es un número, devuelve una cadena que representa el valor hexadecimal
+ de N, donde N es un número longlong (BIGINT). Esto es equivalente a CONV( N, 10, 16 ).
+ 
+ Si N_OR_S es una cadena, devuelve una cadena hexadecimal de N_OR_S donde cada byte
+ de cada caracter en N_OR_S se convierte a dos dígitos hexadecimales. Si N_OR_S es
+ NULL, devuelve NULL. La inversa de esta operación se realiza por la función UNHEX().
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT HEX( 255 );
+ +------------+
+ | HEX( 255 ) |
+ +------------+
+ | FF         |
+ +------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT 0x4D617269614442;
+ +------------------+
+ | 0x4D617269614442 |
+ +------------------+
+ | MariaDB          |
+ +------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT HEX('MariaDB');
+ +----------------+
+ | HEX('MariaDB') |
+ +----------------+
+ | 4D617269614442 |
+ +----------------+
+ 1 row in set (0.00 sec)
+
+== INSERT ==
+ <b>Sintaxis</b>
+ 
+ INSERT( str, pos, len, newstr )
+ 
+ <b>Descripción</b>
+ 
+ Retorna la cadena str, con la subcadena que comienza en la posición pos
+ y len caracteres de largo reemplazados por la cadena newstr. Devuelve la
+ cadena original si pos no está dentro de la longitud de la cadena.
+ Reemplaza el resto de la cadena de la posición pos si len no está dentro
+ de la longitud del resto de la cadena. Retorna NULL si cualquier argumento
+ es NULL.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT INSERT( 'Quadratico', 3, 4, 'Cual' );
+ +--------------------------------------+
+ | INSERT( 'Quadratico', 3, 4, 'Cual' ) |
+ +--------------------------------------+
+ | QuCualtico                           |
+ +--------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT INSERT( 'Quadratico', -1, 4, 'Cual' );
+ +---------------------------------------+
+ | INSERT( 'Quadratico', -1, 4, 'Cual' ) |
+ +---------------------------------------+
+ | Quadratico                            |
+ +---------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT INSERT( 'Quadratico', 1, 14, 'Cual' );
+ +---------------------------------------+
+ | INSERT( 'Quadratico', 1, 14, 'Cual' ) |
+ +---------------------------------------+
+ | Cual                                  |
+ +---------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT INSERT( 'Quadratico', 2, 14, 'Cual' );
+ +---------------------------------------+
+ | INSERT( 'Quadratico', 2, 14, 'Cual' ) |
+ +---------------------------------------+
+ | QCual                                 |
+ +---------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT INSERT( 'Quadratico', 0, 14, 'Cual' );
+ +---------------------------------------+
+ | INSERT( 'Quadratico', 0, 14, 'Cual' ) |
+ +---------------------------------------+
+ | Quadratico                            |
+ +---------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+
+
+
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
