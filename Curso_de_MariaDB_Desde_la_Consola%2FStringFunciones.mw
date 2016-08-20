@@ -523,7 +523,7 @@ __NOTOC__
  
  <b>Ejemplos</b>
  
- MariaDB [(none)]> SELECT CONCAT('Ma', 'ria', 'DB');
+ MariaDB [(none)]> SELECT CONCAT( 'Ma', 'ria', 'DB' );
  +---------------------------+
  | CONCAT('Ma', 'ria', 'DB') |
  +---------------------------+
@@ -531,7 +531,7 @@ __NOTOC__
  +---------------------------+
  1 row in set (0.00 sec)
  
- MariaDB [(none)]> SELECT CONCAT('Ma', 'ria', NULL, 'DB');
+ MariaDB [(none)]> SELECT CONCAT( 'Ma', 'ria', NULL, 'DB' );
  +---------------------------------+
  | CONCAT('Ma', 'ria', NULL, 'DB') |
  +---------------------------------+
@@ -539,7 +539,7 @@ __NOTOC__
  +---------------------------------+
  1 row in set (0.01 sec)
  
- MariaDB [(none)]> SELECT CONCAT(42, 5);
+ MariaDB [(none)]> SELECT CONCAT( 42, 5 );
  +---------------+
  | CONCAT(42, 5) |
  +---------------+
@@ -547,7 +547,7 @@ __NOTOC__
  +---------------+
  1 row in set (0.00 sec)
  
- MariaDB [(none)]> SELECT CONCAT(42, .5);
+ MariaDB [(none)]> SELECT CONCAT( 42, .5 );
  +----------------+
  | CONCAT(42, .5) |
  +----------------+
@@ -555,7 +555,7 @@ __NOTOC__
  +----------------+
  1 row in set (0.00 sec)
  
- MariaDB [(none)]> SELECT CONCAT('The value of @v is: ', IFNULL(@v, ''));
+ MariaDB [(none)]> SELECT CONCAT( 'The value of @v is: ', IFNULL( @v, '' ) );
  +------------------------------------------------+
  | CONCAT('The value of @v is: ', IFNULL(@v, '')) |
  +------------------------------------------------+
@@ -563,5 +563,60 @@ __NOTOC__
  +------------------------------------------------+
  1 row in set (0.00 sec)
  
+== CONCAT_WS ==
+ <b>Syntax</b>
+ 
+ CONCAT_WS( separator, str1, str2, ... )
+ 
+ <b>Descripción</b>
+ 
+ CONCAT_WS() significa Concatenate con separador y es una forma especial
+ de CONCAT(). El primer argumento es el separador para el resto de los argumentos.
+ Se añade el separador entre las cuerdas para ser concatenados. El separador puede
+ ser una cadena, al igual que el resto de los argumentos.
+ 
+ Si el separador es NULL, el resultado es NULL; todos los demás valores NULL
+ se omiten. Esto hace CONCAT_WS() adecuado cuando se desea concatenar algunos
+ valores y evitar la pérdida de toda la información si uno de ellos es NULL.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [Prueba1]> SELECT CONCAT_WS(', ', 'Nombre', 'Apellodo Paterno', 'Apellido Materno' );
+ +--------------------------------------------------------------------+
+ | CONCAT_WS(', ', 'Nombre', 'Apellodo Paterno', 'Apellido Materno' ) |
+ +--------------------------------------------------------------------+
+ | Nombre, Apellodo Paterno, Apellido Materno                         |
+ +--------------------------------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT CONCAT_WS( '-', 'Piso', NULL, 'Quarto' );
+ +------------------------------------------+
+ | CONCAT_WS( '-', 'Piso', NULL, 'Quarto' ) |
+ +------------------------------------------+
+ | Piso-Quarto                              |
+ +------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SET @a = 'a', @b = NULL, @c = 'c';
+ Query OK, 0 rows affected (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT CONCAT_WS( '', @a, @b, @c );
+ +-----------------------------+
+ | CONCAT_WS( '', @a, @b, @c ) |
+ +-----------------------------+
+ | ac                          |
+ +-----------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT CONCAT(@a, @b, @c );
+ +---------------------+
+ | CONCAT(@a, @b, @c ) |
+ +---------------------+
+ | NULL                |
+ +---------------------+
+ 1 row in set (0.00 sec)
+ 
+ 
+
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
