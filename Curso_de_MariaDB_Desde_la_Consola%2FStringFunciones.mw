@@ -658,3 +658,17 @@ __NOTOC__
  en el conjunto de caracteres UTF-8:
  
  <b>Ejemplo</b>
+ 
+ MariaDB [Prueba1]> SELECT LOWER( @x ), LOWER( CONVERT( @x USING latin1 ) );
+ +-------------+-------------------------------------+
+ | LOWER( @x ) | LOWER( CONVERT( @x USING latin1 ) ) |
+ +-------------+-------------------------------------+
+ | AardVark    | aardvark                            |
+ +-------------+-------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ 
+
+
+[[Category:MariaDB Desde la Consola]]
+[[Category: CursoMatiaDB]]
