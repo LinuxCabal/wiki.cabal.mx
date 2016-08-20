@@ -507,9 +507,100 @@ __NOTOC__
  +----------------------+
  1 row in set (0.01 sec)
 
+== CONCAT ==
+ <b>Sintaxis</b>
+ 
+ CONCAT(str1,str2,...)
+ 
+ <b>Dexcripción</b>
+ 
+ Devuelve la cadena resultado de concatenar los argumentos. Puede tener
+ uno o más argumentos. Si todos los argumentos son cadenas no binarias, 
+ el resultado es una cadena no binaria. Si los argumentos incluyen todas 
+ las cadenas binarias, el resultado es una cadena binaria. Un argumento 
+ numérico se convierte en su forma de cadena binaria equivalente; si se 
+ quiere evitar eso, se puede utilizar un tipo de conversión explícita.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT CONCAT('Ma', 'ria', 'DB');
+ +---------------------------+
+ | CONCAT('Ma', 'ria', 'DB') |
+ +---------------------------+
+ | MariaDB                   |
+ +---------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT CONCAT('Ma', 'ria', NULL, 'DB');
+ +---------------------------------+
+ | CONCAT('Ma', 'ria', NULL, 'DB') |
+ +---------------------------------+
+ | NULL                            |
+ +---------------------------------+
+ 1 row in set (0.01 sec)
+ 
+ MariaDB [(none)]> SELECT CONCAT(42, 5);
+ +---------------+
+ | CONCAT(42, 5) |
+ +---------------+
+ | 425           |
+ +---------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT CONCAT(42, .5);
+ +----------------+
+ | CONCAT(42, .5) |
+ +----------------+
+ | 420.5          |
+ +----------------+
+ 1 row in set (0.00 sec)
 
-
-
+ MariaDB [(none)]> SELECT CONCAT('The value of @v is: ', IFNULL(@v, ''));
+ +------------------------------------------------+
+ | CONCAT('The value of @v is: ', IFNULL(@v, '')) |
+ +------------------------------------------------+
+ | The value of @v is:                            |
+ +------------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> use Prueba1
+ Database changed
+ MariaDB [Prueba1]> show tables;
+ +-------------------+
+ | Tables_in_Prueba1 |
+ +-------------------+
+ | Competiciones     |
+ | Cursos            |
+ | Est_fruta         |
+ | Inv_fruta         |
+ | Log               |
+ | Usuarios          |
+ | color             |
+ | enum_list         |
+ | fruta             |
+ | inven             |
+ | personas          |
+ | t                 |
+ | t2                |
+ | t3                |
+ | t5                |
+ +-------------------+
+ 15 rows in set (0.03 sec)
+ 
+ MariaDB [Prueba1]> select * from inven;
+ +----+----------------+-----------------------+--------+----------+
+ | id | nombre         | descrip               | precio | cantidad |
+ +----+----------------+-----------------------+--------+----------+
+ |  1 | Manzanas       | Mediano Granny-Smith. |   0.25 |     1000 |
+ |  2 | Uvas           | Sin Semillas          |   2.99 |      500 |
+ |  3 | AguaMineral    | Bot. - 600 ml.        |    0.5 |      350 |
+ |  4 | Bot. - 600 ml. | Agua Mineral          |    0.5 |      350 |
+ |  5 | Bot. - 600 ml. | 0.50                  |      0 |      350 |
+ |  6 | agua           | Bot. - 250 ml.        |   0.89 |      259 |
+ +----+----------------+-----------------------+--------+----------+
+ 6 rows in set (0.11 sec)
+ 
+ 
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
