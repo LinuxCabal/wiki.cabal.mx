@@ -564,7 +564,7 @@ __NOTOC__
  1 row in set (0.00 sec)
  
 == CONCAT_WS ==
- <b>Syntax</b>
+ <b>Sintaxis</b>
  
  CONCAT_WS( separator, str1, str2, ... )
  
@@ -616,7 +616,45 @@ __NOTOC__
  +---------------------+
  1 row in set (0.00 sec)
  
+== CONVERT ==
+ <b>Sintaxis</b>
  
+ CONVERT( expr,type ), CONVERT( expr USING transcoding_name )
 
-[[Category:MariaDB Desde la Consola]]
-[[Category: CursoMatiaDB]]
+ <b><Descripción</b>
+ 
+ The type puede ser uno de los siguiente valores:
+ 
+    BINARY[(N)]
+    CHAR[(N)]
+    DATE
+    DATETIME[(D)] — Decimal (D) specifier new in 5.3
+    DECIMAL[(M[,D])]
+    DOUBLE[(M[,D])] — New in 5.3
+    INTEGER — New in 5.3
+        Short for SIGNED INTEGER 
+    SIGNED [INTEGER]
+    TIME[(D)] — Decimal (D) specifier new in 5.3
+    UNSIGNED [INTEGER] 
+ 
+ Tenga en cuenta que en MariaDB, INT y INTEGER son la misma cosa.
+ 
+ BINARIO produce una cadena con el tipo de datos binarios. Ver binario
+ para una descripción de cómo esto afecta a las comparaciones. Si se da
+ la longitud opcional N, BINARY (N) hace que el molde a utilizar no más
+ de N bytes del argumento. Los valores más cortos que N bytes se rellenan
+ con 0x00 bytes a una longitud de N.
+ 
+ CHAR (N) hace que el reparto de utilizar no más de N caracteres del argumento.
+ 
+ La principal diferencia entre el CAST() y CONVERT() es que CONVERT(expr, tipo)
+ es la sintaxis ODBC mientras CAST(expr como tipo) y CONVERT(... USING ...) están
+ SQL92 sintaxis.
+
+ CONVERT() con USING se utiliza para convertir datos entre diferentes conjuntos
+ de caracteres. En MariaDB, nombres de transcodificación son los mismos que
+ establece el carácter correspondiente nombres. Por ejemplo, este comando convierte
+ la cadena 'abc' en el juego de caracteres predeterminado a la cadena correspondiente
+ en el conjunto de caracteres UTF-8:
+ 
+ <b>Ejemplo</b>
