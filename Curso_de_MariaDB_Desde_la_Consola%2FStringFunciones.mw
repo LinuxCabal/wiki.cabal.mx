@@ -619,7 +619,7 @@ __NOTOC__
  <b>Sintaxis</b>
  
  CONVERT( expr,type ), CONVERT( expr USING transcoding_name )
-
+ 
  <b><Descripción</b>
  
  The type puede ser uno de los siguiente valores:
@@ -649,7 +649,7 @@ __NOTOC__
  La principal diferencia entre el CAST() y CONVERT() es que CONVERT(expr, tipo)
  es la sintaxis ODBC mientras CAST(expr como tipo) y CONVERT(... USING ...) están
  SQL92 sintaxis.
-
+ 
  CONVERT() con USING se utiliza para convertir datos entre diferentes conjuntos
  de caracteres. En MariaDB, nombres de transcodificación son los mismos que
  establece el carácter correspondiente nombres. Por ejemplo, este comando convierte
@@ -665,7 +665,7 @@ __NOTOC__
  | AardVark    | aardvark                            |
  +-------------+-------------------------------------+
  1 row in set (0.00 sec)
- 
+
 == ELT ==
  <b>Sintaxis</b>
  
