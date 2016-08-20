@@ -11,7 +11,6 @@ __NOTOC__
 * [[:#CONCAT | CONCAT]]
 * [[:#CONCAT_WS | CONCAT_WS]]
 * [[:#CONVERT | CONVERT]]
-* [[:#Dynamic Columns Functions | Dynamic Columns Functions]]
 * [[:#ELT | ELT]]
 * [[:#EXPORT_SET | EXPORT_SET]]
 * [[:#EXTRACTVALUE | EXTRACTVALUE]]
@@ -667,7 +666,78 @@ __NOTOC__
  +-------------+-------------------------------------+
  1 row in set (0.00 sec)
  
+== ELT ==
+ <b>Sintaxis</b>
  
+ ELT( N, str1, str2, str3, ... )
+ 
+ <b>Descripción</b>
+ 
+ se deben pasar al menos dos parámetros. Devuelve str1 si N = 1, str2 si N = 2,
+ y así sucesivamente. Si N es un número flotante, se redondea al entero más cercano.
+ Retorna NULL si N es menor que 1 o mayor que el número de argumentos o no un número.
+ ELT() es el complemento de FIELD().
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [Prueba1]> SELECT ELT( 1, 'ej', 'Heja', 'hej', 'foo' );
+ +--------------------------------------+
+ | ELT( 1, 'ej', 'Heja', 'hej', 'foo' ) |
+ +--------------------------------------+
+ | ej                                   |
+ +--------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT ELT( 4, 'ej', 'Heja', 'hej', 'foo' );
+ +--------------------------------------+
+ | ELT( 4, 'ej', 'Heja', 'hej', 'foo' ) |
+ +--------------------------------------+
+ | foo                                  |
+ +--------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT ELT( 3.4, 'ej', 'Heja', 'hej', 'foo' );
+ +----------------------------------------+
+ | ELT( 3.4, 'ej', 'Heja', 'hej', 'foo' ) |
+ +----------------------------------------+
+ | hej                                    |
+ +----------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT ELT( 3.5, 'ej', 'Heja', 'hej', 'foo' );
+ +----------------------------------------+
+ | ELT( 3.5, 'ej', 'Heja', 'hej', 'foo' ) |
+ +----------------------------------------+
+ | foo                                    |
+ +----------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT ELT( .5, 'ej', 'Heja', 'hej', 'foo' );
+ +---------------------------------------+
+ | ELT( .5, 'ej', 'Heja', 'hej', 'foo' ) |
+ +---------------------------------------+
+ | ej                                    |
+ +---------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT ELT( .3, 'ej', 'Heja', 'hej', 'foo' );
+ +---------------------------------------+
+ | ELT( .3, 'ej', 'Heja', 'hej', 'foo' ) |
+ +---------------------------------------+
+ | NULL                                  |
+ +---------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [Prueba1]> SELECT ELT( 9, 'ej', 'Heja', 'hej', 'foo' );
+ +--------------------------------------+
+ | ELT( 9, 'ej', 'Heja', 'hej', 'foo' ) |
+ +--------------------------------------+
+ | NULL                                 |
+ +--------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+
+
 
 
 [[Category:MariaDB Desde la Consola]]
