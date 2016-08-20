@@ -554,7 +554,7 @@ __NOTOC__
  | 420.5          |
  +----------------+
  1 row in set (0.00 sec)
-
+ 
  MariaDB [(none)]> SELECT CONCAT('The value of @v is: ', IFNULL(@v, ''));
  +------------------------------------------------+
  | CONCAT('The value of @v is: ', IFNULL(@v, '')) |
