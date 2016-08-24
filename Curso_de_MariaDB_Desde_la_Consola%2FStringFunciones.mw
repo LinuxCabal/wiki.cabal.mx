@@ -1040,8 +1040,8 @@ __NOTOC__
  es latin1 (CP1252 Europa occidental).
  LOWER() ( y UPPER() ) son ineficaces cuando se aplican a las cadenas
  binarias (BINARIO, VARBINARY, BLOB). Para realizar la conversión de
- mayúsculas y minúsculas, convertir la cadena en una cadena no binaria:
-.
+ mayúsculas y minúsculas, convertir la cadena en una cadena no binaria.
+ 
  <b>Ejemplos</b>
  
  MariaDB [(none)]> SELECT LOWER( "Viernes, 21 de Agosto AÑO 2016" );
