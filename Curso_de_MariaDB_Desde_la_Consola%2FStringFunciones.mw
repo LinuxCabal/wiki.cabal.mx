@@ -1117,6 +1117,43 @@ __NOTOC__
  +-----------------------+
  1 row in set (0.00 sec)
  
+== LENGTH ==
+ <b>Sintaxis</b>
+ 
+ LENGTH( str )
+ 
+ <b>Descripción</b>
+ 
+ Devuelve la longitud de la cadena str, medida en bytes. Un carácter
+ multi-byte cuenta como múltiples bytes. Esto significa que para una
+ cadena que contiene cinco caracteres de dos bytes, LENGTH() retorna 10,
+ mientras que CHAR_LENGTH() devuelve 5.
+ 
+ Si str no es un valor de cadena, se convierte en una cadena.
+ Si str es NULL, la función devuelve NULL.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT LENGTH( 'MariaDB' );
+ +---------------------+
+ | LENGTH( 'MariaDB' ) |
+ +---------------------+
+ |                   7 |
+ +---------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LENGTH( 'Año' );
+ +------------------+
+ | LENGTH( 'Año' )  |
+ +------------------+
+ |                4 |
+ +------------------+
+ 1 row in set (0.00 sec)
+ 
+
+
+
+
 
 
 
