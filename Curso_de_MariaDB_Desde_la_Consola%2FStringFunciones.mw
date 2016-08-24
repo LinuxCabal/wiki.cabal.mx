@@ -1059,7 +1059,7 @@ __NOTOC__
  | viernes, 21 de agosto año 2016             |
  +--------------------------------------------+
  1 row in set (0.00 sec)
-
+ 
  MariaDB [(none)]> SELECT LOWER( @str ), LOWER( CONVERT( @str USING utf8 ) );
  +-------------------------+------------------------------------+
  | LOWER( @str )           | LOWER(CONVERT( @str USING utf8 ) ) |
