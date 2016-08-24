@@ -1209,6 +1209,66 @@ __NOTOC__
  +---------------------------+
  1 row in set (0.00 sec)
 
+== LPAD ==
+ <b>Sintaxis</b>
+ 
+ LPAD( str, len, padstr )
+ 
+ <b>Descripción</b>
+ 
+ Retorna la cadena str, consigna para el rellenado con la cadena str
+ almohadilla a una longitud de len caracteres. Si str es mayor que
+ len, el valor de retorno se corta a len caracteres.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT LPAD( 'hola', 5, '~' );
+ +------------------------+
+ | LPAD( 'hola', 5, '~' ) |
+ +------------------------+
+ | ~hola                  |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LPAD( 'hola', 6, '~' );
+ +------------------------+
+ | LPAD( 'hola', 6, '~' ) |
+ +------------------------+
+ | ~~hola                 |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LPAD( 'hola', 7, '~' );
+ +------------------------+
+ | LPAD( 'hola', 7, '~' ) |
+ +------------------------+
+ | [[Usuario:Rrc|Rrc]] ([[Usuario discusión:Rrc|discusión]])hola                |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LPAD( 'hola', 4, '~' );
+ +------------------------+
+ | LPAD( 'hola', 4, '~' ) |
+ +------------------------+
+ | hola                   |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LPAD( 'hola', 3, '~' );
+ +------------------------+
+ | LPAD( 'hola', 3, '~' ) |
+ +------------------------+
+ | hol                    |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LPAD( 'hola', 2, '~' );
+ +------------------------+
+ | LPAD( 'hola', 2, '~' ) |
+ +------------------------+
+ | ho                     |
+ +------------------------+
+ 1 row in set (0.00 sec
 
 
 
