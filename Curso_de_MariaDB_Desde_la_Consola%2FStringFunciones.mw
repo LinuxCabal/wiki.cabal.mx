@@ -24,8 +24,8 @@ __NOTOC__
 * [[:#LOCATE | LOCATE]]
 * [[:#LOWER | LOWER]]
 * [[:#LPAD | LPAD]]
+* [[:#QUOTE | QUOTE]]
 * [[:#LTRIM | LTRIM]]
-* [[:#MAKE_SET | MAKE_SET]]
 * [[:#MATCH AGAINST | MATCH_AGAINST]]
 * [[:#Stopwords | Stopwords]]
 * [[:#MID | MID]]
@@ -34,7 +34,6 @@ __NOTOC__
 * [[:#OCTET_LENGTH | OCTET_LENGTH]]
 * [[:#ORD | ORD]]
 * [[:#POSITION | POSITION]]
-* [[:#QUOTE | QUOTE]]
 * [[:#REPEAT Function | REPEAT Función]]
 * [[:#REPLACE Function | REPLACE Función]]
 * [[:#REVERSE | REVERSE]]
@@ -1269,6 +1268,54 @@ __NOTOC__
  | ho                     |
  +------------------------+
  1 row in set (0.00 sec
+
+== QUOTE ==
+ <b>Sintaxis</b>
+ 
+ QUOTE( str )
+ 
+ <b>Descripción</b>
+ 
+ Cotizaciones una cadena para producir un resultado que puede ser utilizado
+ como un valor de datos correctamente escapado en una instrucción SQL.
+ La cadena se devuelve encerrado por comillas simples y con cada instancia de
+ comilla simple ("'"), la barra invertida ("\"), ASCII NUL, y 
+ Control-Z precedido por una barra invertida. Si el argumento es NULL, el
+ valor de retorno es la palabra "NULL" sin encerrar entre comillas simples
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT QUOTE( "Don't do it!");
+ +------------------------+
+ | QUOTE( "Don't do it!") |
+ +------------------------+
+ | 'Don\'t do it!'        |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT QUOTE( "");
+ +------------+
+ | QUOTE( "") |
+ +------------+
+ | ''         |
+ +------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT QUOTE( '');
+ +------------+
+ | QUOTE( '') |
+ +------------+
+ | ''         |
+ +------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT QUOTE( NULL );
+ +---------------+
+ | QUOTE( NULL ) |
+ +---------------+
+ | NULL          |
+ +---------------+
+ 1 row in set (0.20 sec)
 
 == LTRIM ==
  <b>Sintaxis</b>
