@@ -770,7 +770,7 @@ __NOTOC__
  +------------------------------------------------+
  1 row in set (0.00 sec)
  
-== FINDIN_DET ==
+== FIND_IN_SET ==
  <b>Sintaxis</b>
  
  FIND_IN_SET( str, strlist )
