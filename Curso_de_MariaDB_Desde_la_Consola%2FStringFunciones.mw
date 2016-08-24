@@ -1293,19 +1293,19 @@ __NOTOC__
  +------------------------+
  1 row in set (0.00 sec)
  
- MariaDB [(none)]> SELECT QUOTE( "");
+ MariaDB [(none)]> SELECT QUOTE( "" );
  +------------+
  | QUOTE( "") |
  +------------+
- | ''           |
+ | \'\'          
  +------------+
  1 row in set (0.00 sec)
  
  MariaDB [(none)]> SELECT QUOTE( '');
  +------------+
- | QUOTE( '') |
+ | QUOTE( '' ) |
  +------------+
- | ''           |
+ | \'\'       |
  +------------+
  1 row in set (0.00 sec)
  
