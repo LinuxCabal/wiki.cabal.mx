@@ -1270,6 +1270,28 @@ __NOTOC__
  +------------------------+
  1 row in set (0.00 sec
 
+== LTRIM ==
+ <b>Sintaxis</b>
+ 
+ LTRIM( str )
+ 
+ <b>Descripción</b>
+ 
+ Devuelve la cadena str con los caracteres en blanco iniciales eliminados.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT QUOTE( LTRIM ('   MariaDB   ') );
+ +----------------------------------+
+ | QUOTE( LTRIM ('   MariaDB   ') ) |
+ +----------------------------------+
+ | 'MariaDB   '                     |
+ +----------------------------------+
+ 1 row in set (0.00 sec)
+
+
+
+
 
 
 
