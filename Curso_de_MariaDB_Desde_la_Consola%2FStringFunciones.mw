@@ -21,8 +21,6 @@ __NOTOC__
 * [[:#LCASE | LCASE]]
 * [[:#LEFT | LEFT]]
 * [[:#LENGTH | LENGTH]]
-* [[:#LIKE | LIKE]]
-* [[:#LOAD_FILE | LOAD_FILE]]
 * [[:#LOCATE | LOCATE]]
 * [[:#LOWER | LOWER]]
 * [[:#LPAD | LPAD]]
@@ -1150,11 +1148,66 @@ __NOTOC__
  +------------------+
  1 row in set (0.00 sec)
  
-
-
-
-
-
+== LOCATE ==
+ <b>Sintaxis</b>
+ 
+ LOCATE( substr, str ), LOCATE( substr, str, pos )
+ 
+ <b>Descripción</b>
+ 
+ La primera sintaxis devuelve la posición de la primera ocurrencia de
+ la subcadena substr en la cadena str. La segunda sintaxis devuelve la
+ posición de la primera ocurrencia de la subcadena substr en la 
+ cadena str, empezando en la posición pos. Devuelve 0 si no es substr
+ en str.
+ 
+ LOCATE() realiza una búsqueda entre mayúsculas y minúsculas.
+ 
+ Si algún argumento es NULL, devuelve NULL.
+ 
+ Instr() es sinónimo de LOCATE() sin el tercer argumento.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT LOCATE( 'bar', 'foobarbar' );
+ +------------------------------+
+ | LOCATE( 'bar', 'foobarbar' ) |
+ +------------------------------+
+ |                            4 |
+ +------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LOCATE( 'bar', 'foobarbar', 5 );
+ +---------------------------------+
+ | LOCATE( 'bar', 'foobarbar', 5 ) |
+ +---------------------------------+
+ |                               7 |
+ +---------------------------------+
+ 1 row in set (0.00 sec)
+  
+ MariaDB [(none)]> SELECT LOCATE( 'my', 'MariaDB' );
+ +---------------------------+
+ | LOCATE( 'my', 'MariaDB' ) |
+ +---------------------------+
+ |                         0 |
+ +---------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LOCATE( 'mar', 'MariaDB' );
+ +----------------------------+
+ | LOCATE( 'mar', 'MariaDB' ) |
+ +----------------------------+
+ |                          1 |
+ +----------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT LOCATE( 'db', 'MariaDB' );
+ +---------------------------+
+ | LOCATE( 'db', 'MariaDB' ) |
+ +---------------------------+
+ |                         6 |
+ +---------------------------+
+ 1 row in set (0.00 sec)
 
 
 
