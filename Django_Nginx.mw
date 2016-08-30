@@ -91,3 +91,5 @@ Tanto location /media como location / deben estar dentro del server {} lo cual c
 == Creando un sitio de pruebas y de produccion en la misma configuracion ==
 
 Aparte del archivo settings.py donde tu variable de DEBUG esta fijada a False, agrega una nueva variable asignada a True en nuevo archivo llamado '''settings_debug.py'''.  De esta manera ahora podras lanzara otro '''"manage.py runfcgi"'''' desde el folder de tu aplicacion y adicionarle los parametros de ''–settings=siteYY.settings_debug'' en un socket y puerto diferente.
+
+[[Category: HowTos]]
