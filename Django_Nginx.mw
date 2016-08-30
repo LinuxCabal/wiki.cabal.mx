@@ -1,13 +1,93 @@
 
 == Creación de Django y Nginx ==
-=== Por que este tutorial? ====
-Django viene con su propio servidor el cual puede iniciarse desde Django con el comando **runserver** y este puede configurarse con el numero de puerto especifico para el servidor. 
+=== Por que este tutorial? ===
+Django viene con su propio servidor el cual puede iniciarse desde Django con el comando '''runserver''' y este puede configurarse con el numero de puerto especifico para el servidor. 
 
 Python tambien provee una serie de servidores web independientes como Gunicorn, Tornado, y Rocket. Tambien existen empaquetadores para servidores como lo es el mod_wsgi de apache, uwsgi. 
 
-Sin embargo que pasa si tienes ya un servidor Nginx, y necesitas adicionar una app con Django. De una forma similar a si estuvieras en Apache, Django, usa estos empacadores y se une al servidor web que ya tienes. Pero existe una tercera opcion, mediante el uso de **FastCGI**. 
+Sin embargo que pasa si tienes ya un servidor Nginx, y necesitas adicionar una app con Django. De una forma similar a si estuvieras en Apache, Django, usa estos empacadores y se une al servidor web que ya tienes. Pero existe una tercera opcion, mediante el uso de '''FastCGI'''. 
 
 === Que es FASTCGI ===
-FASTCGI es un protocolo binario que esta hecho para crear una interfaz entre servidores web con programas interactivos. El beneficio es que reduce el costo de interaccion entre el webserver y el programa CGI. CGI significa Common Gateway Interface, o interfaz de pasarela comun. Esto permite al servidor web manejar mas de una peticion de paginas al mismo tiempo.
+FASTCGI es un protocolo binario que esta hecho para crear una interfaz entre servidores web con programas interactivos. El beneficio es que reduce el costo de interaccion entre el webserver y el programa CGI. CGI significa ''Common Gateway Interface'', o interfaz de pasarela comun. Esto permite al servidor web manejar mas de una peticion de paginas al mismo tiempo.
 
 == Configurando nuestro proyecto ==
+Empezemos con un proyecto tradicional de Django donde tenemos un arbol de archivos estandar:
+<code>sites/
+    site1/
+        manage.py
+        settings.py
+        __init__.py
+        app1/
+        app2/
+        media/
+    site2/
+        ...</code>
+Para configurar nuestro proyecto con la plataforma de FastCGI necestiariamos poner los archivos de socket y el PID en la direccion de ejecucion del servidor web ```RUNFILES_PATH```.
+
+==== Configurando NGINX ====
+NGINX debera tener un script que le permita reconocer el nuevo sitio y sea capaz de activarlo o desactivarlo. Para eso debemos editar nuestro archivo de configuracion '''nginx.conf''', alternativamente puedes poner el archivo en la ruta de '''sites-(enabled/available)/''' si necesitas incluir las instrucciones de include. 
+
+En la seccion de http reemplaza las rutas y nombre de la siguiente forma:
+
+<code> 
+   server {
+    listen   80;
+    server_name  {server name};
+   
+    access_log  {path to log file};
+  }
+</code>
+
+Proseguimos a declarar el directorio donde estara nuestros archivos estaticos en este caso usamos el del admin como ejemplo, se recomienda leer [http://docs.djangoproject.com/en/dev/howto/deployment/modpython/#serving-the-admin-files esta guia] para indicaciones adicionales al usar por ejemplo mod_python. 
+
+<code>
+    location /media {
+        root   {ruta al sitio}/siteYY/;
+    }
+</code>
+
+Django debe declarar varios parametros en NGINX entre ellos el PATH_INFO, REQUEST_METHOD, CONTENT_LENGHT y CONTENT_TYPE :
+
+<code>
+    location / {
+        fastcgi_pass unix:RUNFILES_PATH/siteYY.socket;
+        # para un puerto TCP
+        # fastcgi_pass   {hostname}:{puerto};
+
+        # parametro necesario
+        fastcgi_param PATH_INFO $fastcgi_script_name;
+
+        # para que maneje los POST requests
+        fastcgi_param REQUEST_METHOD $request_method;
+        fastcgi_param CONTENT_TYPE $content_type;
+        fastcgi_param CONTENT_LENGTH $content_length;
+     }
+</code>
+
+Tanto location /media como location / deben estar dentro del server {} lo cual crea un completo asi:
+
+<code>
+   server {
+    listen   80;
+    server_name  {server name};
+   
+    access_log  {path to log file};
+    
+    # Aqui agregamos los bloques de location
+    location /media {
+        root   {path to sites}/siteYY/;
+    }
+
+    location / {
+        fastcgi_pass unix:RUNFILES_PATH/siteYY.socket;
+        fastcgi_param PATH_INFO $fastcgi_script_name;
+        fastcgi_param REQUEST_METHOD $request_method;
+        fastcgi_param CONTENT_TYPE $content_type;
+        fastcgi_param CONTENT_LENGTH $content_length;
+     }
+  }
+</code>
+
+== Creando un sitio de pruebas y de produccion en la misma configuracion ==
+
+Aparte del archivo settings.py donde tu variable de DEBUG esta fijada a False, agrega una nueva variable asignada a True en nuevo archivo llamado '''settings_debug.py'''.  De esta manera ahora podras lanzara otro '''"manage.py runfcgi"'''' desde el folder de tu aplicacion y adicionarle los parametros de ''–settings=siteYY.settings_debug'' en un socket y puerto diferente.
