@@ -1,0 +1,13 @@
+
+== Creación de Django y Nginx ==
+=== Por que este tutorial? ====
+Django viene con su propio servidor el cual puede iniciarse desde Django con el comando **runserver** y este puede configurarse con el numero de puerto especifico para el servidor. 
+
+Python tambien provee una serie de servidores web independientes como Gunicorn, Tornado, y Rocket. Tambien existen empaquetadores para servidores como lo es el mod_wsgi de apache, uwsgi. 
+
+Sin embargo que pasa si tienes ya un servidor Nginx, y necesitas adicionar una app con Django. De una forma similar a si estuvieras en Apache, Django, usa estos empacadores y se une al servidor web que ya tienes. Pero existe una tercera opcion, mediante el uso de **FastCGI**. 
+
+=== Que es FASTCGI ===
+FASTCGI es un protocolo binario que esta hecho para crear una interfaz entre servidores web con programas interactivos. El beneficio es que reduce el costo de interaccion entre el webserver y el programa CGI. CGI significa Common Gateway Interface, o interfaz de pasarela comun. Esto permite al servidor web manejar mas de una peticion de paginas al mismo tiempo.
+
+== Configurando nuestro proyecto ==
