@@ -19,3 +19,6 @@ He aquí una lista de cómo instalar Nginx en tu distribución favorita:
 
 == Gentoo ==
     emerge -a nginx
+
+
+[[Category: HowTos]]
