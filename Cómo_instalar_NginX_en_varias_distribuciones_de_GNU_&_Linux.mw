@@ -1,20 +1,20 @@
 He aquí una lista de cómo instalar Nginx en tu distribución favorita:
 
-== Fedora ==
-    dnf -y install nginx
-
-
-== CentOS/RHEL 7.x o >==
-    yum -y install epel-release
-    yum -y install nginx
-
-    
 == Arch Linux ==
     # nginx (mantenida por Arch)
     pacman -Syu nginx
 
     # nginx-mainline (mantenida por NginX)
     pacman -Syu nginx-mainline
+
+
+== CentOS/RHEL 7.x o >==
+    yum -y install epel-release
+    yum -y install nginx
+
+
+== Fedora ==
+    dnf -y install nginx    
 
 
 == Gentoo ==
