@@ -7,16 +7,17 @@ __NOTOC__
 == Operador de DivisiónIgual ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<html>
+<!DOCTYPE HTML>
+<html lang="es-MX">
   <head>
     <title>
-      Curso PHP - Operador de Divisi&oacute;nIgual
+      Curso PHP - Operador de DivisiónIgual
     </title>
   </head>
   <body style="background-image:url('images/logoBG.jpg');">
     <?php
       print( "<p>
-                Operador de Divisi&oacute;nIgual
+                Operador de DivisiónIgual
               </p>" );
       $x = 4;
       print( "<p>" . $x . "<br />" );
