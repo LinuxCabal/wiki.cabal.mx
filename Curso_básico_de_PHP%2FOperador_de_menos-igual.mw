@@ -7,7 +7,9 @@ __NOTOC__
 == Operador de MenosIgual ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<html>
+
+<!DOCTYPE HTML>
+<html lang="es-MX">
   <head>
     <title>
       Curso PHP - Operador de MenosIgual
