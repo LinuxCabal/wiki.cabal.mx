@@ -7,7 +7,9 @@ __NOTOC__
 == Cambiamos el tipo de la variable usando cast ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<html>
+
+<!DOCTYPE HTML>
+<html lang="es-MX">
   <head>
     <title>
       Curso PHP - Cambiar el tipo de la variable usando cast
