@@ -24,8 +24,7 @@ __NOTOC__
       {
         case "Me Gusta":
           print( "<p class=\"TitleFont\">
-                    A mi <span style=\"text-decoration:blink;
-                                            font-weight:bold;\"> me gusta
+                    A mi <span style=\"font-weight:bold;\"> me gusta
                     </span> mucho PHP
                   </p>" );
           break;
