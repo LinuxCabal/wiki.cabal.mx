@@ -7,16 +7,17 @@ __NOTOC__
 == Operador de ConcatenaciónIgual ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<html>
+<!DOCTYPE HTML>
+<html lang="es-MX">
   <head>
     <title>
-      Curso PHP - Operador de Concatenaci&oacute;nIgual
+      Curso PHP - Operador de ConcatenaciónIgual
     </title>
   </head>
   <body style="background-image:url('images/logoBG.jpg');">
     <?php
       print( "<p>
-                Operador de Concatenaci&oacute;nIgual
+                Operador de ConcatenaciónIgual
               </p>" );
       $x = 4;
       print( '<p>' . $x . "<br />" );
@@ -28,7 +29,7 @@ __NOTOC__
       print(   "Tipo de la variable \$x antes es: " . gettype( $x ) . "<br />" );
       $x .= " Metros";
       print(    $x . '<br />' );
-      print(   "Tipo de la variable \$x despu&eacute;s: " . gettype( $x ) );
+      print(   "Tipo de la variable \$x después: " . gettype( $x ) );
       print( '</p>');
     ?>
   </body>
