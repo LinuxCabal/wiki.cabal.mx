@@ -6,7 +6,8 @@ __NOTOC__
 
 == Escribimos Hola Web ==
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<html>
+<!DOCTYPE HTML>
+<html lang=\"es-MX\">
   <head>
     <title>
       Curso de PHP - Hola Web
