@@ -7,16 +7,17 @@ __NOTOC__
 == Operador de MásIgual ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<html>
+<!DOCTYPE HTML>
+<html lang="es-MX">
   <head>
     <title>
-      Curso PHP - Operador de M&aacute;sIgual
+      Curso PHP - Operador de MásIgual
     </title>
   </head>
   <body style="background-image:url('images/logoBG.jpg');">
     <?php
       print( "<p>
-                Operador de M&aacute;sIgual
+                Operador de MásIgual
               </p>" );
       $x = 4;
       print( "<p>" . $x . '<br />' );
