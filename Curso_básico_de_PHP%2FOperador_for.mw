@@ -11,7 +11,7 @@ __NOTOC__
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
 <?php
-  require_once( "Cabeza.php" );
+  require_once( "Cabeza5.php" );
 ?>
   <body>
     <?php
