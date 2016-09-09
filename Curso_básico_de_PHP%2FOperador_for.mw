@@ -1,8 +1,7 @@
 __NOTOC__
 * [[:#OperadorFor | El operador for]]
-** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
-** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
-** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
 ** [[:#Contenidos de org.css | Contenidos de org.css]]
 ** [[:#Explicación | Explicación]]
 ** [[:#Ejecutarlo | Ejecutarlo]]
@@ -30,18 +29,15 @@ __NOTOC__
                         alt : <a href=\"images/tada.wav\">Tada</a>
                 </object>
               </p>" );
-    require_once( "incPie.php" );
+    require_once( "incPie5.php" );
     ?>         
 </syntaxhighlight>
 
-=== Contenidos de FixAnotherMSIEBug.xsl ===
-[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
 
-=== Contenidos de Cabeza.inc ===
-[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
-
-=== Contenidos de incPie.php ===
-[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
 
 === Contenidos de org.css ===
 [http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
