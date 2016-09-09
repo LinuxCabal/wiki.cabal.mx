@@ -1,7 +1,7 @@
 __NOTOC__
 * [[:#OperadorWhile | El operador while]]
 ** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
-** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
 ** [[:#Contenidos de clase.css | Contenidos de clase.css]]
 ** [[:#Explicación | Explicación]]
 ** [[:#Ejecutarlo | Ejecutarlo]]
@@ -34,7 +34,7 @@ __NOTOC__
                   Tu explorador no soporta el etiqueta audio
                 </audio>
               </p>" );
-      require_once( "incPie.php" );
+      require_once( "incPie5.php" );
     ?>         
 
 </syntaxhighlight>
@@ -43,7 +43,7 @@ __NOTOC__
 [http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
 
 === Contenidos de incPie.php ===
-[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
 
 === Contenidos de org.css ===
 [http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
