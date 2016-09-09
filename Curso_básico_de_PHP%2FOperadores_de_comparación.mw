@@ -1,6 +1,5 @@
 __NOTOC__
 * [[:#Operadores de comparación | Operadores de comparación]]
-** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
 ** [[:#Explicación | Explicación]]
 ** [[:#Ejecutarlo | Ejecutarlo]]
 ** [[:#Descargarlo | Descargarlo]]
@@ -72,10 +71,6 @@ __NOTOC__
 </html>
 
 </syntaxhighlight>
-
-=== Contenidos de FixAnotherMSIEBug.xsl ===
-[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
-
 === Explicación ===
 
 === Ejecutarlo ===
