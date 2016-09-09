@@ -11,10 +11,8 @@ __NOTOC__
 <!DOCTYPE HTML>
 <html lang="es-MX">
   <head>
-    <meta http-equiv="Content-Type" content="application/xhtml+xml;
-                      charset=UTF-8" />
+    <meta charset=\"UTF-8\" />
     <meta http-equiv="expires" content="-1" />
-    <meta http-equiv="Content-Style-Type" content="text/css" />
     <meta name="keywords" content="linux cabal, linuxcabal,
                  open source, free software, F/OSS, FOSS, GNU,
                  GNU/Linux, Linux, GNU &amp; Linux, Free and Open Source
