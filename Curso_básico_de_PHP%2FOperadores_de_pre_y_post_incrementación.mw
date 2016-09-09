@@ -7,7 +7,8 @@ __NOTOC__
 == Operadores de pre y post incrementacón ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<html>
+<!DOCTYPE HTML>
+<html lang="es-MX">
   <head>
     <title>
       Curso PHP - Operadores de pre y post incrementac&oacute;n
