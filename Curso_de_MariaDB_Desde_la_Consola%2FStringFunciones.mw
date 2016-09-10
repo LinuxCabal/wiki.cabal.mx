@@ -1615,14 +1615,84 @@ __NOTOC__
  
  TRIM([{BOTH | LEADING | TRAILING} [remstr] FROM] str), TRIM([remstr FROM] str )
  
- <b>Ejemplos</b>
+ <b>Descripión</b>
  
  Retorna la cadena str con todos los prefijos o sufijos remstr retirados.
- Si ambos, se da LÍDER, o al final ninguno de los especificadores, AMBOS se supone. remstr es opcional y, si no se especifica, se eliminan los espacios.
+ Si ningúno de los especificadores BOTH, LEADING, o TRAILINGl, BOTH
+ se supone. remstr es opcional y, si no se especifica, se eliminan los
+ espacios.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT QUOTE( TRIM('  Maria DB   ') );
+ +--------------------------------+
+ | QUOTE( TRIM('  Maria DB   ') ) |
+ +--------------------------------+
+ | 'Maria DB'                     |
+ +--------------------------------+
+ 1 row in set (0.00 sec)
 
-
-
-
+ MariaDB [(none)]> SELECT TRIM( LEADING 'x' FROM 'xxxbarxxx' );
+ +------------------------------------------+
+ | TRIM( LEADING 'x' FROM 'xxxMariaDBxxx' ) |
+ +------------------------------------------+
+ | MariaDBxxx                               |
+ +------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT TRIM( TRAILING 'xyz' FROM 'xyzMariaDBxyz' );
+ +---------------------------------------------+
+ | TRIM( TRAILING 'xyz' FROM 'xyzMariaDBxyz' ) |
+ +---------------------------------------------+
+ | xyzMariaDB                                  |
+ +---------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT TRIM( BOTH 'x' FROM 'xxxMariaDBxxx' );
+ +---------------------------------------+
+ | TRIM( BOTH 'x' FROM 'xxxMariaDBxxx' ) |
+ +---------------------------------------+
+ | MariaDB                               |
+ +---------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+== UPPER ==
+ <b>Sintaxis</b>
+ 
+ UPPER( str )
+ 
+ <b>Descripción</b>
+ 
+ Retorna la cadena str con todos los caracteres cambiados
+ a mayúsculas según el mapeo del conjunto de caracteres actual.
+ El valor predeterminado es latin1 (CP1252 Europa occidental).
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT UPPER( 'buenos días' );
+ +-------------------------+
+ | UPPER( 'buenos días' )  |
+ +-------------------------+
+ | BUENOS DÍAS             |
+ +-------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT UPPER( BINARY 'buenos días' );
+ +--------------------------------+
+ | UPPER( BINARY 'buenos días' )  |
+ +--------------------------------+
+ | buenos días                    |
+ +--------------------------------+
+ 1 row in set (0.02 sec)
+ 
+== UCASE ==
+ <b>Sintaxis</b>
+ 
+ UCASE( str )
+ 
+ <b>Descripción</b>
+ 
+ Sinónimo de UPPER
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
