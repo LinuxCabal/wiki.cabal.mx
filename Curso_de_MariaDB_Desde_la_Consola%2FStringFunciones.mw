@@ -1462,6 +1462,160 @@ __NOTOC__
  +----------------------------------+
  1 row in set (0.00 sec)
  
+== REPLACE ==
+ <b>Sintaxis</b>
+ 
+ REPLACE( str, from_str, to_str )
+ 
+ <b>Descripción</b>
+ 
+ Retorna la cadena str con todas las ocurrencias de la cadena from_str
+ reemplazados por el to_str. REPLACE() realiza una coincidencia
+ mayúscula en la búsqueda de from_str.
+ 
+ <b>Ejemplos</b>
+ 
+  MariaDB [(none)]> SELECT REPLACE('w.mariadb.org', 'w', 'WwW');
+ +--------------------------------------+
+ | REPLACE('w.mariadb.org', 'w', 'WwW') |
+ +--------------------------------------+
+ | WwW.mariadb.org                      |
+ +--------------------------------------+
+ 1 row in set (0.00 sec) 
+ 
+ MariaDB [(none)]> SELECT REPLACE('w.mariadb.org', 'W', 'www');
+ +--------------------------------------+
+ | REPLACE('w.mariadb.org', 'W', 'www') |
+ +--------------------------------------+
+ | w.mariadb.org                        |
+ +--------------------------------------+
+ 1 row in set (0.00 sec)
 
+== REVERSE ==
+ <b>Sintaxis</b>
+ 
+ REVERSE( str )
+ 
+ <b>Descripción</b>
+ 
+ Retorna la cadena str con el orden de los caracteres invertidos.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT REVERSE( 'AbCéÑ' );
+ +----------------------+
+ | REVERSE( 'AbCéÑ' )   |
+ +----------------------+
+ | ÑéCbA                |
+ +----------------------+
+ 1 row in set (0.00 sec)
+ 
+== RIGHT ==
+ <b>Sintaxis</b>
+ 
+ RIGHT( str, len )
+ 
+ <b>Descripción</b>
+ 
+ Devuelve los caracteres situados a la derecha n de
+ la cadena str, o NULL si cualquier argumento es NULL.
+ 
+ <b>Ejemplos</b>
+  
+ MariaDB [(none)]> SELECT RIGHT( 'MariaDB', 2 );
+ +-----------------------+
+ | RIGHT( 'MariaDB', 2 ) |
+ +-----------------------+
+ | DB                    |
+ +-----------------------+
+ 1 row in set (0.00 sec)
+
+== RPAD ==
+ <b>Sintaxis</b>
+ 
+ RPAD( str, len, padstr )
+ 
+ <b>Descripción</b>
+ 
+ Retorna la cadena str, haga acolchado con la almohadilla
+ de cadena str con una longitud de len caracteres. Si str
+ es mayor que len, el valor de retorno se corta a len caracteres.
+ 
+ <b>Ejemplos<b>
+ 
+ MariaDB [(none)]> SELECT RPAD( 'hola', 10, '.' );
+ +-------------------------+
+ | RPAD( 'hola', 10, '.' ) |
+ +-------------------------+
+ | hola......              |
+ +-------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT RPAD( 'hola', 2, '.' );
+ +------------------------+
+ | RPAD( 'hola', 2, '.' ) |
+ +------------------------+
+ | ho                     |
+ +------------------------+
+ 1 row in set (0.00 sec)
+ 
+== RTRIM ==
+ <b>Sintaxis</b>
+ 
+ RTRIM( str )
+ 
+ <b>Descripción</b>
+ 
+ Retorna la cadena str con caracteres de espacio retirados.
+ 
+ <b>Ejemplos<b>
+ 
+ MariaDB [(none)]> SELECT QUOTE(RTRIM('MariaDB    '));
+ +-----------------------------+
+ | QUOTE(RTRIM('MariaDB    ')) |
+ +-----------------------------+
+ | 'MariaDB'                   |
+ +-----------------------------+
+ 1 row in set (0.00 sec)
+ 
+== STRCMP ==
+ <b>Sintaxis</b>
+ 
+ STRCMP( expr1, expr2 )
+ 
+ <b>Descripción</b>
+ 
+ STRCMP() devuelve 0 si las cadenas son iguales,
+ -1 si el primer argumento es menor que el segundo
+ acuerdo con el orden actual, y 1 en caso contrario.
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT STRCMP( 'texto', 'texto2' );
+ +-----------------------------+
+ | STRCMP( 'texto', 'texto2' ) |
+ +-----------------------------+
+ |                          -1 |
+ +-----------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT STRCMP( 'texto2', 'texto' );
+ +-----------------------------+
+ | STRCMP( 'texto2', 'texto' ) |
+ +-----------------------------+
+ |                           1 |
+ +-----------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT STRCMP( 'texto', 'texto' );
+ +----------------------------+
+ | STRCMP( 'texto', 'texto' ) |
+ +----------------------------+
+ |                          0 |
+ +----------------------------+
+ 1 row in set (0.00 sec)
+
+
+ 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
