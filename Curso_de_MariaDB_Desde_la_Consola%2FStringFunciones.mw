@@ -34,12 +34,7 @@ __NOTOC__
 * [[:#RIGHT | RIGHT]]
 * [[:# RPAD | RPAD]]
 * [[:# RTRIM | RTRIM]]
-* [[:#SOUNDS LIKE | SOUNDS LIKE]]
-* [[:#SPACE | SPACE]]
 * [[:#STRCMP | STRCMP]]
-* [[:#SUBSTR | SUBSTR]]
-* [[:#SUBSTRING | SUBSTRING]]
-* [[:#SUBSTRING_INDEX | SUBSTRING_INDEX]]
 * [[:#TRIM | TRIM]]
 * [[:#UCASE | UCASE]]
 * [[:#UNHEX | UNHEX]]
@@ -1615,7 +1610,19 @@ __NOTOC__
  +----------------------------+
  1 row in set (0.00 sec)
 
-
+== TRIM ==
+ <b>Sintaxis</b>
  
+ TRIM([{BOTH | LEADING | TRAILING} [remstr] FROM] str), TRIM([remstr FROM] str )
+ 
+ <b>Ejemplos</b>
+ 
+ Retorna la cadena str con todos los prefijos o sufijos remstr retirados.
+ Si ambos, se da LÍDER, o al final ninguno de los especificadores, AMBOS se supone. remstr es opcional y, si no se especifica, se eliminan los espacios.
+
+
+
+
+
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
