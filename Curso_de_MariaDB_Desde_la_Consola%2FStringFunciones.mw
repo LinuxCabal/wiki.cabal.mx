@@ -26,12 +26,7 @@ __NOTOC__
 * [[:#LPAD | LPAD]]
 * [[:#QUOTE | QUOTE]]
 * [[:#LTRIM | LTRIM]]
-* [[:#MATCH AGAINST | MATCH_AGAINST]]
-* [[:#Stopwords | Stopwords]]
 * [[:#MID | MID]]
-* [[:#NOT LIKE NOT LIKE| NOT LIKE]]
-* [[:#OT REGEXP | OT REGEXP]]
-* [[:#OCTET_LENGTH | OCTET_LENGTH]]
 * [[:#ORD | ORD]]
 * [[:#POSITION | POSITION]]
 * [[:#REPEAT Function | REPEAT Función]]
@@ -40,7 +35,6 @@ __NOTOC__
 * [[:#RIGHT | RIGHT]]
 * [[:# RPAD | RPAD]]
 * [[:# RTRIM | RTRIM]]
-* [[:#SOUNDEX | SOUNDEX]]
 * [[:#SOUNDS LIKE | SOUNDS LIKE]]
 * [[:#SPACE | SPACE]]
 * [[:#STRCMP | STRCMP]]
@@ -1336,8 +1330,107 @@ __NOTOC__
  +----------------------------------+
  1 row in set (0.00 sec)
 
-
-
+== SUBSTRING ==
+ <b<Sintax</b>
+ 
+ SUBSTRING( str, pos ), 
+ SUBSTRING( str  FROM pos ), 
+ SUBSTRING( str, pos,len ),
+ SUBSTRING( str  FROM pos FOR len)
+ 
+ <b>Descripción</b>
+ 
+ Las formas sin un argumento len retornan una subcadena de la cadena str
+ empezando en la posición pos.
+ 
+ Las formas con un argumento len retornan una subcadena len caracteres de
+ longitud de cadena str, empezando en la posición pos.
+ 
+ Las formas que utilizan FROM son sintaxis SQL estándar.
+ 
+ También es posible utilizar un valor negativo para pos. En este caso,
+ el comienzo de la subcadena es caracteres de la final de la cadena, en
+ lugar de al principio. Un valor negativo puede ser utilizado para pos
+ en cualquiera de las formas de esta función.
+ 
+ Para todas las formas de SUBSTRING(), la posición del primer carácter
+ de la cadena de la que la subcadena se va a extraer es contada por 1.
+ 
+ Si algún argumento es NULL, devuelve NULL.
+  
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT SUBSTRING( 'Más largo', 4 );
+ +------------------------------+
+ | SUBSTRING( 'Más largo', 4 )  |
+ +------------------------------+
+ |  largo                       |
+ +------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT SUBSTRING( 'MariaDB' FROM 6 );
+ +-------------------------------+
+ | SUBSTRING( 'MariaDB' FROM 6 ) |
+ +-------------------------------+
+ | DB                            |
+ +-------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT SUBSTRING('Maravilla', 5, 5 );
+ +-------------------------------+
+ | SUBSTRING('Maravilla', 5, 5 ) |
+ +-------------------------------+
+ | villa                         |
+ +-------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT SUBSTRING( 'Buenos Días', -4 );
+ +---------------------------------+
+ | SUBSTRING( 'Buenos Días', -4 )  |
+ +---------------------------------+
+ | Días                            |
+ +---------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT SUBSTRING( 'Knowledgebase', -8, 4 );
+ +-------------------------------------+
+ | SUBSTRING( 'Knowledgebase', -8, 4 ) |
+ +-------------------------------------+
+ | edge                                |
+ +-------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+ MariaDB [(none)]> SELECT SUBSTRING( 'Knowledgebase' FROM -8 FOR 4 );
+ +--------------------------------------------+
+ | SUBSTRING( 'Knowledgebase' FROM -8 FOR 4 ) |
+ +--------------------------------------------+
+ | edge                                       |
+ +--------------------------------------------+
+ 1 row in set (0.00 sec)
+ 
+== SUBSTR ==
+ <b>Sintaxis</b>
+ 
+ SUBSTR es un sinónimo de SUBSTRING
+ 
+== MID ==
+ <b>Sintaxis</b>
+ 
+ MID( str, pos, len )
+ 
+ <b>Descripción</b>
+ 
+ MID( str, pos, len ) es un sinónimo de SUBSTRING( str, pos, len )
+ 
+ <b>Ejemplos</b>
+ 
+ MariaDB [(none)]> SELECT MID( 'abcd', 4, 1 );
+ +---------------------+
+ | MID( 'abcd', 4, 1 ) |
+ +---------------------+
+ | d                   |
+ +---------------------+
+ 1 row in set (0.00 sec)
 
 
 
