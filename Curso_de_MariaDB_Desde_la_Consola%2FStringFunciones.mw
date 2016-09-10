@@ -28,8 +28,8 @@ __NOTOC__
 * [[:#LTRIM | LTRIM]]
 * [[:#MID | MID]]
 * [[:#POSITION | POSITION]]
-* [[:#REPEAT Function | REPEAT]]
-* [[:#REPLACE Function | REPLACE]]
+* [[:#REPEAT | REPEAT]]
+* [[:#REPLACE | REPLACE]]
 * [[:#REVERSE | REVERSE]]
 * [[:#RIGHT | RIGHT]]
 * [[:# RPAD | RPAD]]
@@ -37,12 +37,7 @@ __NOTOC__
 * [[:#STRCMP | STRCMP]]
 * [[:#TRIM | TRIM]]
 * [[:#UCASE | UCASE]]
-* [[:#UNHEX | UNHEX]]
-* [[:#UPDATEXML | UPDATEXML]]
 * [[:#UPPER | UPPER]]
-* [[:#FROM_BASE64 | BASE64]]
-* [[:#TO_BASE64 | TO_BBAS64]]
-* [[:#WEIGHT_STRING | WEIGHT_STRING]]
 
 = String Funciones =
 == ASCII ==
