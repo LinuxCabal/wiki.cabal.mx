@@ -1626,7 +1626,7 @@ __NOTOC__
  | 'Maria DB'                     |
  +--------------------------------+
  1 row in set (0.00 sec)
-
+ 
  MariaDB [(none)]> SELECT TRIM( LEADING 'x' FROM 'xxxbarxxx' );
  +------------------------------------------+
  | TRIM( LEADING 'x' FROM 'xxxMariaDBxxx' ) |
@@ -1650,7 +1650,7 @@ __NOTOC__
  | MariaDB                               |
  +---------------------------------------+
  1 row in set (0.00 sec)
- 
+
 == UPPER ==
  <b>Sintaxis</b>
  
