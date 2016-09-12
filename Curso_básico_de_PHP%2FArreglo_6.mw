@@ -1,9 +1,8 @@
 __NOTOC__
 * [[:#Arreglo6 | Arreglo 6]]
-** [[:#Contenidos de FixAnotherMSIEBug.xsl | Contenidos de FixAnotherMSIEBug.xsl]]
-** [[:#Contenidos de Cabeza.inc | Contenidos de Cabeza.inc]]
-** [[:#Contenidos de incPie.php | Contenidos de incPie.php]]
-** [[:#Contenidos de org.css | Contenidos de org.css]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
 ** [[:#Explicación | Explicación]]
 ** [[:#Ejecutarlo | Ejecutarlo]]
 ** [[:#Descargarlo | Descargarlo]]
@@ -12,7 +11,7 @@ __NOTOC__
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
 <?php
-  require_once( "Cabeza.inc" );
+  require_once( "Cabeza5.inc" );
 ?>
   <body>
     <?php
@@ -26,21 +25,18 @@ __NOTOC__
       print( "<p class=\LargeTextFont\">
                 la $Tipo $Color en Cornucopia es: {$Cornucopia{$Tipo}{$Color}}
               </p>" );
-      require_once( "incPie.php" );
+      require_once( "incPie5.php" );
     ?>
 </syntaxhighlight>
 
-=== Contenidos de FixAnotherMSIEBug.xsl ===
-[http://www.linuxcabal.org/PHPClase/FixAnotherMSIEBug.txt Contenidos de FixAnotherMSIEBug.xsl]
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
 
-=== Contenidos de Cabeza.inc ===
-[http://www.linuxcabal.org/PHPClase/Cabeza.inc.txt Ver los contenidos de Cabeza.inc]
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
 
-=== Contenidos de incPie.php ===
-[http://www.linuxcabal.org/PHPClase/incPie.phps Ver los contenidos de incPie.php]
-
-=== Contenidos de org.css ===
-[http://www.linuxcabal.org/PHPClase/org.css.txt Ver los contenidos de org.css]
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
 
 === Explicación ===
 
