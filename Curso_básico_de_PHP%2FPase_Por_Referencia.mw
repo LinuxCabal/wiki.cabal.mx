@@ -10,12 +10,18 @@ __NOTOC__
 == PasePorReferencia ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+
 <?php
   require_once( "Cabeza5.inc" );
 ?>
   <body>
     <?php
-      function Mas10( &$Num )
+      function Mas10PorValor( $Num )
+      {
+        return ( $Num += 10 );
+      }
+
+      function Mas10PorRef( &$Num )
       {
         return ( $Num += 10 );
       }
@@ -24,12 +30,23 @@ __NOTOC__
       $i = 0;
 
       print( "<p class=\"TitleFont\" style=\"font-weight:bold; color:#000099;
-                         text-decoration:underline;\">
+                                             text-decoration:underline;\">
+                Pase por Valor
+              </p>
+              <p class=\"SubTitleFont\" style=\"color:#000000;\">" );
+      while( $i++ < 11 )
+        print(  Mas10PorValor( $NumOrig ) . "<br />" );
+      print( "</p>" );
+
+      $NumOrig = 100;
+      $i = 0;
+      print( "<p class=\"TitleFont\" style=\"font-weight:bold; color:#000099;
+                                             text-decoration:underline;\">
                 Pase por referencia
               </p>
               <p class=\"SubTitleFont\" style=\"color:#000000;\">" );
       while( $i++ < 11 )
-        print(  Mas10( &$NumOrig ) . "<br />" );
+        print(  Mas10PorRef( $NumOrig ) . "<br />" );
       print( "</p>" );
       require_once( "incPie5.php" );
     ?>
