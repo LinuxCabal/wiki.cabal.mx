@@ -18,7 +18,6 @@ __NOTOC__
       function StaticEjemplo()
       {
         static $StaticVar = 0;
-        // static $int = 1+2;        // ERROR  (no se permite un expresión)
         $NormalVar = 0;
 
         print( "\$StaticVar = $StaticVar
