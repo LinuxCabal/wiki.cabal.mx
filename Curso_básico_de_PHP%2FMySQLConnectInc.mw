@@ -15,7 +15,7 @@ __NOTOC__
       {
         echo( "No puede conectarse
              </p>" );
-        require_once( "incPie.php" );
+        require_once( "incPie5.php" );
         exit( 1 );
       }
 
@@ -27,8 +27,7 @@ __NOTOC__
         echo( "mysql_select_db() NO sirvió
              </p>" );
         mysql_close( $conn );
-
-        require_once( "incPie.php" );
+        require_once( "incPie5.php" );
         exit( 1 );
       }
       echo( "</p>" );
