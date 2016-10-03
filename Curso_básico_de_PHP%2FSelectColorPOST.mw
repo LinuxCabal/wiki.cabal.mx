@@ -58,9 +58,6 @@ __NOTOC__
   require_once( "incPie5.php" );
 ?>
 
-
-
-
 </syntaxhighlight>
 
 === Contenidos de Cabeza5.inc ===
@@ -75,10 +72,10 @@ __NOTOC__
 === Explicación ===
 
 === Ejecutarlo ===
-[http://www.linuxcabal.org/PHPClase/SelectColorGET.php Ejecutar el código de SelectColorGET]
+[http://www.linuxcabal.org/PHPClase/SelectColorPOST.php Ejecutar el código de SelectColorPOST]
 
 === Descargarlo ===
-[http://www.linuxcabal.org/PHPClase/SelectColorGET.phps Descargar el código de SelectColorGET]
+[http://www.linuxcabal.org/PHPClase/SelectColorPOST.phps Descargar el código de SelectColorPOST]
 
 [[Category:PHP]]
 [[Category:PHPCabal]]
