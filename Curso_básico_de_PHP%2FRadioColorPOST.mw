@@ -51,9 +51,12 @@ __NOTOC__
     $DisplayBlock =  "<p style=\"font:18pt helvetica; color:{$Color};\">
                         Enviaste el color: {$_POST{'Color'}}
                       </p>
-                      <p style=\"font:12pt helvetica; color:#050050:\">
+                      <p style=\"font:12pt helvetica; color:#050050:\"
                         <a href=\"RadioColorPOST.php\">
                           Selecci&oacute;na otro color</a>
+                        <br />
+                        <a href=\"index.html\">
+                          Men&uacute; Principal</a>
                       </p>";
   }
   require_once( "Cabeza5.inc" );
