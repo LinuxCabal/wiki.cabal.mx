@@ -1,0 +1,77 @@
+__NOTOC__
+* [[:#TextAreaPOST | TextAreaPOST]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== TextAreaPOST ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  if( @!$_POST{'Nombre'} || @!$_POST{'Direccion'} )
+    $DisplayBlock =  "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\">
+                        <p style=\"font:18pt helvetica; color:#050050;\">
+                          Nombre: <br />
+                          <input type=\"text\" name=\"Nombre\" size=\"30\"
+                                 maxlength=\"15\" />
+                        </p>
+                        <p style=\"font:18pt helvetica; color:#050050;\">
+                          Dirección:
+                          <br />
+                          <textarea name=\"Direccion\" rows=\"5\" cols=\"40\"
+                                    style=\"font:14pt bookman; color:#000000;\"> &lt;&lt;- Pueden poner ustedes texto inicial aquí -&gt;&gt;
+                          </textarea>
+                        </p>
+                        <p style=\"font:18pt helvetica; color:#050050;\">
+                          <input type=\"radio\" name=\"Tipo\" value=\"Hogar\"
+                                 checked=\"checked\" /> 
+                            Hogar
+                          <input type=\"radio\" name=\"Tipo\" value=\"Trabajo\" />
+                            Trabajo
+                          <input type=\"radio\" name=\"Tipo\" value=\"Otro\" />
+                            Otro
+                        </p>
+                        <p style=\"font:18pt helvetica; color:#050050;\">
+                          <input type=\"submit\" name=\"Submit\"
+                                 value=\"Enviar\" />
+                        </p>
+                        </form>";
+  else
+    $DisplayBlock =  "<p style=\"font:28pt helvetic; color:#000090;\">
+                        Bienvenido <strong>{$_POST{'Nombre'}}</strong>
+                      </p>
+                      <p style=\"font:18pt helvetic; color:#000090;\">
+                          Tu dirección de {$_POST{'Tipo'}} es:
+                          <br /><ul><li style=\"list-style-type: none;\">" .
+                               nl2br( $_POST{'Direccion'} ) . "</li></ul></p>";
+
+  require_once( "Cabeza5.inc" );
+  print( $DisplayBlock );
+  require_once( "incPie5.php" );
+?>
+
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/TextAreaPOST.php Ejecutar el código de TextAreaPOST]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/TextAreaPOST.phps Descargar el código de TextAreaPOST]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
