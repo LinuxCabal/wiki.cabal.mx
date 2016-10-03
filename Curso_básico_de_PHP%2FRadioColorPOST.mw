@@ -1,0 +1,87 @@
+__NOTOC__
+* [[:#RadioColorPOST | RadioColorPOST]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== RadioColorPOST ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  if( !isset( $_POST{'Color'} ) )
+    $DisplayBlock =  "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\">
+                        <p style=\"font:18pt helvetica; color:#050050;\">
+                          Selectiona un Color:
+                          <input type=\"radio\" name=\"Color\" 
+                                 value=\"Rojo\" />Rojo
+                          <input type=\"radio\" name=\"Color\" 
+                                 value=\"Verde\" />Verde
+                          <input type=\"radio\" name=\"Color\" 
+                                 value=\"Azul\" checked=\"checked\" />Azul
+                          <input type=\"radio\" name=\"Color\" 
+                                 value=\"Marron\" />Marr&oacute;n
+                        </p>
+                        <p>
+                          <input type=\"submit\" name=\"Submit\" 
+                                 value=\"Enviar\" />
+                        </p>
+                      </form>";
+  else
+  {
+    switch( $_POST{'Color'} )
+    {
+      case "Azul":
+        $Color = "#0000AA";
+        break;
+      case "Rojo":
+        $Color = "#AA0000";
+        break;
+      case "Verde":
+        $Color = "#00AA00";
+        break;
+      case "Marron":
+        $Color = "#930222";
+        break;
+      default:
+        $Color = "#000000";
+    }
+    $DisplayBlock =  "<p style=\"font:18pt helvetica; color:{$Color};\">
+                        Enviaste el color: {$_POST{'Color'}}
+                      </p>
+                      <p style=\"font:12pt helvetica; color:#050050:\"
+                        <a href=\"RadioColorPOST.php\">
+                          Selecci&oacute;na otro color</a>
+                        <br />
+                        <a href=\"index.html\">
+                          Men&uacute; Principal</a>
+                      </p>";
+  }
+  require_once( "Cabeza5.inc" );
+  print( $DisplayBlock );
+  require_once( "incPie5.php" );
+?>
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/RadioColorPOST.php Ejecutar el código de RadioColorPOST]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/RadioColorPOST.phps Descargar el código de RadioColorPOST]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
