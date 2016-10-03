@@ -1,0 +1,88 @@
+__NOTOC__
+* [[:#CheckBoxColorPOST | C]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo |heckBoxColorPOST Descargarlo]]
+
+== CheckBoxColorPOST ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+
+<?php
+  function EscribeDatos( $Color, $ColorNombre )
+  {
+    return( "<ul style=\"font:18pt helvetica; color:{$Color};\">\n
+               <li>el color: {$ColorNombre}<br />" );
+  }
+
+  if( @!$_POST{'Rojo'} && @!$_POST{'Azul'} && @!$_POST{'Verde'} )
+    $DisplayBlock =   "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\">
+                         <p style=\"font:18pt helvetica; color:#050050;\">
+                           Selectiona un Color:
+                           <input type=\"checkbox\" name=\"Rojo\" />
+                             Rojo
+                           <input type=\"checkbox\" name=\"Verde\" />
+                             Verde
+                           <input type=\"checkbox\" name=\"Azul\" />
+                             Azul
+                           <input type=\"checkbox\" name=\"Marron\" 
+                                  disabled=\"disabled\" checked=\"checked\" />
+                             Marr&oacute;n
+                         </p>
+                         <p>
+                           <input type=\"submit\" name=\"Submit\" 
+                                  value=\"Enviar\" />
+                         </p>
+                       </form>";
+  else 
+  { 
+    $DisplayBlock = "<p style=\"font:28pt helvetica; color:#000000;\">
+                       Enviaste ";
+
+    if( @$_POST{'Azul'} )
+      $DisplayBlock .= EscribeDatos( "#0000AA", "Azul" ) . "</li></ul>";
+
+    if( @$_POST{'Rojo'} )
+      $DisplayBlock .= EscribeDatos( "#AA0000", "Rojo" ) . "</li></ul>";
+
+    if( @$_POST{'Verde'} )
+      $DisplayBlock .= EscribeDatos( "#00AA00", "Verde" ) . "</li></ul>";
+
+    if( @$_POST{'Marron'} )
+      $DisplayBlock .= EscribeDatos( "#532222", "Marrón" ) . "</li></ul>";
+
+    $DisplayBlock .=   "</p>
+                        <p style=\"font:12pt helvetica; color:#000000;\">
+                          <a href=\"CheckBoxColorPOST.php\">
+                            Selecci&oacute;na otro color</a>
+                        </p>";
+  }
+  require_once( "Cabeza5.inc" );
+  print( $DisplayBlock );
+  require_once( "incPie5.php" );
+?>
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/CheckBoxColorPOST.php Ejecutar el código de CheckBoxColorPOST]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/CheckBoxColorPOST.phps Descargar el código de CheckBoxColorPOST]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
