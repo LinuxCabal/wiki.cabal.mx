@@ -1,0 +1,63 @@
+__NOTOC__
+* [[:#FilePOST | FilePOST]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== FilePOST ==
+
+<syntaxhighlight lang="php" line="GESHI_
+
+<?php
+  if( @!$_POST{'FileNombre'} )
+    $DisplayBlock =  "<form style=\"font:18pt helvetic; color:#000090;\"
+                              action=\"{$_SERVER{'PHP_SELF'}}\"
+                              method=\"post\">
+                          <p>
+                            Elige un archivo: 
+                            <br />
+                            <input type=\"file\" name=\"FileNombre\" />
+                            <br /><br />
+                            <input type=\"submit\" name=\"Submit\"
+                                   value=\"Enviar\" />
+                          </p>
+                        </form>";
+  else
+    $DisplayBlock =  "<p Style=\"font:18pt helvetic; color:#900090;\">
+                        Elegiste el archivo que se llama
+                        \"{$_POST{'FileNombre'}}\"
+                      </p>
+                      <p style=\"font:12pt helvetica; color:#050050:\">
+                        <a href=\"FilePOST.php\">
+                          Selecci&oacute;na otro archivo</a>
+                      </p>";
+  require_once( "Cabeza5.inc" );
+  print( $DisplayBlock );
+  require_once( "incPie5.php" );
+?>
+
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/FilePOST.php Ejecutar el código de FilePOST]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/FilePOST.phps Descargar el código de FilePOST]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
