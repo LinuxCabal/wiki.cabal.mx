@@ -1,0 +1,79 @@
+__NOTOC__
+* [[:#TextColorPOST | TextColorPOST]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== TextColorPOST ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  if( !isset( $_GET{'Color'} ) )
+    $DisplayBlock =  "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"get\">
+                        <p style=\"font:18pt helvetica; color:#050050;\">
+                          Selectiona un Color:
+                          <select name=\"Color\" size=\"1\" 
+                                  style=\"font:14pt helvetica; color:#000000;\">
+                            <option value=\"Rojo\">Rojo</option>
+                            <option value=\"Verde\">Verde</option>
+                            <option value=\"Azul\">Azul</option>
+                          </select>
+                        </p>
+                        <p>
+                          <input type=\"submit\" name=\"Submit\" 
+                                 value=\"Enviar\" />
+                        </p>
+                      </form>";
+  else
+  {
+    switch( $_GET{'Color'} )
+    {
+      case "Azul":
+        $Color = "#0000aa";
+        break;
+      case "Rojo":
+        $Color = "#aa0000";
+        break;
+      case "Verde":
+        $Color = "#00aa00";
+        break;
+      default:
+        $Color = "#000000";
+    }
+    $DisplayBlock =  "<p style=\"font:18pt helvetica; color:{$Color};\">
+                        Enviaste el color: {$_GET{'Color'}}
+                      </p>
+                      <p style=\"font:12pt helvetica; color:#050050:\">
+                        <a href=\"SelectColorGET.php\">
+                          Seleccióna otro color</a>
+                      </p>";
+  }
+  require_once( "Cabeza5.inc" );
+  print( $DisplayBlock );
+  require_once( "incPie5.php" );
+?>
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/TextColorPOST.php Ejecutar el código de TextColorPOST]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/TextColorPOST.phps Descargar el código de TextColorPOST]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
