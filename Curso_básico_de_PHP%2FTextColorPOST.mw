@@ -3,7 +3,6 @@ __NOTOC__
 ** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
 ** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
 ** [[:#Contenidos de clase.css | Contenidos de clase.css]]
-** [[:#Contenidos de MensajeError.php | Contenidos de MensajeError.php]]
 ** [[:#Explicación | Explicación]]
 ** [[:#Ejecutarlo | Ejecutarlo]]
 ** [[:#Descargarlo | Descargarlo]]
@@ -11,67 +10,51 @@ __NOTOC__
 == TextColorPOST ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-
 <?php
-  $SelectValid = 1;
-
-  if( !isset( $_POST{'Color'} ) )
-    $DisplayBlock =  "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\">
+  if( !isset( $_GET{'Color'} ) )
+    $DisplayBlock =  "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"get\">
                         <p style=\"font:18pt helvetica; color:#050050;\">
-                          Esta caja est&aacute;
-                          <input type=\"text\" name=\"Caja1\" size=\"10\"
-                                 maxlength=\"8\" value=\"ReadOnly\" 
-                                 readonly=\"readonly\" />
-                          <br />
-                          Esta caja est&aacute;
-                          <input type=\"text\" name=\"Caja2\" size=\"10\"
-                                 maxlength=\"8\" value=\"Disabled\" 
-                                 disabled=\"disabled\" />
-                          <br /><br />
-                          Que Color? ( \"Verde\", \"Rojo\" o \"Azul\" )
-                          <input type=\"text\" name=\"Color\" size=\"10\"
-                                 maxlength=\"5\" value=\"Azul\" />
+                          Selectiona un Color:
+                          <select name=\"Color\" size=\"1\" 
+                                  style=\"font:14pt helvetica; color:#000000;\">
+                            <option value=\"Rojo\">Rojo</option>
+                            <option value=\"Verde\">Verde</option>
+                            <option value=\"Azul\">Azul</option>
+                          </select>
                         </p>
                         <p>
                           <input type=\"submit\" name=\"Submit\" 
                                  value=\"Enviar\" />
-                          &nbsp;&nbsp;&nbsp;&nbsp;
-                          <input type=\"reset\" name=\"Reset\" 
-                                 value=\"Reset\" />
                         </p>
                       </form>";
   else
   {
-    switch( strtolower( $_POST{'Color'} ) )
+    switch( $_GET{'Color'} )
     {
-      case "azul":
-        $Color = "#0000AA";
+      case "Azul":
+        $Color = "#0000aa";
         break;
-      case "rojo":
-        $Color = "#AA0000";
+      case "Rojo":
+        $Color = "#aa0000";
         break;
-      case "verde":
-        $Color = "#00AA00";
+      case "Verde":
+        $Color = "#00aa00";
         break;
       default:
-        $SelectValid = 0;
+        $Color = "#000000";
     }
-    if( $SelectValid )
-      $DisplayBlock =  "<p style=\"font:18pt helvetica; color:{$Color};\">
-                          Enviaste el color: {$_POST{'Color'}}
-                        </p>
-                        <p style=\"font:12pt helvetica; color:#050050:\">
-                          <a href=\"TextColorPOST.php\">
-                            Selecci&oacute;na otro color</a>
-                        </p>";
-    else
-      header( "Location: MensajeError.php?Errno=1003&Var={$_POST{'Color'}}" );
+    $DisplayBlock =  "<p style=\"font:18pt helvetica; color:{$Color};\">
+                        Enviaste el color: {$_GET{'Color'}}
+                      </p>
+                      <p style=\"font:12pt helvetica; color:#050050:\">
+                        <a href=\"SelectColorGET.php\">
+                          Seleccióna otro color</a>
+                      </p>";
   }
   require_once( "Cabeza5.inc" );
   print( $DisplayBlock );
   require_once( "incPie5.php" );
 ?>
-
 </syntaxhighlight>
 
 === Contenidos de Cabeza5.inc ===
@@ -82,9 +65,6 @@ __NOTOC__
 
 === Contenidos de clase.css ===
 [http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
-
-=== Contenidos de MensajeError.php ===
-[http://www.linuxcabal.org/PHPClase/MensajeError.phps Ver los contenidos de MensajeError.php]
 
 === Explicación ===
 
