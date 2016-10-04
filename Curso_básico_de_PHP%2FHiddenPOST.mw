@@ -23,7 +23,8 @@ __NOTOC__
                           Dirección:
                           <br />
                           <textarea name=\"Direccion\" rows=\"5\" cols=\"40\"
-                                    style=\"font:14pt bookman; color:#000000;\"> &lt;&lt;- Pueden poner ustedes texto inicial aquí -&gt;&gt;
+                                    style=\"font:14pt bookman; color:#000000;\">
+                                            &lt;&lt;- Pueden poner ustedes texto inicial aquí -&gt;&gt;
                           </textarea>
                           <br /><br />
                           <input type=\"radio\" name=\"Tipo\" value=\"Hogar\"
