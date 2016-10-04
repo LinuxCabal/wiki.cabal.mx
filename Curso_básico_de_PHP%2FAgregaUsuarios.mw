@@ -12,14 +12,16 @@ __NOTOC__
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
 
 <?php
-  //            USE MyTest1;
-  //             CREATE TABLE `Usuarios` (
-  //             `id` smallint(6) NOT NULL AUTO_INCREMENT,
-  //             `APaterno` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  //             `AMaterno` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  //             `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  //              PRIMARY KEY (`id`)
-  //             ) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  /* 
+   *            USE MyTest1;
+   *            CREATE TABLE `Usuarios` (
+   *             `id` smallint(6) NOT NULL AUTO_INCREMENT,
+   *             `APaterno` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+   *             `AMaterno` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+   *             `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+   *              PRIMARY KEY (`id`)
+   *            ) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_unicode_ci;
+   */
 
   require_once( "Cabeza5.inc" );
 ?>  
