@@ -1,0 +1,266 @@
+__NOTOC__
+* [[:#EvalMeastros | EvalMaestros]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de MySQLClaseConnect.inc.php | Contenidos de MySQLClaseConnect.inc.php]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== EvalMaestros ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+
+<?php
+
+  // Este Archivo: EvalMaestro.php
+
+  /*
+    use MyTest1
+
+    CREATE TABLE `Evaluadores` (
+      `ID` int(6) NOT NULL auto_increment,
+      `Nombre` varchar(25) default NULL,
+      `EMail` varchar(25) default NULL,
+      PRIMARY KEY  (`ID`),
+      UNIQUE KEY `EMail` (`EMail`));
+
+    CREATE TABLE `Evaluaciones` (
+      `ID` int(4) not null auto_increment,
+      `Maestro` varchar (25),
+      `EvaluadoresID` int(4) not null,
+      `Evaluacion` enum( '0', '1', '2', '3', '4', '5' ) default '0',
+      primary key (`ID`),
+      KEY `EvaluadoresID` (`EvaluadoresID`),
+      CONSTRAINT `Evaluaciones_ibfk_1` foreign key (`EvaluadoresID`)
+        references `Evaluadores` (`ID`));
+
+    describe Evaluadores;
+    describe Evaluaciones;
+  */
+
+  $RegForm = <<< FinRegForma
+              <p style="font:28pt charter; color:#000000; text-align:center;">
+                 Evalua a tu Maestro
+              </p>
+              <p style="font:18pt charter; color:#000000; text-align:center;">
+                 &iexcl;Ingresa tus datos porfavor!
+              </p>
+              <form method="post" action="{$_SERVER{'PHP_SELF'}}">
+                <p style="font:14pt charter; color:#000000; text-align:center;">
+                  Nombre:&nbsp;
+                  <input type="text" size="25" maxlength="25" name="Nombre" />
+                  &nbsp;&nbsp;&nbsp;EMail:&nbsp;
+                  <input type="text" size="25" maxlength="25" name="EMail" />
+                  <br /><br />
+                  <input type="hidden" name="Eval" value="Register" />
+                  <input type="submit" name="Submit" value="Submit" />
+                  &nbsp;&nbsp;&nbsp;&nbsp;
+                  <input type="reset" />
+                </p>
+              </form>
+FinRegForma;
+
+  $EvalForm = <<< FinEvalForma
+                  <div style="width:90%; margin-left:10%; position:relative;">
+                    <p style="font:28pt charter; color:#000000;">
+                      Evalua a tu Maestro
+                    </p>
+                    <p style="font:18pt charter; color:#000000;">
+                      Mi maestro:
+                    </p>
+                    <form method="post" action="{$_SERVER{'PHP_SELF'}}">
+                      <p>
+                      <input type="radio" name="Rating" value="1" />
+                        El es un payaso en todo los sentidos
+                        <br />
+                      <input type="radio" name="Rating" value="2" />
+                        El debe aprender su materia antes de ense&ntilde;arla
+                        <br />
+                      <input type="radio" name="Rating" value="3" />
+                        El es totalmente NORMAL
+                        <br />
+                      <input type="radio" name="Rating" value="4" />
+                        El es guapo, inteligente y divertido
+                        <br />
+                      <input type="radio" name="Rating" value="5"
+                             checked="checked" />
+                        El es una inspiraci&oacute;n para la humanidad
+                        <br /><br />
+                      <select name="Maestro" size="1"
+                              style="font:14pt charter; color:#000000;">
+                        <option
+                          value="Richard Couture">Richard Couture
+                        </option>
+                        <option
+                          value="Juan Gomez">Juan Gomez
+                        </option>
+                        <option
+                          value="Enrique Lopez">Enrique Lopez
+                        </option>
+                      </select>
+                      <input type="hidden" name="Eval" value="Eval" />
+                      <input type="hidden" name="EMail"
+                             value="{$_POST{'EMail'}}" />
+                      <input type="submit" name="Submit" value="Submit" />
+                      </p>
+                    </form>
+                   </div>
+FinEvalForma;
+
+  if( @!$_POST{'Submit'} )
+  {
+    $DisplayBlock = $RegForm;
+  }
+
+// <<<<---- Registrar ---->>>>
+
+  elseif( @$_POST{'Submit'} == 'Submit' && @$_POST{'Eval'} == 'Register' )
+  {
+    if( !$_POST{'Nombre'} || $_POST{'Nombre'} == ""
+     || !$_POST{'EMail'} || $_POST{'EMail'} == "" )
+    {
+      $DisplayBlock = "<p style=\"text-align: center;
+                          Font:Bold 18pt Charter; Color:#aa0000;\">
+                         No puede continuar sin tu Nombre Y tu EMail!
+                       <p>";
+      $DisplayBlock .= $RegForm;
+    }
+    else
+    { 
+      require_once( "MySQLClaseConnect.inc.php");
+
+      $Query = "Select ID from Evaluadores
+                where Nombre = '{$_POST{'Nombre'}}'
+                AND EMail = '{$_POST{'EMail'}}'";
+
+      if( !$QueryRes = mysqli_query( $Conn, $Query ) )
+      {
+        mysqli_close( $Conn );
+        header( "Location: MensajeError.php?Errno=1009" );
+        exit();
+      }
+
+      if( mysqli_num_rows( $QueryRes ) )
+        $DisplayBlock = &$EvalForm;
+      else
+      {
+        $Query = "insert into Evaluadores ( ID, Nombre, EMail ) values
+                  ( NULL, '{$_POST{'Nombre'}}', '{$_POST{'EMail'}}' )";
+
+        if( !mysqli_query( $Conn, $Query ) )
+        {
+          mysqli_close( $Conn );
+          header( "Location: MensajeError.php?Errno=1011" );
+          exit();
+        }
+
+        if( mysqli_affected_rows( $Conn ) == 1 )
+          $DisplayBlock = &$EvalForm;
+        else
+        {
+          mysqli_close( $Conn );
+          error_log( mysqli_error( $Conn ) );
+          header( "Location: MensajeError.php?Errno=1012" );
+        }
+      }
+    }
+    mysqli_close( $Conn );
+  }
+
+// <<<<---- Escribe Eveluacion ---->>>>
+
+  elseif( @$_POST{'Submit'} == 'Submit' && @$_POST{'Eval'} == 'Eval' )
+  {
+    require_once( "MySQLClaseConnect.inc.php");
+
+    $Query = "select ID from Evaluadores where EMail = '{$_POST{'EMail'}}'";
+    if( !$QueryRes = mysqli_query( $Conn, $Query ) )
+    {
+      mysqli_close( $Conn );
+      header( "Location: MensajeError.php?Errno=1014" );
+      exit();
+    }
+
+    if( mysqli_num_rows( $QueryRes ) != 1 )
+    {
+      mysqli_close( $Conn );
+      header( "Location: MensajeError.php?Errno=1015" );
+      exit();
+    }
+    else
+    {
+      $Registro = mysqli_fetch_array( $QueryRes );
+      $EvaluadorID = $Registro{'ID'};
+
+      mysqli_free_result( $QueryRes );
+
+      $Query = "insert into Evaluaciones ( ID, Maestro, EvaluadoresID,
+                                           Evaluacion )
+                values ( NULL, '{$_POST{'Maestro'}}', '$EvaluadorID',
+                         '{$_POST{'Rating'}}' )";
+
+      if( !mysqli_query( $Conn, $Query ) )
+      {
+        mysqli_close( $Conn );
+        error_log( mysqli_error( $Conn ) );
+        header( "Location: MensajeError.php?Errno=1016" );
+        exit();
+      }
+
+      if( mysqli_affected_rows( $Conn ) != 1 )
+      {
+        mysqli_close( $Conn );
+        header( "Location: MensajeError.php?Errno=1017" );
+      }
+      else
+        $DisplayBlock = "<p style=\"font:bold 28pt helvetica; color:#000000;
+                            text-align: center;\">
+                                 -=&nbsp;Agregado de Evaluaci&oacute;n&nbsp;=-
+                               </p>
+                               <p style=\"font:bold 28pt helvetica;
+                                          color:#050099; text-align:center;\">
+                                 CONFIRMADO!
+                               </p>
+                               <p style=\"font:12pt helvetica; color:#050050;
+                                  text-align: left;\">
+                                 <a href=\"EvalMaestro.php\">
+                                   Evalua a otro maestro
+                                 </a>
+                               <p>";
+    }
+    mysqli_close( $Conn );
+  }
+
+  require_once( "Cabeza5.inc" );
+  print( $DisplayBlock );
+  require_once( "incPie5.php" );
+?>
+
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de MySQLClaseConnect.inc.php ===
+[http://www.linuxcabal.org/PHPClase/MySQLClaseConnect.inc.phps Ver los contenidos de MySQLClaseConnect.inc.php]
+
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/EvalMaestros.php Ejecutar el código de EvalMaestros]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/EvalMaesros.phps Descargar el código de EvalMaestros]
+
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
