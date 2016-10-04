@@ -1,5 +1,5 @@
 __NOTOC__
-* [[:#PasswordColorPOST | PasswordColorPOST]]
+* [[:#HiddenPOST | HiddenPOST]]
 ** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
 ** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
 ** [[:#Contenidos de clase.css | Contenidos de clase.css]]
@@ -7,7 +7,7 @@ __NOTOC__
 ** [[:#Ejecutarlo | Ejecutarlo]]
 ** [[:#Descargarlo | Descargarlo]]
 
-== PasswordColorPOST ==
+== HiddenPOST ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
 <?php
@@ -82,10 +82,10 @@ __NOTOC__
 === Explicación ===
 
 === Ejecutarlo ===
-[http://www.linuxcabal.org/PHPClase/PasswordColorPOST.php Ejecutar el código de PasswordColorPOST]
+[http://www.linuxcabal.org/PHPClase/HiddenPOST.php Ejecutar el código de HiddenPOST]
 
 === Descargarlo ===
-[http://www.linuxcabal.org/PHPClase/PasswordColorPOST.phps Descargar el código de PasswordColorPOST]
+[http://www.linuxcabal.org/PHPClase/HiddenPOST.phps Descargar el código de HiddenPOST]
 
 [[Category:PHP]]
 [[Category:PHPCabal]]
