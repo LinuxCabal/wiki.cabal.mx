@@ -1,5 +1,5 @@
 __NOTOC__
-* [[:#EvalMeastros | EvalMaestros]]
+* [[:#EvalMeastro | EvalMaestro]]
 ** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
 ** [[:#Contenidos de MySQLClaseConnect.inc.php | Contenidos de MySQLClaseConnect.inc.php]]
 ** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
@@ -8,7 +8,7 @@ __NOTOC__
 ** [[:#Ejecutarlo | Ejecutarlo]]
 ** [[:#Descargarlo | Descargarlo]]
 
-== EvalMaestros ==
+== EvalMaestro ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
 
@@ -255,10 +255,10 @@ FinEvalForma;
 === Explicación ===
 
 === Ejecutarlo ===
-[http://www.linuxcabal.org/PHPClase/EvalMaestros.php Ejecutar el código de EvalMaestros]
+[http://www.linuxcabal.org/PHPClase/EvalMaestro.php Ejecutar el código de EvalMaestro]
 
 === Descargarlo ===
-[http://www.linuxcabal.org/PHPClase/EvalMaesros.phps Descargar el código de EvalMaestros]
+[http://www.linuxcabal.org/PHPClase/EvalMaesro.phps Descargar el código de EvalMaestro]
 
 
 [[Category:PHP]]
