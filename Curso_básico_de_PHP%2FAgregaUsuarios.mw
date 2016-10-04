@@ -11,6 +11,164 @@ __NOTOC__
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
 
+<?php
+  \*        Use MyTest1
+   *        CREATE TABLE `Usuarios` (
+   *              `id` smallint(6) NOT NULL AUTO_INCREMENT,
+   *              `APaterno` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+   *              `AMaterno` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+   *              `Nombre` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+   *               PRIMARY KEY (`id`)
+   *\             ) ENGINE=InnoDB CHARSET=utf8 COLLATE=utf8_unicode_ci
+
+  require_once( "Cabeza5.inc" );
+?>  
+  <body>
+    <?php
+      if( ! @$_POST{'Submit'} && ! @$_POST{'Mostrar'} ) 
+      {
+        print( "<p class=\"SubTitleFont\">
+                  Agregar Usuarios
+                </p>
+                <form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\" >
+                  <p class=\"LargeTextFont\">
+                    * Apellido Paterno:&nbsp;
+                    <input type=\"text\" name=\"APaterno\" size=\"30\"
+                                         maxlength=\"50\" />
+                    <br />
+                    &nbsp;&nbsp;Apellido Materno:&nbsp;
+                    <input type=\"text\" name=\"AMaterno\" size=\"30\"
+                                         maxlength=\"50\" />
+                    <br />
+                    * Nombre(s):&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type=\"text\" name=\"Nombre\" size=\"30\"
+                                         maxlength=\"50\" />
+                  </p>
+                  <p>
+                    <input type=\"submit\" name=\"Submit\" value=\"Enviar\" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type=\"reset\" name=\"Reset\" value=\"Limpiar\" />
+                    <br />
+                    <br />
+                    * Campo obligatorio
+                  </p>
+                </form>" );
+        require_once( "incPie5.php" );
+      }
+      elseif( @$_POST{'Submit'} )
+      {
+        echo(  "<p class=\"SubTitleFont\">
+                  Agregando Usuario {$_POST{'Nombre'}} {$_POST{'APaterno'}}
+                                                       {$_POST{'AMaterno'}}
+                </p>" );
+
+        require_once( "MySQLClaseConnect.inc.php");
+
+        if( @$_POST{'APaterno'} )
+          $APaterno = htmlspecialchars( $_POST{'APaterno'},
+                                        ENT_QUOTES, "UTF-8" );
+        else
+        {
+          echo( 'Falta Apallido Paterno, No podemos continuar!' );
+          mysqli_close( $Conn );
+          require_once( "incPie5.php" );
+          exit( 1 );
+        }
+        if( @$_POST{'AMaterno'} )
+          $AMaterno = htmlspecialchars( $_POST{'AMaterno'},
+                                        ENT_QUOTES, "UTF-8" );
+        if( $_POST{'Nombre'} )
+          $Nombre = htmlspecialchars( $_POST{'Nombre'},
+                                        ENT_QUOTES, "UTF-8" );
+        else
+        {
+          echo( 'Falta Nombre, No podemos continuar!' );
+          mysqli_close( $Conn );
+          require_once( "incPie5.php" );
+          exit( 1 );
+        }
+
+        $Query = "INSERT INTO Usuarios values ( NULL, '{$APaterno}', ";
+        if( @$AMaterno )
+          $Query .=                                  "'{$AMaterno}', ";
+        else
+          $Query .=                                    "'', ";
+        $Query .=                                    "'{$Nombre}' )"; 
+
+        if( mysqli_query( $Conn, $Query ) )
+          echo("<p class=\"LargeTextFont\">
+                  Registro agregado con exito
+                </p>
+                <form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\" >
+                  <p>
+                    <input type=\"submit\" name=\"Mostrar\"
+                           value=\"Mostrar los Registros\" />
+                  </p>
+                </form>" );
+        else
+        {
+          echo("<p class=\"LargeTextFont\">
+                  No puede INSERT 
+                </p>" );
+          mysqli_close( $Conn );
+          require_once( "incPie5.php" );
+          exit( 1 );
+        }
+
+        mysqli_close( $Conn );
+        require_once( "incPie5.php" );
+        exit( 0 ); 
+      }
+      else
+      {
+        require_once( "MySQLClaseConnect.inc.php" );
+
+        $Query = "SELECT * FROM Usuarios";
+
+        if( $Resultado = mysqli_query( $Conn, $Query ) )
+        {
+          echo("<p class=\"SubTitleFont\">
+                  Mostrando los Registros de TestTable 
+                </p>
+                <table>
+                  <tr>
+                    <th>
+                      ID
+                    </th>
+                    <th>
+                      Nombre
+                    </th>
+                    <th>
+                      Apellido Paterno
+                    </th>
+                    <th>
+                      Apellido Materno
+                    </th>
+                  </tr>" );
+          while( $Registro = mysqli_fetch_array( $Resultado ) )
+          {
+            echo("<tr>
+                    <td>
+                      {$Registro{'id'}}
+                    </td>
+                    <td>
+                      {$Registro{'Nombre'}}
+                    </td>
+                    <td>
+                      {$Registro{'APaterno'}}
+                    </td>
+                    <td>
+                      {$Registro{'AMaterno'}}
+                    </td>
+                  </tr>" );
+          }
+          echo("</table>" );
+        }
+        mysqli_close( $Conn );
+        require_once( "incPie5.php" );
+        exit( 0 ); 
+      }
+    ?>
 
 </syntaxhighlight>
 
