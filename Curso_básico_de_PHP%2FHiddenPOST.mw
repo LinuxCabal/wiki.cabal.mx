@@ -10,59 +10,51 @@ __NOTOC__
 == HiddenPOST ==
 
 <syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
-<?php
-  $SelectValid = 1;
 
-  if( !isset( $_POST{'Color'} ) )
+<?php
+  if( @!$_POST{'Escribele'} )
     $DisplayBlock =  "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\">
-                        <p style=\"font:18pt helvetica; color:#050050;\">
-                          Que Color? ( \"Verde\", \"Rojo\" o \"Azul\" )
-                          <input type=\"password\" name=\"Color\" size=\"10\"
-                                 maxlength=\"5\" />
-                        </p>
                         <p>
-                          <input type=\"submit\" name=\"Submit\" 
+                          Nombre:
+                          <br />
+                          <input type=\"text\" name=\"Nombre\" size=\"30\"
+                                 maxlength=\"15\" />
+                          <br /><br />
+                          Dirección:
+                          <br />
+                          <textarea name=\"Direccion\" rows=\"5\" cols=\"40\"
+                                    style=\"font:14pt bookman; color:#000000;\"> &lt;&lt;- Pueden poner ustedes texto inicial aquí -&gt;&gt;
+                          </textarea>
+                          <br /><br />
+                          <input type=\"radio\" name=\"Tipo\" value=\"Hogar\"
+                                 checked=\"checked\" />
+                            Hogar
+                          <input type=\"radio\" name=\"Tipo\"
+                                 value=\"Trabajo\" />
+                            Trabajo
+                          <input type=\"radio\" name=\"Tipo\" value=\"Otro\" />
+                            Otro
+                          <br /><br />
+                          <input type=\"hidden\" name=\"Escribele\"
+                                 value=\"1\" />
+                          <input type=\"submit\" name=\"Submit\"
                                  value=\"Enviar\" />
                         </p>
                       </form>";
   else
-  {
-    switch( $_POST{'Color'} )
-    {
-      case "Azul":
-        $Color = "#0000AA";
-        break;
-      case "Rojo":
-        $Color = "#AA0000";
-        break;
-      case "Verde":
-        $Color = "#00AA00";
-        break;
-      default:
-        $SelectValid = 0;
-    }
-    if( $SelectValid )
-      $DisplayBlock =  "<p style=\"font:18pt helvetica; color:{$Color};\">
-                          Enviaste el color: {$_POST{'Color'}}
-                        </p>
-                        <p style=\"font:12pt helvetica; color:#050050:\">
-                          <a href=\"PasswordColorPOST.php\">
-                            Seleccióna otro color</a>
+    $DisplayBlock =  "<p style=\"font:28pt helvetic; color:#000090;\">
+                        Bienvenido <strong>{$_POST{'Nombre'}}</strong>
+                      </p>
+                      <p style=\"font:18pt helvetic; color:#000090;\">
+                          Tu direcci&oacute;n de {$_POST{'Tipo'}} es:
+                          <br />
+                          <ul>
+                            <li style=\"list-style-type: none;\">" .
+                              nl2br( $_POST{'Direccion'} ) . "
+                            </li>
+                          </ul>
                         </p>";
-    else
-      $DisplayBlock =  "<p style=\"font:28pt helvetica; color:#AA0000;
-                                 text-decoration: blink;\">
-                          &iexcl;Color INVALIDO!
-                        </p>
-                        <p style=\"font:14pt helvetica; color:#000000;\">
-                          &iquest;Olvidaste que PHP es sensible a MAYUSCULAS y 
-                          minusculas?
-                        </p>
-                        <p style=\"font:12pt helvetica; color:#050050:\">
-                          <a href=\"PasswordColorPOST.php\">
-                            Selecci&oacute;na otra color</a>
-                        </p>";
-  }
+
   require_once( "Cabeza5.inc" );
   print( $DisplayBlock );
   require_once( "incPie5.php" );
