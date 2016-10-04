@@ -1,0 +1,92 @@
+__NOTOC__
+* [[:#PasswordColorPOST | PasswordColorPOST]]
+** [[:#Contenidos de Cabeza5.inc | Contenidos de Cabeza5.inc]]
+** [[:#Contenidos de incPie5.php | Contenidos de incPie5.php]]
+** [[:#Contenidos de clase.css | Contenidos de clase.css]]
+** [[:#Explicación | Explicación]]
+** [[:#Ejecutarlo | Ejecutarlo]]
+** [[:#Descargarlo | Descargarlo]]
+
+== PasswordColorPOST ==
+
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
+<?php
+  $SelectValid = 1;
+
+  if( !isset( $_POST{'Color'} ) )
+    $DisplayBlock =  "<form action=\"{$_SERVER{'PHP_SELF'}}\" method=\"post\">
+                        <p style=\"font:18pt helvetica; color:#050050;\">
+                          Que Color? ( \"Verde\", \"Rojo\" o \"Azul\" )
+                          <input type=\"password\" name=\"Color\" size=\"10\"
+                                 maxlength=\"5\" />
+                        </p>
+                        <p>
+                          <input type=\"submit\" name=\"Submit\" 
+                                 value=\"Enviar\" />
+                        </p>
+                      </form>";
+  else
+  {
+    switch( $_POST{'Color'} )
+    {
+      case "Azul":
+        $Color = "#0000AA";
+        break;
+      case "Rojo":
+        $Color = "#AA0000";
+        break;
+      case "Verde":
+        $Color = "#00AA00";
+        break;
+      default:
+        $SelectValid = 0;
+    }
+    if( $SelectValid )
+      $DisplayBlock =  "<p style=\"font:18pt helvetica; color:{$Color};\">
+                          Enviaste el color: {$_POST{'Color'}}
+                        </p>
+                        <p style=\"font:12pt helvetica; color:#050050:\">
+                          <a href=\"PasswordColorPOST.php\">
+                            Seleccióna otro color</a>
+                        </p>";
+    else
+      $DisplayBlock =  "<p style=\"font:28pt helvetica; color:#AA0000;
+                                 text-decoration: blink;\">
+                          &iexcl;Color INVALIDO!
+                        </p>
+                        <p style=\"font:14pt helvetica; color:#000000;\">
+                          &iquest;Olvidaste que PHP es sensible a MAYUSCULAS y 
+                          minusculas?
+                        </p>
+                        <p style=\"font:12pt helvetica; color:#050050:\">
+                          <a href=\"PasswordColorPOST.php\">
+                            Selecci&oacute;na otra color</a>
+                        </p>";
+  }
+  require_once( "Cabeza5.inc" );
+  print( $DisplayBlock );
+  require_once( "incPie5.php" );
+?>
+
+</syntaxhighlight>
+
+=== Contenidos de Cabeza5.inc ===
+[http://www.linuxcabal.org/PHPClase/Cabeza5.inc.txt Ver los contenidos de Cabeza5.inc]
+
+=== Contenidos de incPie5.php ===
+[http://www.linuxcabal.org/PHPClase/incPie5.phps Ver los contenidos de incPie5.php]
+
+=== Contenidos de clase.css ===
+[http://www.linuxcabal.org/PHPClase/clase.css.txt Ver los contenidos de clase.css]
+
+=== Explicación ===
+
+=== Ejecutarlo ===
+[http://www.linuxcabal.org/PHPClase/PasswordColorPOST.php Ejecutar el código de PasswordColorPOST]
+
+=== Descargarlo ===
+[http://www.linuxcabal.org/PHPClase/PasswordColorPOST.phps Descargar el código de PasswordColorPOST]
+
+[[Category:PHP]]
+[[Category:PHPCabal]]
+[[Category:CursoPHP]]
