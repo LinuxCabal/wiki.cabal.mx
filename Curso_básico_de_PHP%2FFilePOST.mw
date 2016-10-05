@@ -9,7 +9,7 @@ __NOTOC__
 
 == FilePOST ==
 
-<syntaxhighlight lang="php" line="GESHI_
+<syntaxhighlight lang="php" line="GESHI_FANCY_LINE_NUMBERS">
 
 <?php
   if( @!$_POST{'FileNombre'} )
