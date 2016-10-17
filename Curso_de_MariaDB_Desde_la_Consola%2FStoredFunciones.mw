@@ -143,9 +143,11 @@ MariaDB [Prueba1]> select CuarentayDos();
 |             42 |
 +----------------+
 1 row in set (0.00 sec)
+</pre>
 
 Por supuesto, una función que no tiene ningún argumento es de poca utilidad.
 
+<pre>
 MariaDB [Prueba1]> drop function CuarentayDos;
 Query OK, 0 rows affected (0.08 sec)
 
@@ -222,7 +224,6 @@ character_set_client: utf8
 collation_connection: utf8_general_ci
   Database Collation: utf8_unicode_ci
 1 row in set (0.00 sec)
-</pre>
 
 MariaDB [Prueba1]> select VatCents(100);
 +---------------+
@@ -231,6 +232,7 @@ MariaDB [Prueba1]> select VatCents(100);
 |         11400 |
 +---------------+
 1 row in set (0.00 sec)
+</pre>
 
 
 [[Category:MariaDB Desde la Consola]]
