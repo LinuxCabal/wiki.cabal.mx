@@ -190,10 +190,11 @@ character_set_client: utf8
 collation_connection: utf8_general_ci
   Database Collation: utf8_unicode_ci
 1 row in set (0.00 sec)
-
+</pre>
 
 o consultar la tabla de rutinas en la base de datos directamente INFORMATION_SCHEMA:
 
+<pre>
 MariaDB [Prueba1]>  SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE='FUNCTION';
 +--------------+
 | ROUTINE_NAME |
