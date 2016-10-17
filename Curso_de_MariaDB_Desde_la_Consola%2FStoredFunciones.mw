@@ -1,6 +1,7 @@
 __NOTOC__
 * [[:#Stored Functions | Stored Functions]
-* [[:#Descripción | &nbsp;&nbsp;&nbsp;&nbsp;Descripción]]
+* [[:#Sintaxis | Sintaxis]]
+* [[:#Descripción | Descripción]]
 
 = Stored unctions =
 
@@ -12,21 +13,21 @@ CREATE [OR REPLACE]
     RETURNS type
     [characteristic ...]
     RETURN func_body
-
-func_parameter:
+ 
+ func_parameter:
     param_name type
-
-type:
+ 
+ type:
     Any valid MariaDB data type
-
-characteristic:
+ 
+ characteristic:
     LANGUAGE SQL
   | [NOT] DETERMINISTIC
   | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
   | SQL SECURITY { DEFINER | INVOKER }
   | COMMENT 'string'
-
-func_body:
+ 
+ func_body:
     Valid SQL procedure statement
 
 
