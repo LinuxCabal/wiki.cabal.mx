@@ -1,0 +1,101 @@
+Una stored function es una función definida que se llama desde dentro de una instrucción SQL
+como una función regular, y devuelve un único valor.
+
+Creación de funciones almacenados
+
+He aquí un ejemplo de esqueleto para ver una función almacenada en acción:
+
+DELIMITER //
+
+CREAR Fortytwo FUNCIÓN () devuelve TINYINT DETERMINISTIC
+EMPEZAR
+ DECLARE x TINYINT;
+ SET x = 42;
+ Return x;
+FIN
+
+//
+
+DELIMITER;
+
+En primer lugar, el delimitador se cambia, ya que la definición de función contendrá el delimitador de punto y coma regular. Ver delimitadores en el cliente mysql para más. A continuación, la función se llama Fortytwo y definido para devolver un tinyin. La palabra clave DETERMINISTIC no es necesario en todos los casos (aunque si el log binario está activado, dejando fuera generará un error), y es ayudar al optimizador de consultas elige un plan de consulta. Una función determinista es aquel que, teniendo en cuenta los mismos argumentos, siempre devolverá el mismo resultado.
+
+A continuación, el cuerpo de la función se coloca entre BEGIN y END declaraciones. Se declara un tinyint, X, que simplemente se establece en 42 años, y este es el resultado devuelto.
+
+MariaDB [test]> SELECT Fortytwo ();
++ ------------ +
+| Cuarenta y dos () |
++ ------------ +
+| 42 |
++ ------------ +
+
+Por supuesto, una función que no tiene ningún argumento es de poca utilidad. He aquí un ejemplo más complejo:
+
+DELIMITER //
+CREATE FUNCTION (decimal VatCents precio (10,2)) int DETERMINISTIC
+EMPEZAR
+ DECLARE x INT;
+ SET x = precio * 114;
+ Return x;
+FIN //
+Query OK, 0 filas afectadas (0,04 seg)
+DELIMITER;
+
+Esta función toma un argumento, el precio que se define como un decimal, y devuelve un int.
+
+Echar un vistazo a la página CREATE FUNCTION para más detalles.
+listados y definiciones de funciones almacenados
+
+Para encontrar las funciones almacenadas se están ejecutando en el servidor, use SHOW función de estado.
+
+MariaDB [(ninguno)]> SHOW función de estado \ G
+*************************** 1. fila ******************** *******
+                  Db: test
+                Nombre: VatCents
+                Tipo: FUNCIÓN
+             Definidor: root @ localhost
+            Modificado: 01/06/2013 12:40:31
+             Creado: 01/06/2013 12:40:31
+       SECURITY_TYPE: DEFINER
+             Comentario:
+character_set_client: utf8
+collation_connection: utf8_general_ci
+  Intercalación de base de datos: latin1_swedish_ci
+1 row in set (0.00 sec)
+
+o consultar la tabla de rutinas en la base de datos directamente INFORMATION_SCHEMA:
+
+MariaDB [(ninguno)]> ROUTINE_NAME SELECT INFORMATION_SCHEMA.ROUTINES DONDE ROUTINE_TYPE = "función";
++ -------------- +
+| ROUTINE_NAME |
++ -------------- +
+| VatCents |
++ -------------- +
+
+Para saber lo que hace la función almacenada, use SHOW CREATE FUNCTION.
+
+MariaDB [test]> SHOW CREATE VatCents function \ G
+*************************** 1. fila ******************** *******
+            Función: VatCents
+            sql_mode:
+     Crear Función: CREATE DEFINER = `` @ root` localhost` función `VatCents` (decimal precio (10,2)) int (11)
+    DETERMINISTIC
+EMPEZAR
+ DECLARE x INT;
+ SET x = precio * 114;
+ Return x;
+FIN
+character_set_client: utf8
+collation_connection: utf8_general_ci
+  Intercalación de base de datos: latin1_swedish_ci
+
+Dejar caer y actualización de funciones almacenadas
+
+Para quitar una función almacenada, utilice la sentencia DROP FUNCTION.
+
+DROP Fortytwo FUNCIÓN;
+
+Para cambiar las características de una función almacenada, utilice la función ALTER. Tenga en cuenta que no puede cambiar los parámetros o el cuerpo de una función almacenada utilizando esta sentencia; para hacer tales cambios, tendrá que quitar y volver a crear la función usando DROP FUNCTION y CREATE FUNCTION.
+Permiso de funciones almacenadas
+
+Véase el artículo almacenado Privilegios de rutina.
