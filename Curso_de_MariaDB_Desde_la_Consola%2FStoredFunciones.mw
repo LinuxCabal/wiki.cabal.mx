@@ -203,8 +203,9 @@ MariaDB [Prueba1]>  SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES WHERE R
 
 Para saber lo que hace la función almacenada, use SHOW CREATE FUNCTION.
 
+<pre>
 MariaDB [Prueba1]> SHOW CREATE FUNCTION VatCents \G;
-*************************** 1. row ***************************
+********************* 1. row *********************
             Function: VatCents
             sql_mode: 
      Create Function: CREATE DEFINER=`root`@`localhost` FUNCTION `VatCents`(price DECIMAL(10,2)) RETURNS int(11)
@@ -218,6 +219,7 @@ character_set_client: utf8
 collation_connection: utf8_general_ci
   Database Collation: utf8_unicode_ci
 1 row in set (0.00 sec)
+</pre>
 
 MariaDB [Prueba1]> select VatCents(100);
 +---------------+
@@ -227,7 +229,6 @@ MariaDB [Prueba1]> select VatCents(100);
 +---------------+
 1 row in set (0.00 sec)
 
-</syntaxhighlight>
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
