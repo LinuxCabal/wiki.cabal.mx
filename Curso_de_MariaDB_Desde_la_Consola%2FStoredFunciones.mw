@@ -92,12 +92,12 @@ MariaDB [Prueba1]> show create function CuarentayDos;
 +--------------+----------+
 
 +------------------------------------------------------------------------------------+
-| Create Function                                                                    |                                                                   
+| Create Function                                                                    |
 +------------------------------------------------------------------------------------+
 !                                                                                    |
 !  CREATE DEFINER=`root`@`localhost` FUNCTION `CuarentayDos`() RETURNS tinyint(4)    |
 !     DETERMINISTIC                                                                  |
-! BEGIN                                                                              | 
+! BEGIN                                                                              |
 !  DECLARE x TINYINT;                                                                |
 !  SET x = 42;                                                                       |
 !  Return x;                                                                         |
