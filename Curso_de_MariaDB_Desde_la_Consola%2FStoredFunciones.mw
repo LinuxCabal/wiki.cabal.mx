@@ -1,39 +1,3 @@
-__NOTOC__
-* [[:#Stored Functions | Stored Functions]
-* [[:#Sintaxis | Sintaxis]]
-* [[:#Descripción | Descripción]]
-
-= Stored unctions =
-
-== Sintaxis ==
-
-<pre>
-CREATE [OR REPLACE]
-    [DEFINER = {user | CURRENT_USER}]
-    FUNCTION func_name ([func_parameter[,...]])
-    RETURNS type
-    [characteristic ...]
-    RETURN func_body
-
-func_parameter:
-    param_name type
-
-type:
-    Any valid MariaDB data type
-
-characteristic:
-    LANGUAGE SQL
-  | [NOT] DETERMINISTIC
-  | { CONTAINS SQL | NO SQL | READS SQL DATA | MODIFIES SQL DATA }
-  | SQL SECURITY { DEFINER | INVOKER }
-  | COMMENT 'string'
-
-func_body:
-    Valid SQL procedure statement
-</pre>
-
-== Descripción ==
-
 Una stored function es una función definida que se llama desde dentro de una instrucción SQL
 como una función regular, y devuelve un único valor.
 
@@ -41,203 +5,97 @@ Creación de funciones almacenados
 
 He aquí un ejemplo de esqueleto para ver una función almacenada en acción:
 
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
-
 DELIMITER //
 
-CREATE FUNCTION CuarentayDos() RETURNS TINYINT DETERMINISTIC
-BEGIN
+CREAR Fortytwo FUNCIÓN () devuelve TINYINT DETERMINISTIC
+EMPEZAR
  DECLARE x TINYINT;
  SET x = 42;
  Return x;
-END
+FIN
 
 //
 
-DELIMITER ;
+DELIMITER;
 
-</syntaxhighlight>
+En primer lugar, el delimitador se cambia, ya que la definición de función contendrá el delimitador de punto y coma regular. Ver delimitadores en el cliente mysql para más. A continuación, la función se llama Fortytwo y definido para devolver un tinyin. La palabra clave DETERMINISTIC no es necesario en todos los casos (aunque si el log binario está activado, dejando fuera generará un error), y es ayudar al optimizador de consultas elige un plan de consulta. Una función determinista es aquel que, teniendo en cuenta los mismos argumentos, siempre devolverá el mismo resultado.
 
-En primer lugar, el delimitador se cambia, ya que la definición de función contendrá el delimitador
-de punto y coma regular. A continuación, la función se llama CuarentayDos y definido para devolver 
-un tinyint. La palabra clave DETERMINISTIC no es necesario en todos los casos (aunque si el log binario
-está activado, dejando fuera generará un error), y es ayudar al optimizador de consultas elige un plan
-de consulta. Una función determinista es aquel que, teniendo en cuenta los mismos argumentos, siempre
-devolverá el mismo resultado.
+A continuación, el cuerpo de la función se coloca entre BEGIN y END declaraciones. Se declara un tinyint, X, que simplemente se establece en 42 años, y este es el resultado devuelto.
 
-A continuación, el cuerpo de la función se coloca entre BEGIN y END declaraciones.
-Se declara un tinyint, x, que simplemente se establece en 42, y este es el resultado devuelto.
+MariaDB [test]> SELECT Fortytwo ();
++ ------------ +
+| Cuarenta y dos () |
++ ------------ +
+| 42 |
++ ------------ +
 
-<pre>
-MariaDB [(none)]> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| Prueba1            |
-| PythonClase        |
-| information_schema |
-| mysql              |
-| performance_schema |
-| test               |
-+--------------------+
-6 rows in set (0.04 sec)
-
-MariaDB [(none)]> use Prueba1;
-Database changed
-MariaDB [Prueba1]> DELIMITER //
-MariaDB [Prueba1]> 
-MariaDB [Prueba1]> CREATE FUNCTION CuarentayDos() RETURNS TINYINT DETERMINISTIC
-                   BEGIN
-                     DECLARE x TINYINT;
-                     SET x = 42;
-                     Return x;
-                     END //
-Query OK, 0 rows affected (0.08 sec)
-
-MariaDB [Prueba1]> DELIMITER ;
-MariaDB [Prueba1]> show function status;
-+---------+--------------+----------+----------------+---------------------+---------------------+---------------+---------+
-| Db      | Name         | Type     | Definer        | Modified            | Created             | Security_type | Comment |
-+---------+--------------+----------+----------------+---------------------+---------------------+---------------+---------+
-| Prueba1 | CuarentayDos | FUNCTION | root@localhost | 2016-10-17 13:13:17 | 2016-10-17 13:13:17 | DEFINER       |         |
-+---------+--------------+----------+----------------+---------------------+---------------------+---------------+---------+
-
-+----------------------+----------------------+--------------------+
-| character_set_client | collation_connection | Database Collation |
-+----------------------+----------------------+--------------------+
-| utf8                 | utf8_general_ci      | utf8_unicode_ci    |
-+----------------------+----------------------+--------------------+
-1 row in set (0.05 sec)
-
-MariaDB [Prueba1]> show create function CuarentayDos;
-+--------------+----------+
-| Function     | sql_mode |
-+--------------+----------+
-| CuarentayDos |          |
-+--------------+----------+
-
-+------------------------------------------------------------------------------------+
-| Create Function                                                                    |
-+------------------------------------------------------------------------------------+
-!                                                                                    |
-!  CREATE DEFINER=`root`@`localhost` FUNCTION `CuarentayDos`() RETURNS tinyint(4)    |
-!     DETERMINISTIC                                                                  |
-! BEGIN                                                                              |
-!  DECLARE x TINYINT;                                                                |
-!  SET x = 42;                                                                       |
-!  Return x;                                                                         |
-! END                                                                                |
-+------------------------------------------------------------------------------------+
-
-+----------------------+----------------------+--------------------|
-| character_set_client | collation_connection | Database Collation |
-+----------------------+----------------------+--------------------|
-| utf8                 | utf8_general_ci      | utf8_unicode_ci    |
-|----------------------+----------------------+--------------------+
-1 row in set (0.00 sec
-
-MariaDB [Prueba1]> select CuarentayDos();
-+----------------+
-| CuarentayDos() |
-+----------------+
-|             42 |
-+----------------+
-1 row in set (0.00 sec)
-</pre>
-
-Por supuesto, una función que no tiene ningún argumento es de poca utilidad.
-
-<pre>
-MariaDB [Prueba1]> drop function CuarentayDos;
-Query OK, 0 rows affected (0.08 sec)
-
-MariaDB [Prueba1]> show function status;
-Empty set (0.00 sec)
-
-</pre>
-
-He aquí un ejemplo más complejo:
-
-<syntaxhighlight lang="sql" line="GESHI_FANCY_LINE_NUMBERS">
+Por supuesto, una función que no tiene ningún argumento es de poca utilidad. He aquí un ejemplo más complejo:
 
 DELIMITER //
-
-CREATE FUNCTION VatCents( precio DECIMAL(10,2) ) RETURNS INT DETERMINISTIC
-BEGIN
-  DECLARE x INT;
-  SET x = precio * 114;
-  Return x;
-END //
+CREATE FUNCTION (decimal VatCents precio (10,2)) int DETERMINISTIC
+EMPEZAR
+ DECLARE x INT;
+ SET x = precio * 114;
+ Return x;
+FIN //
 Query OK, 0 filas afectadas (0,04 seg)
-DELIMITER ;
-
-</syntaxhighlight>
+DELIMITER;
 
 Esta función toma un argumento, el precio que se define como un decimal, y devuelve un int.
 
-Para encontrar las funciones almacenadas se están ejecutando en el servidor, use SHOW FUNCTION STATUS.
+Echar un vistazo a la página CREATE FUNCTION para más detalles.
+listados y definiciones de funciones almacenados
 
-<pre>
-MariaDB [Prueba1]> show function status \G;
-*************************** 1. row ***************************
-                  Db: Prueba1
-                Name: VatCents
-                Type: FUNCTION
-             Definer: root@localhost
-            Modified: 2016-10-17 14:47:15
-             Created: 2016-10-17 14:47:15
-       Security_type: DEFINER
-             Comment: 
+Para encontrar las funciones almacenadas se están ejecutando en el servidor, use SHOW función de estado.
+
+MariaDB [(ninguno)]> SHOW función de estado \ G
+*************************** 1. fila ******************** *******
+                  Db: test
+                Nombre: VatCents
+                Tipo: FUNCIÓN
+             Definidor: root @ localhost
+            Modificado: 01/06/2013 12:40:31
+             Creado: 01/06/2013 12:40:31
+       SECURITY_TYPE: DEFINER
+             Comentario:
 character_set_client: utf8
 collation_connection: utf8_general_ci
-  Database Collation: utf8_unicode_ci
+  Intercalación de base de datos: latin1_swedish_ci
 1 row in set (0.00 sec)
-</pre>
 
 o consultar la tabla de rutinas en la base de datos directamente INFORMATION_SCHEMA:
 
-<pre>
-MariaDB [Prueba1]>  SELECT ROUTINE_NAME FROM INFORMATION_SCHEMA.ROUTINES WHERE ROUTINE_TYPE='FUNCTION';
-+--------------+
+MariaDB [(ninguno)]> ROUTINE_NAME SELECT INFORMATION_SCHEMA.ROUTINES DONDE ROUTINE_TYPE = "función";
++ -------------- +
 | ROUTINE_NAME |
-+--------------+
-| VatCents     |
-+--------------+
-1 row in set (0.21 sec)
-</pre>
++ -------------- +
+| VatCents |
++ -------------- +
 
 Para saber lo que hace la función almacenada, use SHOW CREATE FUNCTION.
 
-<pre>
-MariaDB [Prueba1]> SHOW CREATE FUNCTION VatCents \G;
-********************* 1. row *********************
-            Function: VatCents
-            sql_mode: 
-     Create Function: CREATE DEFINER=`root`@`localhost` FUNCTION `VatCents`(price DECIMAL(10,2)) RETURNS int(11)
+MariaDB [test]> SHOW CREATE VatCents function \ G
+*************************** 1. fila ******************** *******
+            Función: VatCents
+            sql_mode:
+     Crear Función: CREATE DEFINER = `` @ root` localhost` función `VatCents` (decimal precio (10,2)) int (11)
     DETERMINISTIC
-BEGIN
+EMPEZAR
  DECLARE x INT;
- SET x = price * 114;
- RETURN x;
-END
+ SET x = precio * 114;
+ Return x;
+FIN
 character_set_client: utf8
 collation_connection: utf8_general_ci
-  Database Collation: utf8_unicode_ci
-1 row in set (0.00 sec)
+  Intercalación de base de datos: latin1_swedish_ci
 
-MariaDB [Prueba1]> select VatCents(100);
-+---------------+
-| VatCents(100) |
-+---------------+
-|         11400 |
-+---------------+
-1 row in set (0.00 sec)
-</pre>
+Dejar caer y actualización de funciones almacenadas
 
-Para cambiar las características de una stored function, utilice la función ALTER.
-Tenga en cuenta que no puede cambiar los parámetros o el cuerpo de una stored function
-utilizando esta directivo; para hacer tales cambios, tendrá que quitar y volver a crear
-la función usando DROP FUNCTION y CREATE FUNCTION.
+Para quitar una función almacenada, utilice la sentencia DROP FUNCTION.
 
-[[Category:MariaDB Desde la Consola]]
-[[Category: CursoMatiaDB]]
+DROP Fortytwo FUNCIÓN;
+
+Para cambiar las características de una función almacenada, utilice la función ALTER. Tenga en cuenta que no puede cambiar los parámetros o el cuerpo de una función almacenada utilizando esta sentencia; para hacer tales cambios, tendrá que quitar y volver a crear la función usando DROP FUNCTION y CREATE FUNCTION.
+Permiso de funciones almacenadas
+
+Véase el artículo almacenado Privilegios de rutina.
