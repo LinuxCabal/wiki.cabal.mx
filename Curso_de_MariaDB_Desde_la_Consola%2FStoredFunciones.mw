@@ -175,6 +175,7 @@ Esta función toma un argumento, el precio que se define como un decimal, y devu
 
 Para encontrar las funciones almacenadas se están ejecutando en el servidor, use SHOW FUNCTION STATUS.
 
+<pre>
 MariaDB [Prueba1]> show function status \G;
 *************************** 1. row ***************************
                   Db: Prueba1
@@ -189,6 +190,7 @@ character_set_client: utf8
 collation_connection: utf8_general_ci
   Database Collation: utf8_unicode_ci
 1 row in set (0.00 sec)
+</pre>
 
 o consultar la tabla de rutinas en la base de datos directamente INFORMATION_SCHEMA:
 
