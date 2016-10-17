@@ -234,6 +234,10 @@ MariaDB [Prueba1]> select VatCents(100);
 1 row in set (0.00 sec)
 </pre>
 
+Para cambiar las características de una stored function, utilice la función ALTER.
+Tenga en cuenta que no puede cambiar los parámetros o el cuerpo de una stored function
+utilizando esta directivo; para hacer tales cambios, tendrá que quitar y volver a crear
+la función usando DROP FUNCTION y CREATE FUNCTION.
 
 [[Category:MariaDB Desde la Consola]]
 [[Category: CursoMatiaDB]]
